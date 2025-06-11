@@ -5,7 +5,7 @@ Este portal tiene como objetivo facilitar la promoción y difusión de oportunid
 
 Integrantes:  
 -Luciana Zabaleta  
--Gisele Bartolo
+-Gisele Bartolo  
 -Santiago Lázaro  
 -Nahuel Caroseli  
 -Analia Burgos
