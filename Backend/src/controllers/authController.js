@@ -1,4 +1,5 @@
-import { getPersonaByEmail } from "./personaController.js";
+import { getPersonaByEmail } from "./usuarioController.js";
+import {registrarUsuario} from '../services/usuarioService.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
@@ -38,4 +39,25 @@ export const iniciarSesion = async (req, res) => {
   return res.json({message:'Se inicio la sesion correctamente', token})
 
 
+};
+
+
+//----------------------------------------------------------------------------
+
+export const registrarse = async (req, res) => {
+  try {
+    const { nombre, password } = req.body;
+
+    if (!nombre || !password) {
+      return res.status(400).json({ error: 'Nombre y contraseña son obligatorios' });
+    }
+
+    const resultado = await registrarUsuario({ nombre, password });
+
+    res.status(201).json(resultado);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message || 'Error interno' });
+  }
 };

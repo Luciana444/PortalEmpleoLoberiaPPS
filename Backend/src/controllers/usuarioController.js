@@ -1,5 +1,5 @@
-import { findAllPersonas , getPersonaByEmail as getPersonFromDB} from "../services/personaService.js";
-export const getAllPersonas = async (req, res) => {
+import { findAllPersonas , getPersonaByEmail as getPersonFromDB} from "../services/usuarioService.js";
+export const getAllUsuarios = async (req, res) => {
     try {
         const personas = await findAllPersonas();
         res.status(200).json(personas);
