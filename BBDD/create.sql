@@ -10,8 +10,6 @@ create table usuarios (
   estado boolean default true
 );
 
---coneccion a supabase
---postgresql://postgres:Pasantia2025@db.suwkfgkricsyzvwxulms.supabase.co:5432/postgres
 
 -- TABLA EMPRESAS (relacionada 1:1 con usuarios tipo empresa)
 CREATE TABLE empresas (
