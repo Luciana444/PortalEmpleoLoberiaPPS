@@ -13,5 +13,5 @@ app.listen(3000, () => {
   console.log(`Server running on http://localhost:3000`);
 });
 console.log("funcionando");
-//pone un prefijo llamado api adelante de todos los endpoints
+
 app.use('/api',router);
