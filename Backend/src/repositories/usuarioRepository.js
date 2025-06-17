@@ -12,7 +12,8 @@ export const findAll = async () =>{
 
 export const findPersonaByEmail = async (email) =>{
     try {
-        return await sql`SELECT * FROM usuarios WHERE email = ${email}`;
+        const result = await sql`SELECT * FROM usuarios WHERE email = ${email}`;
+        return result[0];
     } catch (error) {
         console.log(error);
     }
@@ -25,10 +26,10 @@ export const existeNombre = async (nombre) => {
   return result.length > 0;
 };
 
-export const crearUsuario = async ({ nombre, hashedPassword }) => {
+export const crearUsuario = async ({ nombre, email,hashedPassword , tipo_usuario}) => {
   const result = await sql`
-    INSERT INTO usuarios (nombre, contraseña, fecha_registro, estado)
-    VALUES (${nombre}, ${hashedPassword}, NOW(), 'activo')
+    INSERT INTO usuarios (nombre, email , contrasena, fecha_registro, tipo_usuario)
+    VALUES (${nombre}, ${email}, ${hashedPassword}, NOW(), ${tipo_usuario})
     RETURNING id
   `;
   return result[0].id;

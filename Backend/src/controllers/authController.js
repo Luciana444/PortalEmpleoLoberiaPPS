@@ -1,42 +1,28 @@
-import { getPersonaByEmail } from "./usuarioController.js";
-import {registrarUsuario} from '../services/usuarioService.js';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+import {registrarUsuario, iniciarSesionUsuario} from '../services/usuarioService.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
 export const iniciarSesion = async (req, res) => {
-  const { email, password } = req.body;
+  try {
+    const { email, password } = req.body;
 
-  if (!email || !password) {
-    return res.status(400).json({ error: 'Email y password son requeridos' });
+    if (!email || !password) {
+      return res.status(400).json({ error: 'El email y password son requeridos' });
+    }
+
+    const resultado = await iniciarSesionUsuario({email,password});
+
+    if(!resultado){
+      return res.status(500).json({message:"No se pudo iniciar sesion"});
+    }
+
+
+  return res.json({message:'Se inicio la sesion correctamente', resultado})
+  } catch (error) {
+      console.log(error);
   }
-
-  const usuario = await getPersonaByEmail(email);  
-
-  if(!usuario){
-    return res.status(404).json({error:'No existe el usuario'});
-  }
-
-  const coincidePassword = await bcrypt.compare(password,user.password);
-
-  if(!coincidePassword){
-    return res.json({message:'Credenciales incorrectas'});
-  }
-
-
-  const payload = {
-    id: usuario.id,
-    email: usuario.email,
-  }
-
-  const token = jwt.sign(payload, process.env.JWT_SECRET,{
-    expiresIn:'1h'
-  })
-
-
-  return res.json({message:'Se inicio la sesion correctamente', token})
+  
 
 
 };
@@ -46,13 +32,13 @@ export const iniciarSesion = async (req, res) => {
 
 export const registrarse = async (req, res) => {
   try {
-    const { nombre, password } = req.body;
+    const { nombre, email, password, tipo_usuario } = req.body;
 
     if (!nombre || !password) {
       return res.status(400).json({ error: 'Nombre y contraseña son obligatorios' });
     }
 
-    const resultado = await registrarUsuario({ nombre, password });
+    const resultado = await registrarUsuario({ nombre, email, password, tipo_usuario});
 
     res.status(201).json(resultado);
 
