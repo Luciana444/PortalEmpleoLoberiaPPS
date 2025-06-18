@@ -1,5 +1,7 @@
 import { findAll, findPersonaByEmail } from "../repositories/usuarioRepository.js";
+import {existeEmail, crearUsuario} from '../repositories/usuarioRepository.js';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 
 export const findAllPersonas = async () => {
     try {
@@ -10,47 +12,50 @@ export const findAllPersonas = async () => {
     }
 };
 
-
-//------------------------------------------------------------------
-import {existeNombre, crearUsuario} from '../repositories/usuarioRepository.js';
-import bcrypt from 'bcrypt';
-
-export const registrarUsuario = async ({ nombre, email, password, tipo_usuario}) => {
-
-  const existe = await existeNombre(nombre);
-  if (existe) {
-    throw new Error('El nombre ya está registrado');
-  }
-
-  const hashedPassword = await bcrypt.hash(password, 10);
-
-  const idUsuario = await crearUsuario({ nombre,email, hashedPassword,tipo_usuario });
-
-  return { message: 'Usuario registrado correctamente', idUsuario };
-};
-
-
-export const iniciarSesionUsuario = async ({email,password})=>{
-
+export const iniciarSesionUsuario = async ({ email, password }) => {
   const usuario = await findPersonaByEmail(email);
-  if(!usuario){
+  if (!usuario) {
     throw new Error('El usuario no existe');
   }
-  const coincidePassword = await bcrypt.compare(password,usuario.contrasena);
 
-  if(!coincidePassword){
-      throw new Error('Credenciales incorrectas');
+  const coincidePassword = await bcrypt.compare(password, usuario.contrasena);
+
+  if (!coincidePassword) {
+    throw new Error('Credenciales incorrectas');
   }
 
   const payload = {
     id: usuario.id,
     email: usuario.email,
+    tipo_usuario: usuario.tipo_usuario
+  };
+
+  const token = jwt.sign(payload, process.env.JWT_SECRET, {
+    expiresIn: '1h'
+  });
+
+  return { token };
+};
+
+export const registrarUsuario = async ({ nombre, email, password, tipo_usuario }) => {
+  const existe = await existeEmail(email);
+  if (existe) {
+    throw new Error('El email ya está registrado');
   }
 
-  const token = jwt.sign(payload, process.env.JWT_SECRET,{
-    expiresIn:'1h'
-  })
+  const hashedPassword = await bcrypt.hash(password, 10);
 
-  return token;
+  const usuarioGuardado = await crearUsuario({
+    nombre,
+    email,
+    contrasena: hashedPassword,
+    tipo_usuario,
+    fecha_registro: new Date().toISOString(),
+    estado: true
+  });
 
-}
+  return {
+    message: 'Usuario registrado correctamente',
+    idUsuario: usuarioGuardado.id
+  };
+};

@@ -1,5 +1,6 @@
 import {registrarUsuario, iniciarSesionUsuario} from '../services/usuarioService.js';
 import dotenv from 'dotenv';
+import bcrypt from 'bcrypt';
 
 dotenv.config();
 
@@ -32,15 +33,37 @@ export const iniciarSesion = async (req, res) => {
 
 export const registrarse = async (req, res) => {
   try {
+    console.log('Body recibido:', req.body);
     const { nombre, email, password, tipo_usuario } = req.body;
 
-    if (!nombre || !password) {
-      return res.status(400).json({ error: 'Nombre y contraseña son obligatorios' });
+    if (!nombre || !email || !password || !tipo_usuario) {
+      return res.status(400).json({ error: 'Todos los campos son obligatorios' });
     }
 
-    const resultado = await registrarUsuario({ nombre, email, password, tipo_usuario});
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ error: 'Email inválido' });
+    }
 
-    res.status(201).json(resultado);
+    const tiposValidos = ['ciudadano', 'empresa'];
+    if (!tiposValidos.includes(tipo_usuario)) {
+      return res.status(400).json({ error: 'Tipo de usuario inválido' });
+    }
+
+    const nuevoUsuario = {
+      nombre,
+      email,
+      password,  
+      tipo_usuario,
+      fecha_registro: new Date().toISOString(),
+      estado: true
+    };
+
+    const resultado = await registrarUsuario(nuevoUsuario);
+
+    const { contraseña, ...usuarioSinPassword } = resultado;
+
+    res.status(201).json(usuarioSinPassword);
 
   } catch (error) {
     console.error(error);
