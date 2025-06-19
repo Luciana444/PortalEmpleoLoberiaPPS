@@ -47,3 +47,16 @@ export const savePasswordResetToken = async (userId, token) => {
   return true;
 };
 
+
+export const invalidarToken = async (id_usuario,token)=>{
+    const fecha_expiracion = new Date(Date.now() + 3600000).toISOString();
+    const result = await sql`
+      INSERT INTO tokens_invalidados (id_user, token, expires_at)
+      VALUES (${id_usuario}, ${token}, ${fecha_expiracion})
+      ON CONFLICT (id_user) DO UPDATE
+        SET token = EXCLUDED.token,
+            expires_at = EXCLUDED.expires_at
+    `;
+    return result[0];
+
+}

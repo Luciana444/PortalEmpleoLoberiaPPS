@@ -2,7 +2,7 @@ import {existeEmail, crearUsuario} from '../repositories/usuarioRepository.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
-import {findAll, findUserByEmail, savePasswordResetToken } from '../repositories/usuarioRepository.js';
+import {findAll, findUserByEmail, savePasswordResetToken,invalidarToken } from '../repositories/usuarioRepository.js';
 import { generarTokenRecuperacion } from './tokenService.js';
 import { enviarEmailRecuperacion } from './emailService.js';
 dotenv.config();
@@ -62,8 +62,14 @@ export const registrarUsuario = async ({ nombre, email, password, tipo_usuario }
     message: 'Usuario registrado correctamente',
     idUsuario: usuarioGuardado.id
   };
+
 };
 
+
+export const cerrarSesionUsuario = async(id_usuario,token)=>{
+    const resultado = await invalidarToken(id_usuario,token);
+    return resultado;
+}
 
 
 export const getUserByEmail = async (email) => {

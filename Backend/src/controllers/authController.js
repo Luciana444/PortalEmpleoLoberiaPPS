@@ -1,4 +1,4 @@
-import {registrarUsuario, iniciarSesionUsuario} from '../services/usuarioService.js';
+import {registrarUsuario, iniciarSesionUsuario,cerrarSesionUsuario} from '../services/usuarioService.js';
 
 
 import dotenv from 'dotenv';
@@ -97,3 +97,21 @@ export const enviarTokenRecuperacion = async (req, res) => {
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
+
+
+
+export const cerrarSesion = async (req,res)=>{
+  try {
+      const id_usuario = req.usuario.id;
+      const token = req.token;
+      if(!token){
+        return res.status(400).json({mensaje: 'Falta el token, error'});
+      }
+      await cerrarSesionUsuario(id_usuario,token);
+      return res.json({mensaje:'Sesion cerrada correctamente'})
+
+  } catch (error) {
+      console.log(error);
+      return res.status(500).json({mensaje:'Error al cerrar sesion'})
+  }
+}
