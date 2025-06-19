@@ -1,12 +1,59 @@
-# PortalEmpleoLoberiaPPS
+# 📌 Portal de Empleo Lobería
 
-Sitio web que integra la oferta y demanda laboral en el partido de Lobería.
-
-Este portal tiene como objetivo facilitar la promoción y difusión de oportunidades laborales, permitiendo a las personas en búsqueda de empleo acceder de manera sencilla a las ofertas disponibles en la región. Además, busca fortalecer el vínculo entre empleadores y postulantes, agilizando el proceso de contratación local.
+Plataforma web desarrollada como parte de una pasantía académica, con el objetivo de conectar ciudadanos en búsqueda de empleo con empresas locales, bajo la supervisión y colaboración del Municipio de Lobería.
 
 ---
 
-## Integrantes
+## 🧭 Introducción
+
+El **Portal de Empleo Lobería** es una solución digital para la gestión de ofertas laborales locales. Permite a los ciudadanos crear y mantener su currículum en línea, y a las empresas publicar sus búsquedas de personal, todo dentro de un entorno administrado por el municipio.
+
+---
+
+## 🎯 Objetivo general
+
+Crear un sistema de intermediación laboral que facilite la conexión entre la oferta y demanda de trabajo en el partido de Lobería, promoviendo la empleabilidad mediante una herramienta digital accesible, moderna y segura.
+
+---
+
+## 👥 Público objetivo
+
+- Ciudadanos en búsqueda activa de empleo.
+- Empresas locales que ofrecen puestos laborales.
+- Personal del municipio encargado de gestionar el portal.
+
+---
+
+## 🧰 Tecnologías utilizadas
+
+- **Frontend:** Angular
+- **Backend:** Node.js con Express
+- **Base de Datos:** PostgreSQL (gestionada desde Supabase)
+- **Cliente de base de datos / ORM:** Supabase-js
+- **Control de versiones:** Git + GitHub
+- **Herramientas de documentación:** Notion, Markdown
+- **Otras herramientas:** Trello, dbdiagram.io, Figma .
+
+---
+
+## 📦 Alcance funcional
+
+### ✔️ Funcionalidades incluidas:
+- Registro y autenticación de usuarios (ciudadanos y empresas).
+- Creación de currículum vitae en línea.
+- Publicación de ofertas laborales por parte de empresas.
+- Postulación a empleos por parte de ciudadanos.
+- Panel de administración municipal para gestión de usuarios y ofertas.
+
+### ❌ Exclusiones (fuera del alcance actual):
+- Chat en tiempo real entre usuarios.
+- Procesos de selección internos (entrevista, contratación).
+- Estadísticas avanzadas o paneles analíticos.
+- Integración con servicios de pago.
+
+---
+
+## 👨‍💻 Equipo de trabajo
 
 - Luciana Zabaleta  
 - Gisele Bartolo  
@@ -15,6 +62,13 @@ Este portal tiene como objetivo facilitar la promoción y difusión de oportunid
 - Analia Burgos  
 
 ---
+
+
+
+> 📝 **Nota:** Este documento forma parte de un proyecto académico de formación en desarrollo de software y tiene fines educativos.
+
+---
+
 
 ## Tecnologías utilizadas
 
