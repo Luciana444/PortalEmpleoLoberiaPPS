@@ -8,16 +8,6 @@ export const findAll = async () =>{
         console.error(error);
     }
 }
-  
-
-export const findPersonaByEmail = async (email) =>{
-    try {
-        const result = await sql`SELECT * FROM usuarios WHERE email = ${email}`;
-        return result[0];
-    } catch (error) {
-        console.log(error);
-    }
-}
 
 //-------------------------------------------------------------------
 

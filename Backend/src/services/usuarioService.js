@@ -1,8 +1,10 @@
-import { findAll, findPersonaByEmail } from "../repositories/usuarioRepository.js";
 import {existeEmail, crearUsuario} from '../repositories/usuarioRepository.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
+import {findAll, findUserByEmail, savePasswordResetToken } from '../repositories/usuarioRepository.js';
+import { generarTokenRecuperacion } from './tokenService.js';
+import { enviarEmailRecuperacion } from './emailService.js';
 dotenv.config();
 
 export const findAllPersonas = async () => {
@@ -15,7 +17,7 @@ export const findAllPersonas = async () => {
 };
 
 export const iniciarSesionUsuario = async ({ email, password }) => {
-  const usuario = await findPersonaByEmail(email);
+  const usuario = await findUserByEmail(email);
   if (!usuario) {
     throw new Error('El usuario no existe');
   }
@@ -32,7 +34,6 @@ export const iniciarSesionUsuario = async ({ email, password }) => {
     tipo_usuario: usuario.tipo_usuario
   };
 
-  console.log('JWT_SECRET cargado:', process.env.JWT_SECRET);
   const token = jwt.sign(payload, process.env.JWT_SECRET, {
     expiresIn: '1h'
   });
@@ -63,9 +64,7 @@ export const registrarUsuario = async ({ nombre, email, password, tipo_usuario }
   };
 };
 
-import { findUserByEmail, savePasswordResetToken } from '../repositories/usuarioRepository.js';
-import { generarTokenRecuperacion } from './tokenService.js';
-import { enviarEmailRecuperacion } from './emailService.js';
+
 
 export const getUserByEmail = async (email) => {
   return await findUserByEmail(email);
