@@ -12,7 +12,7 @@ export const authMiddleware = async(req, res, next)=>{
     try {
         const payload = jwt.verify(token,process.env.JWT_SECRET);
 
-        const resultado = await sql`SELECT * FROM token_invalidados WHERE token = ${token}`;
+        const resultado = await sql`SELECT * FROM tokens_invalidados WHERE token = ${token}`;
 
         if(resultado.length>0){
             return res.status(401).json({mensaje:'Token invalido'});
