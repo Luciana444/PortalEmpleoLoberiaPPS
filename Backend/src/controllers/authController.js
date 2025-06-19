@@ -1,6 +1,8 @@
 import {registrarUsuario, iniciarSesionUsuario} from '../services/usuarioService.js';
+
+
 import dotenv from 'dotenv';
-import bcrypt from 'bcrypt';
+
 
 dotenv.config();
 
@@ -34,9 +36,9 @@ export const iniciarSesion = async (req, res) => {
 export const registrarse = async (req, res) => {
   try {
     console.log('Body recibido:', req.body);
-    const { nombre, email, password, tipo_usuario } = req.body;
+    const { nombre, email, contrasena, tipo_usuario } = req.body;
 
-    if (!nombre || !email || !password || !tipo_usuario) {
+    if (!nombre || !email || !contrasena || !tipo_usuario) {
       return res.status(400).json({ error: 'Todos los campos son obligatorios' });
     }
 
@@ -53,7 +55,7 @@ export const registrarse = async (req, res) => {
     const nuevoUsuario = {
       nombre,
       email,
-      password,  
+      password: contrasena,  // aquí mapeo contrasena a password para el siguiente paso
       tipo_usuario,
       fecha_registro: new Date().toISOString(),
       estado: true
@@ -68,5 +70,30 @@ export const registrarse = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: error.message || 'Error interno' });
+  }
+};
+
+import { getUserByEmail, enviarLinkRecuperacion } from '../services/usuarioService.js';
+
+export const enviarTokenRecuperacion = async (req, res) => {
+  const { email } = req.body;
+
+  if (!email) {
+    return res.status(400).json({ error: 'El email es requerido' });
+  }
+
+  try {
+    const usuario = await getUserByEmail(email);
+
+    if (!usuario) { 
+      return res.status(404).json({ error: 'El email no está registrado' });
+    }
+
+    await enviarLinkRecuperacion(email, usuario.id);
+
+    res.status(200).json({ message: 'Se envió un link para recuperar la contraseña' });
+  } catch (error) {
+    console.error('Error en recuperación de contraseña:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
   }
 };

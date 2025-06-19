@@ -8,7 +8,7 @@ export const findAll = async () =>{
         console.error(error);
     }
 }
-
+  
 
 export const findPersonaByEmail = async (email) =>{
     try {
@@ -34,3 +34,26 @@ export const crearUsuario = async ({ nombre, email, contrasena, tipo_usuario }) 
   `;
   return result[0].id;
 };
+
+
+export const findUserByEmail = async (email) => {
+  const result = await sql`
+    SELECT * FROM usuarios WHERE email = ${email} LIMIT 1
+  `;
+  return result[0] || null;
+};
+
+export const savePasswordResetToken = async (userId, token) => {
+  const expiration = new Date(Date.now() + 3600000).toISOString();
+
+ await sql`
+  INSERT INTO tokens_invalidados (id_user, token, expires_at)
+  VALUES (${userId}, ${token}, ${expiration})
+  ON CONFLICT (id_user) DO UPDATE
+    SET token = EXCLUDED.token,
+        expires_at = EXCLUDED.expires_at
+`;
+
+  return true;
+};
+

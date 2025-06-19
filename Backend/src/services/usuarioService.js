@@ -2,6 +2,8 @@ import { findAll, findPersonaByEmail } from "../repositories/usuarioRepository.j
 import {existeEmail, crearUsuario} from '../repositories/usuarioRepository.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import dotenv from 'dotenv';
+dotenv.config();
 
 export const findAllPersonas = async () => {
     try {
@@ -30,6 +32,7 @@ export const iniciarSesionUsuario = async ({ email, password }) => {
     tipo_usuario: usuario.tipo_usuario
   };
 
+  console.log('JWT_SECRET cargado:', process.env.JWT_SECRET);
   const token = jwt.sign(payload, process.env.JWT_SECRET, {
     expiresIn: '1h'
   });
@@ -58,4 +61,23 @@ export const registrarUsuario = async ({ nombre, email, password, tipo_usuario }
     message: 'Usuario registrado correctamente',
     idUsuario: usuarioGuardado.id
   };
+};
+
+import { findUserByEmail, savePasswordResetToken } from '../repositories/usuarioRepository.js';
+import { generarTokenRecuperacion } from './tokenService.js';
+import { enviarEmailRecuperacion } from './emailService.js';
+
+export const getUserByEmail = async (email) => {
+  return await findUserByEmail(email);
+};
+
+export const guardarTokenRecuperacion = async (userId, token) => {
+  return await savePasswordResetToken(userId, token);
+};
+
+export const enviarLinkRecuperacion = async (email, userId) => {
+  const token = generarTokenRecuperacion(userId);
+  await guardarTokenRecuperacion(userId, token);
+  const linkRecuperacion = `http://tusitio.com/reset-password?token=${token}`;
+  await enviarEmailRecuperacion(email, linkRecuperacion);
 };
