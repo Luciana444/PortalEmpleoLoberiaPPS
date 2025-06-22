@@ -37,7 +37,7 @@ export const savePasswordResetToken = async (userId, token) => {
   const expiration = new Date(Date.now() + 3600000).toISOString();
 
  await sql`
-  INSERT INTO tokens_invalidados (id_user, token, expires_at)
+  INSERT INTO tokens_recuperacion_contrasena (id_user, token, expires_at)
   VALUES (${userId}, ${token}, ${expiration})
   ON CONFLICT (id_user) DO UPDATE
     SET token = EXCLUDED.token,

@@ -16,13 +16,13 @@ export const findAllPersonas = async () => {
     }
 };
 
-export const iniciarSesionUsuario = async ({ email, password }) => {
+export const iniciarSesionUsuario = async ({ email, contrasena }) => {
   const usuario = await findUserByEmail(email);
   if (!usuario) {
     throw new Error('El usuario no existe');
   }
 
-  const coincidePassword = await bcrypt.compare(password, usuario.contrasena);
+  const coincidePassword = await bcrypt.compare(contrasena, usuario.contrasena);
 
   if (!coincidePassword) {
     throw new Error('Credenciales incorrectas');
