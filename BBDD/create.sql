@@ -59,5 +59,13 @@ CREATE TABLE postulaciones (
   UNIQUE (id_usuario, id_oferta)
 );
 
+CREATE TABLE tokens_invalidados (
+    id SERIAL PRIMARY KEY,
+    token TEXT NOT NULL,
+    fecha_invalidado TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
 */
 

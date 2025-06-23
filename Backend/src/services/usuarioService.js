@@ -1,47 +1,73 @@
+
+//  Importación de funciones desde los repositorios
+
 import {existeEmail, crearUsuario} from '../repositories/usuarioRepository.js';
+import {findAll, findUserByEmail, savePasswordResetToken,invalidarToken } from '../repositories/usuarioRepository.js';
+
+
+//Librerías para manejo de seguridad
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import dotenv from 'dotenv';
-import {findAll, findUserByEmail, savePasswordResetToken,invalidarToken } from '../repositories/usuarioRepository.js';
+import dotenv from 'dotenv';// Carga las variables del archivo .env
+
+
+//  Servicios auxiliares para envío de email y generación de token de recuperación
 import { generarTokenRecuperacion } from './tokenService.js';
 import { enviarEmailRecuperacion } from './emailService.js';
 dotenv.config();
 
+
+
+//-----------------------------------------------------
+// Servicio: Obtener todos los usuarios registrados
+//-----------------------------------------------------
+
 export const findAllPersonas = async () => {
     try {
-        const usuarios = await findAll();
-        console.log(usuarios);
+        const usuarios = await findAll();// Consulta a la base de datos
+        console.log(usuarios);//muestra en consola(no retorna al frontend)
     } catch (error) {
         console.error(error);
     }
 };
 
+//-----------------------------------------------------
+// Servicio: Iniciar sesión de usuario
+//-----------------------------------------------------
+
+
 export const iniciarSesionUsuario = async ({ email, contrasena }) => {
-  const usuario = await findUserByEmail(email);
+  const usuario = await findUserByEmail(email); //busca el usuario en la base de datos
   if (!usuario) {
     throw new Error('El usuario no existe');
   }
 
-  const coincidePassword = await bcrypt.compare(contrasena, usuario.contrasena);
+  const coincidePassword = await bcrypt.compare(contrasena, usuario.contrasena);// Compara con hash guardado
 
   if (!coincidePassword) {
     throw new Error('Credenciales incorrectas');
   }
-
+ // Info que irá dentro del token JWT
   const payload = {
     id: usuario.id,
     email: usuario.email,
     tipo_usuario: usuario.tipo_usuario
   };
 
-  const token = jwt.sign(payload, process.env.JWT_SECRET, {
+  // Genera el token JWT con clave secreta y expiración
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
     expiresIn: '1h'
   });
 
   return { token };
 };
 
-//recibo los datos del nuevo usuario
+
+//-----------------------------------------------------
+// Servicio: Registrar nuevo usuario
+//-----------------------------------------------------
+
+
 export const registrarUsuario = async ({ nombre, email, password, tipo_usuario }) => {
   //verifico que el email no este registrado en la base de datos
   const existe = await existeEmail(email);
@@ -70,10 +96,20 @@ export const registrarUsuario = async ({ nombre, email, password, tipo_usuario }
 
 };
 
+
+//-----------------------------------------------------
+// Servicio: Obtener usuario por email
+//-----------------------------------------------------
+
 //funcion llamada por el controller que llama al repository para buscar al usuario por su email
 export const getUserByEmail = async (email) => {
   return await findUserByEmail(email);
 };
+
+
+//-----------------------------------------------------
+//  Servicio: Guardar token de recuperación
+//-----------------------------------------------------
 
 //recibo el id del usuario que quiere recuperar su contraseña y un token generado para ese usuario
 export const guardarTokenRecuperacion = async (userId, token) => {
@@ -81,7 +117,11 @@ export const guardarTokenRecuperacion = async (userId, token) => {
   return await savePasswordResetToken(userId, token);
 };
 
-//envia un link al email del usuario
+
+//-----------------------------------------------------
+//  Servicio: Enviar link de recuperación por email
+//-----------------------------------------------------
+
 export const enviarLinkRecuperacion = async (email, userId) => {
   //genera un token unico para recuperacion basado en el id del usuario
   const token = generarTokenRecuperacion(userId);
@@ -92,6 +132,10 @@ export const enviarLinkRecuperacion = async (email, userId) => {
   //envia el email de recuperacion donde se incluye el link de recuperacion
   await enviarEmailRecuperacion(email, linkRecuperacion);
 };
+
+//-----------------------------------------------------
+// Servicio: Cerrar sesión de usuario (invalidar token)
+//-----------------------------------------------------
 
 
 export const cerrarSesionUsuario = async(id_usuario,token)=>{

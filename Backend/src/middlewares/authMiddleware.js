@@ -1,25 +1,45 @@
+// Middleware de autenticación JWT para proteger rutas privadas.
+// Verifica que el token sea válido, no esté invalidado y agrega datos del usuario a la request.
+
+
 import jwt from 'jsonwebtoken';
-import sql from '../database/db.js';
+import sql from '../database/db.js'; // Conexión a la base de datos con postgres.js
+
+/**
+ * Middleware que verifica la validez del token JWT enviado en el header Authorization.
+ * - Requiere que el token esté en formato "Bearer TOKEN".
+ * - Verifica que el token no haya sido invalidado (por logout, por ejemplo).
+ * - Si es válido, agrega el payload del token como `req.usuario` y continúa con `next()`.
+ * - Si no, devuelve error 401 (no autorizado).
+ */
 
 export const authMiddleware = async(req, res, next)=>{
     const authHeader = req.headers.authorization;
+    // Verifica que exista el header Authorization con formato correcto
     if(!authHeader|| !authHeader.startsWith('Bearer ')){
         return res.status(401).json({error:'Token no proporcionado'});
     }
-
+     
+    // Extrae el token (remueve el prefijo "Bearer ")
     const token = authHeader.split(' ')[1];
 
     try {
+
+        // Verifica la firma del token usando la clave secreta definida en .env
         const payload = jwt.verify(token,process.env.JWT_SECRET);
 
+      // Consulta si el token ya fue invalidado (por ejemplo, en logout)
         const resultado = await sql`SELECT * FROM tokens_invalidados WHERE token = ${token}`;
 
         if(resultado.length>0){
             return res.status(401).json({mensaje:'Token invalido'});
         }
 
+        // Si todo está bien, adjunta los datos del usuario al objeto `req`
         req.usuario = payload;
         req.token = token;
+
+         // Continúa con la siguiente función/middleware
         next();
 
 
@@ -29,3 +49,5 @@ export const authMiddleware = async(req, res, next)=>{
 
 
 }
+
+

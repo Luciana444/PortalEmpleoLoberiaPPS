@@ -1,3 +1,6 @@
+// Controlador de autenticación de usuarios.
+// Contiene funciones para registrar, iniciar y cerrar sesión, y recuperar contraseña.
+
 import {registrarUsuario, iniciarSesionUsuario,cerrarSesionUsuario} from '../services/usuarioService.js';
 
 
@@ -6,21 +9,30 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+//===============================================================
+/**
+ * Iniciar sesión
+ * Procesa la petición POST /auth/login
+ * Valida credenciales básicas y delega el inicio de sesión al service.
+ */
+//================================================================
 export const iniciarSesion = async (req, res) => {
   try {
     const { email, contrasena } = req.body;
+    // Validación de campos obligatorios
 
     if (!email || !contrasena) {
       return res.status(400).json({ error: 'El email y password son requeridos' });
     }
-
+   // Llama al service para verificar credenciales
     const resultado = await iniciarSesionUsuario({email,contrasena});
 
+    
     if(!resultado){
       return res.status(500).json({message:"No se pudo iniciar sesion"});
     }
 
-
+   // Devuelve datos del usuario autenticado (y token si aplica)
   return res.json({message:'Se inicio la sesion correctamente', resultado})
   } catch (error) {
       console.log(error);
@@ -29,30 +41,38 @@ export const iniciarSesion = async (req, res) => {
 
 };
 
+//===============================================================
+/**
+ * Registro de usuario
+ * Procesa la petición POST /auth/register
+ * Valida los datos, crea un objeto de usuario y lo pasa al service.
+ */
+//===================================================================
+
 export const registrarse = async (req, res) => {
   try {
-    //recibo los daots del body
+    //recibe los datos del body
     console.log('Body recibido:', req.body);
     const { nombre, email, contrasena, tipo_usuario } = req.body;
 
-    //verifico que esten todos los campos
+    //verifica que esten todos los campos
     if (!nombre || !email || !contrasena || !tipo_usuario) {
       return res.status(400).json({ error: 'Todos los campos son obligatorios' });
     }
 
-    //controlo que sea un formato de email valido
+    //controla que sea un formato de email valido
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({ error: 'Email inválido' });
     }
 
-    //controlo que manden uno de los 3 tipos de usuario permitidos
+    //controla que manden uno de los 3 tipos de usuario permitidos
     const tiposValidos = ['ciudadano', 'empresa', 'admin'];
     if (!tiposValidos.includes(tipo_usuario)) {
       return res.status(400).json({ error: 'Tipo de usuario inválido' });
     }
 
-    //creo al nuevo usuario en un objeto con todos los datos que precisa la tabla
+    //crea al nuevo usuario en un objeto con todos los datos que precisa la tabla
     const nuevoUsuario = {
       nombre,
       email,
@@ -62,29 +82,39 @@ export const registrarse = async (req, res) => {
       estado: true
     };
 
-    //llamo a registrarUsuario del archivo usuarioService.js y le paso el nuevo usuario
-    //que cree con datos validos
+    //llama a registrarUsuario del archivo usuarioService.js y le pasa el nuevo usuario
+    //que  se creo con datos validos
     const resultado = await registrarUsuario(nuevoUsuario);
 
-    //separo la contraseña del objeto para no mandarla ya que es informacion snesible
+    //separa la contraseña del objeto para no mandarla ya que es informacion sensible
     const { contraseña, ...usuarioSinPassword } = resultado;
 
     res.status(201).json(usuarioSinPassword);
 
   } catch (error) {
-    //en caso de error muestro un mensaje en pantalla al usuario
+    //en caso de error muestra un mensaje en pantalla al usuario
     console.error(error);
     res.status(500).json({ error: error.message || 'Error interno' });
   }
 };
 
+
+
 import { getUserByEmail, enviarLinkRecuperacion } from '../services/usuarioService.js';
 
-//agarro el email del body
+//======================================================================================
+/**
+ * Enviar token de recuperación de contraseña
+ * Procesa POST /auth/recover/password
+ * Verifica que el email exista y solicita al service enviar el link de recuperación.
+ */
+//====================================================================================
+
+//Extrae el email del body
 export const enviarTokenRecuperacion = async (req, res) => {
   const { email } = req.body;
 
-  //verifico que el campo email no este vacio
+  //verifica que el campo email no este vacio
   if (!email) {
     return res.status(400).json({ error: 'El email es requerido' });
   }
@@ -110,6 +140,13 @@ export const enviarTokenRecuperacion = async (req, res) => {
 };
 
 
+//====================================================================
+/**
+ * Cerrar sesión de usuario
+ * Procesa POST /auth/logout
+ * Requiere middleware de autenticación para extraer el usuario y el token.
+ */
+//====================================================================
 
 export const cerrarSesion = async (req,res)=>{
   try {
@@ -126,3 +163,4 @@ export const cerrarSesion = async (req,res)=>{
       return res.status(500).json({mensaje:'Error al cerrar sesion'})
   }
 }
+
