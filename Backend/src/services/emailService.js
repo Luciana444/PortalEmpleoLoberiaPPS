@@ -1,15 +1,19 @@
 import nodemailer from 'nodemailer';
 
+//configuracion del servidor SMTP tomada de variables del .env con valores
+//por defecto para Gmail
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST || 'smtp.gmail.com',
   port: process.env.SMTP_PORT || 587,
-  secure: false, // true si usás puerto 465
+  secure: false, 
   auth: {
     user: process.env.SMTP_USER,
     pass: process.env.SMTP_PASS,
   },
 });
 
+//arma el email: el remitente, el destinatario, asunto del correo y el cuerpo html
+//que contiene el mensaje y el link para recuperar la contraseña
 export const enviarEmailRecuperacion = async (toEmail, recoveryLink) => {
   const mailOptions = {
     from: `"Portal Empleos" <${process.env.SMTP_USER}>`,
@@ -23,6 +27,7 @@ export const enviarEmailRecuperacion = async (toEmail, recoveryLink) => {
     `,
   };
 
+  //envia el email al usuario y manejo de errores si falla
   try {
     await transporter.sendMail(mailOptions);
     console.log('Email de recuperación enviado a:', toEmail);
