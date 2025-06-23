@@ -8,13 +8,13 @@ dotenv.config();
 
 export const iniciarSesion = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, contrasena } = req.body;
 
-    if (!email || !password) {
+    if (!email || !contrasena) {
       return res.status(400).json({ error: 'El email y password son requeridos' });
     }
 
-    const resultado = await iniciarSesionUsuario({email,password});
+    const resultado = await iniciarSesionUsuario({email,contrasena});
 
     if(!resultado){
       return res.status(500).json({message:"No se pudo iniciar sesion"});
@@ -26,7 +26,6 @@ export const iniciarSesion = async (req, res) => {
       console.log(error);
   }
   
-
 
 };
 
