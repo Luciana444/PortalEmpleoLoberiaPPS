@@ -13,9 +13,10 @@ import sql from '../database/db.js';
 export const findAll = async () =>{
     try {
         const usuarios = await sql`SELECT * FROM usuarios`
-        return console.log(usuarios);
+        return usuarios;
     } catch (error) {
         console.error(error);
+        throw error;
     }
 }
 

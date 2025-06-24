@@ -15,11 +15,10 @@ export const getAllUsuarios = async (req, res) => {
         const personas = await findAllPersonas();
 
          // Devuelve la lista con código HTTP 200 (OK)
-        res.status(200).json(personas);
+        return res.status(200).json(personas);
     } catch (error) {
          // En caso de error, lo registra en la consola
         
-       
         console.error(error);
     }
 }

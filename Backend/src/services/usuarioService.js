@@ -25,9 +25,10 @@ dotenv.config();
 export const findAllPersonas = async () => {
     try {
         const usuarios = await findAll();// Consulta a la base de datos
-        console.log(usuarios);//muestra en consola(no retorna al frontend)
+        return usuarios;
     } catch (error) {
         console.error(error);
+        throw error;
     }
 };
 
