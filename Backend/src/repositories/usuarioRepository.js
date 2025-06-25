@@ -12,7 +12,7 @@ import sql from '../database/db.js';
 
 export const findAll = async () =>{
     try {
-        const usuarios = await sql`SELECT * FROM usuarios`
+        const usuarios = await sql`SELECT nombre, email, tipo_usuario FROM usuarios`
         return usuarios;
     } catch (error) {
         console.error(error);
