@@ -65,6 +65,38 @@ CREATE TABLE tokens_invalidados (
     fecha_invalidado TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+---------------------------------------------------------------------------------
+--  cambio en tablas EMPRESAS y ofertas_laborales
+--Se agrega esto para que un administrador apruebe a la empresa cuando se registra
+--===============================================================================
+ALTER TABLE empresas
+ADD COLUMN estado_aprobacion VARCHAR DEFAULT 'pendiente'
+CHECK (estado_aprobacion IN ('pendiente', 'aprobada', 'rechazada'));
+
+--control para reporte de administracion
+-- Fecha y admin
+ALTER TABLE empresas
+ADD COLUMN fecha_aprobacion TIMESTAMP;
+
+ALTER TABLE empresas
+ADD COLUMN  email_admin_autorizador VARCHAR;
+
+
+
+--  OFERTAS_LABORALES
+
+-- deben ser aprobadas previamente por administrador :
+ALTER TABLE ofertas_laborales
+ADD COLUMN estado_publicacion VARCHAR DEFAULT 'pendiente'
+CHECK (estado_publicacion IN ('pendiente', 'aprobada', 'rechazada'));
+
+-- Fecha y admin
+--Cuando el administrador las apruebe o rechace se guarda la fecha y mail del administrador
+ALTER TABLE ofertas_laborales
+ADD COLUMN fecha_aprobacion TIMESTAMP;
+
+ALTER TABLE ofertas_laborales
+ADD COLUMN email_admin_autorizador VARCHAR;
 
 
 */

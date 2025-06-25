@@ -38,6 +38,7 @@ export const authRoutes = express.Router();
  *               - nombre
  *               - email
  *               - contrasena
+ *               - tipo_usuario
  *             properties:
  *               nombre:
  *                 type: string
@@ -49,6 +50,12 @@ export const authRoutes = express.Router();
  *               contrasena:
  *                 type: string
  *                 description: Contraseña del usuario
+ *               tipo_usuario:
+ *                 type: string
+ *                 enum:
+ *                   - ciudadano
+ *                   - empresa
+ *                 description: Rol del usuario
  *     responses:
  *       201:
  *         description: Usuario registrado correctamente
