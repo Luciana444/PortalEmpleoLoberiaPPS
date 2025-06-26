@@ -1,0 +1,68 @@
+@use '../../styles.scss' as *;
+
+header{
+    width: 100%;
+    background-color: #F2F2F2;
+    margin: 0;
+    min-height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.small-logo > svg{
+    height: 4.5rem;
+    margin-left: 4.5rem;
+    gap: 1rem;
+}
+
+
+
+svg{
+    width: fit-content;
+}
+
+.register-button{
+    background-color: $white;
+    color: $green;
+    border: 1px solid $green;
+}
+
+.register-button:hover{
+    background-color: $green;
+    color: $white;
+}
+
+.buttons-container{
+    gap: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 0; 
+    margin-right: 4.5rem; 
+    align-self: auto;
+}
+
+button{
+    width: 8rem;
+    padding: 8px 2px;
+}
+
+@media (max-width: 600px) {
+    .small-logo > svg {
+        margin-left: 1rem; 
+        margin-right: 1rem;
+    }
+    .buttons-container {
+        gap: 0.5rem;
+        flex-wrap: wrap;    
+        margin-right: 1rem;  
+        justify-content: flex-end;
+    }
+    button {
+        width: 120px;         
+        min-width: 80px;     
+        padding: 8px 0.5rem;
+        font-size: 0.95rem;
+    }
+}

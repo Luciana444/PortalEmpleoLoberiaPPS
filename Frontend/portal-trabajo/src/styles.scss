@@ -1,0 +1,82 @@
+@use 'sass:color';
+
+/* You can add global styles to this file, and also import other style files */
+$green: #57AF31;
+$white: #F5F5F5;
+$text-color: #49454F;
+$font: Linotte, Signika, Montserrat, sans-serif;
+
+html {
+    height: 100%;
+}
+
+button{
+    border-radius: 5px;
+    background-color: $green;
+    text-decoration: none;
+    color: $white;
+    text-align: center;
+    border: none;
+    font-size: 1rem;
+    font-family: $font;
+}
+
+body{
+    min-height: 100%;
+    font-family: $font;
+    background-color: $white;
+    margin: 0;
+}
+
+h3 {
+    text-align: center;
+    color: $text-color;
+    font-size: 1.35rem;
+    font-weight: 500;
+}
+
+
+button:hover{
+    background-color: $white;
+    color: $green;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+                
+.img-container {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 9rem;
+    height: 190px;
+    width: 360px;
+}
+
+svg{
+    fill: $green;
+}
+
+.img-container:hover svg {
+    filter: brightness(0.8);
+    cursor: pointer;
+}
+
+input{
+    border-radius: 5px;
+    border: 1px solid #B3B3B3;
+    min-height: 1.7rem;
+    text-indent: 10px;
+}
+
+option{
+    min-height: 1.5rem;
+}
+
+a {
+    text-decoration: none;
+    color: $green;
+}
+
+a:hover {
+    color: color.adjust(#57AF31, $lightness: -10%);
+    cursor: pointer;
+}

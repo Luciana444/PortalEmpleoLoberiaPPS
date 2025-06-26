@@ -1,0 +1,45 @@
+@use '../../styles.scss' as *;
+@use 'sass:color';
+
+.button-container{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button{
+    display: block;
+    margin-top: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 14rem;
+    padding: 8px 25px;
+}
+
+button:hover{
+    background-color: $white;
+    color: $green;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.img-container {
+    margin-top: 9rem;
+    height: 190px;
+    width: 360px;
+}
+
+svg{
+    fill: $green;
+}
+
+.img-container:hover svg {
+    filter: brightness(0.8);
+    cursor: pointer;
+}
+
+h3 {
+    text-align: center;
+    color: $text-color;
+    font-size: 1.35rem;
+    font-weight: 500;
+}
