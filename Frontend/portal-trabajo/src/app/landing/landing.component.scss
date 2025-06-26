@@ -59,41 +59,7 @@ button{
     background-image: url('/capacitaciones.png');
     background-size: cover;
     background-position: center;
-
-        background: 
-        linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)),
-        url('/capacitaciones.png') center/cover;
 }
-// .img-placeholder::before {
-//     content: '';
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     right: 0;
-//     bottom: 0;
-//     background-color: rgba(0, 0, 0, 0.3); /* Black with 30% opacity */
-//     z-index: 1;
-// }
-
-// .img-placeholder > * {
-//     position: relative;
-//     z-index: 2;
-// }
-
-// .img-placeholder::before {
-//     content: "";
-//     position: absolute;
-//     inset: 0;
-//     background: inherit;
-//     opacity: 0.5; // Adjust for desired opacity (0.0 - 1.0)
-//     z-index: 0;
-//     pointer-events: none;
-// }
-
-// .img-placeholder > * {
-//     position: relative;
-//     z-index: 1;
-// }
 
 .img-placeholder:hover{
     background-color: color.adjust(#57AF31, $lightness: -10%);
