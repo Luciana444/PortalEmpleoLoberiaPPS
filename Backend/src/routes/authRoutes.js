@@ -152,3 +152,5 @@ authRoutes.post('/login',iniciarSesion);
 
 authRoutes.post('/logout',authMiddleware,cerrarSesion);
 //=========================================================================
+
+export default authRoutes;

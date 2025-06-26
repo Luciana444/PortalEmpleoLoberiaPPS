@@ -16,6 +16,9 @@ dotenv.config();
  * Valida credenciales básicas y delega el inicio de sesión al service.
  */
 //================================================================
+
+
+
 export const iniciarSesion = async (req, res) => {
   try {
     const { email, contrasena } = req.body;
@@ -35,11 +38,16 @@ export const iniciarSesion = async (req, res) => {
    // Devuelve datos del usuario autenticado (y token si aplica)
   return res.json({message:'Se inicio la sesion correctamente', resultado})
   } catch (error) {
-      console.log(error);
-  }
-  
+    // 💡 Acá capturamos los errores lanzados desde el service
+    if (error.message === 'El usuario no existe' || error.message === 'Credenciales incorrectas') {
+      return res.status(401).json({ error: error.message });
+    }
 
+    console.error('Error inesperado al iniciar sesión:', error);
+    return res.status(500).json({ error: 'Error interno del servidor' });
+  }
 };
+  
 
 //===============================================================
 /**
@@ -48,6 +56,9 @@ export const iniciarSesion = async (req, res) => {
  * Valida los datos, crea un objeto de usuario y lo pasa al service.
  */
 //===================================================================
+
+
+
 
 export const registrarse = async (req, res) => {
   try {

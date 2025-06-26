@@ -4,7 +4,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test":  "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
@@ -23,5 +24,9 @@
     "postgres": "^3.4.7",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "jest": "^30.0.3",
+    "supertest": "^7.1.1"
   }
 }
