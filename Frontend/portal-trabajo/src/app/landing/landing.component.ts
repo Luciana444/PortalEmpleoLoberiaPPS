@@ -1,11 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 
 @Component({
   selector: 'app-landing',
-  imports: [],
+  imports: [HttpClientModule],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
 })
@@ -23,14 +23,17 @@ export class LandingComponent {
   }
 
   public getData() {
-    this.http.get('https://jsonplaceholder.typicode.com/posts')
+    let usuarios = this.http.get('http://localhost:3000/api/usuario')
       .subscribe(
-      //   (data) => {
-      //   this.getJson = data;
-      //   console.log(this.getJson);
-      // }, (error) => {
-      //   console.error('Error fetching data:', error);
-      // }
-    );
+        (response:any)=>{
+          console.log(response);
+      }
+      );
   }
+
+  ngOnInit(){
+      this.getData();
+  }
+
+
 }
