@@ -1,11 +1,10 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 
 @Component({
   selector: 'app-landing',
-  imports: [HttpClientModule],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
 })
