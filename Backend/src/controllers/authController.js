@@ -70,6 +70,10 @@ export const registrarse = async (req, res) => {
     if (!nombre || !email || !contrasena || !tipo_usuario) {
       return res.status(400).json({ error: 'Todos los campos son obligatorios' });
     }
+    //controla que la contraseña tenga mas de 8 caracteres
+    if (contrasena.length < 8) {
+  return res.status(400).json({ error: 'La contraseña es demasiado corta (mínimo 8 caracteres)' });
+}
 
     //controla que sea un formato de email valido
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -104,7 +108,12 @@ export const registrarse = async (req, res) => {
 
   } catch (error) {
     //en caso de error muestra un mensaje en pantalla al usuario
+
     console.error(error);
+    //captura error por email duplicado
+    if (error.message && error.message.includes('ya está registrado')) {
+    return res.status(409).json({ error: error.message });
+  }
     res.status(500).json({ error: error.message || 'Error interno' });
   }
 };

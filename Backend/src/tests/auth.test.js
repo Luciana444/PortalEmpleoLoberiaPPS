@@ -4,6 +4,7 @@
 
 import request from 'supertest';
 import app from '../../app.js';
+import sql from '../database/db.js';
 
 //caso feliz: recibe todos los datos necesarios para registro exitoso:
 
@@ -119,7 +120,7 @@ test('Debe rechazar registro sin email', async () => {
       });
 
     expect(response.status).toBe(409); // Código típico para conflicto
-    expect(response.body.error).toMatch(/email.*existente|duplicado/i);
+    expect(response.body.error).toMatch(/ya.*registrado/i);
   });
 
 //--------------------------------------------------------------
@@ -141,5 +142,7 @@ test('Debe rechazar registro sin email', async () => {
 });
 
 
-
+afterAll(async () => {
+  await sql.end({ timeout: 5 }); // Cierra la conexión con un timeout opcional
+});
 

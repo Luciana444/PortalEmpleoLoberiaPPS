@@ -73,7 +73,11 @@ export const registrarUsuario = async ({ nombre, email, password, tipo_usuario }
   //verifico que el email no este registrado en la base de datos
   const existe = await existeEmail(email);
   if (existe) {
+
     throw new Error('El email ya está registrado');
+
+
+    
   }
 
   //encripto la contraseña usando bcrypt
