@@ -26,11 +26,11 @@ export class LoginComponent implements OnInit {
   login() {
     this.userservice.login(JSON.stringify(this.loginForm.value))
       .subscribe(
-        (response: any) => {        
-        if (response.status && response.status === 1) {
-            localStorage.setItem('token',response.data.token);
+        (response: any) => {      
+        if (response.resultado && response.resultado.token) {
+            localStorage.setItem('token',response.resultado.token);
             let payload=this.loginForm.value.email;
-            localStorage.setItem('currentuser',payload.username);
+            localStorage.setItem('currentuser',payload);
             this.loginForm.reset();
             
             setTimeout(() => {
