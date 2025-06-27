@@ -2,7 +2,7 @@
 //  Importación de funciones desde los repositorios
 
 import {existeEmail, crearUsuario} from '../repositories/usuarioRepository.js';
-import {findAll, findUserByEmail, savePasswordResetToken,invalidarToken } from '../repositories/usuarioRepository.js';
+import {findAll, findUserByEmail, savePasswordResetToken } from '../repositories/usuarioRepository.js';
 
 
 //Librerías para manejo de seguridad
@@ -138,14 +138,6 @@ export const enviarLinkRecuperacion = async (email, userId) => {
   await enviarEmailRecuperacion(email, linkRecuperacion);
 };
 
-//-----------------------------------------------------
-// Servicio: Cerrar sesión de usuario (invalidar token)
-//-----------------------------------------------------
 
-
-export const cerrarSesionUsuario = async(id_usuario,token)=>{
-    const resultado = await invalidarToken(id_usuario,token);
-    return resultado;
-}
 
 
