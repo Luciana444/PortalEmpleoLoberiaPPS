@@ -1,6 +1,7 @@
 @use '../../styles.scss' as *;
 @use 'sass:color';
 
+
 header{
     width: 100%;
     background-color: #F2F2F2;
@@ -48,8 +49,9 @@ button{
 }
 
 .img-placeholder{
-    padding-bottom: 20px;
-    padding-top: 20px;
+    position: relative;
+    padding-top: 5rem;
+    padding-bottom: 3rem;
     width: 100%;
     height: fit-content;
     display: flex;
@@ -59,6 +61,22 @@ button{
     background-image: url('/capacitaciones.png');
     background-size: cover;
     background-position: center;
+    overflow: hidden;
+}
+
+.img-placeholder::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3); // Use a color overlay, adjust opacity as needed
+    opacity: 1; // Keep at 1 since the color already has transparency
+    z-index: 0;
+    pointer-events: none;
+}
+
+.img-placeholder > * {
+    position: relative;
+    z-index: 1;
 }
 
 .img-placeholder:hover{
@@ -66,13 +84,14 @@ button{
     cursor: pointer;
 }
 
-h3{
+.img-text{
     text-align: end;
     margin-right: 8rem;
     margin-top: 0;
     color: $white;
     font-size: 2.7rem;
     margin-bottom:0%;
+    max-width: 40rem;
 }
 
 .training-button{
@@ -83,6 +102,107 @@ h3{
     margin-right: 8rem;
     width: 10rem;
     background-color: rgba(255,255,255,0);
+}
+
+.offer-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem; // space between cards
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    padding: 2rem;
+}
+
+.offer-card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 1 1 350px; // grow, shrink, basis (adjust 350px as needed)
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 30rem;
+    height: fit-content;
+    padding: 1.5rem;
+}
+
+.card-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem; 
+    margin-bottom: 1rem;
+}
+
+.icon-placeholder{
+    width:40px;
+    height: 40px;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.card-user, .card-location{
+    color: $text-color;
+} 
+
+.card-user{
+    margin: 0;
+}
+
+.card-location{
+    margin: 0;
+    font-weight: 100;
+}
+
+.card-description{
+    color: $text-color;
+    font-weight: 100;
+    margin-bottom: 1rem;
+}
+
+.card-title{
+    text-align: start;
+    margin-left: 0.25rem;
+    color: $green;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.card-button {
+    align-self: flex-end;
+    margin-top: 1rem; 
+    width: 6rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    align-items: center;
+    gap: 1rem;
+}
+
+.card-info {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem; 
+}
+
+.card-info > p{
+    margin: 0;
+}
+
+.card-modality{
+    color: #49454F;
+}
+
+.card-date{
+    color: #949297;
+    font-size: 0.75rem;
 }
 
 @media (max-width: 600px) {
@@ -105,5 +225,14 @@ h3{
 
     .register-button{
         display: none;
+    }
+
+    .offer-card {
+        width: 100%;
+    }
+
+    .img-text {
+        text-align: center;
+        margin-right: 0;
     }
 }

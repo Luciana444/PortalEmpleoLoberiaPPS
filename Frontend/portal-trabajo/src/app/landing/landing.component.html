@@ -19,10 +19,41 @@
 
 </header>
 
-<div class="img-placeholder">
-    <h3 class="top-row">Mejorá tus habilidades</h3>
-    <h3>con capacitaciones nacionales</h3>
-    <button class="training-button">INGRESÁ</button>
+<div class="landing-header">
+    <div class="img-placeholder">
+        <h3 class="img-text">Mejorá tus habilidades con capacitaciones nacionales</h3>
+            <button class="training-button">INGRESÁ</button>
+    </div>
+</div>
+
+
+<div class="offer-container">
+  @for (offer of offers; track offer.id) {
+    <div class="offer-card" >
+        <div class="card-header">
+            <div class="icon-placeholder"></div>
+            <div>
+                <h4 class="card-user">{{offer.user}}</h4>
+                <h5 class="card-location">{{offer.location}}</h5>
+            </div>
+        </div>
+
+        <h3 class="card-title">{{offer.title}}</h3>
+        <p class="card-description">{{offer.description}}</p>
+
+
+        <div class="card-footer">
+            <div class="card-info">
+                <p class="card-modality">{{offer.modality}}</p>
+                <p class="card-date">Publicado al {{offer.date}}</p>
+
+            </div>
+            <button class="card-button">Ver Oferta</button>
+
+        </div>
+    </div>
+    }
+    
 </div>
 
 
