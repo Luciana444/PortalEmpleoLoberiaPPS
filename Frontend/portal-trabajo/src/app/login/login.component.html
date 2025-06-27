@@ -12,23 +12,24 @@
 </div>
 
 <div class="form-container">
-    <form action="">
+    <form [formGroup]="loginForm" action="">
         <div class="form-header">
             <h3>Ingresá a tu cuenta:</h3>
         </div>
         <div>
             <p>Email</p>
-            <input type="text"  placeholder="Ingresá tu email"     name="mail" required>
+            <input  formControlName="email" type="text"  placeholder="Ingresá tu email"     name="email" required>
         </div>
                 <div>
             <p>Contraseña</p>
-            <input type="text"  placeholder="Ingresá tu Contraseña"     name="password" required>
+            <input formControlName="contrasena" type="password"  placeholder="Ingresá tu Contraseña"     name="contrasena" required>
         </div>
             <a class="forgotten-password" href="">Olvidé mi contraseña</a>
+            <button type="button" class="" (click)="login()">Log in</button>
     </form>
 
 </div>
 
-<button>Ingresar</button>
+
 
 <p class="no-account">¿No tenés cuenta? <a (click)="goToEmployeeForm($event)">Registrate</a></p> 
