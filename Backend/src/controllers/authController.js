@@ -111,7 +111,7 @@ export const registrarse = async (req, res) => {
 
 
 
-import { getUserByEmail, enviarLinkRecuperacion } from '../services/usuarioService.js';
+import { getUserByEmail, enviarLinkRecuperacion, actualizarContrasenaConToken } from '../services/usuarioService.js';
 
 //======================================================================================
 /**
@@ -147,6 +147,25 @@ export const enviarTokenRecuperacion = async (req, res) => {
   } catch (error) {
     console.error('Error en recuperación de contraseña:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
+
+// ===================
+// Resetear contraseña usando el token
+// ===================
+export const resetearContrasena = async (req, res) => {
+  const { token, nuevaContrasena } = req.body;
+
+  if (!token || !nuevaContrasena) {
+    return res.status(400).json({ error: 'Token y nueva contraseña requeridos' });
+  }
+
+  try {
+    await actualizarContrasenaConToken(token, nuevaContrasena);
+    res.status(200).json({ message: 'Contraseña actualizada correctamente' });
+  } catch (error) {
+    console.error('Error al resetear contraseña:', error);
+    res.status(400).json({ error: error.message || 'Token inválido o expirado' });
   }
 };
 

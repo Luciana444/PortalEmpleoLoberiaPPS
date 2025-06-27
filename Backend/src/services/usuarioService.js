@@ -2,7 +2,7 @@
 //  Importación de funciones desde los repositorios
 
 import {existeEmail, crearUsuario} from '../repositories/usuarioRepository.js';
-import {findAll, findUserByEmail, savePasswordResetToken,invalidarToken } from '../repositories/usuarioRepository.js';
+import {findAll, findUserByEmail, actualizarContrasena,invalidarToken } from '../repositories/usuarioRepository.js';
 
 
 //Librerías para manejo de seguridad
@@ -12,7 +12,7 @@ import dotenv from 'dotenv';// Carga las variables del archivo .env
 
 
 //  Servicios auxiliares para envío de email y generación de token de recuperación
-import { generarTokenRecuperacion } from './tokenService.js';
+import { generarTokenRecuperacion,verificarTokenRecuperacion} from './tokenService.js';
 import { enviarEmailRecuperacion } from './emailService.js';
 dotenv.config();
 
@@ -112,26 +112,19 @@ export const getUserByEmail = async (email) => {
 //  Servicio: Guardar token de recuperación
 //-----------------------------------------------------
 
-//recibo el id del usuario que quiere recuperar su contraseña y un token generado para ese usuario
-export const guardarTokenRecuperacion = async (userId, token) => {
-  //llamo a una funcion del repository para que guarde el token en la base de datos asociado a ese usuario
-  return await savePasswordResetToken(userId, token);
+export const enviarLinkRecuperacion = async (email, userId) => {
+  const token = generarTokenRecuperacion(userId);
+  const linkRecuperacion = `http://localhost:3000/reset-password?token=${token}`;
+  await enviarEmailRecuperacion(email, linkRecuperacion);
 };
 
+export const actualizarContrasenaConToken = async (token, nuevaContrasena) => {
+  const { valid, decoded, error } = verificarTokenRecuperacion(token);
 
-//-----------------------------------------------------
-//  Servicio: Enviar link de recuperación por email
-//-----------------------------------------------------
+  if (!valid) throw new Error('Token inválido o expirado');
 
-export const enviarLinkRecuperacion = async (email, userId) => {
-  //genera un token unico para recuperacion basado en el id del usuario
-  const token = generarTokenRecuperacion(userId);
-  //guarda ese token para validarlo cuando el usuario ingrese al link
-  await guardarTokenRecuperacion(userId, token);
-  //construye un link que lo redirige al un formulario para poner su nueva contraseña
-  const linkRecuperacion = `http://localhost:3000/api/recover/password?token=${token}`;
-  //envia el email de recuperacion donde se incluye el link de recuperacion
-  await enviarEmailRecuperacion(email, linkRecuperacion);
+  const hashed = await bcrypt.hash(nuevaContrasena, 10);
+  await actualizarContrasena(decoded.id, hashed);
 };
 
 //-----------------------------------------------------
