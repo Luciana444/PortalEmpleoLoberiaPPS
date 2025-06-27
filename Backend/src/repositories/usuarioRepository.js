@@ -67,27 +67,10 @@ export const findUserByEmail = async (email) => {
   return result[0] || null;
 };
 
-//====================================================================
-/**
- * Guarda o actualiza un token de recuperación de contraseña.
- * Si ya existe uno para el mismo usuario, lo reemplaza.
- */
-
-//calcula la fecha de expiracion del token (1 hora) e inserta el nuevo registro
-//en la tabla guardando el token y el tiempo de expiracion al usuario que el pretenezca
-//===========================================================================
-
-export const savePasswordResetToken = async (userId, token) => {
-  const expiration = new Date(Date.now() + 3600000).toISOString();
-
- await sql`
-  INSERT INTO tokens_recuperacion_contrasena (id_user, token, expires_at)
-  VALUES (${userId}, ${token}, ${expiration})
-  ON CONFLICT (id_user) DO UPDATE
-    SET token = EXCLUDED.token,
-        expires_at = EXCLUDED.expires_at
-`;
-
-  return true;
+//actualiza en la base de datos la nueva contraseña del usuario
+export const actualizarContrasena = async (userId, nuevaContrasenaHash) => {
+  await sql`
+    UPDATE usuarios SET contrasena = ${nuevaContrasenaHash} WHERE id = ${userId}
+  `;
 };
 

@@ -5,7 +5,7 @@
 import express from 'express';
 import { iniciarSesion } from '../controllers/authController.js';
 import{registrarse} from '../controllers/authController.js';
-import{enviarTokenRecuperacion} from '../controllers/authController.js';
+import{enviarTokenRecuperacion,resetearContrasena} from '../controllers/authController.js';
 
 //Inicializa el router específico para autenticación
 export const authRoutes = express.Router();
@@ -94,7 +94,7 @@ authRoutes.post('/register', registrarse)
  */
 
 authRoutes.post('/recover/password', enviarTokenRecuperacion);
-
+authRoutes.post('/reset/password', resetearContrasena);
 //===============================================================
 //endpoint para iniciar sesion de usuario
 //===============================================================
