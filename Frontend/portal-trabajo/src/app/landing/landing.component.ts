@@ -1,15 +1,17 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { title } from 'node:process';
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
 
 
 @Component({
   selector: 'app-landing',
+  imports: [HeaderComponent, FooterComponent],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
 })
-export class LandingComponent {
+export class LandingComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient) {}
   
   offers = [
@@ -32,16 +34,6 @@ export class LandingComponent {
       img:""
     }
   ];
-
-  public getJson: any;
-
-  navigateToLogin() {
-    this.router.navigate(['/login']);
-  }
-
-  navigateToFormSelector() {
-    this.router.navigate(['/form-selector']);
-  }
 
   public getData() {
     let usuarios = this.http.get('http://localhost:3000/api/usuario')

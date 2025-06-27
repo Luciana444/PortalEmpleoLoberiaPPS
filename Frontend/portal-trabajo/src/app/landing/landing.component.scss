@@ -1,54 +1,12 @@
 @use '../../styles.scss' as *;
 @use 'sass:color';
 
-
-header{
-    width: 100%;
-    background-color: #F2F2F2;
-    margin: 0;
-    min-height: 70px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.small-logo > svg{
-    height: 4.5rem;
-    margin-left: 4.5rem;
-    gap: 1rem;
-}
-
-svg{
-    width: fit-content;
-}
-
-.register-button{
-    background-color: $white;
-    color: $green;
-    border: 1px solid $green;
-}
-
-.register-button:hover{
-    background-color: $green;
-    color: $white;
-}
-
-.buttons-container{
-    gap: 1rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-left: 0; 
-    margin-right: 4.5rem; 
-    align-self: auto;
-}
-
 button{
     width: 8rem;
     padding: 8px 2px;
 }
 
-.img-placeholder{
+.header-banner{
     position: relative;
     padding-top: 5rem;
     padding-bottom: 3rem;
@@ -64,24 +22,23 @@ button{
     overflow: hidden;
 }
 
-.img-placeholder::before {
+.header-banner::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.3); // Use a color overlay, adjust opacity as needed
-    opacity: 1; // Keep at 1 since the color already has transparency
+    background: rgba(0, 0, 0, 0.3); 
+    opacity: 1;
     z-index: 0;
     pointer-events: none;
 }
 
-.img-placeholder > * {
+.header-banner > * {
     position: relative;
     z-index: 1;
 }
 
-.img-placeholder:hover{
+.header-banner:hover{
     background-color: color.adjust(#57AF31, $lightness: -10%);
-    cursor: pointer;
 }
 
 .img-text{
@@ -107,7 +64,7 @@ button{
 .offer-container{
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem; // space between cards
+    gap: 2rem;
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
@@ -119,7 +76,7 @@ button{
     display: flex;
     flex-direction: column;
     position: relative;
-    flex: 1 1 350px; // grow, shrink, basis (adjust 350px as needed)
+    flex: 1 1 350px;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -210,57 +167,6 @@ button{
     font-size: 0.75rem;
 }
 
-footer{
-    width: 100%;
-    height: fit-content;
-    background-color: $green;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-}
-
-.footer-logo {
-    width: 50px;
-    height: 50px;
-    margin-left: 7rem;
-    margin-top: auto;
-    margin-bottom: auto;
-    background-color: black;
-}
-
-.footer-text {
-    color: white;
-    text-align: center;
-    margin: 0 auto;
-    padding: 1rem 0;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.footer-text > h5{
-    font-weight: 100;
-    margin: 0;
-}
-
-.footer-link {
-    font-size: 32px;
-}
-
-.footer-socials {
-    width: 50px;
-    height: 50px;
-    margin-left: 0;
-    margin-right: 7rem;
-    margin-top: auto;
-    margin-bottom: auto;
-    background-color: black;
-}
-
 @media (max-width: 600px) {
     .small-logo > svg {
         margin-left: 1rem; 
@@ -290,5 +196,32 @@ footer{
     .img-text {
         text-align: center;
         margin-right: 0;
+    }
+
+    .training-button {
+        margin-right: 0;
+        margin-left: 0;
+        display: block;
+        margin-inline: auto;
+    }
+
+  .card-footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .card-button {
+        align-self: center;
+        order: 1;
+        margin: 0 0 0.5rem 0;
+        width: 100%;
+    }
+
+    .card-info {
+        order: 2;
+        width: 100%;
+        margin-top: 0.5rem;
+        align-items: start;
     }
 }
