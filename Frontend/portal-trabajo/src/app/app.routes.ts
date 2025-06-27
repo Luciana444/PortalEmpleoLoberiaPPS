@@ -9,7 +9,8 @@ export const routes: Routes = [
     { path: '', component: LandingComponent},
     { path: 'form-selector', component: FormSelectorComponent },
     { path: 'employee-form', component: EmployeeFormComponent },
-    { path: 'login', component: LoginComponent},
+    { path: 'login', component: LoginComponent}, 
+    { path: 'landing', component: LandingComponent}
 ];
 
 // dev playground

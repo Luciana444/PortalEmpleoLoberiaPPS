@@ -14,7 +14,10 @@ import swaggerUi from 'swagger-ui-express';
 // Inicializa la instancia principal de Express
 const app = express();
 // Middleware que permite peticiones cross-origin desde otros orígenes (CORS)
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:4200',
+  credentials:true
+}));
 
 // Middleware global para parsear cuerpos JSON en las solicitudes entrantes
 app.use(express.json());

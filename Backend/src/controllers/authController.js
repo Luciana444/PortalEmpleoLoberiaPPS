@@ -1,7 +1,7 @@
 // Controlador de autenticación de usuarios.
 // Contiene funciones para registrar, iniciar y cerrar sesión, y recuperar contraseña.
 
-import {registrarUsuario, iniciarSesionUsuario,cerrarSesionUsuario} from '../services/usuarioService.js';
+import {registrarUsuario, iniciarSesionUsuario} from '../services/usuarioService.js';
 
 
 import dotenv from 'dotenv';
@@ -70,6 +70,10 @@ export const registrarse = async (req, res) => {
     if (!nombre || !email || !contrasena || !tipo_usuario) {
       return res.status(400).json({ error: 'Todos los campos son obligatorios' });
     }
+    //controla que la contraseña tenga mas de 8 caracteres
+    if (contrasena.length < 8) {
+  return res.status(400).json({ error: 'La contraseña es demasiado corta (mínimo 8 caracteres)' });
+}
 
     //controla que sea un formato de email valido
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -104,7 +108,12 @@ export const registrarse = async (req, res) => {
 
   } catch (error) {
     //en caso de error muestra un mensaje en pantalla al usuario
+
     console.error(error);
+    //captura error por email duplicado
+    if (error.message && error.message.includes('ya está registrado')) {
+    return res.status(409).json({ error: error.message });
+  }
     res.status(500).json({ error: error.message || 'Error interno' });
   }
 };
@@ -170,27 +179,4 @@ export const resetearContrasena = async (req, res) => {
 };
 
 
-//====================================================================
-/**
- * Cerrar sesión de usuario
- * Procesa POST /auth/logout
- * Requiere middleware de autenticación para extraer el usuario y el token.
- */
-//====================================================================
-
-export const cerrarSesion = async (req,res)=>{
-  try {
-      const id_usuario = req.usuario.id;
-      const token = req.token;
-      if(!token){
-        return res.status(400).json({mensaje: 'Falta el token, error'});
-      }
-      await cerrarSesionUsuario(id_usuario,token);
-      return res.json({mensaje:'Sesion cerrada correctamente'})
-
-  } catch (error) {
-      console.log(error);
-      return res.status(500).json({mensaje:'Error al cerrar sesion'})
-  }
-}
 

@@ -2,7 +2,7 @@
 //  Importación de funciones desde los repositorios
 
 import {existeEmail, crearUsuario} from '../repositories/usuarioRepository.js';
-import {findAll, findUserByEmail, actualizarContrasena,invalidarToken } from '../repositories/usuarioRepository.js';
+import {findAll, findUserByEmail, actualizarContrasena} from '../repositories/usuarioRepository.js';
 
 
 //Librerías para manejo de seguridad
@@ -73,7 +73,11 @@ export const registrarUsuario = async ({ nombre, email, password, tipo_usuario }
   //verifico que el email no este registrado en la base de datos
   const existe = await existeEmail(email);
   if (existe) {
+
     throw new Error('El email ya está registrado');
+
+
+    
   }
 
   //encripto la contraseña usando bcrypt
@@ -127,14 +131,6 @@ export const actualizarContrasenaConToken = async (token, nuevaContrasena) => {
   await actualizarContrasena(decoded.id, hashed);
 };
 
-//-----------------------------------------------------
-// Servicio: Cerrar sesión de usuario (invalidar token)
-//-----------------------------------------------------
 
-
-export const cerrarSesionUsuario = async(id_usuario,token)=>{
-    const resultado = await invalidarToken(id_usuario,token);
-    return resultado;
-}
 
 
