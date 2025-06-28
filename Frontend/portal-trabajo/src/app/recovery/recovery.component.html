@@ -12,24 +12,15 @@
 </div>
 
 <div class="form-container">
-    <form [formGroup]="loginForm" action="">
+    <form [formGroup]="recovery" (ngSubmit)="submit()">
         <div class="form-header">
-            <h3>Ingresá a tu cuenta:</h3>
+            <h3>Recuperá el acceso a tu cuenta</h3>
         </div>
         <div>
-            <p>Email</p>
+            <p>Email de recuperación</p>
             <input  formControlName="email" type="text"  placeholder="Ingresá tu email"     name="email" required>
-        </div>
-                <div>
-            <p>Contraseña</p>
-            <input formControlName="contrasena" type="password"  placeholder="Ingresá tu Contraseña"     name="contrasena" required>
-        </div>
-            <a class="forgotten-password" href="/recovery">Olvidé mi contraseña</a>
-            <button type="button" class="" (click)="login()">Log in</button>
+        </div> 
+            <button type="submit" [disabled]="recovery.invalid">Enviar solicitud</button>
     </form>
 
 </div>
-
-
-
-<p class="no-account">¿No tenés cuenta? <a (click)="goToEmployeeForm($event)">Registrate</a></p> 

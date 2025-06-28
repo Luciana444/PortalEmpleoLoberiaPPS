@@ -31,8 +31,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('token',response.resultado.token);
             let payload=this.loginForm.value.email;
             localStorage.setItem('currentuser',payload);
-            this.loginForm.reset();
-            
+            this.loginForm.reset();            
             setTimeout(() => {
               this.router.navigate(['landing']);
             }, 2000);
