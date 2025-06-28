@@ -3,10 +3,9 @@
 // Incluye registro, login, recuperación de contraseña y cierre de sesión.
 
 import express from 'express';
-import { cerrarSesion, iniciarSesion } from '../controllers/authController.js';
+import { iniciarSesion } from '../controllers/authController.js';
 import{registrarse} from '../controllers/authController.js';
-import{enviarTokenRecuperacion} from '../controllers/authController.js';
-import { authMiddleware } from '../middlewares/authMiddleware.js';
+import{enviarTokenRecuperacion,resetearContrasena} from '../controllers/authController.js';
 
 //Inicializa el router específico para autenticación
 export const authRoutes = express.Router();
@@ -95,7 +94,7 @@ authRoutes.post('/register', registrarse)
  */
 
 authRoutes.post('/recover/password', enviarTokenRecuperacion);
-
+authRoutes.post('/reset/password', resetearContrasena);
 //===============================================================
 //endpoint para iniciar sesion de usuario
 //===============================================================
@@ -131,26 +130,5 @@ authRoutes.post('/recover/password', enviarTokenRecuperacion);
 
 authRoutes.post('/login',iniciarSesion);
 
-//===========================================================================
-//endpoint para  cerrar sesion
-//=========================================================================
-
-/**
- * @swagger
- * /auth/logout:
- *   post:
- *     summary: Cerrar sesión del usuario autenticado
- *     tags: [Autenticación]
- *     security:
- *       - bearerAuth: []
- *     responses:
- *       200:
- *         description: Sesión cerrada correctamente
- *       401:
- *         description: Usuario no autenticado
- */
-
-authRoutes.post('/logout',authMiddleware,cerrarSesion);
-//=========================================================================
 
 export default authRoutes;

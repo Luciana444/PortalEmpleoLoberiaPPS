@@ -1,7 +1,7 @@
 // Controlador de autenticación de usuarios.
 // Contiene funciones para registrar, iniciar y cerrar sesión, y recuperar contraseña.
 
-import {registrarUsuario, iniciarSesionUsuario,cerrarSesionUsuario} from '../services/usuarioService.js';
+import {registrarUsuario, iniciarSesionUsuario} from '../services/usuarioService.js';
 
 
 import dotenv from 'dotenv';
@@ -120,7 +120,7 @@ export const registrarse = async (req, res) => {
 
 
 
-import { getUserByEmail, enviarLinkRecuperacion } from '../services/usuarioService.js';
+import { getUserByEmail, enviarLinkRecuperacion, actualizarContrasenaConToken } from '../services/usuarioService.js';
 
 //======================================================================================
 /**
@@ -159,28 +159,24 @@ export const enviarTokenRecuperacion = async (req, res) => {
   }
 };
 
+// ===================
+// Resetear contraseña usando el token
+// ===================
+export const resetearContrasena = async (req, res) => {
+  const { token, nuevaContrasena } = req.body;
 
-//====================================================================
-/**
- * Cerrar sesión de usuario
- * Procesa POST /auth/logout
- * Requiere middleware de autenticación para extraer el usuario y el token.
- */
-//====================================================================
-
-export const cerrarSesion = async (req,res)=>{
-  try {
-      const id_usuario = req.usuario.id;
-      const token = req.token;
-      if(!token){
-        return res.status(400).json({mensaje: 'Falta el token, error'});
-      }
-      await cerrarSesionUsuario(id_usuario,token);
-      return res.json({mensaje:'Sesion cerrada correctamente'})
-
-  } catch (error) {
-      console.log(error);
-      return res.status(500).json({mensaje:'Error al cerrar sesion'})
+  if (!token || !nuevaContrasena) {
+    return res.status(400).json({ error: 'Token y nueva contraseña requeridos' });
   }
-}
+
+  try {
+    await actualizarContrasenaConToken(token, nuevaContrasena);
+    res.status(200).json({ message: 'Contraseña actualizada correctamente' });
+  } catch (error) {
+    console.error('Error al resetear contraseña:', error);
+    res.status(400).json({ error: error.message || 'Token inválido o expirado' });
+  }
+};
+
+
 
