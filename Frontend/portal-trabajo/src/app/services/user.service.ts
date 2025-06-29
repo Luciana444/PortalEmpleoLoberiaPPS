@@ -28,6 +28,13 @@ export class UserService {
       headers:new HttpHeaders().append('Content-Type','application/json')
     })
   }
+  registerNewUser(userData:any) {
+    return this.httpClient.post(`${URL}/auth/register`, userData, {
+    observe: 'response',
+    withCredentials:true,
+    headers:new HttpHeaders().append('Content-Type','application/json')
+ })
+ }
 
   logout()
   {
