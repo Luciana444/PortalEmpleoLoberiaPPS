@@ -2,6 +2,7 @@ import { Component, OnInit  } from '@angular/core';
 import { UserService} from '../services/user.service';
 import { ReactiveFormsModule , FormGroup, Validators,FormBuilder} from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 export class EmployeeFormComponent implements OnInit {
   registerForm: FormGroup
 
-  constructor(private router: Router, private fb:FormBuilder, private userservice:UserService) {
+  constructor(private router: Router, private fb:FormBuilder, private userservice:UserService, private toastr: ToastrService) {
     this.registerForm = this.fb.group({
       nombre:[null,Validators.required],
       //surname:[null,Validators.required],
@@ -34,6 +35,7 @@ export class EmployeeFormComponent implements OnInit {
   this.userservice.registerNewUser(JSON.stringify(this.registerForm.value)).subscribe({
     next: (response) => {
       if(response.status === 201){
+         this.toastr.success('Ya podes acceder al sitio', 'Registro exitoso')
         console.log('Registro exitoso', response);
         this.registerForm.reset();
         this.router.navigate(['login']); 
@@ -42,6 +44,7 @@ export class EmployeeFormComponent implements OnInit {
       }
     },    
     error: (err) => {
+      this.toastr.error(err.error.error, 'Ocurrió un error');
       console.error('Error al registrar usuario', err);
    
     }

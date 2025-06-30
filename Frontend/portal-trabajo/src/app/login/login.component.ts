@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators,FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService} from '../services/user.service';
+import { UserService } from '../services/user.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -12,37 +13,44 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup
-  constructor(private router: Router, private fb:FormBuilder, private userservice:UserService) {
+  constructor(private router: Router, private fb: FormBuilder, private userservice: UserService, private toastr: ToastrService) {
     this.loginForm = this.fb.group({
-      email: [null,Validators.required],
-      contrasena: [null,Validators.compose([Validators.required,Validators.minLength(5)])]
+      email: [null, Validators.required],
+      contrasena: [null, Validators.compose([Validators.required, Validators.minLength(5)])]
     });
   }
-  
+
   ngOnInit() {
   }
 
 
+
   login() {
-    this.userservice.login(JSON.stringify(this.loginForm.value))
-      .subscribe(
-        (response: any) => {      
+    if (this.loginForm.invalid) return;
+
+    this.userservice.login(JSON.stringify(this.loginForm.value)).subscribe({
+      next: (response: any) => {
         if (response.resultado && response.resultado.token) {
-            localStorage.setItem('token',response.resultado.token);
-            let payload=this.loginForm.value.email;
-            localStorage.setItem('currentuser',payload);
-            this.loginForm.reset();            
-            setTimeout(() => {
-              this.router.navigate(['landing']);
-            }, 2000);
-          }
-          else {
-            console.log('Usuario/contrasena invalido');
-          }
-        },
-        (error) => { console.log(error); }
-      );
+          localStorage.setItem('token', response.resultado.token);
+          localStorage.setItem('currentuser', this.loginForm.value.email);
+          this.loginForm.reset();
+          this.toastr.success('Inicio de sesión exitoso', '¡Bienvenido!');
+          setTimeout(() => {
+            this.router.navigate(['landing']);
+          }, 2000);
+        }
+      },
+      error: (err: any) => {
+        if (err.status === 401) {
+          this.toastr.warning('Usuario o contraseña inválido', 'Atención');
+        } else {
+          console.log(err);
+          this.toastr.error(err.error?.error, 'Ocurrió un error');
+        }
+      }
+    });
   }
+
 
   goToEmployeeForm(event: Event) {
     event.preventDefault(); // Prevent default link behavior

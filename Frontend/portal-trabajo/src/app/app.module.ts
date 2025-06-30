@@ -13,9 +13,7 @@ import { AppComponent } from './app.component';
       progressBar: true,
     }),     
   ],
-   providers: [  provideAnimations(), 
-    provideToastr()],
-   
+  providers: [],   
   bootstrap: [AppComponent],
   declarations: [AppComponent],
 })

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {Validators, FormBuilder,FormGroup,ReactiveFormsModule} from '@angular/forms';
-//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import { ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 
 @Component({
+  standalone: true,
   selector: 'app-recovery',
   templateUrl: './recovery.component.html',
   styleUrl: './recovery.component.scss',
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class RecoveryComponent implements OnInit {
   recovery : FormGroup;
 
-  constructor(private router: Router, private recoveryService : UserService,private fb : FormBuilder){
+  constructor(private router: Router, private recoveryService : UserService,private fb : FormBuilder,  private toastr: ToastrService){
     this.recovery = this.fb.group({
       email : ['', [Validators.required, Validators.email]]
     })
@@ -36,18 +36,16 @@ export class RecoveryComponent implements OnInit {
     this.recoveryService.recoveryPassword({email}).subscribe({
       next : (res) => {
         if(res.status === 200){
-         //this.toastr.success('Email enviado, Verificá tu correo', 'Success')
+         this.toastr.success('Verificá tu correo', 'Email enviado')
          console.log('Email enviado')
           setTimeout(() => {
               this.router.navigate(['login']);
             }, 2000);
         }
       },
-      error : (err : any) => {
-       // this.toastr.error('Email no enviado', 'Error');
+      error : (err : any) => {       
+       this.toastr.error(err.error.error, 'Ocurrió un error');
        console.log('Error');
-       
-       
       }
     })
   }
