@@ -13,4 +13,7 @@ export class FormSelectorComponent {
   navigateToEmployeeForm() {
     this.router.navigate(['/employee-form']);
   }
+
 }
+
+

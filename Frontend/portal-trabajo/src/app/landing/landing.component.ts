@@ -5,10 +5,11 @@ import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { MatPaginator, MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
 import { PaginatorIntl } from '../services/paginator.service';
+import { TrainingLinkComponent } from '../training-link/training-link.component';
 
 @Component({
   selector: 'app-landing',
-  imports: [MatPaginator, HeaderComponent, FooterComponent],
+  imports: [MatPaginator, HeaderComponent, FooterComponent, TrainingLinkComponent],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss',
   providers: [{provide: MatPaginatorIntl, useClass: PaginatorIntl }]
@@ -143,4 +144,5 @@ export class LandingComponent implements OnInit {
     const start = this.currentPage * this.pageSize;
     return this.offers.slice(start, start + this.pageSize);
   }
+
 }
