@@ -1,11 +1,6 @@
 <app-header></app-header>
+<app-training-link></app-training-link>
 
-<div class="landing-header">
-    <div class="header-banner">
-        <h3 class="img-text">Mejorá tus habilidades con capacitaciones nacionales</h3>
-            <button class="training-button">INGRESÁ</button>
-    </div>
-</div>
 
 <div class="offer-container">
   @for (offer of pagedOffers; track offer.id) {
@@ -43,4 +38,3 @@
 </mat-paginator>
 
 <app-footer></app-footer>
-  <!-- [pageSizeOptions]="[10, 30, 100]" -->
