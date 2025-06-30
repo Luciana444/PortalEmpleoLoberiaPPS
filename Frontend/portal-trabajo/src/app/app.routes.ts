@@ -6,7 +6,6 @@ import { LandingComponent } from './landing/landing.component';
 import { RecoveryComponent } from './recovery/recovery.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
-//right way
 export const routes: Routes = [
     { path: '', component: LandingComponent},
     { path: 'form-selector', component: FormSelectorComponent },
@@ -16,9 +15,3 @@ export const routes: Routes = [
     { path: 'recovery', component: RecoveryComponent},
     { path: 'reset', component: ResetPasswordComponent}
 ];
-
-// dev playground
-// export const routes: Routes = [
-//     { path: '', component: LoginComponent },
-    // { path: 'employee-form', component: EmployeeFormComponent },
-// ];

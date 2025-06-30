@@ -55,15 +55,15 @@ button{
     background-color: $white;
     color: $white;
     border: 1px solid $white;
-    font-size: 32px;
+    font-size: 2rem;
     margin-right: 8rem;
     width: 10rem;
     background-color: rgba(255,255,255,0);
 }
 
-.offer-container{
-    display: flex;
-    flex-wrap: wrap;
+.offer-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     justify-content: center;
     margin-left: auto;
@@ -167,6 +167,19 @@ button{
     font-size: 0.75rem;
 }
 
+mat-paginator {
+    display: flex;
+    justify-content: center;
+    margin: 1rem auto 1rem auto;
+    width: fit-content;
+    background-color: $white;
+    font-size: 1.5rem;
+}
+
+::ng-deep .mat-mdc-paginator-page-size {
+  display: none !important;
+}
+
 @media (max-width: 600px) {
     .small-logo > svg {
         margin-left: 1rem; 
@@ -187,6 +200,12 @@ button{
 
     .register-button{
         display: none;
+    }
+    
+    .offer-container {
+        grid-template-columns: 1fr;
+        width: 100%;
+        padding: 1rem;
     }
 
     .offer-card {
