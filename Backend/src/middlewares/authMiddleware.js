@@ -28,13 +28,6 @@ export const authMiddleware = async(req, res, next)=>{
         // Verifica la firma del token usando la clave secreta definida en .env
         const payload = jwt.verify(token,process.env.JWT_SECRET);
 
-      // Consulta si el token ya fue invalidado (por ejemplo, en logout)
-        const resultado = await sql`SELECT * FROM tokens_invalidados WHERE token = ${token}`;
-
-        if(resultado.length>0){
-            return res.status(401).json({mensaje:'Token invalido'});
-        }
-
         // Si todo está bien, adjunta los datos del usuario al objeto `req`
         req.usuario = payload;
         req.token = token;
