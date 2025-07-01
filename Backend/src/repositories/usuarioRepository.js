@@ -74,3 +74,17 @@ export const actualizarContrasena = async (userId, nuevaContrasenaHash) => {
   `;
 };
 
+
+
+export const actualizarFotoPerfil = async (userId, urlFoto) => {
+  if (!userId || !urlFoto) {
+    throw new Error('Faltan userId o urlFoto para actualizar foto perfil');
+  }
+
+  await sql`
+    UPDATE usuarios
+    SET foto_perfil = ${urlFoto}
+    WHERE id = ${userId}
+  `;
+};
+

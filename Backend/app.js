@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import authRoutes from './src/routes/authRoutes.js'; // Ajustá si tu ruta está en otra carpeta
 
+
 const app = express();
 
 // Middleware

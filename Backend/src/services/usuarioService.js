@@ -131,6 +131,44 @@ export const actualizarContrasenaConToken = async (token, nuevaContrasena) => {
   await actualizarContrasena(decoded.id, hashed);
 };
 
+import { supabase } from '../config/supabaseClient.js';
+import { actualizarFotoPerfil } from '../repositories/usuarioRepository.js';
+
+export const guardarFotoPerfil = async (userId, file) => {
+  const nombreArchivo = `perfil_${userId}_${Date.now()}`;
+
+  // Subimos el archivo
+  const { data, error } = await supabase
+    .storage
+    .from('fotos-perfil')
+    .upload(nombreArchivo, file.buffer, {
+      contentType: file.mimetype,
+      upsert: true,
+    });
+
+  if (error) {
+    console.error('Error subiendo archivo a Supabase:', error);
+    throw error;
+  }
+
+  // Obtenemos URL pública
+  const { data: urlData } = supabase
+    .storage
+    .from('fotos-perfil')
+    .getPublicUrl(nombreArchivo);
+
+  const publicUrl = urlData.publicUrl;
+
+  if (!publicUrl) {
+    throw new Error('No se pudo obtener la URL pública del archivo');
+  }
+
+  // Guardamos URL en DB
+  await actualizarFotoPerfil(userId, publicUrl);
+
+  return publicUrl;
+};
+
 
 
 
