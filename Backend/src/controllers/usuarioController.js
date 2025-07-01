@@ -24,29 +24,45 @@ export const getAllUsuarios = async (req, res) => {
 }
 
 import { guardarFotoPerfil } from '../services/usuarioService.js';
+import fs from 'fs/promises';
 
 export const subirFotoPerfil = async (req, res) => {
   try {
-    // Verificamos que haya archivo
     if (!req.file) {
       return res.status(400).json({ error: 'No se recibió archivo' });
     }
 
-    // Obtenemos el userId
     const userId = req.user?.id || req.body.userId;
+    const tipoUsuario = req.body.tipoUsuario;
 
+    console.log('Tipo de usuario recibido:', tipoUsuario);
 
-    if (!userId) {
-      return res.status(400).json({ error: 'Usuario no identificado' });
+    if (!userId || !tipoUsuario) {
+      // Borrar archivo si falta info
+      await fs.unlink(req.file.path);
+      return res.status(400).json({ error: 'Faltan datos: userId o tipoUsuario' });
     }
 
-    // Llamamos al service para subir y guardar URL
-    const urlFoto = await guardarFotoPerfil(userId, req.file);
+    const urlFoto = await guardarFotoPerfil(userId, req.file, tipoUsuario);
 
-    // Respondemos con la URL
-    res.json({ message: 'Foto de perfil subida exitosamente', url: urlFoto });
+    res.json({
+      message: 'Foto de perfil subida exitosamente',
+      url: urlFoto
+    });
+
   } catch (error) {
     console.error('Error subirFotoPerfil:', error);
+
+    // Si hubo error y hay archivo, lo eliminamos
+    if (req.file?.path) {
+      try {
+        await fs.unlink(req.file.path);
+      } catch (unlinkError) {
+        console.error('Error eliminando archivo tras fallo:', unlinkError);
+      }
+    }
+
     res.status(500).json({ error: 'Error al subir la foto de perfil' });
   }
 };
+

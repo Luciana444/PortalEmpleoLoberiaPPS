@@ -7,6 +7,7 @@
 import express from 'express';
 import {router} from './src/routes/router.js';
 import cors from 'cors';
+import path from 'path';
 // Documentación Swagger (OpenAPI)
 import { swaggerSpec } from './src/docs/swagger_config.js';
 import swaggerUi from 'swagger-ui-express';
@@ -40,6 +41,9 @@ app.use('/api',router);
 
 // Mensaje adicional para confirmar que el backend está funcionando
 console.log("funcionando");
+
+
+app.use('/foto', express.static(path.resolve('perfiles/fotos')));
 
 
 

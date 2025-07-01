@@ -131,43 +131,24 @@ export const actualizarContrasenaConToken = async (token, nuevaContrasena) => {
   await actualizarContrasena(decoded.id, hashed);
 };
 
-import { supabase } from '../config/supabaseClient.js';
+
+import path from 'path';
 import { actualizarFotoPerfil } from '../repositories/usuarioRepository.js';
 
-export const guardarFotoPerfil = async (userId, file) => {
-  const nombreArchivo = `perfil_${userId}_${Date.now()}`;
-
-  // Subimos el archivo
-  const { data, error } = await supabase
-    .storage
-    .from('fotos-perfil')
-    .upload(nombreArchivo, file.buffer, {
-      contentType: file.mimetype,
-      upsert: true,
-    });
-
-  if (error) {
-    console.error('Error subiendo archivo a Supabase:', error);
-    throw error;
+export const guardarFotoPerfil = async (userId, file, tipoUsuario) => {
+  if (!file) {
+    throw new Error('No se recibió archivo');
   }
 
-  // Obtenemos URL pública
-  const { data: urlData } = supabase
-    .storage
-    .from('fotos-perfil')
-    .getPublicUrl(nombreArchivo);
+  // Construir la ruta relativa para guardar en la DB
+  const rutaFoto = path.join('/perfiles/fotos', file.filename).replace(/\\/g, '/');
 
-  const publicUrl = urlData.publicUrl;
+  // Actualizar en la base de datos, según el tipo de usuario
+  await actualizarFotoPerfil(userId, rutaFoto, tipoUsuario);
 
-  if (!publicUrl) {
-    throw new Error('No se pudo obtener la URL pública del archivo');
-  }
-
-  // Guardamos URL en DB
-  await actualizarFotoPerfil(userId, publicUrl);
-
-  return publicUrl;
+  return rutaFoto;
 };
+
 
 
 

@@ -76,15 +76,27 @@ export const actualizarContrasena = async (userId, nuevaContrasenaHash) => {
 
 
 
-export const actualizarFotoPerfil = async (userId, urlFoto) => {
-  if (!userId || !urlFoto) {
-    throw new Error('Faltan userId o urlFoto para actualizar foto perfil');
+export const actualizarFotoPerfil = async (userId, rutaFoto, tipoUsuario) => {
+  if (!userId || !rutaFoto || !tipoUsuario) {
+    throw new Error('Faltan parámetros para actualizar foto');
   }
 
-  await sql`
-    UPDATE usuarios
-    SET foto_perfil = ${urlFoto}
-    WHERE id = ${userId}
-  `;
+  const tipo = tipoUsuario.toLowerCase().trim(); 
+
+  if (tipo === 'empresa') {
+    await sql`
+      UPDATE empresas
+      SET logo = ${rutaFoto}
+      WHERE id = ${userId}
+    `;
+  } else if (tipo === 'ciudadano') {
+    await sql`
+      UPDATE perfiles_ciudadanos
+      SET imagen_url = ${rutaFoto}
+      WHERE id = ${userId}
+    `;
+  } else {
+    throw new Error('Tipo de usuario no válido');
+  }
 };
 
