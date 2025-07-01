@@ -140,13 +140,13 @@ export const guardarFotoPerfil = async (userId, file, tipoUsuario) => {
     throw new Error('No se recibió archivo');
   }
 
-  // Construir la ruta relativa para guardar en la DB
-  const rutaFoto = path.join('/perfiles/fotos', file.filename).replace(/\\/g, '/');
+  // Solo ruta relativa (ejemplo: /foto/perfil_123456.webp)
+  const rutaRelativa = path.join('/foto', file.filename).replace(/\\/g, '/');
 
-  // Actualizar en la base de datos, según el tipo de usuario
-  await actualizarFotoPerfil(userId, rutaFoto, tipoUsuario);
+  // Guardar en base de datos solo ruta relativa
+  await actualizarFotoPerfil(userId, rutaRelativa, tipoUsuario);
 
-  return rutaFoto;
+  return rutaRelativa; // Devuelve solo la ruta relativa
 };
 
 

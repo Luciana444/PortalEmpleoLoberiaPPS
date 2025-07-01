@@ -81,22 +81,23 @@ export const actualizarFotoPerfil = async (userId, rutaFoto, tipoUsuario) => {
     throw new Error('Faltan parámetros para actualizar foto');
   }
 
-  const tipo = tipoUsuario.toLowerCase().trim(); 
+  console.log('Tipo de usuario recibido:', tipoUsuario);
+const tipo = tipoUsuario.trim().toLowerCase();
 
-  if (tipo === 'empresa') {
-    await sql`
-      UPDATE empresas
-      SET logo = ${rutaFoto}
-      WHERE id = ${userId}
-    `;
-  } else if (tipo === 'ciudadano') {
-    await sql`
-      UPDATE perfiles_ciudadanos
-      SET imagen_url = ${rutaFoto}
-      WHERE id = ${userId}
-    `;
-  } else {
-    throw new Error('Tipo de usuario no válido');
-  }
+if (tipo === 'empresa') {
+  await sql`
+    UPDATE empresas
+    SET logo = ${rutaFoto}
+    WHERE id_usuario = ${userId}
+  `;
+} else if (tipo === 'ciudadano') {
+  await sql`
+    UPDATE perfiles_ciudadanos
+    SET imagen_url = ${rutaFoto}
+    WHERE id_ciudadano = ${userId}
+  `;
+} else {
+  throw new Error('Tipo de usuario no válido');
+}
 };
 
