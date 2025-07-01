@@ -6,15 +6,15 @@ import { AppComponent } from './app.component';
 
 @NgModule({
   imports: [
-    BrowserAnimationsModule,    
+    BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut: 15000, 
+      timeOut: 15000,
       closeButton: true,
       progressBar: true,
-    }),     
+    }),
+    AppComponent 
   ],
-  providers: [],   
+  providers: [],
   bootstrap: [AppComponent],
-  declarations: [AppComponent],
 })
 export class AppModule {}

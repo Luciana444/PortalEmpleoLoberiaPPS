@@ -1,4 +1,15 @@
+@use '@angular/material/prebuilt-themes/indigo-pink.css';
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
 @use 'sass:color';
+html {
+  @include mat.theme((
+    typography: Linotte,
+    density: 0,
+  ));
+}
 
 /* You can add global styles to this file, and also import other style files */
 $green: #57AF31;
@@ -84,3 +95,5 @@ a:hover {
     color: color.adjust(#57AF31, $lightness: -10%);
     cursor: pointer;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: $font; }

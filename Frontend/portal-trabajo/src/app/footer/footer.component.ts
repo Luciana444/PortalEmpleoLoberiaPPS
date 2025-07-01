@@ -7,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
-
+  goToLoberia(){
+    window.open('https://www.loberia.gov.ar/', '_blank');
+  }
 }

@@ -60,7 +60,7 @@ export const iniciarSesionUsuario = async ({ email, contrasena }) => {
     expiresIn: '1h'
   });
 
-  return { token };
+  return { payload, token };
 };
 
 
