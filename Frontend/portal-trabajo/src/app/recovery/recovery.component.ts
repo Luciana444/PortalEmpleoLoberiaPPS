@@ -3,13 +3,14 @@ import {Validators, FormBuilder,FormGroup,ReactiveFormsModule} from '@angular/fo
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
+import { BigLogoComponent } from '../big-logo/big-logo.component';
 
 @Component({
   standalone: true,
   selector: 'app-recovery',
   templateUrl: './recovery.component.html',
   styleUrl: './recovery.component.scss',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, BigLogoComponent],
 })
 export class RecoveryComponent implements OnInit {
   recovery : FormGroup;

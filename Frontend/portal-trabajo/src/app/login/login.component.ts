@@ -4,10 +4,11 @@ import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { BigLogoComponent } from '../big-logo/big-logo.component';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, BigLogoComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -22,8 +23,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
-
-
 
   login() {
     if (this.loginForm.invalid) return;

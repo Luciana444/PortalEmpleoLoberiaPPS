@@ -1,0 +1,65 @@
+@use '../../styles.scss' as *;
+
+.container{
+    display: flex;
+    gap: 2rem;
+    padding: 1rem 10rem;
+}
+
+.profile{
+    background-color: white;
+    height: fit-content;
+    width: fit-content;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.profile-header{
+    display: flex;
+}
+
+.profile-footer{
+    display: flex;
+    align-items: center;
+}
+
+.edit-profile {
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.profile-pic{
+    height: 50px;
+    width: 50px;
+    border-radius: 100px;
+    background-color: black
+}
+
+.profile-header,
+.personal-info,
+.contact-info {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    column-gap: 0.5rem;
+    row-gap: 0.25rem;
+    align-items: center;
+}
+
+.personal-info h5,
+.contact-info h5,
+.personal-info p,
+.contact-info p {
+    margin: 0;
+}
+
+main{
+    background-color: black;
+    width: 50px;
+    height: 50px;
+}
+
+aside{
+    background-color: green;
+    width: 50px;
+    height: 50px;
+}

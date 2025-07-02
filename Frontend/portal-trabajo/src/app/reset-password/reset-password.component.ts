@@ -3,11 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../services/user.service';
+import { BigLogoComponent } from '../big-logo/big-logo.component';
 
 @Component({
     templateUrl: './reset-password.component.html',
     styleUrl: './reset-password.component.scss',
-    imports: [ReactiveFormsModule],
+    imports: [ReactiveFormsModule, BigLogoComponent],
 })
 export class ResetPasswordComponent implements OnInit {
 
