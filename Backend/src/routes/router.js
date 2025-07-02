@@ -18,5 +18,5 @@ router.use('/usuario',usuarioRoutes);
 // Ej: POST /api/auth/login, POST /api/auth/register, etc.
 router.use('/auth',authRoutes)
 
-router.use('/', ciudadanoRoutes);
+router.use('/ciudadano', ciudadanoRoutes);
 
