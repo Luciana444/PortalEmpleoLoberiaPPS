@@ -1,7 +1,7 @@
 import express from 'express';
 import { generarPdf, subirCV } from '../controllers/ciudadanoController.js';
 import {authMiddleware} from '../middlewares/authMiddleware.js'
-import {onlyCiudadano} from '../middlewares/onyCiudadano.js'
+import {onlyCiudadano} from '../middlewares/onlyCiudadano.js'
 import subirCv from '../middlewares/upload.js';
 import { actualizarPerfilCiudadano } from '../controllers/ciudadanoController.js';
 
