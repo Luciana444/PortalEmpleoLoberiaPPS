@@ -2,10 +2,8 @@ import sql from '../database/db.js';
 
 export const insertarUrlCv = async (id_usuario, url_cv) => {
   const resultado = await sql`
-    INSERT INTO postulaciones (id_usuario, id_oferta, fecha_postulacion, mensaje, cv_url, estado) VALUES 
-    (${id_usuario}, '11ab02c3-58f1-4040-a779-e68a4cb2456f', 'NOW()', 
-    'Ejemplo para subir cv a una postulacion', ${url_cv}, 'pendiente')
-    RETURNING *;
+    UPDATE perfiles_ciudadanos SET cv_url = ${url_cv}
+    WHERE id_ciudadano= ${id_usuario}
   `;
   return resultado[0];
 };
@@ -19,7 +17,7 @@ export const updatePerfilCiudadano = async (userId, datos) => {
     'nombre', 'apellido', 'fecha_nacimiento', 'telefono', 'email', 'dni', 'cuil',
     'calle', 'numero', 'piso', 'dpto', 'localidad', 'provincia', 'pais',
     'nivel_educativo', 'esta_cursando_carrera', 'carrera_en_curso', 'situacion_laboral',
-    'tiene_emprendimiento', 'discapacidad', 'cv_url'
+    'tiene_emprendimiento', 'discapacidad'
   ];
 
   for (const [clave, valor] of Object.entries(datos)) {

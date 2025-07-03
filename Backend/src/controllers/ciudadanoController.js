@@ -35,7 +35,7 @@ export const actualizarPerfilCiudadano = async (req, res) => {
       'nombre', 'apellido', 'fecha_nacimiento', 'telefono', 'email', 'dni', 'cuil',
       'calle', 'numero', 'piso', 'dpto', 'localidad', 'provincia', 'pais',
       'nivel_educativo', 'esta_cursando_carrera', 'carrera_en_curso', 'situacion_laboral',
-      'tiene_emprendimiento', 'discapacidad', 'cv_url'
+      'tiene_emprendimiento', 'discapacidad'
     ];
 
     const actualizaciones = {};

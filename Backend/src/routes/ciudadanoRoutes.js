@@ -9,9 +9,10 @@ import { actualizarPerfilCiudadano } from '../controllers/ciudadanoController.js
 export const ciudadanoRoutes = express.Router();
 
 
-ciudadanoRoutes.post('/upload_cv',authMiddleware, onlyCiudadano, subirCv.single('cv'),subirCV);
-export default ciudadanoRoutes;
+ciudadanoRoutes.put('/upload_cv',authMiddleware, onlyCiudadano, subirCv.single('cv'),subirCV);
+
 
 ciudadanoRoutes.patch('/actualizar/perfil', actualizarPerfilCiudadano);
 
 
+export default ciudadanoRoutes;
