@@ -16,12 +16,12 @@ footer{
 }
 
 .footer-logo {
-    margin-left: 7rem;
+    margin-left: 6rem;
     margin-top: auto;
     margin-bottom: auto;
     display: flex;
-    align-items: center; // Vertically center the img
-    height: 100%; // Ensure it takes full height of the footer if needed
+    align-items: center;
+    height: 100%;
 }
 
 img{
@@ -55,16 +55,17 @@ img{
 }
 
 .footer-socials {
-    margin-left: 0;
     margin-right: 7rem;
-    margin-top: auto;
-    margin-bottom: auto;
+    min-width: 90px;
+    flex-shrink: 0;
     display: flex;
     gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 a{
-    color: black;
+    color: white;
 }
 
 i{
@@ -80,13 +81,19 @@ i{
         height: auto;
         padding: 1rem 0 0 0;
     }
-
-    .footer-logo,
+.footer-logo,
     .footer-socials {
         margin-left: 0;
         margin-right: 0;
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
+    }
+
+    .footer-socials {
+        display: flex;
+        flex-direction: row; // Ensure horizontal alignment
+        justify-content: center; // Center icons horizontally
+        width: 100%; // Optional: make it span the width
     }
 
     .footer-text {
