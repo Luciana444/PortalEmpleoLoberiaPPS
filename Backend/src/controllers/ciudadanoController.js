@@ -26,8 +26,8 @@ import { actualizarPerfil } from '../services/ciudadanoService.js';
 
 export const actualizarPerfilCiudadano = async (req, res) => {
   try {
-    const userId = req.user?.id || req.body.userId;
-    if (!userId) {
+    const id_ciudadano = req.user?.id || req.body.id_ciudadano;
+    if (!id_ciudadano) {
       return res.status(400).json({ error: 'Falta el ID del ciudadano' });
     }
 
@@ -66,7 +66,7 @@ export const actualizarPerfilCiudadano = async (req, res) => {
       return res.status(400).json({ error: 'El campo esta_cursando_carrera debe ser true o false' });
     }
 
-    await actualizarPerfil(userId, actualizaciones);
+    await actualizarPerfil(id_ciudadano, actualizaciones);
 
     res.json({ message: 'Perfil actualizado correctamente' });
   } catch (error) {
