@@ -11,6 +11,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { CommonModule } from '@angular/common';
+import { jwtDecode } from 'jwt-decode';
+
 
 @Component({
     standalone: true,
@@ -35,6 +37,7 @@ export class ProfileFormComponent implements OnInit {
 
     constructor(private router: Router, private fb: FormBuilder, private userservice: UserService, private toastr: ToastrService) {
         this.profile = this.fb.group({
+            userId: [''],
             nombre: ['', Validators.required],
             apellido: ['', Validators.required],
             fechaNacimiento: ['', Validators.required],
@@ -66,6 +69,7 @@ export class ProfileFormComponent implements OnInit {
 
     editProfile() {
         if (this.profile.invalid) return;
+        this.profile.value.userId = this.getUserId();
         this.userservice.editProfileEmployee(JSON.stringify(this.profile.value)).subscribe({
             next: (response) => {
                 if (response.status === 200) {
@@ -89,4 +93,19 @@ export class ProfileFormComponent implements OnInit {
 
     onFileSelected(event: any) {
     }
+
+
+    getUserId() {
+        const storedTokenString = localStorage.getItem("token") ?? "";
+        const decodedToken = jwtDecode<User>(storedTokenString);
+        return  decodedToken.id;
+    }
+}
+
+interface User {
+    id: string;
+    email: string;
+    tipo_usuario: string;
+    iat: number;
+    exp: number;
 }
