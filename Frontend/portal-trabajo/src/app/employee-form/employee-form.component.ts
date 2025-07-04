@@ -3,11 +3,11 @@ import { UserService} from '../services/user.service';
 import { ReactiveFormsModule , FormGroup, Validators,FormBuilder} from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-
+import { BigLogoComponent } from '../big-logo/big-logo.component';
 
 @Component({
   selector: 'app-employee-form',
-   imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, BigLogoComponent],
   templateUrl: './employee-form.component.html',
   styleUrl: './employee-form.component.scss'
 })

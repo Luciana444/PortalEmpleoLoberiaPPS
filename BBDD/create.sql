@@ -10,94 +10,203 @@ create table usuarios (
   estado boolean default true
 );
 
+--================================================
 
--- TABLA EMPRESAS (relacionada 1:1 con usuarios tipo empresa)
-CREATE TABLE empresas (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  id_usuario UUID UNIQUE NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
-  nombre_empresa TEXT NOT NULL,
-  direccion TEXT,
-  telefono TEXT,
-  sitio_web TEXT
-);
--- TABLA PERFILES USUARIOS (datos extendidos de ciudadanos)
-CREATE TABLE perfiles_usuarios (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  id_usuario UUID UNIQUE NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+--tabla empresas:
+
+create table public.empresas (
+  id uuid not null default gen_random_uuid (),
+  id_usuario uuid not null,
+  nombre_empresa text not null,
+  email_contacto text not null,
+  logo text null,
+  sitio_web text null,
+  cuit character varying(20) not null,
+  rubro text null,
+
+
+  telefono text null,
+  calle text not null,
+  numero text not null,
+  piso text null,
+  dpto text null,
+  localidad text not null,
+  provincia text not null,
+  pais text not null,
+  
+  
+  estado_aprobacion character varying null default 'pendiente'::character varying,
+  fecha_aprobacion timestamp without time zone null,
+  email_admin_autorizador character varying null,
+  
+
+  constraint empresas_pkey primary key (id),
+  constraint empresas_id_usuario_key unique (id_usuario),
+  constraint empresas_id_usuario_fkey foreign KEY (id_usuario) references usuarios (id) on delete CASCADE,
+  constraint empresas_estado_aprobacion_check check (
+    (
+      (estado_aprobacion)::text = any (
+        (
+          array[
+            'pendiente'::character varying,
+            'aprobada'::character varying,
+            'rechazada'::character varying
+          ]
+        )::text[]
+      )
+    )
+  )
+) TABLESPACE pg_default;
+
+
+--=================================================================
+
+-- TABLA PERFILES ciudadanos (datos extendidos de usuarios)
+
+CREATE TABLE public.perfiles_ciudadanos (
+  id UUID NOT NULL DEFAULT gen_random_uuid(),
+  id_ciudadano UUID NOT NULL,
+
+  -- Datos personales
+  nombre TEXT NOT NULL,
+  apellido TEXT NOT NULL,
   fecha_nacimiento DATE,
   telefono TEXT,
-  educacion TEXT,
-  experiencia TEXT,
-  habilidades TEXT,
+  email TEXT NOT NULL,
+  dni VARCHAR(20) NOT NULL,
+  cuil VARCHAR(20) NOT NULL,
+
+  -- Dirección detallada
+  calle TEXT NOT NULL,
+  numero TEXT NOT NULL,
+  piso TEXT,
+  dpto TEXT,
+  localidad TEXT NOT NULL,
+  provincia TEXT NOT NULL,
+  pais TEXT NOT NULL,
+
+  -- Nivel educativo y formación
+  nivel_educativo TEXT NOT NULL,
+  esta_cursando_carrera BOOLEAN NOT NULL,
+  carrera_en_curso TEXT,
+
+  -- Experiencia y habilidades
+  
+  
+  situacion_laboral TEXT NOT NULL,
+  tiene_emprendimiento TEXT,
+  discapacidad TEXT NOT NULL,
+
+  -- Imagen de perfil
+  imagen_url TEXT,
   cv_url TEXT,
-  imagen_url TEXT
+
+  -- Claves y relaciones
+  CONSTRAINT perfiles_ciudadanos_pkey PRIMARY KEY (id),
+  CONSTRAINT perfiles_ciudadanos_id_ciudadano_key UNIQUE (id_ciudadano),
+  CONSTRAINT perfiles_ciudadanos_id_ciudadano_fkey FOREIGN KEY (id_ciudadano)
+    REFERENCES usuarios (id) ON DELETE CASCADE
+) TABLESPACE pg_default;
+
+
+--tabla de capacitaciones y habilidades:  (unida al formulario de perfil ciudadano)
+
+CREATE TABLE public.capacitaciones_ciudadanos (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  id_ciudadano UUID NOT NULL,
+  nombre_capacitacion TEXT NOT NULL,
+  CONSTRAINT fk_capacitacion_ciudadano FOREIGN KEY (id_ciudadano)
+    REFERENCES perfiles_ciudadanos (id_ciudadano) ON DELETE CASCADE
 );
+
+
+
+
+--=============================================
+
+
+
 -- TABLA OFERTAS LABORALES
-CREATE TABLE ofertas_laborales (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  id_empresa UUID NOT NULL REFERENCES empresas(id) ON DELETE CASCADE,
-  titulo TEXT NOT NULL,
+CREATE TABLE public.ofertas_laborales (
+  id UUID NOT NULL DEFAULT gen_random_uuid(),
+  id_empresa UUID NOT NULL,
+  
+  puesto_requerido TEXT NOT NULL, -- reemplaza 'titulo'
   descripcion TEXT NOT NULL,
-  requisitos TEXT,
-  ubicacion TEXT,
-  modalidad TEXT CHECK (modalidad IN ('presencial', 'remoto', 'hibrido')),
-  tipo_contrato TEXT,
-  fecha_publicacion TIMESTAMP DEFAULT now(),
-  fecha_cierre DATE,
-  estado TEXT DEFAULT 'activa' CHECK (estado IN ('activa', 'cerrada', 'pausada'))
-);
+  
+  nivel_educativo_requerido TEXT NOT NULL, -- select
+  experiencia_requerida TEXT NULL,
+  otros_requisitos TEXT NULL,
+  
+  lugar_trabajo VARCHAR(20) NOT NULL, -- select: Presencial, Remoto, Mixto
+  
+  modalidad VARCHAR(20) NOT NULL, -- select: Tiempo completo, Medio tiempo, Contrato a plazo fijo, Pasantía, Freelance
+  
+  tipo_contrato TEXT NULL,
+  
+  fecha_publicacion TIMESTAMP WITHOUT TIME ZONE NULL DEFAULT now(),
+  fecha_cierre DATE NULL,
+  
+  estado TEXT NULL DEFAULT 'activa',
+  estado_publicacion VARCHAR NULL DEFAULT 'pendiente',
+  fecha_aprobacion TIMESTAMP WITHOUT TIME ZONE NULL,
+  email_admin_autorizador VARCHAR NULL,
+  localidad_del_puesto TEXT,
+  
+  CONSTRAINT ofertas_laborales_pkey PRIMARY KEY (id),
+  
+  CONSTRAINT ofertas_laborales_estado_check CHECK (
+    estado IN ('activa', 'cerrada', 'pausada')
+  ),
+  
+  CONSTRAINT ofertas_laborales_estado_publicacion_check CHECK (
+    estado_publicacion IN ('pendiente', 'aprobada', 'rechazada')
+  ),
+  
+  CONSTRAINT ofertas_laborales_modalidad_check CHECK (
+    modalidad IN ('Tiempo completo', 'Medio tiempo', 'Contrato a plazo fijo', 'Pasantía', 'Freelance')
+  ),
+  
+  CONSTRAINT ofertas_laborales_lugar_trabajo_check CHECK (
+    lugar_trabajo IN ('Presencial', 'Remoto', 'Mixto')
+  ),
 
--- TABLA POSTULACIONES
-CREATE TABLE postulaciones (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  id_usuario UUID NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
-  id_oferta UUID NOT NULL REFERENCES ofertas_laborales(id) ON DELETE CASCADE,
-  fecha_postulacion TIMESTAMP DEFAULT now(),
-  mensaje TEXT,
-  cv_url TEXT,
-  estado TEXT DEFAULT 'pendiente' CHECK (estado IN ('pendiente', 'aceptado', 'rechazado')),
-  UNIQUE (id_usuario, id_oferta)
-);
+  CONSTRAINT ofertas_laborales_id_empresa_fkey FOREIGN KEY (id_empresa)
+    REFERENCES public.empresas (id) ON DELETE CASCADE
+) TABLESPACE pg_default;
 
-CREATE TABLE tokens_invalidados (
-    id SERIAL PRIMARY KEY,
-    token TEXT NOT NULL,
-    fecha_invalidado TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
+--=======================================================
+
+-- tabla postulaciones
+CREATE TABLE public.postulaciones (
+  id UUID NOT NULL DEFAULT gen_random_uuid(),
+  
+  id_ciudadano UUID NOT NULL,  -- antes era id_usuario
+  id_oferta UUID NOT NULL,
+
+  fecha_postulacion TIMESTAMP WITHOUT TIME ZONE NULL DEFAULT now(),
+  mensaje TEXT NULL,                   -- mensaje del postulante (opcional)
+  cv_url TEXT NULL,                    -- CV personalizado (opcional)
+  
+  estado TEXT DEFAULT 'pendiente',    -- pendiente, aceptado, rechazado
+  leido_por_empresa BOOLEAN DEFAULT FALSE,  -- indica si la empresa ya lo leyó
+
+ 
+  CONSTRAINT postulaciones_pkey PRIMARY KEY (id),
+
+  -- evitar que un ciudadano se postule dos veces a la misma oferta
+  CONSTRAINT postulaciones_id_ciudadano_id_oferta_key UNIQUE (id_ciudadano, id_oferta),
+
+  -- claves foráneas
+  CONSTRAINT postulaciones_id_ciudadano_fkey FOREIGN KEY (id_ciudadano) REFERENCES perfiles_ciudadanos (id_ciudadano) ON DELETE CASCADE,
+  CONSTRAINT postulaciones_id_oferta_fkey FOREIGN KEY (id_oferta) REFERENCES ofertas_laborales (id) ON DELETE CASCADE,
+
+  -- control de estado
+  CONSTRAINT postulaciones_estado_check CHECK (
+    estado IN ('pendiente', 'aceptado', 'rechazado')
+  )
+) TABLESPACE pg_default;
 
 ---------------------------------------------------------------------------------
---  cambio en tablas EMPRESAS y ofertas_laborales
---Se agrega esto para que un administrador apruebe a la empresa cuando se registra
---===============================================================================
-ALTER TABLE empresas
-ADD COLUMN estado_aprobacion VARCHAR DEFAULT 'pendiente'
-CHECK (estado_aprobacion IN ('pendiente', 'aprobada', 'rechazada'));
-
---control para reporte de administracion
--- Fecha y admin
-ALTER TABLE empresas
-ADD COLUMN fecha_aprobacion TIMESTAMP;
-
-ALTER TABLE empresas
-ADD COLUMN  email_admin_autorizador VARCHAR;
-
-
-
---  OFERTAS_LABORALES
-
--- deben ser aprobadas previamente por administrador :
-ALTER TABLE ofertas_laborales
-ADD COLUMN estado_publicacion VARCHAR DEFAULT 'pendiente'
-CHECK (estado_publicacion IN ('pendiente', 'aprobada', 'rechazada'));
-
--- Fecha y admin
---Cuando el administrador las apruebe o rechace se guarda la fecha y mail del administrador
-ALTER TABLE ofertas_laborales
-ADD COLUMN fecha_aprobacion TIMESTAMP;
-
-ALTER TABLE ofertas_laborales
-ADD COLUMN email_admin_autorizador VARCHAR;
-
-
 */
 

@@ -1,15 +1,22 @@
 <app-header></app-header>
 <app-training-link></app-training-link>
 
+<div class="filter">
+    <i class="fa-solid fa-filter"></i>
+</div>
 
-<div class="offer-container">
-  @for (offer of pagedOffers; track offer.id) {
-    <div class="offer-card" >
+<main class="offer-container">
+
+    @for (offer of pagedOffers; track offer.id) {
+    <div class="offer-card">
         <div class="card-header">
             <div class="icon-placeholder"></div>
             <div>
                 <h4 class="card-user">{{offer.user}}</h4>
-                <h5 class="card-location">{{offer.location}}</h5>
+                <div>
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h5 class="card-location">{{offer.location}}</h5>
+                </div>
             </div>
         </div>
 
@@ -19,7 +26,11 @@
 
         <div class="card-footer">
             <div class="card-info">
-                <p class="card-modality">{{offer.modality}}</p>
+                <div>
+                    <i class="fa-solid fa-globe"></i>
+                    <p class="card-modality">{{offer.modality}}</p>
+
+                </div>
                 <p class="card-date">Publicado {{offer.date}}</p>
 
             </div>
@@ -28,13 +39,10 @@
         </div>
     </div>
     }
-    
-</div>
-<mat-paginator
-  [length]="offers.length"
-  [pageSize]="pageSize"
-  [pageIndex]="currentPage"
-  (page)="handlePageEvent($event)">
+
+</main>
+<mat-paginator [length]="offers.length" [pageSize]="pageSize" [pageIndex]="currentPage"
+    (page)="handlePageEvent($event)">
 </mat-paginator>
 
 <app-footer></app-footer>

@@ -1,7 +1,7 @@
 
 //  Importación de funciones desde los repositorios
 
-import {existeEmail, crearUsuario} from '../repositories/usuarioRepository.js';
+import {existeEmail, crearUsuario, findUserById} from '../repositories/usuarioRepository.js';
 import {findAll, findUserByEmail, actualizarContrasena} from '../repositories/usuarioRepository.js';
 
 
@@ -32,6 +32,17 @@ export const findAllPersonas = async () => {
     }
 };
 
+
+export const getUserById = async (id)=>{
+  try {
+    const usuario = findUserById(id);
+    return usuario;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
 //-----------------------------------------------------
 // Servicio: Iniciar sesión de usuario
 //-----------------------------------------------------
@@ -60,7 +71,7 @@ export const iniciarSesionUsuario = async ({ email, contrasena }) => {
     expiresIn: '1h'
   });
 
-  return { token };
+  return { payload, token };
 };
 
 
@@ -130,6 +141,25 @@ export const actualizarContrasenaConToken = async (token, nuevaContrasena) => {
   const hashed = await bcrypt.hash(nuevaContrasena, 10);
   await actualizarContrasena(decoded.id, hashed);
 };
+
+
+import path from 'path';
+import { actualizarFotoPerfil } from '../repositories/usuarioRepository.js';
+
+export const guardarFotoPerfil = async (userId, file, tipoUsuario) => {
+  if (!file) {
+    throw new Error('No se recibió archivo');
+  }
+
+  // Solo ruta relativa (ejemplo: /foto/perfil_123456.webp)
+  const rutaRelativa = path.join('/foto', file.filename).replace(/\\/g, '/');
+
+  // Guardar en base de datos solo ruta relativa
+  await actualizarFotoPerfil(userId, rutaRelativa, tipoUsuario);
+
+  return rutaRelativa; // Devuelve solo la ruta relativa
+};
+
 
 
 

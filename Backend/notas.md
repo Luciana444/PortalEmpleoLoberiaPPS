@@ -109,30 +109,3 @@ router.put('/empresas/:id/autorizar', verificarToken, verificarAdmin, async (req
 
  _________________________________________________________________-
 
- Agregar validación en backend para contraseña mínima
-Ejemplo simple en tu controlador (o middleware):
-
-
-if (contrasena.length < 6) {
-  return res.status(400).json({ error: 'La contraseña es demasiado corta' });
-}
-Así el test que espera error 400 en contraseña corta pasará.
-
----------------------------------------------------------------
-
-Manejar error de email duplicado con status 409
-En el servicio o controlador donde detectas el email duplicado, capturá el error y respondé así:
-
-js
-Copiar
-Editar
-try {
-  // intento de registro...
-} catch (error) {
-  if (error.message.includes('email ya está registrado')) {
-    return res.status(409).json({ error: error.message });
-  }
-  return res.status(500).json({ error: 'Error interno' });
-}
-
-------------------------------

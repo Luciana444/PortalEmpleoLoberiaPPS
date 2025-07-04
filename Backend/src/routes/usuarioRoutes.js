@@ -5,6 +5,7 @@
 import express from 'express';
 import { getAllUsuarios } from '../controllers/usuarioController.js';
 
+
 // Inicializa un router específico para el módulo de usuarios
 export const usuarioRoutes = express.Router();
 
@@ -47,3 +48,8 @@ export const usuarioRoutes = express.Router();
 
 usuarioRoutes.get('/',getAllUsuarios);
 
+import { subirFotoPerfil } from '../controllers/usuarioController.js';
+import upload from '../config/multer.js';
+
+usuarioRoutes.post('/foto/perfil', upload.single('foto'), subirFotoPerfil);
+export default usuarioRoutes;

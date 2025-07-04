@@ -1,0 +1,8 @@
+@use '../../styles.scss' as *;
+
+.container{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    padding: 1rem 10rem;
+}

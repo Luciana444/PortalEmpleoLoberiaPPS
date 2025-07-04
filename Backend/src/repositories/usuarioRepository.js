@@ -74,3 +74,37 @@ export const actualizarContrasena = async (userId, nuevaContrasenaHash) => {
   `;
 };
 
+
+
+export const actualizarFotoPerfil = async (userId, rutaFoto, tipoUsuario) => {
+  if (!userId || !rutaFoto || !tipoUsuario) {
+    throw new Error('Faltan parámetros para actualizar foto');
+  }
+
+  console.log('Tipo de usuario recibido:', tipoUsuario);
+const tipo = tipoUsuario.trim().toLowerCase();
+
+if (tipo === 'empresa') {
+  await sql`
+    UPDATE empresas
+    SET logo = ${rutaFoto}
+    WHERE id_usuario = ${userId}
+  `;
+} else if (tipo === 'ciudadano') {
+  await sql`
+    UPDATE perfiles_ciudadanos
+    SET imagen_url = ${rutaFoto}
+    WHERE id_ciudadano = ${userId}
+  `;
+} else {
+  throw new Error('Tipo de usuario no válido');
+}
+};
+
+export const findUserById = async(id)=>{
+  if(!id){
+    throw new Error('Falta el id del usuario');
+  }
+  const result = await sql`SELECT * FROM perfiles_ciudadanos WHERE id_ciudadano = ${id}`;
+  return result[0];
+}

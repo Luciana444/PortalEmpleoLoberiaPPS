@@ -1,5 +1,5 @@
 import { BrowserAnimationsModule,provideAnimations } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
+import { ToastrModule, ToastrService, provideToastr } from 'ngx-toastr';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
@@ -16,6 +16,6 @@ import { AppComponent } from './app.component';
     AppComponent,
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [],
 })
-export class AppModule {}
+export class AppModule { }

@@ -8,16 +8,18 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08); // Added subtle shadow
 }
 
-// .small-logo > svg{
-//     height: 4.5rem;
-//     margin-left: 4.5rem;
-//     gap: 1rem;
-// }
+.small-logo > svg{
+    height: 4.5rem;
+    margin-left: 4.5rem;
+    gap: 1rem;
+}
 
 svg{
     width: fit-content;
+    fill: $green;
 }
 
 .register-button{
@@ -31,7 +33,7 @@ svg{
     color: $white;
 }
 
-.buttons-container{
+.buttons-container, .user-container{
     gap: 1rem;
     display: flex;
     flex-direction: row;
@@ -41,10 +43,34 @@ svg{
     align-self: auto;
 }
 
+.user-container{
+    margin-right: 5rem;
+}
+
+.profile-pic{
+    background-color: black;
+    width: 60px;
+    height: 60px;
+    align-self: center;
+    border-radius: 100px;
+}
+
+.username{
+   color: #757575;
+   margin-bottom: 0;
+}
+
+.logout{
+    margin-top: 0;
+    color: #B3B3B3;
+}
+
 button{
     width: 8rem;
     padding: 8px 2px;
 }
+
+
 
 @media (max-width: 600px) {
     .small-logo > svg {

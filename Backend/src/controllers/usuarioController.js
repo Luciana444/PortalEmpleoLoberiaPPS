@@ -1,7 +1,7 @@
 // Controlador para operaciones relacionadas con usuarios.
 // Este archivo define la lógica de los endpoints definidos en usuarioRoutes.js.
 
-import { findAllPersonas} from "../services/usuarioService.js"; // Servicio que consulta todos los usuarios
+import { findAllPersonas, getUserById} from "../services/usuarioService.js"; // Servicio que consulta todos los usuarios
 
 /**
  * Controlador que maneja la petición GET /usuario
@@ -22,4 +22,59 @@ export const getAllUsuarios = async (req, res) => {
         console.error(error);
     }
 }
+
+export const getUsuarioById = async(id)=>{
+  try {
+    const usuario = await getUserById(id);
+    return usuario;
+  } catch (error) {
+      console.log(error);
+  }
+}
+
+
+
+
+import { guardarFotoPerfil } from '../services/usuarioService.js';
+import fs from 'fs/promises';
+
+export const subirFotoPerfil = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: 'No se recibió archivo' });
+    }
+
+    const userId = req.user?.id || req.body.userId;
+    const tipoUsuario = req.body.tipoUsuario;
+
+    console.log('Tipo de usuario recibido:', tipoUsuario);
+
+    if (!userId || !tipoUsuario) {
+      // Borrar archivo si falta info
+      await fs.unlink(req.file.path);
+      return res.status(400).json({ error: 'Faltan datos: userId o tipoUsuario' });
+    }
+
+    const urlFoto = await guardarFotoPerfil(userId, req.file, tipoUsuario);
+
+    res.json({
+      message: 'Foto de perfil subida exitosamente',
+      url: urlFoto
+    });
+
+  } catch (error) {
+    console.error('Error subirFotoPerfil:', error);
+
+    // Si hubo error y hay archivo, lo eliminamos
+    if (req.file?.path) {
+      try {
+        await fs.unlink(req.file.path);
+      } catch (unlinkError) {
+        console.error('Error eliminando archivo tras fallo:', unlinkError);
+      }
+    }
+
+    res.status(500).json({ error: 'Error al subir la foto de perfil' });
+  }
+};
 
