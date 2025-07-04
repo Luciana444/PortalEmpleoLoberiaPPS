@@ -15,6 +15,6 @@ ciudadanoRoutes.put('/importar_cv',authMiddleware, onlyCiudadano, subirCv.single
 ciudadanoRoutes.patch('/actualizar/perfil', actualizarPerfilCiudadano);
 
 
-ciudadanoRoutes.get('/generar_cv',authMiddleware,generarPdf);
+ciudadanoRoutes.get('/generar_cv',authMiddleware, onlyCiudadano, generarPdf);
 
 export default ciudadanoRoutes;
