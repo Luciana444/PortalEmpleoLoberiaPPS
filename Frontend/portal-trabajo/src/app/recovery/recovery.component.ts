@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {Validators, FormBuilder,FormGroup,ReactiveFormsModule} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   standalone: true,
   selector: 'app-recovery',
   templateUrl: './recovery.component.html',
   styleUrl: './recovery.component.scss',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule, MatFormFieldModule, MatButtonModule, MatInputModule],
 })
 export class RecoveryComponent implements OnInit {
   recovery : FormGroup;

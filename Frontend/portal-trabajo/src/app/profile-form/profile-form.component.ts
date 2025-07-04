@@ -1,0 +1,92 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatButtonModule } from '@angular/material/button';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
+import { CommonModule } from '@angular/common';
+
+@Component({
+    standalone: true,
+    selector: 'app-profile-form',
+    imports: [
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatRadioModule,
+        MatButtonModule,
+        CommonModule
+    ],
+    templateUrl: './profile-form.component.html',
+    styleUrl: './profile-form.component.scss'
+})
+
+export class ProfileFormComponent implements OnInit {
+    profile: FormGroup;
+
+    constructor(private router: Router, private fb: FormBuilder, private userservice: UserService, private toastr: ToastrService) {
+        this.profile = this.fb.group({
+            nombre: ['', Validators.required],
+            apellido: ['', Validators.required],
+            fechaNacimiento: ['', Validators.required],
+            telefono: ['', Validators.required],
+            email: ['', [Validators.required, Validators.email]],
+            dni: ['', Validators.required],
+            cuil: ['', Validators.required],
+            calle: [''],
+            numero: [''],
+            piso: [''],
+            dpto: [''],
+            localidad: [''],
+            provincia: [''],
+            pais: ['', Validators.required],
+            nivelEducativo: ['', Validators.required],
+            cursaCarrera: ['', Validators.required],
+            carrera: [''],
+            cursos: [''],
+            situacionLaboral: ['', Validators.required],
+            emprendimiento: [''],
+            discapacidad: ['', Validators.required]
+        });
+    }
+
+    ngOnInit(): void {
+
+    }
+
+
+    editProfile() {
+        if (this.profile.invalid) return;
+        this.userservice.editProfileEmployee(JSON.stringify(this.profile.value)).subscribe({
+            next: (response) => {
+                if (response.status === 200) {
+                    this.toastr.success('Ya podes ver tu perfil completo', 'Actualización exitosa')
+                    console.log('Actualización exitosa', response);
+                    this.profile.reset();
+                    this.router.navigate(['profile']);
+                } else {
+                    console.log('No se pudo actualizar tu perfil', response);
+                }
+            },
+            error: (err) => {
+                this.toastr.error(err.error.error, 'Ocurrió un error');
+                console.error('Error al actualizat perfil', err);
+
+            }
+        });
+
+
+    }
+
+    onFileSelected(event: any) {
+    }
+}

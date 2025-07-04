@@ -97,3 +97,21 @@ a:hover {
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: $font; }
+
+
+
+
+.mdc-text-field--outlined .mdc-notched-outline__trailing,
+.mdc-text-field--outlined .mdc-notched-outline__notch,
+.mdc-text-field--outlined .mdc-notched-outline__leading, 
+.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused.mdc-floating-label {
+    border-color: $text-color !important;
+    }
+  
+     .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--invalid .mat-mdc-notch-piece {
+    border-color: #f44336 !important;
+    }
+    .mat-mdc-radio-button .mat-accent{
+     --mdc-radio-selected-icon-color: $green !important;
+    }
+     
