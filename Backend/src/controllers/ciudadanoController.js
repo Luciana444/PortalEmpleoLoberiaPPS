@@ -1,4 +1,5 @@
 import { subirCvBD } from "../services/ciudadanoService.js";
+import  {generarPdfUsuario}  from "../services/ciudadanoService.js";
 
 
 export const subirCV = async (req, res) => {
@@ -35,7 +36,7 @@ export const actualizarPerfilCiudadano = async (req, res) => {
       'nombre', 'apellido', 'fecha_nacimiento', 'telefono', 'email', 'dni', 'cuil',
       'calle', 'numero', 'piso', 'dpto', 'localidad', 'provincia', 'pais',
       'nivel_educativo', 'esta_cursando_carrera', 'carrera_en_curso', 'situacion_laboral',
-      'tiene_emprendimiento', 'discapacidad', 'cv_url'
+      'tiene_emprendimiento', 'discapacidad'
     ];
 
     const actualizaciones = {};
@@ -74,3 +75,19 @@ export const actualizarPerfilCiudadano = async (req, res) => {
     res.status(500).json({ error: 'Error al actualizar el perfil' });
   }
 };
+
+export const generarPdf = async (req,res) =>{
+  try {
+    const id = req.usuario.id;
+
+    if(!id){
+        return res.status(404).json({ error: 'Falta el id del usuario' });
+    }
+
+    await generarPdfUsuario(id,res);
+
+  } catch (error) {
+    return res.status(500).json({ error: 'Error al crear pdf' });
+  }
+
+}

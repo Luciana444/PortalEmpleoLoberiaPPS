@@ -1,7 +1,7 @@
 
 //  Importación de funciones desde los repositorios
 
-import {existeEmail, crearUsuario} from '../repositories/usuarioRepository.js';
+import {existeEmail, crearUsuario, findUserById} from '../repositories/usuarioRepository.js';
 import {findAll, findUserByEmail, actualizarContrasena} from '../repositories/usuarioRepository.js';
 
 
@@ -31,6 +31,17 @@ export const findAllPersonas = async () => {
         throw error;
     }
 };
+
+
+export const getUserById = async (id)=>{
+  try {
+    const usuario = findUserById(id);
+    return usuario;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
 //-----------------------------------------------------
 // Servicio: Iniciar sesión de usuario

@@ -13,16 +13,19 @@ footer{
 
 .small-logo > svg{
     height: 4.5rem;
-
 }
 
 .footer-logo {
-    width: 50px;
-    height: 50px;
-    margin-left: 7rem;
+    margin-left: 6rem;
     margin-top: auto;
     margin-bottom: auto;
-    background-color: black;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+img{
+    display: block;
 }
 
 .footer-text {
@@ -52,13 +55,22 @@ footer{
 }
 
 .footer-socials {
-    width: 50px;
-    height: 50px;
-    margin-left: 0;
     margin-right: 7rem;
-    margin-top: auto;
-    margin-bottom: auto;
-    background-color: black;
+    min-width: 90px;
+    flex-shrink: 0;
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+a{
+    color: white;
+}
+
+i{
+    height: 0.5rem;
+    width: 0.5rem;
 }
 
 @media (max-width: 600px) {
@@ -68,15 +80,20 @@ footer{
         justify-content: center;
         height: auto;
         padding: 1rem 0 0 0;
-        
     }
-
-    .footer-logo,
+.footer-logo,
     .footer-socials {
         margin-left: 0;
         margin-right: 0;
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
+    }
+
+    .footer-socials {
+        display: flex;
+        flex-direction: row; // Ensure horizontal alignment
+        justify-content: center; // Center icons horizontally
+        width: 100%; // Optional: make it span the width
     }
 
     .footer-text {

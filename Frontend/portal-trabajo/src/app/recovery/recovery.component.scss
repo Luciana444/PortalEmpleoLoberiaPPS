@@ -1,4 +1,6 @@
-button{
+@use '../../styles.scss' as *;
+@use 'sass:color';
+button .mat-mdc-raised-button {
     display: block;
     margin-top: 1.5rem;
     margin-left: auto;
@@ -6,6 +8,8 @@ button{
     margin-bottom: 3rem;
     width: 9rem;
     padding: 8px 2px;
+    background-color:#57AF31;
+    
 }
 .form-container{
     display: flex;
@@ -18,7 +22,48 @@ button{
     margin-bottom: 1rem;
 }
 
-input{
-    width: 20rem;
-    padding-top:0;
+input  {
+    width: 100%;
+    border: 1px solid $green;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
 }
+  label {
+    font-size: 14px;
+    margin-bottom: 4px;
+    color: #333;
+     display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+  mat-form-field{
+    width:100%;
+  }
+
+  .mat-mdc-form-field-infix{
+  --mat-minimal-pseudo-checkbox-selected-checkmark-color:#57AF31;
+}
+.mat-mdc-raised-button:not(:disabled) {
+    color:$white;
+    background-color: #57AF31;
+    
+}
+.mat-mdc-raised-button:not(:disabled):hover{
+    background-color: $white;
+    color: $green;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+.mat-mdc-form-field-infix{
+  
+&.input{ border-color:#57AF31;
+}
+}
+
+mat-label:focus {
+color: #57AF31;}
+
+mat-form-field .mdc-notched-outline--notched{
+color: #57AF31;}

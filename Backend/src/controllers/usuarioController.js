@@ -1,7 +1,7 @@
 // Controlador para operaciones relacionadas con usuarios.
 // Este archivo define la lógica de los endpoints definidos en usuarioRoutes.js.
 
-import { findAllPersonas} from "../services/usuarioService.js"; // Servicio que consulta todos los usuarios
+import { findAllPersonas, getUserById} from "../services/usuarioService.js"; // Servicio que consulta todos los usuarios
 
 /**
  * Controlador que maneja la petición GET /usuario
@@ -22,6 +22,18 @@ export const getAllUsuarios = async (req, res) => {
         console.error(error);
     }
 }
+
+export const getUsuarioById = async(id)=>{
+  try {
+    const usuario = await getUserById(id);
+    return usuario;
+  } catch (error) {
+      console.log(error);
+  }
+}
+
+
+
 
 import { guardarFotoPerfil } from '../services/usuarioService.js';
 import fs from 'fs/promises';

@@ -101,3 +101,10 @@ if (tipo === 'empresa') {
 }
 };
 
+export const findUserById = async(id)=>{
+  if(!id){
+    throw new Error('Falta el id del usuario');
+  }
+  const result = await sql`SELECT * FROM perfiles_ciudadanos WHERE id_ciudadano = ${id}`;
+  return result[0];
+}

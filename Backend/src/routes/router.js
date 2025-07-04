@@ -6,6 +6,7 @@ import express from 'express';
 import { usuarioRoutes } from './usuarioRoutes.js';// Rutas relacionadas a operaciones sobre usuarios
 import { authRoutes } from './authRoutes.js'; // Rutas relacionadas a autenticación y login
 import ciudadanoRoutes from './ciudadanoRoutes.js';
+import empleadoRoutes from './empleadorRoutes.js';
 
 // Inicializa un nuevo router de Express para actuar como contenedor de rutas del proyecto
 export const router = express.Router();
@@ -20,3 +21,4 @@ router.use('/auth',authRoutes)
 
 router.use('/ciudadano', ciudadanoRoutes);
 
+router.use('/empresa', empleadoRoutes);

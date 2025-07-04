@@ -42,6 +42,27 @@ export class UserService {
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
+
+  editProfileEmployee(profileData: any) {
+     return this.httpClient.patch(`${URL}/ciudadano/actualizar/perfil`, profileData, {
+      observe: 'response',
+      withCredentials: true,
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+
+  }
+
+  
+  createNewOffer(newOffer: any) {
+     return this.httpClient.patch(`${URL}/actualizar/perfil`, newOffer, {
+      observe: 'response',
+      withCredentials: true,
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+
+  }
+
+
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('currentuser');
