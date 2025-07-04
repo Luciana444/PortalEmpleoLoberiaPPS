@@ -101,6 +101,7 @@ if (tipo === 'empresa') {
 }
 };
 
+
 export const findUserById = async(id)=>{
   if(!id){
     throw new Error('Falta el id del usuario');

@@ -10,15 +10,15 @@ export const insertarUrlCv = async (id_usuario, url_cv) => {
 
 
 export const updatePerfilCiudadano = async (userId, datos) => {
-  const campos = [];
-  const valores = [];
-
   const camposValidos = [
     'nombre', 'apellido', 'fecha_nacimiento', 'telefono', 'email', 'dni', 'cuil',
     'calle', 'numero', 'piso', 'dpto', 'localidad', 'provincia', 'pais',
     'nivel_educativo', 'esta_cursando_carrera', 'carrera_en_curso', 'situacion_laboral',
     'tiene_emprendimiento', 'discapacidad'
   ];
+
+  const campos = [];
+  const valores = [];
 
   for (const [clave, valor] of Object.entries(datos)) {
     if (camposValidos.includes(clave)) {
@@ -27,19 +27,22 @@ export const updatePerfilCiudadano = async (userId, datos) => {
     }
   }
 
-  if (campos.length === 0) return;
+  if (campos.length === 0) {
+    throw new Error('No hay campos válidos para actualizar');
+  }
+
+  valores.push(userId);
+  const indexId = valores.length;
 
   const query = `
     UPDATE perfiles_ciudadanos
     SET ${campos.join(', ')}
-    WHERE id_ciudadano = $${valores.length + 1}
+    WHERE id_ciudadano = $${indexId}
   `;
 
-  valores.push(userId);
+  const result = await sql.unsafe(query, valores); 
 
-  const result = await sql.unsafe(query, valores);
-
-  if (result.rowCount === 0) {
+  if (result.count === 0 || result.rowCount === 0) {
     throw new Error('No se encontró perfil para actualizar');
   }
 };
