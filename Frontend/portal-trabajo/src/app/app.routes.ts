@@ -5,6 +5,8 @@ import { LoginComponent } from './login/login.component';
 import { LandingComponent } from './landing/landing.component';
 import { RecoveryComponent } from './recovery/recovery.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ProfileFormComponent } from './profile-form/profile-form.component';
+import { JobOfferFormComponent } from './job-offer-form/job-offer-form.component';
 import { EmployeeProfileComponent } from './employee-profile/employee-profile.component';
 
 export const routes: Routes = [
@@ -15,5 +17,7 @@ export const routes: Routes = [
     { path: 'landing', component: LandingComponent},
     { path: 'recovery', component: RecoveryComponent},
     { path: 'reset', component: ResetPasswordComponent},
+    { path: 'edit-profile', component: ProfileFormComponent},
+    { path: 'create-offer', component: JobOfferFormComponent},
     { path: 'employee-profile', component: EmployeeProfileComponent}
 ];

@@ -12,9 +12,9 @@ export const ciudadanoRoutes = express.Router();
 ciudadanoRoutes.put('/importar_cv',authMiddleware, onlyCiudadano, subirCv.single('cv'),subirCV);
 
 
-ciudadanoRoutes.patch('/actualizar/perfil', actualizarPerfilCiudadano);
+ciudadanoRoutes.patch('/actualizar/perfil',authMiddleware,onlyCiudadano, actualizarPerfilCiudadano);
 
 
-ciudadanoRoutes.get('/generar_cv',authMiddleware,generarPdf);
+ciudadanoRoutes.get('/generar_cv',authMiddleware, onlyCiudadano, generarPdf);
 
 export default ciudadanoRoutes;
