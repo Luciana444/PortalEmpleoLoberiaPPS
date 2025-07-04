@@ -16,6 +16,20 @@ const swaggerDefinition = {
       description: 'Servidor local de desarrollo',
     },
   ],
+  components: {
+    securitySchemes: {
+      bearerAuth: {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      },
+    },
+  },
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
 };
 
 // 📂 Opciones para decirle a Swagger dónde están las rutas con anotaciones

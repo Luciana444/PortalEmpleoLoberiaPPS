@@ -32,12 +32,18 @@ export const getUsuarioById = async(id)=>{
   }
 }
 
+//==================================================
+//end point para subir una foto al perfil de usuario, ya sea ciudadano o empresa
+//=============================================
 
 
 
+
+// Importa la función que guarda la foto en la base de datos y devuelve la URL
 import { guardarFotoPerfil } from '../services/usuarioService.js';
 import fs from 'fs/promises';
 
+// Controlador para manejar la subida de una foto de perfil
 export const subirFotoPerfil = async (req, res) => {
   try {
     if (!req.file) {
