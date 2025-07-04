@@ -50,6 +50,7 @@ usuarioRoutes.get('/',getAllUsuarios);
 
 import { subirFotoPerfil } from '../controllers/usuarioController.js';
 import upload from '../config/multer.js';
+import { authMiddleware } from '../middlewares/authMiddleware.js';
 
-usuarioRoutes.post('/foto/perfil', upload.single('foto'), subirFotoPerfil);
+usuarioRoutes.post('/foto/perfil',authMiddleware, upload.single('foto'), subirFotoPerfil);
 export default usuarioRoutes;

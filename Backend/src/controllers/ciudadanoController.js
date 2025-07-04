@@ -27,9 +27,10 @@ import { actualizarPerfil } from '../services/ciudadanoService.js';
 
 export const actualizarPerfilCiudadano = async (req, res) => {
   try {
-    const id_ciudadano = req.user?.id || req.body.id_ciudadano;
+    const id_ciudadano = req.usuario?.id;
+
     if (!id_ciudadano) {
-      return res.status(400).json({ error: 'Falta el ID del ciudadano' });
+      return res.status(401).json({ error: 'Usuario no autenticado' });
     }
 
     const camposValidos = [
@@ -76,18 +77,17 @@ export const actualizarPerfilCiudadano = async (req, res) => {
   }
 };
 
-export const generarPdf = async (req,res) =>{
-  try {
-    const id = req.usuario.id;
 
-    if(!id){
-        return res.status(404).json({ error: 'Falta el id del usuario' });
+export const generarPdf = async (req, res) => {
+  try {
+    const id = req.user?.id;
+
+    if (!id) {
+      return res.status(404).json({ error: 'Falta el id del usuario' });
     }
 
-    await generarPdfUsuario(id,res);
-
+    await generarPdfUsuario(id, res);
   } catch (error) {
     return res.status(500).json({ error: 'Error al crear pdf' });
   }
-
-}
+};
