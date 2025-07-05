@@ -31,10 +31,7 @@ export const updatePerfilEmpresaById= async(id_usuario,datosActualizados)=>{
     'dpto',
     'localidad',
     'provincia',
-    'pais',
-    'estado_aprobacion',
-    'fecha_aprobacion',
-    'email_admin_autorizador'
+    'pais'
     ]
 
      // Filtra solo los campos válidos presentes en datosActualizados
