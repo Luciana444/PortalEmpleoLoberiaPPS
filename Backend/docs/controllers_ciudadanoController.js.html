@@ -1,4 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: controllers/ciudadanoController.js</title>
 
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: controllers/ciudadanoController.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
 // Importamos la lógica de negocio desde el servicio correspondiente
 import { subirCvBD } from "../services/ciudadanoService.js";
 import  {generarPdfUsuario}  from "../services/ciudadanoService.js";
@@ -134,33 +162,33 @@ export const actualizarPerfilCiudadano = async (req, res) => {
 
     // Si no hay campos para actualizar en perfiles_ciudadanos ni experiencia ni capacitacion, error
         if (
-      Object.keys(actualizaciones).length === 0 &&
-      !req.body.nombre_capacitacion &&
-      !req.body.nombre_empresa && 
-      !req.body.desde && 
-      !req.body.hasta && 
+      Object.keys(actualizaciones).length === 0 &amp;&amp;
+      !req.body.nombre_capacitacion &amp;&amp;
+      !req.body.nombre_empresa &amp;&amp; 
+      !req.body.desde &amp;&amp; 
+      !req.body.hasta &amp;&amp; 
       !req.body.comentario
     ) {
       return res.status(400).json({ error: 'No se enviaron datos para actualizar' });
     }
 
     // validaciones básicas por campo
-    if ('fecha_nacimiento' in actualizaciones && isNaN(Date.parse(actualizaciones.fecha_nacimiento))) {
+    if ('fecha_nacimiento' in actualizaciones &amp;&amp; isNaN(Date.parse(actualizaciones.fecha_nacimiento))) {
       return res.status(400).json({ error: 'Fecha de nacimiento inválida' });
     }
-    if ('telefono' in actualizaciones && !/^\d{6,20}$/.test(actualizaciones.telefono)) {
+    if ('telefono' in actualizaciones &amp;&amp; !/^\d{6,20}$/.test(actualizaciones.telefono)) {
       return res.status(400).json({ error: 'Teléfono inválido (solo números)' });
     }
-    if ('dni' in actualizaciones && !/^\d{6,10}$/.test(actualizaciones.dni)) {
+    if ('dni' in actualizaciones &amp;&amp; !/^\d{6,10}$/.test(actualizaciones.dni)) {
       return res.status(400).json({ error: 'DNI inválido' });
     }
-    if ('cuil' in actualizaciones && !/^\d{11}$/.test(actualizaciones.cuil)) {
+    if ('cuil' in actualizaciones &amp;&amp; !/^\d{11}$/.test(actualizaciones.cuil)) {
       return res.status(400).json({ error: 'CUIL inválido (11 dígitos)' });
     }
-    if ('email' in actualizaciones && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(actualizaciones.email)) {
+    if ('email' in actualizaciones &amp;&amp; !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(actualizaciones.email)) {
       return res.status(400).json({ error: 'Email inválido' });
     }
-    if ('esta_cursando_carrera' in actualizaciones && typeof actualizaciones.esta_cursando_carrera !== 'boolean') {
+    if ('esta_cursando_carrera' in actualizaciones &amp;&amp; typeof actualizaciones.esta_cursando_carrera !== 'boolean') {
       return res.status(400).json({ error: 'El campo esta_cursando_carrera debe ser true o false' });
     }
 
@@ -192,11 +220,11 @@ export const actualizarPerfilCiudadano = async (req, res) => {
         return res.status(400).json({ error: 'Fecha "desde" inválida' });
       }
 
-      if (hasta && isNaN(Date.parse(hasta))) {
+      if (hasta &amp;&amp; isNaN(Date.parse(hasta))) {
         return res.status(400).json({ error: 'Fecha "hasta" inválida' });
       }
 
-      if (hasta && new Date(hasta) < new Date(desde)) {
+      if (hasta &amp;&amp; new Date(hasta) &lt; new Date(desde)) {
         return res.status(400).json({ error: 'La fecha "hasta" no puede ser anterior a "desde"' });
       }
 
@@ -314,3 +342,26 @@ export const obtenerPerfilCompleto = async (req, res) => {
 };
 
 //===============================================================
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#actualizarContrasenaConToken">actualizarContrasenaConToken</a></li><li><a href="global.html#actualizarPerfil">actualizarPerfil</a></li><li><a href="global.html#actualizarPerfilCiudadano">actualizarPerfilCiudadano</a></li><li><a href="global.html#actualizarPerfilEmpresa">actualizarPerfilEmpresa</a></li><li><a href="global.html#agregarCapacitacion">agregarCapacitacion</a></li><li><a href="global.html#agregarExperienciaLaboral">agregarExperienciaLaboral</a></li><li><a href="global.html#enviarEmailRecuperacion">enviarEmailRecuperacion</a></li><li><a href="global.html#enviarLinkRecuperacion">enviarLinkRecuperacion</a></li><li><a href="global.html#enviarTokenRecuperacion">enviarTokenRecuperacion</a></li><li><a href="global.html#findAllPersonas">findAllPersonas</a></li><li><a href="global.html#generarPdf">generarPdf</a></li><li><a href="global.html#generarPdfUsuario">generarPdfUsuario</a></li><li><a href="global.html#generarTokenRecuperacion">generarTokenRecuperacion</a></li><li><a href="global.html#getAllUsuarios">getAllUsuarios</a></li><li><a href="global.html#getDatosEmpresa">getDatosEmpresa</a></li><li><a href="global.html#getPerfilCompleto">getPerfilCompleto</a></li><li><a href="global.html#getUserByEmail">getUserByEmail</a></li><li><a href="global.html#getUserById">getUserById</a></li><li><a href="global.html#getUsuarioById">getUsuarioById</a></li><li><a href="global.html#iniciarSesion">iniciarSesion</a></li><li><a href="global.html#iniciarSesionUsuario">iniciarSesionUsuario</a></li><li><a href="global.html#obtenerDatosEmpresa">obtenerDatosEmpresa</a></li><li><a href="global.html#obtenerPerfilCompleto">obtenerPerfilCompleto</a></li><li><a href="global.html#registrarse">registrarse</a></li><li><a href="global.html#registrarUsuario">registrarUsuario</a></li><li><a href="global.html#resetearContrasena">resetearContrasena</a></li><li><a href="global.html#subirCV">subirCV</a></li><li><a href="global.html#subirCvBD">subirCvBD</a></li><li><a href="global.html#subirFotoPerfil">subirFotoPerfil</a></li><li><a href="global.html#transporter">transporter</a></li><li><a href="global.html#updatePerfilEmpresa">updatePerfilEmpresa</a></li><li><a href="global.html#verificarTokenRecuperacion">verificarTokenRecuperacion</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Mon Jul 07 2025 18:58:53 GMT-0300 (hora estándar de Argentina)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

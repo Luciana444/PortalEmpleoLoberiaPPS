@@ -13,12 +13,6 @@ export const usuarioRoutes = express.Router();
 // end point : obtener todos los usuarios
 //===================================================================
 
-/**
- * @swagger
- * tags:
- *   name: Usuarios
- *   description: Endpoints para gestionar usuarios
- */
 
 /**
  * @swagger
@@ -53,12 +47,10 @@ export const usuarioRoutes = express.Router();
 usuarioRoutes.get('/',getAllUsuarios);
 
 
+
 //====================================
 // End POint : Subir foto de perfil y logo de empresas
 //======================================
-
-
-
 import { subirFotoPerfil } from '../controllers/usuarioController.js';
 import upload from '../config/multer.js';
 import { authMiddleware } from '../middlewares/authMiddleware.js';

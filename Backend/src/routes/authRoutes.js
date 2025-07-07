@@ -14,12 +14,6 @@ export const authRoutes = express.Router();
 //===============================================================
 //endpoint para registrar un usuario    
 //==============================================================
-/**
- * @swagger
- * tags:
- *   name: Autenticación
- *   description: Endpoints para registro, login, recuperación de contraseña y cierre de sesión
- */
 
 /**
  * @swagger
@@ -64,9 +58,11 @@ export const authRoutes = express.Router();
 
 authRoutes.post('/register', registrarse)
 
+
 //=========================================================
 //endpoint para recuperar la contraseña
 //=========================================================
+
 /**
  * @swagger
  * /auth/recover/password:
@@ -94,7 +90,43 @@ authRoutes.post('/register', registrarse)
  */
 
 authRoutes.post('/recover/password', enviarTokenRecuperacion);
+
+//===============================================================
+// end point para resetear la contraseña
+//==============================================================
+/**
+ * @swagger
+ * /auth/reset/password:
+ *   post:
+ *     summary: Restablecer la contraseña usando token de recuperación
+ *     tags: [Autenticación]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - token
+ *               - nuevaContrasena
+ *             properties:
+ *               token:
+ *                 type: string
+ *                 description: Token de recuperación enviado al email del usuario
+ *               nuevaContrasena:
+ *                 type: string
+ *                 description: Nueva contraseña que se desea establecer
+ *     responses:
+ *       200:
+ *         description: Contraseña actualizada correctamente
+ *       400:
+ *         description: Token inválido, expirado o datos faltantes
+ */
+
+
 authRoutes.post('/reset/password', resetearContrasena);
+
+
 //===============================================================
 //endpoint para iniciar sesion de usuario
 //===============================================================

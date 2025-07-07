@@ -6,6 +6,24 @@ import nodemailer from 'nodemailer';
 // Los valores se toman desde variables de entorno (.env), con valores por defecto compatibles con Gmail.
 //
 
+/**
+ * Configuración del transporte de correo electrónico mediante Nodemailer.
+ *
+ * Este objeto define cómo se enviarán los correos electrónicos salientes del sistema,
+ * utilizando un servidor SMTP autenticado.
+ *
+ * - Por defecto se utiliza Gmail (`smtp.gmail.com`), pero puede adaptarse a otro servidor.
+ * - Usa TLS (STARTTLS) en el puerto 587.
+ * - Las credenciales y parámetros se leen desde las variables de entorno:
+ *   - `SMTP_HOST`
+ *   - `SMTP_PORT`
+ *   - `SMTP_USER`
+ *   - `SMTP_PASS`
+ *
+ * @constant
+ * @type {Object}
+
+ */
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST || 'smtp.gmail.com',// Servidor SMTP
@@ -19,19 +37,22 @@ const transporter = nodemailer.createTransport({
 
 
 // -----------------------------------------------------
-//  Función: enviarEmailRecuperacion
-// Envía un correo electrónico con un enlace de recuperación de contraseña
-//
-// Parámetros:
-// - toEmail: email del destinatario
-// - recoveryLink: URL con el token de recuperación
-//
-// Retorna:
-// - Nada explícitamente. Lanza error si el envío falla.
-//
 
-//arma el email: el remitente, el destinatario, asunto del correo y el cuerpo html
-//que contiene el mensaje y el link para recuperar la contraseña
+/**
+ * Envía un correo electrónico con un enlace de recuperación de contraseña.
+ *
+ * Esta función utiliza el servicio de correo configurado con Nodemailer para
+ * enviar un email personalizado al usuario que solicitó recuperar su contraseña.
+ *
+ * @async
+ * @function
+ * @param {string} toEmail - Dirección de correo electrónico del destinatario.
+ * @param {string} recoveryLink - Enlace único de recuperación que permitirá al usuario restablecer su contraseña.
+ * @throws {Error} Si ocurre un error al enviar el correo.
+ * 
+ * @example
+ * await enviarEmailRecuperacion('usuario@example.com', 'https://miapp.com/reset?token=abc123');
+ */
 
 
 export const enviarEmailRecuperacion = async (toEmail, recoveryLink) => {
@@ -47,9 +68,6 @@ export const enviarEmailRecuperacion = async (toEmail, recoveryLink) => {
     `,
   };
 
-
-
-
   //envia el email al usuario y manejo de errores si falla
   try {
     await transporter.sendMail(mailOptions);
@@ -61,3 +79,4 @@ export const enviarEmailRecuperacion = async (toEmail, recoveryLink) => {
 };
 
 
+//==============================================

@@ -5,15 +5,21 @@ import { empresaValidation } from "../validations/empresaValidation.js";
 //=================================================================
 // end point actializar perfil de la empresa
 //==================================================================
-
 /**
- * Actualiza el perfil de la empresa asociada al usuario autenticado.
- * 
- * @param {Request} req - Objeto de la solicitud HTTP, debe contener `usuario.id` y los datos a actualizar en `req.body`.
- * @param {Response} res - Objeto de la respuesta HTTP para enviar mensajes de éxito o error.
- * 
- * @returns {Response} - JSON con mensaje de éxito o con detalles de error.
+ * Actualiza los datos del perfil de una empresa autenticada.
+ *
+ * @function
+ * @async
+ * @param {Object} req - Objeto de solicitud HTTP.
+ * @param {Object} req.usuario - Usuario autenticado con su ID.
+ * @param {Object} req.body - Datos a actualizar en el perfil de la empresa.
+ * @param {Object} res - Objeto de respuesta HTTP.
+ * @returns {void}
+ *
+ * @throws {400} Si falta el ID del usuario o si los datos no pasan la validación.
+ * @throws {500} Si ocurre un error en la actualización.
  */
+
 
 export const actualizarPerfilEmpresa = async(req,res)=>{
     try {
@@ -45,6 +51,22 @@ export const actualizarPerfilEmpresa = async(req,res)=>{
 
 }
 
+//=======================================================================
+
+/**
+ * Obtiene los datos del perfil de la empresa autenticada.
+ *
+ * @function
+ * @async
+ * @param {Object} req - Objeto de solicitud HTTP.
+ * @param {Object} req.usuario - Objeto que contiene el ID del usuario autenticado.
+ * @param {Object} res - Objeto de respuesta HTTP.
+ * @returns {void}
+ *
+ * @throws {404} Si no se encuentra el ID del usuario en el token.
+ * @throws {500} Si ocurre un error al recuperar los datos desde la base de datos.
+ */
+
 
 export const obtenerDatosEmpresa = async (req,res)=>{
   try {
@@ -62,3 +84,4 @@ export const obtenerDatosEmpresa = async (req,res)=>{
     res.status(500).json({error:'Error al obtener los datos de la empresa'});
   }
 }
+
