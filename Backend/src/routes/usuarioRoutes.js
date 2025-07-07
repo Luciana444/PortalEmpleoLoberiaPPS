@@ -9,6 +9,10 @@ import { getAllUsuarios } from '../controllers/usuarioController.js';
 // Inicializa un router específico para el módulo de usuarios
 export const usuarioRoutes = express.Router();
 
+//===================================================================
+// end point : obtener todos los usuarios
+//===================================================================
+
 /**
  * @swagger
  * tags:
@@ -48,8 +52,48 @@ export const usuarioRoutes = express.Router();
 
 usuarioRoutes.get('/',getAllUsuarios);
 
+
+//====================================
+// End POint : Subir foto de perfil y logo de empresas
+//======================================
+
+
+
 import { subirFotoPerfil } from '../controllers/usuarioController.js';
 import upload from '../config/multer.js';
+import { authMiddleware } from '../middlewares/authMiddleware.js';
 
-usuarioRoutes.post('/foto/perfil', upload.single('foto'), subirFotoPerfil);
+
+
+/**
+ * @swagger
+ * /usuario/foto/perfil:
+ *   post:
+ *     summary: Sube la foto de perfil del usuario
+ *     tags: [Usuarios]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               foto:
+ *                 type: string
+ *                 format: binary
+ *               tipoUsuario:
+ *                 type: string
+ *                 example: ciudadano
+ *     responses:
+ *       200:
+ *         description: Foto de perfil subida exitosamente
+ *       400:
+ *         description: Error al subir la foto de perfil
+ *       401:
+ *         description: No autorizado
+ */
+
+usuarioRoutes.post('/foto/perfil',authMiddleware, upload.single('foto'), subirFotoPerfil);
 export default usuarioRoutes;

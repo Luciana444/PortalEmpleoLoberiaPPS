@@ -32,27 +32,30 @@ export const getUsuarioById = async(id)=>{
   }
 }
 
+//==================================================
+//end point para subir una foto al perfil de usuario, ya sea ciudadano o empresa
+//=============================================
 
 
 
+
+// Importa la función que guarda la foto en la base de datos y devuelve la URL
 import { guardarFotoPerfil } from '../services/usuarioService.js';
 import fs from 'fs/promises';
 
+// Controlador para manejar la subida de una foto de perfil
 export const subirFotoPerfil = async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ error: 'No se recibió archivo' });
     }
 
-    const userId = req.user?.id || req.body.userId;
-    const tipoUsuario = req.body.tipoUsuario;
-
-    console.log('Tipo de usuario recibido:', tipoUsuario);
+    const userId = req.usuario?.id;
+    const tipoUsuario = req.usuario?.tipo_usuario;
 
     if (!userId || !tipoUsuario) {
-      // Borrar archivo si falta info
       await fs.unlink(req.file.path);
-      return res.status(400).json({ error: 'Faltan datos: userId o tipoUsuario' });
+      return res.status(401).json({ error: 'Usuario no autenticado' });
     }
 
     const urlFoto = await guardarFotoPerfil(userId, req.file, tipoUsuario);
@@ -65,7 +68,6 @@ export const subirFotoPerfil = async (req, res) => {
   } catch (error) {
     console.error('Error subirFotoPerfil:', error);
 
-    // Si hubo error y hay archivo, lo eliminamos
     if (req.file?.path) {
       try {
         await fs.unlink(req.file.path);
