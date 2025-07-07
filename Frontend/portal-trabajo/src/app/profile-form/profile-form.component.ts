@@ -13,6 +13,7 @@ import { UserService } from '../services/user.service';
 import { CommonModule } from '@angular/common';
 import { jwtDecode } from 'jwt-decode';
 import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
+import { CvUploaderComponent } from '../cv-uploader/cv-uploader.component';
 
 
 @Component({
@@ -28,7 +29,8 @@ import { FileUploaderComponent } from '../file-uploader/file-uploader.component'
         MatRadioModule,
         MatButtonModule,
         CommonModule,
-        FileUploaderComponent
+        FileUploaderComponent,
+        CvUploaderComponent
     ],
     templateUrl: './profile-form.component.html',
     styleUrl: './profile-form.component.scss'
@@ -42,7 +44,7 @@ export class ProfileFormComponent implements OnInit {
             userId: [''],
             nombre: ['', Validators.required],
             apellido: ['', Validators.required],
-            fechaNacimiento: ['', Validators.required],
+            fecha_nacimiento: ['', Validators.required],
             telefono: ['', Validators.required],
             email: ['', [Validators.required, Validators.email]],
             dni: ['', Validators.required],
@@ -54,13 +56,14 @@ export class ProfileFormComponent implements OnInit {
             localidad: [''],
             provincia: [''],
             pais: ['', Validators.required],
-            nivelEducativo: ['', Validators.required],
-            cursaCarrera: ['', Validators.required],
-            carrera: [''],
+            nivel_educativo: ['', Validators.required],
+            esta_cursando_carrera: ['', Validators.required],
+            carrera_en_curso: [''],
             cursos: [''],
-            situacionLaboral: ['', Validators.required],
-            emprendimiento: [''],
-            discapacidad: ['', Validators.required]
+            situacion_laboral: ['', Validators.required],
+            tiene_emprendimiento: [''],
+            discapacidad: ['', Validators.required],
+            cv: ['']
         });
     }
 

@@ -9,6 +9,7 @@ import { ProfileFormComponent } from './profile-form/profile-form.component';
 import { JobOfferFormComponent } from './job-offer-form/job-offer-form.component';
 import { EmployeeProfileComponent } from './employee-profile/employee-profile.component';
 
+
 export const routes: Routes = [
     { path: '', component: LandingComponent},
     { path: 'form-selector', component: FormSelectorComponent },
