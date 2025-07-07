@@ -10,7 +10,7 @@ describe('AttatchCvComponent', () => {
     await TestBed.configureTestingModule({
       imports: [AttatchCvComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(AttatchCvComponent);
     component = fixture.componentInstance;
