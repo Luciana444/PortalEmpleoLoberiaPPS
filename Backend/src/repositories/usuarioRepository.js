@@ -49,6 +49,14 @@ export const crearUsuario = async ({ nombre, email, contrasena, tipo_usuario }) 
     VALUES (${nombre}, ${email}, ${contrasena}, NOW(), true, ${tipo_usuario})
     RETURNING id
   `;
+
+  if(tipo_usuario === 'ciudadano'){
+    await sql`INSERT INTO perfiles_ciudadanos (id_ciudadano) VALUES (${result[0].id})`;
+  }
+  else if(tipo_usuario === 'empresa'){
+    await sql`INSERT INTO empresas (id_usuario) VALUES (${result[0].id})`;
+  }
+
   return result[0].id;
 };
 
