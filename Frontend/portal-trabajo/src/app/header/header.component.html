@@ -20,12 +20,12 @@
         </div>
         <div class="text-wrapper">
             <p class="username">{{user.name}} {{user.surname}}</p>
-            <p class="logout">Cerrar Sesión</p>
+            <button class="logout-btn" (click)="onLogout()">Cerrar Sesión</button>
         </div>
     </div>
     }@else {
     <div class="buttons-container">
-        <button class="register-button" (click)="navigateToFormSelector()">Crear Cuenta</ button>
+        <button class="register-button" (click)="navigateToFormSelector()">Crear Cuenta</button>
             <button class="login-button" (click)="navigateToLogin()">Ingresar</button>
     </div>
     }

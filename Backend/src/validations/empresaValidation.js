@@ -18,8 +18,5 @@ export const empresaValidation = Joi.object({
   dpto: Joi.string().allow(null, ''),
   localidad: Joi.string().min(1),
   provincia: Joi.string().min(1),
-  pais: Joi.string().min(1),
-  estado_aprobacion: Joi.string().valid('pendiente', 'aprobada', 'rechazada').allow(null),
-  fecha_aprobacion: Joi.date().allow(null),
-  email_admin_autorizador: Joi.string().email().allow(null, '')
+  pais: Joi.string().min(1)
 }).min(1); 

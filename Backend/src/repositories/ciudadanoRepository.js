@@ -9,6 +9,18 @@ export const insertarUrlCv = async (id_usuario, url_cv) => {
 };
 
 
+
+export const getExperienciaByCiudadanoId = async(id_usuario)=>{
+  const resultado = await sql`SELECT * FROM experiencias_laborales_ciudadanos WHERE id_ciudadano = ${id_usuario}`;
+  return resultado;
+};
+
+
+export const getCapacitacionesByCiudadanoId = async(id_usuario)=>{
+  const resultado = await sql`SELECT * FROM capacitaciones_ciudadanos WHERE id_ciudadano=${id_usuario}`;
+  return resultado;
+};
+
 export const updatePerfilCiudadano = async (userId, datos) => {
   const camposValidos = [
     'nombre', 'apellido', 'fecha_nacimiento', 'telefono', 'email', 'dni', 'cuil',
@@ -45,4 +57,24 @@ export const updatePerfilCiudadano = async (userId, datos) => {
   if (result.count === 0 || result.rowCount === 0) {
     throw new Error('No se encontró perfil para actualizar');
   }
+};
+
+export const insertExperienciaLaboral = async (userId, experiencia) => {
+  const { nombre_empresa, desde, hasta = null, comentario = null } = experiencia;
+
+  await sql`
+    INSERT INTO experiencias_laborales_ciudadanos
+      (id_ciudadano, nombre_empresa, desde, hasta, comentario)
+    VALUES
+      (${userId}, ${nombre_empresa}, ${desde}, ${hasta}, ${comentario})
+  `;
+};
+
+export const insertCapacitacion = async (userId, nombreCapacitacion) => {
+  await sql`
+    INSERT INTO capacitaciones_ciudadanos
+      (id_ciudadano, nombre_capacitacion)
+    VALUES
+      (${userId}, ${nombreCapacitacion})
+  `;
 };
