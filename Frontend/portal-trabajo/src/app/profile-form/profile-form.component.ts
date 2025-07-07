@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { CommonModule } from '@angular/common';
 import { jwtDecode } from 'jwt-decode';
+import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
 
 
 @Component({
@@ -26,7 +27,8 @@ import { jwtDecode } from 'jwt-decode';
         MatNativeDateModule,
         MatRadioModule,
         MatButtonModule,
-        CommonModule
+        CommonModule,
+        FileUploaderComponent
     ],
     templateUrl: './profile-form.component.html',
     styleUrl: './profile-form.component.scss'
@@ -98,7 +100,7 @@ export class ProfileFormComponent implements OnInit {
     getUserId() {
         const storedTokenString = localStorage.getItem("token") ?? "";
         const decodedToken = jwtDecode<User>(storedTokenString);
-        return  decodedToken.id;
+        return decodedToken.id;
     }
 }
 

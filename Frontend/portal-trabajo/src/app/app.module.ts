@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 
 
 
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -13,7 +14,7 @@ import { AppComponent } from './app.component';
       closeButton: true,
       progressBar: true,
     }),
-    AppComponent,
+    AppComponent
   ],
   providers: [],
   bootstrap: [],

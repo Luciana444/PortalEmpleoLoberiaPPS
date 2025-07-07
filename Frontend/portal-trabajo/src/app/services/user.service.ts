@@ -44,7 +44,7 @@ export class UserService {
   }
 
   editProfileEmployee(profileData: any) {
-     return this.httpClient.patch(`${URL}/ciudadano/actualizar/perfil`, profileData, {
+    return this.httpClient.patch(`${URL}/ciudadano/actualizar/perfil`, profileData, {
       observe: 'response',
       withCredentials: true,
       headers: new HttpHeaders().append('Content-Type', 'application/json')
@@ -52,14 +52,25 @@ export class UserService {
 
   }
 
-  
+
   createNewOffer(newOffer: any) {
-     return this.httpClient.patch(`${URL}/actualizar/perfil`, newOffer, {
+    return this.httpClient.patch(`${URL}/actualizar/perfil`, newOffer, {
       observe: 'response',
       withCredentials: true,
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
 
+  }
+  uploadProfilePicture(foto:any, tipo_usuario: string) {
+    var formdata = new FormData();   
+    formdata.append("foto", foto,foto.name);
+   // formdata.append("tipoUsuario", tipo_usuario);
+
+    return this.httpClient.post(`${URL}/usuario/foto/perfil`, formdata, {
+      observe: 'response',
+      withCredentials: true,
+      //headers: new HttpHeaders().append('Content-Type', 'multipart/form-data')
+    });
   }
 
 
