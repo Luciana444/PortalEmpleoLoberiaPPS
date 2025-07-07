@@ -8,16 +8,18 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { ProfileFormComponent } from './profile-form/profile-form.component';
 import { JobOfferFormComponent } from './job-offer-form/job-offer-form.component';
 import { EmployeeProfileComponent } from './employee-profile/employee-profile.component';
+import { PostulationDetailComponent } from './postulation-detail/postulation-detail.component';
 
 export const routes: Routes = [
-    { path: '', component: LandingComponent},
+    { path: '', component: LandingComponent },
     { path: 'form-selector', component: FormSelectorComponent },
     { path: 'employee-form', component: EmployeeFormComponent },
-    { path: 'login', component: LoginComponent}, 
-    { path: 'landing', component: LandingComponent},
-    { path: 'recovery', component: RecoveryComponent},
-    { path: 'reset', component: ResetPasswordComponent},
-    { path: 'edit-profile', component: ProfileFormComponent},
-    { path: 'create-offer', component: JobOfferFormComponent},
-    { path: 'employee-profile', component: EmployeeProfileComponent}
+    { path: 'login', component: LoginComponent },
+    { path: 'landing', component: LandingComponent },
+    { path: 'recovery', component: RecoveryComponent },
+    { path: 'reset', component: ResetPasswordComponent },
+    { path: 'edit-profile', component: ProfileFormComponent },
+    { path: 'create-offer', component: JobOfferFormComponent },
+    { path: 'employee-profile', component: EmployeeProfileComponent },
+    { path: 'detail', component: PostulationDetailComponent },
 ];

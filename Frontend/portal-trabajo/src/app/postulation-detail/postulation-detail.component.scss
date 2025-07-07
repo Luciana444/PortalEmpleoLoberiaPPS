@@ -1,0 +1,147 @@
+@use '../../styles.scss' as *;
+
+a{
+    font-size: 1.25rem;
+    font-weight: 100;
+}
+
+h5{
+    background-color: $green;
+    border-radius: 10px;
+    color: white;
+    margin: 0;
+    padding: 0.25rem 0.5rem;
+    font-weight: 100;
+}
+
+.postulation-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 8px;
+}
+
+.detail-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.detail-categories{
+    margin-left: auto;
+    display: flex;
+    gap: 0.5rem;
+    font-weight: 100;
+}
+
+.container{
+    margin-left: 7.25rem;
+    margin-right: 7.25rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
+}
+
+main{
+    margin-top: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    overflow: hidden;
+}
+
+h1, h2{
+    margin: 0;
+    margin-left: 2rem;
+    color: $green;
+    font-weight: 700;
+}
+
+h4, p{
+    margin: 0;
+    margin-left: 2rem;
+}
+
+.highlight{
+    width: 137.5%;
+    margin-left: -1rem;
+    background-color: #ECF8E7;
+}
+
+.highlight > h4{
+    margin-left: 3rem !important;
+    color: $green;
+    margin-top: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+.description-text{
+    margin-top: 0.5rem;
+}
+
+i{
+    color: $green !important;
+}
+
+h5 > i{
+    color: white !important;
+}
+
+.profile-header{
+    display: flex;
+    gap: 0.5rem;
+}
+
+.profile-pic{
+    height: 50px;
+    width: 50px;
+    border-radius: 100px;
+    background-color: black
+}
+
+.profile-info > h4, .location > p {
+    color: #49454F;
+    margin: 0;
+}
+
+.location{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.profile{
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    width: fit-content;
+    padding: 1rem;
+    border-radius: 10px;
+    gap: 1rem;
+}
+
+.postulation-header > button{
+    margin-right: 3rem;
+}
+
+button{
+    width: 9rem;
+    padding: 8px 2px;
+}
+
+.detail-description{
+    width: 75%;
+}
+
+p{
+    font-size: 1rem;
+    font-weight: 200;
+}
