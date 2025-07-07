@@ -1,6 +1,6 @@
 import { getUsuarioById } from "../controllers/usuarioController.js";
 import { insertarUrlCv } from "../repositories/ciudadanoRepository.js";
-import { updatePerfilCiudadano } from '../repositories/ciudadanoRepository.js';
+import { updatePerfilCiudadano,insertExperienciaLaboral,insertCapacitacion } from '../repositories/ciudadanoRepository.js';
 import PDFDocument from 'pdfkit';
 
 export const subirCvBD = async(id_usuario,url_cv)=>{
@@ -12,6 +12,22 @@ export const subirCvBD = async(id_usuario,url_cv)=>{
 export const actualizarPerfil = async (userId, datos) => {
   try {
     await updatePerfilCiudadano(userId, datos);
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const agregarExperienciaLaboral = async (userId, experiencia) => {
+  try {
+    await insertExperienciaLaboral(userId, experiencia);
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const agregarCapacitacion = async (userId, nombreCapacitacion) => {
+  try {
+    await insertCapacitacion(userId, nombreCapacitacion);
   } catch (error) {
     throw error;
   }

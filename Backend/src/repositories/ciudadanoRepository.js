@@ -46,3 +46,23 @@ export const updatePerfilCiudadano = async (userId, datos) => {
     throw new Error('No se encontró perfil para actualizar');
   }
 };
+
+export const insertExperienciaLaboral = async (userId, experiencia) => {
+  const { nombre_empresa, desde, hasta = null, comentario = null } = experiencia;
+
+  await sql`
+    INSERT INTO experiencias_laborales_ciudadanos
+      (id_ciudadano, nombre_empresa, desde, hasta, comentario)
+    VALUES
+      (${userId}, ${nombre_empresa}, ${desde}, ${hasta}, ${comentario})
+  `;
+};
+
+export const insertCapacitacion = async (userId, nombreCapacitacion) => {
+  await sql`
+    INSERT INTO capacitaciones_ciudadanos
+      (id_ciudadano, nombre_capacitacion)
+    VALUES
+      (${userId}, ${nombreCapacitacion})
+  `;
+};
