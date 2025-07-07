@@ -44,7 +44,7 @@ export class UserService {
   }
 
   editProfileEmployee(profileData: any) {
-     return this.httpClient.patch(`${URL}/ciudadano/actualizar/perfil`, profileData, {
+    return this.httpClient.patch(`${URL}/ciudadano/actualizar/perfil`, profileData, {
       observe: 'response',
       withCredentials: true,
       headers: new HttpHeaders().append('Content-Type', 'application/json')
@@ -52,15 +52,35 @@ export class UserService {
 
   }
 
-  
+
   createNewOffer(newOffer: any) {
-     return this.httpClient.patch(`${URL}/actualizar/perfil`, newOffer, {
+    return this.httpClient.patch(`${URL}/actualizar/perfil`, newOffer, {
       observe: 'response',
       withCredentials: true,
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
 
   }
+   uploadProfilePicture(foto: File, tipo_usuario: string) {
+    var formdata = new FormData();   
+    formdata.append("foto", foto)
+    return this.httpClient.post(`${URL}/usuario/foto/perfil`, formdata, {
+      observe: 'response',
+      withCredentials: true,
+      headers: new HttpHeaders().append('Authorization',`Bearer ${localStorage.getItem("token")}`) 
+    });
+  }
+
+     uploadCv(cv:File) {
+    var formdata = new FormData();   
+    formdata.append("cv", cv)
+    return this.httpClient.post(`${URL}/ciudadano/upload_cv`, formdata, {
+      observe: 'response',
+      withCredentials: true,
+      headers: new HttpHeaders().append('Authorization',`Bearer ${localStorage.getItem("token")}`) 
+    });
+  }
+
 
 
   logout() {

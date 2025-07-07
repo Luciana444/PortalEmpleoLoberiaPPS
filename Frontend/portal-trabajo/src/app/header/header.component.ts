@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { UserService } from '../services/user.service';
+
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [
+  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient, private userservice: UserService) { }
 
   item: string = 'token';
   url: string = 'http://localhost:3000/api/usuario';
@@ -48,6 +51,8 @@ export class HeaderComponent {
       );
   }
 
-
+ onLogout() {
+    this.userservice.logout();
+  }
 
 }

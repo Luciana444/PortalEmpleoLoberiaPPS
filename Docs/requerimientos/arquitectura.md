@@ -57,10 +57,10 @@ Tablas relacionales normalizadas: usuarios, ofertas_laborales, postulaciones, em
 
 Reglas de seguridad implementadas mediante RLS (Row-Level Security).
 
-Funciones y vistas creadas directamente en SQL (si aplica).
+Funciones y vistas creadas directamente en SQL .
 
 🔐 Autenticación y autorización
-Gestión de usuarios implementada con el sistema de auth de Supabase.
+Gestión de usuarios implementada con el sistema de  de jwtoken.
 
 Soporte para registro con email y contraseña.
 

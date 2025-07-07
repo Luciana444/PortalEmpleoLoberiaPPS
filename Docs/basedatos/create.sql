@@ -208,5 +208,20 @@ CREATE TABLE public.postulaciones (
 ) TABLESPACE pg_default;
 
 ---------------------------------------------------------------------------------
+--tabla para cargar las experiencias laborales de los ciudadanos en el perfil
+ 
+CREATE TABLE public.experiencias_laborales_ciudadanos (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  id_ciudadano uuid NOT NULL,
+  nombre_empresa text NOT NULL,
+  desde date NOT NULL,
+  hasta date,
+  comentario varchar(500),
+  CONSTRAINT experiencias_laborales_ciudadanos_pkey PRIMARY KEY (id),
+  CONSTRAINT fk_experiencia_ciudadano FOREIGN KEY (id_ciudadano) REFERENCES perfiles_ciudadanos (id_ciudadano) ON DELETE CASCADE
+) TABLESPACE pg_default;
+
+
+
 */
 

@@ -17,6 +17,7 @@
 <div class="form-container">
 
   <form [formGroup]="profile" (ngSubmit)="editProfile()">
+    
     <div>
       <!-- Campo: Nombre -->
       <mat-form-field appearance="outline" class="full-width">
@@ -40,7 +41,7 @@
       <!-- Campo: Fecha de nacimiento -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Fecha de nacimiento</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento" />
+        <input matInput [matDatepicker]="picker" formControlName="fecha_nacimiento" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <mat-error *ngIf="profile.get('fechaNacimiento')?.hasError('required')">
@@ -133,7 +134,7 @@
     <div>
       <!-- Campo: ¿Está actualmente cursando una carrera? -->
       <mat-label>¿Está actualmente cursando una carrera?</mat-label>
-      <mat-radio-group formControlName="cursaCarrera" class="mb-3">
+      <mat-radio-group formControlName="esta_cursando_carrera" class="mb-3">
         <mat-radio-button value="si">Sí</mat-radio-button>
         <mat-radio-button value="no">No</mat-radio-button>
       </mat-radio-group>
@@ -144,7 +145,7 @@
       <div *ngIf="profile.get('cursaCarrera')?.value === 'si'">
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Carrera en curso</mat-label>
-          <input matInput formControlName="carrera" />
+          <input matInput formControlName="carrera_en_curso" />
           <mat-error *ngIf="profile.get('carrera')?.hasError('required')">
             Por favor, indique la carrera
           </mat-error>
@@ -155,7 +156,7 @@
       <!-- Campo: Nivel educativo alcanzado -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Nivel educativo alcanzado</mat-label>
-        <mat-select formControlName="nivelEducativo">
+        <mat-select formControlName="nivel_educativo">
           <mat-option value="primario_incompleto">Primario incompleto</mat-option>
           <mat-option value="primario_completo">Primario completo</mat-option>
           <mat-option value="secundario_incompleto">Secundario incompleto</mat-option>
@@ -181,7 +182,7 @@
       <!-- Campo: Situación laboral -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Situación laboral actual</mat-label>
-        <mat-select formControlName="situacionLaboral">
+        <mat-select formControlName="situacion_laboral">
           <mat-option value="desempleado">Desempleado</mat-option>
           <mat-option value="empleado">Empleado en relación de dependencia</mat-option>
           <mat-option value="independiente">Trabajador independiente / Emprendedor</mat-option>
@@ -193,7 +194,7 @@
       <!-- Campo: ¿Tiene un emprendimiento propio? -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>¿Tiene un emprendimiento propio?</mat-label>
-        <input matInput formControlName="emprendimiento" />
+        <input matInput formControlName="tiene_emprendimiento" />
       </mat-form-field>
     </div>
     <div>
@@ -206,18 +207,14 @@
           <mat-option value="prefiero_no_responder">Prefiero no responder</mat-option>
         </mat-select>
       </mat-form-field>
-
-      <!-- Campo: Foto de perfil -->
-      <!--  <mat-form-field appearance="outline" class="full-width">
-     <mat-label>Foto de perfil</mat-label>
-      <input type="file" matInput (change)="onFileSelected($event)" />
-    </mat-form-field>-->
     </div>
-     <button mat-raised-button type="submit" [disabled]="profile.invalid">
+    <div> <app-file-uploader></app-file-uploader></div>
+    <div><app-cv-uploader></app-cv-uploader></div>
+    <button mat-raised-button type="submit" [disabled]="profile.invalid">
       Guardar cambios
     </button>
   </form>
   <div>
-   
+
   </div>
 </div>
