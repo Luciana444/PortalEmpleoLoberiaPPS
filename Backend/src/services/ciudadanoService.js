@@ -77,3 +77,17 @@ export const generarPdfUsuario = async (id,res) =>{
     console.log(error);
   }
 }
+
+import { fetchPerfilCiudadano, fetchCapacitaciones, fetchExperiencias } from '../repositories/ciudadanoRepository.js';
+
+export const getPerfilCompleto = async (userId) => {
+  const perfil = await fetchPerfilCiudadano(userId);
+  const capacitaciones = await fetchCapacitaciones(userId);
+  const experiencias = await fetchExperiencias(userId);
+
+  return {
+    ...perfil,
+    capacitaciones,
+    experiencias_laborales: experiencias
+  };
+};

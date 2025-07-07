@@ -66,3 +66,16 @@ export const insertCapacitacion = async (userId, nombreCapacitacion) => {
       (${userId}, ${nombreCapacitacion})
   `;
 };
+
+export const fetchPerfilCiudadano = async (userId) => {
+  const result = await sql`SELECT * FROM perfiles_ciudadanos WHERE id_ciudadano = ${userId}`;
+  return result[0];
+};
+
+export const fetchCapacitaciones = async (userId) => {
+  return await sql`SELECT * FROM capacitaciones_ciudadanos WHERE id_ciudadano = ${userId}`;
+};
+
+export const fetchExperiencias = async (userId) => {
+  return await sql`SELECT * FROM experiencias_laborales_ciudadanos WHERE id_ciudadano = ${userId}`;
+};
