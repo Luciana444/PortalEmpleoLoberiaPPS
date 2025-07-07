@@ -55,3 +55,7 @@ export const updatePerfilEmpresaById= async(id_usuario,datosActualizados)=>{
 }
 
 
+export const getDatosEmpresaById = async(id_usuario)=>{
+    const resultado = await sql`SELECT * FROM empresas WHERE id_usuario = ${id_usuario}`;
+    return resultado[0];
+};
