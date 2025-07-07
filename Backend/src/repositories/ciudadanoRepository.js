@@ -9,6 +9,18 @@ export const insertarUrlCv = async (id_usuario, url_cv) => {
 };
 
 
+
+export const getExperienciaByCiudadanoId = async(id_usuario)=>{
+  const resultado = await sql`SELECT * FROM experiencias_laborales_ciudadanos WHERE id_ciudadano = ${id_usuario}`;
+  return resultado;
+};
+
+
+export const getCapacitacionesByCiudadanoId = async(id_usuario)=>{
+  const resultado = await sql`SELECT * FROM capacitaciones_ciudadanos WHERE id_ciudadano=${id_usuario}`;
+  return resultado;
+};
+
 export const updatePerfilCiudadano = async (userId, datos) => {
   const camposValidos = [
     'nombre', 'apellido', 'fecha_nacimiento', 'telefono', 'email', 'dni', 'cuil',

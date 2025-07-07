@@ -77,7 +77,7 @@ export const ciudadanoRoutes = express.Router();
 
 
 
-ciudadanoRoutes.put('/importar_cv',authMiddleware, onlyCiudadano, subirCv.single('cv'),subirCV);
+ciudadanoRoutes.put('/upload_cv',authMiddleware, onlyCiudadano, subirCv.single('cv'),subirCV);
 
 
 // Ruta para actualizar datos del perfil del ciudadano

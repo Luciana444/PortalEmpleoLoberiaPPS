@@ -156,7 +156,7 @@ export const actualizarPerfilCiudadano = async (req, res) => {
 
 export const generarPdf = async (req, res) => {
   try {
-    const id = req.user?.id;
+    const id = req.usuario.id;
 
     if (!id) {
       // Si no hay id en el usuario autenticado, se devuelve error 404

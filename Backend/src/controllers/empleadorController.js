@@ -1,4 +1,4 @@
-import { updatePerfilEmpresa } from "../services/empleadorService.js";
+import { getDatosEmpresa, updatePerfilEmpresa } from "../services/empleadorService.js";
 import { empresaValidation } from "../validations/empresaValidation.js";
 
 
@@ -45,3 +45,20 @@ export const actualizarPerfilEmpresa = async(req,res)=>{
 
 }
 
+
+export const obtenerDatosEmpresa = async (req,res)=>{
+  try {
+    const id_usuario = req.usuario.id;
+    if(!id_usuario){
+      return res.status(404).json({message: 'Falta el id del usuario'});
+    }
+
+    const datosEmpresa = await getDatosEmpresa(id_usuario);
+
+    return res.status(200).json(datosEmpresa);
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({error:'Error al obtener los datos de la empresa'});
+  }
+}
