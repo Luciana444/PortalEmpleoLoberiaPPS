@@ -170,3 +170,26 @@ export const generarPdf = async (req, res) => {
     return res.status(500).json({ error: 'Error al crear pdf' });
   }
 };
+
+import { getPerfilCompleto } from '../services/ciudadanoService.js';
+
+export const obtenerPerfilCompleto = async (req, res) => {
+  try {
+    const id_ciudadano = req.usuario?.id;
+
+    if (!id_ciudadano) {
+      return res.status(401).json({ error: 'Usuario no autenticado' });
+    }
+
+    const perfil = await getPerfilCompleto(id_ciudadano);
+
+    if (!perfil) {
+      return res.status(404).json({ error: 'Perfil no encontrado' });
+    }
+
+    res.json(perfil);
+  } catch (error) {
+    console.error('Error al obtener perfil completo:', error);
+    res.status(500).json({ error: 'Error al obtener perfil' });
+  }
+};

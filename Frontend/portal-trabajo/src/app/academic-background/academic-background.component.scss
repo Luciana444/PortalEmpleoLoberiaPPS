@@ -54,6 +54,12 @@ p, h5{
 .title-wrapper, .postulation-title{
     background-color: #ECF8E7;
     padding-left: 0.5rem;
+    margin-left: -2rem;
+    width: 120%;
+}
+
+.title-wrapper > h2, .postulation-title > h2{
+    margin-left: 2rem;
 }
 
 .postulation-title{
@@ -73,11 +79,16 @@ h2{
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
+    padding-top: 1rem;
 }
 
 .postulation-date{
     margin-left: auto;
     color: $text-color;
     font-size: 0.75rem;
-    margin-right: 1rem;
+    margin-right: 5rem;
+}
+
+main, .postulations{
+    overflow: hidden;
 }

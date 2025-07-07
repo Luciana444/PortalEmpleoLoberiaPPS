@@ -66,9 +66,10 @@ button .logout{
     background-color: transparent;
 }
 
-
-
-
+button{
+    width: 8rem;
+    padding: 8px 2px;
+}
 
 @media (max-width: 600px) {
     .small-logo > svg {
