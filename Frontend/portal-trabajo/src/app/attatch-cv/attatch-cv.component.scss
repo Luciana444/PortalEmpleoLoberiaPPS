@@ -10,7 +10,7 @@ div{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 2.75rem;
+    gap: 1rem;
 }
 
 img{
@@ -21,11 +21,12 @@ h4{
     color: $green;
     text-align: center;
     align-self: center;
+    margin-bottom: 0.5rem;
 }
 
 button{
     padding: 8px 25px;
-    width: fit-content;
+    width: 10rem;
     height: fit-content;
     white-space: nowrap;
 }
