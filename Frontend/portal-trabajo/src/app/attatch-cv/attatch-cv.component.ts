@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './attatch-cv.component.scss'
 })
 export class AttatchCvComponent {
+  hasCV = false;
 
 }

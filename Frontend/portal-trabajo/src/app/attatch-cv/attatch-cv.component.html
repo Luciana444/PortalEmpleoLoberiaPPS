@@ -1,4 +1,5 @@
 <div>
+    @if (hasCV) {
     <h4>CV Adjunto</h4>
 
     <img src="/word.png" alt="">
@@ -6,4 +7,12 @@
     <button>
         Descargar CV <i class="fa-solid fa-download"></i>
     </button>
+    } @else {
+    <h4>No hay CV adjunto</h4>
+
+    <button>
+        Generar CV <i class="fa-solid fa-file-upload"></i>
+    </button>
+    }
+
 </div>

@@ -1,6 +1,11 @@
 @use '../../styles.scss' as *;
 @use 'sass:color';
 
+button{
+    width: 8rem;
+    padding: 8px 2px;
+}
+
 .filter {
     display: flex;
     justify-content: flex-end;
@@ -17,10 +22,6 @@
     cursor: pointer;
 }
 
-button{
-    width: 8rem;
-    padding: 8px 2px;
-}
 
 i{
     color: $green;
