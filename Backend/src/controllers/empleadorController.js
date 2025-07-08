@@ -68,6 +68,7 @@ export const actualizarPerfilEmpresa = async(req,res)=>{
  */
 
 
+
 export const obtenerDatosEmpresa = async (req,res)=>{
   try {
     const id_usuario = req.usuario.id;
@@ -84,4 +85,5 @@ export const obtenerDatosEmpresa = async (req,res)=>{
     res.status(500).json({error:'Error al obtener los datos de la empresa'});
   }
 }
+
 
