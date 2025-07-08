@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs/internal/Observable';
 
 
 
@@ -47,7 +48,9 @@ export class UserService {
     return this.httpClient.patch(`${URL}/ciudadano/actualizar/perfil`, profileData, {
       observe: 'response',
       withCredentials: true,
-      headers: new HttpHeaders().append('Content-Type', 'application/json')
+      headers: new HttpHeaders()
+        .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+        .append('Content-Type', 'application/json')
     });
 
   }
@@ -61,27 +64,36 @@ export class UserService {
     });
 
   }
-   uploadProfilePicture(foto: File, tipo_usuario: string) {
-    var formdata = new FormData();   
+  uploadProfilePicture(foto: File, tipo_usuario: string) {
+    var formdata = new FormData();
     formdata.append("foto", foto)
     return this.httpClient.post(`${URL}/usuario/foto/perfil`, formdata, {
       observe: 'response',
       withCredentials: true,
-      headers: new HttpHeaders().append('Authorization',`Bearer ${localStorage.getItem("token")}`) 
+      headers: new HttpHeaders().append('Authorization', `Bearer ${localStorage.getItem("token")}`)
     });
   }
 
-     uploadCv(cv:File) {
-    var formdata = new FormData();   
+  uploadCv(cv: File) {
+    var formdata = new FormData();
     formdata.append("cv", cv)
     return this.httpClient.post(`${URL}/ciudadano/upload_cv`, formdata, {
       observe: 'response',
       withCredentials: true,
-      headers: new HttpHeaders().append('Authorization',`Bearer ${localStorage.getItem("token")}`) 
+      headers: new HttpHeaders().append('Authorization', `Bearer ${localStorage.getItem("token")}`)
     });
   }
 
+  downloadGeneratedCv(url: string) {
+    return this.httpClient.get(`${URL}/ciudadano/generar_cv`,
+      {
+        responseType: 'blob',
+        observe: 'response',
+        withCredentials: true,
+        headers: new HttpHeaders().append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+      });
 
+  }
 
   logout() {
     localStorage.removeItem('token');
