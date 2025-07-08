@@ -2,11 +2,9 @@
 
 main, .postulations, .postulations-header{
     background-color: white;
-    height: fit-content;
-    width: 100%;
     padding: 0.5rem 1.5rem 1rem 1.5rem;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08); // Added subtle shadow
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
  .postulations{
@@ -19,7 +17,6 @@ main, .postulations, .postulations-header{
 
 button{
     padding: 8px 25px;
-    width: 18rem;
     height: fit-content;
     margin-left: 2rem;
     white-space: nowrap;
@@ -55,7 +52,7 @@ p, h5{
     background-color: #ECF8E7;
     padding-left: 0.5rem;
     margin-left: -2rem;
-    width: 120%;
+    width: calc(100% + 3rem);
 }
 
 .title-wrapper > h2, .postulation-title > h2{
@@ -74,21 +71,31 @@ h2{
     color: $green;
 }
 
-.postulations-content{
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-top: 1rem;
-}
-
 .postulation-date{
     margin-left: auto;
     color: $text-color;
     font-size: 0.75rem;
-    margin-right: 20%;
+    margin-right: 1rem;
 }
 
 main, .postulations{
     overflow: hidden;
+}
+
+.postulations-content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+}
+
+.postulations-text{
+    max-width: 20rem;
+    word-break: break-word;
+    hyphens:auto;
+}
+
+.postulations-text-wrapper{
+    min-width: 0;
 }

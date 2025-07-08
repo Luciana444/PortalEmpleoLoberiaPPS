@@ -2,10 +2,10 @@
     <div class="profile-header">
         <div class="profile-pic"></div>
         <div class="profile-info">
-            <h4>{{name}}</h4>
+            <h4>{{employeeData?.name}} {{employeeData?.surname}}</h4>
             <div class="location">
                 <i class="fa-solid fa-location-dot"></i>
-                <p>Tandil</p>
+                <p>{{employeeData?.location}}</p>
             </div>
         </div>
     </div>
@@ -18,27 +18,32 @@
     <div class="personal-info">
         <div class="info-row">
             <h5>País: </h5>
-            <p>Argentina</p>
+            <p>{{employeeData?.country}}</p>
         </div>
         <div class="info-row">
             <h5>Provincia: </h5>
-            <p>Buenos Aires</p>
+            <p>{{employeeData?.province}}</p>
         </div>
         <div class="info-row">
             <h5>Fecha de Nacimiento: </h5>
-            <p>28/10/00</p>
+            <p>{{employeeData?.birthdate}}</p>
         </div>
         <div class="info-row">
             <h5>DNI: </h5>
-            <p>32675890</p>
+            <p>{{employeeData?.id}}</p>
         </div>
         <div class="info-row">
             <h5>CUIL: </h5>
-            <p>40326758909</p>
+            <p>{{employeeData?.cuil}}</p>
         </div>
         <div class="info-row">
             <h5>¿Tiene alguna discapacidad?</h5>
+            @if (employeeData?.hasDisability) {
+            <p>Sí</p>
+
+            } @else {
             <p>No</p>
+            }
         </div>
     </div>
 
@@ -49,19 +54,20 @@
     <div class="contact-info">
         <div class="info-row">
             <h5>Teléfono: </h5>
-            <p>+54 9 11 1234-5678</p>
+            <p>{{employeeData?.phoneNumber}}</p>
         </div>
         <div class="info-row">
             <h5>Email: </h5>
-            <p>juanaperez&#64;gmail.com</p>
+            <p>{{employeeData?.email}}</p>
         </div>
         <div class="info-row">
             <h5>Dirección: </h5>
-            <p>Calle Falsa 123</p>
+            <p>{{employeeData?.address}}</p>
         </div>
     </div>
 
     <div class="profile-footer">
-        <button class="edit-profile" (click)="navigateToEditProfile()"> <i class="fa-solid fa-pen"></i> Editar Perfil</button>
+        <button class="edit-profile" (click)="navigateToEditProfile()"> <i class="fa-solid fa-pen"></i> Editar
+            Perfil</button>
     </div>
 </div>
