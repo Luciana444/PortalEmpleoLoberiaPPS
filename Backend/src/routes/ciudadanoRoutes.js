@@ -20,12 +20,6 @@ export const ciudadanoRoutes = express.Router();
 
 /**
  * @swagger
- * tags:
- *   name: Subir cv
- *   description: Endpoints para subir el curriculum vitae
- */
-/**
- * @swagger
  * /ciudadano/upload_cv:
 
  *   post:
@@ -80,26 +74,18 @@ export const ciudadanoRoutes = express.Router();
 ciudadanoRoutes.put('/upload_cv',authMiddleware, onlyCiudadano, subirCv.single('cv'),subirCV);
 
 
-// Ruta para actualizar datos del perfil del ciudadano
-// En este caso no tiene middlewares de autenticación ni autorización — debería tenerlos
-// para evitar que cualquiera actualice cualquier perfil (revisar eso)
-// Aquí solo se llama al controller actualizarPerfilCiudadano
 
 //=====================================================================
 // ----------------------------------------------------
 // ACTUALIZAR PERFIL DEL CIUDADANO - Endpoint PUT
 // ----------------------------------------------------
-/**
- * @swagger
- * tags:
- *   name: Actualizar perfil del ciudadano
- *   description: Endpoints para actualizar el perfil del ciudadano
- */
+// Ruta para actualizar datos del perfil del ciudadano
+
 /**
  * @swagger
  * /ciudadano/actualizar/perfil:
- *   put:
- *     summary: Actualizar datos del perfil del ciudadano
+ *   patch:
+ *     summary: Actualizar datos del perfil del ciudadano (incluye opcionalmente capacitación y experiencia laboral)
  *     tags: [Ciudadano]
  *     security:
  *       - bearerAuth: []  # Autenticación con JWT
@@ -151,13 +137,30 @@ ciudadanoRoutes.put('/upload_cv',authMiddleware, onlyCiudadano, subirCv.single('
  *                 type: string
  *               discapacidad:
  *                 type: string
- *               cv_url:
+ *               nombre_capacitacion:
  *                 type: string
+ *                 description: Nombre de una capacitación a registrar (opcional)
+ *               nombre_empresa:
+ *                 type: string
+ *                 description: Experiencia laboral - nombre de la empresa
+ *               desde:
+ *                 type: string
+ *                 format: date
+ *                 description: Experiencia laboral - fecha de inicio
+ *               hasta:
+ *                 type: string
+ *                 format: date
+ *                 description: Experiencia laboral - fecha de fin (opcional)
+ *               comentario:
+ *                 type: string
+ *                 description: Experiencia laboral - comentarios (opcional)
  *     responses:
  *       200:
  *         description: Perfil actualizado correctamente
  *       400:
  *         description: Datos inválidos o campos faltantes
+ *       401:
+ *         description: Usuario no autenticado
  *       500:
  *         description: Error interno al actualizar el perfil
  */
@@ -166,8 +169,9 @@ ciudadanoRoutes.put('/upload_cv',authMiddleware, onlyCiudadano, subirCv.single('
 
 ciudadanoRoutes.patch('/actualizar/perfil',authMiddleware,onlyCiudadano, actualizarPerfilCiudadano);
 
+
 //============================================================================
-//end point generar cv
+//end point  para generar cv
 //============================================================================
 
 /**
@@ -212,7 +216,87 @@ ciudadanoRoutes.patch('/actualizar/perfil',authMiddleware,onlyCiudadano, actuali
 
 ciudadanoRoutes.get('/generar_cv',authMiddleware, onlyCiudadano, generarPdf);
 
+
+
+//=============================================================================
+// End point para  obtener  perfil del ciudadano
+//========================================================================
+
+/**
+ * @swagger
+ * /ciudadano/traer/perfil:
+ *   get:
+ *     summary: Obtener el perfil completo del ciudadano autenticado
+ *     tags: [Ciudadano]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Perfil completo del ciudadano obtenido correctamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 nombre:
+ *                   type: string
+ *                 apellido:
+ *                   type: string
+ *                 email:
+ *                   type: string
+ *                 dni:
+ *                   type: string
+ *                 cuil:
+ *                   type: string
+ *                 fecha_nacimiento:
+ *                   type: string
+ *                   format: date
+ *                 telefono:
+ *                   type: string
+ *                 calle:
+ *                   type: string
+ *                 numero:
+ *                   type: string
+ *                 piso:
+ *                   type: string
+ *                 dpto:
+ *                   type: string
+ *                 localidad:
+ *                   type: string
+ *                 provincia:
+ *                   type: string
+ *                 pais:
+ *                   type: string
+ *                 nivel_educativo:
+ *                   type: string
+ *                 esta_cursando_carrera:
+ *                   type: boolean
+ *                 carrera_en_curso:
+ *                   type: string
+ *                 situacion_laboral:
+ *                   type: string
+ *                 tiene_emprendimiento:
+ *                   type: string
+ *                 discapacidad:
+ *                   type: string
+ *                 foto:
+ *                   type: string
+ *                   description: URL de la imagen de perfil
+ *                 cv_url:
+ *                   type: string
+ *                   description: URL del CV adjunto
+ *       401:
+ *         description: Usuario no autenticado
+ *       404:
+ *         description: Perfil no encontrado
+ *       500:
+ *         description: Error al obtener el perfil
+ */
+
+
 ciudadanoRoutes.get('/traer/perfil', authMiddleware, onlyCiudadano, obtenerPerfilCompleto);
+
+//=====================================================================
 
 export default ciudadanoRoutes;
 

@@ -3,12 +3,12 @@ import { authMiddleware } from '../middlewares/authMiddleware.js';
 import { onlyEmpresa } from '../middlewares/onlyEmpresa.js';
 import { actualizarPerfilEmpresa, obtenerDatosEmpresa } from '../controllers/empleadorController.js';
 
-export const empleadoRoutes = express.Router();
+export const empleadorRoutes = express.Router();
 
 
-empleadoRoutes.patch('/actualizar/perfil',authMiddleware,onlyEmpresa,actualizarPerfilEmpresa);
+empleadorRoutes.patch('/actualizar/perfil',authMiddleware,onlyEmpresa,actualizarPerfilEmpresa);
 
-empleadoRoutes.get('/datos',authMiddleware,onlyEmpresa,obtenerDatosEmpresa);
+empleadorRoutes.get('/datos',authMiddleware,onlyEmpresa,obtenerDatosEmpresa);
 
 
-export default empleadoRoutes;
+export default empleadorRoutes;
