@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ProfileComponent } from '../profile/profile.component';
@@ -12,5 +12,5 @@ import { AttatchCvComponent } from '../attatch-cv/attatch-cv.component';
   styleUrl: './employee-profile.component.scss'
 })
 export class EmployeeProfileComponent {
-
+  name: string = "Juana Perez";
 }
