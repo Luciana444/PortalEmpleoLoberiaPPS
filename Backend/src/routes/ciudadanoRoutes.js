@@ -22,7 +22,7 @@ export const ciudadanoRoutes = express.Router();
  * @swagger
  * /ciudadano/upload_cv:
 
- *   post:
+ *   put:
  *     summary: Subir archivo CV (PDF) al perfil del ciudadano
  *     tags: [Ciudadano]
  *     security:
