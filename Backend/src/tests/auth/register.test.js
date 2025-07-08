@@ -3,8 +3,8 @@
 
 
 import request from 'supertest';
-import app from '../../app.js';
-import sql from '../database/db.js';
+import app from '../../../app.js';
+import sql from '../../database/db.js';
 
 //caso feliz: recibe todos los datos necesarios para registro exitoso:
 
