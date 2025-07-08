@@ -63,6 +63,24 @@ Crear un sistema de intermediación laboral que facilite la conexión entre la o
 
 ---
 
+## 📚 Documentación del Backend (JSDoc)
+
+Este proyecto incluye documentación generada automáticamente con [JSDoc](https://jsdoc.app/) para los controladores y servicios del backend.
+
+### 📄 Ver documentación
+
+La documentación está disponible en: Backend/docs/index.html
+
+### 🔍 ¿Cómo visualizarla?
+
+1. Abrir el proyecto en Visual Studio Code.
+2. Navegar hasta `Backend/docs/index.html`.
+3. Hacer clic derecho sobre el archivo y elegir **"Open with Live Server"**.
+   > O abrir directamente en el navegador con doble clic.
+
+> ⚠️ Este archivo **no es la interfaz del sistema**, sino la **documentación técnica** del código backend generada automáticamente por JSDoc.
+
+---
 
 
 > 📝 **Nota:** Este documento forma parte de un proyecto académico de formación en desarrollo de software y tiene fines educativos.
