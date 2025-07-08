@@ -6,6 +6,29 @@ import  {generarPdfUsuario}  from "../services/ciudadanoService.js";
 //================================================================
 // subir perfil
 //================================================================
+/**
+ * Controlador para subir el archivo CV en formato PDF y guardarlo en el perfil del ciudadano.
+ *
+ * @async
+ * @function subirCV
+ * @param {Object} req - Objeto de solicitud HTTP.
+ * @param {Object} req.file - Archivo enviado en la petición (espera un PDF).
+ * @param {Object} req.usuario - Usuario autenticado (del middleware auth).
+ * @param {string} req.usuario.id - ID del ciudadano autenticado.
+ * @param {Object} res - Objeto de respuesta HTTP.
+ * 
+ * @returns {JSON} Mensaje de éxito y URL donde se almacenó el CV o mensaje de error.
+ * 
+ * @throws {400} Si no se envía el archivo PDF.
+ * @throws {500} Para errores internos al subir el archivo o guardar la URL.
+ * 
+ * @description
+ * Verifica que se haya recibido un archivo PDF.  
+ * Construye la URL donde se almacenó el archivo.  
+ * Llama a la función `subirCvBD` para guardar la URL en la base de datos del usuario.  
+ * Devuelve la URL y mensaje de éxito, o error en caso de falla.
+ */
+
 
 export const subirCV = async (req, res) => {
   try {
@@ -32,6 +55,56 @@ export const subirCV = async (req, res) => {
 //===========================================================
 //actualizar perfil ciudadano
 //===========================================================
+/**
+ * Actualiza el perfil completo del ciudadano, incluyendo datos personales,
+ * capacitaciones y experiencias laborales.
+ *
+ * @async
+ * @function actualizarPerfilCiudadano
+ * @param {Object} req - Objeto de solicitud HTTP.
+ * @param {Object} req.usuario - Usuario autenticado.
+ * @param {string} req.usuario.id - ID del ciudadano autenticado.
+ * @param {Object} req.body - Datos enviados para actualizar el perfil.
+ * @param {string} [req.body.nombre] - Nombre del ciudadano.
+ * @param {string} [req.body.apellido] - Apellido del ciudadano.
+ * @param {string} [req.body.fecha_nacimiento] - Fecha de nacimiento (formato ISO).
+ * @param {string} [req.body.telefono] - Teléfono (solo números).
+ * @param {string} [req.body.email] - Email válido.
+ * @param {string} [req.body.dni] - DNI válido.
+ * @param {string} [req.body.cuil] - CUIL válido (11 dígitos).
+ * @param {string} [req.body.calle] - Calle.
+ * @param {string} [req.body.numero] - Número.
+ * @param {string} [req.body.piso] - Piso (opcional).
+ * @param {string} [req.body.dpto] - Departamento (opcional).
+ * @param {string} [req.body.localidad] - Localidad.
+ * @param {string} [req.body.provincia] - Provincia.
+ * @param {string} [req.body.pais] - País.
+ * @param {string} [req.body.nivel_educativo] - Nivel educativo alcanzado.
+ * @param {boolean} [req.body.esta_cursando_carrera] - Si está cursando carrera.
+ * @param {string} [req.body.carrera_en_curso] - Nombre de la carrera en curso.
+ * @param {string} [req.body.situacion_laboral] - Situación laboral actual.
+ * @param {string} [req.body.tiene_emprendimiento] - Información sobre emprendimiento.
+ * @param {string} [req.body.discapacidad] - Información sobre discapacidad.
+ * @param {string} [req.body.nombre_capacitacion] - Nombre de una capacitación a agregar.
+ * @param {string} [req.body.nombre_empresa] - Nombre de empresa para experiencia laboral.
+ * @param {string} [req.body.desde] - Fecha inicio experiencia laboral.
+ * @param {string} [req.body.hasta] - Fecha fin experiencia laboral (opcional).
+ * @param {string} [req.body.comentario] - Comentario para experiencia laboral (opcional).
+ * @param {Object} res - Objeto de respuesta HTTP.
+ *
+ * @returns {JSON} Mensaje de confirmación o error detallado.
+ *
+ * @throws {400} Si faltan datos o son inválidos.
+ * @throws {401} Si el usuario no está autenticado.
+ * @throws {500} Si ocurre un error interno del servidor.
+ *
+ * @description
+ * Valida y filtra los campos válidos para actualizar el perfil personal del ciudadano.
+ * Valida formatos específicos (email, fechas, teléfono, DNI, CUIL, booleanos).
+ * Permite agregar capacitaciones y experiencias laborales mediante datos en el body.
+ * Devuelve mensajes de error claros para cada caso.
+ */
+
 
 
 import { actualizarPerfil,agregarExperienciaLaboral,agregarCapacitacion } from '../services/ciudadanoService.js';
@@ -171,6 +244,52 @@ export const generarPdf = async (req, res) => {
   }
 };
 
+//========================================================
+// obtener perfil completo
+//=======================================================
+/**
+ * Obtiene el perfil completo del ciudadano autenticado.
+ *
+ * @function
+ * @async
+ * @param {Object} req - Objeto de solicitud HTTP de Express.
+ * @param {Object} req.usuario - Usuario autenticado extraído del token JWT.
+ * @param {Object} res - Objeto de respuesta HTTP de Express.
+ * @returns {void} Retorna un objeto JSON con los datos del perfil si existe.
+ *
+ * @throws {401} Si el usuario no está autenticado.
+ * @throws {404} Si no se encuentra el perfil del ciudadano.
+ * @throws {500} Si ocurre un error inesperado en el servidor.
+ */
+
+
+
+//==========================================================
+// obtener perfil completo
+//==========================================================
+/**
+ * Obtiene el perfil completo del ciudadano autenticado, incluyendo datos personales,
+ * capacitaciones y experiencias laborales.
+ *
+ * @async
+ * @function obtenerPerfilCompleto
+ * @param {Object} req - Objeto de solicitud HTTP.
+ * @param {Object} req.usuario - Usuario autenticado.
+ * @param {string} req.usuario.id - ID del ciudadano autenticado.
+ * @param {Object} res - Objeto de respuesta HTTP.
+ *
+ * @returns {JSON} Perfil completo del ciudadano o mensaje de error.
+ *
+ * @throws {401} Si el usuario no está autenticado.
+ * @throws {404} Si no se encuentra el perfil del ciudadano.
+ * @throws {500} Si ocurre un error interno del servidor.
+ *
+ * @description
+ * Valida la autenticación del usuario y llama al servicio para obtener el perfil completo.
+ * Devuelve el perfil o los errores correspondientes.
+ */
+
+
 import { getPerfilCompleto } from '../services/ciudadanoService.js';
 
 export const obtenerPerfilCompleto = async (req, res) => {
@@ -193,3 +312,5 @@ export const obtenerPerfilCompleto = async (req, res) => {
     res.status(500).json({ error: 'Error al obtener perfil' });
   }
 };
+
+//===============================================================

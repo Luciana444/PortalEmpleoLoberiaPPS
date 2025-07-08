@@ -53,6 +53,7 @@ export class HeaderComponent {
 
  onLogout() {
     this.userservice.logout();
+    this.navigateToLogin();
   }
 
 }

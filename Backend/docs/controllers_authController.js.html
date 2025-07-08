@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: controllers/authController.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: controllers/authController.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// Controlador de autenticación de usuarios.
+// Contiene funciones para registrar, iniciar y cerrar sesión, y recuperar contraseña.
+
+import {registrarUsuario, iniciarSesionUsuario} from '../services/usuarioService.js';
+
+
+import dotenv from 'dotenv';
+
+
+dotenv.config();
+
+//===============================================================
+/**
+ * Iniciar sesión
+ * Procesa la petición POST /auth/login
+ * Valida credenciales básicas y delega el inicio de sesión al service.
+ */
+//================================================================
+/**
+ * Controlador para iniciar sesión de un usuario.
+ *
+ * @async
+ * @function iniciarSesion
+ * @param {Object} req - Objeto de solicitud HTTP.
+ * @param {Object} req.body - Datos enviados en la solicitud.
+ * @param {string} req.body.email - Email del usuario que intenta iniciar sesión.
+ * @param {string} req.body.contrasena - Contraseña del usuario.
+ * @param {Object} res - Objeto de respuesta HTTP.
+ * 
+ * @returns {JSON} Respuesta con mensaje y datos del usuario autenticado o error.
+ * 
+ * @throws {400} Si falta el email o la contraseña.
+ * @throws {401} Si las credenciales son incorrectas o el usuario no existe.
+ * @throws {500} Si ocurre un error interno inesperado.
+ * 
+ * @description
+ * Valida que se reciban el email y la contraseña.  
+ * Llama al servicio `iniciarSesionUsuario` para verificar las credenciales.  
+ * Si la autenticación es exitosa, devuelve un mensaje y los datos de sesión.  
+ * En caso de error, devuelve el estado HTTP y mensaje correspondiente.
+ */
+
+
+
+export const iniciarSesion = async (req, res) => {
+  try {
+    const { email, contrasena } = req.body;
+    // Validación de campos obligatorios
+
+    if (!email || !contrasena) {
+      return res.status(400).json({ error: 'El email y password son requeridos' });
+    }
+   // Llama al service para verificar credenciales
+    const resultado = await iniciarSesionUsuario({email,contrasena});
+
+    
+    if(!resultado){
+      return res.status(500).json({message:"No se pudo iniciar sesion"});
+    }
+
+   // Devuelve datos del usuario autenticado (y token si aplica)
+  return res.json({message:'Se inicio la sesion correctamente', resultado})
+  } catch (error) {
+    // 💡 Acá capturamos los errores lanzados desde el service
+    if (error.message === 'El usuario no existe' || error.message === 'Credenciales incorrectas') {
+      return res.status(401).json({ error: error.message });
+    }
+
+    console.error('Error inesperado al iniciar sesión:', error);
+    return res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
+  
+
+//===============================================================
+ // Registro de usuario
+ //===================================================================
+/**
+ * Controlador para registrar un nuevo usuario.
+ *
+ * @async
+ * @function registrarse
+ * @param {Object} req - Objeto de solicitud HTTP.
+ * @param {Object} req.body - Datos enviados en la solicitud.
+ * @param {string} req.body.nombre - Nombre completo del usuario.
+ * @param {string} req.body.email - Correo electrónico del usuario.
+ * @param {string} req.body.contrasena - Contraseña del usuario (mínimo 8 caracteres).
+ * @param {string} req.body.tipo_usuario - Tipo de usuario ('ciudadano', 'empresa' o 'admin').
+ * @param {Object} res - Objeto de respuesta HTTP.
+ * 
+ * @returns {JSON} Respuesta con datos del usuario registrado (sin contraseña) o mensaje de error.
+ * 
+ * @throws {400} Si falta algún campo obligatorio, el email es inválido, la contraseña es muy corta o el tipo de usuario no es válido.
+ * @throws {409} Si el email ya está registrado.
+ * @throws {500} Para errores internos inesperados.
+ * 
+ * @description
+ * Valida que todos los campos estén presentes y correctos.  
+ * Verifica formato válido del email y longitud mínima de contraseña.  
+ * Comprueba que el tipo de usuario sea uno de los permitidos.  
+ * Crea un objeto nuevo de usuario con la fecha de registro actual y estado activo.  
+ * Llama al servicio `registrarUsuario` para guardar en base de datos.  
+ * Excluye la contraseña de la respuesta para seguridad.  
+ * Maneja errores específicos como email duplicado y errores generales.
+ */
+
+export const registrarse = async (req, res) => {
+  try {
+    //recibe los datos del body
+    console.log('Body recibido:', req.body);
+    const { nombre, email, contrasena, tipo_usuario } = req.body;
+
+    //verifica que esten todos los campos
+    if (!nombre || !email || !contrasena || !tipo_usuario) {
+      return res.status(400).json({ error: 'Todos los campos son obligatorios' });
+    }
+    //controla que la contraseña tenga mas de 8 caracteres
+    if (contrasena.length &lt; 8) {
+  return res.status(400).json({ error: 'La contraseña es demasiado corta (mínimo 8 caracteres)' });
+}
+
+    //controla que sea un formato de email valido
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ error: 'Email inválido' });
+    }
+
+    //controla que manden uno de los 3 tipos de usuario permitidos
+    const tiposValidos = ['ciudadano', 'empresa', 'admin'];
+    if (!tiposValidos.includes(tipo_usuario)) {
+      return res.status(400).json({ error: 'Tipo de usuario inválido' });
+    }
+
+    //crea al nuevo usuario en un objeto con todos los datos que precisa la tabla
+    const nuevoUsuario = {
+      nombre,
+      email,
+      password: contrasena,  
+      tipo_usuario,
+      fecha_registro: new Date().toISOString(),
+      estado: true
+    };
+
+    //llama a registrarUsuario del archivo usuarioService.js y le pasa el nuevo usuario
+    //que  se creo con datos validos
+    const resultado = await registrarUsuario(nuevoUsuario);
+
+    //separa la contraseña del objeto para no mandarla ya que es informacion sensible
+    const { contraseña, ...usuarioSinPassword } = resultado;
+
+    res.status(201).json(usuarioSinPassword);
+
+  } catch (error) {
+    //en caso de error muestra un mensaje en pantalla al usuario
+
+    console.error(error);
+    //captura error por email duplicado
+    if (error.message &amp;&amp; error.message.includes('ya está registrado')) {
+    return res.status(409).json({ error: error.message });
+  }
+    res.status(500).json({ error: error.message || 'Error interno' });
+  }
+};
+
+
+
+import { getUserByEmail, enviarLinkRecuperacion, actualizarContrasenaConToken } from '../services/usuarioService.js';
+
+
+//======================================================================================
+ // Enviar token de recuperación de contraseña
+ //====================================================================================
+/**
+ * Controlador para enviar un token de recuperación de contraseña al email del usuario.
+ *
+ * @async
+ * @function enviarTokenRecuperacion
+ * @param {Object} req - Objeto de solicitud HTTP.
+ * @param {Object} req.body - Datos enviados en la solicitud.
+ * @param {string} req.body.email - Email del usuario que solicita recuperación de contraseña.
+ * @param {Object} res - Objeto de respuesta HTTP.
+ * 
+ * @returns {JSON} Mensaje indicando que el link fue enviado o error correspondiente.
+ * 
+ * @throws {400} Si no se envía el email.
+ * @throws {404} Si el email no está registrado en la base de datos.
+ * @throws {500} Para errores internos inesperados.
+ * 
+ * @description
+ * Valida que se envíe el email.  
+ * Busca el usuario por email en la base de datos.  
+ * Si existe, envía un link de recuperación a ese email.  
+ * Devuelve mensaje para que el usuario revise su correo.
+ */
+
+
+//Extrae el email del body
+export const enviarTokenRecuperacion = async (req, res) => {
+  const { email } = req.body;
+
+  //verifica que el campo email no este vacio
+  if (!email) {
+    return res.status(400).json({ error: 'El email es requerido' });
+  }
+
+  try {
+    //llamo a una funcione del service para buscar al usuario por su email en la base de datos
+    const usuario = await getUserByEmail(email);
+
+    //verifico que el email exista en la base de datos
+    if (!usuario) { 
+      return res.status(404).json({ error: 'El email no está registrado' });
+    }
+
+    //llamo a una funcion del service para mandarle un correo al usuario que lo solicito
+    await enviarLinkRecuperacion(email, usuario.id);
+
+    //doy un mensaje claro para que el usuario vaya a revisar su correo
+    res.status(200).json({ message: 'Se envió un link para recuperar la contraseña' });
+  } catch (error) {
+    console.error('Error en recuperación de contraseña:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
+
+// ===============================================================
+// Resetear contraseña usando el token
+// ==============================================================
+/**
+ * Resetea la contraseña de un usuario utilizando un token de recuperación válido.
+ *
+ * @function
+ * @async
+ * @param {Object} req - Objeto de solicitud HTTP.
+ * @param {string} req.body.token - Token de recuperación enviado al email del usuario.
+ * @param {string} req.body.nuevaContrasena - Nueva contraseña que el usuario desea establecer.
+ * @param {Object} res - Objeto de respuesta HTTP.
+ * @returns {void}
+ *
+ * @throws {400} Si no se envía el token o la nueva contraseña, o si el token es inválido o expirado.
+ */
+
+
+export const resetearContrasena = async (req, res) => {
+  const { token, nuevaContrasena } = req.body;
+
+  if (!token || !nuevaContrasena) {
+    return res.status(400).json({ error: 'Token y nueva contraseña requeridos' });
+  }
+
+  try {
+    await actualizarContrasenaConToken(token, nuevaContrasena);
+    res.status(200).json({ message: 'Contraseña actualizada correctamente' });
+  } catch (error) {
+    console.error('Error al resetear contraseña:', error);
+    res.status(400).json({ error: error.message || 'Token inválido o expirado' });
+  }
+};
+
+
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#actualizarContrasenaConToken">actualizarContrasenaConToken</a></li><li><a href="global.html#actualizarPerfil">actualizarPerfil</a></li><li><a href="global.html#actualizarPerfilCiudadano">actualizarPerfilCiudadano</a></li><li><a href="global.html#actualizarPerfilEmpresa">actualizarPerfilEmpresa</a></li><li><a href="global.html#agregarCapacitacion">agregarCapacitacion</a></li><li><a href="global.html#agregarExperienciaLaboral">agregarExperienciaLaboral</a></li><li><a href="global.html#enviarEmailRecuperacion">enviarEmailRecuperacion</a></li><li><a href="global.html#enviarLinkRecuperacion">enviarLinkRecuperacion</a></li><li><a href="global.html#enviarTokenRecuperacion">enviarTokenRecuperacion</a></li><li><a href="global.html#findAllPersonas">findAllPersonas</a></li><li><a href="global.html#generarPdf">generarPdf</a></li><li><a href="global.html#generarPdfUsuario">generarPdfUsuario</a></li><li><a href="global.html#generarTokenRecuperacion">generarTokenRecuperacion</a></li><li><a href="global.html#getAllUsuarios">getAllUsuarios</a></li><li><a href="global.html#getDatosEmpresa">getDatosEmpresa</a></li><li><a href="global.html#getPerfilCompleto">getPerfilCompleto</a></li><li><a href="global.html#getUserByEmail">getUserByEmail</a></li><li><a href="global.html#getUserById">getUserById</a></li><li><a href="global.html#getUsuarioById">getUsuarioById</a></li><li><a href="global.html#iniciarSesion">iniciarSesion</a></li><li><a href="global.html#iniciarSesionUsuario">iniciarSesionUsuario</a></li><li><a href="global.html#obtenerDatosEmpresa">obtenerDatosEmpresa</a></li><li><a href="global.html#obtenerPerfilCompleto">obtenerPerfilCompleto</a></li><li><a href="global.html#registrarse">registrarse</a></li><li><a href="global.html#registrarUsuario">registrarUsuario</a></li><li><a href="global.html#resetearContrasena">resetearContrasena</a></li><li><a href="global.html#subirCV">subirCV</a></li><li><a href="global.html#subirCvBD">subirCvBD</a></li><li><a href="global.html#subirFotoPerfil">subirFotoPerfil</a></li><li><a href="global.html#transporter">transporter</a></li><li><a href="global.html#updatePerfilEmpresa">updatePerfilEmpresa</a></li><li><a href="global.html#verificarTokenRecuperacion">verificarTokenRecuperacion</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Mon Jul 07 2025 18:58:53 GMT-0300 (hora estándar de Argentina)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

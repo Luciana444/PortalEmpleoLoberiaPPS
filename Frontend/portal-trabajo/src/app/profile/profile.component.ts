@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -8,5 +10,11 @@ import { Component, Input } from '@angular/core';
 })
 export class ProfileComponent {
   @Input() name: string = "jane doe";
+  constructor(private router: Router) { }
+
+  navigateToEditProfile() {
+    this.router.navigate(['/edit-profile']);
+  }
 
 }
+

@@ -16,6 +16,29 @@ dotenv.config();
  * Valida credenciales básicas y delega el inicio de sesión al service.
  */
 //================================================================
+/**
+ * Controlador para iniciar sesión de un usuario.
+ *
+ * @async
+ * @function iniciarSesion
+ * @param {Object} req - Objeto de solicitud HTTP.
+ * @param {Object} req.body - Datos enviados en la solicitud.
+ * @param {string} req.body.email - Email del usuario que intenta iniciar sesión.
+ * @param {string} req.body.contrasena - Contraseña del usuario.
+ * @param {Object} res - Objeto de respuesta HTTP.
+ * 
+ * @returns {JSON} Respuesta con mensaje y datos del usuario autenticado o error.
+ * 
+ * @throws {400} Si falta el email o la contraseña.
+ * @throws {401} Si las credenciales son incorrectas o el usuario no existe.
+ * @throws {500} Si ocurre un error interno inesperado.
+ * 
+ * @description
+ * Valida que se reciban el email y la contraseña.  
+ * Llama al servicio `iniciarSesionUsuario` para verificar las credenciales.  
+ * Si la autenticación es exitosa, devuelve un mensaje y los datos de sesión.  
+ * En caso de error, devuelve el estado HTTP y mensaje correspondiente.
+ */
 
 
 
@@ -50,15 +73,36 @@ export const iniciarSesion = async (req, res) => {
   
 
 //===============================================================
+ // Registro de usuario
+ //===================================================================
 /**
- * Registro de usuario
- * Procesa la petición POST /auth/register
- * Valida los datos, crea un objeto de usuario y lo pasa al service.
+ * Controlador para registrar un nuevo usuario.
+ *
+ * @async
+ * @function registrarse
+ * @param {Object} req - Objeto de solicitud HTTP.
+ * @param {Object} req.body - Datos enviados en la solicitud.
+ * @param {string} req.body.nombre - Nombre completo del usuario.
+ * @param {string} req.body.email - Correo electrónico del usuario.
+ * @param {string} req.body.contrasena - Contraseña del usuario (mínimo 8 caracteres).
+ * @param {string} req.body.tipo_usuario - Tipo de usuario ('ciudadano', 'empresa' o 'admin').
+ * @param {Object} res - Objeto de respuesta HTTP.
+ * 
+ * @returns {JSON} Respuesta con datos del usuario registrado (sin contraseña) o mensaje de error.
+ * 
+ * @throws {400} Si falta algún campo obligatorio, el email es inválido, la contraseña es muy corta o el tipo de usuario no es válido.
+ * @throws {409} Si el email ya está registrado.
+ * @throws {500} Para errores internos inesperados.
+ * 
+ * @description
+ * Valida que todos los campos estén presentes y correctos.  
+ * Verifica formato válido del email y longitud mínima de contraseña.  
+ * Comprueba que el tipo de usuario sea uno de los permitidos.  
+ * Crea un objeto nuevo de usuario con la fecha de registro actual y estado activo.  
+ * Llama al servicio `registrarUsuario` para guardar en base de datos.  
+ * Excluye la contraseña de la respuesta para seguridad.  
+ * Maneja errores específicos como email duplicado y errores generales.
  */
-//===================================================================
-
-
-
 
 export const registrarse = async (req, res) => {
   try {
@@ -122,13 +166,33 @@ export const registrarse = async (req, res) => {
 
 import { getUserByEmail, enviarLinkRecuperacion, actualizarContrasenaConToken } from '../services/usuarioService.js';
 
+
 //======================================================================================
+ // Enviar token de recuperación de contraseña
+ //====================================================================================
 /**
- * Enviar token de recuperación de contraseña
- * Procesa POST /auth/recover/password
- * Verifica que el email exista y solicita al service enviar el link de recuperación.
+ * Controlador para enviar un token de recuperación de contraseña al email del usuario.
+ *
+ * @async
+ * @function enviarTokenRecuperacion
+ * @param {Object} req - Objeto de solicitud HTTP.
+ * @param {Object} req.body - Datos enviados en la solicitud.
+ * @param {string} req.body.email - Email del usuario que solicita recuperación de contraseña.
+ * @param {Object} res - Objeto de respuesta HTTP.
+ * 
+ * @returns {JSON} Mensaje indicando que el link fue enviado o error correspondiente.
+ * 
+ * @throws {400} Si no se envía el email.
+ * @throws {404} Si el email no está registrado en la base de datos.
+ * @throws {500} Para errores internos inesperados.
+ * 
+ * @description
+ * Valida que se envíe el email.  
+ * Busca el usuario por email en la base de datos.  
+ * Si existe, envía un link de recuperación a ese email.  
+ * Devuelve mensaje para que el usuario revise su correo.
  */
-//====================================================================================
+
 
 //Extrae el email del body
 export const enviarTokenRecuperacion = async (req, res) => {
@@ -159,9 +223,24 @@ export const enviarTokenRecuperacion = async (req, res) => {
   }
 };
 
-// ===================
+// ===============================================================
 // Resetear contraseña usando el token
-// ===================
+// ==============================================================
+/**
+ * Resetea la contraseña de un usuario utilizando un token de recuperación válido.
+ *
+ * @function
+ * @async
+ * @param {Object} req - Objeto de solicitud HTTP.
+ * @param {string} req.body.token - Token de recuperación enviado al email del usuario.
+ * @param {string} req.body.nuevaContrasena - Nueva contraseña que el usuario desea establecer.
+ * @param {Object} res - Objeto de respuesta HTTP.
+ * @returns {void}
+ *
+ * @throws {400} Si no se envía el token o la nueva contraseña, o si el token es inválido o expirado.
+ */
+
+
 export const resetearContrasena = async (req, res) => {
   const { token, nuevaContrasena } = req.body;
 

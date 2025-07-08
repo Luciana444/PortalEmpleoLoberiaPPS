@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: controllers/ciudadanoController.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: controllers/ciudadanoController.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+// Importamos la lógica de negocio desde el servicio correspondiente
+import { subirCvBD } from "../services/ciudadanoService.js";
+import  {generarPdfUsuario}  from "../services/ciudadanoService.js";
+
+//================================================================
+// subir perfil
+//================================================================
+/**
+ * Controlador para subir el archivo CV en formato PDF y guardarlo en el perfil del ciudadano.
+ *
+ * @async
+ * @function subirCV
+ * @param {Object} req - Objeto de solicitud HTTP.
+ * @param {Object} req.file - Archivo enviado en la petición (espera un PDF).
+ * @param {Object} req.usuario - Usuario autenticado (del middleware auth).
+ * @param {string} req.usuario.id - ID del ciudadano autenticado.
+ * @param {Object} res - Objeto de respuesta HTTP.
+ * 
+ * @returns {JSON} Mensaje de éxito y URL donde se almacenó el CV o mensaje de error.
+ * 
+ * @throws {400} Si no se envía el archivo PDF.
+ * @throws {500} Para errores internos al subir el archivo o guardar la URL.
+ * 
+ * @description
+ * Verifica que se haya recibido un archivo PDF.  
+ * Construye la URL donde se almacenó el archivo.  
+ * Llama a la función `subirCvBD` para guardar la URL en la base de datos del usuario.  
+ * Devuelve la URL y mensaje de éxito, o error en caso de falla.
+ */
+
+
+export const subirCV = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: 'Falta el archivo CV en formato PDF' });
+    }
+    const url_cv = `/uploads/cv/${req.file.filename}`;
+    console.log(req.file.filename);
+ // Guardamos la URL del CV en la base de datos del ciudadano
+    await subirCvBD(req.usuario.id,url_cv);
+
+    return res.status(200).json({
+      mensaje: 'CV subido correctamente',
+      url: url_cv
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Error al subir el CV' });
+  }
+};
+
+
+
+//===========================================================
+//actualizar perfil ciudadano
+//===========================================================
+/**
+ * Actualiza el perfil completo del ciudadano, incluyendo datos personales,
+ * capacitaciones y experiencias laborales.
+ *
+ * @async
+ * @function actualizarPerfilCiudadano
+ * @param {Object} req - Objeto de solicitud HTTP.
+ * @param {Object} req.usuario - Usuario autenticado.
+ * @param {string} req.usuario.id - ID del ciudadano autenticado.
+ * @param {Object} req.body - Datos enviados para actualizar el perfil.
+ * @param {string} [req.body.nombre] - Nombre del ciudadano.
+ * @param {string} [req.body.apellido] - Apellido del ciudadano.
+ * @param {string} [req.body.fecha_nacimiento] - Fecha de nacimiento (formato ISO).
+ * @param {string} [req.body.telefono] - Teléfono (solo números).
+ * @param {string} [req.body.email] - Email válido.
+ * @param {string} [req.body.dni] - DNI válido.
+ * @param {string} [req.body.cuil] - CUIL válido (11 dígitos).
+ * @param {string} [req.body.calle] - Calle.
+ * @param {string} [req.body.numero] - Número.
+ * @param {string} [req.body.piso] - Piso (opcional).
+ * @param {string} [req.body.dpto] - Departamento (opcional).
+ * @param {string} [req.body.localidad] - Localidad.
+ * @param {string} [req.body.provincia] - Provincia.
+ * @param {string} [req.body.pais] - País.
+ * @param {string} [req.body.nivel_educativo] - Nivel educativo alcanzado.
+ * @param {boolean} [req.body.esta_cursando_carrera] - Si está cursando carrera.
+ * @param {string} [req.body.carrera_en_curso] - Nombre de la carrera en curso.
+ * @param {string} [req.body.situacion_laboral] - Situación laboral actual.
+ * @param {string} [req.body.tiene_emprendimiento] - Información sobre emprendimiento.
+ * @param {string} [req.body.discapacidad] - Información sobre discapacidad.
+ * @param {string} [req.body.nombre_capacitacion] - Nombre de una capacitación a agregar.
+ * @param {string} [req.body.nombre_empresa] - Nombre de empresa para experiencia laboral.
+ * @param {string} [req.body.desde] - Fecha inicio experiencia laboral.
+ * @param {string} [req.body.hasta] - Fecha fin experiencia laboral (opcional).
+ * @param {string} [req.body.comentario] - Comentario para experiencia laboral (opcional).
+ * @param {Object} res - Objeto de respuesta HTTP.
+ *
+ * @returns {JSON} Mensaje de confirmación o error detallado.
+ *
+ * @throws {400} Si faltan datos o son inválidos.
+ * @throws {401} Si el usuario no está autenticado.
+ * @throws {500} Si ocurre un error interno del servidor.
+ *
+ * @description
+ * Valida y filtra los campos válidos para actualizar el perfil personal del ciudadano.
+ * Valida formatos específicos (email, fechas, teléfono, DNI, CUIL, booleanos).
+ * Permite agregar capacitaciones y experiencias laborales mediante datos en el body.
+ * Devuelve mensajes de error claros para cada caso.
+ */
+
+
+
+import { actualizarPerfil,agregarExperienciaLaboral,agregarCapacitacion } from '../services/ciudadanoService.js';
+
+export const actualizarPerfilCiudadano = async (req, res) => {
+  try {
+    // Tomamos el ID del usuario autenticado, o desde el body si se permite
+    const id_ciudadano = req.usuario?.id;
+
+    if (!id_ciudadano) {
+      return res.status(401).json({ error: 'Usuario no autenticado' });
+    }
+
+    // Campos válidos que se permiten actualizar
+    const camposValidos = [
+      'nombre', 'apellido', 'fecha_nacimiento', 'telefono', 'email', 'dni', 'cuil',
+      'calle', 'numero', 'piso', 'dpto', 'localidad', 'provincia', 'pais',
+      'nivel_educativo', 'esta_cursando_carrera', 'carrera_en_curso', 'situacion_laboral',
+      'tiene_emprendimiento', 'discapacidad'
+    ];
+
+    // Filtramos los campos que efectivamente se están enviando
+    const actualizaciones = {};
+    for (const campo of camposValidos) {
+      if (campo in req.body) actualizaciones[campo] = req.body[campo];
+    }
+
+    // Si no hay campos para actualizar en perfiles_ciudadanos ni experiencia ni capacitacion, error
+        if (
+      Object.keys(actualizaciones).length === 0 &amp;&amp;
+      !req.body.nombre_capacitacion &amp;&amp;
+      !req.body.nombre_empresa &amp;&amp; 
+      !req.body.desde &amp;&amp; 
+      !req.body.hasta &amp;&amp; 
+      !req.body.comentario
+    ) {
+      return res.status(400).json({ error: 'No se enviaron datos para actualizar' });
+    }
+
+    // validaciones básicas por campo
+    if ('fecha_nacimiento' in actualizaciones &amp;&amp; isNaN(Date.parse(actualizaciones.fecha_nacimiento))) {
+      return res.status(400).json({ error: 'Fecha de nacimiento inválida' });
+    }
+    if ('telefono' in actualizaciones &amp;&amp; !/^\d{6,20}$/.test(actualizaciones.telefono)) {
+      return res.status(400).json({ error: 'Teléfono inválido (solo números)' });
+    }
+    if ('dni' in actualizaciones &amp;&amp; !/^\d{6,10}$/.test(actualizaciones.dni)) {
+      return res.status(400).json({ error: 'DNI inválido' });
+    }
+    if ('cuil' in actualizaciones &amp;&amp; !/^\d{11}$/.test(actualizaciones.cuil)) {
+      return res.status(400).json({ error: 'CUIL inválido (11 dígitos)' });
+    }
+    if ('email' in actualizaciones &amp;&amp; !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(actualizaciones.email)) {
+      return res.status(400).json({ error: 'Email inválido' });
+    }
+    if ('esta_cursando_carrera' in actualizaciones &amp;&amp; typeof actualizaciones.esta_cursando_carrera !== 'boolean') {
+      return res.status(400).json({ error: 'El campo esta_cursando_carrera debe ser true o false' });
+    }
+
+    // Si hay campos válidos para actualizar, llamamos al service
+    if (Object.keys(actualizaciones).length > 0) {
+      await actualizarPerfil(id_ciudadano, actualizaciones);
+    }
+
+    // Capacitación: si viene nombre_capacitacion directamente en el body
+    if (req.body.nombre_capacitacion) {
+      const nombreCap = req.body.nombre_capacitacion;
+
+      if (typeof nombreCap !== 'string' || nombreCap.trim() === '') {
+        return res.status(400).json({ error: 'Nombre de capacitación inválido' });
+      }
+
+      await agregarCapacitacion(id_ciudadano, nombreCap.trim());
+    }
+
+    // Experiencia laboral: si vienen los campos sueltos en el body
+    const { nombre_empresa, desde, hasta, comentario } = req.body;
+
+    if (nombre_empresa || desde || hasta || comentario) {
+      if (!nombre_empresa || typeof nombre_empresa !== 'string') {
+        return res.status(400).json({ error: 'Nombre de empresa inválido' });
+      }
+
+      if (!desde || isNaN(Date.parse(desde))) {
+        return res.status(400).json({ error: 'Fecha "desde" inválida' });
+      }
+
+      if (hasta &amp;&amp; isNaN(Date.parse(hasta))) {
+        return res.status(400).json({ error: 'Fecha "hasta" inválida' });
+      }
+
+      if (hasta &amp;&amp; new Date(hasta) &lt; new Date(desde)) {
+        return res.status(400).json({ error: 'La fecha "hasta" no puede ser anterior a "desde"' });
+      }
+
+      await agregarExperienciaLaboral(id_ciudadano, { nombre_empresa, desde, hasta, comentario });
+    }
+
+    // Respuesta exitosa
+    res.json({ message: 'Perfil actualizado correctamente' });
+
+  } catch (error) {
+    console.error('Error actualizando perfil:', error);
+    res.status(500).json({ error: 'Error al actualizar el perfil' });
+  }
+};
+
+
+
+//====================================================================
+// generar pdf
+//====================================================================
+
+/**
+ * Genera un PDF con la información del CV del usuario autenticado y lo envía en la respuesta.
+ * 
+ * @param {Request} req - Objeto de la solicitud HTTP, se espera que contenga `user.id` con el ID del usuario autenticado.
+ * @param {Response} res - Objeto de la respuesta HTTP para enviar el PDF o un mensaje de error.
+ * 
+ * @returns {Response} - Envía un PDF o un JSON con el error correspondiente.
+ */
+
+export const generarPdf = async (req, res) => {
+  try {
+    const id = req.usuario.id;
+
+    if (!id) {
+      // Si no hay id en el usuario autenticado, se devuelve error 404
+      return res.status(404).json({ error: 'Falta el id del usuario' });
+    }
+
+    // Llama a la función que genera el PDF y lo envía en la respuesta
+      await generarPdfUsuario(id, res);
+  } catch (error) {
+     // En caso de error, responde con error 500
+    return res.status(500).json({ error: 'Error al crear pdf' });
+  }
+};
+
+//========================================================
+// obtener perfil completo
+//=======================================================
+/**
+ * Obtiene el perfil completo del ciudadano autenticado.
+ *
+ * @function
+ * @async
+ * @param {Object} req - Objeto de solicitud HTTP de Express.
+ * @param {Object} req.usuario - Usuario autenticado extraído del token JWT.
+ * @param {Object} res - Objeto de respuesta HTTP de Express.
+ * @returns {void} Retorna un objeto JSON con los datos del perfil si existe.
+ *
+ * @throws {401} Si el usuario no está autenticado.
+ * @throws {404} Si no se encuentra el perfil del ciudadano.
+ * @throws {500} Si ocurre un error inesperado en el servidor.
+ */
+
+
+
+//==========================================================
+// obtener perfil completo
+//==========================================================
+/**
+ * Obtiene el perfil completo del ciudadano autenticado, incluyendo datos personales,
+ * capacitaciones y experiencias laborales.
+ *
+ * @async
+ * @function obtenerPerfilCompleto
+ * @param {Object} req - Objeto de solicitud HTTP.
+ * @param {Object} req.usuario - Usuario autenticado.
+ * @param {string} req.usuario.id - ID del ciudadano autenticado.
+ * @param {Object} res - Objeto de respuesta HTTP.
+ *
+ * @returns {JSON} Perfil completo del ciudadano o mensaje de error.
+ *
+ * @throws {401} Si el usuario no está autenticado.
+ * @throws {404} Si no se encuentra el perfil del ciudadano.
+ * @throws {500} Si ocurre un error interno del servidor.
+ *
+ * @description
+ * Valida la autenticación del usuario y llama al servicio para obtener el perfil completo.
+ * Devuelve el perfil o los errores correspondientes.
+ */
+
+
+import { getPerfilCompleto } from '../services/ciudadanoService.js';
+
+export const obtenerPerfilCompleto = async (req, res) => {
+  try {
+    const id_ciudadano = req.usuario?.id;
+
+    if (!id_ciudadano) {
+      return res.status(401).json({ error: 'Usuario no autenticado' });
+    }
+
+    const perfil = await getPerfilCompleto(id_ciudadano);
+
+    if (!perfil) {
+      return res.status(404).json({ error: 'Perfil no encontrado' });
+    }
+
+    res.json(perfil);
+  } catch (error) {
+    console.error('Error al obtener perfil completo:', error);
+    res.status(500).json({ error: 'Error al obtener perfil' });
+  }
+};
+
+//===============================================================
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#actualizarContrasenaConToken">actualizarContrasenaConToken</a></li><li><a href="global.html#actualizarPerfil">actualizarPerfil</a></li><li><a href="global.html#actualizarPerfilCiudadano">actualizarPerfilCiudadano</a></li><li><a href="global.html#actualizarPerfilEmpresa">actualizarPerfilEmpresa</a></li><li><a href="global.html#agregarCapacitacion">agregarCapacitacion</a></li><li><a href="global.html#agregarExperienciaLaboral">agregarExperienciaLaboral</a></li><li><a href="global.html#enviarEmailRecuperacion">enviarEmailRecuperacion</a></li><li><a href="global.html#enviarLinkRecuperacion">enviarLinkRecuperacion</a></li><li><a href="global.html#enviarTokenRecuperacion">enviarTokenRecuperacion</a></li><li><a href="global.html#findAllPersonas">findAllPersonas</a></li><li><a href="global.html#generarPdf">generarPdf</a></li><li><a href="global.html#generarPdfUsuario">generarPdfUsuario</a></li><li><a href="global.html#generarTokenRecuperacion">generarTokenRecuperacion</a></li><li><a href="global.html#getAllUsuarios">getAllUsuarios</a></li><li><a href="global.html#getDatosEmpresa">getDatosEmpresa</a></li><li><a href="global.html#getPerfilCompleto">getPerfilCompleto</a></li><li><a href="global.html#getUserByEmail">getUserByEmail</a></li><li><a href="global.html#getUserById">getUserById</a></li><li><a href="global.html#getUsuarioById">getUsuarioById</a></li><li><a href="global.html#iniciarSesion">iniciarSesion</a></li><li><a href="global.html#iniciarSesionUsuario">iniciarSesionUsuario</a></li><li><a href="global.html#obtenerDatosEmpresa">obtenerDatosEmpresa</a></li><li><a href="global.html#obtenerPerfilCompleto">obtenerPerfilCompleto</a></li><li><a href="global.html#registrarse">registrarse</a></li><li><a href="global.html#registrarUsuario">registrarUsuario</a></li><li><a href="global.html#resetearContrasena">resetearContrasena</a></li><li><a href="global.html#subirCV">subirCV</a></li><li><a href="global.html#subirCvBD">subirCvBD</a></li><li><a href="global.html#subirFotoPerfil">subirFotoPerfil</a></li><li><a href="global.html#transporter">transporter</a></li><li><a href="global.html#updatePerfilEmpresa">updatePerfilEmpresa</a></li><li><a href="global.html#verificarTokenRecuperacion">verificarTokenRecuperacion</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Mon Jul 07 2025 18:58:53 GMT-0300 (hora estándar de Argentina)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

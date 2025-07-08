@@ -3,10 +3,23 @@
 
 import { findAllPersonas, getUserById} from "../services/usuarioService.js"; // Servicio que consulta todos los usuarios
 
+//=================================================0
+// get usuario
+//===========================
 /**
- * Controlador que maneja la petición GET /usuario
- * Llama al servicio que recupera todos los usuarios desde la base de datos
- * y devuelve un array en formato JSON como respuesta.
+ * Obtiene la lista completa de usuarios registrados en el sistema.
+ *
+ * @async
+ * @function getAllUsuarios
+ * @param {Object} req - Objeto de solicitud HTTP.
+ * @param {Object} res - Objeto de respuesta HTTP.
+ *
+ * @returns {JSON[]} Arreglo con los datos de todos los usuarios.
+ *
+ * @throws {500} En caso de error interno del servidor (se registra en consola).
+ *
+ * @description
+ * Llama al servicio que obtiene todos los usuarios y devuelve la lista con status 200.
  */
 
 export const getAllUsuarios = async (req, res) => {
@@ -23,6 +36,20 @@ export const getAllUsuarios = async (req, res) => {
     }
 }
 
+//=====================================================
+// Get usuario por id
+//=====================================================
+/**
+ * Obtiene un usuario por su ID desde la base de datos.
+ *
+ * @async
+ * @function getUsuarioById
+ * @param {string} id - ID del usuario a buscar.
+ * @returns {Object|undefined} Objeto con los datos del usuario si se encuentra, o undefined si ocurre un error.
+ *
+ * @throws {Error} Si ocurre un error durante la consulta, se registra en consola.
+ */
+
 export const getUsuarioById = async(id)=>{
   try {
     const usuario = await getUserById(id);
@@ -32,9 +59,27 @@ export const getUsuarioById = async(id)=>{
   }
 }
 
+
 //==================================================
 //end point para subir una foto al perfil de usuario, ya sea ciudadano o empresa
 //=============================================
+/**
+ * Sube y guarda la foto de perfil del usuario autenticado.
+ * 
+ * - Verifica que se haya enviado un archivo.
+ * - Extrae el ID y tipo de usuario desde el token.
+ * - Guarda la foto en el servidor y actualiza la URL en la base de datos.
+ * - Si ocurre un error, elimina el archivo temporalmente cargado.
+ * 
+ * @async
+ * @function subirFotoPerfil
+ * @param {Object} req - Objeto de solicitud (request) de Express.
+ * @param {Object} req.file - Archivo de imagen recibido desde el formulario (campo 'foto').
+ * @param {Object} req.usuario - Información del usuario autenticado (incluye `id` y `tipo_usuario`).
+ * @param {Object} res - Objeto de respuesta (response) de Express.
+ * 
+ * @returns {Object} JSON con mensaje y URL si se sube correctamente, o error en caso de fallo.
+ */
 
 
 

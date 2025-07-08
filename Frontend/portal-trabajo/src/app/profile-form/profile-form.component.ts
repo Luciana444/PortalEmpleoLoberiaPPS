@@ -41,7 +41,7 @@ export class ProfileFormComponent implements OnInit {
 
     constructor(private router: Router, private fb: FormBuilder, private userservice: UserService, private toastr: ToastrService) {
         this.profile = this.fb.group({
-            userId: [''],
+            //userId: [''],
             nombre: ['', Validators.required],
             apellido: ['', Validators.required],
             fecha_nacimiento: ['', Validators.required],
@@ -59,11 +59,11 @@ export class ProfileFormComponent implements OnInit {
             nivel_educativo: ['', Validators.required],
             esta_cursando_carrera: ['', Validators.required],
             carrera_en_curso: [''],
-            cursos: [''],
+            //cursos: [''],
             situacion_laboral: ['', Validators.required],
             tiene_emprendimiento: [''],
             discapacidad: ['', Validators.required],
-            cv: ['']
+            cv_url: ['']
         });
     }
 
@@ -74,7 +74,7 @@ export class ProfileFormComponent implements OnInit {
 
     editProfile() {
         if (this.profile.invalid) return;
-        this.profile.value.userId = this.getUserId();
+        //this.profile.value.userId = this.getUserId();
         this.userservice.editProfileEmployee(JSON.stringify(this.profile.value)).subscribe({
             next: (response) => {
                 if (response.status === 200) {
