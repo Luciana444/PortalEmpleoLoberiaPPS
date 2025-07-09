@@ -138,10 +138,9 @@ export const crearOfertaLaboral = async (req,res)=>{
         })
     }
 
-    const id = await sql`SELECT id FROM empresas WHERE id_usuario = ${id_empresa}`;
 
 
-    await crearOferta(id[0].id, req.body);
+    await crearOferta(id_empresa, req.body);
 
     
     res.status(200).json({ message: 'Oferta creada correctamente' });
