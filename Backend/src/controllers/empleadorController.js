@@ -91,10 +91,15 @@ export const obtenerDatosEmpresa = async (req,res)=>{
 export const obtenerOfertasEmpresa = async (req, res) => {
   try {
     const idEmpresa = req.usuario?.id;
-    const estadoPublicacion = req.query.estado_publicacion; // puede venir como "aprobada", etc.
+    const estadoPublicacion = req.query.estado_publicacion; 
 
     if (!idEmpresa) {
       return res.status(401).json({ error: 'Empresa no autenticada' });
+    }
+
+    const valoresPermitidos = ['pendiente', 'aprobada', 'rechazada'];
+    if (estadoPublicacion && !valoresPermitidos.includes(estadoPublicacion)) {
+      return res.status(400).json({ error: 'Estado de publicación no válido' });
     }
 
     const ofertas = await obtenerOfertasPorEmpresa(idEmpresa, estadoPublicacion);
