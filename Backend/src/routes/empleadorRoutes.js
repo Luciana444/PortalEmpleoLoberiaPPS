@@ -1,7 +1,7 @@
 import express from 'express';
 import { authMiddleware } from '../middlewares/authMiddleware.js';
 import { onlyEmpresa } from '../middlewares/onlyEmpresa.js';
-import { actualizarPerfilEmpresa, obtenerDatosEmpresa } from '../controllers/empleadorController.js';
+import { actualizarPerfilEmpresa, obtenerDatosEmpresa,obtenerOfertasEmpresa,traerOfertasActivas } from '../controllers/empleadorController.js';
 
 export const empleadorRoutes = express.Router();
 
@@ -161,5 +161,8 @@ empleadorRoutes.patch('/actualizar/perfil',authMiddleware,onlyEmpresa,actualizar
 
 empleadorRoutes.get('/datos',authMiddleware,onlyEmpresa,obtenerDatosEmpresa);
 
+empleadorRoutes.get('/traer/ofertas', authMiddleware,onlyEmpresa,obtenerOfertasEmpresa);
+
+empleadorRoutes.get('/ofertas/activas', traerOfertasActivas);
 
 export default empleadorRoutes;

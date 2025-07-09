@@ -1,4 +1,4 @@
-import { getDatosEmpresa, updatePerfilEmpresa } from "../services/empleadorService.js";
+import { getDatosEmpresa, updatePerfilEmpresa, obtenerOfertasPorEmpresa, obtenerOfertasActivas } from "../services/empleadorService.js";
 import { empresaValidation } from "../validations/empresaValidation.js";
 
 
@@ -85,5 +85,35 @@ export const obtenerDatosEmpresa = async (req,res)=>{
     res.status(500).json({error:'Error al obtener los datos de la empresa'});
   }
 }
+
+
+export const obtenerOfertasEmpresa = async (req, res) => {
+  try {
+    const idEmpresa = req.usuario?.id;
+    const estadoPublicacion = req.query.estado_publicacion; // puede venir como "aprobada", etc.
+
+    if (!idEmpresa) {
+      return res.status(401).json({ error: 'Empresa no autenticada' });
+    }
+
+    const ofertas = await obtenerOfertasPorEmpresa(idEmpresa, estadoPublicacion);
+    res.json(ofertas);
+  } catch (error) {
+    console.error('Error al obtener ofertas:', error);
+    res.status(500).json({ error: 'Error interno al obtener ofertas' });
+  }
+};
+
+
+
+export const traerOfertasActivas = async (req, res) => {
+  try {
+    const ofertas = await obtenerOfertasActivas();
+    res.json(ofertas);
+  } catch (error) {
+    console.error('Error al obtener ofertas activas:', error);
+    res.status(500).json({ error: 'Error interno al obtener ofertas activas' });
+  }
+};
 
 

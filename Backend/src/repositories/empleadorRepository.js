@@ -62,3 +62,44 @@ export const getDatosEmpresaById = async(id_usuario)=>{
     const resultado = await sql`SELECT * FROM empresas WHERE id_usuario = ${id_usuario}`;
     return resultado[0];
 };
+
+
+export const getOfertasByEmpresaId = async (idEmpresa, estadoPublicacion) => {
+  if (estadoPublicacion) {
+    return await sql`
+      SELECT 
+        id, puesto_requerido, descripcion, nivel_educativo_requerido, experiencia_requerida, 
+        otros_requisitos, lugar_trabajo, modalidad, tipo_contrato, 
+        fecha_publicacion, fecha_cierre, estado, estado_publicacion, localidad_del_puesto
+      FROM ofertas_laborales
+      WHERE id_empresa = ${idEmpresa} AND estado_publicacion = ${estadoPublicacion}
+      ORDER BY fecha_publicacion DESC
+    `;
+  }
+
+  // sin filtro (todas las ofertas de esa empresa)
+  return await sql`
+    SELECT 
+      id, puesto_requerido, descripcion, nivel_educativo_requerido, experiencia_requerida, 
+      otros_requisitos, lugar_trabajo, modalidad, tipo_contrato, 
+      fecha_publicacion, fecha_cierre, estado, estado_publicacion, localidad_del_puesto
+    FROM ofertas_laborales
+    WHERE id_empresa = ${idEmpresa}
+    ORDER BY fecha_publicacion DESC
+  `;
+};
+
+
+
+export const getOfertasActivas = async () => {
+  return await sql`
+    SELECT 
+      id, id_empresa, puesto_requerido, descripcion, nivel_educativo_requerido,
+      experiencia_requerida, otros_requisitos, lugar_trabajo, modalidad,
+      tipo_contrato, fecha_publicacion, fecha_cierre, estado, estado_publicacion,
+      localidad_del_puesto
+    FROM ofertas_laborales
+    WHERE estado = 'activa' AND estado_publicacion = 'aprobada'
+    ORDER BY fecha_publicacion DESC
+  `;
+};
