@@ -1,6 +1,7 @@
-import { getDatosEmpresa, updatePerfilEmpresa, obtenerOfertasPorEmpresa, obtenerOfertasActivas } from "../services/empleadorService.js";
+import { getDatosEmpresa, updatePerfilEmpresa, obtenerOfertasPorEmpresa, obtenerOfertasActivas, crearOferta } from "../services/empleadorService.js";
 import { empresaValidation } from "../validations/empresaValidation.js";
-
+import { crearOfertaSchema } from "../validations/ofertaValidation.js";
+import sql from "../database/db.js";
 
 //=================================================================
 // end point actializar perfil de la empresa
@@ -117,3 +118,30 @@ export const traerOfertasActivas = async (req, res) => {
 };
 
 
+export const crearOfertaLaboral = async (req,res)=>{
+  try {
+    const id_empresa = req.usuario.id;
+    if(!id_empresa){
+      return res.status(404).json({message:'Falta el id de la empresa'})
+    }
+
+    const {error} = crearOfertaSchema.validate(req.body, {abortEarly:false});
+
+    if(error){
+      return res.status(400).json({
+            errores:error.details.map(d=>d.message)
+        })
+    }
+
+    const id = await sql`SELECT id FROM empresas WHERE id_usuario = ${id_empresa}`;
+
+
+    await crearOferta(id[0].id, req.body);
+
+    
+    res.status(200).json({ message: 'Oferta creada correctamente' });
+
+  } catch (error) {
+    res.status(500).json({message:'Error al crear oferta'})
+  }
+};

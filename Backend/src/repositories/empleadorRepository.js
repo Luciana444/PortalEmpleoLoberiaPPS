@@ -103,3 +103,24 @@ export const getOfertasActivas = async () => {
     ORDER BY fecha_publicacion DESC
   `;
 };
+
+
+export const crearOfertaNueva = async (id_empresa, datosOferta)=>{
+    const {
+        puesto_requerido, descripcion, nivel_educativo_requerido, experiencia_requerida, otros_requisitos,
+        lugar_trabajo, modalidad, tipo_contrato, fecha_cierre, localidad_del_puesto
+     } = datosOferta;
+
+  const result = await sql`
+    INSERT INTO ofertas_laborales (
+      id_empresa, puesto_requerido, descripcion, nivel_educativo_requerido, experiencia_requerida,
+      otros_requisitos, lugar_trabajo, modalidad, tipo_contrato, fecha_cierre, localidad_del_puesto)
+    VALUES (
+      ${id_empresa}, ${puesto_requerido}, ${descripcion}, ${nivel_educativo_requerido}, ${experiencia_requerida??null},
+      ${otros_requisitos ?? null}, ${lugar_trabajo}, ${modalidad}, ${tipo_contrato??null}, ${fecha_cierre??null},
+      ${localidad_del_puesto??null})
+    RETURNING *;
+  `;
+  return result[0];
+
+}
