@@ -22,7 +22,6 @@ button{
     cursor: pointer;
 }
 
-
 i{
     color: $green;
 }
@@ -35,6 +34,7 @@ i{
     margin-left: auto;
     margin-right: auto;
     width: fit-content;
+    max-width: 100vh;
     padding: 0.5rem;
 }
 
@@ -47,6 +47,7 @@ i{
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 30rem;
+    max-width: 90vh;
     height: fit-content;
     padding: 1.5rem;
     transition: box-shadow 0.2s;
@@ -213,4 +214,9 @@ mat-paginator {
         margin-top: 0.5rem;
         align-items: start;
     }
+
+    
+.filter {
+    padding-right: 1rem;
+}
 }
