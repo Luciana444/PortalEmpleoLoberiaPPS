@@ -1,98 +1,103 @@
-<form [formGroup]="workExperience" (ngSubmit)="editWorkExperience()">
+<app-header></app-header>
+<h3>Experiencia laboral</h3>
+<div class= "form-container">
+    <form [formGroup]="workExperience" (ngSubmit)="editWorkExperience()">
 
-    <div>
-        <!-- Campo: Situación laboral -->
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Situación laboral actual</mat-label>
-            <mat-select formControlName="situacion_laboral">
-                <mat-option value="desempleado">Desempleado</mat-option>
-                <mat-option value="empleado">Empleado en relación de dependencia</mat-option>
-                <mat-option value="independiente">Trabajador independiente / Emprendedor</mat-option>
-                <mat-option value="cambio">Busca cambiar de empleo</mat-option>
-                <mat-option value="otro">Otro</mat-option>
-            </mat-select>
-        </mat-form-field>
-
-        <!-- Campo: ¿Tiene un emprendimiento propio? -->
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>¿Tiene un emprendimiento propio?</mat-label>
-            <input matInput formControlName="tiene_emprendimiento" />
-        </mat-form-field>
-    </div>
-    <!-- Experiencia -->
-
-    <div>
         <div>
-            <button type="button" matFab extended (click)="addNewCardExperience = !addNewCardExperience">
-                <mat-icon>add</mat-icon>
-                Agregar nueva experiencia
-            </button>
+            <!-- Campo: Situación laboral -->
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Situación laboral actual</mat-label>
+                <mat-select formControlName="situacion_laboral">
+                    <mat-option value="desempleado">Desempleado</mat-option>
+                    <mat-option value="empleado">Empleado en relación de dependencia</mat-option>
+                    <mat-option value="independiente">Trabajador independiente / Emprendedor</mat-option>
+                    <mat-option value="cambio">Busca cambiar de empleo</mat-option>
+                    <mat-option value="otro">Otro</mat-option>
+                </mat-select>
+            </mat-form-field>
 
+            <!-- Campo: ¿Tiene un emprendimiento propio? -->
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>¿Tiene un emprendimiento propio?</mat-label>
+                <input matInput formControlName="tiene_emprendimiento" />
+            </mat-form-field>
         </div>
-        <div *ngIf="addNewCardExperience" class= "profile">
-            <div>
-                <!-- Campo: Nombre empresa -->
-                <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>Empresa</mat-label>
-                    <input matInput formControlName="nombre_empresa" />
-                    <mat-error *ngIf="workExperience.get('nombre_empresa')?.hasError('required')">
-                        Este campo es obligatorio
-                    </mat-error>
-                </mat-form-field>
-            </div>
-            <div>
-                <!-- Campo: Desde Hasta -->
-                <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>Desde</mat-label>
-                    <input matInput [matDatepicker]="pickerDesde" formControlName="desde" />
-                    <mat-datepicker-toggle matSuffix [for]="pickerDesde"></mat-datepicker-toggle>
-                    <mat-datepicker #pickerDesde></mat-datepicker>
-                    <mat-error *ngIf="workExperience.get('desde')?.hasError('required')">
-                        Este campo es obligatorio
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>Hasta</mat-label>
-                    <input matInput [matDatepicker]="pickerHasta" formControlName="hasta" />
-                    <mat-datepicker-toggle matSuffix [for]="pickerHasta"></mat-datepicker-toggle>
-                    <mat-datepicker #pickerHasta></mat-datepicker>
-                    <mat-error *ngIf="workExperience.get('hasta')?.hasError('required')">
-                        Este campo es obligatorio
-                    </mat-error>
-                </mat-form-field>
-            </div>
-            <div>
-                <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>Comentario</mat-label>
-                    <textarea matInput formControlName="comentario" rows="4" cdkTextareaAutosize required></textarea>
-                    <mat-error *ngIf="workExperience.get('comentario')?.hasError('required')">
-                        El comentario es obligatorio.
-                    </mat-error>
-                    <mat-error *ngIf="workExperience.get('comentario')?.hasError('minlength')">
-                        Debe tener al menos 10 caracteres.
-                    </mat-error>
-                </mat-form-field>
-            </div>
-            <button type="button" (click)="addWorkExperience()">
-                Guardar experiencia
-            </button>
-        </div>
-    </div>
-    <button type="submit">
-        Guardar cambios
-    </button>
-</form>
+        <!-- Experiencia -->
 
+        <div>
+            <div class="experience-div">
+                <button class="experience-btn"  type="button" (click)="addNewCardExperience = !addNewCardExperience">
+                    <i class="fa-solid fa-plus"></i>
+                    Agregar nueva experiencia
+                </button>
+
+            </div>
+            <div *ngIf="addNewCardExperience" class="profile">
+                <div>
+                    <!-- Campo: Nombre empresa -->
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Empresa</mat-label>
+                        <input matInput formControlName="nombre_empresa" />
+                        <mat-error *ngIf="workExperience.get('nombre_empresa')?.hasError('required')">
+                            Este campo es obligatorio
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <!-- Campo: Desde Hasta -->
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Desde</mat-label>
+                        <input matInput [matDatepicker]="pickerDesde" formControlName="desde" />
+                        <mat-datepicker-toggle matSuffix [for]="pickerDesde"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerDesde></mat-datepicker>
+                        <mat-error *ngIf="workExperience.get('desde')?.hasError('required')">
+                            Este campo es obligatorio
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Hasta</mat-label>
+                        <input matInput [matDatepicker]="pickerHasta" formControlName="hasta" />
+                        <mat-datepicker-toggle matSuffix [for]="pickerHasta"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerHasta></mat-datepicker>
+                        <mat-error *ngIf="workExperience.get('hasta')?.hasError('required')">
+                            Este campo es obligatorio
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Comentario</mat-label>
+                        <textarea matInput formControlName="comentario" rows="4" cdkTextareaAutosize
+                            required></textarea>
+                        <mat-error *ngIf="workExperience.get('comentario')?.hasError('required')">
+                            El comentario es obligatorio.
+                        </mat-error>
+                        <mat-error *ngIf="workExperience.get('comentario')?.hasError('minlength')">
+                            Debe tener al menos 10 caracteres.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <button type="button" (click)="addWorkExperience()">
+                    Guardar experiencia
+                </button>
+            </div>
+        </div>
+        <button type="submit">
+            Guardar cambios
+        </button>
+    </form>
+</div>
 
 <div class="experience-list" *ngIf="experiencias.length > 0">
-  <h3>Experiencias laborales cargadas</h3>
-  <ul>
-    <li *ngFor="let exp of experiencias">
-      <p><strong>Empresa:</strong> {{ exp.nombre_empresa }}</p>
-      <p><strong>Desde:</strong> {{ exp.desde | date }}</p>
-      <p><strong>Hasta:</strong> {{ exp.hasta | date }}</p>
-      <p><strong>Comentario:</strong> {{ exp.comentario }}</p>
-      <hr />
-    </li>
-  </ul>
+    <h3>Experiencias laborales cargadas</h3>
+    <ul>
+        <li *ngFor="let exp of experiencias">
+            <p><strong>Empresa:</strong> {{ exp.nombre_empresa }}</p>
+            <p><strong>Desde:</strong> {{ exp.desde | date }}</p>
+            <p><strong>Hasta:</strong> {{ exp.hasta | date }}</p>
+            <p><strong>Comentario:</strong> {{ exp.comentario }}</p>
+            <hr />
+        </li>
+    </ul>
 </div>
+<app-footer></app-footer>

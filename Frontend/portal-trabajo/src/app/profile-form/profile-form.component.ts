@@ -13,6 +13,8 @@ import { UserService } from '../services/user.service';
 import { CommonModule } from '@angular/common';
 import { jwtDecode } from 'jwt-decode';
 import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
+import {HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
 
 
 @Component({
@@ -28,7 +30,9 @@ import { FileUploaderComponent } from '../file-uploader/file-uploader.component'
         MatRadioModule,
         MatButtonModule,
         CommonModule,
-        FileUploaderComponent
+        FileUploaderComponent,
+        HeaderComponent,
+        FooterComponent
     ],
     templateUrl: './profile-form.component.html',
     styleUrl: './profile-form.component.scss'
