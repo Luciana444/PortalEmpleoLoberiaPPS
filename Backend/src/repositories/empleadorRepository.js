@@ -124,3 +124,16 @@ export const crearOfertaNueva = async (id_empresa, datosOferta)=>{
   return result[0];
 
 }
+
+export const deleteOfertaById = async (idOferta) => {
+  await sql`
+    DELETE FROM ofertas_laborales WHERE id = ${idOferta}
+  `;
+};
+
+export const buscarOfertaPorId = async (idOferta) => {
+  const result = await sql`
+    SELECT * FROM ofertas_laborales WHERE id = ${idOferta}
+  `;
+  return result[0] || null;
+};

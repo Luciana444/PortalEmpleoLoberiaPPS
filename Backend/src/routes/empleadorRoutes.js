@@ -1,7 +1,7 @@
 import express from 'express';
 import { authMiddleware } from '../middlewares/authMiddleware.js';
 import { onlyEmpresa } from '../middlewares/onlyEmpresa.js';
-import { actualizarPerfilEmpresa, crearOfertaLaboral, obtenerDatosEmpresa,obtenerOfertasEmpresa,traerOfertasActivas } from '../controllers/empleadorController.js';
+import { actualizarPerfilEmpresa, crearOfertaLaboral, obtenerDatosEmpresa,obtenerOfertasEmpresa,traerOfertasActivas,eliminarOfertaEmpresa } from '../controllers/empleadorController.js';
 
 export const empleadorRoutes = express.Router();
 
@@ -166,5 +166,8 @@ empleadorRoutes.get('/traer/ofertas', authMiddleware,onlyEmpresa,obtenerOfertasE
 empleadorRoutes.get('/ofertas/activas', traerOfertasActivas);
 
 empleadorRoutes.post('/ofertas', authMiddleware,onlyEmpresa,crearOfertaLaboral);
+
+empleadorRoutes.delete('/eliminar/oferta/:id', authMiddleware, onlyEmpresa, eliminarOfertaEmpresa);
+
 
 export default empleadorRoutes;

@@ -1,4 +1,4 @@
-import { getDatosEmpresa, updatePerfilEmpresa, obtenerOfertasPorEmpresa, obtenerOfertasActivas, crearOferta } from "../services/empleadorService.js";
+import { getDatosEmpresa, updatePerfilEmpresa, obtenerOfertasPorEmpresa, obtenerOfertasActivas, crearOferta, eliminarOferta, getOfertaById } from "../services/empleadorService.js";
 import { empresaValidation } from "../validations/empresaValidation.js";
 import { crearOfertaSchema } from "../validations/ofertaValidation.js";
 import sql from "../database/db.js";
@@ -147,5 +147,34 @@ export const crearOfertaLaboral = async (req,res)=>{
 
   } catch (error) {
     res.status(500).json({message:'Error al crear oferta'})
+  }
+};
+
+
+export const eliminarOfertaEmpresa = async (req, res) => {
+  const idOferta = req.params.id;
+  const idEmpresa = req.usuario?.id;
+
+  if (!idOferta || !idEmpresa) {
+    return res.status(400).json({ error: 'Faltan datos necesarios' });
+  }
+
+  try {
+    // Validar que la oferta exista y pertenezca a esta empresa
+    const oferta = await getOfertaById(idOferta);
+
+    if (!oferta) {
+      return res.status(404).json({ error: 'Oferta no encontrada' });
+    }
+
+    if (oferta.id_empresa !== idEmpresa) {
+      return res.status(403).json({ error: 'No tienes permiso para eliminar esta oferta' });
+    }
+
+    await eliminarOferta(idOferta);
+    res.status(200).json({ message: 'Oferta eliminada correctamente' });
+  } catch (error) {
+    console.error('Error al eliminar oferta:', error);
+    res.status(500).json({ error: 'Error al eliminar la oferta' });
   }
 };
