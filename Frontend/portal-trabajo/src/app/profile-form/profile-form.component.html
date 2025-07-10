@@ -17,7 +17,7 @@
 <div class="form-container">
 
   <form [formGroup]="profile" (ngSubmit)="editProfile()">
-    
+
     <div>
       <!-- Campo: Nombre -->
       <mat-form-field appearance="outline" class="full-width">
@@ -131,90 +131,20 @@
         Formato de email no válido
       </mat-error>
     </mat-form-field>
-    <div>
-      <!-- Campo: ¿Está actualmente cursando una carrera? -->
-      <mat-label>¿Está actualmente cursando una carrera?</mat-label>
-      <mat-radio-group formControlName="esta_cursando_carrera" class="mb-3">
-        <mat-radio-button value="si">Sí</mat-radio-button>
-        <mat-radio-button value="no">No</mat-radio-button>
-      </mat-radio-group>
-      <mat-error *ngIf="profile.get('cursaCarrera')?.hasError('required')">
-        Este campo es obligatorio
-      </mat-error>
 
-      <div *ngIf="profile.get('cursaCarrera')?.value === 'si'">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Carrera en curso</mat-label>
-          <input matInput formControlName="carrera_en_curso" />
-          <mat-error *ngIf="profile.get('carrera')?.hasError('required')">
-            Por favor, indique la carrera
-          </mat-error>
-        </mat-form-field>
-      </div>
-    </div>
-    <div>
-      <!-- Campo: Nivel educativo alcanzado -->
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Nivel educativo alcanzado</mat-label>
-        <mat-select formControlName="nivel_educativo">
-          <mat-option value="primario_incompleto">Primario incompleto</mat-option>
-          <mat-option value="primario_completo">Primario completo</mat-option>
-          <mat-option value="secundario_incompleto">Secundario incompleto</mat-option>
-          <mat-option value="secundario_completo">Secundario completo</mat-option>
-          <mat-option value="terciario_en_curso">Terciario en curso</mat-option>
-          <mat-option value="terciario_completo">Terciario completo</mat-option>
-          <mat-option value="universitario_en_curso">Universitario en curso</mat-option>
-          <mat-option value="universitario_completo">Universitario completo</mat-option>
-          <mat-option value="posgrado">Posgrado</mat-option>
-        </mat-select>
-        <mat-error *ngIf="profile.get('nivelEducativo')?.hasError('required')">
-          Este campo es obligatorio
-        </mat-error>
-      </mat-form-field>
+    <!-- Campo: ¿Tiene alguna discapacidad? -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>¿Tiene alguna discapacidad?</mat-label>
+      <mat-select formControlName="discapacidad">
+        <mat-option value="si">Sí</mat-option>
+        <mat-option value="no">No</mat-option>
+        <mat-option value="prefiero_no_responder">Prefiero no responder</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-      <!-- Campo: Cursos o capacitaciones -->
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Cursos o capacitaciones realizadas</mat-label>
-        <input type="text-area" matInput formControlName="cursos" />
-      </mat-form-field>
-    </div>
-    <div>
-      <!-- Campo: Situación laboral -->
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Situación laboral actual</mat-label>
-        <mat-select formControlName="situacion_laboral">
-          <mat-option value="desempleado">Desempleado</mat-option>
-          <mat-option value="empleado">Empleado en relación de dependencia</mat-option>
-          <mat-option value="independiente">Trabajador independiente / Emprendedor</mat-option>
-          <mat-option value="cambio">Busca cambiar de empleo</mat-option>
-          <mat-option value="otro">Otro</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <!-- Campo: ¿Tiene un emprendimiento propio? -->
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>¿Tiene un emprendimiento propio?</mat-label>
-        <input matInput formControlName="tiene_emprendimiento" />
-      </mat-form-field>
-    </div>
-    <div>
-      <!-- Campo: ¿Tiene alguna discapacidad? -->
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>¿Tiene alguna discapacidad?</mat-label>
-        <mat-select formControlName="discapacidad">
-          <mat-option value="si">Sí</mat-option>
-          <mat-option value="no">No</mat-option>
-          <mat-option value="prefiero_no_responder">Prefiero no responder</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
     <div> <app-file-uploader></app-file-uploader></div>
-    <div><app-cv-uploader></app-cv-uploader></div>
-    <button mat-raised-button type="submit" [disabled]="profile.invalid">
+    <button type="submit" [disabled]="profile.invalid">
       Guardar cambios
     </button>
   </form>
-  <div>
-
-  </div>
 </div>

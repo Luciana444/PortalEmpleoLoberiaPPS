@@ -77,7 +77,7 @@ export class UserService {
   uploadCv(cv: File) {
     var formdata = new FormData();
     formdata.append("cv", cv)
-    return this.httpClient.post(`${URL}/ciudadano/upload_cv`, formdata, {
+    return this.httpClient.put(`${URL}/ciudadano/upload_cv`, formdata, {
       observe: 'response',
       withCredentials: true,
       headers: new HttpHeaders().append('Authorization', `Bearer ${localStorage.getItem("token")}`)
@@ -93,6 +93,25 @@ export class UserService {
         headers: new HttpHeaders().append('Authorization', `Bearer ${localStorage.getItem("token")}`)
       });
 
+  }
+  addWorkExperience(workExperienceData: any) {
+    return this.httpClient.patch(`${URL}/ciudadano/actualizar/perfil`, workExperienceData, {
+      observe: 'response',
+      withCredentials: true,
+      headers: new HttpHeaders()
+        .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+        .append('Content-Type', 'application/json')
+    });
+  }
+
+  addeducationForm(educationData: any) {
+    return this.httpClient.patch(`${URL}/ciudadano/actualizar/perfil`, educationData, {
+      observe: 'response',
+      withCredentials: true,
+      headers: new HttpHeaders()
+        .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+        .append('Content-Type', 'application/json')
+    });
   }
 
   logout() {

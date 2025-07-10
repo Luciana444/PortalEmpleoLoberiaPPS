@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { UserService } from '../services/user.service';
+import { CvUploaderComponent } from '../cv-uploader/cv-uploader.component';
 
 
 @Component({
   selector: 'app-attatch-cv',
-  imports: [],
+  imports: [CvUploaderComponent],
   templateUrl: './attatch-cv.component.html',
   styleUrl: './attatch-cv.component.scss'
 })

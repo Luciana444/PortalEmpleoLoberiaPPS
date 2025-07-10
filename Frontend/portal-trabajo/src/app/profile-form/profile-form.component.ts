@@ -13,7 +13,6 @@ import { UserService } from '../services/user.service';
 import { CommonModule } from '@angular/common';
 import { jwtDecode } from 'jwt-decode';
 import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
-import { CvUploaderComponent } from '../cv-uploader/cv-uploader.component';
 
 
 @Component({
@@ -29,8 +28,7 @@ import { CvUploaderComponent } from '../cv-uploader/cv-uploader.component';
         MatRadioModule,
         MatButtonModule,
         CommonModule,
-        FileUploaderComponent,
-        CvUploaderComponent
+        FileUploaderComponent
     ],
     templateUrl: './profile-form.component.html',
     styleUrl: './profile-form.component.scss'
@@ -41,7 +39,6 @@ export class ProfileFormComponent implements OnInit {
 
     constructor(private router: Router, private fb: FormBuilder, private userservice: UserService, private toastr: ToastrService) {
         this.profile = this.fb.group({
-            //userId: [''],
             nombre: ['', Validators.required],
             apellido: ['', Validators.required],
             fecha_nacimiento: ['', Validators.required],
@@ -59,9 +56,6 @@ export class ProfileFormComponent implements OnInit {
             nivel_educativo: ['', Validators.required],
             esta_cursando_carrera: ['', Validators.required],
             carrera_en_curso: [''],
-            //cursos: [''],
-            situacion_laboral: ['', Validators.required],
-            tiene_emprendimiento: [''],
             discapacidad: ['', Validators.required],
             cv_url: ['']
         });
@@ -74,7 +68,6 @@ export class ProfileFormComponent implements OnInit {
 
     editProfile() {
         if (this.profile.invalid) return;
-        //this.profile.value.userId = this.getUserId();
         this.userservice.editProfileEmployee(JSON.stringify(this.profile.value)).subscribe({
             next: (response) => {
                 if (response.status === 200) {
@@ -92,7 +85,6 @@ export class ProfileFormComponent implements OnInit {
 
             }
         });
-
 
     }
 

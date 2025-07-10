@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { UserService } from '../services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-cv-uploader',
@@ -20,7 +21,7 @@ import { UserService } from '../services/user.service';
 
 
 export class CvUploaderComponent {
-    constructor(private userservice: UserService) {
+    constructor(private userservice: UserService, private toastr: ToastrService) {
     }
 
     maxSize = 2 * 1024 * 1024; // 2 MB
@@ -33,40 +34,37 @@ export class CvUploaderComponent {
         const inputElement = event.target as HTMLInputElement;
         const file = inputElement.files?.[0];
         if (file) {
-            const fileInput = document.getElementById('fileCvInput') as HTMLInputElement;
-            if (fileInput) {
-                if (fileInput.size > this.maxSize) {
-                    this.fileTooBig = true;
-                    fileInput.value = "";
 
-                } else {
-                    fileInput.value = file.name;
-                    this.fileTooBig = false;
-                    // Handle the selected file (e.g., upload it)
-                    this.userservice.uploadCv(file).subscribe({
-                        next: (response) => {
-                            if (response.status === 200) {
+            if (file.size > this.maxSize) {
+                this.fileTooBig = true;
+                this.toastr.error('El archivo tiene mas de 2mb', 'Archivo no subido');
 
-                                console.log('Archivo subido con éxito', response);
+            } else {
+                this.fileTooBig = false;
+                this.userservice.uploadCv(file).subscribe({
+                    next: (response) => {
+                        if (response.status === 200) {
 
-                            } else {
-                                console.log('No se pudo subir el archivo', response);
-                            }
-                        },
-                        error: (err) => {
+                            this.toastr.success('Tu Cv ya está disponible', 'Archivo subido')
+                            console.log('Archivo subido con éxito', response);
 
-                            console.error('Error al intentar subir un archivo', err);
-
+                        } else {
+                            console.log('No se pudo subir el archivo', response);
                         }
-                    });
+                    },
+                    error: (err) => {
+
+                        this.toastr.error(err.error.error, 'Ocurrió un error');
+                        console.error('Error al intentar subir un archivo', err);
+
+                    }
+                });
 
 
-                }
             }
-
         }
+
     }
 
     isBigFile() { console.log(this.fileTooBig); return this.fileTooBig; }
-
 }
