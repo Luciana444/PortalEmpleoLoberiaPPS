@@ -11,6 +11,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import {HeaderComponent } from '../header/header.component';
+import {FooterComponent } from '../footer/footer.component';
 
 @Component({
     selector: 'app-academic-background-edit',
@@ -26,7 +28,9 @@ import { MatIconModule } from '@angular/material/icon';
         MatRadioModule,
         MatButtonModule,
         CommonModule,
-        MatIconModule
+        MatIconModule,
+        HeaderComponent,
+        FooterComponent
     ]
 
 })

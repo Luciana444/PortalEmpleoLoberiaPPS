@@ -11,6 +11,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { CommonModule } from '@angular/common';
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
     standalone: true,
@@ -24,7 +26,9 @@ import { CommonModule } from '@angular/common';
         MatNativeDateModule,
         MatRadioModule,
         MatButtonModule,
-        CommonModule
+        CommonModule,
+        HeaderComponent, 
+        FooterComponent
     ],
     templateUrl: './job-offer-form.component.html',
     styleUrl: './job-offer-form.component.scss'
@@ -35,6 +39,7 @@ export class JobOfferFormComponent implements OnInit {
     constructor(private router: Router, private fb: FormBuilder, private userservice: UserService, private toastr: ToastrService) {
         this.offersForm = this.fb.group({
             puesto_requerido: ['', Validators.required],
+            descipcion: ['', Validators.required],
             nivel_educativo_requerido: ['', Validators.required],
             experiencia_requerida: ['', Validators.required],
             otros_requisitos: ['', Validators.required],
@@ -42,7 +47,7 @@ export class JobOfferFormComponent implements OnInit {
             modalidad: ['', Validators.required],
             tipo_contrato: ['', Validators.required],
             localidad_puesto: [''],
-            fecha_cierre: ['']
+           // fecha_cierre: ['']
         });
     }
 
@@ -66,14 +71,14 @@ export class JobOfferFormComponent implements OnInit {
                     this.toastr.success('Esperando aprobación', 'Oferta creada')
                     console.log('Actualización exitosa', response);
                     this.offersForm.reset();
-                    this.router.navigate(['profile']);
+                   // this.router.navigate(['profile']);
                 } else {
                     console.log('No se pudo crear la oferta', response);
                 }
             },
             error: (err) => {
                 this.toastr.error(err.error.error, 'Ocurrió un error');
-                console.error('Error al actualizat perfil', err);
+                console.error('Error al crear oferta', err);
 
             }
         });

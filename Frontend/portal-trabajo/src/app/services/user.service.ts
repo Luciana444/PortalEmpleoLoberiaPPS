@@ -55,9 +55,20 @@ export class UserService {
 
   }
 
+   editProfileEmployeer(profileEmployeerData: any) {
+    return this.httpClient.patch(`${URL}/empleador/actualizar/perfil`, profileEmployeerData, {
+      observe: 'response',
+      withCredentials: true,
+      headers: new HttpHeaders()
+        .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+        .append('Content-Type', 'application/json')
+    });
+
+  }
+
 
   createNewOffer(newOffer: any) {
-    return this.httpClient.patch(`${URL}/actualizar/perfil`, newOffer, {
+    return this.httpClient.patch(`${URL}/empleador/ofertas/:id`, newOffer, {
       observe: 'response',
       withCredentials: true,
       headers: new HttpHeaders().append('Content-Type', 'application/json')
