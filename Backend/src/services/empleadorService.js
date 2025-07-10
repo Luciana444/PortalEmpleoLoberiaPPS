@@ -1,5 +1,5 @@
 
-import { getDatosEmpresaById, updatePerfilEmpresaById } from "../repositories/empleadorRepository.js";
+import { getDatosEmpresaById, updatePerfilEmpresaById, getOfertasByEmpresaId,getOfertasActivas, crearOfertaNueva } from "../repositories/empleadorRepository.js";
 
 
 //============================================================================
@@ -48,3 +48,23 @@ export const getDatosEmpresa = async(id_usuario)=>{
 }
 
 //=======================================================================
+
+
+
+export const obtenerOfertasPorEmpresa = async (idEmpresa, estadoPublicacion) => {
+  return await getOfertasByEmpresaId(idEmpresa, estadoPublicacion);
+};
+
+
+export const obtenerOfertasActivas = async () => {
+  return await getOfertasActivas();
+};
+
+
+export const crearOferta = async(id_empresa,datosOferta)=>{
+    try {
+        await crearOfertaNueva(id_empresa,datosOferta);
+    } catch (error) {
+        console.log(error);
+    }
+};

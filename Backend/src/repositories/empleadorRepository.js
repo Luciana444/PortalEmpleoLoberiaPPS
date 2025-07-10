@@ -54,8 +54,73 @@ export const updatePerfilEmpresaById= async(id_usuario,datosActualizados)=>{
 
 }
 
+//=================================================
+//obtiene los datos de la empresa
+//============================================
 
 export const getDatosEmpresaById = async(id_usuario)=>{
     const resultado = await sql`SELECT * FROM empresas WHERE id_usuario = ${id_usuario}`;
     return resultado[0];
 };
+
+
+export const getOfertasByEmpresaId = async (idEmpresa, estadoPublicacion) => {
+  if (estadoPublicacion) {
+    return await sql`
+      SELECT 
+        id, puesto_requerido, descripcion, nivel_educativo_requerido, experiencia_requerida, 
+        otros_requisitos, lugar_trabajo, modalidad, tipo_contrato, 
+        fecha_publicacion, fecha_cierre, estado, estado_publicacion, localidad_del_puesto
+      FROM ofertas_laborales
+      WHERE id_empresa = ${idEmpresa} AND estado_publicacion = ${estadoPublicacion}
+      ORDER BY fecha_publicacion DESC
+    `;
+  }
+
+  // sin filtro (todas las ofertas de esa empresa)
+  return await sql`
+    SELECT 
+      id, puesto_requerido, descripcion, nivel_educativo_requerido, experiencia_requerida, 
+      otros_requisitos, lugar_trabajo, modalidad, tipo_contrato, 
+      fecha_publicacion, fecha_cierre, estado, estado_publicacion, localidad_del_puesto
+    FROM ofertas_laborales
+    WHERE id_empresa = ${idEmpresa}
+    ORDER BY fecha_publicacion DESC
+  `;
+};
+
+
+
+export const getOfertasActivas = async () => {
+  return await sql`
+    SELECT 
+      id, id_empresa, puesto_requerido, descripcion, nivel_educativo_requerido,
+      experiencia_requerida, otros_requisitos, lugar_trabajo, modalidad,
+      tipo_contrato, fecha_publicacion, fecha_cierre, estado, estado_publicacion,
+      localidad_del_puesto
+    FROM ofertas_laborales
+    WHERE estado = 'activa' AND estado_publicacion = 'aprobada'
+    ORDER BY fecha_publicacion DESC
+  `;
+};
+
+
+export const crearOfertaNueva = async (id_empresa, datosOferta)=>{
+    const {
+        puesto_requerido, descripcion, nivel_educativo_requerido, experiencia_requerida, otros_requisitos,
+        lugar_trabajo, modalidad, tipo_contrato, fecha_cierre, localidad_del_puesto
+     } = datosOferta;
+
+  const result = await sql`
+    INSERT INTO ofertas_laborales (
+      id_empresa, puesto_requerido, descripcion, nivel_educativo_requerido, experiencia_requerida,
+      otros_requisitos, lugar_trabajo, modalidad, tipo_contrato, fecha_cierre, localidad_del_puesto)
+    VALUES (
+      ${id_empresa}, ${puesto_requerido}, ${descripcion}, ${nivel_educativo_requerido}, ${experiencia_requerida??null},
+      ${otros_requisitos ?? null}, ${lugar_trabajo}, ${modalidad}, ${tipo_contrato??null}, ${fecha_cierre??null},
+      ${localidad_del_puesto??null})
+    RETURNING *;
+  `;
+  return result[0];
+
+}

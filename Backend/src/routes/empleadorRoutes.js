@@ -1,7 +1,7 @@
 import express from 'express';
 import { authMiddleware } from '../middlewares/authMiddleware.js';
 import { onlyEmpresa } from '../middlewares/onlyEmpresa.js';
-import { actualizarPerfilEmpresa, obtenerDatosEmpresa } from '../controllers/empleadorController.js';
+import { actualizarPerfilEmpresa, crearOfertaLaboral, obtenerDatosEmpresa,obtenerOfertasEmpresa,traerOfertasActivas } from '../controllers/empleadorController.js';
 
 export const empleadorRoutes = express.Router();
 
@@ -11,7 +11,7 @@ export const empleadorRoutes = express.Router();
 //===========================================================================================
 /**
  * @swagger
- * /empleador/actualizar/perfil:
+ * /empresa/actualizar/perfil:
  *   patch:
  *     summary: Actualiza el perfil de una empresa
  *     tags: [Empleador]
@@ -26,20 +26,49 @@ export const empleadorRoutes = express.Router();
  *             properties:
  *               nombre_empresa:
  *                 type: string
+ *               email_contacto:
+ *                 type: string
+ *               logo:
+ *                 type: string
+ *                 format: uri
+ *               sitio_web:
+ *                 type: string
+ *                 format: uri
+ *               cuit:
+ *                 type: string
+ *               rubro:
+ *                 type: string
  *               telefono:
  *                 type: string
- *               direccion:
+ *               calle:
  *                 type: string
- *               descripcion:
+ *               numero:
  *                 type: string
- *               sitio_web:
+ *               piso:
+ *                 type: string
+ *               dpto:
+ *                 type: string
+ *               localidad:
+ *                 type: string
+ *               provincia:
+ *                 type: string
+ *               pais:
  *                 type: string
  *             example:
  *               nombre_empresa: "Tech Solutions SRL"
- *               telefono: "123456789"
- *               direccion: "Av. Siempre Viva 742"
- *               descripcion: "Empresa dedicada al desarrollo de software"
+ *               email_contacto: "contacto@tech.com"
+ *               logo: "https://example.com/logo.png"
  *               sitio_web: "https://techsolutions.com"
+ *               cuit: "30712345678"
+ *               rubro: "Desarrollo de software"
+ *               telefono: "123456789"
+ *               calle: "Av. Siempre Viva"
+ *               numero: "742"
+ *               piso: "1"
+ *               dpto: "B"
+ *               localidad: "Springfield"
+ *               provincia: "Buenos Aires"
+ *               pais: "Argentina"
  *     responses:
  *       200:
  *         description: Perfil actualizado correctamente
@@ -60,7 +89,7 @@ empleadorRoutes.patch('/actualizar/perfil',authMiddleware,onlyEmpresa,actualizar
 
 /**
  * @swagger
- * /empleador/datos:
+ * /empresa/datos:
  *   get:
  *     summary: Obtiene los datos del perfil de la empresa autenticada
  *     tags: [Empleador]
@@ -78,27 +107,64 @@ empleadorRoutes.patch('/actualizar/perfil',authMiddleware,onlyEmpresa,actualizar
  *                   type: string
  *                 nombre_empresa:
  *                   type: string
- *                 telefono:
+ *                 email_contacto:
  *                   type: string
- *                 direccion:
+ *                 logo:
  *                   type: string
- *                 descripcion:
- *                   type: string
+ *                   format: uri
  *                 sitio_web:
  *                   type: string
- *                 email:
- *                   type: string
+ *                   format: uri
  *                 cuit:
  *                   type: string
  *                 rubro:
  *                   type: string
+ *                 telefono:
+ *                   type: string
+ *                 calle:
+ *                   type: string
+ *                 numero:
+ *                   type: string
+ *                 piso:
+ *                   type: string
+ *                 dpto:
+ *                   type: string
+ *                 localidad:
+ *                   type: string
+ *                 provincia:
+ *                   type: string
+ *                 pais:
+ *                   type: string
+ *               example:
+ *                 id_usuario: "1"
+ *                 nombre_empresa: "Tech Solutions"
+ *                 email_contacto: "contacto@tech.com"
+ *                 logo: "https://example.com/logo.png"
+ *                 sitio_web: "https://techsolutions.com"
+ *                 cuit: "30712345678"
+ *                 rubro: "Software"
+ *                 telefono: "123456789"
+ *                 calle: "Av. Siempre Viva"
+ *                 numero: "742"
+ *                 piso: "1"
+ *                 dpto: "B"
+ *                 localidad: "Springfield"
+ *                 provincia: "Buenos Aires"
+ *                 pais: "Argentina"
  *       401:
  *         description: No autorizado
+ *       404:
+ *         description: Empresa no encontrada
  *       500:
- *         description: Error al obtener los datos
+ *         description: Error del servidor
  */
 
 empleadorRoutes.get('/datos',authMiddleware,onlyEmpresa,obtenerDatosEmpresa);
 
+empleadorRoutes.get('/traer/ofertas', authMiddleware,onlyEmpresa,obtenerOfertasEmpresa);
+
+empleadorRoutes.get('/ofertas/activas', traerOfertasActivas);
+
+empleadorRoutes.post('/ofertas', authMiddleware,onlyEmpresa,crearOfertaLaboral);
 
 export default empleadorRoutes;
