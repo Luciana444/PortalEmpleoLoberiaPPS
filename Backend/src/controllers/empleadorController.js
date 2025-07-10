@@ -1,7 +1,6 @@
-import { getDatosEmpresa, updatePerfilEmpresa, obtenerOfertasPorEmpresa, obtenerOfertasActivas, crearOferta, eliminarOferta, getOfertaById } from "../services/empleadorService.js";
+import { getDatosEmpresa, updatePerfilEmpresa, obtenerOfertasPorEmpresa, obtenerOfertasActivas, crearOferta, eliminarOferta, getOfertaById, editarOferta } from "../services/empleadorService.js";
 import { empresaValidation } from "../validations/empresaValidation.js";
-import { crearOfertaSchema } from "../validations/ofertaValidation.js";
-import sql from "../database/db.js";
+import { crearOfertaSchema, editarOfertaSchema } from "../validations/ofertaValidation.js";
 
 //=================================================================
 // end point actializar perfil de la empresa
@@ -176,5 +175,56 @@ export const eliminarOfertaEmpresa = async (req, res) => {
   } catch (error) {
     console.error('Error al eliminar oferta:', error);
     res.status(500).json({ error: 'Error al eliminar la oferta' });
+  }
+};
+
+
+export const editarOfertaLaboral = async(req,res)=>{
+  try {
+    const id_oferta = req.params.id;
+    const id_empresa = req.usuario.id;
+
+    if(!id_oferta || !id_empresa){
+      return res.status(400).json({message:'Falta el id de la oferta o de la empresa'});
+    }
+
+    const {error} = editarOfertaSchema.validate(req.body, {abortEarly:false});
+
+    if(error){
+        return res.status(400).json({
+              errores:error.details.map(d=>d.message)
+        })
+    }
+
+    const oferta = await getOfertaById(id_oferta);
+    const empresa = await getDatosEmpresa(id_empresa);
+
+    if(!empresa){
+      return res.status(404).json({message:'La empresa no existe'});
+    }
+
+    if(!oferta){
+      return res.status(404).json({message:'La oferta no existe'});
+    }
+
+    if(oferta.id_empresa !== id_empresa){
+      return res.status(500).json({message:'Esta oferta no pertenece a su empresa'});
+    }
+
+    if(oferta.estado !== 'activa'){
+      return res.status(500).json({message:"Error, solo se pueden editar ofertas activas"});
+    }
+
+    if (oferta.fecha_cierre && new Date(oferta.fecha_cierre) < new Date()) {
+      return res.status(500).json({message:'Error, solo se pueden editar ofertas que no esten vencidas'});
+    }
+
+    await editarOferta(req.body,id_oferta,id_empresa);
+
+    res.status(200).json({message:'Oferta editada correctamente'});
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({message:'Error al editar la oferta laboral'});
   }
 };
