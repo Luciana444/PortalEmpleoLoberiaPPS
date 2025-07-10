@@ -124,3 +124,50 @@ export const crearOfertaNueva = async (id_empresa, datosOferta)=>{
   return result[0];
 
 }
+
+export const deleteOfertaById = async (idOferta) => {
+  await sql`
+    DELETE FROM ofertas_laborales WHERE id = ${idOferta}
+  `;
+};
+
+export const buscarOfertaPorId = async (idOferta) => {
+  const result = await sql`
+    SELECT * FROM ofertas_laborales WHERE id = ${idOferta}
+  `;
+  return result[0] || null;
+};
+
+
+export const editarOfertaExistente = async (datosActualizados, id_oferta, id_empresa) => {
+  if (!id_oferta || !id_empresa) {
+    throw new Error('Faltan el id de la oferta o de la empresa');
+  }
+
+  const camposValidos = [
+    'puesto_requerido',
+    'descripcion',
+    'nivel_educativo_requerido',
+    'experiencia_requerida',
+    'otros_requisitos',
+    'lugar_trabajo',
+    'modalidad',
+    'tipo_contrato',
+    'fecha_cierre',
+    'localidad_del_puesto'
+  ];
+
+  const campos = Object.keys(datosActualizados).filter(campo => camposValidos.includes(campo));
+
+  if (campos.length === 0) {
+    throw new Error('No se enviaron campos válidos para actualizar la oferta');
+  }
+
+  const partesSet = campos.map((campo, i) => `"${campo}" = $${i + 1}`);
+  const valores = campos.map(campo => datosActualizados[campo] === undefined ? null : datosActualizados[campo]);
+
+  const consulta = `UPDATE ofertas_laborales SET ${partesSet.join(', ')} WHERE id = $${campos.length + 1} AND id_empresa = $${campos.length + 2}`;
+
+  await sql.unsafe(consulta, [...valores, id_oferta, id_empresa]);
+};
+

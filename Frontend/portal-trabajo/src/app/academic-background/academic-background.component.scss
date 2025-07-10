@@ -59,6 +59,16 @@ p, h5{
     margin-left: 2rem;
 }
 
+.title-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title-wrapper > button {
+    margin-right: 2rem;
+}
+
 .postulation-title{
     display: flex;
     flex: row;

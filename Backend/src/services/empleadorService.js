@@ -1,5 +1,5 @@
 
-import { getDatosEmpresaById, updatePerfilEmpresaById, getOfertasByEmpresaId,getOfertasActivas, crearOfertaNueva } from "../repositories/empleadorRepository.js";
+import { getDatosEmpresaById, updatePerfilEmpresaById, getOfertasByEmpresaId,getOfertasActivas, crearOfertaNueva, deleteOfertaById, buscarOfertaPorId, editarOfertaExistente } from "../repositories/empleadorRepository.js";
 
 
 //============================================================================
@@ -68,3 +68,15 @@ export const crearOferta = async(id_empresa,datosOferta)=>{
         console.log(error);
     }
 };
+
+export const eliminarOferta = async (idOferta) => {
+  return await deleteOfertaById(idOferta);
+};
+
+export const getOfertaById = async (idOferta) => {
+  return await buscarOfertaPorId(idOferta);
+};
+
+export const editarOferta = async(datosActualizados,id_oferta,id_empresa)=>{
+    return await editarOfertaExistente(datosActualizados,id_oferta,id_empresa);
+}
