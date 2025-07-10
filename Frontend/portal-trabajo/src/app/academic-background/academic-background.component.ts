@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-academic-background',
@@ -7,4 +8,9 @@ import { Component, Input } from '@angular/core';
   styleUrl: './academic-background.component.scss'
 })
 export class AcademicBackgroundComponent {
+  constructor(private router: Router) { }
+
+  navigateToAcademicBackgroundForm() {
+    this.router.navigate(['/login']);
+  }
 }
