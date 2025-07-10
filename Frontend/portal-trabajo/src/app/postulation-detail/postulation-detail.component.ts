@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-postulation-detail',
@@ -9,5 +10,9 @@ import { FooterComponent } from '../footer/footer.component';
   styleUrl: './postulation-detail.component.scss'
 })
 export class PostulationDetailComponent {
+  constructor(private router: Router) { }
 
+  navigateToLanding() {
+    this.router.navigate(['']);
+  }
 }

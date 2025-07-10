@@ -156,4 +156,8 @@ export class LandingComponent implements OnInit {
     return this.offers.slice(start, start + this.pageSize);
   }
 
+  navigateToOffer() {
+    this.router.navigate(['detail']);
+  }
+
 }
