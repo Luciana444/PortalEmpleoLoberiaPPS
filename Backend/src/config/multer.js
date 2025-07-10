@@ -19,6 +19,16 @@ const storage = multer.diskStorage({
   }
 });
 
-const upload = multer({ storage });
+// Filtro para aceptar solo imágenes
+const fileFilter = (req, file, cb) => {
+  const tiposPermitidos = ['image/jpeg', 'image/png', 'image/jpg'];
+  if (tiposPermitidos.includes(file.mimetype)) {
+    cb(null, true); // aceptar
+  } else {
+    cb(new Error('Solo se permiten imágenes (jpg, jpeg, png)'), false); // rechazar
+  }
+};
+
+const upload = multer({ storage, fileFilter });
 
 export default upload;

@@ -3,45 +3,47 @@ import app from '../../../app.js';
 import sql from '../../database/db.js';
 
 
-
 describe('POST /auth/reset/password', () => {
-  it('debe resetear la contraseña correctamente con token válido', async () => {
-    // Aquí deberías usar un token válido para test o simular el service para devolver éxito
-
-    // Para propósitos de test básico, asumo que usás un token válido
-    const tokenValido = 'tokenvalidoejemplo';
-    const nuevaContrasena = 'nuevacontra123';
+  // 1. Caso exitoso
+  it('debe resetear la contraseña con un token válido', async () => {
+    const tokenValido = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3NjE2OWFhLTg0ZDUtNGE5MC05ZTg3LWE1ZjA4N2FjNGE1ZiIsImlhdCI6MTc1MjA5OTUyMSwiZXhwIjoxNzUyMTAzMTIxfQ.UNbCbi8ybpckNzJzFiWF4KvNFFsayb0-vpjDbPLTF-0'; // 🔁 Reemplazar por un token real para test
+    const nuevaContrasena = '77777777';
 
     const response = await request(app)
       .post('/auth/reset/password')
-      .send({ token: tokenValido, nuevaContrasena });
+      .send({
+        token: tokenValido,
+        nuevaContrasena
+      });
 
     expect(response.statusCode).toBe(200);
-    expect(response.body).toHaveProperty('message');
-    expect(response.body.message).toMatch(/contraseña actualizada correctamente/i);
+    expect(response.body.message).toMatch(/contraseña.*actualizada/i);
   });
 
-  it('debe rechazar reset sin token o nueva contraseña', async () => {
+  // 2. Token inválido
+  it('debe rechazar si el token es inválido', async () => {
     const response = await request(app)
       .post('/auth/reset/password')
-      .send({});
+      .send({
+        token: 'token_falso_invalido',
+        nuevaContrasena: 'otraPassword456'
+      });
 
     expect(response.statusCode).toBe(400);
-    expect(response.body).toHaveProperty('error');
-    expect(response.body.error).toMatch(/token.*nueva contraseña/i);
+    expect(response.body.error).toMatch(/token.*inválido/i);
   });
 
-  it('debe rechazar reset con token inválido o expirado', async () => {
-    const tokenInvalido = 'tokeninvalidoejemplo';
-    const nuevaContrasena = 'nuevacontra123';
-
+  // 3. Faltan campos
+  it('debe rechazar si faltan campos obligatorios', async () => {
     const response = await request(app)
       .post('/auth/reset/password')
-      .send({ token: tokenInvalido, nuevaContrasena });
+      .send({
+        token: '',
+        nuevaContrasena: ''
+      });
 
     expect(response.statusCode).toBe(400);
-    expect(response.body).toHaveProperty('error');
-    expect(response.body.error).toMatch(/token inválido|expirado/i);
+    expect(response.body.error).toMatch(/token.*requeridos/i);
   });
 });
 
