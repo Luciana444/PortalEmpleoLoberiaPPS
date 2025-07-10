@@ -10,7 +10,11 @@ import { Router } from '@angular/router';
 export class AcademicBackgroundComponent {
   constructor(private router: Router) { }
 
-  navigateToAcademicBackgroundForm() {
-    this.router.navigate(['/login']);
+  navigateToAcademicBackgroundEditComponent() {
+    this.router.navigate(['/academic-background-edit']);
+  }
+
+  navigateToWorkExperience() {
+    this.router.navigate(['/work-experience']);
   }
 }
