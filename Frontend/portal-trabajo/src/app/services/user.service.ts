@@ -76,25 +76,7 @@ export class UserService {
     });
   }
 
-  deleteOffer(newOffer: any) {
-    return this.httpClient.post(`${URL}/empresa/ofertas`, newOffer, {
-      observe: 'response',
-      withCredentials: true,
-      headers: new HttpHeaders()
-        .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
-        .append('Content-Type', 'application/json')
-    });
-  }
-
-  editOffer(newOffer: any) {
-    return this.httpClient.post(`${URL}/empresa/ofertas`, newOffer, {
-      observe: 'response',
-      withCredentials: true,
-      headers: new HttpHeaders()
-        .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
-        .append('Content-Type', 'application/json')
-    });
-  }
+ 
 
   uploadProfilePicture(foto: File, tipo_usuario: string) {
     var formdata = new FormData();

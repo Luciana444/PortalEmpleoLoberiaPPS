@@ -25,7 +25,7 @@ export const routes: Routes = [
     { path: 'create-offer', component: JobOfferFormComponent },
     { path: 'employee-profile', component: EmployeeProfileComponent },
     { path: 'detail', component: PostulationDetailComponent },
-    { path: 'employeer-profile-form', component: EmployeerProfileFormComponent },
+    { path: 'edit-profile-employer', component: EmployeerProfileFormComponent },
     { path: 'employer-profile', component: EmployerProfileComponent },
     { path: 'work-experience', component: WorkExperienceComponent },
     { path: 'academic-background-edit', component: AcademicBackgroundEditComponent },
