@@ -10,8 +10,6 @@
     margin-right: 6rem;
 }
 
-//profile
-
 p{
     font-weight: 300;
 }
@@ -25,10 +23,10 @@ p, h5{
     color: $text-color;
     font-size: 1rem;
 }
-//end profile
 
-//postulations
-
+.create-offer{
+    margin-right: 1rem;
+}
 
 main{
     width: 80%;
@@ -108,7 +106,7 @@ button{
 
 i{
     color: $green;
-    margin-right: 2rem;
+    margin-right: 1rem;
 }
 
 i:hover{
