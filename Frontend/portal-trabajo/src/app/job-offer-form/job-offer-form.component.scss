@@ -49,6 +49,7 @@ div > p{
 .img-container{
     margin-top: 2rem;
 }
-mat-form-field{
+mat-form-field .mat-mdc-form-field{
     margin-right: 15px;
+    width: 100%;
 }

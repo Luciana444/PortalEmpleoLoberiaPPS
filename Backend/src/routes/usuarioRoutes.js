@@ -88,4 +88,7 @@ import { authMiddleware } from '../middlewares/authMiddleware.js';
  */
 
 usuarioRoutes.post('/foto/perfil',authMiddleware, upload.single('foto'), subirFotoPerfil);
+
+
+
 export default usuarioRoutes;

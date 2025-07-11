@@ -1,0 +1,59 @@
+Plan de Trabajo Individual
+Proyecto: Portal de Empleo – Municipalidad de Lobería
+Nombre y legajo: Analia Veronica Burgos- LU N 248994
+Rol principal:  Back End- Gestión de Base de Datos + Testing & Documentación
+Período de trabajo: del 16/06/25 al  16/08/25.
+
+1.Objetivo general
+El objetivo principal del proyecto es desarrollar un sistema web accesible y optimizado para dispositivos móviles que facilite la vinculación entre empleadores y ciudadanos que buscan trabajo. La plataforma permitirá el registro y autenticación de ambos perfiles, brindando a los usuarios la posibilidad de crear o importar su CV, postularse a ofertas laborales vigentes, y a las empresas publicar búsquedas con todos los detalles relevantes. Además, incluirá acceso a capacitaciones oficiales, opciones para modificar o cancelar publicaciones, y un módulo de reportes y métricas para el análisis del uso del sistema.
+
+2. Objetivos específicos 
+1.Modelar la base de datos relacional en PostgreSQL 15 acorde a los requerimientos funcionales.
+2.Crear scripts/migraciones versionadas para la creación y actualización de la estructura.
+3.Desarrollar consultas optimizadas para reportes y métricas solicitadas.
+4.Implementar pruebas automatizadas de base de datos y de API relacionadas a datos.
+5.Elaborar la documentación técnica (diccionario de datos, diagramas, guías de despliegue).
+6.Colaborar con el equipo de back end en la implementacion de los scripts, consultas, filtros y datos.
+3. Descripción de la tarea
+Mi trabajo abarcará todo el ciclo de vida de la base de datos: diseño lógico-físico, implementación, pruebas, carga inicial de datos y soporte a los desarrolladores de backend y frontend. Además, lideraré la estrategia de testing (unitario, de integración y aceptación) y la generación de documentación en conjunto con el equipo.
+4.Tecnologías y herramientas
+Base de Datos:PostgreSQL (con Supabase)
+Backend :API	Node.js + Express
+Frontend:Angular
+Testing Manual:Exploratorio + Matrices de prueba
+Documentación: Markdown, Google Docs
+Control de versiones:Git + GitHub
+Gestión del proyecto:Jira 
+
+5. Equipo de trabajo
+Integrante	Rol	Interacciones clave conmigo
+Luciana Zabaleta	Backend 1	Consume API y modelos
+Nahuel  Caroseli	Backend 2	Revisa queries SQL
+Gisele Bartolo	Frontend 1	Valida campos/búsquedas
+Santiago A. Lazaro	Frontend 2	Diseño de vistas en Angular
+Profesor : Hugo Curti	Mentor/QA	Revisión técnica y guía
+		
+5-Actividades 
+??? 1. Base de Datos
+Actividad	Descripción
+Levantamiento de entidades	Revisión de historias para identificar modelos
+Modelado lógico y físico	Diagramación de tablas, claves foráneas y relaciones
+Creación de esquemas en Supabase	Implementación de tablas, constraints y roles
+Control de integridad y normalización	Aplicación de buenas prácticas relacionales
+Apoyo en pruebas con datos reales	Insert de datos dummy para pruebas funcionales
+?? 2. Documentación
+Actividad	Descripción
+Registro de decisiones técnicas	Stack elegido, librerías, estructura base del proyecto
+Documentación por Historia de Usuario	Redacción en Notion o Google Docs
+Endpoints de la API	Tabla detallada con verbos HTTP, rutas, parámetros
+Manual para usuarios finales	Guía paso a paso para ciudadanos y empleadores
+Manual de administración	Cómo usar el backend o tablero del municipio
+
+
+ 3. Testing
+Actividad	Descripción
+Diseño de casos de prueba	Escenarios para cada historia (entrada esperada y resultados)
+Pruebas de formularios	Validaciones de campos obligatorios y errores
+Testing de API con Postman	Validación de respuestas, status codes y errores
+Verificación móvil	Comprobación de responsive en diferentes dispositivos
+Registro de errores y trazabilidad	Carga de issues en Jira vinculadas a historias

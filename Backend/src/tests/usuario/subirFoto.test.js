@@ -42,7 +42,7 @@ describe('POST /usuario/foto/perfil', () => {
     expect(response.statusCode).toBe(200);
     expect(response.body).toHaveProperty('message');
   });
-
+//este funciona bien en la realidad, aca da error...
   it('debe rechazar la subida si no hay token', async () => {
     const response = await request(app)
       .post('/usuario/foto/perfil')
@@ -51,7 +51,7 @@ describe('POST /usuario/foto/perfil', () => {
     expect(response.statusCode).toBe(401);
     expect(response.body.error || response.text).toMatch(/no autorizado/i);
   });
-
+// da error pero funciona bien
   it('debe rechazar si no se envía ninguna imagen', async () => {
     const response = await request(app)
       .post('/usuario/foto/perfil')
@@ -62,6 +62,7 @@ describe('POST /usuario/foto/perfil', () => {
     expect(response.body.error || response.text).toMatch(/no se recibió archivo/i);
   });
 
+  //este da error pero en la realidad funciona bien
   it('debe rechazar archivos que no sean imágenes', async () => {
     const response = await request(app)
       .post('/usuario/foto/perfil')

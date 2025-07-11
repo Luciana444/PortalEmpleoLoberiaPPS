@@ -1,75 +1,79 @@
-<form [formGroup]="educationForm" (ngSubmit)="editEducationForm()">
+<app-header></app-header>
+<h3>Formación</h3>
+<div class="form-container">
+    <form [formGroup]="educationForm" (ngSubmit)="editEducationForm()">
 
-    <!-- Nivel Educativo -->
-    <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Nivel educativo alcanzado</mat-label>
-        <mat-select formControlName="nivel_educativo">
-            <mat-option value="Primario incompleto">Primario incompleto</mat-option>
-            <mat-option value="Primario completo">Primario completo</mat-option>
-            <mat-option value="Secundario incompleto">Secundario incompleto</mat-option>
-            <mat-option value="Secundario completo">Secundario completo</mat-option>
-            <mat-option value="Terciario en curso">Terciario en curso</mat-option>
-            <mat-option value="Terciario completo">Terciario completo</mat-option>
-            <mat-option value="Universitario en curso">Universitario en curso</mat-option>
-            <mat-option value="Universitario completo">Universitario completo</mat-option>
-            <mat-option value="Posgrado">Posgrado</mat-option>
-        </mat-select>
-        <mat-error *ngIf="educationForm.get('nivel_educativo')?.hasError('required')">
-            Este campo es obligatorio
-        </mat-error>
-    </mat-form-field>
-
-    <!-- ¿Está cursando una carrera? -->
-    <mat-form-field appearance="outline" class="full-width">
-        <mat-label>¿Está actualmente cursando una carrera?</mat-label>
-        <mat-select formControlName="esta_cursando_carrera">
-            <mat-option value="Sí">Sí</mat-option>
-            <mat-option value="No">No</mat-option>
-        </mat-select>
-        <mat-error *ngIf="educationForm.get('esta_cursando_carrera')?.hasError('required')">
-            Este campo es obligatorio
-        </mat-error>
-    </mat-form-field>
-
-    <!-- Carrera en curso -->
-    <div *ngIf="educationForm.get('esta_cursando_carrera')?.value === 'Sí'">
+        <!-- Nivel Educativo -->
         <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Carrera en curso</mat-label>
-            <input matInput formControlName="carrera_en_curso" />
-            <mat-error *ngIf="educationForm.get('carrera_en_curso')?.hasError('required')">
+            <mat-label>Nivel educativo alcanzado</mat-label>
+            <mat-select formControlName="nivel_educativo">
+                <mat-option value="Primario incompleto">Primario incompleto</mat-option>
+                <mat-option value="Primario completo">Primario completo</mat-option>
+                <mat-option value="Secundario incompleto">Secundario incompleto</mat-option>
+                <mat-option value="Secundario completo">Secundario completo</mat-option>
+                <mat-option value="Terciario en curso">Terciario en curso</mat-option>
+                <mat-option value="Terciario completo">Terciario completo</mat-option>
+                <mat-option value="Universitario en curso">Universitario en curso</mat-option>
+                <mat-option value="Universitario completo">Universitario completo</mat-option>
+                <mat-option value="Posgrado">Posgrado</mat-option>
+            </mat-select>
+            <mat-error *ngIf="educationForm.get('nivel_educativo')?.hasError('required')">
                 Este campo es obligatorio
             </mat-error>
         </mat-form-field>
-    </div>
 
-    <!-- Capacitaciones -->
-    <div>
+        <!-- ¿Está cursando una carrera? -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>¿Está actualmente cursando una carrera?</mat-label>
+            <mat-select formControlName="esta_cursando_carrera">
+                <mat-option value="Sí">Sí</mat-option>
+                <mat-option value="No">No</mat-option>
+            </mat-select>
+            <mat-error *ngIf="educationForm.get('esta_cursando_carrera')?.hasError('required')">
+                Este campo es obligatorio
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Carrera en curso -->
+        <div *ngIf="educationForm.get('esta_cursando_carrera')?.value === 'Sí'">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Carrera en curso</mat-label>
+                <input matInput formControlName="carrera_en_curso" />
+                <mat-error *ngIf="educationForm.get('carrera_en_curso')?.hasError('required')">
+                    Este campo es obligatorio
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <!-- Capacitaciones -->
         <div>
-            <button type="button" matFab extended (click)="addNewCardEducation = !addNewCardEducation">
-                <mat-icon>add</mat-icon>
-                Agregar nueva capacitación
-            </button>
+            <div class="experience-div">
+                <button class="experience-btn" type="button"  (click)="addNewCardEducation = !addNewCardEducation">
+                    <i class="fa-solid fa-plus"></i>
+                    Agregar nueva capacitación
+                </button>
 
-        </div>
-        <div *ngIf="addNewCardEducation" class="profile">
-            <div>
-                <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>Nombre de curso o capacitación</mat-label>
-                    <input matInput formControlName="nombre_capacitacion" />
-                    <mat-error *ngIf="educationForm.get('nombre_capacitacion')?.hasError('required')">
-                        Este campo es obligatorio
-                    </mat-error>
-                </mat-form-field>
             </div>
-            <button type="button" (click)="addEducationForm()">
-                Agregar formación
-            </button>
+            <div *ngIf="addNewCardEducation" class="profile">
+                <div>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Nombre de curso o capacitación</mat-label>
+                        <input matInput formControlName="nombre_capacitacion" />
+                        <mat-error *ngIf="educationForm.get('nombre_capacitacion')?.hasError('required')">
+                            Este campo es obligatorio
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <button class="experience-btn" type="button" (click)="addEducationForm()">
+                    Agregar formación
+                </button>
+            </div>
         </div>
-    </div>
-    <button type="submit">
-        Guardar cambios
-    </button>
-</form>
+        <button type="submit">
+            Guardar cambios
+        </button>
+    </form>
+</div>
 
 <!-- Lista de formaciones -->
 <div class="education-list" *ngIf="formaciones.length > 0">
@@ -83,3 +87,4 @@
         </li>
     </ul>
 </div>
+<app-footer></app-footer>

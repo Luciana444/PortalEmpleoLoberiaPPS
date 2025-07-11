@@ -1,123 +1,141 @@
-<form [formGroup]="employeerProfile" (ngSubmit)="onSubmit()" class="form-container">
-  <!-- Sección: Información del puesto -->
-  <!-- ... (campos ya existentes, sin cambios) ... -->
+<app-header></app-header>
+<div class="form-container">
+  <form [formGroup]="employeerProfile" (ngSubmit)="editProfile()">
+    <!-- Sección: Información del puesto -->
+    <!-- ... (campos ya existentes, sin cambios) ... -->
 
-  <!-- Nueva sección: Datos de la empresa -->
-  <h3 class="section-title">Datos de la empresa</h3>
+    <!-- Nueva sección: Datos de la empresa -->
+    <h3 class="section-title">Datos de la empresa</h3>
+    <div>
+      <!-- Nombre legal de la empresa -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nombre legal de la empresa</mat-label>
+        <input matInput formControlName="nombre_empresa" required>
+        <mat-error *ngIf="employeerProfile.get('nombre_empresa')?.hasError('required')">
+          Este campo es obligatorio
+        </mat-error>
+      </mat-form-field>
 
-  <!-- Nombre legal de la empresa -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Nombre legal de la empresa</mat-label>
-    <input matInput formControlName="nombre_empresa" required>
-    <mat-error *ngIf="employeerProfile.get('nombre_empresa')?.hasError('required')">
-      Este campo es obligatorio
-    </mat-error>
-  </mat-form-field>
 
-  <!-- Email de contacto visible -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Email de contacto</mat-label>
-    <input matInput formControlName="email_contacto" type="email" required>
-    <mat-error *ngIf="employeerProfile.get('email_contacto')?.hasError('required')">
-      Este campo es obligatorio
-    </mat-error>
-    <mat-error *ngIf="employeerProfile.get('email_contacto')?.hasError('email')">
-      Ingresá un email válido
-    </mat-error>
-  </mat-form-field>
+      <!-- Logo (URL) -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>URL del logo (opcional)</mat-label>
+        <input matInput formControlName="logo">
+      </mat-form-field>
+    </div>
 
-  <!-- Logo (URL) -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>URL del logo (opcional)</mat-label>
-    <input matInput formControlName="logo">
-  </mat-form-field>
+    <div>
+      <!-- Sitio web -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Sitio web</mat-label>
+        <input matInput formControlName="sitio_web">
+      </mat-form-field>
 
-  <!-- Sitio web -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Sitio web</mat-label>
-    <input matInput formControlName="sitio_web">
-  </mat-form-field>
+      <!-- CUIT -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>CUIT</mat-label>
+        <input matInput formControlName="cuit" required>
+        <mat-error *ngIf="employeerProfile.get('cuit')?.hasError('required')">
+          Este campo es obligatorio
+        </mat-error>
+      </mat-form-field>
+    </div>
 
-  <!-- CUIT -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>CUIT</mat-label>
-    <input matInput formControlName="cuit" required>
-    <mat-error *ngIf="employeerProfile.get('cuit')?.hasError('required')">
-      Este campo es obligatorio
-    </mat-error>
-  </mat-form-field>
+    <div>
+      <!-- Rubro -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Rubro (opcional)</mat-label>
+        <input matInput formControlName="rubro">
+      </mat-form-field>
 
-  <!-- Rubro -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Rubro (opcional)</mat-label>
-    <input matInput formControlName="rubro">
-  </mat-form-field>
+      <!-- Teléfono -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Teléfono</mat-label>
+        <input matInput formControlName="telefono">
+      </mat-form-field>
+    </div>
+    <div>
 
-  <!-- Teléfono -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Teléfono</mat-label>
-    <input matInput formControlName="telefono">
-  </mat-form-field>
+      <!-- Calle -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Calle</mat-label>
+        <input matInput formControlName="calle" required>
+        <mat-error *ngIf="employeerProfile.get('calle')?.hasError('required')">
+          Este campo es obligatorio
+        </mat-error>
+      </mat-form-field>
 
-  <!-- Calle -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Calle</mat-label>
-    <input matInput formControlName="calle" required>
-    <mat-error *ngIf="employeerProfile.get('calle')?.hasError('required')">
-      Este campo es obligatorio
-    </mat-error>
-  </mat-form-field>
+      <!-- Número -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Número</mat-label>
+        <input matInput formControlName="numero" required>
+        <mat-error *ngIf="employeerProfile.get('numero')?.hasError('required')">
+          Este campo es obligatorio
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
 
-  <!-- Número -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Número</mat-label>
-    <input matInput formControlName="numero" required>
-    <mat-error *ngIf="employeerProfile.get('numero')?.hasError('required')">
-      Este campo es obligatorio
-    </mat-error>
-  </mat-form-field>
+      <!-- Piso -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Piso (opcional)</mat-label>
+        <input matInput formControlName="piso">
+      </mat-form-field>
 
-  <!-- Piso -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Piso (opcional)</mat-label>
-    <input matInput formControlName="piso">
-  </mat-form-field>
+      <!-- Dpto -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Departamento (opcional)</mat-label>
+        <input matInput formControlName="dpto">
+      </mat-form-field>
+    </div>
+    <div>
 
-  <!-- Dpto -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Departamento (opcional)</mat-label>
-    <input matInput formControlName="dpto">
-  </mat-form-field>
+      <!-- Localidad -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Localidad</mat-label>
+        <input matInput formControlName="localidad" required>
+        <mat-error *ngIf="employeerProfile.get('localidad')?.hasError('required')">
+          Este campo es obligatorio
+        </mat-error>
+      </mat-form-field>
 
-  <!-- Localidad -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Localidad</mat-label>
-    <input matInput formControlName="localidad" required>
-    <mat-error *ngIf="employeerProfile.get('localidad')?.hasError('required')">
-      Este campo es obligatorio
-    </mat-error>
-  </mat-form-field>
+      <!-- Provincia -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Provincia</mat-label>
+        <input matInput formControlName="provincia" required>
+        <mat-error *ngIf="employeerProfile.get('provincia')?.hasError('required')">
+          Este campo es obligatorio
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
 
-  <!-- Provincia -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Provincia</mat-label>
-    <input matInput formControlName="provincia" required>
-    <mat-error *ngIf="employeerProfile.get('provincia')?.hasError('required')">
-      Este campo es obligatorio
-    </mat-error>
-  </mat-form-field>
+      <!-- País -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>País</mat-label>
+        <input matInput formControlName="pais" required>
+        <mat-error *ngIf="employeerProfile.get('pais')?.hasError('required')">
+          Este campo es obligatorio
+        </mat-error>
+      </mat-form-field>
 
-  <!-- País -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>País</mat-label>
-    <input matInput formControlName="pais" required>
-    <mat-error *ngIf="employeerProfile.get('pais')?.hasError('required')">
-      Este campo es obligatorio
-    </mat-error>
-  </mat-form-field>
+      <!-- Email de contacto visible -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email de contacto</mat-label>
+        <input matInput formControlName="email_contacto" type="email" required>
+        <mat-error *ngIf="employeerProfile.get('email_contacto')?.hasError('required')">
+          Este campo es obligatorio
+        </mat-error>
+        <mat-error *ngIf="employeerProfile.get('email_contacto')?.hasError('email')">
+          Ingresá un email válido
+        </mat-error>
+      </mat-form-field>
+    </div>
 
-  <!-- Botón de envío -->
-  <button  type="submit" [disabled]="employeerProfile.invalid">
-    Guardar
-  </button>
-</form>
+    <!-- Botón de envío -->
+    <button mat-raised-button [disabled]="employeerProfile.invalid" type="submit">
+      Guardar
+    </button>
+  </form>
+</div>
+<app-footer></app-footer>
