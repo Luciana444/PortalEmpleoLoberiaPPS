@@ -3,7 +3,7 @@
 
 
 import express from 'express';
-import { getAllUsuarios } from '../controllers/usuarioController.js';
+import { getAllUsuarios, obtenerDetallesOferta } from '../controllers/usuarioController.js';
 
 
 // Inicializa un router específico para el módulo de usuarios
@@ -88,6 +88,8 @@ import { authMiddleware } from '../middlewares/authMiddleware.js';
  */
 
 usuarioRoutes.post('/foto/perfil',authMiddleware, upload.single('foto'), subirFotoPerfil);
+
+usuarioRoutes.get('/ofertas/:id',obtenerDetallesOferta);
 
 
 
