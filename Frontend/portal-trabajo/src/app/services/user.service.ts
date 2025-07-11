@@ -66,7 +66,6 @@ export class UserService {
 
   }
 
-
   createNewOffer(newOffer: any) {
     return this.httpClient.post(`${URL}/empresa/ofertas`, newOffer, {
       observe: 'response',
@@ -87,7 +86,7 @@ export class UserService {
     });
   }
 
-    editOffer(newOffer: any) {
+  editOffer(newOffer: any) {
     return this.httpClient.post(`${URL}/empresa/ofertas`, newOffer, {
       observe: 'response',
       withCredentials: true,

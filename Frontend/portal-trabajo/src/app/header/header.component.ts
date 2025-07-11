@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { UserService } from '../services/user.service';
 
 
@@ -12,21 +11,14 @@ import { UserService } from '../services/user.service';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  constructor(private router: Router, private http: HttpClient, private userservice: UserService) { }
+  constructor(private router: Router, private userservice: UserService) { }
 
   item: string = 'token';
-  url: string = 'http://localhost:3000/api/usuario';
 
-  //TODO: mock api
   user = {
     profilePicture: 0,
     name: 'Juana',
     surname: 'Perez',
-  }
-
-  ngOnInit() {
-    this.getData();
-    //TODO: asignar valores correctos a user
   }
 
   navigateToLogin() {
@@ -41,17 +33,7 @@ export class HeaderComponent {
     return !!localStorage.getItem(this.item);
   }
 
-  public getData() {
-    //TODO: llamar al http correcto;
-    let usuarios = this.http.get(this.url)
-      .subscribe(
-        (response: any) => {
-          console.log(response);
-        }
-      );
-  }
-
- onLogout() {
+  onLogout() {
     this.userservice.logout();
     this.navigateToLogin();
   }
