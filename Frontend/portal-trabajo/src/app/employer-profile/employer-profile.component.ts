@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
+import { EmployerProfileSidebarComponent } from "../employer-profile-sidebar/employer-profile-sidebar.component";
 
 @Component({
   selector: 'app-employer-profile',
-  imports: [HeaderComponent, FooterComponent],
+  imports: [HeaderComponent, FooterComponent, EmployerProfileSidebarComponent],
   templateUrl: './employer-profile.component.html',
   styleUrl: './employer-profile.component.scss'
 })
