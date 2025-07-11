@@ -1,6 +1,7 @@
 // Controlador para operaciones relacionadas con usuarios.
 // Este archivo define la lógica de los endpoints definidos en usuarioRoutes.js.
 
+import { getDatosEmpresa, getOfertaById } from "../services/empleadorService.js";
 import { findAllPersonas, getUserById} from "../services/usuarioService.js"; // Servicio que consulta todos los usuarios
 
 //=================================================0
@@ -125,3 +126,40 @@ export const subirFotoPerfil = async (req, res) => {
   }
 };
 
+export const obtenerDetallesOferta = async(req,res)=>{
+  try {
+    const id_oferta = req.params.id;
+
+    if(!id_oferta){
+        return res.status(400).json({message:'Falta el id de la oferta o de la empresa'});
+    }
+
+
+    const oferta = await getOfertaById(id_oferta);
+    const empresa = await getDatosEmpresa(oferta.id_empresa);
+
+    
+
+    if(!oferta){
+        return res.status(404).json({message:'La oferta no existe'});
+    }
+
+    
+    if(!empresa){
+      return res.status(404).json({message:'La empresa no existe'});
+    }
+
+
+    const resultado = [];
+
+    resultado.push(oferta);
+    resultado.push(empresa);
+
+    return res.status(200).json(resultado);
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({message:'Error al obtener detalles de la oferta'});
+  }
+
+};
