@@ -1,6 +1,10 @@
 @use '../../styles.scss' as *;
 @use 'sass:color';
 
+.container{
+    min-height: 100vh;
+}
+
 button{
     width: 8rem;
     padding: 8px 2px;
@@ -34,7 +38,6 @@ i{
     margin-left: auto;
     margin-right: auto;
     width: fit-content;
-    max-width: 100vh;
     padding: 0.5rem;
 }
 
@@ -47,7 +50,7 @@ i{
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 30rem;
-    max-width: 90vh;
+    max-width: 40vw;
     height: fit-content;
     padding: 1.5rem;
     transition: box-shadow 0.2s;

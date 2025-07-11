@@ -1,48 +1,50 @@
 <app-header></app-header>
-<app-training-link></app-training-link>
+<div class="container">
+    <app-training-link></app-training-link>
 
-<div class="filter">
-    <i class="fa-solid fa-filter"></i>
-</div>
-
-<main class="offer-container">
-
-    @for (offer of pagedOffers; track offer.id) {
-    <div class="offer-card">
-        <div class="card-header">
-            <div class="icon-placeholder"></div>
-            <div>
-                <h4 class="card-user">{{offer.user}}</h4>
-                <div>
-                    <i class="fa-solid fa-location-dot"></i>
-                    <h5 class="card-location">{{offer.location}}</h5>
-                </div>
-            </div>
-        </div>
-
-        <h3 class="card-title">{{offer.title}}</h3>
-        <p class="card-description">{{offer.description}}</p>
-
-
-        <div class="card-footer">
-            <div class="card-info">
-                <div>
-                    <i class="fa-solid fa-globe"></i>
-                    <p class="card-modality">{{offer.modality}}</p>
-
-                </div>
-                <p class="card-date">Publicado {{offer.date}}</p>
-
-            </div>
-            <button class="card-button" (click)="navigateToOffer()">Ver Oferta</button>
-
-        </div>
+    <div class="filter">
+        <i class="fa-solid fa-filter"></i>
     </div>
-    }
 
-</main>
-<mat-paginator [length]="offers.length" [pageSize]="pageSize" [pageIndex]="currentPage"
-    (page)="handlePageEvent($event)">
-</mat-paginator>
+    <main class="offer-container">
+
+        @for (offer of pagedOffers; track offer.id) {
+        <div class="offer-card">
+            <div class="card-header">
+                <div class="icon-placeholder"></div>
+                <div>
+                    <h4 class="card-user">{{offer.user}}</h4>
+                    <div>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <h5 class="card-location">{{offer.location}}</h5>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="card-title">{{offer.title}}</h3>
+            <p class="card-description">{{offer.description}}</p>
+
+
+            <div class="card-footer">
+                <div class="card-info">
+                    <div>
+                        <i class="fa-solid fa-globe"></i>
+                        <p class="card-modality">{{offer.modality}}</p>
+
+                    </div>
+                    <p class="card-date">Publicado {{offer.date}}</p>
+
+                </div>
+                <button class="card-button" (click)="navigateToOffer()">Ver Oferta</button>
+
+            </div>
+        </div>
+        }
+
+    </main>
+    <mat-paginator [length]="offers.length" [pageSize]="pageSize" [pageIndex]="currentPage"
+        (page)="handlePageEvent($event)">
+    </mat-paginator>
+</div>
 
 <app-footer></app-footer>

@@ -12,11 +12,10 @@ import { PostulationDetailComponent } from './postulation-detail/postulation-det
 import { EmployeerProfileFormComponent } from './employeer-profile-form/employeer-profile-form.component';
 import { WorkExperienceComponent } from './work-experience/work-experience.component';
 import { AcademicBackgroundEditComponent } from './academic-background-edit/academic-background-edit.component';
-
+import { EmployerProfileComponent } from './employer-profile/employer-profile.component';
 
 export const routes: Routes = [
     { path: '', component: LandingComponent },
-    // { path: 'form-selector', component: FormSelectorComponent },
     { path: 'employee-form', component: EmployeeFormComponent },
     { path: 'login', component: LoginComponent },
     { path: 'landing', component: LandingComponent },
@@ -26,7 +25,8 @@ export const routes: Routes = [
     { path: 'create-offer', component: JobOfferFormComponent },
     { path: 'employee-profile', component: EmployeeProfileComponent },
     { path: 'detail', component: PostulationDetailComponent },
-    { path: 'employeer-profile', component: EmployeerProfileFormComponent },
+    { path: 'employeer-profile-form', component: EmployeerProfileFormComponent },
+    { path: 'employer-profile', component: EmployerProfileComponent },
     { path: 'work-experience', component: WorkExperienceComponent },
     { path: 'academic-background-edit', component: AcademicBackgroundEditComponent },
 ];
