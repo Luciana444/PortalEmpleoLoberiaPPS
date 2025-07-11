@@ -55,8 +55,8 @@ export class UserService {
 
   }
 
-   editProfileEmployeer(profileEmployeerData: any) {
-    return this.httpClient.patch(`${URL}/empleador/actualizar/perfil`, profileEmployeerData, {
+  editProfileEmployeer(profileEmployeerData: any) {
+    return this.httpClient.patch(`${URL}/empresa/actualizar/perfil`, profileEmployeerData, {
       observe: 'response',
       withCredentials: true,
       headers: new HttpHeaders()
@@ -68,13 +68,35 @@ export class UserService {
 
 
   createNewOffer(newOffer: any) {
-    return this.httpClient.patch(`${URL}/empleador/ofertas/:id`, newOffer, {
+    return this.httpClient.post(`${URL}/empresa/ofertas`, newOffer, {
       observe: 'response',
       withCredentials: true,
-      headers: new HttpHeaders().append('Content-Type', 'application/json')
+      headers: new HttpHeaders()
+        .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+        .append('Content-Type', 'application/json')
     });
-
   }
+
+  deleteOffer(newOffer: any) {
+    return this.httpClient.post(`${URL}/empresa/ofertas`, newOffer, {
+      observe: 'response',
+      withCredentials: true,
+      headers: new HttpHeaders()
+        .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+        .append('Content-Type', 'application/json')
+    });
+  }
+
+    editOffer(newOffer: any) {
+    return this.httpClient.post(`${URL}/empresa/ofertas`, newOffer, {
+      observe: 'response',
+      withCredentials: true,
+      headers: new HttpHeaders()
+        .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+        .append('Content-Type', 'application/json')
+    });
+  }
+
   uploadProfilePicture(foto: File, tipo_usuario: string) {
     var formdata = new FormData();
     formdata.append("foto", foto)

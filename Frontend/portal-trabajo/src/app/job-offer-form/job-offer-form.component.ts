@@ -39,14 +39,14 @@ export class JobOfferFormComponent implements OnInit {
     constructor(private router: Router, private fb: FormBuilder, private userservice: UserService, private toastr: ToastrService) {
         this.offersForm = this.fb.group({
             puesto_requerido: ['', Validators.required],
-            descipcion: ['', Validators.required],
+            descripcion: ['', Validators.required],
             nivel_educativo_requerido: ['', Validators.required],
             experiencia_requerida: ['', Validators.required],
             otros_requisitos: ['', Validators.required],
-            lugar_trabajo: ['', [Validators.required, Validators.email]],
+            lugar_trabajo: ['', Validators.required],
             modalidad: ['', Validators.required],
             tipo_contrato: ['', Validators.required],
-            localidad_puesto: [''],
+            localidad_del_puesto: [''],
            // fecha_cierre: ['']
         });
     }
@@ -56,11 +56,6 @@ export class JobOfferFormComponent implements OnInit {
     }
 
 
-    submit() {
-        if (this.offersForm.invalid) {
-            return;
-        }
-    }
 
 
     createOffer() {

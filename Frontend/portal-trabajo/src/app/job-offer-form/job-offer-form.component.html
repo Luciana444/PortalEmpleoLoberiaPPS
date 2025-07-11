@@ -2,7 +2,7 @@
 <h3>Creá una nueva oferta</h3>
 <div class="form-container">
 
-  <form [formGroup]="offersForm" (ngSubmit)="submit()">
+  <form [formGroup]="offersForm" (ngSubmit)="createOffer()">
     <!-- Puesto requerido -->
     <div>
       <mat-form-field appearance="outline" class="full-width">
@@ -57,9 +57,9 @@
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Lugar de trabajo</mat-label>
         <mat-select formControlName="lugar_trabajo" required>
-          <mat-option value="presencial">Presencial</mat-option>
-          <mat-option value="remoto">Remoto</mat-option>
-          <mat-option value="mixto">Mixto</mat-option>
+          <mat-option value="Presencial">Presencial</mat-option>
+          <mat-option value="Remoto">Remoto</mat-option>
+          <mat-option value="Mixto">Mixto</mat-option>
         </mat-select>
         <mat-error *ngIf="offersForm.get('lugar_trabajo')?.hasError('required')">
           Este campo es obligatorio
@@ -70,9 +70,11 @@
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Modalidad</mat-label>
         <mat-select formControlName="modalidad" required>
-          <mat-option value="tiempo-completo">Tiempo completo</mat-option>
-          <mat-option value="medio-tiempo">Medio tiempo</mat-option>
-          <mat-option value="otro">Otro</mat-option>
+          <mat-option value="Tiempo completo">Tiempo completo</mat-option>
+          <mat-option value="Medio tiempo">Medio tiempo</mat-option>
+          <mat-option value="Contrato a plazo fijo">Contrato a plazo fijo</mat-option>
+          <mat-option value="Pasantía">Pasantía</mat-option>
+          <mat-option value="Freelance">Freelance</mat-option>
         </mat-select>
         <mat-error *ngIf="offersForm.get('modalidad')?.hasError('required')">
           Este campo es obligatorio
@@ -89,7 +91,7 @@
       <!-- Localidad del puesto -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Localidad del puesto</mat-label>
-        <input matInput formControlName="localidad_puesto" required>
+        <input matInput formControlName="localidad_del_puesto" required>
         <mat-error *ngIf="offersForm.get('localidad_puesto')?.hasError('required')">
           Este campo es obligatorio
         </mat-error>
