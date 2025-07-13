@@ -5,6 +5,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { EmployerService } from '../services/employer.service';
 import { JobOffer } from '../../models/jobOffer.model';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-postulation-detail',
@@ -15,7 +17,13 @@ import { ToastrService } from 'ngx-toastr';
 export class PostulationDetailComponent implements OnInit {
   itemId: string = "";
   offer = {} as JobOffer;
-  constructor(private toastr: ToastrService, private router: Router, private route: ActivatedRoute, private employerservice: EmployerService,) {
+  constructor(
+    private toastr: ToastrService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private employerservice: EmployerService,
+    public dialog: MatDialog
+  ) {
 
   }
 
@@ -62,11 +70,48 @@ export class PostulationDetailComponent implements OnInit {
     });
 
   }
+
+  openDialog(id: any): void {
+    const dialogConfig = new MatDialogConfig();
+
+    // Configure dialog options (optional)
+    dialogConfig.disableClose = true; // Prevent closing by clicking outside
+    dialogConfig.autoFocus = true; // Automatically focus the first tabbable element
+    dialogConfig.width = '400px'; // Set dialog width
+    dialogConfig.data = {
+      title: 'Borrar oferta',
+      content: 'Desea borrar la oferta?',
+      trueAction: 'Sí, quiero borrarla'
+    }; // Pass data to the dialog
+
+    const dialogRef = this.dialog.open(DeleteDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteOffer(id);
+        console.log('Borrar oferta');
+      }
+
+      console.log('Dialog was closed with result:', result);
+    });
+  }
+
   navigateToLanding() {
     this.router.navigate(['']);
   }
 
   navigateToEditOffer(id: any) {
-    this.router.navigate(['create-offer', id]);
+    if (this.compareDatesOffer(Date.parse(this.offer.fecha_cierre))) {
+      this.router.navigate(['create-offer', id]);
+    } else {
+      this.toastr.warning('Oferta cerrada', 'No es posible editar la oferta cerrada')
+      console.log('La oferta ya cerró y no se puede editar');
+    }
+
+  }
+
+  compareDatesOffer(dateOffer: number): boolean {
+    const today = Date.now();
+    return today < dateOffer;
   }
 }

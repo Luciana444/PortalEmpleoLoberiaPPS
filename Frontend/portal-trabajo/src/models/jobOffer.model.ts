@@ -9,6 +9,7 @@ export interface JobOffer {
     modalidad: string;
     tipo_contrato: string;
     fecha_publicacion: string;
+    fecha_cierre:string;
     experiencia_requerida: string;
     otros_requisitos: string;
     nivel_educativo_requerido: string;
