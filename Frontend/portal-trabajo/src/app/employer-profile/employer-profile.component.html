@@ -6,18 +6,18 @@
             <h2>Ofertas</h2>
             <div class="create-offer">
                 <i class="fa-solid fa-filter"></i>
-                <button>Crear Oferta</button>
+                <button (click)="navigateToCreateOffer()">Crear Oferta</button>
             </div>
         </div>
         @for (offer of offers; track offer.id) {
         <div class="postulation">
             <div class="postulation-header">
-                <h4>{{offer.role}}</h4>
-                <p>Publicado {{offer.date}}</p>
+                <h4>{{offer.puesto_requerido}}</h4>
+                <p>Publicado {{offer.fecha_publicacion}}</p>
             </div>
             <div class="postulation-body">
-                <p>{{offer.description}}</p>
-                <button>Ver Oferta</button>
+                <p>{{offer.descripcion}}</p>
+            <button (click)="navigateToPostulationDetail(offer.id)">Ver Oferta</button>
             </div>
         </div>
         }

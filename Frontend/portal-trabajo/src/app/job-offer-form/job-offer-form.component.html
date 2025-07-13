@@ -108,9 +108,17 @@
     </mat-error>
   </mat-form-field>-->
     <div>
+      @if (itemId === "") {
       <button mat-raised-button type="submit" [disabled]="offersForm.invalid">
         Subir oferta
       </button>
+      } @else {
+      <button type="button" class="edit" (click)="editOffer(itemId)">
+         Guardar cambios</button>
+      }
+
+
+
     </div>
   </form>
 

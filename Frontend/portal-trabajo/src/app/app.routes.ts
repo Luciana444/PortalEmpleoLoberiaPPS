@@ -23,10 +23,13 @@ export const routes: Routes = [
     { path: 'reset', component: ResetPasswordComponent },
     { path: 'edit-profile', component: ProfileFormComponent },
     { path: 'create-offer', component: JobOfferFormComponent },
+    { path: 'create-offer/:id', component: JobOfferFormComponent },
     { path: 'employee-profile', component: EmployeeProfileComponent },
     { path: 'detail', component: PostulationDetailComponent },
+    { path: 'detail/:id', component: PostulationDetailComponent },
     { path: 'edit-profile-employer', component: EmployeerProfileFormComponent },
     { path: 'employer-profile', component: EmployerProfileComponent },
     { path: 'work-experience', component: WorkExperienceComponent },
     { path: 'academic-background-edit', component: AcademicBackgroundEditComponent },
+    
 ];

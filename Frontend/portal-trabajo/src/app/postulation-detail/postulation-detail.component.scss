@@ -65,6 +65,9 @@ h4, p{
     margin: 0;
     margin-left: 2rem;
 }
+h4{
+color:#49454F;
+    }
 
 .highlight{
     width: 137.5%;
@@ -152,4 +155,9 @@ i{
 
 button :hover{
     color: #57AF31 !important;
+}
+
+button .delete{
+    color: #57AF31 !important;
+    background-color: transparent;
 }
