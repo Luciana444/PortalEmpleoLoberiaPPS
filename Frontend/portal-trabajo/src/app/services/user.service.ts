@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
+import { map } from 'rxjs/operators';
+import { Profile } from '../../models/profile.model';
 
 
 
@@ -76,7 +78,7 @@ export class UserService {
     });
   }
 
- 
+
 
   uploadProfilePicture(foto: File, tipo_usuario: string) {
     var formdata = new FormData();
@@ -127,6 +129,42 @@ export class UserService {
         .append('Content-Type', 'application/json')
     });
   }
+
+  getDataProfile(tipo_usuario: any) {    
+    if (tipo_usuario === 'ciudadano') {
+      return this.httpClient.get<any>(`${URL}/ciudadano/traer/perfil`, {
+        observe: 'response',
+        withCredentials: true,
+        headers: new HttpHeaders()
+          .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+          .append('Content-Type', 'application/json')
+      }).pipe(
+        map(res => {
+          const p: Profile = {
+            nombre: res.body?.nombre + " " + res.body?.apellido,
+            imagen_url: ''
+          };
+          return p
+        })
+      );
+    } else if (tipo_usuario === 'empresa') {
+      return this.httpClient.get<any>(`${URL}/empresa/datos`, {
+        observe: 'response',
+        withCredentials: true,
+        headers: new HttpHeaders()
+          .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+          .append('Content-Type', 'application/json')
+      }).pipe(
+        map(res => {
+          const p: Profile = { 
+            nombre: res.body?.nombre_empresa, 
+            imagen_url: '' };
+          return p          
+        })
+      );
+    }
+    return null; //Falta definir Admin profile
+  } 
 
   logout() {
     localStorage.removeItem('token');

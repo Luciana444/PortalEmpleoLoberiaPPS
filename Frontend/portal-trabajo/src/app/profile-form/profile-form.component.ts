@@ -100,7 +100,7 @@ export class ProfileFormComponent implements OnInit {
     }
 }
 
-interface User {
+export interface User {
     id: string;
     email: string;
     tipo_usuario: string;
