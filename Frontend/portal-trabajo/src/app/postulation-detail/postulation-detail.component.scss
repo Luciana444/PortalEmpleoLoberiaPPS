@@ -157,7 +157,14 @@ button :hover{
     color: #57AF31 !important;
 }
 
-button .delete{
-    color: #57AF31 !important;
+.delete {
     background-color: transparent;
+    width: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.delete i
+{
+    color: #57AF31 !important;
+    
 }

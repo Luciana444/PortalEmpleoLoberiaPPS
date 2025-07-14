@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { JobOffer } from '../../models/jobOffer.model';
+import { Employer } from '../../models/employer.model';
 
 const URL = 'http://localhost:3000/api';
 
@@ -50,4 +51,14 @@ export class EmployerService {
                 .append('Content-Type', 'application/json')
         });
     }
+
+    getDataProfile() {
+        return this.httpClient.get<Employer>(`${URL}/empresa/datos`, {
+                observe: 'response',
+                withCredentials: true,
+                headers: new HttpHeaders()
+                  .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+                  .append('Content-Type', 'application/json')
+              })
+        }
 }

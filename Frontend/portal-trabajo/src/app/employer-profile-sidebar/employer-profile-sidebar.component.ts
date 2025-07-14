@@ -15,4 +15,6 @@ export class EmployerProfileSidebarComponent {
     this.router.navigate(['/edit-profile-employer']);
   }
 
+  
+
 }
