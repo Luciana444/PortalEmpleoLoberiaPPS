@@ -22,8 +22,9 @@
             </div>
 
             <h3 class="card-title">{{offer.puesto_requerido}}</h3>
-            <p class="card-description">{{offer.descripcion}}</p>
-
+            <div class="card-description-wrapper">
+                <p class="card-description" [title]="offer.descripcion">{{offer.descripcion}}</p>
+            </div>
 
             <div class="card-footer">
                 <div class="card-info">
