@@ -20,26 +20,28 @@ export class EmployeeProfileComponent implements OnInit {
 
   employee: Employee | null = null;
 
-  mockEmployee: Employee = {
-    id: 12345678,
-    name: 'Juan',
-    surname: 'Pérez',
-    location: 'Buenos Aires',
-    country: 'Argentina',
-    province: 'Buenos Aires',
-    birthdate: '1985-05-15',
-    cuil: 20123456789,
-    hasDisability: false,
-    phoneNumber: '+5491145678901',
+  /*mockEmployee: Employee = {
+    id: '12345678',
+    nombre: 'Juan',
+    localidad: 'Buenos Aires',
+    pais: 'Argentina',
+    provincia: 'Buenos Aires',
+    fecha_nacimiento: '1985-05-15',
+    cuil: '20123456789',
+    discapacidad: false,
+    telefono: '+5491145678901',
     email: 'juan.perez@example.com',
-    address: 'Av. Corrientes 1234',
-  };
+    calle: 'Av. Corrientes 1234',
+    numero: 'Av. Corrientes 1234',
+    piso: 'Av. Corrientes 1234',
+    departamento: 'Av. Corrientes 1234',
+  };*/
 
   loadData() {
 
-    this.employee = { ...this.mockEmployee };
+    /*this.employee = { ...this.mockEmployee };
     console.log(this.employee.id);
-    console.log(this.mockEmployee.cuil);
+    console.log(this.mockEmployee.cuil);*/
   }
 }
 

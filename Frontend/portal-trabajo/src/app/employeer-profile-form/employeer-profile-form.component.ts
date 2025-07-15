@@ -14,10 +14,10 @@ import { UserService } from '../services/user.service';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
-import { EmployerService } from '../services/employer.service';
 import { Employer } from '../../models/employer.model';
 import { User } from '../profile-form/profile-form.component';
 import { jwtDecode } from 'jwt-decode';
+import { EmployerService } from '../services/employer.service';
 
 
 @Component({
@@ -33,7 +33,7 @@ import { jwtDecode } from 'jwt-decode';
         MatButtonModule,
         CommonModule,
         HeaderComponent,
-        FooterComponent
+        FooterComponent        
     ],
     templateUrl: './employeer-profile-form.component.html',
     styleUrls: ['./employeer-profile-form.component.scss']

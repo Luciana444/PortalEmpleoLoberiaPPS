@@ -1,9 +1,10 @@
 <app-header></app-header>
-<h3>Formación</h3>
+<h3>Editá tu Formación académica</h3>
 <div class="form-container">
     <form [formGroup]="educationForm" (ngSubmit)="editEducationForm()">
 
         <!-- Nivel Educativo -->
+         <div class = "separate-inputs">
         <mat-form-field appearance="outline" class="full-width">
             <mat-label>Nivel educativo alcanzado</mat-label>
             <mat-select formControlName="nivel_educativo">
@@ -26,16 +27,17 @@
         <mat-form-field appearance="outline" class="full-width">
             <mat-label>¿Está actualmente cursando una carrera?</mat-label>
             <mat-select formControlName="esta_cursando_carrera">
-                <mat-option value="Sí">Sí</mat-option>
-                <mat-option value="No">No</mat-option>
+                <mat-option [value]="true">Sí</mat-option>
+                <mat-option [value]="false">No</mat-option>
             </mat-select>
             <mat-error *ngIf="educationForm.get('esta_cursando_carrera')?.hasError('required')">
                 Este campo es obligatorio
             </mat-error>
         </mat-form-field>
+        </div>
 
         <!-- Carrera en curso -->
-        <div *ngIf="educationForm.get('esta_cursando_carrera')?.value === 'Sí'">
+        <div *ngIf="educationForm.get('esta_cursando_carrera')?.value === true">
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Carrera en curso</mat-label>
                 <input matInput formControlName="carrera_en_curso" />
@@ -46,29 +48,30 @@
         </div>
 
         <!-- Capacitaciones -->
-        <div>
+        <div class="addEducation-btn">
             <div class="experience-div">
-                <button class="experience-btn" type="button"  (click)="addNewCardEducation = !addNewCardEducation">
+                <button class="experience-btn" type="button" (click)="addNewCardEducation = !addNewCardEducation">
                     <i class="fa-solid fa-plus"></i>
                     Agregar nueva capacitación
                 </button>
 
             </div>
-            <div *ngIf="addNewCardEducation" class="profile">
-                <div>
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Nombre de curso o capacitación</mat-label>
-                        <input matInput formControlName="nombre_capacitacion" />
-                        <mat-error *ngIf="educationForm.get('nombre_capacitacion')?.hasError('required')">
-                            Este campo es obligatorio
-                        </mat-error>
-                    </mat-form-field>
-                </div>
-                <button class="experience-btn" type="button" (click)="addEducationForm()">
-                    Agregar formación
-                </button>
-            </div>
         </div>
+        <div *ngIf="addNewCardEducation" class="profile">
+            <div>
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Nombre de curso o capacitación</mat-label>
+                    <input matInput formControlName="nombre_capacitacion" />
+                    <mat-error *ngIf="educationForm.get('nombre_capacitacion')?.hasError('required')">
+                        Este campo es obligatorio
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <button class="experience-btn" type="button" (click)="addEducationForm()">
+                <i class="fa-solid fa-arrow-up-from-bracket"></i> Agregar formación
+            </button>
+        </div>
+
         <button type="submit">
             Guardar cambios
         </button>
@@ -80,10 +83,7 @@
     <h3>Formaciones agregadas</h3>
     <ul>
         <li *ngFor="let f of formaciones">
-            <p><strong>Nivel educativo:</strong> {{ f.nivel_educativo }}</p>
-            <p><strong>Cursando carrera:</strong> {{ f.esta_cursando_carrera }}</p>
-            <p><strong>Carrera en curso:</strong> {{ f.carrera_en_curso || 'Sin carrera en curso' }}</p>
-            <p><strong>Capacitación:</strong> {{ f.nombre_capacitacion }}</p>
+            <p> {{ f.nombre_capacitacion }}</p>
         </li>
     </ul>
 </div>

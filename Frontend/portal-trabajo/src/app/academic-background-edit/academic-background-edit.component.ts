@@ -11,8 +11,13 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import {HeaderComponent } from '../header/header.component';
-import {FooterComponent } from '../footer/footer.component';
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
+import { AcademicBackground } from '../../models/academic-background.model';
+import { Employee } from '../../models/employee.model';
+import { EmployeeService } from '../services/employee.service';
+import { jwtDecode } from 'jwt-decode';
+import { User } from '../profile-form/profile-form.component';
 
 @Component({
     selector: 'app-academic-background-edit',
@@ -38,7 +43,14 @@ export class AcademicBackgroundEditComponent implements OnInit {
     addNewCardEducation = false;
     public educationForm: FormGroup;
     formaciones: any[] = [];
-    constructor(private fb: FormBuilder, private toastr: ToastrService, private userservice: UserService) {
+    itemId: string = "";
+
+    constructor(private fb: FormBuilder,
+        private toastr: ToastrService,
+        private userservice: UserService,
+        private employeeservice: EmployeeService,
+
+    ) {
 
         this.educationForm = this.fb.group({
             nivel_educativo: ['', Validators.required],
@@ -49,7 +61,24 @@ export class AcademicBackgroundEditComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.itemId = this.getUserId(); // Get ID from route
+        if (this.itemId) {
+            this.employeeservice.getDataProfile().subscribe({
+                next: (response) => {
+                    if (response.status === 200) {
+                        let employee = response.body ?? {} as Employee;
+                        this.educationForm.patchValue(employee); // Populate form with API data
+                    } else {
+                        console.log('No se pudo cargar datos', response);
+                    }
+                },
+                error: (err) => {
+                    this.toastr.error(err.error.error, 'Ocurrió un error');
+                    console.error('Error al cargar datos', err);
+                }
 
+            });
+        }
     }
 
     editEducationForm(): void {
@@ -57,7 +86,7 @@ export class AcademicBackgroundEditComponent implements OnInit {
         const academicBackground = {
             nivel_educativo: this.educationForm.value.nivel_educativo,
             esta_cursando_carrera: this.educationForm.value.esta_cursando_carrera,
-            carrera_en_ecurso: this.educationForm.value.carrera_en_curso,
+            carrera_en_curso: this.educationForm.value.carrera_en_curso,
         };
         this.userservice.addeducationForm(JSON.stringify(academicBackground)).subscribe({
             next: (response) => {
@@ -82,7 +111,7 @@ export class AcademicBackgroundEditComponent implements OnInit {
         if (!this.isValidCapacitacion()) return;
         const education = {
             nombre_capacitacion: this.educationForm.value.nombre_capacitacion,
-            
+
         };
         this.userservice.addeducationForm(JSON.stringify(education)).subscribe({
             next: (response) => {
@@ -109,10 +138,16 @@ export class AcademicBackgroundEditComponent implements OnInit {
     isValidAcademicBackground() {
         return this.educationForm.get('nivel_educativo')?.valid &&
             this.educationForm.get('esta_cursando_carrera')?.valid &&
-            this.educationForm.get('carrera_en_curso')?.valid 
+            this.educationForm.get('carrera_en_curso')?.valid
     }
 
     isValidCapacitacion() {
         return this.educationForm.get('nombre_capacitacion')?.valid
     }
+
+      getUserId() {
+                const storedTokenString = localStorage.getItem("token") ?? "";
+                const decodedToken = jwtDecode<User>(storedTokenString);
+                return decodedToken.id;
+            }
 }

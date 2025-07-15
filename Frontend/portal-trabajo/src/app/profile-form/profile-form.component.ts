@@ -13,8 +13,10 @@ import { UserService } from '../services/user.service';
 import { CommonModule } from '@angular/common';
 import { jwtDecode } from 'jwt-decode';
 import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
-import {HeaderComponent } from '../header/header.component';
+import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
+import { Employee } from '../../models/employee.model';
+import { EmployeeService } from '../services/employee.service';
 
 
 @Component({
@@ -40,8 +42,14 @@ import { FooterComponent } from '../footer/footer.component';
 
 export class ProfileFormComponent implements OnInit {
     profile: FormGroup;
+    itemId: string = "";
 
-    constructor(private router: Router, private fb: FormBuilder, private userservice: UserService, private toastr: ToastrService) {
+    constructor(private router: Router,
+        private fb: FormBuilder,
+        private userservice: UserService,
+        private toastr: ToastrService,
+        private employeeservice: EmployeeService
+    ) {
         this.profile = this.fb.group({
             nombre: ['', Validators.required],
             apellido: ['', Validators.required],
@@ -63,6 +71,24 @@ export class ProfileFormComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.itemId = this.getUserId(); // Get ID from route
+        if (this.itemId) {
+            this.employeeservice.getDataProfile().subscribe({
+                next: (response) => {
+                    if (response.status === 200) {
+                        let employee = response.body ?? {} as Employee;
+                        this.profile.patchValue(employee); // Populate form with API data
+                    } else {
+                        console.log('No se pudo cargar datos', response);
+                    }
+                },
+                error: (err) => {
+                    this.toastr.error(err.error.error, 'Ocurrió un error');
+                    console.error('Error al cargar datos', err);
+                }
+
+            });
+        }
 
     }
 
