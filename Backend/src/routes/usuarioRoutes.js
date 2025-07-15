@@ -89,6 +89,64 @@ import { authMiddleware } from '../middlewares/authMiddleware.js';
 
 usuarioRoutes.post('/foto/perfil',authMiddleware, upload.single('foto'), subirFotoPerfil);
 
+//================================================
+//End point obtener detalles de la oferta
+/**
+ * @swagger
+ * /usuario/ofertas/{id}:
+ *   get:
+ *     summary: Obtener detalles de una oferta laboral y su empresa
+ *     tags:
+ *       - Público - Ofertas
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID de la oferta laboral
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *     responses:
+ *       200:
+ *         description: Detalles de la oferta y la empresa asociada
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: string
+ *                     format: uuid
+ *                   puesto_requerido:
+ *                     type: string
+ *                   descripcion:
+ *                     type: string
+ *                   modalidad:
+ *                     type: string
+ *                   lugar_trabajo:
+ *                     type: string
+ *                   fecha_publicacion:
+ *                     type: string
+ *                     format: date-time
+ *                   nombre_empresa:
+ *                     type: string
+ *                   rubro:
+ *                     type: string
+ *                   localidad:
+ *                     type: string
+ *                   email:
+ *                     type: string
+ *       400:
+ *         description: Falta el ID de la oferta
+ *       404:
+ *         description: Oferta o empresa no encontrada
+ *       500:
+ *         description: Error interno del servidor
+ */
+
+
 usuarioRoutes.get('/ofertas/:id',obtenerDetallesOferta);
 
 
