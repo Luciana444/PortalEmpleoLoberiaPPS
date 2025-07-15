@@ -1,7 +1,7 @@
 
 // Importamos la lógica de negocio desde el servicio correspondiente
 import { crearPostulacion, subirCvBD, verificarPostulacion } from "../services/ciudadanoService.js";
-import  {generarPdfUsuario, obtenerPostulacionesService }  from "../services/ciudadanoService.js";
+import  {generarPdfUsuario, obtenerPostulacionesService,buscarOfertasFiltradasService }  from "../services/ciudadanoService.js";
 import fs from 'fs/promises';
 
 //================================================================
@@ -372,3 +372,24 @@ export const postularseAOferta = async(req,res)=>{
     return res.status(500).json({ error: 'Error al registrar la postulación' });
   }
 };
+
+
+export const buscarOfertasConFiltros = async (req, res) => {
+  try {
+    const { modalidad, lugar_trabajo, descripcion, puesto_requerido } = req.query;
+
+    const filtros = {
+      modalidad,
+      lugarTrabajo: lugar_trabajo,
+      descripcion,
+      puestoRequerido: puesto_requerido
+    };
+
+    const resultados = await buscarOfertasFiltradasService(filtros);
+    res.status(200).json(resultados);
+  } catch (error) {
+    console.error('Error al buscar ofertas con filtros:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
+

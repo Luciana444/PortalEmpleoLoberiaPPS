@@ -6,7 +6,7 @@ import {authMiddleware} from '../middlewares/authMiddleware.js'
 import {onlyCiudadano} from '../middlewares/onlyCiudadano.js'
 // Middleware para manejar la subida de archivos con Multer configurado
 import subirCv from '../middlewares/upload.js';
-import { actualizarPerfilCiudadano, obtenerPerfilCompleto, obtenerPostulaciones} from '../controllers/ciudadanoController.js';
+import { actualizarPerfilCiudadano, obtenerPerfilCompleto, obtenerPostulaciones,buscarOfertasConFiltros} from '../controllers/ciudadanoController.js';
 
 
 // Creamos el router para las rutas relacionadas con ciudadanos
@@ -298,7 +298,7 @@ ciudadanoRoutes.get('/traer/perfil', authMiddleware, onlyCiudadano, obtenerPerfi
 
 //=====================================================================
 
-//ciudadanoRoutes.get('/filtrar/ofertas', authMiddleware,onlyCiudadano, buscarOfertasConFiltros);
+ciudadanoRoutes.get('/filtrar/ofertas', authMiddleware,onlyCiudadano, buscarOfertasConFiltros);
 
 ciudadanoRoutes.get('/traer/postulaciones', authMiddleware, onlyCiudadano, obtenerPostulaciones);
 
