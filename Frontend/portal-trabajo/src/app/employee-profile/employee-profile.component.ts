@@ -5,6 +5,7 @@ import { ProfileComponent } from '../profile/profile.component';
 import { AcademicBackgroundComponent } from '../academic-background/academic-background.component';
 import { AttatchCvComponent } from '../attatch-cv/attatch-cv.component';
 import { Employee } from '../../models/employee.model';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-employee-profile',
@@ -13,36 +14,54 @@ import { Employee } from '../../models/employee.model';
   styleUrl: './employee-profile.component.scss'
 })
 export class EmployeeProfileComponent implements OnInit {
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.loadData();
+    this.getProfile();
   }
 
-  employee: Employee | null = null;
+  url = 'http://localhost:3000/api/ciudadano/traer/perfil';
 
-  /*mockEmployee: Employee = {
-    id: '12345678',
-    nombre: 'Juan',
-    localidad: 'Buenos Aires',
-    pais: 'Argentina',
-    provincia: 'Buenos Aires',
-    fecha_nacimiento: '1985-05-15',
-    cuil: '20123456789',
+  employee: Employee = {
+    id: '',
+    nombre: '',
+    email: '',
+    dni: '',
+    cuil: '',
+    fecha_nacimiento: '',
+    telefono: '',
+    calle: '',
+    numero: '',
+    piso: '',
+    departamento: '',
+    localidad: '',
+    provincia: '',
+    pais: '',
+    nivel_educativo: '',
+    esta_cursando_carrera: false,
+    carrera_en_curso: '',
+    situacion_laboral: '',
+    tiene_emprendimiento: '',
     discapacidad: false,
-    telefono: '+5491145678901',
-    email: 'juan.perez@example.com',
-    calle: 'Av. Corrientes 1234',
-    numero: 'Av. Corrientes 1234',
-    piso: 'Av. Corrientes 1234',
-    departamento: 'Av. Corrientes 1234',
-  };*/
+    foto: '',
+    cv_url: '',
+    capacitaciones: []
+  };
 
-  loadData() {
-
-    /*this.employee = { ...this.mockEmployee };
-    console.log(this.employee.id);
-    console.log(this.mockEmployee.cuil);*/
+  getProfile() {
+    this.http.get<Employee>(this.url)
+      .subscribe({
+        next: (response) => {
+          this.employee = response;
+          console.log('Employee loaded:', this.employee);
+        },
+        error: (err) => {
+          console.error('Error loading employee profile:', err);
+          this.employee;
+        }
+      });
   }
+
 }
 
 
