@@ -1,13 +1,13 @@
 import express from 'express';
 // Controllers: funciones que contienen la lógica de negocio
-import { generarPdf, subirCV } from '../controllers/ciudadanoController.js';
+import { generarPdf, postularseAOferta, subirCV } from '../controllers/ciudadanoController.js';
 // Middlewares de seguridad y autorización
 import {authMiddleware} from '../middlewares/authMiddleware.js'
 import {onlyCiudadano} from '../middlewares/onlyCiudadano.js'
 // Middleware para manejar la subida de archivos con Multer configurado
 import subirCv from '../middlewares/upload.js';
-import { actualizarPerfilCiudadano } from '../controllers/ciudadanoController.js';
-import{obtenerPerfilCompleto} from '../controllers/ciudadanoController.js';
+import { actualizarPerfilCiudadano, obtenerPerfilCompleto, obtenerPostulaciones,buscarOfertasConFiltros} from '../controllers/ciudadanoController.js';
+
 
 // Creamos el router para las rutas relacionadas con ciudadanos
 export const ciudadanoRoutes = express.Router();
@@ -167,7 +167,7 @@ ciudadanoRoutes.put('/upload_cv',authMiddleware, onlyCiudadano, subirCv.single('
 
 
 
-ciudadanoRoutes.patch('/actualizar/perfil',authMiddleware,onlyCiudadano, actualizarPerfilCiudadano);
+ciudadanoRoutes.patch('/actualizar/perfil',authMiddleware,onlyCiudadano,subirCv.single('cv'),actualizarPerfilCiudadano);
 
 
 //============================================================================
@@ -297,6 +297,12 @@ ciudadanoRoutes.get('/generar_cv',authMiddleware, onlyCiudadano, generarPdf);
 ciudadanoRoutes.get('/traer/perfil', authMiddleware, onlyCiudadano, obtenerPerfilCompleto);
 
 //=====================================================================
+
+ciudadanoRoutes.get('/filtrar/ofertas', authMiddleware,onlyCiudadano, buscarOfertasConFiltros);
+
+ciudadanoRoutes.get('/traer/postulaciones', authMiddleware, onlyCiudadano, obtenerPostulaciones);
+
+ciudadanoRoutes.post('/ofertas/:id/postular',authMiddleware,onlyCiudadano,subirCv.single('cv'),postularseAOferta);
 
 export default ciudadanoRoutes;
 

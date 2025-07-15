@@ -15,6 +15,20 @@ import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component'
   styleUrl: './postulation-detail.component.scss'
 })
 export class PostulationDetailComponent implements OnInit {
+  currentUserType: any;
+
+  parseJwt(token: string | null): any {
+    if (!token) return null;
+
+    try {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      return JSON.parse(window.atob(base64));
+    } catch (e) {
+      console.error("Error parsing JWT:", e);
+      return null;
+    }
+  }
   itemId: string = "";
   offer = {} as JobOffer;
   constructor(
@@ -29,6 +43,7 @@ export class PostulationDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.itemId = this.route.snapshot.params['id'] ?? ""; // Get ID from route
+
     if (this.itemId) {
       this.employerservice.getOfferById(this.itemId).subscribe({
         next: (response) => {
@@ -45,10 +60,27 @@ export class PostulationDetailComponent implements OnInit {
 
       });
     }
+    const token = localStorage.getItem('token');
+    if (token) {
+      const userData = this.parseJwt(token);
+
+      if (userData && userData.tipo_usuario) {
+        console.log('User type:', userData.tipo_usuario);
+
+        // Use it directly
+        if (userData.tipo_usuario === 'employer') {
+          // Employer specific logic
+        } else if (userData.tipo_usuario === 'candidate') {
+          // Candidate specific logic
+        }
+
+        // Store it if needed elsewhere in the component
+        this.currentUserType = userData.tipo_usuario;
+      } else {
+        console.warn('Token does not contain tipo_usuario');
+      }
+    }
   }
-
-
-
 
   deleteOffer(id: any) {
     this.employerservice.deleteOfferById(id).subscribe({
