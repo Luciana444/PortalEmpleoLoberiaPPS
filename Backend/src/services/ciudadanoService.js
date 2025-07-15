@@ -249,3 +249,4 @@ export const obtenerPostulacionesService = async (idCiudadano) => {
   return await obtenerPostulacionesRepository(idCiudadano);
 };
 
+

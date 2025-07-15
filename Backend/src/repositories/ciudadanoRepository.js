@@ -119,3 +119,6 @@ export const obtenerPostulacionesRepository = async (idCiudadano) => {
     ORDER BY p.fecha_postulacion DESC
   `;
 };
+
+
+
