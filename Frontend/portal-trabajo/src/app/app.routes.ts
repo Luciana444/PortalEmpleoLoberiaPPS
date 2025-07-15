@@ -16,7 +16,7 @@ import { EmployerProfileComponent } from './employer-profile/employer-profile.co
 
 export const routes: Routes = [
     { path: '', component: LandingComponent },
-    { path: 'employee-form', component: EmployeeFormComponent },
+    { path: 'register-user', component: EmployeeFormComponent },
     { path: 'login', component: LoginComponent },
     { path: 'landing', component: LandingComponent },
     { path: 'recovery', component: RecoveryComponent },

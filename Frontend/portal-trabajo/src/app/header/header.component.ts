@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
   }
 
   navigateToFormSelector() {
-    this.router.navigate(['/form-selector']);
+    this.router.navigate(['/register-user']);
   }
 
   get isLoggedIn(): boolean {

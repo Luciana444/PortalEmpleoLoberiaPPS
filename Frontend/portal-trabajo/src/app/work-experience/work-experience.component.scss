@@ -30,12 +30,12 @@ button{
   margin-top: 1.5rem;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 5rem;
+  margin-bottom: 1rem;
   width: 9rem;
   padding: 8px 2px;
   grid-column: 1 / -1;
 }
-button.experience-btn
+button.addExperience-btn
 {
   width: 15rem;
   margin-bottom: 3rem ;
@@ -53,4 +53,24 @@ select {
   border: 1px solid #B3B3B3;
   min-height: 1.7rem;
   text-indent: 10px;
+}
+
+.dates-picker{
+  display:inline-flex;
+}
+
+.profile mat-form-field {
+  width: 100%
+}
+
+.addExperience-btn {
+  display: flex;
+  justify-content: right;
+}
+button.experience-btn {
+  width: 15rem;
+  margin-bottom: 2rem;
+  color:#57AF31;
+  background-color: transparent;
+
 }

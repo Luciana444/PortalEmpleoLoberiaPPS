@@ -24,4 +24,5 @@ export interface Employee {
     foto: string;
     cv_url: string;
     capacitaciones: AcademicBackground[];
+    formaciones: AcademicBackground[];
 }

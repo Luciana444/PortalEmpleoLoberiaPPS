@@ -11,7 +11,7 @@ export class FormSelectorComponent {
   constructor(private router: Router) {}
 
   navigateToEmployeeForm() {
-    this.router.navigate(['/employee-form']);
+    this.router.navigate(['/register-user']);
   }
 
 }
