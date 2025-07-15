@@ -2,39 +2,37 @@
     <div class="profile-header">
         <div class="profile-pic"></div>
         <div class="profile-info">
-            <h4>Restaurante Loberia</h4>
+            <h4>{{employer.nombre_empresa}}</h4>
             <div class="location">
                 <i class="fa-solid fa-location-dot"></i>
-                <p>Tandil</p>
+                <p>{{employer.localidad}}</p>
             </div>
         </div>
 
     </div>
-    <p class="description">Restaurante Lobería es una empresa familiar dedicada a la gastronomía local.
-        Ofrecemos nuestro
-        servicio en salón propio y también hacemos catering en eventos.</p>
+    <!-- <p class="description">{{employer.}}</p> -->
     <div class="title-wrapper">
         <i class="fa-solid fa-key"></i>
         <h4 class="title">Datos Personales</h4>
     </div>
 
     <div class="personal-info">
-        <div class="info-row">
+        <!-- <div class="info-row">
             <h5>Ubicación: </h5>
             <p></p>
         </div>
         <div class="info-row">
             <h5>Fecha de creación: </h5>
             <p></p>
-        </div>
+        </div> -->
         <div class="info-row">
             <h5>Rubro: </h5>
-            <p></p>
+            <p>{{employer.rubro}}</p>
         </div>
-        <div class="info-row">
+        <!-- <div class="info-row">
             <h5>Tamaño de la empresa: </h5>
             <p></p>
-        </div>
+        </div> -->
     </div>
 
     <div class="title-wrapper">
@@ -44,15 +42,15 @@
     <div class="contact-info">
         <div class="info-row">
             <h5>Teléfono: </h5>
-            <p></p>
+            <p>{{employer.telefono}}</p>
         </div>
         <div class="info-row">
             <h5>Email: </h5>
-            <p></p>
+            <p>{{employer.email_contacto}}</p>
         </div>
         <div class="info-row">
             <h5>Dirección: </h5>
-            <p></p>
+            <p>{{employer.calle}}, {{employer.numero}}</p>
         </div>
     </div>
 
