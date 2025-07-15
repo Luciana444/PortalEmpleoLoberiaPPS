@@ -22,31 +22,7 @@ export class EmployeeProfileComponent implements OnInit {
 
   url = 'http://localhost:3000/api/ciudadano/traer/perfil';
 
-  employee: Employee = {
-    id: '',
-    nombre: '',
-    email: '',
-    dni: '',
-    cuil: '',
-    fecha_nacimiento: '',
-    telefono: '',
-    calle: '',
-    numero: '',
-    piso: '',
-    departamento: '',
-    localidad: '',
-    provincia: '',
-    pais: '',
-    nivel_educativo: '',
-    esta_cursando_carrera: false,
-    carrera_en_curso: '',
-    situacion_laboral: '',
-    tiene_emprendimiento: '',
-    discapacidad: false,
-    foto: '',
-    cv_url: '',
-    capacitaciones: []
-  };
+  employee: Employee = {} as Employee;
 
   getProfile() {
     this.http.get<Employee>(this.url)
@@ -61,7 +37,4 @@ export class EmployeeProfileComponent implements OnInit {
         }
       });
   }
-
 }
-
-

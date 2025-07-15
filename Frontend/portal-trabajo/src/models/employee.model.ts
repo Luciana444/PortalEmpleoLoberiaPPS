@@ -1,4 +1,5 @@
 import { AcademicBackground } from "./academic-background.model";
+import { WorkExperience } from "./work-experience.model";
 
 export interface Employee {
     id: string;
@@ -24,5 +25,5 @@ export interface Employee {
     foto: string;
     cv_url: string;
     capacitaciones: AcademicBackground[];
-    formaciones: AcademicBackground[];
+    experiencias_laborales: WorkExperience[];
 }
