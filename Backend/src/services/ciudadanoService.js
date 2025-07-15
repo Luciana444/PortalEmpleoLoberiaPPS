@@ -1,6 +1,6 @@
 import { getUsuarioById } from "../controllers/usuarioController.js";
 import { getCapacitacionesByCiudadanoId, getExperienciaByCiudadanoId,insertarUrlCv } from "../repositories/ciudadanoRepository.js";
-import { updatePerfilCiudadano,insertExperienciaLaboral,insertCapacitacion } from '../repositories/ciudadanoRepository.js';
+import { updatePerfilCiudadano,insertExperienciaLaboral,insertCapacitacion,obtenerPostulacionesRepository  } from '../repositories/ciudadanoRepository.js';
 import PDFDocument from 'pdfkit';
 
 
@@ -244,4 +244,8 @@ export const getPerfilCompleto = async (userId) => {
   };
 };
 //======================================================================0
+
+export const obtenerPostulacionesService = async (idCiudadano) => {
+  return await obtenerPostulacionesRepository(idCiudadano);
+};
 

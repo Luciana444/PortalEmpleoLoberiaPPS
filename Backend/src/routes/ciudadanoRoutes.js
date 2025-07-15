@@ -6,8 +6,8 @@ import {authMiddleware} from '../middlewares/authMiddleware.js'
 import {onlyCiudadano} from '../middlewares/onlyCiudadano.js'
 // Middleware para manejar la subida de archivos con Multer configurado
 import subirCv from '../middlewares/upload.js';
-import { actualizarPerfilCiudadano } from '../controllers/ciudadanoController.js';
-import{obtenerPerfilCompleto} from '../controllers/ciudadanoController.js';
+import { actualizarPerfilCiudadano, obtenerPerfilCompleto, obtenerPostulaciones} from '../controllers/ciudadanoController.js';
+
 
 // Creamos el router para las rutas relacionadas con ciudadanos
 export const ciudadanoRoutes = express.Router();
@@ -297,6 +297,10 @@ ciudadanoRoutes.get('/generar_cv',authMiddleware, onlyCiudadano, generarPdf);
 ciudadanoRoutes.get('/traer/perfil', authMiddleware, onlyCiudadano, obtenerPerfilCompleto);
 
 //=====================================================================
+
+//ciudadanoRoutes.get('/filtrar/ofertas', authMiddleware,onlyCiudadano, buscarOfertasConFiltros);
+
+ciudadanoRoutes.get('/traer/postulaciones', authMiddleware, onlyCiudadano, obtenerPostulaciones);
 
 export default ciudadanoRoutes;
 

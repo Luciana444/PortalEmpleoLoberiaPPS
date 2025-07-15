@@ -80,3 +80,4 @@ export const getOfertaById = async (idOferta) => {
 export const editarOferta = async(datosActualizados,id_oferta,id_empresa)=>{
     return await editarOfertaExistente(datosActualizados,id_oferta,id_empresa);
 }
+

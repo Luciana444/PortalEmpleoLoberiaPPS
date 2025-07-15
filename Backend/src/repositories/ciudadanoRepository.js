@@ -1,5 +1,6 @@
 import sql from '../database/db.js';
 
+
 export const insertarUrlCv = async (id_usuario, url_cv) => {
   const resultado = await sql`
     UPDATE perfiles_ciudadanos SET cv_url = ${url_cv}
@@ -90,4 +91,31 @@ export const fetchCapacitaciones = async (userId) => {
 
 export const fetchExperiencias = async (userId) => {
   return await sql`SELECT * FROM experiencias_laborales_ciudadanos WHERE id_ciudadano = ${userId}`;
+};
+
+
+export const obtenerPostulacionesRepository = async (idCiudadano) => {
+  return await sql`
+    SELECT 
+      p.id AS id_postulacion,
+      p.fecha_postulacion,
+      p.estado,
+      p.leido_por_empresa,
+      p.mensaje,
+      p.cv_url,
+      o.id AS id_oferta,
+      o.puesto_requerido,
+      o.descripcion,
+      o.lugar_trabajo,
+      o.modalidad,
+      o.tipo_contrato,
+      o.fecha_publicacion,
+      o.localidad_del_puesto,
+      e.nombre_empresa
+    FROM postulaciones p
+    JOIN ofertas_laborales o ON p.id_oferta = o.id
+    JOIN empresas e ON o.id_empresa = e.id_usuario
+    WHERE p.id_ciudadano = ${idCiudadano}
+    ORDER BY p.fecha_postulacion DESC
+  `;
 };

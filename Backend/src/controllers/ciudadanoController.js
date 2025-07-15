@@ -1,7 +1,7 @@
 
 // Importamos la lógica de negocio desde el servicio correspondiente
 import { subirCvBD } from "../services/ciudadanoService.js";
-import  {generarPdfUsuario}  from "../services/ciudadanoService.js";
+import  {generarPdfUsuario, obtenerPostulacionesService }  from "../services/ciudadanoService.js";
 
 //================================================================
 // subir perfil
@@ -314,3 +314,16 @@ export const obtenerPerfilCompleto = async (req, res) => {
 };
 
 //===============================================================
+
+export const obtenerPostulaciones = async (req, res) => {
+  try {
+    const idCiudadano = req.usuario.id;
+
+    const postulaciones = await obtenerPostulacionesService(idCiudadano);
+
+    res.status(200).json(postulaciones);
+  } catch (error) {
+    console.error('Error al obtener postulaciones del ciudadano:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
