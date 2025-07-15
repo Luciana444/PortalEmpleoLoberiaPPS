@@ -171,4 +171,5 @@ empleadorRoutes.delete('/eliminar/oferta/:id', authMiddleware, onlyEmpresa, elim
 
 empleadorRoutes.patch('/ofertas/:id',authMiddleware,onlyEmpresa,editarOfertaLaboral);
 
+
 export default empleadorRoutes;
