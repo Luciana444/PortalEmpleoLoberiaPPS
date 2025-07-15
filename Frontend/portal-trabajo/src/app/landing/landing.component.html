@@ -13,7 +13,7 @@
             <div class="card-header">
                 <div class="icon-placeholder"></div>
                 <div>
-                    <h4 class="card-user">{{offer.id_empresa}}</h4>
+                    <h4 class="card-user">{{offer.nombre_empresa}}</h4>
                     <div>
                         <i class="fa-solid fa-location-dot"></i>
                         <h5 class="card-location">{{offer.localidad}}</h5>
@@ -22,8 +22,9 @@
             </div>
 
             <h3 class="card-title">{{offer.puesto_requerido}}</h3>
-            <p class="card-description">{{offer.descripcion}}</p>
-
+            <div class="card-description-wrapper">
+                <p class="card-description" [title]="offer.descripcion">{{offer.descripcion}}</p>
+            </div>
 
             <div class="card-footer">
                 <div class="card-info">
@@ -35,7 +36,7 @@
                     <p class="card-date">Publicado {{offer.fecha_publicacion}}</p>
 
                 </div>
-                <button class="card-button" (click)="navigateToOffer()">Ver Oferta</button>
+                <button class="card-button" (click)="navigateToOffer(offer.id)">Ver Oferta</button>
 
             </div>
         </div>

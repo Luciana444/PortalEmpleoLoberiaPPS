@@ -2,10 +2,10 @@
     <div class="profile-header">
         <div class="profile-pic"></div>
         <div class="profile-info">
-            <h4>{{employeeData?.name}} {{employeeData?.surname}}</h4>
+            <h4>{{employeeData?.nombre}}</h4>
             <div class="location">
                 <i class="fa-solid fa-location-dot"></i>
-                <p>{{employeeData?.location}}</p>
+                <p>{{employeeData?.localidad}}</p>
             </div>
         </div>
     </div>
@@ -18,15 +18,15 @@
     <div class="personal-info">
         <div class="info-row">
             <h5>País: </h5>
-            <p>{{employeeData?.country}}</p>
+            <p>{{employeeData?.pais}}</p>
         </div>
         <div class="info-row">
             <h5>Provincia: </h5>
-            <p>{{employeeData?.province}}</p>
+            <p>{{employeeData?.provincia}}</p>
         </div>
         <div class="info-row">
             <h5>Fecha de Nacimiento: </h5>
-            <p>{{employeeData?.birthdate}}</p>
+            <p>{{employeeData?.fecha_nacimiento}}</p>
         </div>
         <div class="info-row">
             <h5>DNI: </h5>
@@ -38,7 +38,7 @@
         </div>
         <div class="info-row">
             <h5>¿Tiene alguna discapacidad?</h5>
-            @if (employeeData?.hasDisability) {
+            @if (employeeData?.discapacidad) {
             <p>Sí</p>
 
             } @else {
@@ -54,7 +54,7 @@
     <div class="contact-info">
         <div class="info-row">
             <h5>Teléfono: </h5>
-            <p>{{employeeData?.phoneNumber}}</p>
+            <p>{{employeeData?.telefono}}</p>
         </div>
         <div class="info-row">
             <h5>Email: </h5>
@@ -62,7 +62,8 @@
         </div>
         <div class="info-row">
             <h5>Dirección: </h5>
-            <p>{{employeeData?.address}}</p>
+            <p>{{employeeData?.calle}} {{employeeData?.numero}} </p>
+            <p>{{employeeData?.piso}} {{employeeData?.departamento}}</p>
         </div>
     </div>
 

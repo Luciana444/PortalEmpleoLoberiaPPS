@@ -1,6 +1,6 @@
 import { getUsuarioById } from "../controllers/usuarioController.js";
-import { getCapacitacionesByCiudadanoId, getExperienciaByCiudadanoId,insertarUrlCv } from "../repositories/ciudadanoRepository.js";
-import { updatePerfilCiudadano,insertExperienciaLaboral,insertCapacitacion } from '../repositories/ciudadanoRepository.js';
+import { crearPostulacionRepository, getCapacitacionesByCiudadanoId, getExperienciaByCiudadanoId,insertarUrlCv, verificarUsuarioPostulado } from "../repositories/ciudadanoRepository.js";
+import { updatePerfilCiudadano,insertExperienciaLaboral,insertCapacitacion,obtenerPostulacionesRepository, buscarOfertasFiltradas  } from '../repositories/ciudadanoRepository.js';
 import PDFDocument from 'pdfkit';
 
 
@@ -244,4 +244,30 @@ export const getPerfilCompleto = async (userId) => {
   };
 };
 //======================================================================0
+
+export const obtenerPostulacionesService = async (idCiudadano) => {
+  return await obtenerPostulacionesRepository(idCiudadano);
+};
+
+export const crearPostulacion = async(id_oferta,id_usuario,mensaje,url_cv)=>{
+  try {
+      await crearPostulacionRepository(id_oferta,id_usuario,mensaje,url_cv);
+  } catch (error) {
+      console.log(error);
+  }
+};
+
+export const verificarPostulacion = async(id_oferta,id_usuario)=>{
+  try {
+    const verificacion = await verificarUsuarioPostulado(id_oferta,id_usuario);
+    return verificacion;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const buscarOfertasFiltradasService = async (filtros) => {
+  return await buscarOfertasFiltradas(filtros);
+};
+
 

@@ -1,15 +1,27 @@
-export interface Employee {
-    name: string;
-    surname: string;
-    location: string;
-    country: string;
-    province: string;
-    birthdate: string;
-    id: number;
-    cuil: number;
-    hasDisability: boolean;
+import { AcademicBackground } from "./academic-background.model";
 
-    phoneNumber: string;
+export interface Employee {
+    id: string;
+    nombre: string;
     email: string;
-    address: string;
+    dni: string;
+    cuil: string;
+    fecha_nacimiento: string;
+    telefono: string;
+    calle: string;
+    numero: string;
+    piso: string;
+    departamento: string;
+    localidad: string;
+    provincia: string;
+    pais: string;
+    nivel_educativo: string;
+    esta_cursando_carrera: boolean;
+    carrera_en_curso: string;
+    situacion_laboral: string;
+    tiene_emprendimiento: string;
+    discapacidad: boolean;
+    foto: string;
+    cv_url: string;
+    capacitaciones: AcademicBackground[];
 }

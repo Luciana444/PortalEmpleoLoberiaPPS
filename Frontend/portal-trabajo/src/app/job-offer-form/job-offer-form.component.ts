@@ -61,12 +61,12 @@ export class JobOfferFormComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.itemId = this.route.snapshot.paramMap.get('id') ?? ""; // Get ID from route
+        this.itemId = this.route.snapshot.params['id'] ?? ""; // Get ID from route
         if (this.itemId) {
             this.employerservice.getOfferById(this.itemId).subscribe({
                 next: (response) => {
                     if (response.status === 200) {
-                        this.offersForm.patchValue(response); // Populate form with API data
+                        this.offersForm.patchValue(response.body[0]); // Populate form with API data
                     } else {
                         console.log('No se pudo cargar oferta', response);
                     }
@@ -105,15 +105,15 @@ export class JobOfferFormComponent implements OnInit {
     }
 
 
-    /*editOffer() {
+    editOffer(id:any) {
         if (this.offersForm.invalid) return;
-        this.employerservice.editOffer(JSON.stringify(this.offersForm.value)).subscribe({
+        this.employerservice.editOffer(id,JSON.stringify(this.offersForm.value)).subscribe({
             next: (response) => {
                 if (response.status === 200) {
-                    this.toastr.success('ACtualización exitosa', 'Oferta editada')
+                    this.toastr.success('Actualización exitosa', 'Oferta editada')
                     console.log('Actualización exitosa', response);
                     this.offersForm.reset();
-                    //this.router.navigate(['postulation-detail']);
+                    this.router.navigate(['detail', this.itemId]);
                 } else {
                     console.log('No se pudo crear la oferta', response);
                 }
@@ -126,7 +126,7 @@ export class JobOfferFormComponent implements OnInit {
         });
 
 
-    }*/
+    }
 
     onFileSelected(event: any) {
     }

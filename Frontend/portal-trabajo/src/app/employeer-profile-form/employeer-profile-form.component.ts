@@ -9,11 +9,15 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { CommonModule } from '@angular/common';
-import {FooterComponent } from '../footer/footer.component';
+import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
+import { Employer } from '../../models/employer.model';
+import { User } from '../profile-form/profile-form.component';
+import { jwtDecode } from 'jwt-decode';
+import { EmployerService } from '../services/employer.service';
 
 
 @Component({
@@ -29,15 +33,22 @@ import { HeaderComponent } from '../header/header.component';
         MatButtonModule,
         CommonModule,
         HeaderComponent,
-        FooterComponent
+        FooterComponent        
     ],
     templateUrl: './employeer-profile-form.component.html',
     styleUrls: ['./employeer-profile-form.component.scss']
 })
 export class EmployeerProfileFormComponent implements OnInit {
     employeerProfile: FormGroup;
+    itemId: string = "";
 
-    constructor(private router: Router, private fb: FormBuilder, private userservice: UserService, private toastr: ToastrService) {
+    constructor(private router: Router,
+        private fb: FormBuilder,
+        private userservice: UserService,
+        private toastr: ToastrService,
+        private employerservice: EmployerService,
+        private route: ActivatedRoute,
+    ) {
         this.employeerProfile = this.fb.group({
             nombre_empresa: ['', Validators.required],
             email_contacto: ['', [Validators.required, Validators.email]],
@@ -56,6 +67,24 @@ export class EmployeerProfileFormComponent implements OnInit {
         });
     }
     ngOnInit(): void {
+        this.itemId = this.getUserId(); // Get ID from route
+        if (this.itemId) {
+            this.employerservice.getDataProfile().subscribe({
+                next: (response) => {
+                    if (response.status === 200) {
+                        let employer = response.body ?? {} as Employer;
+                        this.employeerProfile.patchValue(employer); // Populate form with API data
+                    } else {
+                        console.log('No se pudo cargar datos', response);
+                    }
+                },
+                error: (err) => {
+                    this.toastr.error(err.error.error, 'Ocurrió un error');
+                    console.error('Error al cargar datos', err);
+                }
+
+            });
+        }
 
     }
 
@@ -67,7 +96,7 @@ export class EmployeerProfileFormComponent implements OnInit {
                     this.toastr.success('Ya podes ver tu perfil completo', 'Actualización exitosa')
                     console.log('Actualización exitosa', response);
                     this.employeerProfile.reset();
-                    this.router.navigate(['profile']);
+                    this.router.navigate(['employer-profile']);
                 } else {
                     console.log('No se pudo actualizar tu perfil', response);
                 }
@@ -80,5 +109,12 @@ export class EmployeerProfileFormComponent implements OnInit {
         });
 
     }
+
+
+      getUserId() {
+            const storedTokenString = localStorage.getItem("token") ?? "";
+            const decodedToken = jwtDecode<User>(storedTokenString);
+            return decodedToken.id;
+        }
 
 }
