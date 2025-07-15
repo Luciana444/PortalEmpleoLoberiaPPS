@@ -1,6 +1,6 @@
 import express from 'express';
 // Controllers: funciones que contienen la lógica de negocio
-import { generarPdf, subirCV } from '../controllers/ciudadanoController.js';
+import { generarPdf, postularseAOferta, subirCV } from '../controllers/ciudadanoController.js';
 // Middlewares de seguridad y autorización
 import {authMiddleware} from '../middlewares/authMiddleware.js'
 import {onlyCiudadano} from '../middlewares/onlyCiudadano.js'
@@ -167,7 +167,7 @@ ciudadanoRoutes.put('/upload_cv',authMiddleware, onlyCiudadano, subirCv.single('
 
 
 
-ciudadanoRoutes.patch('/actualizar/perfil',authMiddleware,onlyCiudadano, actualizarPerfilCiudadano);
+ciudadanoRoutes.patch('/actualizar/perfil',authMiddleware,onlyCiudadano,subirCv.single('cv'),actualizarPerfilCiudadano);
 
 
 //============================================================================
@@ -301,6 +301,8 @@ ciudadanoRoutes.get('/traer/perfil', authMiddleware, onlyCiudadano, obtenerPerfi
 //ciudadanoRoutes.get('/filtrar/ofertas', authMiddleware,onlyCiudadano, buscarOfertasConFiltros);
 
 ciudadanoRoutes.get('/traer/postulaciones', authMiddleware, onlyCiudadano, obtenerPostulaciones);
+
+ciudadanoRoutes.post('/ofertas/:id/postular',authMiddleware,onlyCiudadano,subirCv.single('cv'),postularseAOferta);
 
 export default ciudadanoRoutes;
 

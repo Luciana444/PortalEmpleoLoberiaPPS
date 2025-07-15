@@ -122,3 +122,18 @@ export const obtenerPostulacionesRepository = async (idCiudadano) => {
 
 
 
+export const verificarUsuarioPostulado = async(id_oferta,id_usuario)=>{
+  const resultado = await sql`SELECT 1 FROM postulaciones WHERE id_oferta = ${id_oferta} AND id_ciudadano =${id_usuario}`;
+  return resultado.length > 0;
+};
+
+
+
+
+export const crearPostulacionRepository = async(id_oferta,id_usuario,mensaje,url_cv)=>{
+  await sql`
+    INSERT INTO postulaciones(id_oferta,fecha_postulacion, id_ciudadano,mensaje,estado,cv_url)
+    VALUES (${id_oferta},NOW(),${id_usuario},${mensaje},${'pendiente'}, ${url_cv});
+  `;
+
+};
