@@ -6,7 +6,7 @@ export default {
   transform: {},
 
   // Mapeo de rutas para importar bien los módulos con extensión .js
-  moduleNameMapper: {
-    '^(\\.{1,2}/.*)\\.js$': '$1',
-  }
+ // moduleNameMapper: {
+ //   '^(\\.{1,2}/.*)\\.js$': '$1',
+ // }
 };

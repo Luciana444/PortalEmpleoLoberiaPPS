@@ -66,6 +66,9 @@ describe('PATCH /empresa/actualizar/perfil', () => {
     expect(res.body.error || res.body.mensaje || res.text).toMatch(/token/i);
   });
 
+
+  //anda bien en la app, aca falla por el multer
+
   it('debe rechazar si el usuario no es empresa', async () => {
     // Creamos un usuario ciudadano para probar acceso no autorizado
     const email = `ciudadano${Date.now()}@mail.com`;
