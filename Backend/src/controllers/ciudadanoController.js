@@ -1,7 +1,8 @@
 
 // Importamos la lógica de negocio desde el servicio correspondiente
-import { subirCvBD } from "../services/ciudadanoService.js";
+import { crearPostulacion, subirCvBD, verificarPostulacion } from "../services/ciudadanoService.js";
 import  {generarPdfUsuario, obtenerPostulacionesService }  from "../services/ciudadanoService.js";
+import fs from 'fs/promises';
 
 //================================================================
 // subir perfil
@@ -291,6 +292,7 @@ export const generarPdf = async (req, res) => {
 
 
 import { getPerfilCompleto } from '../services/ciudadanoService.js';
+import { getOfertaById } from "../services/empleadorService.js";
 
 export const obtenerPerfilCompleto = async (req, res) => {
   try {
@@ -325,5 +327,48 @@ export const obtenerPostulaciones = async (req, res) => {
   } catch (error) {
     console.error('Error al obtener postulaciones del ciudadano:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
+
+export const postularseAOferta = async(req,res)=>{
+
+  try {
+      const id_usuario = req.usuario.id;
+      const id_oferta = req.params.id;
+
+      if(!id_oferta){
+        return res.status(400).json({error:'Falta el ID de la oferta'});
+      }
+
+      if(!id_usuario){
+        return res.status(401).json({message:'Falta el ID del usuario'});
+      }
+
+
+      const oferta = await getOfertaById(id_oferta);
+      
+      if (!oferta || oferta.estado !== 'activa') {
+          return res.status(400).json({ error: 'La oferta no existe o no está activa' });
+      }
+      
+      const yaPostulado = await verificarPostulacion(id_oferta,id_usuario);
+
+      if(yaPostulado){
+        if(req.file?.path){
+          await fs.unlink(req.file.path);
+        }
+        return res.status(400).json({message:'Ya esta postulado'})
+      }
+
+      const url_cv = req.file ? `/uploads/cv/${req.file.filename}` : null;
+
+      const mensaje = req.body.mensaje;
+
+      await crearPostulacion(id_oferta,id_usuario, mensaje, url_cv);
+      
+      return res.status(200).json({message:'Postulacion exitosa'})
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: 'Error al registrar la postulación' });
   }
 };
