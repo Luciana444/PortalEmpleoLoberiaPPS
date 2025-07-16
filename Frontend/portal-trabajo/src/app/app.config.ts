@@ -7,17 +7,16 @@ import { provideAnimations } from '@angular/platform-browser/animations'; // For
 import { provideToastr } from 'ngx-toastr'; // For toastr
 import { authInterceptor } from '../interceptors/http-auth-func-interceptor';
 
-
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }), 
-    provideRouter(routes), 
-    provideClientHydration(withEventReplay()), 
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+    provideClientHydration(withEventReplay()),
     provideHttpClient(
       withFetch(),
       withInterceptorsFromDi(),
       //withInterceptors([authInterceptor])
-),
+    ),
     provideAnimations(),
     provideToastr()]
 };

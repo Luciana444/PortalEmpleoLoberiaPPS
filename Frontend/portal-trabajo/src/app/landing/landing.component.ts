@@ -1,34 +1,38 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, LOCALE_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { MatPaginator, MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
 import { PaginatorIntl } from '../services/paginator.service';
 import { TrainingLinkComponent } from '../training-link/training-link.component';
-import { Subscription } from 'rxjs';
 import { JobOffer } from '../../models/jobOffer.model';
+import { DatePipe, registerLocaleData } from '@angular/common'
+import localeEsAR from '@angular/common/locales/es-AR';
+
+registerLocaleData(localeEsAR);
 
 @Component({
   selector: 'app-landing',
-  imports: [MatPaginator, HeaderComponent, FooterComponent, TrainingLinkComponent],
+  imports: [MatPaginator, HeaderComponent, FooterComponent, TrainingLinkComponent, DatePipe],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss',
-  providers: [{ provide: MatPaginatorIntl, useClass: PaginatorIntl }]
+  providers: [{ provide: MatPaginatorIntl, useClass: PaginatorIntl }, { provide: LOCALE_ID, useValue: 'es-AR' }]
 })
-export class LandingComponent implements OnInit {
+
+export class LandingComponent {
   constructor(private router: Router, private http: HttpClient) { }
   offers: JobOffer[] = [];
-
+  url: string = 'http://localhost:3000/api/empresa/ofertas/activas';
   currentPage = 0;
   pageSize = 10;
 
   getOffers() {
-    this.http.get<JobOffer[]>('http://localhost:3000/api/empresa/ofertas/activas')
+    this.http.get<JobOffer[]>(this.url)
       .subscribe({
         next: (response) => {
           this.offers = response;
-          console.log('Offers loaded:', this.offers);
+          console.log(this.offers)
         },
         error: (err) => {
           console.error('Error loading offers:', err);
@@ -37,7 +41,7 @@ export class LandingComponent implements OnInit {
       });
   }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.getOffers();
   }
 

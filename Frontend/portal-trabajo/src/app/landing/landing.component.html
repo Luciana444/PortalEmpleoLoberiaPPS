@@ -33,7 +33,7 @@
                         <p class="card-modality">{{offer.lugar_trabajo}}</p>
 
                     </div>
-                    <p class="card-date">Publicado {{offer.fecha_publicacion}}</p>
+                    <p class="card-date">Publicado {{offer.fecha_publicacion | date:'longDate' }}</p>
 
                 </div>
                 <button class="card-button" (click)="navigateToOffer(offer.id)">Ver Oferta</button>
