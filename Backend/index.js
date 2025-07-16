@@ -20,6 +20,10 @@ app.use(cors({
   credentials:true
 }));
 
+
+
+
+
 // Middleware global para parsear cuerpos JSON en las solicitudes entrantes
 app.use(express.json());
 
