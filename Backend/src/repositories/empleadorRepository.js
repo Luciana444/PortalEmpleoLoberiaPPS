@@ -173,3 +173,44 @@ export const editarOfertaExistente = async (datosActualizados, id_oferta, id_emp
   await sql.unsafe(consulta, [...valores, id_oferta, id_empresa]);
 };
 
+export const getPostulacionesPendientesPorEmpresa = async (idEmpresa) => {
+  return await sql`
+    SELECT 
+      p.id_oferta,
+      p.id_ciudadano,
+      p.fecha_postulacion,
+      p.mensaje,
+      p.cv_url,
+      o.puesto_requerido,
+      u.nombre AS nombre_ciudadano,
+      u.email AS email_ciudadano
+    FROM postulaciones p
+    JOIN ofertas_laborales o ON p.id_oferta = o.id
+    JOIN usuarios u ON p.id_ciudadano = u.id
+    WHERE o.id_empresa = ${idEmpresa} AND p.estado = 'pendiente'
+    ORDER BY p.fecha_postulacion DESC
+  `;
+};
+
+
+export const obtenerPostulacionesPendientes = async (idEmpresa) => {
+  return await sql`
+    SELECT p.id, p.id_oferta, p.id_ciudadano, p.fecha_postulacion, p.mensaje, p.cv_url,
+           o.puesto_requerido, c.nombre
+    FROM postulaciones p
+    JOIN ofertas_laborales o ON p.id_oferta = o.id
+    JOIN usuarios c ON p.id_ciudadano = c.id
+    WHERE o.id_empresa = ${idEmpresa}
+      AND p.leido_por_empresa = false
+      AND p.estado = 'pendiente'
+    ORDER BY p.fecha_postulacion DESC;
+  `;
+};
+
+export const marcarPostulacionesComoLeidas = async (ids) => {
+  await sql`
+    UPDATE postulaciones
+    SET leido_por_empresa = true
+    WHERE id = ANY(${ids});
+  `;
+};

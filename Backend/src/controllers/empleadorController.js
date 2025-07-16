@@ -1,4 +1,4 @@
-import { getDatosEmpresa, updatePerfilEmpresa, obtenerOfertasPorEmpresa, obtenerOfertasActivas, crearOferta, eliminarOferta, getOfertaById, editarOferta } from "../services/empleadorService.js";
+import { getDatosEmpresa, updatePerfilEmpresa, obtenerOfertasPorEmpresa, obtenerOfertasActivas, crearOferta, eliminarOferta, getOfertaById, editarOferta,obtenerYMarcarNotificaciones } from "../services/empleadorService.js";
 import { empresaValidation } from "../validations/empresaValidation.js";
 import { crearOfertaSchema, editarOfertaSchema } from "../validations/ofertaValidation.js";
 
@@ -367,3 +367,22 @@ export const editarOfertaLaboral = async(req,res)=>{
 
 //======================================
 
+export const obtenerNotificaciones = async (req, res) => {
+  try {
+    const idEmpresa = req.usuario?.id;
+
+    if (!idEmpresa) {
+      return res.status(401).json({ error: 'Empresa no autenticada' });
+    }
+
+    const notificaciones = await obtenerYMarcarNotificaciones(idEmpresa);
+
+    res.status(200).json({
+      cantidad: notificaciones.length,
+      notificaciones
+    });
+  } catch (error) {
+    console.error('Error al obtener notificaciones:', error);
+    res.status(500).json({ error: 'Error interno al obtener notificaciones' });
+  }
+};
