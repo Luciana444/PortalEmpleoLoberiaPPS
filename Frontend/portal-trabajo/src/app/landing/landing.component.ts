@@ -17,7 +17,7 @@ import { JobOffer } from '../../models/jobOffer.model';
   providers: [{ provide: MatPaginatorIntl, useClass: PaginatorIntl }]
 })
 
-export class LandingComponent implements OnInit {
+export class LandingComponent {
   constructor(private router: Router, private http: HttpClient) { }
   offers: JobOffer[] = [];
   url: string = 'http://localhost:3000/api/empresa/ofertas/activas';
@@ -37,7 +37,7 @@ export class LandingComponent implements OnInit {
       });
   }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.getOffers();
   }
 
