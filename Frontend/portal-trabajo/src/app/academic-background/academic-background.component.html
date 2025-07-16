@@ -6,33 +6,43 @@
         </div>
         <div class="info-row">
             <h5>Nivel Educativo Alcanzado: </h5>
-            <p>Terciario</p>
+            <p>{{employeeData?.nivel_educativo}}</p>
         </div>
         <div class="info-row">
             <h5>¿Está cursando actualmente una carrera? </h5>
+            @if (employeeData?.esta_cursando_carrera) {
             <p>Sí</p>
+            } @else {
+            <p>No</p>
+            }
         </div>
         <div class="info-row">
             <h5>Carrera en curso: </h5>
-            <p>Curso de pastelería</p>
+            <p>{{employeeData?.carrera_en_curso}}</p>
         </div>
         <div class="info-row">
             <h5>Cursos o capacitaciones realizados: </h5>
-            <p>Curso de cocina integral - Curso de masa madre</p>
+            @for (capacitacion of employeeData?.capacitaciones; track $id) {
+            <li>{{capacitacion.nombre_capacitacion}}</li>
+            }
         </div>
     </div>
     <div>
         <div class="title-wrapper">
             <h2>Experiencia laboral</h2>
-            <button (click)="navigateToWorkExperience()" >Agregar Experiencia</button>
+            <button (click)="navigateToWorkExperience()">Agregar Experiencia</button>
         </div>
         <div class="info-row">
             <h5>Situación laboral actual: </h5>
-            <p>Desempleado</p>
+            <p>{{employeeData?.situacion_laboral}}</p>
         </div>
         <div class="info-row">
             <h5>¿Tiene un emprendimiento propio?</h5>
+            @if (employeeData?.tiene_emprendimiento) {
+            <p>Sí</p>
+            } @else {
             <p>No</p>
+            }
         </div>
     </div>
 </main>

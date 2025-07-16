@@ -53,6 +53,6 @@ export class LoginComponent implements OnInit {
 
   goToEmployeeForm(event: Event) {
     event.preventDefault(); // Prevent default link behavior
-    this.router.navigate(['/employee-form']);
+    this.router.navigate(['/register-user']);
   }
 }

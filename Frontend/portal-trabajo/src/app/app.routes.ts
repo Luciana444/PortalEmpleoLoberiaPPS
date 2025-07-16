@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { EmployeeFormComponent } from './employee-form/employee-form.component';
-// import { FormSelectorComponent } from './form-selector/form-selector.component';
 import { LoginComponent } from './login/login.component';
 import { LandingComponent } from './landing/landing.component';
 import { RecoveryComponent } from './recovery/recovery.component';
@@ -16,7 +15,7 @@ import { EmployerProfileComponent } from './employer-profile/employer-profile.co
 
 export const routes: Routes = [
     { path: '', component: LandingComponent },
-    { path: 'employee-form', component: EmployeeFormComponent },
+    { path: 'register-user', component: EmployeeFormComponent },
     { path: 'login', component: LoginComponent },
     { path: 'landing', component: LandingComponent },
     { path: 'recovery', component: RecoveryComponent },
@@ -31,5 +30,5 @@ export const routes: Routes = [
     { path: 'employer-profile', component: EmployerProfileComponent },
     { path: 'work-experience', component: WorkExperienceComponent },
     { path: 'academic-background-edit', component: AcademicBackgroundEditComponent },
-    
+
 ];

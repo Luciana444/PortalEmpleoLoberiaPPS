@@ -12,8 +12,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { ControlContainer } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import {HeaderComponent } from '../header/header.component';
+import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
+import { EmployeeService } from '../services/employee.service';
+import { jwtDecode } from 'jwt-decode';
+import { User } from '../profile-form/profile-form.component';
+import { Employee } from '../../models/employee.model';
 
 @Component({
     selector: 'app-work-experience',
@@ -39,7 +43,12 @@ export class WorkExperienceComponent implements OnInit {
     addNewCardExperience = false;
     public workExperience: FormGroup;
     experiencias: any[] = [];
-    constructor(private fb: FormBuilder, private toastr: ToastrService, private userservice: UserService) {
+    itemId: string = "";
+    constructor(private fb: FormBuilder, 
+        private toastr: ToastrService, 
+        private userservice: UserService,
+        private employeeservice: EmployeeService
+    ) {
 
         this.workExperience = this.fb.group({
             situacion_laboral: ['', Validators.required],
@@ -52,7 +61,24 @@ export class WorkExperienceComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.itemId = this.getUserId(); // Get ID from route
+        if (this.itemId) {
+            this.employeeservice.getDataProfile().subscribe({
+                next: (response) => {
+                    if (response.status === 200) {
+                        let employee = response.body ?? {} as Employee;
+                        this.workExperience.patchValue(employee); // Populate form with API data
+                    } else {
+                        console.log('No se pudo cargar datos', response);
+                    }
+                },
+                error: (err) => {
+                    this.toastr.error(err.error.error, 'Ocurrió un error');
+                    console.error('Error al cargar datos', err);
+                }
 
+            });
+        }
     }
 
     editWorkExperience(): void {
@@ -120,4 +146,11 @@ export class WorkExperienceComponent implements OnInit {
     isValidSituation() {
         return this.workExperience.get('situacion_laboral')?.valid
     }
+
+    getUserId() {
+        const storedTokenString = localStorage.getItem("token") ?? "";
+        const decodedToken = jwtDecode<User>(storedTokenString);
+        return decodedToken.id;
+    }
+
 }
