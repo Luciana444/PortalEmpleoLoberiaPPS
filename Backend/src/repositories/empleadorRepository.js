@@ -214,3 +214,15 @@ export const marcarPostulacionesComoLeidas = async (ids) => {
     WHERE id = ANY(${ids});
   `;
 };
+
+
+
+export const getPostulacionesPorOferta = async(id_oferta) =>{
+  const postulaciones = await sql`SELECT * FROM postulaciones WHERE id_oferta=${id_oferta}`;
+  return postulaciones;
+};
+
+export const getPostulacionById = async(id_postulacion)=>{
+  const postulacion = await sql`SELECT * FROM postulaciones WHERE id=${id_postulacion}`;
+  return postulacion;
+}
