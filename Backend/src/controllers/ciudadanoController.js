@@ -317,6 +317,28 @@ export const obtenerPerfilCompleto = async (req, res) => {
 
 //===============================================================
 
+/**
+ * Obtener todas las postulaciones realizadas por el ciudadano autenticado.
+ *
+ * Este controlador extrae el ID del ciudadano desde el token (req.usuario.id)
+ * y consulta todas las postulaciones relacionadas. Devuelve un array con la
+ * información relevante de cada postulación.
+ *
+ * @function
+ * @name obtenerPostulaciones
+ * @memberof controllers.ciudadano
+ *
+ * @param {Object} req - Objeto de solicitud (Express)
+ * @param {Object} req.usuario - Usuario autenticado (inyectado por authMiddleware)
+ * @param {string} req.usuario.id - ID del ciudadano autenticado
+ * @param {Object} res - Objeto de respuesta HTTP
+ *
+ * @returns {JSON} Array de postulaciones con información básica
+ *
+ * @throws {500} Error interno del servidor
+ */
+
+
 export const obtenerPostulaciones = async (req, res) => {
   try {
     const idCiudadano = req.usuario.id;
@@ -329,6 +351,36 @@ export const obtenerPostulaciones = async (req, res) => {
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
+
+//================================================================
+
+/**
+ * Permite al ciudadano autenticado postularse a una oferta laboral activa.
+ *
+ * Verifica que la oferta exista y esté activa, que el ciudadano no se haya postulado antes,
+ * y guarda la postulación junto con el mensaje y el CV (si se proporciona).
+ * El CV se almacena y se guarda su ruta relativa en la base de datos.
+ *
+ * @function
+ * @name postularseAOferta
+ * @memberof controllers.ciudadano
+ *
+ * @param {Object} req - Objeto de solicitud (Express)
+ * @param {Object} req.params - Parámetros de ruta
+ * @param {string} req.params.id - ID de la oferta laboral
+ * @param {Object} req.usuario - Usuario autenticado
+ * @param {string} req.usuario.id - ID del ciudadano autenticado
+ * @param {Object} req.file - Archivo CV subido (procesado por multer)
+ * @param {Object} req.body - Cuerpo de la solicitud
+ * @param {string} [req.body.mensaje] - Mensaje opcional del ciudadano
+ * @param {Object} res - Objeto de respuesta HTTP
+ *
+ * @returns {JSON} Mensaje de éxito o error
+ *
+ * @throws {400} Si falta el ID de la oferta, si la oferta no está activa, o si ya está postulado
+ * @throws {401} Si falta el ID del usuario
+ * @throws {500} Si ocurre un error interno al registrar la postulación
+ */
 
 export const postularseAOferta = async(req,res)=>{
 
@@ -372,6 +424,32 @@ export const postularseAOferta = async(req,res)=>{
     return res.status(500).json({ error: 'Error al registrar la postulación' });
   }
 };
+
+//======================================================
+
+/**
+ * Buscar ofertas laborales aplicando filtros opcionales enviados por el ciudadano.
+ *
+ * Este endpoint es accesible solo para ciudadanos autenticados.
+ * Permite filtrar las ofertas laborales según modalidad, lugar de trabajo, puesto requerido o descripción.
+ *
+ * @function
+ * @name buscarOfertasConFiltros
+ * @memberof controllers.ciudadano
+ *
+ * @param {Object} req - Objeto de solicitud HTTP (Express)
+ * @param {Object} req.query - Parámetros de consulta (query params)
+ * @param {string} [req.query.modalidad] - Modalidad de trabajo (ej. "Tiempo completo", "Freelance", etc.)
+ * @param {string} [req.query.lugar_trabajo] - Lugar de trabajo (ej. "Presencial", "Remoto", "Mixto")
+ * @param {string} [req.query.descripcion] - Palabra clave en la descripción de la oferta
+ * @param {string} [req.query.puesto_requerido] - Título o puesto buscado
+ *
+ * @param {Object} res - Objeto de respuesta HTTP (Express)
+ * 
+ * @returns {JSON} Retorna un array de ofertas laborales que coinciden con los filtros.
+ *
+ * @throws {500} Si ocurre un error interno en el servidor.
+ */
 
 
 export const buscarOfertasConFiltros = async (req, res) => {

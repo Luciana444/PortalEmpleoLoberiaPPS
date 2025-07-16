@@ -3,7 +3,7 @@ import { empresaValidation } from "../validations/empresaValidation.js";
 import { crearOfertaSchema, editarOfertaSchema } from "../validations/ofertaValidation.js";
 
 //=================================================================
-// end point actializar perfil de la empresa
+// end point actualizar perfil de la empresa
 //==================================================================
 /**
  * Actualiza los datos del perfil de una empresa autenticada.
@@ -85,6 +85,39 @@ export const obtenerDatosEmpresa = async (req,res)=>{
     res.status(500).json({error:'Error al obtener los datos de la empresa'});
   }
 }
+//==================================================================
+//Obtener ofertas
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     OfertaLaboral:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: string
+ *           format: uuid
+ *         puesto_requerido:
+ *           type: string
+ *         descripcion:
+ *           type: string
+ *         nivel_educativo_requerido:
+ *           type: string
+ *         experiencia_requerida:
+ *           type: string
+ *         otros_requisitos:
+ *           type: string
+ *         estado_publicacion:
+ *           type: string
+ *           enum: [pendiente, aprobada, rechazada]
+ *         fecha_publicacion:
+ *           type: string
+ *           format: date
+ *         id_empresa:
+ *           type: string
+ *           format: uuid
+ */
 
 
 export const obtenerOfertasEmpresa = async (req, res) => {
@@ -121,6 +154,64 @@ export const traerOfertasActivas = async (req, res) => {
   }
 };
 
+//====================================================
+// crear oferta laboral
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     NuevaOfertaLaboral:
+ *       type: object
+ *       required:
+ *         - puesto_requerido
+ *         - descripcion
+ *         - nivel_educativo_requerido
+ *         - lugar_trabajo
+ *         - modalidad
+ *       properties:
+ *         puesto_requerido:
+ *           type: string
+ *         descripcion:
+ *           type: string
+ *         nivel_educativo_requerido:
+ *           type: string
+ *         experiencia_requerida:
+ *           type: string
+ *           nullable: true
+ *         otros_requisitos:
+ *           type: string
+ *           nullable: true
+ *         lugar_trabajo:
+ *           type: string
+ *           enum: [Presencial, Remoto, Mixto]
+ *         modalidad:
+ *           type: string
+ *           enum: [Tiempo completo, Medio tiempo, Contrato a plazo fijo, Pasantía, Freelance]
+ *         tipo_contrato:
+ *           type: string
+ *           nullable: true
+ *         fecha_cierre:
+ *           type: string
+ *           format: date
+ *           nullable: true
+ *         localidad_del_puesto:
+ *           type: string
+ *           minLength: 1
+ *           maxLength: 100
+ *           nullable: true
+ *       example:
+ *         puesto_requerido: Desarrollador Frontend
+ *         descripcion: Se necesita desarrollador con experiencia en React y diseño UI/UX.
+ *         nivel_educativo_requerido: Universitario
+ *         experiencia_requerida: 2 años
+ *         otros_requisitos: Inglés técnico
+ *         lugar_trabajo: Remoto
+ *         modalidad: Tiempo completo
+ *         tipo_contrato: Relación de dependencia
+ *         fecha_cierre: 2025-08-01
+ *         localidad_del_puesto: Mar del Plata
+ */
+
 
 export const crearOfertaLaboral = async (req,res)=>{
   try {
@@ -150,6 +241,24 @@ export const crearOfertaLaboral = async (req,res)=>{
 };
 
 
+//==================================================
+// Eliminar oferta
+
+/**
+ * Elimina una oferta laboral perteneciente a la empresa autenticada
+ * 
+ * @route DELETE /empleador/eliminar/oferta/:id
+ * @access Private (solo empresas)
+ * @param {Object} req - Objeto de solicitud HTTP
+ * @param {Object} res - Objeto de respuesta HTTP
+ * @returns {200} Oferta eliminada correctamente
+ * @returns {400} Faltan datos necesarios
+ * @returns {403} No tiene permiso para eliminar esta oferta
+ * @returns {404} Oferta no encontrada
+ * @returns {500} Error interno del servidor
+ */
+
+
 export const eliminarOfertaEmpresa = async (req, res) => {
   const idOferta = req.params.id;
   const idEmpresa = req.usuario?.id;
@@ -177,6 +286,33 @@ export const eliminarOfertaEmpresa = async (req, res) => {
     res.status(500).json({ error: 'Error al eliminar la oferta' });
   }
 };
+
+//===============================================
+//editar oferta
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     EditarOfertaLaboral:
+ *       type: object
+ *       properties:
+ *         puesto_requerido:
+ *           type: string
+ *         descripcion:
+ *           type: string
+ *         nivel_educativo_requerido:
+ *           type: string
+ *         experiencia_requerida:
+ *           type: string
+ *         otros_requisitos:
+ *           type: string
+ *       example:
+ *         puesto_requerido: Desarrollador Backend
+ *         descripcion: Experiencia en Node.js y PostgreSQL
+ *         nivel_educativo_requerido: Universitario
+ *         experiencia_requerida: 3 años
+ *         otros_requisitos: Inglés intermedio
+ */
 
 
 export const editarOfertaLaboral = async(req,res)=>{
@@ -229,4 +365,5 @@ export const editarOfertaLaboral = async(req,res)=>{
   }
 };
 
+//======================================
 

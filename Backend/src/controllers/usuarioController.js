@@ -126,6 +126,30 @@ export const subirFotoPerfil = async (req, res) => {
   }
 };
 
+//===============================================================
+/**
+ * Obtener detalles completos de una oferta laboral, incluyendo los datos de la empresa que la publicó.
+ *
+ * Este endpoint recibe un ID de oferta, busca la oferta correspondiente y luego recupera los datos
+ * de la empresa asociada. Devuelve ambos objetos en un array: [oferta, empresa].
+ *
+ * @function
+ * @name obtenerDetallesOferta
+ * @memberof controllers.usuario
+ *
+ * @param {Object} req - Objeto de solicitud HTTP (Express)
+ * @param {Object} req.params - Parámetros de la ruta
+ * @param {string} req.params.id - ID de la oferta laboral
+ * @param {Object} res - Objeto de respuesta HTTP
+ *
+ * @returns {JSON} Array con los detalles de la oferta y la empresa correspondiente
+ *
+ * @throws {400} Si falta el ID de la oferta
+ * @throws {404} Si no se encuentra la oferta o la empresa
+ * @throws {500} Si ocurre un error interno del servidor
+ */
+
+
 export const obtenerDetallesOferta = async(req,res)=>{
   try {
     const id_oferta = req.params.id;
