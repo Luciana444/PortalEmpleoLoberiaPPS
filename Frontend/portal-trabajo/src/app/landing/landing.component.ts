@@ -6,7 +6,6 @@ import { FooterComponent } from '../footer/footer.component';
 import { MatPaginator, MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
 import { PaginatorIntl } from '../services/paginator.service';
 import { TrainingLinkComponent } from '../training-link/training-link.component';
-import { Subscription } from 'rxjs';
 import { JobOffer } from '../../models/jobOffer.model';
 
 @Component({

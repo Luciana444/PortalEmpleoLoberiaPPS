@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { EmployerService } from '../services/employer.service';
 import { JobOffer } from '../../models/jobOffer.model';
 import { ToastrService } from 'ngx-toastr';
-import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { EmployeeService } from '../services/employee.service';
 import { PostulateDialogComponent } from '../postulate-dialog/postulate-dialog.component';

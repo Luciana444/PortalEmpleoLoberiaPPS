@@ -16,7 +16,7 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class HeaderComponent implements OnInit {
   user: Profile = {} as Profile;
-  itemId: string = "";
+  itemId: string = '';
   constructor(private route: ActivatedRoute, private router: Router, private userservice: UserService, @Inject(PLATFORM_ID) private platformId: Object) { }
 
 
@@ -52,21 +52,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['']);
   }
 
-  // get isLoggedIn(): boolean {
-  //   return !!localStorage.getItem(this.item);
-  // }
-
   onLogout() {
     this.userservice.logout();
     this.navigateToLogin();
   }
-
-  // getUserType() {
-  //   const storedTokenString = localStorage.getItem("token") ?? "";
-  //   const decodedToken = jwtDecode<User>(storedTokenString);
-  //   return decodedToken.tipo_usuario;
-  // }
-
 
   get isLoggedIn(): boolean {
     if (isPlatformBrowser(this.platformId)) {  // Check if running in browser

@@ -21,16 +21,17 @@
             </div>
         </div>
         <div class="button-wrapper">
-            @if (currentUserType === "ciudadano") {
+            <!-- @if (currentUserType === "ciudadano") { -->
+            @if(false){
             <button (click)="openDialogPostulation(offer.id)">Postularme</button>
             <button (click)="openDialogPostulation(offer.id)">Postularme <br> con CV Nuevo</button>
             } @else {
-            @if (offer.id_empresa === currentUserId) {
+            <!-- @if (offer.id_empresa === currentUserId) { -->
             <button class="edit" (click)="navigateToEditOffer(offer.id)"> <i class="fa-solid fa-pen "></i> Editar
                 Oferta</button>
             <button class="delete" (click)="openDialog(offer.id)">
                 <i class="fa-solid fa-trash fa-xl "></i> </button>
-            }
+            <!-- } -->
             }
         </div>
     </div>
