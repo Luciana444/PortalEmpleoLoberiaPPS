@@ -11,18 +11,22 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08); // Added subtle shadow
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
 .small-logo > svg{
     height: 4.5rem;
     margin-left: 4.5rem;
-    gap: 1rem;
 }
 
 svg{
     width: fit-content;
     fill: $green;
+}
+
+svg:hover  {
+    filter: brightness(0.8);
+    cursor: pointer;
 }
 
 .register-button{

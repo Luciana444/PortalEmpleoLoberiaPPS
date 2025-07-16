@@ -19,8 +19,6 @@ import { ToastrService } from 'ngx-toastr';
     ],
 })
 
-
-
 export class CvUploaderComponent {
     @Output() cvUploaded = new EventEmitter<File>();
     constructor(private userservice: UserService, private toastr: ToastrService) {
@@ -71,8 +69,8 @@ export class CvUploaderComponent {
 
     isBigFile() { console.log(this.fileTooBig); return this.fileTooBig; }
 
-    notifyCvUploaded(file:any) {
-    //console.log('CV uploaded');
-    this.cvUploaded.emit(file);
-  }
+    notifyCvUploaded(file: any) {
+        //console.log('CV uploaded');
+        this.cvUploaded.emit(file);
+    }
 }

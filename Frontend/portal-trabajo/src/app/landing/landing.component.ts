@@ -28,7 +28,6 @@ export class LandingComponent implements OnInit {
       .subscribe({
         next: (response) => {
           this.offers = response;
-          console.log('Offers loaded:', this.offers);
         },
         error: (err) => {
           console.error('Error loading offers:', err);

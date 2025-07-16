@@ -16,22 +16,8 @@ import { PostulateDialogComponent } from '../postulate-dialog/postulate-dialog.c
   templateUrl: './postulation-detail.component.html',
   styleUrl: './postulation-detail.component.scss'
 })
+
 export class PostulationDetailComponent implements OnInit {
-  currentUserType: any;
-  cv!: File;
-  parseJwt(token: string | null): any {
-    if (!token) return null;  
-    try {
-      const base64Url = token.split('.')[1];
-      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      return JSON.parse(window.atob(base64));
-    } catch (e) {
-      console.error("Error parsing JWT:", e);
-      return null;
-    }
-  }
-  itemId: string = "";
-  offer = {} as JobOffer;
   constructor(
     private toastr: ToastrService,
     private router: Router,
@@ -39,9 +25,13 @@ export class PostulationDetailComponent implements OnInit {
     private employerservice: EmployerService,
     private employeeservice: EmployeeService,
     public dialog: MatDialog
-  ) {
+  ) { }
 
-  }
+  currentUserType: any;
+  currentUserId: any;
+  cv!: File;
+  itemId: string = "";
+  offer = {} as JobOffer;
 
   ngOnInit(): void {
     this.itemId = this.route.snapshot.params['id'] ?? ""; // Get ID from route
@@ -62,25 +52,33 @@ export class PostulationDetailComponent implements OnInit {
 
       });
     }
+
+    this.checkCurrentUserType();
+  }
+
+  private checkCurrentUserType() {
     const token = localStorage.getItem('token');
     if (token) {
       const userData = this.parseJwt(token);
 
       if (userData && userData.tipo_usuario) {
-        console.log('User type:', userData.tipo_usuario);
-
-        // Use it directly
-        if (userData.tipo_usuario === 'employer') {
-          // Employer specific logic
-        } else if (userData.tipo_usuario === 'candidate') {
-          // Candidate specific logic
-        }
-
-        // Store it if needed elsewhere in the component
         this.currentUserType = userData.tipo_usuario;
+        this.currentUserId = userData.id;
       } else {
         console.warn('Token does not contain tipo_usuario');
       }
+    }
+  }
+
+  parseJwt(token: string | null): any {
+    if (!token) return null;
+    try {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      return JSON.parse(window.atob(base64));
+    } catch (e) {
+      console.error("Error parsing JWT:", e);
+      return null;
     }
   }
 
@@ -115,7 +113,7 @@ export class PostulationDetailComponent implements OnInit {
     dialogConfig.data = {
       title: 'Borrar oferta',
       content: 'Desea borrar la oferta?',
-      trueAction: 'Sí, quiero borrarla'      
+      trueAction: 'Sí, quiero borrarla'
     }; // Pass data to the dialog
 
     const dialogRef = this.dialog.open(DeleteDialogComponent, dialogConfig);
@@ -141,11 +139,11 @@ export class PostulationDetailComponent implements OnInit {
       title: 'Confirmar postulación',
       content: 'Podes subir un CV personalizado u omitirlo ',
       trueAction: 'Postularme',
-      action: (f:File) => this.receiveCv(f)
+      action: (f: File) => this.receiveCv(f)
     }; // Pass data to the dialog
 
     const dialogRef = this.dialog.open(PostulateDialogComponent, dialogConfig);
-   
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.postulate(id, this.cv);
@@ -167,7 +165,6 @@ export class PostulationDetailComponent implements OnInit {
       this.toastr.warning('Oferta cerrada', 'No es posible editar la oferta cerrada')
       console.log('La oferta ya cerró y no se puede editar');
     }
-
   }
 
   compareDatesOffer(dateOffer: number): boolean {
