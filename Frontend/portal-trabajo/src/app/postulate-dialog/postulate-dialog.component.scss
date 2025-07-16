@@ -1,0 +1,32 @@
+h2{
+  margin-left: 2rem;
+}
+mat-dialog-content{
+  margin-left: 5px;
+}
+mat-dialog-actions{
+ justify-content: center;
+}
+
+mat-dialog-actions button.delete{
+ background-color: transparent;
+ color:#57AF31;
+ padding: 10px;
+ margin-left: 5px;
+}
+
+mat-dialog-actions button.cancel{
+ background-color: #57AF31;
+ color: #ffffff;
+ padding: 10px;
+}
+
+app-cv-uploader .upload-btn button {
+ background-color: transparent;
+ color: #57AF31;
+ padding: 10px;
+}
+.upload-btn{
+display: flex !important;
+justify-content: center!important;
+}

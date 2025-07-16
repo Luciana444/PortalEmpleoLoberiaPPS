@@ -5,7 +5,7 @@ import { ProfileComponent } from '../profile/profile.component';
 import { AcademicBackgroundComponent } from '../academic-background/academic-background.component';
 import { AttatchCvComponent } from '../attatch-cv/attatch-cv.component';
 import { Employee } from '../../models/employee.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-employee-profile',
@@ -25,10 +25,15 @@ export class EmployeeProfileComponent implements OnInit {
   employee: Employee = {} as Employee;
 
   getProfile() {
-    this.http.get<Employee>(this.url)
+    this.http.get<Employee>(this.url, {
+            observe: 'response',
+            withCredentials: true,
+            headers: new HttpHeaders()
+                .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+              })      
       .subscribe({
         next: (response) => {
-          this.employee = response;
+          this.employee = response.body ?? {} as Employee;
           console.log('Employee loaded:', this.employee);
         },
         error: (err) => {

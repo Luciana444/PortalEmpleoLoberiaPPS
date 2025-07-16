@@ -1,10 +1,11 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Output, ViewChild, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { UserService } from '../services/user.service';
 import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
     selector: 'app-cv-uploader',
@@ -21,6 +22,7 @@ import { ToastrService } from 'ngx-toastr';
 
 
 export class CvUploaderComponent {
+    @Output() cvUploaded = new EventEmitter<File>();
     constructor(private userservice: UserService, private toastr: ToastrService) {
     }
 
@@ -41,7 +43,8 @@ export class CvUploaderComponent {
 
             } else {
                 this.fileTooBig = false;
-                this.userservice.uploadCv(file).subscribe({
+                this.notifyCvUploaded(file);
+                /*this.userservice.uploadCv(file).subscribe({
                     next: (response) => {
                         if (response.status === 200) {
 
@@ -58,7 +61,7 @@ export class CvUploaderComponent {
                         console.error('Error al intentar subir un archivo', err);
 
                     }
-                });
+                });*/
 
 
             }
@@ -67,4 +70,9 @@ export class CvUploaderComponent {
     }
 
     isBigFile() { console.log(this.fileTooBig); return this.fileTooBig; }
+
+    notifyCvUploaded(file:any) {
+    //console.log('CV uploaded');
+    this.cvUploaded.emit(file);
+  }
 }

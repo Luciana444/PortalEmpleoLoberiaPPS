@@ -7,6 +7,8 @@ import { JobOffer } from '../../models/jobOffer.model';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { EmployeeService } from '../services/employee.service';
+import { PostulateDialogComponent } from '../postulate-dialog/postulate-dialog.component';
 
 @Component({
   selector: 'app-postulation-detail',
@@ -16,10 +18,9 @@ import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component'
 })
 export class PostulationDetailComponent implements OnInit {
   currentUserType: any;
-
+  cv!: File;
   parseJwt(token: string | null): any {
-    if (!token) return null;
-
+    if (!token) return null;  
     try {
       const base64Url = token.split('.')[1];
       const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -36,6 +37,7 @@ export class PostulationDetailComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private employerservice: EmployerService,
+    private employeeservice: EmployeeService,
     public dialog: MatDialog
   ) {
 
@@ -113,7 +115,7 @@ export class PostulationDetailComponent implements OnInit {
     dialogConfig.data = {
       title: 'Borrar oferta',
       content: 'Desea borrar la oferta?',
-      trueAction: 'Sí, quiero borrarla'
+      trueAction: 'Sí, quiero borrarla'      
     }; // Pass data to the dialog
 
     const dialogRef = this.dialog.open(DeleteDialogComponent, dialogConfig);
@@ -125,6 +127,32 @@ export class PostulationDetailComponent implements OnInit {
       }
 
       console.log('Dialog was closed with result:', result);
+    });
+  }
+
+  openDialogPostulation(id: any): void {
+    const dialogConfig = new MatDialogConfig();
+
+    // Configure dialog options (optional)
+    dialogConfig.disableClose = true; // Prevent closing by clicking outside
+    dialogConfig.autoFocus = true; // Automatically focus the first tabbable element
+    dialogConfig.width = '400px'; // Set dialog width
+    dialogConfig.data = {
+      title: 'Confirmar postulación',
+      content: 'Podes subir un CV personalizado u omitirlo ',
+      trueAction: 'Postularme',
+      action: (f:File) => this.receiveCv(f)
+    }; // Pass data to the dialog
+
+    const dialogRef = this.dialog.open(PostulateDialogComponent, dialogConfig);
+   
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.postulate(id, this.cv);
+        console.log('Postulado a la oferta');
+      }
+
+      console.log('Dialog was closed with result:');
     });
   }
 
@@ -145,5 +173,28 @@ export class PostulationDetailComponent implements OnInit {
   compareDatesOffer(dateOffer: number): boolean {
     const today = Date.now();
     return today < dateOffer;
+  }
+
+  postulate(id: any, cv: File) {
+    this.employeeservice.postulateToOffer(id, cv).subscribe({
+      next: (response) => {
+        if (response.status === 200) {
+          this.toastr.success('Ya estás postulado a la oferta', 'Postulación exitosa')
+          console.log('Actualización exitosa', response);
+        } else {
+          console.log('No se pudo hacer la postulación', response);
+        }
+      },
+      error: (err) => {
+        this.toastr.error(err.error.error, 'Ocurrió un error');
+        console.error('Error al postular', err);
+
+      }
+    });
+
+  }
+
+  receiveCv(file: File) {
+    this.cv = file
   }
 }

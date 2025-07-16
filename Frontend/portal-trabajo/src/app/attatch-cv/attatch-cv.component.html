@@ -13,7 +13,7 @@
     <button (click)="downloadCv()">
         Generar CV <i class="fa-solid fa-file-export"></i>
     </button>
-    <app-cv-uploader></app-cv-uploader>
+    <app-cv-uploader (cvUploaded) = "receiveCv($event)"></app-cv-uploader>
     }
 
 </div>

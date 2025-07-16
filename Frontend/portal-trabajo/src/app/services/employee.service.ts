@@ -20,4 +20,17 @@ export class EmployeeService {
         })
     }
 
+
+    postulateToOffer(id: any, cv: any) {
+        var formdata = new FormData();
+        formdata.append("cv", cv)
+        return this.httpClient.post(`${URL}/ciudadano/ofertas/${id}/postular`, formdata, {
+            observe: 'response',
+            withCredentials: true,
+            headers: new HttpHeaders()
+                .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+        });
+    }
+
+
 }
