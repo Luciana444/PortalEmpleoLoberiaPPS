@@ -16,15 +16,16 @@ import { JobOffer } from '../../models/jobOffer.model';
   styleUrl: './landing.component.scss',
   providers: [{ provide: MatPaginatorIntl, useClass: PaginatorIntl }]
 })
+
 export class LandingComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient) { }
   offers: JobOffer[] = [];
-
+  url: string = 'http://localhost:3000/api/empresa/ofertas/activas';
   currentPage = 0;
   pageSize = 10;
 
   getOffers() {
-    this.http.get<JobOffer[]>('http://localhost:3000/api/empresa/ofertas/activas')
+    this.http.get<JobOffer[]>(this.url)
       .subscribe({
         next: (response) => {
           this.offers = response;

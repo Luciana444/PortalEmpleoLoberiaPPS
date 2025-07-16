@@ -53,22 +53,31 @@
 </div>
 
 <div class="postulations">
+    @if (offers.length) {
+    @for (offer of offers; track offer.id) {
     <div class="postulation-title">
-        <h2>Ayudante de cocina</h2>
+        <h2>{{offer.puesto_requerido}}</h2>
 
         <p class="postulation-date">
-            Publicado 16/06/2025
+            Publicado {{offer.fecha_publicacion}}
         </p>
     </div>
 
     <div class="postulations-content">
         <div class="postulations-text-wrapper">
-            <p class="postulations-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore laborum
-                pariatur aut iste at illo, nobis
-                minima dignissimos voluptatem facilis possimus vitae maxime eaque ad nam iure, soluta amet. Eaque!
+            <p class="postulations-text"> {{offer.descripcion}}
             </p>
         </div>
         <button>Ver Oferta</button>
+        <button (click)="navigateToOffer(offer.id)">Ver Oferta</button>
     </div>
+    }
+
+    } @else {
+    <h3>No hay postulaciones.</h3>
+    }
+
+
+
 
 </div>
