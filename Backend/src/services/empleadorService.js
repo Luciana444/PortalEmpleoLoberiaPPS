@@ -1,5 +1,5 @@
 
-import { getDatosEmpresaById, updatePerfilEmpresaById, getOfertasByEmpresaId,getOfertasActivas, crearOfertaNueva, deleteOfertaById, buscarOfertaPorId, editarOfertaExistente } from "../repositories/empleadorRepository.js";
+import { getDatosEmpresaById, updatePerfilEmpresaById, getOfertasByEmpresaId,getOfertasActivas, crearOfertaNueva, deleteOfertaById, buscarOfertaPorId, editarOfertaExistente,obtenerPostulacionesPendientes, marcarPostulacionesComoLeidas } from "../repositories/empleadorRepository.js";
 
 
 //============================================================================
@@ -81,3 +81,13 @@ export const editarOferta = async(datosActualizados,id_oferta,id_empresa)=>{
     return await editarOfertaExistente(datosActualizados,id_oferta,id_empresa);
 }
 
+export const obtenerYMarcarNotificaciones = async (idEmpresa) => {
+  const notificaciones = await obtenerPostulacionesPendientes(idEmpresa);
+  const ids = notificaciones.map(n => n.id);
+
+  if (ids.length > 0) {
+    await marcarPostulacionesComoLeidas(ids);
+  }
+
+  return notificaciones;
+};
