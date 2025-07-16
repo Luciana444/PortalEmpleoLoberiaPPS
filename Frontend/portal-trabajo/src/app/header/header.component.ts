@@ -21,6 +21,8 @@ export class HeaderComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.checkTokenExpiration();
+
     this.userservice.getDataProfile(this.getUserType())?.subscribe({
       next: (response) => {
         if (response) { // Populate form with API data
@@ -72,6 +74,22 @@ export class HeaderComponent implements OnInit {
     }
     return null;  // Default for server-side
   }
+
+  private checkTokenExpiration(): void {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+
+    try {
+      const decoded: any = jwtDecode(token);
+      if (Date.now() >= decoded.exp * 1000) {
+        this.onLogout();
+      }
+    } catch (e) {
+      console.error('Token validation failed:', e);
+      this.onLogout();
+    }
+  }
+
 }
 
 
