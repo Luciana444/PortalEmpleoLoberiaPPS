@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Employee } from '../../models/employee.model';
+import { Postulation } from '../academic-background/academic-background.component';
 
 const URL = 'http://localhost:3000/api';
 
@@ -32,5 +33,13 @@ export class EmployeeService {
         });
     }
 
-
+    getPostulations() {
+        return this.httpClient.get<Postulation[]>(`${URL}/ciudadano/traer/postulaciones`, {
+            observe: 'response',
+            withCredentials: true,
+            headers: new HttpHeaders()
+                .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+                .append('Content-Type', 'application/json')
+        })
+    }
 }
