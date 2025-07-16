@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, LOCALE_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
@@ -7,13 +7,17 @@ import { MatPaginator, MatPaginatorIntl, PageEvent } from '@angular/material/pag
 import { PaginatorIntl } from '../services/paginator.service';
 import { TrainingLinkComponent } from '../training-link/training-link.component';
 import { JobOffer } from '../../models/jobOffer.model';
+import { DatePipe, registerLocaleData } from '@angular/common'
+import localeEsAR from '@angular/common/locales/es-AR';
+
+registerLocaleData(localeEsAR);
 
 @Component({
   selector: 'app-landing',
-  imports: [MatPaginator, HeaderComponent, FooterComponent, TrainingLinkComponent],
+  imports: [MatPaginator, HeaderComponent, FooterComponent, TrainingLinkComponent, DatePipe],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss',
-  providers: [{ provide: MatPaginatorIntl, useClass: PaginatorIntl }]
+  providers: [{ provide: MatPaginatorIntl, useClass: PaginatorIntl }, { provide: LOCALE_ID, useValue: 'es-AR' }]
 })
 
 export class LandingComponent {
@@ -28,6 +32,7 @@ export class LandingComponent {
       .subscribe({
         next: (response) => {
           this.offers = response;
+          console.log(this.offers)
         },
         error: (err) => {
           console.error('Error loading offers:', err);

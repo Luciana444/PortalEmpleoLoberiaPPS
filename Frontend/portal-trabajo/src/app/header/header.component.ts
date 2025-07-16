@@ -21,22 +21,39 @@ export class HeaderComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.checkTokenExpiration();
+    if (isPlatformBrowser(this.platformId))
+      this.checkTokenExpiration();
 
-    this.userservice.getDataProfile(this.getUserType())?.subscribe({
-      next: (response) => {
-        if (response) { // Populate form with API data
-          this.user = response;
-        } else {
-          console.log('No se pudo cargar el perfil', response);
+    const userType = this.getUserType();
+
+    if (userType) {
+      this.userservice.getDataProfile(userType)?.subscribe({
+        next: (response) => {
+          if (response) {
+            this.user = response;
+          } else {
+            console.log('Profile load failed', response);
+          }
+        },
+        error: (err) => {
+          console.error('Profile load error', err);
         }
-      },
-      error: (err) => {
-        //this.toastr.error(err.error.error, 'Ocurrió un error');
-        console.error('Error al cargar el perfil', err);
-      }
+      });
+    }
+    // this.userservice.getDataProfile(this.getUserType())?.subscribe({
+    //   next: (response) => {
+    //     if (response) { // Populate form with API data
+    //       this.user = response;
+    //     } else {
+    //       console.log('No se pudo cargar el perfil', response);
+    //     }
+    //   },
+    //   error: (err) => {
+    //     //this.toastr.error(err.error.error, 'Ocurrió un error');
+    //     console.error('Error al cargar el perfil', err);
+    //   }
 
-    });
+    // });
   }
 
   item: string = 'token';
@@ -66,16 +83,33 @@ export class HeaderComponent implements OnInit {
     return false;  // Default for server-side
   }
 
-  getUserType() {
-    if (isPlatformBrowser(this.platformId)) {  // Check if running in browser
-      const storedTokenString = localStorage.getItem("token") ?? "";
+  // getUserType() {
+  //   if (isPlatformBrowser(this.platformId)) {  // Check if running in browser
+  //     const storedTokenString = localStorage.getItem("token") ?? "";
+  //     const decodedToken = jwtDecode<User>(storedTokenString);
+  //     return decodedToken.tipo_usuario;
+  //   }
+  //   return null;  // Default for server-side
+  // }
+
+  getUserType(): string | null {
+    if (!isPlatformBrowser(this.platformId)) return null;
+
+    try {
+      const storedTokenString = localStorage.getItem("token");
+      if (!storedTokenString) return null;
+
       const decodedToken = jwtDecode<User>(storedTokenString);
-      return decodedToken.tipo_usuario;
+      return decodedToken.tipo_usuario || null;
+    } catch (e) {
+      console.error('Token decode error:', e);
+      return null;
     }
-    return null;  // Default for server-side
   }
 
   private checkTokenExpiration(): void {
+    if (!isPlatformBrowser(this.platformId)) return;  // Add this line
+
     const token = localStorage.getItem('token');
     if (!token) return;
 
