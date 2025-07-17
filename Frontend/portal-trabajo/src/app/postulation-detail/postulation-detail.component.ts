@@ -9,10 +9,11 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { EmployeeService } from '../services/employee.service';
 import { PostulateDialogComponent } from '../postulate-dialog/postulate-dialog.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-postulation-detail',
-  imports: [HeaderComponent, FooterComponent],
+  imports: [HeaderComponent, FooterComponent, MatTooltipModule],
   templateUrl: './postulation-detail.component.html',
   styleUrl: './postulation-detail.component.scss'
 })
@@ -33,10 +34,14 @@ export class PostulationDetailComponent implements OnInit {
   msg: string = "";
   itemId: string = "";
   offer = {} as JobOffer;
+  postulado: boolean = false;
 
-  ngOnInit(): void {
+  ngOnInit(): void {   
+    
+    let isPostulado = this.route.snapshot.params['postulado'] ?? null; // Get Postulado from route   
+    this.postulado = !!isPostulado;
+
     this.itemId = this.route.snapshot.params['id'] ?? ""; // Get ID from route
-
     if (this.itemId) {
       this.employerservice.getOfferById(this.itemId).subscribe({
         next: (response) => {
@@ -155,6 +160,51 @@ export class PostulationDetailComponent implements OnInit {
     });
   }
 
+openDialogDeletePostulation(id: any): void {
+    const dialogConfig = new MatDialogConfig();
+
+    // Configure dialog options (optional)
+    dialogConfig.disableClose = true; // Prevent closing by clicking outside
+    dialogConfig.autoFocus = true; // Automatically focus the first tabbable element
+    dialogConfig.width = '400px'; // Set dialog width
+    dialogConfig.data = {
+      title: 'Cancelar postulación',
+      content: 'Desea cancelar la postulación?',
+      trueAction: 'Sí, quiero cancelarla'
+    }; // Pass data to the dialog
+
+    const dialogRef = this.dialog.open(DeleteDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deletePostulation(id);
+        console.log('Borrada postulación');
+      }
+
+      console.log('Dialog was closed with result:', result);
+    });
+  }
+
+   deletePostulation(id: any) {
+    this.employeeservice.deletePostulationById(id).subscribe({
+      next: (response) => {
+        if (response.status === 200) {
+          this.toastr.success('Actualización exitosa', 'Postulación borrada')
+          console.log('Actualización exitosa', response);
+        } else {
+          console.log('No se pudo borrar la postulación', response);
+        }
+      },
+      error: (err) => {
+        this.toastr.error(err.error.error, 'Ocurrió un error');
+        console.error('Error al borrar oferta', err);
+
+      }
+    });
+
+  }
+
+
   navigateToLanding() {
     this.router.navigate(['']);
   }
@@ -179,6 +229,7 @@ export class PostulationDetailComponent implements OnInit {
         if (response.status === 200) {
           this.toastr.success('Ya estás postulado a la oferta', 'Postulación exitosa')
           console.log('Actualización exitosa', response);
+          this.postulado = true;
         } else {
           console.log('No se pudo hacer la postulación', response);
         }
@@ -186,7 +237,7 @@ export class PostulationDetailComponent implements OnInit {
       error: (err) => {
         this.toastr.error(err.error.error, 'Ocurrió un error');
         console.error('Error al postular', err);
-
+        this.postulado = false;
       }
     });
 

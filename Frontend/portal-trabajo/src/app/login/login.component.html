@@ -1,24 +1,41 @@
 <app-big-logo></app-big-logo>
 
 <div class="form-container">
-    <form [formGroup]="loginForm" action="">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
         <div class="form-header">
             <h3>Ingresá a tu cuenta:</h3>
         </div>
-        <div>
-            <p>Email</p>
-            <input  formControlName="email" type="text"  placeholder="Ingresá tu email"     name="email" required>
-        </div>
-                <div>
-            <p>Contraseña</p>
-            <input formControlName="contrasena" type="password"  placeholder="Ingresá tu Contraseña"     name="contrasena" required>
-        </div>
-            <a class="forgotten-password" href="/recovery">Olvidé mi contraseña</a>
-            <button type="button" class="" (click)="login()">Log in</button>
+
+        <!-- Campo: Email -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" type="email" required placeholder="Ex. nombre@ejemplo.com" />
+            <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+                El email es obligatorio
+            </mat-error>
+            <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+                Debe ingresar un email válido
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Campo: Contraseña -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Contraseña</mat-label>
+            <input matInput formControlName="contrasena" type="password" required />
+            <mat-error *ngIf="loginForm.get('contrasena')?.hasError('required')">
+                La contraseña es obligatoria
+            </mat-error>
+            <mat-error *ngIf="loginForm.get('contrasena')?.hasError('minlength')">
+                La contraseña debe tener al menos 8 caracteres
+            </mat-error>
+        </mat-form-field>
+
+        <a class="forgotten-password" href="/recovery">Olvidé mi contraseña</a>
+        <button  mat-raised-button type="submit"  [disabled]="loginForm.invalid">Log in</button>
     </form>
 
 </div>
 
 
 
-<p class="no-account">¿No tenés cuenta? <a (click)="goToEmployeeForm($event)">Registrate</a></p> 
+<p class="no-account">¿No tenés cuenta? <a (click)="goToEmployeeForm($event)">Registrate</a></p>

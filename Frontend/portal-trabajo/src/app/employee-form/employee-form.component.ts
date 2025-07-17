@@ -1,13 +1,17 @@
 import { Component, OnInit  } from '@angular/core';
 import { UserService} from '../services/user.service';
-import { ReactiveFormsModule , FormGroup, Validators,FormBuilder} from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule} from '@angular/material/input';
+import { ReactiveFormsModule , FormGroup, Validators,FormBuilder,} from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BigLogoComponent } from '../big-logo/big-logo.component';
 
 @Component({
   selector: 'app-employee-form',
-  imports: [ReactiveFormsModule, BigLogoComponent],
+  imports: [ReactiveFormsModule, BigLogoComponent, MatFormFieldModule, MatInputModule, CommonModule, MatSelectModule],
   templateUrl: './employee-form.component.html',
   styleUrl: './employee-form.component.scss'
 })
