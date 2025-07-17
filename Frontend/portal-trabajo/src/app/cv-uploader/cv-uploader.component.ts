@@ -42,26 +42,6 @@ export class CvUploaderComponent {
             } else {
                 this.fileTooBig = false;
                 this.notifyCvUploaded(file);
-                /*this.userservice.uploadCv(file).subscribe({
-                    next: (response) => {
-                        if (response.status === 200) {
-
-                            this.toastr.success('Tu Cv ya está disponible', 'Archivo subido')
-                            console.log('Archivo subido con éxito', response);
-
-                        } else {
-                            console.log('No se pudo subir el archivo', response);
-                        }
-                    },
-                    error: (err) => {
-
-                        this.toastr.error(err.error.error, 'Ocurrió un error');
-                        console.error('Error al intentar subir un archivo', err);
-
-                    }
-                });*/
-
-
             }
         }
 

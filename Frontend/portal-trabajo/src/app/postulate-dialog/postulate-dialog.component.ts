@@ -1,37 +1,45 @@
-import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule, MatDialogContent, MatDialogClose, MatDialogActions } from '@angular/material/dialog';
 import { CvUploaderComponent } from '../cv-uploader/cv-uploader.component';
-import { UserService } from '../services/user.service';
-import { ToastrService } from 'ngx-toastr';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
     selector: 'app-Postulate-dialog',
-    imports: [MatDialogContent, MatDialogClose, MatDialogActions, CvUploaderComponent],
+    imports: [
+        MatDialogContent,
+        MatDialogClose,
+        MatDialogActions,
+        CvUploaderComponent,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule],
     templateUrl: './postulate-dialog.component.html',
     styleUrls: ['./postulate-dialog.component.scss']
 })
 export class PostulateDialogComponent {
-    @Output() cvReceived = new EventEmitter<File>();
     file: any | null;
+    message: string;
+
     constructor(
-        private userservice: UserService,
-        private toastr: ToastrService,
         public dialogRef: MatDialogRef<PostulateDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any
-    ) { }
+    ) {
+        this.message = ""
+    }
 
     onNoClick(): void {
         this.dialogRef.close(); // Close without a result
     }
 
-    onConfirm(): void {   
-        this.data.action(this.file);     
+    onConfirm(): void {
+        this.data.action(this.file, this.message);
         this.dialogRef.close('Confirmed'); // Close with a result
     }
 
     receiveCv(file: File) {
         this.file = file;
-        this.cvReceived.emit(file);
     }
 
 }

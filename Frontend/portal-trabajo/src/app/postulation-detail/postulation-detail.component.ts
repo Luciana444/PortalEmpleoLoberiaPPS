@@ -30,6 +30,7 @@ export class PostulationDetailComponent implements OnInit {
   currentUserType: any;
   currentUserId: any;
   cv!: File;
+  msg: string = "";
   itemId: string = "";
   offer = {} as JobOffer;
 
@@ -134,19 +135,19 @@ export class PostulationDetailComponent implements OnInit {
     // Configure dialog options (optional)
     dialogConfig.disableClose = true; // Prevent closing by clicking outside
     dialogConfig.autoFocus = true; // Automatically focus the first tabbable element
-    dialogConfig.width = '400px'; // Set dialog width
+    dialogConfig.width = '600px'; // Set dialog width
     dialogConfig.data = {
-      title: 'Confirmar postulación',
-      content: 'Podes subir un CV personalizado u omitirlo ',
-      trueAction: 'Postularme',
-      action: (f: File) => this.receiveCv(f)
+      title: `Postularse a ${this.offer.puesto_requerido}`,
+      content: 'Antes de confirmar la postulación podes agregar un CV personalizado y un mensaje al empleador(ambos son opcionales)',
+      trueAction: 'POSTULARME',
+      action: (f: File, msg: string) => this.receiveData(f, msg)
     }; // Pass data to the dialog
 
     const dialogRef = this.dialog.open(PostulateDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.postulate(id, this.cv);
+        this.postulate(id, this.cv, this.msg);
         console.log('Postulado a la oferta');
       }
 
@@ -159,7 +160,7 @@ export class PostulationDetailComponent implements OnInit {
   }
 
   navigateToEditOffer(id: any) {
-    if (this.compareDatesOffer(Date.parse(this.offer.fecha_cierre))) {
+    if (!this.offer.fecha_cierre || this.compareDatesOffer(Date.parse(this.offer.fecha_cierre)) ) {
       this.router.navigate(['create-offer', id]);
     } else {
       this.toastr.warning('Oferta cerrada', 'No es posible editar la oferta cerrada')
@@ -172,8 +173,8 @@ export class PostulationDetailComponent implements OnInit {
     return today < dateOffer;
   }
 
-  postulate(id: any, cv: File) {
-    this.employeeservice.postulateToOffer(id, cv).subscribe({
+  postulate(id: any, cv: File, msg:string) {
+    this.employeeservice.postulateToOffer(id, cv, msg).subscribe({
       next: (response) => {
         if (response.status === 200) {
           this.toastr.success('Ya estás postulado a la oferta', 'Postulación exitosa')
@@ -191,7 +192,8 @@ export class PostulationDetailComponent implements OnInit {
 
   }
 
-  receiveCv(file: File) {
-    this.cv = file
+  receiveData(file: File, msg: string) {
+    this.cv = file;
+    this.msg = msg;
   }
 }

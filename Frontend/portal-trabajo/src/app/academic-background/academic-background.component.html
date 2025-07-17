@@ -52,29 +52,18 @@
     <h1>Postulaciones</h1>
 </div>
 
-<div class="postulations">
-    @if (offers.length) {
-    @for (offer of offers; track offer.id) {
-    <div class="postulation-title">
-        <h2>{{offer.puesto_requerido}}</h2>
-
-        <p class="postulation-date">
-            Publicado {{offer.fecha_publicacion}}
-        </p>
-    </div>
-
-    <div class="postulations-content">
-        <div class="postulations-text-wrapper">
-            <p class="postulations-text"> {{offer.descripcion}}
-            </p>
+ @for (p of postulations; track p.id) {
+        <div class="postulations">
+            <div class="postulation-title">
+                <h2>{{p.puesto_requerido}}</h2>
+                <p class="postulation-date">Postulado el{{p.fecha_postulacion}}</p>
+            </div>
+            <div class="postulations-content">
+                <div class="postulations-text-wrapper">
+                <p class="postulations-text">{{p.descripcion}}</p>
+                </div>
+            <button (click)="navigateToPostulationDetail(p.id_oferta)">Ver Oferta</button>
+            </div>
         </div>
-        <button>Ver Oferta</button>
-        <button (click)="navigateToOffer(offer.id)">Ver Oferta</button>
-    </div>
-    }
+        }
 
-    } @else {
-    <h3>No hay postulaciones.</h3>
-    }
-
-</div>

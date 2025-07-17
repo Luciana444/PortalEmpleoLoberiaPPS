@@ -1,6 +1,9 @@
-import { getDatosEmpresa, updatePerfilEmpresa, obtenerOfertasPorEmpresa, obtenerOfertasActivas, crearOferta, eliminarOferta, getOfertaById, editarOferta,obtenerYMarcarNotificaciones } from "../services/empleadorService.js";
+import { getDatosEmpresa, updatePerfilEmpresa, obtenerOfertasPorEmpresa, obtenerOfertasActivas, crearOferta, eliminarOferta, getOfertaById, editarOferta,obtenerYMarcarNotificaciones, obtenerPostulacionesPorOfertaId, obtenerPostulacionPorId } from "../services/empleadorService.js";
 import { empresaValidation } from "../validations/empresaValidation.js";
 import { crearOfertaSchema, editarOfertaSchema } from "../validations/ofertaValidation.js";
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
 
 //=================================================================
 // end point actualizar perfil de la empresa
@@ -412,5 +415,82 @@ export const obtenerNotificaciones = async (req, res) => {
   } catch (error) {
     console.error('Error al obtener notificaciones:', error);
     res.status(500).json({ error: 'Error interno al obtener notificaciones' });
+  }
+};
+
+
+export const obtenerPostulacionesOferta = async(req,res)=>{
+  try {
+      const id_oferta = req.params.id;
+      const id_empresa = req.usuario.id;
+
+      if(!id_oferta){
+        return res.status(401).json({message:'Falta el id de la oferta'});
+      }
+
+      const oferta = await getOfertaById(id_oferta);
+
+      if(!oferta){
+        return res.status(404).json({message:'La oferta no existe'});
+      }
+
+      if(oferta.id_empresa !== id_empresa){
+        return res.status(500).json({message:'Solo puede verificar detalles de su empresa'});
+      }
+
+      const postulaciones = await obtenerPostulacionesPorOfertaId(id_oferta);
+
+      const postulacionesConUrlSegura = postulaciones.map((postulacion) => {
+        return {
+          ...postulacion,
+          cv_url: postulacion.cv_url
+            ? `/api/empresa/postulaciones/${postulacion.id}/cv`
+            : null,
+        };
+      });
+
+      return res.status(200).json(postulacionesConUrlSegura);
+
+  } catch (error) {
+    res.status(500).json({message:'Error al obtener las postulaciones de la oferta'})
+  }
+};
+
+export const obtenerCvPorPostulacion = async(req,res)=>{
+  try {
+      const id_postulacion = req.params.id;
+      const id_empresa = req.usuario.id;
+
+      const postulacion = await obtenerPostulacionPorId(id_postulacion);
+
+      if (!postulacion) {
+        return res.status(404).json({ message: 'Error al obtener la postulacion' });
+      }
+
+      const oferta = await getOfertaById(postulacion.id_oferta);
+
+      if (!oferta || oferta.id_empresa !== id_empresa) {
+        return res.status(403).json({ message: 'No tiene acceso al CV de esta postulacion' });
+      }
+
+      const __filename = fileURLToPath(import.meta.url);
+      const __dirname = path.dirname(__filename);
+
+            
+      const rutaRelativa = postulacion.cv_url.startsWith('/')
+        ? postulacion.cv_url.slice(1)
+        : postulacion.cv_url;
+
+      const rutaCv = path.resolve(__dirname, '..', rutaRelativa);
+
+      if (!fs.existsSync(rutaCv)) {
+        return res.status(404).json({ message: 'CV no encontrado' });
+      }
+
+      res.sendFile(rutaCv);
+
+  } catch (error) {
+      console.log(error);
+      res.status(500).json({message:'Error al obtener el cv del postulante'})
   }
 };

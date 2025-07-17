@@ -1,32 +1,52 @@
-h2{
+h2 {
   margin-left: 2rem;
 }
-mat-dialog-content{
+
+mat-dialog-content {
   margin-left: 5px;
 }
-mat-dialog-actions{
- justify-content: center;
+
+mat-dialog-actions {
+  justify-content: center;
 }
 
-mat-dialog-actions button.delete{
- background-color: transparent;
- color:#57AF31;
- padding: 10px;
- margin-left: 5px;
+mat-dialog-actions button.delete {
+  background-color: transparent;
+  color: #57AF31;
+  padding: 10px;
+  margin-left: 5px;
 }
 
-mat-dialog-actions button.cancel{
- background-color: #57AF31;
- color: #ffffff;
- padding: 10px;
+mat-dialog-actions button.cancel {
+  background-color: #57AF31;
+  color: #ffffff;
+  padding: 10px;
 }
 
-app-cv-uploader .upload-btn button {
- background-color: transparent;
- color: #57AF31;
- padding: 10px;
+
+.upload-btn {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center;
 }
-.upload-btn{
-display: flex !important;
-justify-content: center!important;
+
+.upload-btn p {
+  color: #49454F;
+  margin-bottom: 1rem;
+}
+
+.message-txt {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+
+}
+
+h2 {
+  color: #49454F;
+  margin-bottom: 0;
+}
+
+mat-form-field {
+width:60%;
 }

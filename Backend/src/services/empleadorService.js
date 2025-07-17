@@ -1,5 +1,5 @@
 
-import { getDatosEmpresaById, updatePerfilEmpresaById, getOfertasByEmpresaId,getOfertasActivas, crearOfertaNueva, deleteOfertaById, buscarOfertaPorId, editarOfertaExistente,obtenerPostulacionesPendientes, marcarPostulacionesComoLeidas } from "../repositories/empleadorRepository.js";
+import { getDatosEmpresaById, updatePerfilEmpresaById, getOfertasByEmpresaId,getOfertasActivas, crearOfertaNueva, deleteOfertaById, buscarOfertaPorId, editarOfertaExistente,obtenerPostulacionesPendientes, marcarPostulacionesComoLeidas, getPostulacionesPorOferta, getPostulacionById } from "../repositories/empleadorRepository.js";
 
 
 //============================================================================
@@ -90,4 +90,24 @@ export const obtenerYMarcarNotificaciones = async (idEmpresa) => {
   }
 
   return notificaciones;
+};
+
+
+export const obtenerPostulacionesPorOfertaId = async(id_oferta)=>{
+  try {
+      const postulaciones = await getPostulacionesPorOferta(id_oferta);
+      return postulaciones;
+  } catch (error) {
+      console.log(error);
+  }
+}
+
+export const obtenerPostulacionPorId = async(id_postulacion)=>{
+
+  try {
+      const postulacion = await getPostulacionById(id_postulacion);
+      return postulacion[0];
+  } catch (error) {
+    console.log(error);
+  }
 };
