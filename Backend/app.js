@@ -4,7 +4,6 @@ import cors from 'cors';
 import authRoutes from './src/routes/authRoutes.js'; // Ajustá si tu ruta está en otra carpeta
 import usuarioRoutes from './src/routes/usuarioRoutes.js';
 import ciudadanoRoutes from './src/routes/ciudadanoRoutes.js';
-
 import empleadorRoutes from './src/routes/empleadorRoutes.js';
 
 

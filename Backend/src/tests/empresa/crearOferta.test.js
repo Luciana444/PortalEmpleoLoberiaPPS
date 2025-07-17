@@ -2,29 +2,28 @@ import request from 'supertest';
 import app from '../../../app.js';
 import sql from '../../database/db.js';
 
-async function crearEmpresaYObtenerToken() {
-  const email = `empresa${Date.now()}@mail.com`;
+async function crearOferta(token) {
+  const res = await request(app)
+    .post('/empresa/ofertas')
+    .set('Authorization', `Bearer ${token}`)
+    .send({
+      puesto_requerido: "QA Tester",
+      descripcion: "Prueba eliminación de oferta",
+      nivel_educativo_requerido: "Secundario",
+      lugar_trabajo: "Remoto",
+      modalidad: "Freelance"
+    });
 
-  await request(app).post('/auth/register').send({
-    nombre: 'Empresa Test Crear Oferta',
-    email,
-    contrasena: 'test1234',
-    tipo_usuario: 'empresa'
-  });
+  console.log("Respuesta al crear oferta:", res.body); // 👈 esto te mostrará la estructura real
 
-  const resLogin = await request(app).post('/auth/login').send({
-    email,
-    contrasena: 'test1234'
-  });
-
-  return resLogin.body.resultado.token;
+  return res.body.oferta?.id; // ✅ Asumimos que la propiedad correcta es esta
 }
 
 describe('POST /empresa/ofertas', () => {
   let tokenEmpresa;
 
   beforeAll(async () => {
-    tokenEmpresa = await crearEmpresaYObtenerToken();
+    tokenEmpresa = await crearEmpresa();
   });
 
   it('debería crear una oferta con datos válidos y devolver status 200', async () => {
