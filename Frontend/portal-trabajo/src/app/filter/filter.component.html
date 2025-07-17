@@ -1,12 +1,15 @@
 <div class="flex-div">
     <div class="wrapper">
         <p>filter works!</p>
-        <select>
+        <select #locationSelect>
             <option value="">Lugar de trabajo</option>
-            <option></option>
+            @for (location of workLocations; track location) {
+            <option [value]="location">{{ location }}</option>
+            }
         </select>
 
-        <button>Filtrar</button>
+        <button (click)="setFilter(locationSelect.value)">Filtrar</button>
+        <button (click)="loadInitialOffers()">Restaurar</button>
     </div>
 
 </div>
