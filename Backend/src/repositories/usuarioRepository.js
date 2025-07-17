@@ -118,3 +118,8 @@ export const findUserById = async(id)=>{
   return result[0];
 }
 
+export const borrarCuentaByIdUsuario = async(id_usuario)=>{
+
+  await sql`DELETE FROM usuarios WHERE id=${id_usuario}`;
+
+};

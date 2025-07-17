@@ -1,5 +1,5 @@
 import { getUsuarioById } from "../controllers/usuarioController.js";
-import { crearPostulacionRepository, getCapacitacionesByCiudadanoId, getExperienciaByCiudadanoId,insertarUrlCv, verificarUsuarioPostulado } from "../repositories/ciudadanoRepository.js";
+import { cancelarPostulacionByOfertaId, crearPostulacionRepository, getCapacitacionesByCiudadanoId, getExperienciaByCiudadanoId,insertarUrlCv, verificarUsuarioPostulado } from "../repositories/ciudadanoRepository.js";
 import { updatePerfilCiudadano,insertExperienciaLaboral,insertCapacitacion,obtenerPostulacionesRepository, buscarOfertasFiltradas  } from '../repositories/ciudadanoRepository.js';
 import PDFDocument from 'pdfkit';
 
@@ -273,3 +273,6 @@ export const buscarOfertasFiltradasService = async (filtros) => {
 };
 
 
+export const cancelarPostulacionOferta = async(id_postulacion)=>{
+  await cancelarPostulacionByOfertaId(id_postulacion);
+};

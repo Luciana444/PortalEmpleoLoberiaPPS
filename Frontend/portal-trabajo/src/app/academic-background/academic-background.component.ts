@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Employee } from '../../models/employee.model';
 import { EmployeeService } from '../services/employee.service';
+import { Postulation } from '../../models/postulation.model';
 
 @Component({
   selector: 'app-academic-background',
@@ -18,10 +19,8 @@ export class AcademicBackgroundComponent implements OnInit {
   ngOnInit(): void {
     this.employeeService.getPostulations().subscribe({
       next: (response) => {
-        if (response.status === 200) {
-          response.body?.forEach(p => {
-            this.postulations.push(p);
-          });
+        if (response.status === 200) {          
+         this.postulations = response.body ?? [];
         } else {
           console.log('No se pudo cargar postulación', response);
         }
@@ -46,14 +45,8 @@ export class AcademicBackgroundComponent implements OnInit {
   }
 
    navigateToPostulationDetail(id: any) {
-    this.router.navigate(['/detail', id])
+    this.router.navigate(['/detail', id, true])
   }
 }
 
-export interface Postulation {
-  id: string;
-  id_oferta: string;
-  puesto_requerido: string;
-  descripcion: string;
-  fecha_postulacion: string;
-}
+

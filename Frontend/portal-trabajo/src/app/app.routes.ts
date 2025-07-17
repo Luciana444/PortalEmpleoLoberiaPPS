@@ -26,6 +26,7 @@ export const routes: Routes = [
     { path: 'employee-profile', component: EmployeeProfileComponent },
     { path: 'detail', component: PostulationDetailComponent },
     { path: 'detail/:id', component: PostulationDetailComponent },
+    { path: 'detail/:id/:postulado', component: PostulationDetailComponent },
     { path: 'edit-profile-employer', component: EmployeerProfileFormComponent },
     { path: 'employer-profile', component: EmployerProfileComponent },
     { path: 'work-experience', component: WorkExperienceComponent },

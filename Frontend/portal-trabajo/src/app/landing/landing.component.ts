@@ -9,6 +9,8 @@ import { TrainingLinkComponent } from '../training-link/training-link.component'
 import { JobOffer } from '../../models/jobOffer.model';
 import { DatePipe, registerLocaleData } from '@angular/common'
 import localeEsAR from '@angular/common/locales/es-AR';
+import { Postulation } from '../../models/postulation.model';
+import { EmployeeService } from '../services/employee.service';
 
 registerLocaleData(localeEsAR);
 
@@ -21,12 +23,33 @@ registerLocaleData(localeEsAR);
 })
 
 export class LandingComponent {
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient, private employeeService: EmployeeService) { }
   offers: JobOffer[] = [];
+  postulations: Postulation[] = [];
   url: string = 'http://localhost:3000/api/empresa/ofertas/activas';
   currentPage = 0;
   pageSize = 10;
 
+
+
+  getPostulations() {
+    this.employeeService.getPostulations().subscribe({
+      next: (response) => {
+        if (response.status === 200) {
+          this.postulations = response.body ?? [];
+        } else {
+          console.log('No se pudo cargar postulación', response);
+        }
+      },
+      error: (err) => {
+        // this.toastr.error(err.error.error, 'Ocurrió un error');
+        console.error('Error al cargar postulación', err);
+      }
+
+    });
+
+
+  }
   getOffers() {
     this.http.get<JobOffer[]>(this.url)
       .subscribe({
@@ -42,7 +65,9 @@ export class LandingComponent {
   }
 
   ngAfterViewInit() {
+
     this.getOffers();
+    this.getPostulations();
   }
 
   handlePageEvent(event: PageEvent) {
@@ -56,9 +81,12 @@ export class LandingComponent {
   }
 
   navigateToOffer(id: any) {
-    this.router.navigate(['detail', id]);
+    if (this.postulations.find(p => p.id_oferta === id)) {
+      this.router.navigate(['detail', id, true]);
+    } else {
+      this.router.navigate(['detail', id]);
+    }
   }
-
 }
 
 

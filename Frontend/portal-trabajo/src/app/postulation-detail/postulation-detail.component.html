@@ -22,11 +22,17 @@
         </div>
         <div class="button-wrapper">
             @if (currentUserType === "ciudadano") {
-            <button (click)="openDialogPostulation(offer.id)">POSTULARME</button>
-            <!-- <button (click)="openDialogPostulation(offer.id)">Postularme <br> con CV Nuevo</button> -->
+                @if(postulado) {
+                <div><h5 class="postulado-flag"><i class="fa fa-check" aria-hidden="true"></i> Postulado</h5></div>
+                } @else {
+                <button (click)="openDialogPostulation(offer.id)">POSTULARME</button>
+                }
+                <button class="delete" (click)="openDialogDeletePostulation(offer.id)" matTooltip="Cancelar postulación"><i
+                        class="fa-solid fa-trash fa-xl "></i> </button>
+                
             } @else {
             @if (offer.id_empresa === currentUserId) {
-            <button class="edit" (click)="navigateToEditOffer(offer.id)"> <i class="fa-solid fa-pen "></i> Editar
+            <button class="edit" (click)="navigateToEditOffer(offer.id)" matTooltip="Eliminar oferta"> <i class="fa-solid fa-pen "></i> Editar
                 Oferta</button>
             <button class="delete" (click)="openDialog(offer.id)">
                 <i class="fa-solid fa-trash fa-xl "></i> </button>

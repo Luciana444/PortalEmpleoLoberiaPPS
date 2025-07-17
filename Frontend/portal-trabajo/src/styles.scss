@@ -50,6 +50,17 @@ button:hover{
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
+button.logout-btn{
+    margin-top: 0;
+    color: #757575 !important;
+    background-color: transparent !important;
+    display:flex;
+}
+button.logout-btn:hover{
+   box-shadow: none !important;
+   color: #57af31 !important;;
+}
+
 
 input{
     border-radius: 5px;
@@ -103,3 +114,8 @@ app-footer, footer {
     .mat-mdc-radio-button .mat-accent{
      --mdc-radio-selected-icon-color: $green !important;
     }
+
+    .mat-mdc-raised-button:not(:disabled){
+    color: #ffffff !important;
+    background-color:#57AF31 !important;
+}
