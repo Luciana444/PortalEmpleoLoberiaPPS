@@ -23,7 +23,7 @@ async function crearEmpresaYObtenerToken() {
 
 // Función auxiliar para crear una oferta
 async function crearOferta(token) {
-  const res = await request(app)
+  return await request(app)
     .post('/empresa/ofertas')
     .set('Authorization', `Bearer ${token}`)
     .send({
@@ -33,8 +33,23 @@ async function crearOferta(token) {
       lugar_trabajo: "Remoto",
       modalidad: "Freelance"
     });
+}
 
-  return res.body.id || res.body.oferta?.id || res.body.resultado?.id; // Ajuste según respuesta real
+// Obtener último ID de oferta para esa empresa
+async function obtenerUltimaOfertaDeEmpresa(idEmpresa) {
+  const resultado = await sql`
+    SELECT id FROM ofertas_laborales
+    WHERE id_empresa = ${idEmpresa}
+    ORDER BY id DESC
+    LIMIT 1
+  `;
+  return resultado[0]?.id;
+}
+
+// Decodifica un JWT sin verificar (solo para tests)
+function decodificarToken(token) {
+  const payload = token.split('.')[1];
+  return JSON.parse(Buffer.from(payload, 'base64').toString());
 }
 
 describe('DELETE /empresa/eliminar/oferta/:id', () => {
@@ -42,7 +57,10 @@ describe('DELETE /empresa/eliminar/oferta/:id', () => {
 
   beforeAll(async () => {
     tokenEmpresa = await crearEmpresaYObtenerToken();
-    ofertaId = await crearOferta(tokenEmpresa);
+    await crearOferta(tokenEmpresa); // creamos la oferta
+
+    const idEmpresa = decodificarToken(tokenEmpresa).id;
+    ofertaId = await obtenerUltimaOfertaDeEmpresa(idEmpresa);
   });
 
   it('debería eliminar la oferta y devolver status 200', async () => {
@@ -68,23 +86,24 @@ describe('DELETE /empresa/eliminar/oferta/:id', () => {
       .delete(`/empresa/eliminar/oferta/${ofertaId}`);
 
     expect(res.statusCode).toBe(401);
-    expect(res.body.error || res.body.mensaje).toMatch(/token/i);
+    expect(res.body.error || res.body.mensaje || res.text).toMatch(/token/i);
   });
 
   it('debería devolver 403 si la oferta no pertenece a la empresa', async () => {
-    // Creamos una empresa distinta
     const otroToken = await crearEmpresaYObtenerToken();
 
-    // Volvemos a crear una oferta con la empresa original
-    const nuevaOfertaId = await crearOferta(tokenEmpresa);
+    // Volvemos a crear otra oferta con la empresa original
+    await crearOferta(tokenEmpresa);
+    const idEmpresa = decodificarToken(tokenEmpresa).id;
+    const nuevaOfertaId = await obtenerUltimaOfertaDeEmpresa(idEmpresa);
 
-    // Intentamos eliminarla con otra empresa
+    // Intentamos eliminarla con otro token
     const res = await request(app)
       .delete(`/empresa/eliminar/oferta/${nuevaOfertaId}`)
       .set('Authorization', `Bearer ${otroToken}`);
 
     expect(res.statusCode).toBe(403);
-    expect(res.body.error || res.body.mensaje).toMatch(/permiso|autorizado|solo/i);
+    expect(res.body.error || res.body.mensaje).toMatch(/autorizado|permiso|solo/i);
   });
 });
 

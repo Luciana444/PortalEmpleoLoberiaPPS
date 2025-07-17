@@ -527,6 +527,54 @@ empleadorRoutes.delete('/eliminar/oferta/:id', authMiddleware, onlyEmpresa, elim
 
 empleadorRoutes.patch('/ofertas/:id',authMiddleware,onlyEmpresa,editarOfertaLaboral);
 
+//======================================================================
+//End point notificaciones de ofertas
+
+/**
+ * @swagger
+ * /empresa/notificaciones:
+ *   get:
+ *     summary: Obtener notificaciones de la empresa autenticada
+ *     tags:
+ *       - Empleador - Notificaciones
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Lista de notificaciones obtenidas correctamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 cantidad:
+ *                   type: integer
+ *                   example: 2
+ *                 notificaciones:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: string
+ *                         format: uuid
+ *                         example: "d93a6e72-5a1f-4b88-8ea4-3e3d37f9db63"
+ *                       mensaje:
+ *                         type: string
+ *                         example: "Nueva postulación recibida"
+ *                       leida:
+ *                         type: boolean
+ *                         example: false
+ *                       fecha:
+ *                         type: string
+ *                         format: date-time
+ *                         example: "2025-07-16T18:30:00.000Z"
+ *       401:
+ *         description: Empresa no autenticada
+ *       500:
+ *         description: Error interno al obtener notificaciones
+ */
+
 
 empleadorRoutes.get('/notificaciones', authMiddleware, onlyEmpresa, obtenerNotificaciones);
 

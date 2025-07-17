@@ -370,6 +370,34 @@ export const editarOfertaLaboral = async(req,res)=>{
 
 //======================================
 
+/**
+ * Controlador para obtener las notificaciones de la empresa autenticada.
+ * Marca las notificaciones como leídas al momento de obtenerlas.
+ *
+ * @async
+ * @function
+ * @param {import('express').Request} req - Objeto de solicitud HTTP de Express.
+ * @param {import('express').Response} res - Objeto de respuesta HTTP de Express.
+ * @returns {Promise<void>} - Devuelve una respuesta JSON con la lista de notificaciones o un error.
+ *
+ * @throws {401} Si no se encuentra el ID de la empresa autenticada.
+ * @throws {500} Si ocurre un error interno al obtener las notificaciones.
+ *
+ * @example
+ * // Respuesta exitosa (200)
+ * {
+ *   "cantidad": 2,
+ *   "notificaciones": [
+ *     {
+ *       "id": "d93a6e72-5a1f-4b88-8ea4-3e3d37f9db63",
+ *       "mensaje": "Nueva postulación recibida",
+ *       "leida": false,
+ *       "fecha": "2025-07-16T18:30:00.000Z"
+ *     }
+ *   ]
+ * }
+ */
+
 export const obtenerNotificaciones = async (req, res) => {
   try {
     const idEmpresa = req.usuario?.id;
