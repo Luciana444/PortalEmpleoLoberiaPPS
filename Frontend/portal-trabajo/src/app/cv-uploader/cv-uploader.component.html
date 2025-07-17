@@ -7,6 +7,6 @@
     <mat-error> El tamanio total no puede exceder </mat-error>
 </mat-form-field>-->
 
- <button (click)="hiddenInput.click()">Subir CV <i class="fa-solid fa-file-upload"></i></button>
+ <button class="color-btn" test (click)="hiddenInput.click()">Subir CV <i class="fa-solid fa-file-upload"></i></button>
     <!--<input formControlName="cv" matInput readonly type="text" id="fileCvInput" (click)="hiddenInput.click()">-->
     <input hidden type="file" accept=".pdf" #hiddenInput (change)="onFileSelected($event)">

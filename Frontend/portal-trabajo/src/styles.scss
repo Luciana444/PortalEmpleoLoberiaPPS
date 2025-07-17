@@ -30,6 +30,12 @@ button{
     font-family: $font;
 }
 
+
+ div.upload-btn button[test].color-btn {
+  background-color: transparent !important;
+  color: #57AF31 !important;
+}
+
 h3 {
     text-align: center;
     color: $text-color;

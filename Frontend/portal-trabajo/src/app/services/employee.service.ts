@@ -22,9 +22,10 @@ export class EmployeeService {
     }
 
 
-    postulateToOffer(id: any, cv: any) {
+    postulateToOffer(id: any, cv: any, msg:string) {
         var formdata = new FormData();
-        formdata.append("cv", cv)
+        formdata.append("cv", cv);
+        formdata.append("mensaje", msg)
         return this.httpClient.post(`${URL}/ciudadano/ofertas/${id}/postular`, formdata, {
             observe: 'response',
             withCredentials: true,

@@ -1,10 +1,19 @@
-<h2 mat-dialog-title>{{data.title}}</h2>
+<h2 mat-dialog-title>{{data.title}} </h2>
 <mat-dialog-content>{{data.content}}</mat-dialog-content>
 <div class="upload-btn">
+  @if (file) {
+    <p>{{file.name}}</p>
+    }
   <app-cv-uploader (cvUploaded)="receiveCv($event)"></app-cv-uploader>
 </div>
-<mat-dialog-actions>
+ <div class=" message-txt">   
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Comentario</mat-label>
+     <textarea matInput [(ngModel)]="message" rows="2" cdkTextareaAutosize></textarea>
+  </mat-form-field>
+</div>
+<mat-dialog-actions> 
   <button class="cancel" matButton mat-dialog-close cdkFocusInitial>Cancelar</button>
   <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-  <button class="delete" (click)="onConfirm()" matButton [mat-dialog-close]="true">{{data.trueAction}}</button>
+  <button class="delete" (click)="onConfirm()" matButton [mat-dialog-close]="true"><i class="fa fa-check" aria-hidden="true"></i> {{data.trueAction}}</button>
 </mat-dialog-actions>
