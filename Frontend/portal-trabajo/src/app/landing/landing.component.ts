@@ -9,12 +9,13 @@ import { TrainingLinkComponent } from '../training-link/training-link.component'
 import { JobOffer } from '../../models/jobOffer.model';
 import { DatePipe, registerLocaleData } from '@angular/common'
 import localeEsAR from '@angular/common/locales/es-AR';
+import { FilterComponent } from "../filter/filter.component";
 
 registerLocaleData(localeEsAR);
 
 @Component({
   selector: 'app-landing',
-  imports: [MatPaginator, HeaderComponent, FooterComponent, TrainingLinkComponent, DatePipe],
+  imports: [MatPaginator, HeaderComponent, FooterComponent, TrainingLinkComponent, DatePipe, FilterComponent],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss',
   providers: [{ provide: MatPaginatorIntl, useClass: PaginatorIntl }, { provide: LOCALE_ID, useValue: 'es-AR' }]
@@ -23,26 +24,12 @@ registerLocaleData(localeEsAR);
 export class LandingComponent {
   constructor(private router: Router, private http: HttpClient) { }
   offers: JobOffer[] = [];
-  url: string = 'http://localhost:3000/api/empresa/ofertas/activas';
   currentPage = 0;
   pageSize = 10;
 
-  getOffers() {
-    this.http.get<JobOffer[]>(this.url)
-      .subscribe({
-        next: (response) => {
-          this.offers = response;
-          console.log(this.offers)
-        },
-        error: (err) => {
-          console.error('Error loading offers:', err);
-          this.offers = [];
-        }
-      });
-  }
-
-  ngAfterViewInit() {
-    this.getOffers();
+  handleOffersLoaded(offers: JobOffer[]) {
+    this.offers = offers;
+    console.log(this.offers);
   }
 
   handlePageEvent(event: PageEvent) {

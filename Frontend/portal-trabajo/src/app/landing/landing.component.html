@@ -1,12 +1,13 @@
 <app-header></app-header>
 <div class="container">
     <app-training-link></app-training-link>
-    @if (offers.length)
-    {
+
     <div class="filter">
         <i class="fa-solid fa-filter"></i>
     </div>
+    <app-filter (offersLoaded)="handleOffersLoaded($event)"></app-filter>
 
+    @if (offers.length) {
     <main class="offer-container">
         @for (offer of pagedOffers; track offer.id) {
         <div class="offer-card">
