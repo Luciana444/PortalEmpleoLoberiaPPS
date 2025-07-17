@@ -2,7 +2,7 @@
 // Este archivo define la lógica de los endpoints definidos en usuarioRoutes.js.
 
 import { getDatosEmpresa, getOfertaById } from "../services/empleadorService.js";
-import { findAllPersonas, getUserById} from "../services/usuarioService.js"; // Servicio que consulta todos los usuarios
+import { borrarCuenta, findAllPersonas, getUserByEmail, getUserById} from "../services/usuarioService.js"; // Servicio que consulta todos los usuarios
 
 //=================================================0
 // get usuario
@@ -187,3 +187,27 @@ export const obtenerDetallesOferta = async(req,res)=>{
   }
 
 };
+
+
+export const eliminarCuenta = async(req,res)=>{
+  try {
+      const id_usuario = req.usuario.id;
+      const email = req.usuario.email;
+
+      const usuario = await getUserByEmail(email);
+
+      if(!usuario){
+        return res.status(404).json({message:'Este usuario no existe'});
+      }
+
+
+      await borrarCuenta(id_usuario);
+
+      return res.status(200).json({message:'Cuenta borrada exitosamente'});
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({message:'Error al borrar la cuenta'})
+  }
+
+}
