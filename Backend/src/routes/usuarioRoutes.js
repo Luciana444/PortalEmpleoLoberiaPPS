@@ -3,7 +3,7 @@
 
 
 import express from 'express';
-import { getAllUsuarios, obtenerDetallesOferta } from '../controllers/usuarioController.js';
+import { eliminarCuenta, getAllUsuarios, obtenerDetallesOferta } from '../controllers/usuarioController.js';
 
 
 // Inicializa un router específico para el módulo de usuarios
@@ -149,6 +149,9 @@ usuarioRoutes.post('/foto/perfil',authMiddleware, upload.single('foto'), subirFo
 
 usuarioRoutes.get('/ofertas/:id',obtenerDetallesOferta);
 
+
+
+usuarioRoutes.delete('/eliminar_cuenta',authMiddleware,eliminarCuenta);
 
 
 export default usuarioRoutes;

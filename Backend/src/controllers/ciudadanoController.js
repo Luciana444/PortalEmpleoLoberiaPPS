@@ -1,6 +1,6 @@
 
 // Importamos la lógica de negocio desde el servicio correspondiente
-import { crearPostulacion, subirCvBD, verificarPostulacion } from "../services/ciudadanoService.js";
+import { cancelarPostulacionOferta, crearPostulacion, subirCvBD, verificarPostulacion } from "../services/ciudadanoService.js";
 import  {generarPdfUsuario, obtenerPostulacionesService,buscarOfertasFiltradasService }  from "../services/ciudadanoService.js";
 import fs from 'fs/promises';
 
@@ -293,6 +293,8 @@ export const generarPdf = async (req, res) => {
 
 import { getPerfilCompleto } from '../services/ciudadanoService.js';
 import { getOfertaById } from "../services/empleadorService.js";
+import { getPostulacionById } from "../repositories/empleadorRepository.js";
+import { getPostulacionByOfertaAndUsuario } from "../repositories/ciudadanoRepository.js";
 
 export const obtenerPerfilCompleto = async (req, res) => {
   try {
@@ -471,3 +473,33 @@ export const buscarOfertasConFiltros = async (req, res) => {
   }
 };
 
+export const cancelarPostulacion = async(req,res)=>{
+try {
+    const id_oferta = req.params.id;
+    const id_usuario = req.usuario.id;
+
+    if(!id_oferta){
+      return res.status(401).json({message:'Falta el id de la oferta'});
+    }
+
+    const oferta = await getOfertaById(id_oferta);
+
+    if (!oferta || oferta.estado !== 'activa') {
+          return res.status(400).json({ error: 'La oferta no existe o no está activa' });
+    }
+
+    const postulacion = await getPostulacionByOfertaAndUsuario(id_oferta,id_usuario);
+
+    if(!postulacion){
+      return res.status(404).json({message:'Usted no esta postulado a esta oferta'});
+    }
+
+    await cancelarPostulacionOferta(postulacion.id);
+
+    return res.status(200).json({message:'Se cancelo la postulacion correctamente'})
+
+} catch (error) {
+  console.log(error);
+  res.status(500).json({message:'Error al cancelar la postulacion a la oferta'})
+}
+};
