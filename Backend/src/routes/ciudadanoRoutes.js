@@ -1,6 +1,6 @@
 import express from 'express';
 // Controllers: funciones que contienen la lógica de negocio
-import { generarPdf, postularseAOferta, subirCV } from '../controllers/ciudadanoController.js';
+import { cancelarPostulacion, generarPdf, postularseAOferta, subirCV } from '../controllers/ciudadanoController.js';
 // Middlewares de seguridad y autorización
 import {authMiddleware} from '../middlewares/authMiddleware.js'
 import {onlyCiudadano} from '../middlewares/onlyCiudadano.js'
@@ -484,6 +484,8 @@ ciudadanoRoutes.get('/traer/postulaciones', authMiddleware, onlyCiudadano, obten
 
 
 ciudadanoRoutes.post('/ofertas/:id/postular',authMiddleware,onlyCiudadano,subirCv.single('cv'),postularseAOferta);
+
+ciudadanoRoutes.delete('/ofertas/:id/cancelar_postulacion',authMiddleware,onlyCiudadano,cancelarPostulacion);
 
 export default ciudadanoRoutes;
 

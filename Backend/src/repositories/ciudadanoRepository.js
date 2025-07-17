@@ -170,3 +170,12 @@ export const buscarOfertasFiltradas = async ({ modalidad, lugarTrabajo, descripc
   return result;
 };
 
+
+export const cancelarPostulacionByOfertaId = async(id_postulacion)=>{
+  await sql`DELETE FROM postulaciones WHERE id =${id_postulacion}`;
+}
+
+export const getPostulacionByOfertaAndUsuario = async(id_oferta,id_usuario)=>{
+  const postulacion = await sql`SELECT * FROM postulaciones WHERE id_oferta=${id_oferta} AND id_ciudadano=${id_usuario}`;
+  return postulacion[0];
+}
