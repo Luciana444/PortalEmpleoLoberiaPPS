@@ -249,6 +249,8 @@ export const obtenerPostulacionesService = async (idCiudadano) => {
   return await obtenerPostulacionesRepository(idCiudadano);
 };
 
+
+
 export const crearPostulacion = async(id_oferta,id_usuario,mensaje,url_cv)=>{
   try {
       await crearPostulacionRepository(id_oferta,id_usuario,mensaje,url_cv);
