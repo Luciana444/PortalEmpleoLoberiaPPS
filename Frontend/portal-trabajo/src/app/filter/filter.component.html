@@ -1,15 +1,30 @@
 <div class="flex-div">
     <div class="wrapper">
-        <p>filter works!</p>
-        <select #locationSelect>
-            <option value="">Lugar de trabajo</option>
-            @for (location of workLocations; track location) {
-            <option [value]="location">{{ location }}</option>
-            }
-        </select>
+        <form #filterForm="ngForm" (ngSubmit)="setFilter(
+      locationSelect.value,
+      modalitySelect.value,
+      descriptionSelect.value,
+      puestoSelect.value
+    )">
+            <input #puestoSelect type="search" name="puesto" placeholder="puesto">
+            <input #descriptionSelect type="search" name="descripcion" placeholder="descripcion">
 
-        <button (click)="setFilter(locationSelect.value)">Filtrar</button>
-        <button (click)="loadInitialOffers()">Restaurar</button>
+            <select #locationSelect name=" location">
+                <option value="">Lugar de trabajo</option>
+                @for (location of workLocations; track location) {
+                <option [value]="location">{{ location }}</option>
+                }
+            </select>
+
+            <select #modalitySelect name="modality">
+                <option value="">Modalidad</option>
+                @for (modality of workModalities; track modality) {
+                <option [value]="modality">{{ modality }}</option>
+                }
+            </select>
+
+            <button type="submit">Filtrar</button>
+            <button type="button" (click)="loadInitialOffers()">Restaurar</button>
+        </form>
     </div>
-
 </div>

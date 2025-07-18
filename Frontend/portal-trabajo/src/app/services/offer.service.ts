@@ -15,20 +15,35 @@ export class OfferService {
         @Inject(PLATFORM_ID) private platformId: Object
     ) { }
 
-    getOffers(filter?: { lugar_trabajo?: string }): Observable<JobOffer[]> {
+    getOffers(filter?: { lugar_trabajo?: string, modalidad?: string, descripcion?: string, puestoRequerido?: string }): Observable<JobOffer[]> {
         if (this.shouldUseCiudadanoEndpoint())
-            return this.getAuthenticatedOffers(filter?.lugar_trabajo);
+            return this.getAuthenticatedOffers(filter?.lugar_trabajo,
+                filter?.modalidad, filter?.descripcion, filter?.puestoRequerido);
 
         return this.getPublicOffers();
     }
 
-    private getAuthenticatedOffers(lugarTrabajo?: string): Observable<JobOffer[]> {
+    private getAuthenticatedOffers(
+        lugarTrabajo?: string,
+        modalidad?: string,
+        descripcion?: string,
+        puestoRequerido?: string): Observable<JobOffer[]> {
         const headers = this.getAuthHeaders();
         const params: any = {};
-        // const params = { lugar_trabajo: 'Mixto' };
 
         if (lugarTrabajo)
             params.lugar_trabajo = lugarTrabajo;
+
+        if (modalidad)
+            params.modalidad = modalidad;
+
+        if (descripcion)
+            params.descripcion = descripcion;
+        console.log(puestoRequerido)
+        if (puestoRequerido)
+            params.puesto_requerido = puestoRequerido;
+
+        console.log("params: ", params);
 
         return this.http.get<JobOffer[]>(this.ciudadanoUrl, {
             headers,
