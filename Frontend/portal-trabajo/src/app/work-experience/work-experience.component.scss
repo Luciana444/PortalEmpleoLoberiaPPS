@@ -82,3 +82,23 @@ button.experience-btn {
   background-color: #57AF31 !important;
 
 }
+.align-elements{
+display: flex;
+justify-content: space-between;
+color:#424242;
+}
+
+.delete {
+    background-color: transparent;
+    width: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.delete i
+{
+    color: #57AF31 !important;
+}
+.edit-exp-btn
+{
+   width: 100%;
+}

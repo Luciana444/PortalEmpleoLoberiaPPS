@@ -29,8 +29,8 @@ export class EmployeeService {
         return this.httpClient.post(`${URL}/ciudadano/ofertas/${id}/postular`, formdata, {
             observe: 'response',
             withCredentials: true,
-            headers: new HttpHeaders()
-                .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+            //headers: new HttpHeaders()
+             //   .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
         });
     }
 
@@ -44,13 +44,12 @@ export class EmployeeService {
         })
     }
 
-     deletePostulationById(id: any) {
+     deletePostulationByOfferId(id: any) {
             return this.httpClient.delete(`${URL}/ciudadano/ofertas/${id}/cancelar_postulacion`, {
                 observe: 'response',
-                withCredentials: true,
-                headers: new HttpHeaders()
-                    .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
-                    .append('Content-Type', 'application/json')
+                withCredentials: true
+                //headers: new HttpHeaders()
+                 //   .append('Authorization', `Bearer ${localStorage.getItem("token")}`)                    
             });
         }
 }

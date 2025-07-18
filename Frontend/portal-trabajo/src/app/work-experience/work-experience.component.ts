@@ -18,6 +18,7 @@ import { EmployeeService } from '../services/employee.service';
 import { jwtDecode } from 'jwt-decode';
 import { User } from '../profile-form/profile-form.component';
 import { Employee } from '../../models/employee.model';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
     selector: 'app-work-experience',
@@ -35,7 +36,8 @@ import { Employee } from '../../models/employee.model';
         CommonModule,
         MatIconModule,
         HeaderComponent,
-        FooterComponent
+        FooterComponent,
+        MatDividerModule
     ]
 
 })
@@ -68,6 +70,7 @@ export class WorkExperienceComponent implements OnInit {
                     if (response.status === 200) {
                         let employee = response.body ?? {} as Employee;
                         this.workExperience.patchValue(employee); // Populate form with API data
+                        this.experiencias = employee.experiencias_laborales;
                     } else {
                         console.log('No se pudo cargar datos', response);
                     }

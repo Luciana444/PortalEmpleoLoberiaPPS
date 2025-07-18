@@ -1,21 +1,23 @@
 @use '../../styles.scss' as *;
 
-main, .postulations, .postulations-header{
+main,
+.postulations,
+.postulations-header {
     background-color: white;
     padding: 0.5rem 1.5rem 1rem 1.5rem;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
- .postulations{
+.postulations {
     margin-top: 1rem;
 }
 
-.postulations-header{
+.postulations-header {
     margin-top: 2rem;
 }
 
-button{
+button {
     padding: 8px 25px;
     height: fit-content;
     margin-left: 2rem;
@@ -28,71 +30,77 @@ button{
     gap: 0.5rem;
 }
 
-p{
+p {
     font-weight: 300;
 }
 
-h1{
+h1 {
     font-weight: 800;
     color: $green;
     margin: 0;
 }
 
-h5, h2{
+h5,
+h2 {
     font-weight: 500;
 }
 
-p, h5{
+p,
+h5 {
     color: $text-color;
     font-size: 1rem;
     margin: 0;
 }
 
-.title-wrapper, .postulation-title{
+.title-wrapper,
+.postulation-title {
     background-color: #ECF8E7;
     padding-left: 0.5rem;
     margin-left: -2rem;
     width: calc(100% + 3rem);
 }
 
-.title-wrapper > h2, .postulation-title > h2{
+.title-wrapper>h2,
+.postulation-title>h2 {
     margin-left: 2rem;
 }
 
-.title-wrapper{
+.title-wrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 1rem;
 }
 
-.title-wrapper > button {
+.title-wrapper>button {
     margin-right: 2rem;
 }
 
-.postulation-title{
+.postulation-title {
     display: flex;
     flex: row;
     align-items: center;
     text-align: end;
     gap: 0.5rem;
 }
-    
-h2{
+
+h2 {
     color: $green;
 }
 
-.postulation-date{
+.postulation-date {
     margin-left: auto;
     color: $text-color;
     font-size: 0.75rem;
     margin-right: 1rem;
 }
 
-main, .postulations{
+main,
+.postulations {
     overflow: hidden;
 }
 
-.postulations-content{
+.postulations-content {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -100,12 +108,31 @@ main, .postulations{
     padding-top: 1rem;
 }
 
-.postulations-text{
+.postulations-text {
     max-width: 20rem;
     word-break: break-word;
-    hyphens:auto;
+    hyphens: auto;
 }
 
-.postulations-text-wrapper{
+.postulations-text-wrapper {
     min-width: 0;
+}
+
+li {
+    color: #424242;
+    list-style-type: none;
+}
+
+mat-divider {
+    color: #ECF8E7;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.dates {
+    display: flex;
+    justify-content: space-between;
+}
+.experiences{
+    margin-top: 1rem;
 }

@@ -79,7 +79,7 @@
                     </mat-error>
                 </mat-form-field>
             </div>
-            <button class= "experience-btn" type="button" (click)="addWorkExperience()">
+            <button class="experience-btn" type="button" (click)="addWorkExperience()">
                 <i class="fa-solid fa-arrow-up-from-bracket"></i>
                 Guardar experiencia
             </button>
@@ -95,12 +95,21 @@
     <h3>Experiencias laborales cargadas</h3>
     <ul>
         <li *ngFor="let exp of experiencias">
-            <p><strong>Empresa:</strong> {{ exp.nombre_empresa }}</p>
-            <p><strong>Desde:</strong> {{ exp.desde | date }}</p>
-            <p><strong>Hasta:</strong> {{ exp.hasta | date }}</p>
-            <p><strong>Comentario:</strong> {{ exp.comentario }}</p>
-            <hr />
+            <div class="align-elements">
+                <div class="align-elements">
+                    <p><strong>Empresa:</strong> {{ exp.nombre_empresa }}</p>
+                    <p><strong>Desde:</strong> {{ exp.desde | date }}</p>
+                    <p><strong>Hasta:</strong> {{ exp.hasta | date }}</p>
+                    <p><strong>Comentario:</strong> {{ exp.comentario }}</p>
+                </div>
+                <div class="align-elements">
+                    <button class="edit-exp-btn"> <i class="fa-solid fa-pencil"></i> Editar Experiencia</button>
+                    <button class ="delete"> <i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
         </li>
+
     </ul>
 </div>
 <app-footer></app-footer>

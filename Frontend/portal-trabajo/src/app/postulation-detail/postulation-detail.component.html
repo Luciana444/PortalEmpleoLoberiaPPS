@@ -24,11 +24,12 @@
             @if (currentUserType === "ciudadano") {
                 @if(postulado) {
                 <div><h5 class="postulado-flag"><i class="fa fa-check" aria-hidden="true"></i> Postulado</h5></div>
+                <button class="delete" (click)="openDialogDeletePostulation(offer.id)" matTooltip="Cancelar postulación"><i
+                        class="fa-solid fa-trash fa-xl "></i> </button>
                 } @else {
                 <button (click)="openDialogPostulation(offer.id)">POSTULARME</button>
                 }
-                <button class="delete" (click)="openDialogDeletePostulation(offer.id)" matTooltip="Cancelar postulación"><i
-                        class="fa-solid fa-trash fa-xl "></i> </button>
+                
                 
             } @else {
             @if (offer.id_empresa === currentUserId) {

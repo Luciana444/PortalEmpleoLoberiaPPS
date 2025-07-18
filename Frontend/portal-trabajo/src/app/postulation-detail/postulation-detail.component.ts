@@ -186,11 +186,12 @@ openDialogDeletePostulation(id: any): void {
   }
 
    deletePostulation(id: any) {
-    this.employeeservice.deletePostulationById(id).subscribe({
+    this.employeeservice.deletePostulationByOfferId(id).subscribe({
       next: (response) => {
         if (response.status === 200) {
           this.toastr.success('Actualización exitosa', 'Postulación borrada')
           console.log('Actualización exitosa', response);
+          this.postulado = false;
         } else {
           console.log('No se pudo borrar la postulación', response);
         }

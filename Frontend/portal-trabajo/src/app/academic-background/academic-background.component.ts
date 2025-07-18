@@ -3,10 +3,13 @@ import { Router } from '@angular/router';
 import { Employee } from '../../models/employee.model';
 import { EmployeeService } from '../services/employee.service';
 import { Postulation } from '../../models/postulation.model';
+import { MatDividerModule } from '@angular/material/divider';
+import { AppUtils } from '../../utils/app.utils';
+
 
 @Component({
   selector: 'app-academic-background',
-  imports: [],
+  imports: [MatDividerModule],
   templateUrl: './academic-background.component.html',
   styleUrl: './academic-background.component.scss'
 })
@@ -19,8 +22,8 @@ export class AcademicBackgroundComponent implements OnInit {
   ngOnInit(): void {
     this.employeeService.getPostulations().subscribe({
       next: (response) => {
-        if (response.status === 200) {          
-         this.postulations = response.body ?? [];
+        if (response.status === 200) {
+          this.postulations = response.body ?? [];
         } else {
           console.log('No se pudo cargar postulación', response);
         }
@@ -44,9 +47,14 @@ export class AcademicBackgroundComponent implements OnInit {
     this.router.navigate(['/work-experience']);
   }
 
-   navigateToPostulationDetail(id: any) {
+  navigateToPostulationDetail(id: any) {
     this.router.navigate(['/detail', id, true])
   }
+
+  convertToLocalDate(date: string) {
+    return AppUtils.convertToLocalString(date);
+  }
+
 }
 
 
