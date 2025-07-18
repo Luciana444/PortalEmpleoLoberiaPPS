@@ -14,16 +14,15 @@ registerLocaleData(localeEsAR);
 
 @Component({
   selector: 'app-landing',
-  imports: [MatPaginator, HeaderComponent, FooterComponent, TrainingLinkComponent, DatePipe, FilterComponent],
+  imports: [MatPaginator, HeaderComponent, FooterComponent, TrainingLinkComponent, DatePipe],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss',
   providers: [{ provide: MatPaginatorIntl, useClass: PaginatorIntl }, { provide: LOCALE_ID, useValue: 'es-AR' }]
 })
 
 export class LandingComponent {
-  constructor(private router: Router, private http: HttpClient, private employeeService: EmployeeService) { }
+  constructor(private router: Router) { }
   offers: JobOffer[] = [];
-  postulations: Postulation[] = [];
   url: string = 'http://localhost:3000/api/empresa/ofertas/activas';
   currentPage = 0;
   pageSize = 10;
@@ -44,7 +43,7 @@ export class LandingComponent {
   }
 
   navigateToOffer(id: any) {
-    if (this.postulations.find(p => p.id_oferta === id)) {
+    if (this.offers.find(p => p.id === id)) {
       this.router.navigate(['detail', id, true]);
     } else {
       this.router.navigate(['detail', id]);
