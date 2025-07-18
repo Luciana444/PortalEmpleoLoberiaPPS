@@ -485,6 +485,50 @@ ciudadanoRoutes.get('/traer/postulaciones', authMiddleware, onlyCiudadano, obten
 
 ciudadanoRoutes.post('/ofertas/:id/postular',authMiddleware,onlyCiudadano,subirCv.single('cv'),postularseAOferta);
 
+//=====================================================
+// End point para cancelar una postulacion a una oferta
+
+
+/**
+ * @swagger
+ * /ciudadano/ofertas/{id}/cancelar_postulacion:
+ *   delete:
+ *     summary: Cancelar una postulación del ciudadano a una oferta laboral
+ *     tags:
+ *       - Ciudadano - Postulaciones
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *         description: ID de la oferta laboral
+ *     responses:
+ *       200:
+ *         description: Postulación cancelada exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Se cancelo la postulacion correctamente
+ *       400:
+ *         description: La oferta no existe o no está activa
+ *       401:
+ *         description: Falta el ID de la oferta
+ *       403:
+ *         description: Acceso prohibido - Solo ciudadanos autenticados
+ *       404:
+ *         description: El ciudadano no está postulado a esa oferta
+ *       500:
+ *         description: Error interno del servidor
+ */
+
 ciudadanoRoutes.delete('/ofertas/:id/cancelar_postulacion',authMiddleware,onlyCiudadano,cancelarPostulacion);
 
 export default ciudadanoRoutes;
