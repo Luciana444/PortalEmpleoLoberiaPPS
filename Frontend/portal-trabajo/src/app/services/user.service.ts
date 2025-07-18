@@ -130,7 +130,7 @@ export class UserService {
     });
   }
 
-  getDataProfile(tipo_usuario: any) {    
+  getDataProfile(tipo_usuario: any) {
     if (tipo_usuario === 'ciudadano') {
       return this.httpClient.get<any>(`${URL}/ciudadano/traer/perfil`, {
         observe: 'response',
@@ -156,19 +156,30 @@ export class UserService {
           .append('Content-Type', 'application/json')
       }).pipe(
         map(res => {
-          const p: Profile = { 
-            nombre: res.body?.nombre_empresa, 
-            imagen_url: '' };
-          return p          
+          const p: Profile = {
+            nombre: res.body?.nombre_empresa,
+            imagen_url: ''
+          };
+          return p
         })
       );
     }
     return null; //Falta definir Admin profile
-  } 
+  }
 
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('currentuser');
+
+  }
+
+  deleteAccountById() {
+    return this.httpClient.delete(`${URL}/usuario/eliminar_cuenta`, {
+      observe: 'response',
+      withCredentials: true
+      //headers: new HttpHeaders()
+      //   .append('Authorization', `Bearer ${localStorage.getItem("token")}`)                    
+    });
 
   }
 }
