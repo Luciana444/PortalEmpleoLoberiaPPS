@@ -68,6 +68,7 @@ export class AcademicBackgroundEditComponent implements OnInit {
                     if (response.status === 200) {
                         let employee = response.body ?? {} as Employee;
                         this.educationForm.patchValue(employee); // Populate form with API data
+                        this.formaciones = employee.capacitaciones;
                     } else {
                         console.log('No se pudo cargar datos', response);
                     }
@@ -117,12 +118,12 @@ export class AcademicBackgroundEditComponent implements OnInit {
             next: (response) => {
                 if (response.status === 200) {
                     this.formaciones.push(education);
-                    this.toastr.success('Nueva experiencia laboral agregada', 'Actualización exitosa')
+                    this.toastr.success('Nueva capacitación agregada', 'Actualización exitosa')
                     console.log('Actualización exitosa', response);
                     this.educationForm.reset();
                     this.addNewCardEducation = false;
                 } else {
-                    console.log('No se pudo agregar experiencia', response);
+                    console.log('No se pudo agregar capacitación', response);
                 }
             },
             error: (err) => {

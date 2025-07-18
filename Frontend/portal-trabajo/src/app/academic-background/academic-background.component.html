@@ -2,7 +2,7 @@
     <div>
         <div class="title-wrapper">
             <h2>Formacion academica y cursos</h2>
-            <button (click)="navigateToAcademicBackgroundEditComponent()">Agregar Formación</button>
+            <button (click)="navigateToAcademicBackgroundEditComponent()"> <i class="fa-solid fa-graduation-cap"></i> Editar Formación</button>
         </div>
         <div class="info-row">
             <h5>Nivel Educativo Alcanzado: </h5>
@@ -22,15 +22,20 @@
         </div>
         <div class="info-row">
             <h5>Cursos o capacitaciones realizados: </h5>
+        </div>
+        <div class="experiences">
             @for (capacitacion of employeeData?.capacitaciones; track $id) {
-            <li>{{capacitacion.nombre_capacitacion}}</li>
+            <li>
+                <p>{{capacitacion.nombre_capacitacion}}</p>
+            </li>
+            <mat-divider></mat-divider>
             }
         </div>
     </div>
     <div>
         <div class="title-wrapper">
             <h2>Experiencia laboral</h2>
-            <button (click)="navigateToWorkExperience()">Agregar Experiencia</button>
+            <button (click)="navigateToWorkExperience()"><i class="fa-solid fa-briefcase"></i> Editar Experiencia</button>
         </div>
         <div class="info-row">
             <h5>Situación laboral actual: </h5>
@@ -44,6 +49,21 @@
             <p>No</p>
             }
         </div>
+        <div class="experiences">
+            <div>
+                @for (experiencia of employeeData?.experiencias_laborales; track $id) {
+                <li>
+                    <p>Nombre de empresa: {{experiencia.nombre_empresa}}</p>
+                    <div class="dates">
+                        <p>Desde: {{convertToLocalDate(experiencia.desde)}}</p>
+                        <p>Hasta: {{convertToLocalDate(experiencia.hasta)}}</p>
+                    </div>
+                    <p>{{experiencia.comentario}}</p>
+                </li>
+                <mat-divider></mat-divider>
+                }
+            </div>
+        </div>
     </div>
 </main>
 
@@ -52,18 +72,17 @@
     <h1>Postulaciones</h1>
 </div>
 
- @for (p of postulations; track p.id) {
-        <div class="postulations">
-            <div class="postulation-title">
-                <h2>{{p.puesto_requerido}}</h2>
-                <p class="postulation-date">Postulado el{{p.fecha_postulacion}}</p>
-            </div>
-            <div class="postulations-content">
-                <div class="postulations-text-wrapper">
-                <p class="postulations-text">{{p.descripcion}}</p>
-                </div>
-            <button (click)="navigateToPostulationDetail(p.id_oferta)">Ver Oferta</button>
-            </div>
+@for (p of postulations; track p.id) {
+<div class="postulations">
+    <div class="postulation-title">
+        <h2>{{p.puesto_requerido}}</h2>
+        <p class="postulation-date">Postulado el {{convertToLocalDate(p.fecha_postulacion)}}</p>
+    </div>
+    <div class="postulations-content">
+        <div class="postulations-text-wrapper">
+            <p class="postulations-text">{{p.descripcion}}</p>
         </div>
-        }
-
+        <button (click)="navigateToPostulationDetail(p.id_oferta)">Ver Oferta</button>
+    </div>
+</div>
+}

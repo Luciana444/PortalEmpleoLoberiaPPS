@@ -9,7 +9,6 @@ import { TrainingLinkComponent } from '../training-link/training-link.component'
 import { JobOffer } from '../../models/jobOffer.model';
 import { DatePipe, registerLocaleData } from '@angular/common'
 import localeEsAR from '@angular/common/locales/es-AR';
-import { FilterComponent } from "../filter/filter.component";
 
 registerLocaleData(localeEsAR);
 
@@ -22,8 +21,10 @@ registerLocaleData(localeEsAR);
 })
 
 export class LandingComponent {
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient, private employeeService: EmployeeService) { }
   offers: JobOffer[] = [];
+  postulations: Postulation[] = [];
+  url: string = 'http://localhost:3000/api/empresa/ofertas/activas';
   currentPage = 0;
   pageSize = 10;
 
@@ -43,9 +44,12 @@ export class LandingComponent {
   }
 
   navigateToOffer(id: any) {
-    this.router.navigate(['detail', id]);
+    if (this.postulations.find(p => p.id_oferta === id)) {
+      this.router.navigate(['detail', id, true]);
+    } else {
+      this.router.navigate(['detail', id]);
+    }
   }
-
 }
 
 

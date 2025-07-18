@@ -2,10 +2,14 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Employee } from '../../models/employee.model';
 import { EmployeeService } from '../services/employee.service';
+import { Postulation } from '../../models/postulation.model';
+import { MatDividerModule } from '@angular/material/divider';
+import { AppUtils } from '../../utils/app.utils';
+
 
 @Component({
   selector: 'app-academic-background',
-  imports: [],
+  imports: [MatDividerModule],
   templateUrl: './academic-background.component.html',
   styleUrl: './academic-background.component.scss'
 })
@@ -19,9 +23,7 @@ export class AcademicBackgroundComponent implements OnInit {
     this.employeeService.getPostulations().subscribe({
       next: (response) => {
         if (response.status === 200) {
-          response.body?.forEach(p => {
-            this.postulations.push(p);
-          });
+          this.postulations = response.body ?? [];
         } else {
           console.log('No se pudo cargar postulación', response);
         }
@@ -45,15 +47,14 @@ export class AcademicBackgroundComponent implements OnInit {
     this.router.navigate(['/work-experience']);
   }
 
-   navigateToPostulationDetail(id: any) {
-    this.router.navigate(['/detail', id])
+  navigateToPostulationDetail(id: any) {
+    this.router.navigate(['/detail', id, true])
   }
+
+  convertToLocalDate(date: string) {
+    return AppUtils.convertToLocalString(date);
+  }
+
 }
 
-export interface Postulation {
-  id: string;
-  id_oferta: string;
-  puesto_requerido: string;
-  descripcion: string;
-  fecha_postulacion: string;
-}
+

@@ -70,7 +70,10 @@ export class HeaderComponent implements OnInit {
   navigateToLanding() {
     this.router.navigate(['']);
   }
-
+  /*navigateToProfile(){
+    this.router.navigate(['/employee-profile']);
+    this.router.navigate(['/employeer-profile']);
+ }*/
   onLogout() {
     this.userservice.logout();
     this.navigateToLogin();

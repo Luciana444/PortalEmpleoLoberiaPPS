@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Employee } from '../../models/employee.model';
+import { AppUtils } from '../../utils/app.utils';
 
 @Component({
   selector: 'app-profile',
@@ -16,6 +17,14 @@ export class ProfileComponent {
   navigateToEditProfile() {
     this.router.navigate(['/edit-profile']);
   }
+
+    convertToLocalDate(date: string | undefined) {
+      if(date){
+      return AppUtils.convertToLocalString(date);
+      } 
+      return "";
+    }
+  
 
 }
 

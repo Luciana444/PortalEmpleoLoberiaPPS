@@ -1,5 +1,6 @@
 
 import { getDatosEmpresaById, updatePerfilEmpresaById, getOfertasByEmpresaId,getOfertasActivas, crearOfertaNueva, deleteOfertaById, buscarOfertaPorId, editarOfertaExistente,obtenerPostulacionesPendientes, marcarPostulacionesComoLeidas, getPostulacionesPorOferta, getPostulacionById } from "../repositories/empleadorRepository.js";
+import { getPerfilCompleto } from "./ciudadanoService.js";
 
 
 //============================================================================
@@ -111,3 +112,12 @@ export const obtenerPostulacionPorId = async(id_postulacion)=>{
     console.log(error);
   }
 };
+
+export const obtenerPerfilPostulante = async(id_ciudadano)=>{
+  try {
+      const perfil_usuario = await getPerfilCompleto(id_ciudadano);
+      return perfil_usuario;
+  } catch (error) {
+    console.log(error);
+  }
+}

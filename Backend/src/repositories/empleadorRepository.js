@@ -226,3 +226,4 @@ export const getPostulacionById = async(id_postulacion)=>{
   const postulacion = await sql`SELECT * FROM postulaciones WHERE id=${id_postulacion}`;
   return postulacion;
 }
+

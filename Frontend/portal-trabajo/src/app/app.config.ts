@@ -15,7 +15,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withFetch(),
       withInterceptorsFromDi(),
-      //withInterceptors([authInterceptor])
+      withInterceptors([authInterceptor])
     ),
     provideAnimations(),
     provideToastr()]

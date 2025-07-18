@@ -1,15 +1,16 @@
-.profile{
-    background-color: white;
-    height: fit-content;
-    width: fit-content;
-    padding: 1rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08); // Added subtle shadow
-    overflow: hidden;
+.profile {
+  background-color: white;
+  height: fit-content;
+  width: fit-content;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); // Added subtle shadow
+  overflow: hidden;
 }
-input{
-    width: 20rem;
-    padding-top:0;
+
+input {
+  width: 20rem;
+  padding-top: 0;
 }
 
 .form-container {
@@ -17,15 +18,15 @@ input{
   justify-content: center;
   align-items: center;
 }
-   
 
-p{
+
+p {
   margin-bottom: 2px;
   padding-bottom: 0;
   margin-left: 2px;
 }
 
-button{
+button {
   display: block;
   margin-top: 1.5rem;
   margin-left: auto;
@@ -35,17 +36,18 @@ button{
   padding: 8px 2px;
   grid-column: 1 / -1;
 }
-button.addExperience-btn
-{
+
+button.addExperience-btn {
   width: 15rem;
-  margin-bottom: 3rem ;
- 
+  margin-bottom: 3rem;
+
 }
-.experience-div
-{
+
+
+.experience-div {
   display: flex;
   justify-content: right;
- 
+
 }
 
 select {
@@ -55,8 +57,8 @@ select {
   text-indent: 10px;
 }
 
-.dates-picker{
-  display:inline-flex;
+.dates-picker {
+  display: inline-flex;
 }
 
 .profile mat-form-field {
@@ -67,10 +69,36 @@ select {
   display: flex;
   justify-content: right;
 }
+
 button.experience-btn {
   width: 15rem;
   margin-bottom: 2rem;
-  color:#57AF31;
-  background-color: transparent;
+  color: #57AF31 !important;
+  background-color: transparent !important;
 
+}
+.mat-calendar-body-cell-content.mat-focus-indicator.mat-calendar-body-today{
+
+  background-color: #57AF31 !important;
+
+}
+.align-elements{
+display: flex;
+justify-content: space-between;
+color:#424242;
+}
+
+.delete {
+    background-color: transparent;
+    width: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.delete i
+{
+    color: #57AF31 !important;
+}
+.edit-exp-btn
+{
+   width: 100%;
 }

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { UserService } from '../services/user.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -8,7 +11,8 @@ import { BigLogoComponent } from '../big-logo/big-logo.component';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, BigLogoComponent],
+  imports: [ReactiveFormsModule, BigLogoComponent, MatFormFieldModule,
+    MatInputModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -17,7 +21,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private fb: FormBuilder, private userservice: UserService, private toastr: ToastrService) {
     this.loginForm = this.fb.group({
       email: [null, Validators.required],
-      contrasena: [null, Validators.compose([Validators.required, Validators.minLength(5)])]
+      contrasena: [null, Validators.compose([Validators.required, Validators.minLength(8)])]
     });
   }
 

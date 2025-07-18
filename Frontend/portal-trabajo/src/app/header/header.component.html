@@ -19,7 +19,11 @@
         <div class="profile-pic">
         </div>
         <div class="text-wrapper">
-            <p class="username">{{user.nombre}}</p>
+            <div class="notify">
+                <p class="username">{{user.nombre}}</p> 
+                <!--<i class="fa-solid fa-bell"></i>-->
+            </div>
+
             <button class="logout-btn" (click)="onLogout()">Cerrar Sesión</button>
         </div>
     </div>
