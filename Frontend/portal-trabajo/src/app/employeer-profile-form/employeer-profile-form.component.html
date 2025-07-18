@@ -131,6 +131,10 @@
         </mat-error>
       </mat-form-field>
     </div>
+     <div>
+      <button type="button" class="delete-account-btn"(click)="openDialogDeleteAccount()" matTooltip="En el próximo paso vas a confirmar la eliminación">
+        <i class="fa-solid fa-trash"></i> Eliminar cuenta</button>
+    </div>
 
     <!-- Botón de envío -->
     <button mat-raised-button [disabled]="employeerProfile.invalid" type="submit">

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -18,6 +17,9 @@ import { Employer } from '../../models/employer.model';
 import { User } from '../profile-form/profile-form.component';
 import { jwtDecode } from 'jwt-decode';
 import { EmployerService } from '../services/employer.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @Component({
@@ -33,7 +35,8 @@ import { EmployerService } from '../services/employer.service';
         MatButtonModule,
         CommonModule,
         HeaderComponent,
-        FooterComponent        
+        FooterComponent,
+        MatTooltipModule       
     ],
     templateUrl: './employeer-profile-form.component.html',
     styleUrls: ['./employeer-profile-form.component.scss']
@@ -48,6 +51,7 @@ export class EmployeerProfileFormComponent implements OnInit {
         private toastr: ToastrService,
         private employerservice: EmployerService,
         private route: ActivatedRoute,
+        public dialog: MatDialog
     ) {
         this.employeerProfile = this.fb.group({
             nombre_empresa: ['', Validators.required],
@@ -109,6 +113,53 @@ export class EmployeerProfileFormComponent implements OnInit {
         });
 
     }
+
+    openDialogDeleteAccount(): void {
+        const dialogConfig = new MatDialogConfig();
+
+        // Configure dialog options (optional)
+        dialogConfig.disableClose = true; // Prevent closing by clicking outside
+        dialogConfig.autoFocus = true; // Automatically focus the first tabbable element
+        dialogConfig.width = '400px'; // Set dialog width
+        dialogConfig.data = {
+            title: 'Eliminar Cuenta',
+            content: 'Desea eliminar la cuenta? Esta acción es irreversible ',
+            trueAction: 'Sí, quiero eliminarla'
+        }; // Pass data to the dialog
+
+        const dialogRef = this.dialog.open(DeleteDialogComponent, dialogConfig);
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.deleteAccount();
+                console.log('Borrada postulación');
+            }
+
+            console.log('Dialog was closed with result:', result);
+        });
+    }
+
+
+    deleteAccount() {
+        this.userservice.deleteAccountById().subscribe({
+            next: (response) => {
+                if (response.status === 200) {
+                    this.toastr.success('Actualización exitosa', 'Cuenta borrada')
+                    console.log('Cuenta borrada', response);
+
+                    this.router.navigate(['login']);
+                } else {
+                    console.log('No se pudo borrar la cuenta', response);
+                }
+            },
+            error: (err) => {
+                this.toastr.error(err.error.error, 'Ocurrió un error');
+                console.error('Error al borrar la cuenta', err);
+
+            }
+        });
+    }
+
 
 
       getUserId() {

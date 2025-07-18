@@ -17,6 +17,9 @@ import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { Employee } from '../../models/employee.model';
 import { EmployeeService } from '../services/employee.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @Component({
@@ -34,7 +37,8 @@ import { EmployeeService } from '../services/employee.service';
         CommonModule,
         FileUploaderComponent,
         HeaderComponent,
-        FooterComponent
+        FooterComponent, 
+        MatTooltipModule
     ],
     templateUrl: './profile-form.component.html',
     styleUrl: './profile-form.component.scss'
@@ -48,7 +52,8 @@ export class ProfileFormComponent implements OnInit {
         private fb: FormBuilder,
         private userservice: UserService,
         private toastr: ToastrService,
-        private employeeservice: EmployeeService
+        private employeeservice: EmployeeService,
+        public dialog: MatDialog
     ) {
         this.profile = this.fb.group({
             nombre: ['', Validators.required],
@@ -124,7 +129,57 @@ export class ProfileFormComponent implements OnInit {
         const decodedToken = jwtDecode<User>(storedTokenString);
         return decodedToken.id;
     }
+
+    openDialogDeleteAccount(): void {
+        const dialogConfig = new MatDialogConfig();
+
+        // Configure dialog options (optional)
+        dialogConfig.disableClose = true; // Prevent closing by clicking outside
+        dialogConfig.autoFocus = true; // Automatically focus the first tabbable element
+        dialogConfig.width = '400px'; // Set dialog width
+        dialogConfig.data = {
+            title: 'Eliminar Cuenta',
+            content: 'Desea eliminar la cuenta? Esta acción es irreversible ',
+            trueAction: 'Sí, quiero eliminarla'
+        }; // Pass data to the dialog
+
+        const dialogRef = this.dialog.open(DeleteDialogComponent, dialogConfig);
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.deleteAccount();
+                console.log('Borrada postulación');
+            }
+
+            console.log('Dialog was closed with result:', result);
+        });
+    }
+
+
+    deleteAccount() {
+        this.userservice.deleteAccountById().subscribe({
+            next: (response) => {
+                if (response.status === 200) {
+                    this.toastr.success('Actualización exitosa', 'Cuenta borrada')
+                    console.log('Cuenta borrada', response);
+
+                    this.router.navigate(['login']);
+                } else {
+                    console.log('No se pudo borrar la cuenta', response);
+                }
+            },
+            error: (err) => {
+                this.toastr.error(err.error.error, 'Ocurrió un error');
+                console.error('Error al borrar la cuenta', err);
+
+            }
+        });
+    }
+
 }
+
+
+
 
 export interface User {
     id: string;
