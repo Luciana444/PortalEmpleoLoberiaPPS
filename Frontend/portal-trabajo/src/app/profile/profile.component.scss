@@ -125,3 +125,16 @@ p, h5{
 .contact-info p {
     margin: 0;
 }
+
+@media (max-width: 600px) {
+    .profile{
+        margin-right: auto;
+        margin-left: auto;
+        width: 80vw;
+    }
+
+    .profile-footer{
+        display: none;
+    }
+
+}

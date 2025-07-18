@@ -2,7 +2,8 @@
     <div>
         <div class="title-wrapper">
             <h2>Formacion academica y cursos</h2>
-            <button (click)="navigateToAcademicBackgroundEditComponent()"> <i class="fa-solid fa-graduation-cap"></i> Editar Formación</button>
+            <button (click)="navigateToAcademicBackgroundEditComponent()"> <i class="fa-solid fa-graduation-cap"></i>
+                Editar Formación</button>
         </div>
         <div class="info-row">
             <h5>Nivel Educativo Alcanzado: </h5>
@@ -35,7 +36,8 @@
     <div>
         <div class="title-wrapper">
             <h2>Experiencia laboral</h2>
-            <button (click)="navigateToWorkExperience()"><i class="fa-solid fa-briefcase"></i> Editar Experiencia</button>
+            <button (click)="navigateToWorkExperience()"><i class="fa-solid fa-briefcase"></i> Editar
+                Experiencia</button>
         </div>
         <div class="info-row">
             <h5>Situación laboral actual: </h5>
@@ -67,11 +69,11 @@
     </div>
 </main>
 
-
 <div class="postulations-header">
     <h1>Postulaciones</h1>
 </div>
 
+@if (postulations.length) {
 @for (p of postulations; track p.id) {
 <div class="postulations">
     <div class="postulation-title">
@@ -85,4 +87,6 @@
         <button (click)="navigateToPostulationDetail(p.id_oferta)">Ver Oferta</button>
     </div>
 </div>
+}} @else {
+<h3>No hay postulaciones.</h3>
 }

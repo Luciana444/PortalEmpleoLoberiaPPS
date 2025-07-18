@@ -30,3 +30,12 @@ button{
     height: fit-content;
     white-space: nowrap;
 }
+
+@media (max-width: 600px) {
+    div{
+        margin-left: auto;
+        margin-right: auto;
+        width: 80vw;
+        margin-bottom: 1rem;
+    }
+}
