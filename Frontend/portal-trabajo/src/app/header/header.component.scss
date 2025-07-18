@@ -88,6 +88,11 @@ button{
         margin-right: 1rem;  
         justify-content: flex-end;
     }
+
+    .text-wrapper{
+        display: none;
+    }
+
     button {
         width: 120px;         
         min-width: 80px;     
@@ -95,6 +100,10 @@ button{
         font-size: 0.95rem;
     }
     
+    .user-container{
+        margin-right: 1rem;
+    }
+
     .register-button{
         display: none;
     }

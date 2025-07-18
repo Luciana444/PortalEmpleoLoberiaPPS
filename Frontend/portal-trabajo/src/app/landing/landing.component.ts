@@ -9,12 +9,13 @@ import { TrainingLinkComponent } from '../training-link/training-link.component'
 import { JobOffer } from '../../models/jobOffer.model';
 import { DatePipe, registerLocaleData } from '@angular/common'
 import localeEsAR from '@angular/common/locales/es-AR';
+import { FilterComponent } from "../filter/filter.component";
 
 registerLocaleData(localeEsAR);
 
 @Component({
   selector: 'app-landing',
-  imports: [MatPaginator, HeaderComponent, FooterComponent, TrainingLinkComponent, DatePipe],
+  imports: [MatPaginator, HeaderComponent, FooterComponent, TrainingLinkComponent, DatePipe, FilterComponent],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss',
   providers: [{ provide: MatPaginatorIntl, useClass: PaginatorIntl }, { provide: LOCALE_ID, useValue: 'es-AR' }]
