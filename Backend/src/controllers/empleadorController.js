@@ -1,4 +1,4 @@
-import { getDatosEmpresa, updatePerfilEmpresa, obtenerOfertasPorEmpresa, obtenerOfertasActivas, crearOferta, eliminarOferta, getOfertaById, editarOferta,obtenerYMarcarNotificaciones, obtenerPostulacionesPorOfertaId, obtenerPostulacionPorId } from "../services/empleadorService.js";
+import { getDatosEmpresa, updatePerfilEmpresa, obtenerOfertasPorEmpresa, obtenerOfertasActivas, crearOferta, eliminarOferta, getOfertaById, editarOferta,obtenerYMarcarNotificaciones, obtenerPostulacionesPorOfertaId, obtenerPostulacionPorId, obtenerPerfilPostulante } from "../services/empleadorService.js";
 import { empresaValidation } from "../validations/empresaValidation.js";
 import { crearOfertaSchema, editarOfertaSchema } from "../validations/ofertaValidation.js";
 import path from 'path';
@@ -440,16 +440,16 @@ export const obtenerPostulacionesOferta = async(req,res)=>{
 
       const postulaciones = await obtenerPostulacionesPorOfertaId(id_oferta);
 
-      const postulacionesConUrlSegura = postulaciones.map((postulacion) => {
-        return {
+      const postulacionesConUrls = postulaciones.map((postulacion) => ({
           ...postulacion,
           cv_url: postulacion.cv_url
             ? `/api/empresa/postulaciones/${postulacion.id}/cv`
             : null,
-        };
-      });
+          perfil_url: `/api/empresa/postulaciones/${postulacion.id}/perfil`,
+      }));
 
-      return res.status(200).json(postulacionesConUrlSegura);
+    
+      return res.status(200).json(postulacionesConUrls);
 
   } catch (error) {
     res.status(500).json({message:'Error al obtener las postulaciones de la oferta'})
@@ -492,5 +492,34 @@ export const obtenerCvPorPostulacion = async(req,res)=>{
   } catch (error) {
       console.log(error);
       res.status(500).json({message:'Error al obtener el cv del postulante'})
+  }
+};
+
+
+export const obtenerPerfilPorPostulacion = async(req,res)=>{
+  try {
+      const id_postulacion = req.params.id;
+      const id_empresa = req.usuario.id;
+      
+      const postulacion = await obtenerPostulacionPorId(id_postulacion);
+
+      if (!postulacion) {
+        return res.status(404).json({ message: 'Error al obtener la postulacion' });
+      }
+
+      const oferta = await getOfertaById(postulacion.id_oferta);
+
+      if (!oferta || oferta.id_empresa !== id_empresa) {
+        return res.status(403).json({ message: 'No tiene acceso al perfil de esta postulacion' });
+      }
+
+      const perfil_usuario = await obtenerPerfilPostulante(postulacion.id_ciudadano);
+
+      console.log(perfil_usuario);
+      return res.status(200).json(perfil_usuario);
+
+  } catch (error) {
+      console.log(error);
+      res.status(500).json({message:'Error al obtener el perfil del usuario'});
   }
 };
