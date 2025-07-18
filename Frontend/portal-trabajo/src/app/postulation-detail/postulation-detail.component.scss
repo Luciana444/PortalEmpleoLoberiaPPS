@@ -35,6 +35,8 @@ h5{
     display: flex;
     gap: 0.5rem;
     font-weight: 100;
+    width: fit-content;
+    white-space: nowrap;    // Prevents text wrapping
 }
 
 .container{
@@ -169,4 +171,58 @@ button :hover{
 .delete i
 {
     color: #57AF31 !important;
+}
+
+@media (max-width: 600px) {
+    .container{
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    .fallback{
+        margin-bottom: 1rem;
+    }
+
+    .profile, .postulation-header, .detail-header{
+        flex-direction: column;
+    }
+    .postulation-header{
+        padding-bottom: 0.5rem;
+    }  
+
+    .profile{
+        align-items: start;
+    }
+
+    .profile-header{
+        order: 1;
+    }
+
+    .profile>h1, h2{
+        order: 2;
+        margin: 0;
+        text-align: center;
+    }
+
+    h2{
+        order: 1
+    }
+
+    .detail-categories{
+        order: 2;
+        flex-wrap: wrap;
+    }
+
+    h4{
+        margin: 0;
+    }
+
+    p{
+        margin: 0;
+    }
+
+    .highlight{
+        width: 200%;
+    }
+
 }
