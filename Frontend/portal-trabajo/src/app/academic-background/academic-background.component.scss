@@ -136,3 +136,24 @@ mat-divider {
 .experiences{
     margin-top: 1rem;
 }
+
+@media (max-width: 600px) {
+    button{
+        display: none;
+    }
+
+    main, .postulations-header, .postulations{
+        width: 80vw;
+        margin-right: auto;
+        margin-left: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;    
+    }
+
+    h2{
+        margin: 0.5rem;
+        margin-left: 0.5rem;
+        font-size: 1.25rem;
+    }
+
+}

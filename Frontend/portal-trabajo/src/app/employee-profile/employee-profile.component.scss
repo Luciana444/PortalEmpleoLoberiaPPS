@@ -5,9 +5,22 @@
     flex-direction: row;
     gap: 1rem;
     padding: 1rem 0;
+    max-width: 90vw;
 }
 
 main{
     display: flex;
     justify-content: space-evenly;
+}
+
+@media (max-width: 600px) {
+  main {
+    justify-content: center; // Center container on mobile
+  }
+
+  .container {
+    flex-direction: column;
+    width: 100%; // Ensure full width for centering
+    margin: 0 auto; // Center the container itself
+  }
 }

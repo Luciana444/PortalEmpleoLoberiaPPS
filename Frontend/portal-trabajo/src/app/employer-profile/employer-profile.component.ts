@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, LOCALE_ID, OnInit } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { EmployerProfileSidebarComponent } from "../employer-profile-sidebar/employer-profile-sidebar.component";
 import { Router, ActivatedRoute } from '@angular/router';
 import { EmployerService } from '../services/employer.service';
-
+import { DatePipe } from '@angular/common'
 
 @Component({
   selector: 'app-employer-profile',
-  imports: [HeaderComponent, FooterComponent, EmployerProfileSidebarComponent],
+  imports: [HeaderComponent, FooterComponent, EmployerProfileSidebarComponent, DatePipe],
   templateUrl: './employer-profile.component.html',
-  styleUrl: './employer-profile.component.scss'
+  styleUrl: './employer-profile.component.scss',
+  providers: [{ provide: LOCALE_ID, useValue: 'es-AR' }],
 })
 export class EmployerProfileComponent implements OnInit {
   [x: string]: any;

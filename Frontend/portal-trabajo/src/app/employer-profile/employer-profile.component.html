@@ -13,11 +13,11 @@
         <div class="postulation">
             <div class="postulation-header">
                 <h4>{{offer.puesto_requerido}}</h4>
-                <p>Publicado {{offer.fecha_publicacion}}</p>
+                <p>Publicado {{offer.fecha_publicacion | date:'longDate'}}</p>
             </div>
             <div class="postulation-body">
                 <p>{{offer.descripcion}}</p>
-            <button (click)="navigateToPostulationDetail(offer.id)">Ver Oferta</button>
+                <button (click)="navigateToPostulationDetail(offer.id)">Ver Oferta</button>
             </div>
         </div>
         }
