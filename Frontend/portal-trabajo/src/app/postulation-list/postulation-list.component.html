@@ -1,12 +1,12 @@
 <app-header></app-header>
 <main>
-    @if (jobOffer.id_empresa === currentUserId && jobOffer.id) {
+    @if (jobOffer?.id_empresa === currentUserId && jobOffer?.id) {
     <div class="list-header">
         <div class="text-wrapper">
-            <h1>{{jobOffer.puesto_requerido}}</h1>
+            <h1>{{jobOffer?.puesto_requerido}}</h1>
         </div>
     </div>
-    @if (employees.length) {
+    @if (employees?.length) {
     @for (employee of employees; track employee.id) {
     <div class="list-content">
         <div class="user-container">

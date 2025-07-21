@@ -10,6 +10,8 @@ import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component'
 import { EmployeeService } from '../services/employee.service';
 import { PostulateDialogComponent } from '../postulate-dialog/postulate-dialog.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { AuthService } from '../services/auth.service';
+import { OfferService } from '../services/offer.service';
 
 @Component({
   selector: 'app-postulation-detail',
@@ -21,6 +23,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 export class PostulationDetailComponent implements OnInit {
 
   constructor(
+    private authService: AuthService,
     private toastr: ToastrService,
     private router: Router,
     private route: ActivatedRoute,
@@ -42,6 +45,13 @@ export class PostulationDetailComponent implements OnInit {
     let isPostulado = this.route.snapshot.params['postulado'] ?? null; // Get Postulado from route   
     this.postulado = !!isPostulado;
 
+    this.getCurrentOffer();
+    // this.OfferService.getCurrentOffer()
+    this.currentUserType = this.authService.getCurrentUserType();
+    this.currentUserId = this.authService.getCurrentUserId();
+  }
+
+  private getCurrentOffer() {
     this.itemId = this.route.snapshot.params['id'] ?? ""; // Get ID from route
     if (this.itemId) {
       this.employerservice.getOfferById(this.itemId).subscribe({
@@ -56,36 +66,7 @@ export class PostulationDetailComponent implements OnInit {
           //this.toastr.error(err.error.error, 'Ocurrió un error');
           console.error('Error al cargar oferta', err);
         }
-
       });
-    }
-
-    this.checkCurrentUserType();
-  }
-
-  private checkCurrentUserType() {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const userData = this.parseJwt(token);
-
-      if (userData && userData.tipo_usuario) {
-        this.currentUserType = userData.tipo_usuario;
-        this.currentUserId = userData.id;
-      } else {
-        console.warn('Token does not contain tipo_usuario');
-      }
-    }
-  }
-
-  parseJwt(token: string | null): any {
-    if (!token) return null;
-    try {
-      const base64Url = token.split('.')[1];
-      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      return JSON.parse(window.atob(base64));
-    } catch (e) {
-      console.error("Error parsing JWT:", e);
-      return null;
     }
   }
 
@@ -205,7 +186,6 @@ export class PostulationDetailComponent implements OnInit {
     });
 
   }
-
 
   navigateToLanding() {
     this.router.navigate(['']);

@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JobOffer } from '../../models/jobOffer.model';
 import { EmployerService } from '../services/employer.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-postulation-list',
@@ -16,45 +17,39 @@ import { EmployerService } from '../services/employer.service';
 })
 export class PostulationListComponent implements OnInit {
   constructor(private router: Router,
+    private authService: AuthService,
     private http: HttpClient,
     private route: ActivatedRoute,
     private employerservice: EmployerService,
   ) { }
+  //TODO: ver que hacer con CV
 
-  private url = 'http://localhost:3000/api/empresa/ofertas/{id}/postulaciones';
+  private getPostulationsUrl(id: string): string {
+    return `http://localhost:3000/api/empresa/ofertas/${id}/postulaciones`;
+  }
   // private urlCV = 'http://localhost:3000/api/empresa/postulaciones/{id}/cv'
 
-  currentUserId: string = '';
-  currentUserType: string = '';
-  employees: Employee[] = [];
-  itemId: string = "";
-  jobOffer: JobOffer = {
-    id: '',
-    id_empresa: '',
-    nombre_empresa: '',
-    localidad: '',
-    puesto_requerido: '',
-    descripcion: '',
-    lugar_trabajo: '',
-    modalidad: '',
-    tipo_contrato: '',
-    fecha_publicacion: '',
-    fecha_cierre: '',
-    experiencia_requerida: '',
-    otros_requisitos: '',
-    nivel_educativo_requerido: ''
-  };
+  currentUserType?: string | null;
+  currentUserId?: string | null;
+  employees?: Employee[] = [];
+  itemId?: string;
+  jobOffer: JobOffer | null = null;
 
   ngOnInit(): void {
-    this.checkCurrentUserType(); //verifico que la oferta sea de la empresa
-    this.getJobOffer() //obtengo la oferta con id igual a url
-    this.getEmployees() //obtengo los empleados postulados a esa oferta
+    //verifico que la oferta corresponda a la empresa
+    this.currentUserType = this.authService.getCurrentUserType();
+    this.currentUserId = this.authService.getCurrentUserId();
+
+    //obtengo la oferta con id igual a url
+    this.getCurrentOffer()
+
+    //obtengo los empleados postulados a esa oferta 
+    this.getEmployees()
   }
 
-  navigateToProfile(id: string) {
-    if (this.employees.find(e => e.id === id)) {
-      this.router.navigate(['employee-profile', id]);
-    }
+  navigateToProfile(id?: string) {
+    if (!id || !this.employees?.some(e => e.id === id)) return;
+    this.router.navigate(['employee-profile', id]);
   }
 
   getCV(cvUrl: string) {
@@ -69,16 +64,23 @@ export class PostulationListComponent implements OnInit {
   }
 
   getEmployees() {
-    const headers = this.getAuthHeaders();
+    if (!this.itemId) return; // Guard clause
 
-    this.http.get<Employee[]>(this.url, { headers }).subscribe({
+    const headers = this.getAuthHeaders();
+    const url = this.getPostulationsUrl(this.itemId);
+
+    this.http.get<Employee[]>(url, { headers }).subscribe({
       next: (data) => {
-        this.employees = data;
+        this.employees = data || []; // Ensure array
+      },
+      error: (err) => {
+        console.error('Error fetching employees:', err);
+        this.employees = []; // Fallback
       }
-    })
+    });
   }
 
-  getJobOffer() {
+  getCurrentOffer() {
     this.itemId = this.route.snapshot.params['id'] ?? "";
     if (this.itemId) {
       this.employerservice.getOfferById(this.itemId).subscribe({
@@ -98,29 +100,4 @@ export class PostulationListComponent implements OnInit {
 
   }
 
-  private checkCurrentUserType() {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const userData = this.parseJwt(token);
-
-      if (userData && userData.tipo_usuario) {
-        this.currentUserType = userData.tipo_usuario;
-        this.currentUserId = userData.id;
-      } else {
-        console.warn('Token does not contain tipo_usuario');
-      }
-    }
-  }
-
-  parseJwt(token: string | null): any {
-    if (!token) return null;
-    try {
-      const base64Url = token.split('.')[1];
-      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      return JSON.parse(window.atob(base64));
-    } catch (e) {
-      console.error("Error parsing JWT:", e);
-      return null;
-    }
-  }
 }

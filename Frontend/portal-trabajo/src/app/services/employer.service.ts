@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/internal/Observable';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JobOffer } from '../../models/jobOffer.model';
 import { Employer } from '../../models/employer.model';
 
@@ -54,11 +53,11 @@ export class EmployerService {
 
     getDataProfile() {
         return this.httpClient.get<Employer>(`${URL}/empresa/datos`, {
-                observe: 'response',
-                withCredentials: true,
-                headers: new HttpHeaders()
-                  .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
-                  .append('Content-Type', 'application/json')
-              })
-        }
+            observe: 'response',
+            withCredentials: true,
+            headers: new HttpHeaders()
+                .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+                .append('Content-Type', 'application/json')
+        })
+    }
 }
