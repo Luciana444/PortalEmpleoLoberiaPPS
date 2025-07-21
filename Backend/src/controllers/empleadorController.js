@@ -419,6 +419,45 @@ export const obtenerNotificaciones = async (req, res) => {
 };
 
 
+/**
+ * Controlador para obtener todas las postulaciones realizadas a una oferta laboral específica.
+ * Solo puede acceder la empresa dueña de la oferta.
+ * 
+ * @async
+ * @function obtenerPostulacionesOferta
+ * @param {Object} req - Objeto de solicitud de Express.
+ * @param {Object} req.params - Parámetros de la ruta.
+ * @param {string} req.params.id - ID de la oferta laboral.
+ * @param {Object} req.usuario - Usuario autenticado (empresa).
+ * @param {string} req.usuario.id - ID de la empresa autenticada.
+ * @param {Object} res - Objeto de respuesta de Express.
+ * 
+ * @returns {Promise<void>}
+ * 
+ * @throws {401} Si falta el ID de la oferta.
+ * @throws {404} Si la oferta no existe.
+ * @throws {500} Si la oferta no pertenece a la empresa autenticada o si ocurre un error interno.
+ * 
+ * @example
+ * // GET /empresa/ofertas/abc123/postulaciones
+ * // Headers: Authorization: Bearer <token>
+ * 
+ * Respuesta exitosa:
+ * [
+ *   {
+ *     id: "uuid-postulacion",
+ *     id_ciudadano: "uuid-ciudadano",
+ *     nombre: "Juan",
+ *     apellido: "Pérez",
+ *     email: "juan@mail.com",
+ *     fecha_postulacion: "2025-07-18T15:32:00Z",
+ *     cv_url: "/api/empresa/postulaciones/uuid-postulacion/cv",
+ *     perfil_url: "/api/empresa/postulaciones/uuid-postulacion/perfil"
+ *   }
+ * ]
+ */
+
+
 export const obtenerPostulacionesOferta = async(req,res)=>{
   try {
       const id_oferta = req.params.id;
@@ -455,6 +494,34 @@ export const obtenerPostulacionesOferta = async(req,res)=>{
     res.status(500).json({message:'Error al obtener las postulaciones de la oferta'})
   }
 };
+//==================================================================
+/**
+ * Controlador para obtener el archivo CV del postulante, correspondiente a una postulación específica.
+ * Solo puede acceder la empresa dueña de la oferta asociada.
+ * 
+ * @async
+ * @function obtenerCvPorPostulacion
+ * @param {Object} req - Objeto de solicitud de Express.
+ * @param {Object} req.params - Parámetros de la ruta.
+ * @param {string} req.params.id - ID de la postulación.
+ * @param {Object} req.usuario - Usuario autenticado (empresa).
+ * @param {string} req.usuario.id - ID de la empresa autenticada.
+ * @param {Object} res - Objeto de respuesta de Express.
+ * 
+ * @returns {Promise<void>} Envía el archivo PDF del CV como respuesta si todo es válido.
+ * 
+ * @throws {403} Si la postulación no pertenece a una oferta de la empresa autenticada.
+ * @throws {404} Si no existe la postulación o no se encuentra el archivo CV en el servidor.
+ * @throws {500} Si ocurre un error interno del servidor.
+ * 
+ * @example
+ * // GET /empresa/postulaciones/uuid-postulacion/cv
+ * // Headers: Authorization: Bearer <token>
+ * 
+ * // Respuesta exitosa:
+ * Content-Type: application/pdf
+ * Body: <contenido binario del archivo>
+ */
 
 export const obtenerCvPorPostulacion = async(req,res)=>{
   try {
@@ -494,6 +561,47 @@ export const obtenerCvPorPostulacion = async(req,res)=>{
       res.status(500).json({message:'Error al obtener el cv del postulante'})
   }
 };
+
+//=====================================================
+
+/**
+ * Controlador para obtener el perfil completo del ciudadano que se postuló a una oferta laboral.
+ * Solo puede acceder la empresa dueña de la oferta vinculada a la postulación.
+ * 
+ * @async
+ * @function obtenerPerfilPorPostulacion
+ * @param {Object} req - Objeto de solicitud de Express.
+ * @param {Object} req.params - Parámetros de la ruta.
+ * @param {string} req.params.id - ID de la postulación.
+ * @param {Object} req.usuario - Usuario autenticado (empresa).
+ * @param {string} req.usuario.id - ID de la empresa autenticada.
+ * @param {Object} res - Objeto de respuesta de Express.
+ * 
+ * @returns {Promise<void>} Devuelve el perfil del ciudadano en formato JSON si tiene acceso.
+ * 
+ * @throws {403} Si la empresa no es dueña de la oferta relacionada con la postulación.
+ * @throws {404} Si no se encuentra la postulación.
+ * @throws {500} Si ocurre un error al obtener el perfil del postulante.
+ * 
+ * @example
+ * // GET /empresa/postulaciones/uuid-postulacion/perfil
+ * // Headers: Authorization: Bearer <token>
+ * 
+ * // Respuesta:
+ * {
+ *   "id": "uuid-ciudadano",
+ *   "nombre": "Juan",
+ *   "apellido": "Pérez",
+ *   "email": "juan@mail.com",
+ *   "telefono": "123456789",
+ *   "domicilio": "Calle Falsa 123",
+ *   "fecha_nacimiento": "1990-01-01",
+ *   "nivel_educativo": "Secundario completo",
+ *   "experiencia_laboral": "2 años en atención al cliente",
+ *   "habilidades": "Comunicación, trabajo en equipo",
+ *   "idiomas": "Español, Inglés"
+ * }
+ */
 
 
 export const obtenerPerfilPorPostulacion = async(req,res)=>{

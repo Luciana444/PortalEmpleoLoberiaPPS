@@ -473,6 +473,38 @@ export const buscarOfertasConFiltros = async (req, res) => {
   }
 };
 
+
+//===================================================
+/**
+ * Controlador para cancelar la postulación de un ciudadano autenticado a una oferta laboral.
+ * Solo puede cancelar postulaciones activas a ofertas activas.
+ * 
+ * @async
+ * @function cancelarPostulacion
+ * @param {Object} req - Objeto de solicitud de Express.
+ * @param {Object} req.params - Parámetros de la ruta.
+ * @param {string} req.params.id - ID de la oferta a la cual se postuló.
+ * @param {Object} req.usuario - Usuario autenticado (ciudadano).
+ * @param {string} req.usuario.id - ID del ciudadano autenticado.
+ * @param {Object} res - Objeto de respuesta de Express.
+ * 
+ * @returns {Promise<void>} Devuelve un mensaje confirmando la cancelación.
+ * 
+ * @throws {400} Si la oferta no existe o no está activa.
+ * @throws {401} Si no se proporciona el ID de la oferta.
+ * @throws {404} Si el ciudadano no está postulado a esa oferta.
+ * @throws {500} Si ocurre un error al cancelar la postulación.
+ * 
+ * @example
+ * // DELETE /ciudadano/ofertas/uuid-oferta/cancelar_postulacion
+ * // Headers: Authorization: Bearer <token>
+ * 
+ * // Respuesta:
+ * {
+ *   "message": "Se cancelo la postulacion correctamente"
+ * }
+ */
+
 export const cancelarPostulacion = async(req,res)=>{
 try {
     const id_oferta = req.params.id;

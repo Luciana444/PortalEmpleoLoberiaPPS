@@ -527,6 +527,10 @@ empleadorRoutes.delete('/eliminar/oferta/:id', authMiddleware, onlyEmpresa, elim
 
 empleadorRoutes.patch('/ofertas/:id',authMiddleware,onlyEmpresa,editarOfertaLaboral);
 
+
+
+
+// faltan tests....
 //======================================================================
 //End point notificaciones de ofertas
 
@@ -578,10 +582,171 @@ empleadorRoutes.patch('/ofertas/:id',authMiddleware,onlyEmpresa,editarOfertaLabo
 
 empleadorRoutes.get('/notificaciones', authMiddleware, onlyEmpresa, obtenerNotificaciones);
 
+//================================================================
+// end point ver las postulaciones a las ofertas
+/**
+ * @swagger
+ * /empresa/ofertas/{id}/postulaciones:
+ *   get:
+ *     summary: Obtener las postulaciones de una oferta publicada
+ *     tags:
+ *       - Empleador - Ofertas
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *         description: ID de la oferta laboral
+ *     responses:
+ *       200:
+ *         description: Lista de postulaciones de la oferta
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: string
+ *                     format: uuid
+ *                     description: ID de la postulación
+ *                   id_ciudadano:
+ *                     type: string
+ *                     format: uuid
+ *                   nombre:
+ *                     type: string
+ *                   apellido:
+ *                     type: string
+ *                   email:
+ *                     type: string
+ *                   fecha_postulacion:
+ *                     type: string
+ *                     format: date-time
+ *                   cv_url:
+ *                     type: string
+ *                     nullable: true
+ *                     description: URL para descargar el CV
+ *                   perfil_url:
+ *                     type: string
+ *                     description: URL para ver el perfil completo del ciudadano
+ *       401:
+ *         description: No autorizado - Falta token o token inválido
+ *       403:
+ *         description: Acceso prohibido - Solo empresas pueden consultar este recurso
+ *       404:
+ *         description: Oferta no encontrada
+ *       500:
+ *         description: Error del servidor o acceso a oferta ajena
+ */
 
 empleadorRoutes.get('/ofertas/:id/postulaciones',authMiddleware, onlyEmpresa, obtenerPostulacionesOferta);
 
+//=================================================================
+// end point para obtener el cv por postulacion
+/**
+ * @swagger
+ * /empresa/postulaciones/{id}/cv:
+ *   get:
+ *     summary: Obtener el CV del postulante para una postulación específica
+ *     tags:
+ *       - Empleador - Postulaciones
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *         description: ID de la postulación
+ *     responses:
+ *       200:
+ *         description: CV devuelto correctamente
+ *         content:
+ *           application/pdf:
+ *             schema:
+ *               type: string
+ *               format: binary
+ *       401:
+ *         description: No autorizado - Token inválido o ausente
+ *       403:
+ *         description: Acceso prohibido - Solo empresas autorizadas pueden acceder al CV
+ *       404:
+ *         description: Postulación no encontrada o sin CV asociado
+ *       500:
+ *         description: Error interno del servidor
+ */
+
+
 empleadorRoutes.get('/postulaciones/:id/cv',authMiddleware, onlyEmpresa, obtenerCvPorPostulacion);
+
+//================================================00
+//end point para obtener el perfil del postulante
+/**
+ * @swagger
+ * /empresa/postulaciones/{id}/perfil:
+ *   get:
+ *     summary: Obtener el perfil completo del ciudadano que se postuló a una oferta
+ *     tags:
+ *       - Empleador - Postulaciones
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *         description: ID de la postulación
+ *     responses:
+ *       200:
+ *         description: Perfil del ciudadano obtenido correctamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: string
+ *                   format: uuid
+ *                 nombre:
+ *                   type: string
+ *                 apellido:
+ *                   type: string
+ *                 email:
+ *                   type: string
+ *                 telefono:
+ *                   type: string
+ *                 domicilio:
+ *                   type: string
+ *                 fecha_nacimiento:
+ *                   type: string
+ *                   format: date
+ *                 nivel_educativo:
+ *                   type: string
+ *                 experiencia_laboral:
+ *                   type: string
+ *                 habilidades:
+ *                   type: string
+ *                 idiomas:
+ *                   type: string
+ *       401:
+ *         description: No autorizado - Token ausente o inválido
+ *       403:
+ *         description: Acceso prohibido - La postulación no pertenece a una oferta de esta empresa
+ *       404:
+ *         description: Postulación no encontrada
+ *       500:
+ *         description: Error interno del servidor
+ */
+
 
 empleadorRoutes.get('/postulaciones/:id/perfil',authMiddleware,onlyEmpresa,obtenerPerfilPorPostulacion)
 
