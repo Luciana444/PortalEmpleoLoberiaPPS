@@ -24,8 +24,8 @@ export class PostulationListComponent implements OnInit {
   private url = 'http://localhost:3000/api/empresa/ofertas/{id}/postulaciones';
   // private urlCV = 'http://localhost:3000/api/empresa/postulaciones/{id}/cv'
 
-  currentUserId: any;
-  currentUserType: any;
+  currentUserId: string = '';
+  currentUserType: string = '';
   employees: Employee[] = [];
   itemId: string = "";
   jobOffer: JobOffer = {
@@ -46,7 +46,7 @@ export class PostulationListComponent implements OnInit {
   };
 
   ngOnInit(): void {
-
+    this.checkCurrentUserType(); //verifico que la oferta sea de la empresa
     this.getJobOffer() //obtengo la oferta con id igual a url
     this.getEmployees() //obtengo los empleados postulados a esa oferta
   }
