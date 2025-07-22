@@ -33,8 +33,6 @@ export class HeaderComponent implements OnInit {
   notification: Notification = {} as Notification;
   hidden = false;
 
- 
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -175,7 +173,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
- toggleBadgeVisibility() {
+  toggleBadgeVisibility() {
     this.hidden = true;
   }
 

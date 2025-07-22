@@ -53,14 +53,22 @@ svg:hover {
 
 .user-container {
     margin-right: 5rem;
+    align-items: center;
 }
 
 .profile-pic {
-    background-color: black;
-    width: 60px;
-    height: 60px;
-    align-self: center;
-    border-radius: 100px;
+    background-color: #424242;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    overflow: hidden; 
+    
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; // Ensures the image covers the area while maintaining aspect ratio
+        object-position: center; // Centers the image
+    }
 }
 
 .username {
