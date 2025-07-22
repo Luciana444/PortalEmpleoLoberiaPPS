@@ -9,7 +9,9 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { EmployeeService } from '../services/employee.service';
 import { PostulateDialogComponent } from '../postulate-dialog/postulate-dialog.component';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { AuthService } from '../services/auth.service';
+import { OfferService } from '../services/offer.service';
 
 @Component({
   selector: 'app-postulation-detail',
@@ -19,7 +21,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 })
 
 export class PostulationDetailComponent implements OnInit {
+
   constructor(
+    private authService: AuthService,
     private toastr: ToastrService,
     private router: Router,
     private route: ActivatedRoute,
@@ -36,11 +40,18 @@ export class PostulationDetailComponent implements OnInit {
   offer = {} as JobOffer;
   postulado: boolean = false;
 
-  ngOnInit(): void {   
-    
+  ngOnInit(): void {
+
     let isPostulado = this.route.snapshot.params['postulado'] ?? null; // Get Postulado from route   
     this.postulado = !!isPostulado;
 
+    this.getCurrentOffer();
+    // this.OfferService.getCurrentOffer()
+    this.currentUserType = this.authService.getCurrentUserType();
+    this.currentUserId = this.authService.getCurrentUserId();
+  }
+
+  private getCurrentOffer() {
     this.itemId = this.route.snapshot.params['id'] ?? ""; // Get ID from route
     if (this.itemId) {
       this.employerservice.getOfferById(this.itemId).subscribe({
@@ -55,36 +66,7 @@ export class PostulationDetailComponent implements OnInit {
           //this.toastr.error(err.error.error, 'Ocurrió un error');
           console.error('Error al cargar oferta', err);
         }
-
       });
-    }
-
-    this.checkCurrentUserType();
-  }
-
-  private checkCurrentUserType() {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const userData = this.parseJwt(token);
-
-      if (userData && userData.tipo_usuario) {
-        this.currentUserType = userData.tipo_usuario;
-        this.currentUserId = userData.id;
-      } else {
-        console.warn('Token does not contain tipo_usuario');
-      }
-    }
-  }
-
-  parseJwt(token: string | null): any {
-    if (!token) return null;
-    try {
-      const base64Url = token.split('.')[1];
-      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      return JSON.parse(window.atob(base64));
-    } catch (e) {
-      console.error("Error parsing JWT:", e);
-      return null;
     }
   }
 
@@ -160,7 +142,7 @@ export class PostulationDetailComponent implements OnInit {
     });
   }
 
-openDialogDeletePostulation(id: any): void {
+  openDialogDeletePostulation(id: any): void {
     const dialogConfig = new MatDialogConfig();
 
     // Configure dialog options (optional)
@@ -185,7 +167,7 @@ openDialogDeletePostulation(id: any): void {
     });
   }
 
-   deletePostulation(id: any) {
+  deletePostulation(id: any) {
     this.employeeservice.deletePostulationByOfferId(id).subscribe({
       next: (response) => {
         if (response.status === 200) {
@@ -205,13 +187,16 @@ openDialogDeletePostulation(id: any): void {
 
   }
 
-
   navigateToLanding() {
     this.router.navigate(['']);
   }
 
+  navigateToViewPostulations(id: string) {
+    this.router.navigate(['postulaciones-por-oferta', id])
+  }
+
   navigateToEditOffer(id: any) {
-    if (!this.offer.fecha_cierre || this.compareDatesOffer(Date.parse(this.offer.fecha_cierre)) ) {
+    if (!this.offer.fecha_cierre || this.compareDatesOffer(Date.parse(this.offer.fecha_cierre))) {
       this.router.navigate(['create-offer', id]);
     } else {
       this.toastr.warning('Oferta cerrada', 'No es posible editar la oferta cerrada')
@@ -224,7 +209,7 @@ openDialogDeletePostulation(id: any): void {
     return today < dateOffer;
   }
 
-  postulate(id: any, cv: File, msg:string) {
+  postulate(id: any, cv: File, msg: string) {
     this.employeeservice.postulateToOffer(id, cv, msg).subscribe({
       next: (response) => {
         if (response.status === 200) {

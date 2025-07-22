@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/internal/Observable';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JobOffer } from '../../models/jobOffer.model';
 import { Employer } from '../../models/employer.model';
 import { Notification } from '../../models/notification.model';
