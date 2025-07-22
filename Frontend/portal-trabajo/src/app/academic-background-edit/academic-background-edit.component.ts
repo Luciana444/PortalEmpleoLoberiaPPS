@@ -18,6 +18,8 @@ import { Employee } from '../../models/employee.model';
 import { EmployeeService } from '../services/employee.service';
 import { jwtDecode } from 'jwt-decode';
 import { User } from '../profile-form/profile-form.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
     selector: 'app-academic-background-edit',
@@ -35,7 +37,9 @@ import { User } from '../profile-form/profile-form.component';
         CommonModule,
         MatIconModule,
         HeaderComponent,
-        FooterComponent
+        FooterComponent,
+        MatDividerModule, 
+        MatTooltipModule
     ]
 
 })

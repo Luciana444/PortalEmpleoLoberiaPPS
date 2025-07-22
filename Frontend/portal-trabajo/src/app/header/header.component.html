@@ -17,7 +17,7 @@
     @if (isLoggedIn){
     <div class="user-container">
         <div class="profile-pic" (click)="navigateToProfile()">
-            <img [src]="user.imagen_url || 'sample_pfp.png'" alt="Profile picture">
+            <img [src]="user.imagen_url || 'sample_pfp.png'" alt="Profile picture" matTooltip="Ver perfil">
         </div>
 
         <div class="text-wrapper">

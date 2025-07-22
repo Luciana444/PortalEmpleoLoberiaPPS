@@ -11,7 +11,7 @@
 input {
   width: 20rem;
   padding-top: 0;
-  
+
 }
 
 .profile {
@@ -51,8 +51,8 @@ button {
 
 button.experience-btn {
   width: 15rem;
-  margin-bottom: 2rem;
-  color:#57AF31;
+  margin-bottom: 1rem;
+  color: #57AF31;
   background-color: transparent;
 
 }
@@ -83,6 +83,46 @@ footer {
   display: flex;
   justify-content: right;
 }
-.separate-inputs{
-  margin-left: 5px;
-  }
+
+.separate-inputs {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+mat-form-field {
+  width: 50%;
+  margin-right: 15px;
+}
+
+form {
+  width: 60%
+}
+
+li {
+  list-style: none;
+}
+
+.align-elements {
+  display: flex;
+  justify-content: space-between;
+  color: #424242;
+}
+
+.delete {
+  background-color: transparent !important;
+  width: 2rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+button.delete, button.edit-exp-btn{
+margin-bottom: 1rem;
+}
+
+.delete i {
+  color: #57AF31 !important;
+}
+
+.edit-exp-btn {
+  width: 100%;
+}

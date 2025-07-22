@@ -8,6 +8,16 @@
   overflow: hidden;
 }
 
+.container-experience {
+  display: flex;
+  justify-content: space-between;
+
+}
+div.container-experience > mat-form-field {
+  width:100%;
+
+}
+
 input {
   width: 20rem;
   padding-top: 0;
@@ -57,13 +67,11 @@ select {
   text-indent: 10px;
 }
 
-.dates-picker {
-  display: inline-flex;
-}
-
-.profile mat-form-field {
+.profile,
+.comment {
   width: 100%
 }
+
 
 .addExperience-btn {
   display: flex;
@@ -72,33 +80,59 @@ select {
 
 button.experience-btn {
   width: 15rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   color: #57AF31 !important;
   background-color: transparent !important;
 
 }
-.mat-calendar-body-cell-content.mat-focus-indicator.mat-calendar-body-today{
+
+.mat-calendar-body-cell-content.mat-focus-indicator.mat-calendar-body-today {
 
   background-color: #57AF31 !important;
 
 }
-.align-elements{
-display: flex;
-justify-content: space-between;
-color:#424242;
+
+.align-elements {
+  display: flex;
+  justify-content: space-between;
+  color: #424242;
 }
 
 .delete {
-    background-color: transparent;
-    width: 2rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
+  background-color: transparent;
+  width: 2rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
-.delete i
-{
-    color: #57AF31 !important;
+
+.delete i {
+  color: #57AF31 !important;
 }
-.edit-exp-btn
-{
-   width: 100%;
+
+.edit-exp-btn {
+  width: 100%;
+}
+
+.size-form {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.separate-inputs {
+  margin-right: 15px;
+
+}
+
+form {
+  width: 60%;
+}
+
+div.size-form>mat-form-field {
+  width: 50%;
+
+}
+
+li{
+list-style:none;
 }

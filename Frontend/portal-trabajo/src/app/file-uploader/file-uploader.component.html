@@ -2,6 +2,6 @@
     <mat-label>Foto de perfil</mat-label>
     <input formControlName="profilePic" matInput readonly type="text" id="fileInput" (click)="hiddenInput.click()">
     <input  hidden type="file" accept=".jpg, .jpeg, .png, .gif" #hiddenInput (change)="onFileSelected($event)">
-    <mat-icon matSuffix>folder_open</mat-icon>
+    <mat-icon matSuffix>photo</mat-icon>
     <mat-error> El tamanio total no puede exceder </mat-error>
 </mat-form-field>
