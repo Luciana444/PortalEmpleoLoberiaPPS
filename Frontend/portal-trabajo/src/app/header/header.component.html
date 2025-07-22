@@ -16,14 +16,35 @@
     </div>
     @if (isLoggedIn){
     <div class="user-container">
-        <div class="profile-pic">
-        </div>
+        <div class="profile-pic"></div>
         <div class="text-wrapper">
             <div class="notify">
-                <p class="username">{{user.nombre}}</p> 
-                <!--<i class="fa-solid fa-bell"></i>-->
+                <p class="username">{{user.nombre}}</p>
+                @if (getUserType() === 'empresa' && hasNotifications()) {
+                <button class="bell-btn" [matMenuTriggerFor]="menu" (click)="toggleBadgeVisibility()">
+                    <mat-icon class="bell-icon" matBadgeSize="small" [matBadge]="notification.cantidad" 
+                    [matBadgeHidden]="hidden">notifications</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    @for (notification of notification.notificaciones; track notification.id) {
+                    <li>
+                        <div mat-menu-item class="notification">
+                            <div class="notification-header">
+                                <h4>Nueva Postulación</h4>
+                                <p>{{notification.mensaje}}</p>
+                                <p>{{notification.fecha_postulacion | date:'longDate'}}</p>
+                            </div>
+                            <mat-divider></mat-divider>
+                        </div>
+                    </li>
+                    }
+                </mat-menu>
+                } @else if (getUserType() === 'empresa'){
+                <button class="bell-btn">
+                    <mat-icon class="bell-icon">notifications</mat-icon>
+                </button>
+                }
             </div>
-
             <button class="logout-btn" (click)="onLogout()">Cerrar Sesión</button>
         </div>
     </div>
@@ -33,6 +54,4 @@
         <button class="login-button" (click)="navigateToLogin()">Ingresar</button>
     </div>
     }
-
-
 </header>

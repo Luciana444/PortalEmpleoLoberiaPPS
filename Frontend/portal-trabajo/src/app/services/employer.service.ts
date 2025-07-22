@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { JobOffer } from '../../models/jobOffer.model';
 import { Employer } from '../../models/employer.model';
+import { Notification } from '../../models/notification.model';
 
 const URL = 'http://localhost:3000/api';
 
@@ -54,11 +55,25 @@ export class EmployerService {
 
     getDataProfile() {
         return this.httpClient.get<Employer>(`${URL}/empresa/datos`, {
-                observe: 'response',
-                withCredentials: true,
-                headers: new HttpHeaders()
-                  .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
-                  .append('Content-Type', 'application/json')
-              })
-        }
+            observe: 'response',
+            withCredentials: true,
+            headers: new HttpHeaders()
+                .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+                .append('Content-Type', 'application/json')
+        })
+    }
+
+    getNotifications() {
+        return this.httpClient.get<Notification>(`${URL}/empresa/notificaciones`, {
+            observe: 'response',
+            withCredentials: true,
+            headers: new HttpHeaders()
+                .append('Content-Type', 'application/json')
+        })
+    }
+
+
+
+
+
 }

@@ -1,9 +1,9 @@
 @use '../../styles.scss' as *;
 
-header{
+header {
     top: 0;
     z-index: 99;
-    position:sticky;
+    position: sticky;
     width: 100%;
     background-color: #F2F2F2;
     margin: 0;
@@ -11,50 +11,51 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.small-logo > svg{
+.small-logo>svg {
     height: 4.5rem;
     margin-left: 4.5rem;
 }
 
-svg{
+svg {
     width: fit-content;
     fill: $green;
 }
 
-svg:hover  {
+svg:hover {
     filter: brightness(0.8);
     cursor: pointer;
 }
 
-.register-button{
+.register-button {
     background-color: $white;
     color: $green;
     border: 1px solid $green;
 }
 
-.register-button:hover{
+.register-button:hover {
     background-color: $green;
     color: $white;
 }
 
-.buttons-container, .user-container{
+.buttons-container,
+.user-container {
     gap: 1rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-left: 0; 
-    margin-right: 4.5rem; 
+    margin-left: 0;
+    margin-right: 4.5rem;
     align-self: auto;
 }
 
-.user-container{
+.user-container {
     margin-right: 5rem;
 }
 
-.profile-pic{
+.profile-pic {
     background-color: black;
     width: 60px;
     height: 60px;
@@ -62,49 +63,52 @@ svg:hover  {
     border-radius: 100px;
 }
 
-.username{
-   color: #424242;
-   margin-bottom: 0;
+.username {
+    color: #424242;
+    margin-bottom: 0;
 }
 
-.notify{
-   display:flex;
-   align-items: center;
+.notify {
+    display: flex;
+    align-items: flex-start;
 }
 
-button{
+button {
     width: 8rem;
     padding: 8px 2px;
 }
 
 @media (max-width: 600px) {
-    .small-logo > svg {
-        margin-left: 1rem; 
+    .small-logo>svg {
+        margin-left: 1rem;
         margin-right: 1rem;
     }
+
     .buttons-container {
         gap: 0.5rem;
-        flex-wrap: wrap;    
-        margin-right: 1rem;  
+        flex-wrap: wrap;
+        margin-right: 1rem;
         justify-content: flex-end;
     }
 
-    .text-wrapper{
+    .text-wrapper {
         display: none;
     }
 
     button {
-        width: 120px;         
-        min-width: 80px;     
+        width: 120px;
+        min-width: 80px;
         padding: 8px 0.5rem;
         font-size: 0.95rem;
     }
-    
-    .user-container{
+
+    .user-container {
         margin-right: 1rem;
     }
 
-    .register-button{
+    .register-button {
         display: none;
     }
+
+
 }
