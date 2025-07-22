@@ -94,11 +94,7 @@ export const getOfertasByEmpresaId = async (idEmpresa, estadoPublicacion) => {
 export const getOfertasActivas = async () => {
   return await sql`
     SELECT 
-      o.id, o.id_empresa, e.nombre_empresa, 
-      o.puesto_requerido, o.descripcion, o.nivel_educativo_requerido,
-      o.experiencia_requerida, o.otros_requisitos, o.lugar_trabajo, o.modalidad,
-      o.tipo_contrato, o.fecha_publicacion, o.fecha_cierre, o.estado, 
-      o.estado_publicacion, o.localidad_del_puesto
+      e.*, o.*
     FROM ofertas_laborales o
     JOIN empresas e ON o.id_empresa = e.id_usuario
     WHERE o.estado = 'activa' AND o.estado_publicacion = 'aprobada'
