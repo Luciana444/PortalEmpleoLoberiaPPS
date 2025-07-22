@@ -2,10 +2,14 @@ import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { JobOffer } from '../../models/jobOffer.model';
 import { OfferService } from '../services/offer.service';
 import { FormsModule } from '@angular/forms';
+import { MatInputModule } from "@angular/material/input";
+import { MatSelectModule } from "@angular/material/select";
+import { MatIconModule } from "@angular/material/icon";
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-filter',
-  imports: [FormsModule],
+  imports: [FormsModule, MatInputModule, MatSelectModule, MatIconModule, MatCardModule],
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss']
 })
@@ -83,4 +87,5 @@ export class FilterComponent implements OnInit {
         .filter(modality => !!modality)
     )];
   }
+
 }

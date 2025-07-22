@@ -34,6 +34,7 @@ export class LandingComponent implements OnInit {
   url: string = 'http://localhost:3000/api/empresa/ofertas/activas';
   currentPage = 0;
   pageSize = 10;
+  showFilter = false;
 
   ngOnInit(): void {
     if (this.getUserType() === 'ciudadano') {
@@ -95,6 +96,10 @@ export class LandingComponent implements OnInit {
       console.error('Error decoding token:', err);
       return null;
     }
+  }
+
+  toggleFilter() {
+    this.showFilter = !this.showFilter;
   }
 }
 

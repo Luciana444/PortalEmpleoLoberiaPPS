@@ -2,10 +2,16 @@
 <div class="container">
     <app-training-link></app-training-link>
 
+
+    <!-- Filter toggle button -->
     <div class="filter">
-        <i class="fa-solid fa-filter"></i>
+        <i class="fa-solid fa-filter" (click)="toggleFilter()"></i>
+        <span (click)="toggleFilter()">{{ showFilter ? ' Ocultar filtros' : ' Mostrar filtros' }}</span>
     </div>
-    <app-filter (offersLoaded)="handleOffersLoaded($event)"></app-filter>
+
+    <!-- Filter component with display control -->
+    <app-filter (offersLoaded)="handleOffersLoaded($event)" [class.hidden]="!showFilter">
+    </app-filter>
 
     @if (offers.length) {
     <main class="offer-container">
