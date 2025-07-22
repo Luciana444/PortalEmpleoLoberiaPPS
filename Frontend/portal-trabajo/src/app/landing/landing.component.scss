@@ -193,6 +193,10 @@ mat-paginator {
 
 span{
     cursor: pointer;
+
+    &:hover{
+        text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);    
+    }
 }
 
 app-filter.hidden {

@@ -32,11 +32,9 @@ export class FilterComponent implements OnInit {
   loadInitialOffers() {
     this.offerService.getPublicOffers().subscribe({
       next: (offers) => {
-        // Extract distinct locations immediately
         this.workLocations = this.getDistinctWorkLocations(offers);
         this.workModalities = this.getDistinctModalities(offers);
 
-        // Optionally emit the offers if needed
         this.offersLoaded.emit(offers);
       },
       error: (err) => {
@@ -51,7 +49,7 @@ export class FilterComponent implements OnInit {
     this.modalidad = modalitySelect;
     this.descripcion = descripcion;
     this.puesto_requerido = puestoRequerido;
-    console.log(puestoRequerido)
+
     this.filterOffers();
   }
 
@@ -64,6 +62,7 @@ export class FilterComponent implements OnInit {
     }).subscribe({
       next: (offers) => {
         this.offersLoaded.emit(offers);
+        console.log("offers ", offers)
       },
       error: (err) => {
         console.error('Error filtering offers:', err);

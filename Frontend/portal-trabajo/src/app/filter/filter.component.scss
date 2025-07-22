@@ -1,52 +1,79 @@
 .filter-container {
-  padding: 16px;
+  padding: 1rem;
   
   mat-card {
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1);
   }
 }
 
 .filter-form {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
-  align-items: flex-end;
+  gap: 1rem;
 }
 
 .filter-field {
-  flex: 1 1 200px;
+  flex: 1 1 12.5rem;
+  
+  .mat-mdc-form-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+  }
+
+  .mat-mdc-form-field-infix {
+    min-height: 3.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  textarea.mat-input-element {
+    align-self: center;
+    margin-top: 0.75rem;
+    min-height: 2.5rem;
+  }
+
+  .mat-mdc-select {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .action-buttons {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0.75rem;
   width: 100%;
-  margin-top: 16px;
+  margin-top: 1rem;
   
   button {
-    flex: 1;  // Makes both buttons equal width
-    min-width: 120px;  // Prevents buttons from getting too small
-    height: 44px;  // Consistent height
+    flex: 1;
+    min-width: 7.5rem;
+    height: 2.75rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
     
     mat-icon {
-      font-size: 20px;
-      height: 20px;
-      width: 20px;
+      font-size: 1.25rem;
+      height: 1.25rem;
+      width: 1.25rem;
     }
   }
 }
 
-
-@media (max-width: 600px) {
+@media (max-width: 37.5rem) {
   .filter-field {
     flex: 1 1 100%;
+    
+    .mat-mdc-form-field-infix {
+      min-height: 3.25rem;
+    }
   }
+  
   .action-buttons {
     flex-direction: column;
     
