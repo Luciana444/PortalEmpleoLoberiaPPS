@@ -13,6 +13,7 @@ import { WorkExperienceComponent } from './work-experience/work-experience.compo
 import { AcademicBackgroundEditComponent } from './academic-background-edit/academic-background-edit.component';
 import { EmployerProfileComponent } from './employer-profile/employer-profile.component';
 import { PostulationListComponent } from './postulation-list/postulation-list.component';
+import { ProfileSelectorComponent } from './profile-selector/profile-selector.component';
 
 export const routes: Routes = [
     { path: '', component: LandingComponent },
@@ -35,5 +36,6 @@ export const routes: Routes = [
     { path: 'academic-background-edit', component: AcademicBackgroundEditComponent },
     { path: 'postulaciones-por-oferta', component: PostulationListComponent },
     { path: 'postulaciones-por-oferta/:id', component: PostulationListComponent },
+    { path: 'profile', component: ProfileSelectorComponent },
 
 ];
