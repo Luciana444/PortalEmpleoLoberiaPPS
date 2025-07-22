@@ -56,21 +56,6 @@ svg:hover {
     align-items: center;
 }
 
-.profile-pic {
-    background-color: #424242;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    overflow: hidden; 
-    
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; // Ensures the image covers the area while maintaining aspect ratio
-        object-position: center; // Centers the image
-    }
-}
-
 .username {
     color: #424242;
     margin-bottom: 0;

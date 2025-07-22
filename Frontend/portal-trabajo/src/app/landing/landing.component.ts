@@ -65,7 +65,6 @@ export class LandingComponent implements OnInit {
     }
   }
 
-
   getPostulations() {
     this.employeeservice.getPostulations().subscribe({
       next: (response) => {

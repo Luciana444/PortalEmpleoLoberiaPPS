@@ -14,22 +14,7 @@ export class EmployerProfileSidebarComponent {
 
   url = 'http://localhost:3000/api/empresa/datos';
 
-  employer: Employer = {
-    nombre_empresa: '',
-    email_contacto: '',
-    logo: '',
-    sitio_web: '',
-    cuit: '',
-    rubro: '',
-    telefono: '',
-    calle: '',
-    numero: '',
-    piso: '',
-    dpto: '',
-    localidad: '',
-    provincia: '',
-    pais: ''
-  };
+  employer: Employer = {} as Employer;
 
   navigateToEditProfile() {
     this.router.navigate(['/edit-profile-employer']);

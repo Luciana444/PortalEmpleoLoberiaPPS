@@ -13,5 +13,5 @@ export interface JobOffer {
     experiencia_requerida: string;
     otros_requisitos: string;
     nivel_educativo_requerido: string;
-    // img: string;
+    logo: string;
 }
