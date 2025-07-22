@@ -141,30 +141,30 @@ export const crearPostulacionRepository = async(id_oferta,id_usuario,mensaje,url
 
 
 export const buscarOfertasFiltradas = async ({ modalidad, lugarTrabajo, descripcion, puestoRequerido }) => {
-  let query = 'SELECT * FROM ofertas_laborales WHERE estado_publicacion = \'aprobada\'';
+  let query = 'SELECT o.*, e.* FROM ofertas_laborales o JOIN empresas e ON e.id_usuario = o.id_empresa WHERE o.estado_publicacion = \'aprobada\'';
   const valores = [];
 
   if (modalidad) {
     valores.push(modalidad);
-    query += ` AND modalidad = $${valores.length}`;
+    query += ` AND o.modalidad = $${valores.length}`;
   }
 
   if (lugarTrabajo) {
     valores.push(lugarTrabajo);
-    query += ` AND lugar_trabajo = $${valores.length}`;
+    query += ` AND o.lugar_trabajo = $${valores.length}`;
   }
 
   if (descripcion) {
     valores.push(`%${descripcion.trim()}%`);
-    query += ` AND descripcion ILIKE $${valores.length}`;
+    query += ` AND o.descripcion ILIKE $${valores.length}`;
   }
 
   if (puestoRequerido) {
     valores.push(`%${puestoRequerido.trim()}%`);
-    query += ` AND puesto_requerido ILIKE $${valores.length}`;
+    query += ` AND o.puesto_requerido ILIKE $${valores.length}`;
   }
 
-  query += ' ORDER BY fecha_publicacion DESC';
+  query += ' ORDER BY o.fecha_publicacion DESC';
 
   const result = await sql.unsafe(query, valores);
   return result;
