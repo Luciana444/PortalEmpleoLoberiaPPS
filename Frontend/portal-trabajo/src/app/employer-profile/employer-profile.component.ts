@@ -5,6 +5,8 @@ import { EmployerProfileSidebarComponent } from "../employer-profile-sidebar/emp
 import { Router, ActivatedRoute } from '@angular/router';
 import { EmployerService } from '../services/employer.service';
 import { DatePipe } from '@angular/common'
+import { JobOffer } from '../../models/jobOffer.model';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-employer-profile',
@@ -13,41 +15,46 @@ import { DatePipe } from '@angular/common'
   styleUrl: './employer-profile.component.scss',
   providers: [{ provide: LOCALE_ID, useValue: 'es-AR' }],
 })
+
 export class EmployerProfileComponent implements OnInit {
-  [x: string]: any;
-  itemId: string = "";
-  offers: ActiveOffer[] = [];
+  itemId: string = '';
+  offers: JobOffer[] = [];
+
   constructor(
     private router: Router,
     private employerService: EmployerService,
-    private route: ActivatedRoute
+    private authService: AuthService,
   ) { }
 
-
   ngOnInit(): void {
+    this.loadEmployerOffers();
+  }
+
+  //cargo las ofertas del empleador
+  loadEmployerOffers(): void {
     this.employerService.getACtiveOffers().subscribe({
       next: (response) => {
         if (response.status === 200) {
-          response.body?.forEach(element => {
-            const offer: ActiveOffer = {
-              id: element.id,
-              puesto_requerido: element.puesto_requerido,
-              descripcion: element.descripcion,
-              fecha_publicacion: element.fecha_publicacion
-            };
-            this.offers.push(offer);
-          });
-        } else {
-          console.log('No se pudo cargar oferta', response);
+          const allOffers = response.body ?? [];
+
+          //si veo el perfil de un empleador especifico
+          if (this.itemId) {
+            this.offers = allOffers.filter(offer => offer.id_empresa === this.itemId);
+          } else {
+            //si veo mi propio perfil
+            const currentEmployerId = this.getCurrentEmployerId();
+            this.offers = allOffers.filter(offer => offer.id_empresa === currentEmployerId);
+          }
         }
       },
       error: (err) => {
-        // this.toastr.error(err.error.error, 'Ocurrió un error');
-        console.error('Error al cargar oferta', err);
+        console.error('Error al cargar ofertas', err);
       }
-
     });
+  }
 
+  getCurrentEmployerId(): string {
+    return this.authService.getCurrentUserId() || '';
   }
 
   navigateToCreateOffer() {
@@ -57,12 +64,5 @@ export class EmployerProfileComponent implements OnInit {
   navigateToPostulationDetail(id: any) {
     this.router.navigate(['/detail', id])
   }
-}
 
-
-interface ActiveOffer {
-  id: string;
-  puesto_requerido: string;
-  descripcion: string;
-  fecha_publicacion: string;
 }
