@@ -365,7 +365,7 @@ ciudadanoRoutes.get('/traer/perfil', authMiddleware, onlyCiudadano, obtenerPerfi
  */
 
 
-ciudadanoRoutes.get('/filtrar/ofertas', authMiddleware,onlyCiudadano, buscarOfertasConFiltros);
+ciudadanoRoutes.get('/filtrar/ofertas', buscarOfertasConFiltros);
 
 //===============================================================
 //end point traer postulaciones
