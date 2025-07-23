@@ -3,6 +3,7 @@ import { UserService } from '../services/user.service';
 import { CvUploaderComponent } from '../cv-uploader/cv-uploader.component';
 import { ToastrService } from 'ngx-toastr';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   styleUrl: './attatch-cv.component.scss'
 })
 export class AttatchCvComponent {
-  constructor(private userservice: UserService, private toastr: ToastrService) {
+  constructor(private userservice: UserService, private toastr: ToastrService, private authService: AuthService,) {
   }
   hasCV = false;
 
@@ -53,5 +54,8 @@ export class AttatchCvComponent {
 
       }
     });
+  }
+   getUserType(): string | null{
+    return this.authService.getCurrentUserType();
   }
 }

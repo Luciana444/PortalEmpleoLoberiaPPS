@@ -72,6 +72,9 @@ export class ProfileComponent implements OnInit {
     }
     return "";
   }
+   getImageUrl(image_url:string){
+    return image_url ? `http://localhost:3000${image_url}` : null;
+  }
 
 
 }

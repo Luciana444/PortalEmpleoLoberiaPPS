@@ -71,11 +71,38 @@ button {
     padding: 8px 2px;
 }
 
+li {
+    list-style: none;
+}
+.date-notification{
+    color:#898888;
+    font-size: 0.7rem;
+    margin-top: 0.3rem;
+
+}
+.notification-header{
+    color:#49454F;
+}
+div .notification-header > p{
+    margin-top: 0.1rem;
+}
+
+div.notification-header > h4{
+    color: $green;
+    margin-top: 1.5rem;
+    padding-top: 0.5rem;
+    margin-bottom: 0;
+}
+
+
+
 .profile-pic {
     cursor: pointer;
-    &:hover{
+
+    &:hover {
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
+
 }
 
 @media (max-width: 600px) {
