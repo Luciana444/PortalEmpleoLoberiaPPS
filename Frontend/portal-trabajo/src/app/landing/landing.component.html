@@ -2,17 +2,26 @@
 <div class="container">
     <app-training-link></app-training-link>
 
+    @if (getUserType()==='ciudadano') {
     <div class="filter">
-        <i class="fa-solid fa-filter"></i>
+        <span (click)="toggleFilter()">
+            <i class="fa-solid fa-filter fa-2x"></i>
+            <span>{{ showFilter ? ' Ocultar filtros' : ' Mostrar filtros' }}</span>
+        </span>
     </div>
-    <app-filter (offersLoaded)="handleOffersLoaded($event)"></app-filter>
+    }
+
+    <app-filter (offersLoaded)="handleOffersLoaded($event)" [class.hidden]="!showFilter">
+    </app-filter>
 
     @if (offers.length) {
     <main class="offer-container">
         @for (offer of pagedOffers; track offer.id) {
         <div class="offer-card">
             <div class="card-header">
-                <div class="icon-placeholder"></div>
+                <div class="profile-pic">
+                    <img [src]="offer.logo || 'sample_pfp.png'" alt="Profile picture">
+                </div>
                 <div>
                     <h4 class="card-user">{{offer.nombre_empresa}}</h4>
                     <div>

@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { UserService } from '../services/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @Component({
@@ -15,7 +16,8 @@ import { ToastrService } from 'ngx-toastr';
         CommonModule,
         MatIconModule,
         MatFormFieldModule,
-        MatInputModule
+        MatInputModule, 
+        MatTooltipModule
     ],
 })
 

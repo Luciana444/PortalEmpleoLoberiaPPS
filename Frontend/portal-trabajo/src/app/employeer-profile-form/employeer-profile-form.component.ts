@@ -20,6 +20,7 @@ import { EmployerService } from '../services/employer.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
 
 
 @Component({
@@ -36,7 +37,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
         CommonModule,
         HeaderComponent,
         FooterComponent,
-        MatTooltipModule       
+        MatTooltipModule,
+        FileUploaderComponent       
     ],
     templateUrl: './employeer-profile-form.component.html',
     styleUrls: ['./employeer-profile-form.component.scss']

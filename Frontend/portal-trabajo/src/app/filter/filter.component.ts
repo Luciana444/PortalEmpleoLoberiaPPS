@@ -2,10 +2,14 @@ import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { JobOffer } from '../../models/jobOffer.model';
 import { OfferService } from '../services/offer.service';
 import { FormsModule } from '@angular/forms';
+import { MatInputModule } from "@angular/material/input";
+import { MatSelectModule } from "@angular/material/select";
+import { MatIconModule } from "@angular/material/icon";
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-filter',
-  imports: [FormsModule],
+  imports: [FormsModule, MatInputModule, MatSelectModule, MatIconModule, MatCardModule],
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss']
 })
@@ -28,11 +32,9 @@ export class FilterComponent implements OnInit {
   loadInitialOffers() {
     this.offerService.getPublicOffers().subscribe({
       next: (offers) => {
-        // Extract distinct locations immediately
         this.workLocations = this.getDistinctWorkLocations(offers);
         this.workModalities = this.getDistinctModalities(offers);
 
-        // Optionally emit the offers if needed
         this.offersLoaded.emit(offers);
       },
       error: (err) => {
@@ -47,7 +49,7 @@ export class FilterComponent implements OnInit {
     this.modalidad = modalitySelect;
     this.descripcion = descripcion;
     this.puesto_requerido = puestoRequerido;
-    console.log(puestoRequerido)
+
     this.filterOffers();
   }
 
@@ -60,6 +62,7 @@ export class FilterComponent implements OnInit {
     }).subscribe({
       next: (offers) => {
         this.offersLoaded.emit(offers);
+        console.log("offers ", offers)
       },
       error: (err) => {
         console.error('Error filtering offers:', err);
@@ -83,4 +86,5 @@ export class FilterComponent implements OnInit {
         .filter(modality => !!modality)
     )];
   }
+
 }

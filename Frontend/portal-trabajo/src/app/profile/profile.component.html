@@ -1,6 +1,8 @@
 <div class="profile">
     <div class="profile-header">
-        <div class="profile-pic"></div>
+        <div class="profile-pic">
+            <img [src]="user.imagen_url || 'sample_pfp.png'" alt="Profile picture">
+        </div>
         <div class="profile-info">
             <h4>{{employeeData?.nombre}}</h4>
             <div class="location">

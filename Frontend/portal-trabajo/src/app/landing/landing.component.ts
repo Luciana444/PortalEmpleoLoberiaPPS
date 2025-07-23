@@ -34,6 +34,7 @@ export class LandingComponent implements OnInit {
   url: string = 'http://localhost:3000/api/empresa/ofertas/activas';
   currentPage = 0;
   pageSize = 10;
+  showFilter = false;
 
   ngOnInit(): void {
     if (this.getUserType() === 'ciudadano') {
@@ -64,7 +65,6 @@ export class LandingComponent implements OnInit {
     }
   }
 
-
   getPostulations() {
     this.employeeservice.getPostulations().subscribe({
       next: (response) => {
@@ -82,9 +82,23 @@ export class LandingComponent implements OnInit {
   }
 
   getUserType() {
-    const storedTokenString = localStorage.getItem("token") ?? "";
-    const decodedToken = jwtDecode<User>(storedTokenString);
-    return decodedToken.tipo_usuario;
+    try {
+      if (typeof localStorage !== 'undefined') {
+        const storedTokenString = localStorage.getItem("token") ?? "";
+        if (storedTokenString) {
+          const decodedToken = jwtDecode<User>(storedTokenString);
+          return decodedToken.tipo_usuario;
+        }
+      }
+      return null;
+    } catch (err) {
+      console.error('Error decoding token:', err);
+      return null;
+    }
+  }
+
+  toggleFilter() {
+    this.showFilter = !this.showFilter;
   }
 }
 

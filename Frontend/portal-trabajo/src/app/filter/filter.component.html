@@ -1,30 +1,65 @@
-<div class="flex-div">
-    <div class="wrapper">
-        <form #filterForm="ngForm" (ngSubmit)="setFilter(
-      locationSelect.value,
-      modalitySelect.value,
-      descriptionSelect.value,
-      puestoSelect.value
-    )">
-            <input #puestoSelect type="search" name="puesto" placeholder="puesto">
-            <input #descriptionSelect type="search" name="descripcion" placeholder="descripcion">
+<div class="filter-container">
+    <mat-card>
+        <mat-card-content>
+            <form #filterForm="ngForm" (ngSubmit)="setFilter(
+        locationSelect.value,
+        modalitySelect.value,
+        descriptionSelect.value,
+        puestoSelect.value
+      )" class="filter-form">
 
-            <select #locationSelect name=" location">
-                <option value="">Lugar de trabajo</option>
-                @for (location of workLocations; track location) {
-                <option [value]="location">{{ location }}</option>
-                }
-            </select>
+                <!-- Descripción Field -->
+                <mat-form-field appearance="outline" class="filter-field">
+                    <mat-label>Descripción</mat-label>
+                    <textarea matInput #descriptionSelect name="descripcion" rows="2"
+                        placeholder="Palabras clave relacionadas"></textarea>
+                </mat-form-field>
 
-            <select #modalitySelect name="modality">
-                <option value="">Modalidad</option>
-                @for (modality of workModalities; track modality) {
-                <option [value]="modality">{{ modality }}</option>
-                }
-            </select>
+                <!-- Puesto (Position) Field -->
+                <mat-form-field appearance="outline" class="filter-field">
+                    <mat-label>Puesto</mat-label>
+                    <input matInput #puestoSelect type="search" name="puesto" placeholder="Ej: Desarrollador Frontend">
+                    <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
 
-            <button type="submit">Filtrar</button>
-            <button type="button" (click)="loadInitialOffers()">Restaurar</button>
-        </form>
-    </div>
+
+                <!-- Location Select -->
+                <mat-form-field appearance="outline" class="filter-field">
+                    <mat-label>Lugar de trabajo</mat-label>
+                    <mat-select #locationSelect name="location">
+                        <mat-option value="">Todos los lugares</mat-option>
+                        @for (location of workLocations; track location) {
+                        <mat-option [value]="location">{{ location }}</mat-option>
+                        }
+                    </mat-select>
+                    <mat-icon matSuffix>location_on</mat-icon>
+                </mat-form-field>
+
+                <!-- Modality Select -->
+                <mat-form-field appearance="outline" class="filter-field">
+                    <mat-label>Modalidad</mat-label>
+                    <mat-select #modalitySelect name="modality">
+                        <mat-option value="">Todas las modalidades</mat-option>
+                        @for (modality of workModalities; track modality) {
+                        <mat-option [value]="modality">{{ modality }}</mat-option>
+                        }
+                    </mat-select>
+                    <mat-icon matSuffix>work_outline</mat-icon>
+                </mat-form-field>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button mat-raised-button color="primary" type="submit" class="filter-button">
+                        <mat-icon>filter_alt</mat-icon>
+                        Filtrar
+                    </button>
+                    <button mat-stroked-button color="primary" type="button" (click)="loadInitialOffers()"
+                        class="reset-button">
+                        <mat-icon>refresh</mat-icon>
+                        Restaurar
+                    </button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
 </div>

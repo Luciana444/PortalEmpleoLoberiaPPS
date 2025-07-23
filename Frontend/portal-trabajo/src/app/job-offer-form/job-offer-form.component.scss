@@ -57,3 +57,18 @@ mat-form-field.full-width {
 .mat-mdc-form-field-flex{
     width: 100%;
 }
+form {
+  width: 60%;
+}
+.size-form {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+mat-form-field {
+  width: 50%;
+
+}
+.margin-input{
+  margin-right: 15px;
+}

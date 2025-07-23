@@ -33,8 +33,6 @@ export class HeaderComponent implements OnInit {
   notification: Notification = {} as Notification;
   hidden = false;
 
- 
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -75,10 +73,8 @@ export class HeaderComponent implements OnInit {
     //     //this.toastr.error(err.error.error, 'Ocurrió un error');
     //     console.error('Error al cargar el perfil', err);
     //   }
-
     // });  
     this.getNotifications();
-
   }
 
   hasNotifications(): boolean {
@@ -118,10 +114,9 @@ export class HeaderComponent implements OnInit {
   navigateToLanding() {
     this.router.navigate(['']);
   }
-  /*navigateToProfile(){
-    this.router.navigate(['/employee-profile']);
-    this.router.navigate(['/employeer-profile']);
- }*/
+  navigateToProfile() {
+    this.router.navigate(['/profile']);
+  }
   onLogout() {
     this.userservice.logout();
     this.navigateToLogin();
@@ -144,11 +139,13 @@ export class HeaderComponent implements OnInit {
   // }
 
   getUserType(): string | null {
-    if (!isPlatformBrowser(this.platformId)) return null;
+    if (!isPlatformBrowser(this.platformId))
+      return null;
 
     try {
       const storedTokenString = localStorage.getItem("token");
-      if (!storedTokenString) return null;
+      if (!storedTokenString)
+        return null;
 
       const decodedToken = jwtDecode<User>(storedTokenString);
       return decodedToken.tipo_usuario || null;
@@ -175,7 +172,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
- toggleBadgeVisibility() {
+  toggleBadgeVisibility() {
     this.hidden = true;
   }
 

@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { CvUploaderComponent } from '../cv-uploader/cv-uploader.component';
 import { ToastrService } from 'ngx-toastr';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @Component({
   selector: 'app-attatch-cv',
-  imports: [CvUploaderComponent],
+  imports: [CvUploaderComponent, MatTooltipModule],
   templateUrl: './attatch-cv.component.html',
   styleUrl: './attatch-cv.component.scss'
 })

@@ -5,7 +5,7 @@
 
   <form [formGroup]="profile" (ngSubmit)="editProfile()">
 
-    <div>
+    <div class="size-form">
       <!-- Campo: Nombre -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Nombre</mat-label>
@@ -24,7 +24,7 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <div>
+    <div class="size-form">
       <!-- Campo: Fecha de nacimiento -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Fecha de nacimiento</mat-label>
@@ -47,7 +47,7 @@
     </div>
 
 
-    <div>
+    <div class="size-form">
       <!-- Campo: DNI -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>DNI</mat-label>
@@ -66,7 +66,7 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <div>
+    <div class="size-form">
       <!-- Dirección -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Calle</mat-label>
@@ -78,7 +78,7 @@
         <input matInput formControlName="numero" />
       </mat-form-field>
     </div>
-    <div>
+    <div class="size-form">
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Piso</mat-label>
         <input matInput formControlName="piso" />
@@ -90,7 +90,7 @@
       </mat-form-field>
     </div>
 
-    <div>
+    <div class="size-form">
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Localidad</mat-label>
         <input matInput formControlName="localidad" />
@@ -101,7 +101,7 @@
         <input matInput formControlName="provincia" />
       </mat-form-field>
     </div>
-    <div>
+    <div class="size-form">
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>País</mat-label>
@@ -118,9 +118,9 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <div>
+    <div class="size-form email-input">
       <!-- Campo: Email -->
-      <mat-form-field appearance="outline" class="full-width">
+      <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
         <input matInput formControlName="email" type="email" />
         <mat-error *ngIf="profile.get('email')?.hasError('required')">
@@ -130,8 +130,9 @@
           Formato de email no válido
         </mat-error>
       </mat-form-field>
+      <app-file-uploader></app-file-uploader>
     </div>
-    <div> <app-file-uploader></app-file-uploader></div>
+    
     <div>
       <button type="button" class="delete-account-btn"(click)="openDialogDeleteAccount()" matTooltip="En el próximo paso vas a confirmar la eliminación">
         <i class="fa-solid fa-trash"></i> Eliminar cuenta</button>

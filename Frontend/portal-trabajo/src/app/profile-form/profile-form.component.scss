@@ -43,5 +43,22 @@ div > p{
 }
 mat-form-field{
     margin-right: 15px;
+    width:50%;
+}
+
+form {
+  width: 60%;
+}
+.size-form {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+app-file-uploader, .email-input{
+  width: 100%;
+}
+div.email-input > mat-form-field {
+  width: 97% !important;
 }
 

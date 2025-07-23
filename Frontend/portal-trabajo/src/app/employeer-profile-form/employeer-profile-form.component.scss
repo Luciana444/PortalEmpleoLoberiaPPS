@@ -3,15 +3,26 @@
   justify-content: center;
   align-items: center;
 }
-    
 
-p{
+form {
+  width: 60%;
+}
+app-file-uploader, .email-input{
+  width: 100%;
+}
+div.email-input > mat-form-field {
+  width: 97%;
+}
+
+
+
+p {
   margin-bottom: 2px;
   padding-bottom: 0;
   margin-left: 2px;
 }
 
-button{
+button {
   display: block;
   margin-top: 1.5rem;
   margin-left: auto;
@@ -29,7 +40,15 @@ select {
   min-height: 1.7rem;
   text-indent: 10px;
 }
-mat-form-field{
-    margin-right: 15px;
-    
+
+mat-form-field {
+  margin-right: 15px;
+  width: 50%;
+
+}
+
+.size-form {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }

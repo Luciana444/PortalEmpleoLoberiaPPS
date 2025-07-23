@@ -16,14 +16,17 @@
     </div>
     @if (isLoggedIn){
     <div class="user-container">
-        <div class="profile-pic"></div>
+        <div class="profile-pic" (click)="navigateToProfile()">
+            <img [src]="user.imagen_url || 'sample_pfp.png'" alt="Profile picture" matTooltip="Ver perfil">
+        </div>
+
         <div class="text-wrapper">
             <div class="notify">
                 <p class="username">{{user.nombre}}</p>
                 @if (getUserType() === 'empresa' && hasNotifications()) {
                 <button class="bell-btn" [matMenuTriggerFor]="menu" (click)="toggleBadgeVisibility()">
-                    <mat-icon class="bell-icon" matBadgeSize="small" [matBadge]="notification.cantidad" 
-                    [matBadgeHidden]="hidden">notifications</mat-icon>
+                    <mat-icon class="bell-icon" matBadgeSize="small" [matBadge]="notification.cantidad"
+                        [matBadgeHidden]="hidden">notifications</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
                     @for (notification of notification.notificaciones; track notification.id) {

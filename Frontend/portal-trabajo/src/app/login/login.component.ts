@@ -36,11 +36,10 @@ export class LoginComponent implements OnInit {
         if (response.resultado && response.resultado.token) {
           localStorage.setItem('token', response.resultado.token);
           localStorage.setItem('currentuser', this.loginForm.value.email);
-          this.loginForm.reset();
           this.toastr.success('Inicio de sesión exitoso', '¡Bienvenido!');
           setTimeout(() => {
             this.router.navigate(['landing']);
-          }, 2000);
+          }, 1000);
         }
       },
       error: (err: any) => {

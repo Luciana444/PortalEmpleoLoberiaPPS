@@ -1,39 +1,84 @@
-.wrapper{
-    margin-left: auto;
-    margin-right: auto;
+.filter-container {
+  padding: 1rem;
+  
+  mat-card {
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1);
+  }
 }
 
-button{
-    width: 6rem;
-    height: 2rem;
-}
-
-form {
+.filter-form {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 1rem;
-  align-items: center;
 }
 
-input, select {
-  min-width: 150px;
-}
-
-button {
-  width: 6rem;
-  height: 2rem;
-  margin: 0 0.5rem;
-}
-
-@media (max-width: 600px) {
-  form {
+.filter-field {
+  flex: 1 1 12.5rem;
+  
+  .mat-mdc-form-field {
+    display: flex;
     flex-direction: column;
-    align-items: stretch;
+    justify-content: flex-end;
+    height: 100%;
+  }
+
+  .mat-mdc-form-field-infix {
+    min-height: 3.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  textarea.mat-input-element {
+    align-self: center;
+    margin-top: 0.75rem;
+    min-height: 2.5rem;
+  }
+
+  .mat-mdc-select {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  margin-top: 1rem;
+  
+  button {
+    flex: 1;
+    min-width: 7.5rem;
+    height: 2.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    
+    mat-icon {
+      font-size: 1.25rem;
+      height: 1.25rem;
+      width: 1.25rem;
+    }
+  }
+}
+
+@media (max-width: 37.5rem) {
+  .filter-field {
+    flex: 1 1 100%;
+    
+    .mat-mdc-form-field-infix {
+      min-height: 3.25rem;
+    }
   }
   
-  input, select {
-    width: 100%;
+  .action-buttons {
+    flex-direction: column;
+    
+    button {
+      width: 100%;
+    }
   }
 }
-

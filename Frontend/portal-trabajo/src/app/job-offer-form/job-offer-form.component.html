@@ -5,29 +5,17 @@
   <form [formGroup]="offersForm" (ngSubmit)="createOffer()">
     <!-- Puesto requerido -->
     <div>
-      <div>
-        <mat-form-field appearance="outline" class="full-width">
+      <div class="size-form">
+        <mat-form-field appearance="outline" class="margin-input">
           <mat-label>Nombre del puesto o cargo</mat-label>
           <input matInput formControlName="puesto_requerido" required>
           <mat-error *ngIf="offersForm.get('puesto_requerido')?.hasError('required')">
             Este campo es obligatorio
           </mat-error>
         </mat-form-field>
-      </div>
-      <div>
-        <!-- Descripción del puesto -->
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Descripción del puesto</mat-label>
-          <textarea matInput formControlName="descripcion" rows="4" required></textarea>
-          <mat-error *ngIf="offersForm.get('descripcion')?.hasError('required')">
-            Este campo es obligatorio
-          </mat-error>
-        </mat-form-field>
-      </div>
-    </div>
-    <div>
-      <!-- Nivel educativo requerido -->
-      <mat-form-field appearance="outline" class="full-width">
+
+         <!-- Nivel educativo requerido -->
+      <mat-form-field appearance="outline" >
         <mat-label>Nivel educativo mínimo requerido</mat-label>
         <mat-select formControlName="nivel_educativo_requerido" required>
           <mat-option value="primario">Primario completo</mat-option>
@@ -39,24 +27,36 @@
           Este campo es obligatorio
         </mat-error>
       </mat-form-field>
+      </div>
+      <div>
+        <!-- Descripción del puesto -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Descripción del puesto</mat-label>
+          <textarea matInput formControlName="descripcion" rows="2" required placeholder="Describí las tareas que va a realizar el empleado"></textarea>
+          <mat-error *ngIf="offersForm.get('descripcion')?.hasError('required')">
+            Este campo es obligatorio
+          </mat-error>
+        </mat-form-field>
+      </div>
     </div>
+   
     <div>
       <!-- Experiencia requerida -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Experiencia requerida</mat-label>
-        <textarea matInput formControlName="experiencia_requerida" rows="3"></textarea>
+        <textarea matInput formControlName="experiencia_requerida" rows="2" placeholder="Qué condiciones debe cumplir el postulante para ser considerado"></textarea>
       </mat-form-field>
     </div>
     <div>
       <!-- Otros requisitos -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Otros requisitos</mat-label>
-        <textarea matInput formControlName="otros_requisitos" rows="3"></textarea>
+        <textarea matInput formControlName="otros_requisitos" rows="2" placeholder="Ej: Movilidad propia"></textarea>
       </mat-form-field>
     </div>
-    <div>
+    <div class="size-form">
       <!-- Lugar de trabajo -->
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" class="margin-input">
         <mat-label>Lugar de trabajo</mat-label>
         <mat-select formControlName="lugar_trabajo" required>
           <mat-option value="Presencial">Presencial</mat-option>
@@ -83,9 +83,9 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <div>
+    <div class="size-form">
       <!-- Tipo de contrato -->
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" class="margin-input">
         <mat-label>Tipo de contrato</mat-label>
         <input matInput formControlName="tipo_contrato">
       </mat-form-field>

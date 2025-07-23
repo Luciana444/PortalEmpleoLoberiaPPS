@@ -6,7 +6,7 @@
 
     <!-- Nueva sección: Datos de la empresa -->
     <h3 class="section-title">Datos de la empresa</h3>
-    <div>
+    <div class="size-form">
       <!-- Nombre legal de la empresa -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Nombre legal de la empresa</mat-label>
@@ -16,21 +16,14 @@
         </mat-error>
       </mat-form-field>
 
-
-      <!-- Logo (URL) -->
+      <!-- Rubro -->
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>URL del logo (opcional)</mat-label>
-        <input matInput formControlName="logo">
+        <mat-label>Rubro (opcional)</mat-label>
+        <input matInput formControlName="rubro">
       </mat-form-field>
     </div>
 
-    <div>
-      <!-- Sitio web -->
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Sitio web</mat-label>
-        <input matInput formControlName="sitio_web">
-      </mat-form-field>
-
+    <div class="size-form">
       <!-- CUIT -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>CUIT</mat-label>
@@ -39,23 +32,15 @@
           Este campo es obligatorio
         </mat-error>
       </mat-form-field>
-    </div>
 
-    <div>
-      <!-- Rubro -->
+      <!-- Sitio web -->
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Rubro (opcional)</mat-label>
-        <input matInput formControlName="rubro">
-      </mat-form-field>
-
-      <!-- Teléfono -->
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Teléfono</mat-label>
-        <input matInput formControlName="telefono">
+        <mat-label>Sitio web</mat-label>
+        <input matInput formControlName="sitio_web">
       </mat-form-field>
     </div>
-    <div>
 
+    <div class="size-form">
       <!-- Calle -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Calle</mat-label>
@@ -74,7 +59,7 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <div>
+    <div class="size-form">
 
       <!-- Piso -->
       <mat-form-field appearance="outline" class="full-width">
@@ -88,7 +73,7 @@
         <input matInput formControlName="dpto">
       </mat-form-field>
     </div>
-    <div>
+    <div class="size-form">
 
       <!-- Localidad -->
       <mat-form-field appearance="outline" class="full-width">
@@ -108,7 +93,7 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <div>
+    <div class="size-form">
 
       <!-- País -->
       <mat-form-field appearance="outline" class="full-width">
@@ -119,6 +104,13 @@
         </mat-error>
       </mat-form-field>
 
+      <!-- Teléfono -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Teléfono</mat-label>
+        <input matInput formControlName="telefono">
+      </mat-form-field>
+    </div>
+    <div class="size-form email-input">
       <!-- Email de contacto visible -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Email de contacto</mat-label>
@@ -130,9 +122,13 @@
           Ingresá un email válido
         </mat-error>
       </mat-form-field>
+        <!-- Logo (URL) -->
+     <app-file-uploader></app-file-uploader>
     </div>
-     <div>
-      <button type="button" class="delete-account-btn"(click)="openDialogDeleteAccount()" matTooltip="En el próximo paso vas a confirmar la eliminación">
+  
+    <div>
+      <button type="button" class="delete-account-btn" (click)="openDialogDeleteAccount()"
+        matTooltip="En el próximo paso vas a confirmar la eliminación">
         <i class="fa-solid fa-trash"></i> Eliminar cuenta</button>
     </div>
 
