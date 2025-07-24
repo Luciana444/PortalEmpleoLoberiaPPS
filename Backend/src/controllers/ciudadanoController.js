@@ -1,6 +1,6 @@
 
 // Importamos la lógica de negocio desde el servicio correspondiente
-import { cancelarPostulacionOferta, crearPostulacion, subirCvBD, verificarPostulacion } from "../services/ciudadanoService.js";
+import { cancelarPostulacionOferta, crearPostulacion, editarCapacitacionUsuario, editarExperienciaLaboralUsuario, eliminarCapacitacionUsuario, eliminarExperienciaLaboralUsuario, subirCvBD, verificarPostulacion } from "../services/ciudadanoService.js";
 import  {generarPdfUsuario, obtenerPostulacionesService,buscarOfertasFiltradasService }  from "../services/ciudadanoService.js";
 import fs from 'fs/promises';
 
@@ -294,7 +294,7 @@ export const generarPdf = async (req, res) => {
 import { getPerfilCompleto } from '../services/ciudadanoService.js';
 import { getOfertaById } from "../services/empleadorService.js";
 import { getPostulacionById } from "../repositories/empleadorRepository.js";
-import { getPostulacionByOfertaAndUsuario } from "../repositories/ciudadanoRepository.js";
+import { getCapacitacionById, getCapacitacionesByCiudadanoId, getExperienciaById, getPostulacionByOfertaAndUsuario } from "../repositories/ciudadanoRepository.js";
 
 export const obtenerPerfilCompleto = async (req, res) => {
   try {
@@ -535,3 +535,106 @@ try {
   res.status(500).json({message:'Error al cancelar la postulacion a la oferta'})
 }
 };
+
+
+export const editarCapacitacion = async(req,res)=>{
+  try {
+      const id_capacitacion = req.params.id;
+      const id_usuario = req.usuario.id;
+
+      if(!id_capacitacion){
+        return res.status(401).json({message:'Falta el id de la capacitacion'});
+      }
+
+      const capacitacion = await getCapacitacionById(id_capacitacion,id_usuario);
+
+      if(!capacitacion){
+          return res.status(404).json({message:'Esa capacitacion no existe'})
+      }
+
+      await editarCapacitacionUsuario(req.body,capacitacion);
+
+      return res.status(200).json({message:'Capacitacion editada correctamente'});
+
+  } catch (error) {
+      console.log(error);
+      res.status(500).json({message:'Error al editar la capacitacion'})
+  }
+};
+
+export const eliminarCapacitacion = async(req,res)=>{
+  try {
+      const id_capacitacion = req.params.id;
+      const id_usuario = req.usuario.id;
+
+      if(!id_capacitacion){
+        return res.status(401).json({message:'Falta el id de la capacitacion'});
+      }
+
+      const capacitacion = await getCapacitacionById(id_capacitacion,id_usuario);
+
+      if(!capacitacion){
+          return res.status(404).json({message:'Esa capacitacion no existe'})
+      }
+
+      await eliminarCapacitacionUsuario(capacitacion);
+
+      return res.status(200).json({message:'Capacitacion eliminada'});
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({message:'Error al eliminar la capacitacion'})
+  }
+};
+
+export const editarExperienciaLaboral = async(req,res)=>{
+    try {
+      const id_experiencia = req.params.id;
+      const id_usuario = req.usuario.id;
+
+      if(!id_experiencia){
+          return res.status(401).json({message:'Falta el id de la experiencia'});
+      }
+
+      const experiencia = await getExperienciaById(id_experiencia,id_usuario);
+
+      if(!experiencia){
+          return res.status(404).json({message:'Esta experiencia no existe'});
+      }
+
+      await editarExperienciaLaboralUsuario(req.body,experiencia);
+
+
+      return res.status(200).json({message:'Se actualizo la experiencia laboral correctamente'});
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({message:'Error al editar datos de la experiencia laboral'})
+    }
+}
+
+export const eliminarExperienciaLaboral = async(req,res)=>{
+  try {
+      const id_experiencia = req.params.id;
+      const id_usuario = req.usuario.id;
+      
+      if(!id_experiencia){
+          return res.status(401).json({message:'Falta el id de la experiencia'});
+      }
+
+      const experiencia = await getExperienciaById(id_experiencia,id_usuario);
+
+      if(!experiencia){
+          return res.status(404).json({message:'Esta experiencia no existe'});
+      }      
+
+      await eliminarExperienciaLaboralUsuario(id_experiencia);
+
+
+      return res.status(200).json({message:'Experiencia laboral eliminada'});
+
+  } catch (error) {
+     console.log(error);
+     res.status(500).json({message:'Error al borrar la experiencia laboral'})
+  }
+}
