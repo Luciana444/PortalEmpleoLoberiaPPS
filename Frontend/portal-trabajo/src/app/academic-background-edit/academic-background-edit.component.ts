@@ -20,6 +20,9 @@ import { jwtDecode } from 'jwt-decode';
 import { User } from '../profile-form/profile-form.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-academic-background-edit',
@@ -38,7 +41,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         MatIconModule,
         HeaderComponent,
         FooterComponent,
-        MatDividerModule, 
+        MatDividerModule,
         MatTooltipModule
     ]
 
@@ -47,12 +50,16 @@ export class AcademicBackgroundEditComponent implements OnInit {
     addNewCardEducation = false;
     public educationForm: FormGroup;
     formaciones: any[] = [];
+    formation = {} as AcademicBackground;
     itemId: string = "";
 
     constructor(private fb: FormBuilder,
         private toastr: ToastrService,
         private userservice: UserService,
         private employeeservice: EmployeeService,
+        public dialog: MatDialog,
+        private router: Router,
+        private route: ActivatedRoute,
 
     ) {
 
@@ -150,9 +157,80 @@ export class AcademicBackgroundEditComponent implements OnInit {
         return this.educationForm.get('nombre_capacitacion')?.valid
     }
 
-      getUserId() {
-                const storedTokenString = localStorage.getItem("token") ?? "";
-                const decodedToken = jwtDecode<User>(storedTokenString);
-                return decodedToken.id;
+    getUserId() {
+        const storedTokenString = localStorage.getItem("token") ?? "";
+        const decodedToken = jwtDecode<User>(storedTokenString);
+        return decodedToken.id;
+    }
+
+    editAcademicBackground(id: any) {
+        if (!this.isValidCapacitacion()) return;
+        const education = {
+            nombre_capacitacion: this.educationForm.value.nombre_capacitacion,
+        };
+        if (this.educationForm.invalid) return;
+        this.employeeservice.editAcademicBackground(id, JSON.stringify(education)).subscribe({
+            next: (response) => {
+                if (response.status === 200) {
+                    this.toastr.success('Actualización exitosa', 'Formación editada')
+                    console.log('Actualización exitosa', response);
+                    this.educationForm.reset();
+                } else {
+                    console.log('No se pudo editar la formación', response);
+                }
+            },
+            error: (err) => {
+                this.toastr.error(err.error.error, 'Ocurrió un error');
+                console.error('Error al actualizar formación', err);
+
             }
+        });
+    }
+
+    deleteAcademicBackground(id: any) {
+        this.employeeservice.deleteAcademicBackgroundById(id).subscribe({
+            next: (response) => {
+                if (response.status === 200) {
+                    this.toastr.success('Actualización exitosa', 'Formación borrada')
+                    console.log('Actualización exitosa', response);
+
+                    this.router.navigate(['employer-profile']);
+                } else {
+                    console.log('No se pudo borrar la oferta', response);
+                }
+            },
+            error: (err) => {
+                this.toastr.error(err.error.error, 'Ocurrió un error');
+                console.error('Error al borrar oferta', err);
+
+            }
+        });
+
+    }
+
+    openDialog(id: any): void {
+        const dialogConfig = new MatDialogConfig();
+
+        // Configure dialog options (optional)
+        dialogConfig.disableClose = true; // Prevent closing by clicking outside
+        dialogConfig.autoFocus = true; // Automatically focus the first tabbable element
+        dialogConfig.width = '400px'; // Set dialog width
+        dialogConfig.data = {
+            title: 'Borrar formación',
+            content: 'Desea borrar la formación?',
+            trueAction: 'Sí, quiero borrarla'
+        }; // Pass data to the dialog
+
+        const dialogRef = this.dialog.open(DeleteDialogComponent, dialogConfig);
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.deleteAcademicBackground(id);
+                console.log('Borrar formacion');
+            }
+
+            console.log('Dialog was closed with result:', result);
+        });
+    }
+
 }

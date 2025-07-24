@@ -100,8 +100,8 @@
                     <p><strong>  Comentario:</strong> {{ exp.comentario }}</p>
                 </div>
                 <div class="align-elements">
-                    <button class="edit-exp-btn"> <i class="fa-solid fa-pencil"></i> Editar Experiencia</button>
-                    <button class="delete"> <i class="fa-solid fa-trash"></i></button>
+                    <button class="edit-exp-btn" (click)="editWorkExperienceById(itemId)"> <i class="fa-solid fa-pencil"></i> Editar Experiencia</button>
+                    <button class="delete" matTooltip="Eliminar experiencia" (click)="openDialog(experience.id)"> <i class="fa-solid fa-trash"></i></button>
                 </div>
             </div>
             <mat-divider></mat-divider>

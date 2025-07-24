@@ -19,6 +19,10 @@ import { jwtDecode } from 'jwt-decode';
 import { User } from '../profile-form/profile-form.component';
 import { Employee } from '../../models/employee.model';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { Router, ActivatedRoute } from '@angular/router';
+import { WorkExperience } from '../../models/work-experience.model';
 
 @Component({
     selector: 'app-work-experience',
@@ -45,11 +49,15 @@ export class WorkExperienceComponent implements OnInit {
     addNewCardExperience = false;
     public workExperience: FormGroup;
     experiencias: any[] = [];
+    experience = {} as WorkExperience;
     itemId: string = "";
-    constructor(private fb: FormBuilder, 
-        private toastr: ToastrService, 
+    constructor(private fb: FormBuilder,
+        private toastr: ToastrService,
         private userservice: UserService,
-        private employeeservice: EmployeeService
+        private employeeservice: EmployeeService,
+        public dialog: MatDialog,
+        private router: Router,
+        private route: ActivatedRoute,
     ) {
 
         this.workExperience = this.fb.group({
@@ -154,6 +162,80 @@ export class WorkExperienceComponent implements OnInit {
         const storedTokenString = localStorage.getItem("token") ?? "";
         const decodedToken = jwtDecode<User>(storedTokenString);
         return decodedToken.id;
+    }
+
+
+    editWorkExperienceById(id: any) {
+        if (!this.isValidExperience) return;
+        const workExperience = {
+            nombre_empresa: this.workExperience.value.nombre_empresa,
+            desde: this.workExperience.value.desde,
+            hasta: this.workExperience.value.hasta,
+            comentario: this.workExperience.value.comentario,
+        };
+        if (this.workExperience.invalid) return;
+        this.employeeservice.editWorkExperience(id, JSON.stringify(workExperience)).subscribe({
+            next: (response) => {
+                if (response.status === 200) {
+                    this.toastr.success('Actualización exitosa', 'Formación editada')
+                    console.log('Actualización exitosa', response);
+                    this.workExperience.reset();
+                } else {
+                    console.log('No se pudo editar la formación', response);
+                }
+            },
+            error: (err) => {
+                this.toastr.error(err.error.error, 'Ocurrió un error');
+                console.error('Error al actualizar formación', err);
+
+            }
+        });
+    }
+
+    deleteWorkExperience(id: any) {
+        this.employeeservice.deleteWorkExperienceById(id).subscribe({
+            next: (response) => {
+                if (response.status === 200) {
+                    this.toastr.success('Actualización exitosa', 'Experiencia laboral borrada')
+                    console.log('Actualización exitosa', response);
+
+                    this.router.navigate(['employer-profile']);
+                } else {
+                    console.log('No se pudo borrar la experiencia', response);
+                }
+            },
+            error: (err) => {
+                this.toastr.error(err.error.error, 'Ocurrió un error');
+                console.error('Error al borrar experiencia', err);
+
+            }
+        });
+
+    }
+
+    openDialog(id: any): void {
+        const dialogConfig = new MatDialogConfig();
+
+        // Configure dialog options (optional)
+        dialogConfig.disableClose = true; // Prevent closing by clicking outside
+        dialogConfig.autoFocus = true; // Automatically focus the first tabbable element
+        dialogConfig.width = '400px'; // Set dialog width
+        dialogConfig.data = {
+            title: 'Borrar Experiencia laboral',
+            content: 'Desea borrar la experiencia laboral?',
+            trueAction: 'Sí, quiero borrarla'
+        }; // Pass data to the dialog
+
+        const dialogRef = this.dialog.open(DeleteDialogComponent, dialogConfig);
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.deleteWorkExperience(id);
+                console.log('Borrar experiencia');
+            }
+
+            console.log('Dialog was closed with result:', result);
+        });
     }
 
 }
