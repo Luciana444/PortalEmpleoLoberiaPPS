@@ -48,9 +48,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class AcademicBackgroundEditComponent implements OnInit {
     addNewCardEducation = false;
+    editCardEducation = false;
     public educationForm: FormGroup;
     formaciones: any[] = [];
     itemId: string = "";
+    capacitacionId: string = "";
 
     constructor(private fb: FormBuilder,
         private toastr: ToastrService,
@@ -144,18 +146,19 @@ export class AcademicBackgroundEditComponent implements OnInit {
         return decodedToken.id;
     }
 
-    editAcademicBackground(id: any) {
-        if (!this.isValidCapacitacion()) return;
-        const education = {
-            nombre_capacitacion: this.educationForm.value.nombre_capacitacion,
+    editAcademicBackground() {
+        let education = {
+            "nombre_capacitacion": this.educationForm.get('nombre_capacitacion')?.value
         };
         if (this.educationForm.invalid) return;
-        this.employeeservice.editAcademicBackground(id, JSON.stringify(education)).subscribe({
+        this.employeeservice.editAcademicBackground(this.capacitacionId, JSON.stringify(education)).subscribe({
             next: (response) => {
                 if (response.status === 200) {
                     this.toastr.success('Actualización exitosa', 'Formación editada')
                     console.log('Actualización exitosa', response);
                     this.educationForm.reset();
+                    this.clearEditionMode();
+                    this.getDataProfile();
                 } else {
                     console.log('No se pudo editar la formación', response);
                 }
@@ -218,7 +221,7 @@ export class AcademicBackgroundEditComponent implements OnInit {
     }
 
 
-    getDataProfile(){
+    getDataProfile() {
         this.itemId = this.getUserId(); // Get ID from route
         if (this.itemId) {
             this.employeeservice.getDataProfile().subscribe({
@@ -240,5 +243,17 @@ export class AcademicBackgroundEditComponent implements OnInit {
         }
     }
 
+    openFormToEditEducation(id: any, nombre_capacitacion: string) {
+        this.addNewCardEducation = true;
+        this.editCardEducation = true;
 
+        this.educationForm.patchValue({ "nombre_capacitacion": nombre_capacitacion });
+        this.capacitacionId = id;
+    }
+
+    clearEditionMode() {
+        this.addNewCardEducation = false;
+        this.editCardEducation = false;
+        this.capacitacionId = "";
+    }
 }

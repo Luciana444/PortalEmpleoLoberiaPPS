@@ -22,7 +22,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { Router, ActivatedRoute } from '@angular/router';
-import { WorkExperience } from '../../models/work-experience.model';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
     selector: 'app-work-experience',
@@ -41,15 +41,19 @@ import { WorkExperience } from '../../models/work-experience.model';
         MatIconModule,
         HeaderComponent,
         FooterComponent,
-        MatDividerModule
+        MatDividerModule,
+        MatTooltipModule
     ]
 
 })
 export class WorkExperienceComponent implements OnInit {
     addNewCardExperience = false;
+    editCardExperience = false;
     public workExperience: FormGroup;
     experiencias: any[] = [];
     itemId: string = "";
+    workExperienceId: string = "";
+
     constructor(private fb: FormBuilder,
         private toastr: ToastrService,
         private userservice: UserService,
@@ -146,28 +150,29 @@ export class WorkExperienceComponent implements OnInit {
     }
 
 
-    editWorkExperienceById(id: any) {
-        if (!this.isValidExperience) return;
-        const workExperience = {
-            nombre_empresa: this.workExperience.value.nombre_empresa,
-            desde: this.workExperience.value.desde,
-            hasta: this.workExperience.value.hasta,
-            comentario: this.workExperience.value.comentario,
+    editWorkExperienceById() {
+        let workExperience = {
+            "nombre_empresa": this.workExperience.get('nombre_empresa')?.value,
+            "desde": this.workExperience.get('desde')?.value,
+            "hasta": this.workExperience.get('hasta')?.value,
+            "comentario": this.workExperience.get('comentario')?.value,
         };
         if (this.workExperience.invalid) return;
-        this.employeeservice.editWorkExperience(id, JSON.stringify(workExperience)).subscribe({
+        this.employeeservice.editWorkExperience(this.workExperienceId, JSON.stringify(workExperience)).subscribe({
             next: (response) => {
                 if (response.status === 200) {
-                    this.toastr.success('Actualización exitosa', 'Formación editada')
+                    this.toastr.success('Actualización exitosa', 'Experiencia editada')
                     console.log('Actualización exitosa', response);
                     this.workExperience.reset();
+                    this.clearEditionMode();
+                    this.getDataProfile();
                 } else {
-                    console.log('No se pudo editar la formación', response);
+                    console.log('No se pudo editar la experiencia', response);
                 }
             },
             error: (err) => {
                 this.toastr.error(err.error.error, 'Ocurrió un error');
-                console.error('Error al actualizar formación', err);
+                console.error('Error al actualizar experiencia', err);
 
             }
         });
@@ -221,8 +226,8 @@ export class WorkExperienceComponent implements OnInit {
         });
     }
 
-     getDataProfile(){
-         this.itemId = this.getUserId(); // Get ID from route
+    getDataProfile() {
+        this.itemId = this.getUserId(); // Get ID from route
         if (this.itemId) {
             this.employeeservice.getDataProfile().subscribe({
                 next: (response) => {
@@ -241,6 +246,25 @@ export class WorkExperienceComponent implements OnInit {
 
             });
         }
+    }
+
+    openFormToEditExperience(id: any, nombre_empresa: string, desde: string, hasta: string, comentario: string) {
+        this.addNewCardExperience = true;
+        this.editCardExperience = true;
+        let workExperience = {
+            "nombre_empresa": nombre_empresa,
+            "desde": desde,
+            "hasta": hasta,
+            "comentario": comentario
+        }
+        this.workExperience.patchValue(workExperience);
+        this.workExperienceId = id;
+    }
+
+    clearEditionMode() {
+        this.addNewCardExperience = false;
+        this.editCardExperience = false;
+        this.workExperienceId = "";
     }
 
 }
