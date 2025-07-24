@@ -22,6 +22,14 @@ export const getCapacitacionesByCiudadanoId = async(id_usuario)=>{
   return resultado;
 };
 
+
+
+export const getCapacitacionById = async(id_capacitacion,id_usuario)=>{
+  const resultado = await sql`SELECT * FROM capacitaciones_ciudadanos WHERE id=${id_capacitacion} AND id_ciudadano=${id_usuario}`;
+  return resultado[0];
+};
+
+
 export const updatePerfilCiudadano = async (userId, datos) => {
   const camposValidos = [
     'nombre', 'apellido', 'fecha_nacimiento', 'telefono', 'email', 'dni', 'cuil',
@@ -179,3 +187,58 @@ export const getPostulacionByOfertaAndUsuario = async(id_oferta,id_usuario)=>{
   const postulacion = await sql`SELECT * FROM postulaciones WHERE id_oferta=${id_oferta} AND id_ciudadano=${id_usuario}`;
   return postulacion[0];
 }
+
+
+export const getExperienciaById = async(id_experiencia,id_usuario)=>{
+  const experiencia = await sql`SELECT * FROM experiencias_laborales_ciudadanos WHERE id=${id_experiencia} AND id_ciudadano=${id_usuario}`;
+  return experiencia[0];
+}
+
+
+export const editarCapacitacionRepository = async(datosActualizados,capacitacion)=>{
+
+  await sql`UPDATE capacitaciones_ciudadanos SET nombre_capacitacion =${datosActualizados.nombre_capacitacion} WHERE id=${capacitacion.id} AND id_ciudadano=${capacitacion.id_ciudadano}`;
+  
+};
+
+export const eliminarCapacitacionRepository = async(capacitacion)=>{
+  await sql`DELETE FROM capacitaciones_ciudadanos WHERE id=${capacitacion.id}`;
+}
+
+export const editarExperienciaLaboralRepository = async(datosActualizados,experiencia)=>{
+ const camposValidos = ['nombre_empresa', 'desde','hasta','comentario'];
+
+  const campos = [];
+  const valores = [];
+
+  for (const [clave, valor] of Object.entries(datosActualizados)) {
+    if (camposValidos.includes(clave)) {
+      campos.push(`${clave} = $${campos.length + 1}`);
+      valores.push(valor);
+    }
+  }
+
+  if (campos.length === 0) {
+    throw new Error('No hay campos válidos para actualizar');
+  }
+
+  valores.push(experiencia.id);
+  const indexId = valores.length;
+
+  const query = `
+    UPDATE experiencias_laborales_ciudadanos
+    SET ${campos.join(', ')}
+    WHERE id = $${indexId}
+  `;
+
+  const result = await sql.unsafe(query, valores); 
+
+  if (result.count === 0 || result.rowCount === 0) {
+    throw new Error('No se encontró perfil para actualizar');
+  }
+};
+
+
+export const eliminarExperienciaLaboralRepository = async(id_experiencia)=>{
+  await sql`DELETE FROM experiencias_laborales_ciudadanos WHERE id=${id_experiencia}`;
+};
