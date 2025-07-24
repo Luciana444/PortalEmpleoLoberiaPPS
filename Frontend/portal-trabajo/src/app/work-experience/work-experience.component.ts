@@ -49,7 +49,6 @@ export class WorkExperienceComponent implements OnInit {
     addNewCardExperience = false;
     public workExperience: FormGroup;
     experiencias: any[] = [];
-    experience = {} as WorkExperience;
     itemId: string = "";
     constructor(private fb: FormBuilder,
         private toastr: ToastrService,
@@ -71,25 +70,7 @@ export class WorkExperienceComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.itemId = this.getUserId(); // Get ID from route
-        if (this.itemId) {
-            this.employeeservice.getDataProfile().subscribe({
-                next: (response) => {
-                    if (response.status === 200) {
-                        let employee = response.body ?? {} as Employee;
-                        this.workExperience.patchValue(employee); // Populate form with API data
-                        this.experiencias = employee.experiencias_laborales;
-                    } else {
-                        console.log('No se pudo cargar datos', response);
-                    }
-                },
-                error: (err) => {
-                    this.toastr.error(err.error.error, 'Ocurrió un error');
-                    console.error('Error al cargar datos', err);
-                }
-
-            });
-        }
+        this.getDataProfile();
     }
 
     editWorkExperience(): void {
@@ -196,10 +177,12 @@ export class WorkExperienceComponent implements OnInit {
         this.employeeservice.deleteWorkExperienceById(id).subscribe({
             next: (response) => {
                 if (response.status === 200) {
-                    this.toastr.success('Actualización exitosa', 'Experiencia laboral borrada')
+                    this.toastr.success('Actualización exitosa', 'Experiencia laboral borrada');
+                    let indexToRemove = this.experiencias.findIndex(item => item.id === id);
+                    if (indexToRemove !== -1) {
+                        this.experiencias.splice(indexToRemove, 1); // Removes 1 element at the found index
+                    }
                     console.log('Actualización exitosa', response);
-
-                    this.router.navigate(['employer-profile']);
                 } else {
                     console.log('No se pudo borrar la experiencia', response);
                 }
@@ -236,6 +219,28 @@ export class WorkExperienceComponent implements OnInit {
 
             console.log('Dialog was closed with result:', result);
         });
+    }
+
+     getDataProfile(){
+         this.itemId = this.getUserId(); // Get ID from route
+        if (this.itemId) {
+            this.employeeservice.getDataProfile().subscribe({
+                next: (response) => {
+                    if (response.status === 200) {
+                        let employee = response.body ?? {} as Employee;
+                        this.workExperience.patchValue(employee); // Populate form with API data
+                        this.experiencias = employee.experiencias_laborales;
+                    } else {
+                        console.log('No se pudo cargar datos', response);
+                    }
+                },
+                error: (err) => {
+                    this.toastr.error(err.error.error, 'Ocurrió un error');
+                    console.error('Error al cargar datos', err);
+                }
+
+            });
+        }
     }
 
 }

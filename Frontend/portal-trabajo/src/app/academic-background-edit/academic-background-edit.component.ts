@@ -50,7 +50,6 @@ export class AcademicBackgroundEditComponent implements OnInit {
     addNewCardEducation = false;
     public educationForm: FormGroup;
     formaciones: any[] = [];
-    formation = {} as AcademicBackground;
     itemId: string = "";
 
     constructor(private fb: FormBuilder,
@@ -72,25 +71,7 @@ export class AcademicBackgroundEditComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.itemId = this.getUserId(); // Get ID from route
-        if (this.itemId) {
-            this.employeeservice.getDataProfile().subscribe({
-                next: (response) => {
-                    if (response.status === 200) {
-                        let employee = response.body ?? {} as Employee;
-                        this.educationForm.patchValue(employee); // Populate form with API data
-                        this.formaciones = employee.capacitaciones;
-                    } else {
-                        console.log('No se pudo cargar datos', response);
-                    }
-                },
-                error: (err) => {
-                    this.toastr.error(err.error.error, 'Ocurrió un error');
-                    console.error('Error al cargar datos', err);
-                }
-
-            });
-        }
+        this.getDataProfile();
     }
 
     editEducationForm(): void {
@@ -128,11 +109,11 @@ export class AcademicBackgroundEditComponent implements OnInit {
         this.userservice.addeducationForm(JSON.stringify(education)).subscribe({
             next: (response) => {
                 if (response.status === 200) {
-                    this.formaciones.push(education);
                     this.toastr.success('Nueva capacitación agregada', 'Actualización exitosa')
                     console.log('Actualización exitosa', response);
                     this.educationForm.reset();
                     this.addNewCardEducation = false;
+                    this.getDataProfile();
                 } else {
                     console.log('No se pudo agregar capacitación', response);
                 }
@@ -192,9 +173,12 @@ export class AcademicBackgroundEditComponent implements OnInit {
             next: (response) => {
                 if (response.status === 200) {
                     this.toastr.success('Actualización exitosa', 'Formación borrada')
-                    console.log('Actualización exitosa', response);
+                    let indexToRemove = this.formaciones.findIndex(item => item.id === id);
+                    if (indexToRemove !== -1) {
+                        this.formaciones.splice(indexToRemove, 1); // Removes 1 element at the found index
+                    }
 
-                    this.router.navigate(['employer-profile']);
+                    console.log('Actualización exitosa', response);
                 } else {
                     console.log('No se pudo borrar la oferta', response);
                 }
@@ -232,5 +216,29 @@ export class AcademicBackgroundEditComponent implements OnInit {
             console.log('Dialog was closed with result:', result);
         });
     }
+
+
+    getDataProfile(){
+        this.itemId = this.getUserId(); // Get ID from route
+        if (this.itemId) {
+            this.employeeservice.getDataProfile().subscribe({
+                next: (response) => {
+                    if (response.status === 200) {
+                        let employee = response.body ?? {} as Employee;
+                        this.educationForm.patchValue(employee); // Populate form with API data
+                        this.formaciones = employee.capacitaciones;
+                    } else {
+                        console.log('No se pudo cargar datos', response);
+                    }
+                },
+                error: (err) => {
+                    this.toastr.error(err.error.error, 'Ocurrió un error');
+                    console.error('Error al cargar datos', err);
+                }
+
+            });
+        }
+    }
+
 
 }
