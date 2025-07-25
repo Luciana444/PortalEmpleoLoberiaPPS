@@ -22,7 +22,8 @@ export class ProfileSelectorComponent implements OnInit {
 
   getUserType(): string | null {
     const token = localStorage.getItem("token");
-    if (!token) return null;
+    if (!token)
+      return null;
     const decoded = jwtDecode(token) as { tipo_usuario?: string };
     return decoded.tipo_usuario || null;
   }

@@ -30,6 +30,16 @@ i{
     color: $green;
 }
 
+.fa-filter{
+    font-size: 36px!important;
+}
+
+.filter-toggle{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 .offer-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -203,6 +213,14 @@ filter {
 
 app-filter:not(.hidden) {
   animation: fadeIn 0.3s ease-out;
+}
+
+.mat-mdc-paginator-range-label{
+    color: $green;
+}
+
+mat-paginator{
+    color: $green;
 }
 
 @keyframes fadeIn {

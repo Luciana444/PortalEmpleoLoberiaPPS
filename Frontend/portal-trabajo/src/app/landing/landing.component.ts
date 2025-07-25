@@ -14,13 +14,14 @@ import { Postulation } from '../../models/postulation.model';
 import { EmployeeService } from '../services/employee.service';
 import { User } from '../profile-form/profile-form.component';
 import { jwtDecode } from 'jwt-decode';
+import { MatIconModule } from "@angular/material/icon";
 
 
 registerLocaleData(localeEsAR);
 
 @Component({
   selector: 'app-landing',
-  imports: [MatPaginator, HeaderComponent, FooterComponent, TrainingLinkComponent, DatePipe, FilterComponent],
+  imports: [MatPaginator, HeaderComponent, FooterComponent, TrainingLinkComponent, DatePipe, FilterComponent, MatIconModule],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss',
   providers: [{ provide: MatPaginatorIntl, useClass: PaginatorIntl }, { provide: LOCALE_ID, useValue: 'es-AR' }]

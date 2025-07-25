@@ -2,14 +2,12 @@
 <div class="container">
     <app-training-link></app-training-link>
 
-    @if (getUserType()==='ciudadano') {
     <div class="filter">
-        <span (click)="toggleFilter()">
+        <span (click)="toggleFilter()" class="filter-toggle">
             <i class="fa-solid fa-filter fa-2x"></i>
             <span>{{ showFilter ? ' Ocultar filtros' : ' Mostrar filtros' }}</span>
         </span>
     </div>
-    }
 
     <app-filter (offersLoaded)="handleOffersLoaded($event)" [class.hidden]="!showFilter">
     </app-filter>

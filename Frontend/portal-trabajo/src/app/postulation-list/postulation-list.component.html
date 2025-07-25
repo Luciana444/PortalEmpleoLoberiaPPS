@@ -6,25 +6,24 @@
             <h1>{{jobOffer?.puesto_requerido}}</h1>
         </div>
     </div>
-    @if (employees?.length) {
-    @for (employee of employees; track employee.id) {
+    @if (postulations.length) {
+    @for (postulation of postulations; track postulation.id) {
     <div class="list-content">
         <div class="user-container">
             <div class="profile-pic">
+                <img [src]="'sample_pfp.png'" alt="Profile picture" matTooltip="Ver perfil">
             </div>
             <div class="username-wrapper">
-                <p class="username">{{employee.nombre}}</p>
+                <p class="username">{{postulation.nombre}}</p>
+                <!-- <p class="username">{{postulation.localidad}}</p> -->
             </div>
         </div>
 
-        <p class="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur error nemo aperiam
-            eligendi possimus
-            tempora eaque, eveniet consequuntur dolores unde atque voluptatum fugiat quidem, aliquid esse molestiae
-            deleniti debitis autem?</p>
+        <p class="message">{{postulation.mensaje}}</p>
 
         <div class="button-wrapper">
-            <button (click)="navigateToProfile(employee.id)">Ver Perfil</button>
-            <button (click)="getCV(employee.cv_url)">Ver CV</button>
+            <button (click)="navigateToProfile(postulation.id_ciudadano)">Ver Perfil</button>
+            <button (click)="getCV(postulation.cv_url)">Ver CV</button>
         </div>
     </div>
     }
@@ -32,7 +31,7 @@
     <h3>No hay postulantes.</h3>
     }
     } @else {
-    <h3>Error al cargar oferta.</h3>
+    <h3>Error al cargar ofertas.</h3>
     }
 </main>
 <app-footer></app-footer>

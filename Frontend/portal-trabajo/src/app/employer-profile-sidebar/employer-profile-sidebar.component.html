@@ -13,7 +13,6 @@
         </div>
 
     </div>
-    <!-- <p class="description">{{employer.}}</p> -->
     <div class="title-wrapper">
         <i class="fa-solid fa-key"></i>
         <h4 class="title">Datos Personales</h4>
@@ -58,7 +57,9 @@
     </div>
 
     <div class="profile-footer">
+        @if (isOwnProfile===true) {
         <button class="edit-profile" (click)="navigateToEditProfile()"> <i class="fa-solid fa-pen"></i> Editar
             Perfil</button>
+        }
     </div>
 </div>
