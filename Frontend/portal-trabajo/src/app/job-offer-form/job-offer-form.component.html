@@ -1,5 +1,9 @@
 <app-header></app-header>
+@if (itemId === "") {
 <h3>Creá una nueva oferta</h3>
+}@else {
+<h3>Editá la oferta</h3>
+}
 <div class="form-container">
 
   <form [formGroup]="offersForm" (ngSubmit)="createOffer()">

@@ -1,10 +1,16 @@
 <app-header></app-header>
 <div class="container">
+    @if(currentUserType === "empresa"){
+    <div class="fallback">
+        <i class="fa-solid fa-arrow-left" (click)="navigateToLanding()"></i> <a (click)="navigateToProfile()"> Volver a
+            Perfil</a>
+    </div>
+    }@else{
     <div class="fallback">
         <i class="fa-solid fa-arrow-left" (click)="navigateToLanding()"></i> <a (click)="navigateToLanding()"> Volver a
             ofertas</a>
     </div>
-
+    }
     <div class="postulation-header">
         <div class="profile">
             <h1>{{offer.puesto_requerido}}</h1>

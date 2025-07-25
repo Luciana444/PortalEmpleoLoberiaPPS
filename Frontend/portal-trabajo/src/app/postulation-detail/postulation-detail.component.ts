@@ -195,6 +195,10 @@ export class PostulationDetailComponent implements OnInit {
     this.router.navigate(['postulaciones-por-oferta', id])
   }
 
+  navigateToProfile() {
+    this.router.navigate(['profile'])
+  }
+
   navigateToEditOffer(id: any) {
     if (!this.offer.fecha_cierre || this.compareDatesOffer(Date.parse(this.offer.fecha_cierre))) {
       this.router.navigate(['create-offer', id]);

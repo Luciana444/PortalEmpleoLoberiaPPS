@@ -13,6 +13,7 @@ import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { Notification } from '../../models/notification.model';
 import { MatDividerModule } from '@angular/material/divider';
 import { DatePipe } from '@angular/common'
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +22,8 @@ import { DatePipe } from '@angular/common'
     MatTooltipModule,
     MatMenuModule,
     MatDividerModule,
-    DatePipe
+    DatePipe,
+    MatButtonModule
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
