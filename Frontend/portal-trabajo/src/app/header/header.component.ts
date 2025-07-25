@@ -176,6 +176,10 @@ export class HeaderComponent implements OnInit {
     this.hidden = true;
   }
 
+  getImageUrl(image_url:string){
+    return image_url ? `http://localhost:3000${image_url}` : null;
+  }
+
 }
 
 

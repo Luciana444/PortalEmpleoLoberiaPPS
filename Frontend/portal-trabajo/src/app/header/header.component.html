@@ -17,7 +17,7 @@
     @if (isLoggedIn){
     <div class="user-container">
         <div class="profile-pic" (click)="navigateToProfile()">
-            <img [src]="user.imagen_url || 'sample_pfp.png'" alt="Profile picture" matTooltip="Ver perfil">
+            <img [src]="getImageUrl(user.imagen_url) || 'sample_pfp.png'" alt="Profile picture" matTooltip="Ver perfil">
         </div>
 
         <div class="text-wrapper">
@@ -35,7 +35,7 @@
                             <div class="notification-header">
                                 <h4>Nueva Postulación</h4>
                                 <p>{{notification.mensaje}}</p>
-                                <p>{{notification.fecha_postulacion | date:'longDate'}}</p>
+                                <p class="date-notification">{{notification.fecha_postulacion | date:'longDate'}}</p>
                             </div>
                             <mat-divider></mat-divider>
                         </div>

@@ -2,8 +2,13 @@
     <div>
         <div class="title-wrapper">
             <h2>Formacion academica y cursos</h2>
-            <button (click)="navigateToAcademicBackgroundEditComponent()"> <i class="fa-solid fa-graduation-cap"></i>
-                Editar Formación</button>
+            @if(getUserType()=== "empresa"){
+            <button class="hide-btn"> <i class="fa-solid fa-graduation-cap"></i>
+                Editar Formación</button>}
+                @else{
+                    <button (click)="navigateToAcademicBackgroundEditComponent()"><i class="fa-solid fa-graduation-cap"></i> Editar
+                Formación</button>
+                }
         </div>
         <div class="info-row">
             <h5>Nivel Educativo Alcanzado: </h5>
@@ -36,8 +41,13 @@
     <div>
         <div class="title-wrapper">
             <h2>Experiencia laboral</h2>
-            <button (click)="navigateToWorkExperience()"><i class="fa-solid fa-briefcase"></i> Editar
+            @if(getUserType()=== "empresa"){
+            <button class="hide-btn"><i class="fa-solid fa-briefcase"></i> Editar
+                Experiencia</button>}
+                @else{
+                    <button (click)="navigateToWorkExperience()"><i class="fa-solid fa-briefcase"></i> Editar
                 Experiencia</button>
+                }
         </div>
         <div class="info-row">
             <h5>Situación laboral actual: </h5>

@@ -1,5 +1,5 @@
 import { getUsuarioById } from "../controllers/usuarioController.js";
-import { cancelarPostulacionByOfertaId, crearPostulacionRepository, getCapacitacionesByCiudadanoId, getExperienciaByCiudadanoId,insertarUrlCv, verificarUsuarioPostulado } from "../repositories/ciudadanoRepository.js";
+import { cancelarPostulacionByOfertaId, crearPostulacionRepository, editarCapacitacionRepository, editarExperienciaLaboralRepository, eliminarCapacitacionRepository, eliminarExperienciaLaboralRepository, getCapacitacionesByCiudadanoId, getExperienciaByCiudadanoId,insertarUrlCv, verificarUsuarioPostulado } from "../repositories/ciudadanoRepository.js";
 import { updatePerfilCiudadano,insertExperienciaLaboral,insertCapacitacion,obtenerPostulacionesRepository, buscarOfertasFiltradas  } from '../repositories/ciudadanoRepository.js';
 import PDFDocument from 'pdfkit';
 
@@ -276,3 +276,19 @@ export const buscarOfertasFiltradasService = async (filtros) => {
 export const cancelarPostulacionOferta = async(id_postulacion)=>{
   await cancelarPostulacionByOfertaId(id_postulacion);
 };
+
+export const editarCapacitacionUsuario = async(datosActualizados,capacitacion)=>{
+  await editarCapacitacionRepository(datosActualizados,capacitacion);
+}
+
+export const eliminarCapacitacionUsuario = async(capacitacion)=>{
+  await eliminarCapacitacionRepository(capacitacion);
+}
+
+export const editarExperienciaLaboralUsuario = async(datosActualizados,experiencia)=>{
+  await editarExperienciaLaboralRepository(datosActualizados,experiencia);
+}
+
+export const eliminarExperienciaLaboralUsuario = async(id_experiencia)=>{
+  await eliminarExperienciaLaboralRepository(id_experiencia);
+}

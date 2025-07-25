@@ -38,6 +38,9 @@ h5{
     width: fit-content;
     white-space: nowrap;
 }
+.fallback{
+        margin-bottom: 1rem;
+    }
 
 .container{
     margin-left: 7.25rem;
@@ -179,9 +182,6 @@ button :hover{
         margin-right: 0.5rem;
     }
 
-    .fallback{
-        margin-bottom: 1rem;
-    }
 
     .profile, .postulation-header, .detail-header{
         flex-direction: column;

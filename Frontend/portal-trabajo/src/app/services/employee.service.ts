@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Employee } from '../../models/employee.model';
 import { Postulation } from '../../models/postulation.model';
+import { WorkExperience } from '../../models/work-experience.model';
+import { AcademicBackground } from '../../models/academic-background.model';
 
 const URL = 'http://localhost:3000/api';
 
@@ -22,7 +24,7 @@ export class EmployeeService {
     }
 
 
-    postulateToOffer(id: any, cv: any, msg:string) {
+    postulateToOffer(id: any, cv: any, msg: string) {
         var formdata = new FormData();
         formdata.append("cv", cv);
         formdata.append("mensaje", msg)
@@ -30,7 +32,7 @@ export class EmployeeService {
             observe: 'response',
             withCredentials: true,
             //headers: new HttpHeaders()
-             //   .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+            //   .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
         });
     }
 
@@ -44,12 +46,44 @@ export class EmployeeService {
         })
     }
 
-     deletePostulationByOfferId(id: any) {
-            return this.httpClient.delete(`${URL}/ciudadano/ofertas/${id}/cancelar_postulacion`, {
-                observe: 'response',
-                withCredentials: true
-                //headers: new HttpHeaders()
-                 //   .append('Authorization', `Bearer ${localStorage.getItem("token")}`)                    
-            });
-        }
+    editAcademicBackground(id: any, academicBackground: any) {
+        return this.httpClient.put(`${URL}/ciudadano/capacitaciones/${id}`, academicBackground, {
+            observe: 'response',
+            withCredentials: true,
+            headers: new HttpHeaders()
+                .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+                .append('Content-Type', 'application/json')
+        });
+    }
+
+    editWorkExperience(id: any, workExperience: any) {
+        return this.httpClient.patch(`${URL}/ciudadano/experiencia/${id}`, workExperience, {
+            observe: 'response',
+            withCredentials: true,
+            headers: new HttpHeaders()
+                .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+                .append('Content-Type', 'application/json')
+        });
+    }
+
+    deletePostulationByOfferId(id: any) {
+        return this.httpClient.delete(`${URL}/ciudadano/ofertas/${id}/cancelar_postulacion`, {
+            observe: 'response',
+            withCredentials: true
+        });
+    }
+
+    deleteAcademicBackgroundById(id: any) {
+        return this.httpClient.delete(`${URL}/ciudadano/capacitaciones/${id}`, {
+            observe: 'response',
+            withCredentials: true
+        });
+    }
+
+    deleteWorkExperienceById(id: any) {
+        return this.httpClient.delete(`${URL}/ciudadano/experiencia/${id}`, {
+            observe: 'response',
+            withCredentials: true
+        });
+    }
 }

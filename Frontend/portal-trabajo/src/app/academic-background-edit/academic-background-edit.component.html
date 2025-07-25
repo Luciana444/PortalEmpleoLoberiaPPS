@@ -70,9 +70,17 @@
                     </mat-error>
                 </mat-form-field>
             </div>
+            @if(editCardEducation){
+            <button class="experience-btn" type="button" (click)="editAcademicBackground()">
+                <i class="fa-solid fa-arrow-up-from-bracket"></i> Actualizar capacitación
+            </button>
+            }@else {
             <button class="experience-btn" type="button" (click)="addEducationForm()">
                 <i class="fa-solid fa-arrow-up-from-bracket"></i> Agregar Capacitación
             </button>
+            }
+
+
         </div>
 
         <button type="submit">
@@ -89,8 +97,10 @@
             <div class="align-elements">
                 <p> {{ f.nombre_capacitacion }}</p>
                 <div class="align-elements">
-                    <button class="edit-exp-btn"> <i class="fa-solid fa-pencil"></i> Editar Formación</button>
-                    <button class="delete" matTooltip="Eliminar formación"> <i class="fa-solid fa-trash"></i></button>
+                    <button class="edit-exp-btn" (click)="openFormToEditEducation(f.id, f.nombre_capacitacion)"> <i
+                            class="fa-solid fa-pencil"></i> Editar Formación</button>
+                    <button class="delete" matTooltip="Eliminar formación" (click)="openDialog(f.id)"> <i
+                            class="fa-solid fa-trash"></i></button>
                 </div>
             </div>
             <mat-divider></mat-divider>

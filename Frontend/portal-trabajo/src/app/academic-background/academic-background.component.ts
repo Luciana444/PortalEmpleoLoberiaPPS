@@ -4,6 +4,7 @@ import { Employee } from '../../models/employee.model';
 import { EmployeeService } from '../services/employee.service';
 import { Postulation } from '../../models/postulation.model';
 import { MatDividerModule } from '@angular/material/divider';
+import { AuthService } from '../services/auth.service';
 import { AppUtils } from '../../utils/app.utils';
 
 
@@ -18,7 +19,7 @@ export class AcademicBackgroundComponent implements OnInit {
   $id: any;
   postulations: Postulation[] = [];
 
-  constructor(private router: Router, private employeeService: EmployeeService,) { }
+  constructor(private router: Router, private employeeService: EmployeeService,private authService: AuthService,) { }
   ngOnInit(): void {
     this.employeeService.getPostulations().subscribe({
       next: (response) => {
@@ -53,6 +54,10 @@ export class AcademicBackgroundComponent implements OnInit {
 
   convertToLocalDate(date: string) {
     return AppUtils.convertToLocalString(date);
+  }
+
+  getUserType(): string | null{
+    return this.authService.getCurrentUserType();
   }
 
 }

@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { UserService } from '../services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -16,14 +17,14 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         CommonModule,
         MatIconModule,
         MatFormFieldModule,
-        MatInputModule, 
+        MatInputModule,
         MatTooltipModule
     ],
 })
 
 export class CvUploaderComponent {
     @Output() cvUploaded = new EventEmitter<File>();
-    constructor(private userservice: UserService, private toastr: ToastrService) {
+    constructor(private userservice: UserService, private toastr: ToastrService, private authService: AuthService,) {
     }
 
     maxSize = 2 * 1024 * 1024; // 2 MB
@@ -54,5 +55,8 @@ export class CvUploaderComponent {
     notifyCvUploaded(file: any) {
         //console.log('CV uploaded');
         this.cvUploaded.emit(file);
+    }
+    getUserType(): string | null {
+        return this.authService.getCurrentUserType();
     }
 }

@@ -9,11 +9,18 @@
     </button>
     } @else {
     <h4>No hay CV adjunto</h4>
-
-    <button (click)="downloadCv()" matTooltip="Descargá un CV generado a partir de los datos de tu perfil" >
+    @if(getUserType()=== "empresa"){
+    <button class="hide-btn" (click)="downloadCv()"
+        matTooltip="Descargá un CV generado a partir de los datos de tu perfil">
         Generar CV <i class="fa-solid fa-file-export"></i>
     </button>
-    <app-cv-uploader (cvUploaded) = "receiveCv($event)"></app-cv-uploader>
+    <app-cv-uploader  class= "hide-btn" (cvUploaded)="receiveCv($event)"></app-cv-uploader>
+    }@else {
+    <button (click)="downloadCv()" matTooltip="Descargá un CV generado a partir de los datos de tu perfil">
+        Generar CV <i class="fa-solid fa-file-export"></i>
+    </button>
+    <app-cv-uploader (cvUploaded)="receiveCv($event)"></app-cv-uploader>
+    }
     }
 
 </div>

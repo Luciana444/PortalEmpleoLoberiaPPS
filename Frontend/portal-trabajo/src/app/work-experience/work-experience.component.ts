@@ -19,6 +19,10 @@ import { jwtDecode } from 'jwt-decode';
 import { User } from '../profile-form/profile-form.component';
 import { Employee } from '../../models/employee.model';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { Router, ActivatedRoute } from '@angular/router';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
     selector: 'app-work-experience',
@@ -37,19 +41,26 @@ import { MatDividerModule } from '@angular/material/divider';
         MatIconModule,
         HeaderComponent,
         FooterComponent,
-        MatDividerModule
+        MatDividerModule,
+        MatTooltipModule
     ]
 
 })
 export class WorkExperienceComponent implements OnInit {
     addNewCardExperience = false;
+    editCardExperience = false;
     public workExperience: FormGroup;
     experiencias: any[] = [];
     itemId: string = "";
-    constructor(private fb: FormBuilder, 
-        private toastr: ToastrService, 
+    workExperienceId: string = "";
+
+    constructor(private fb: FormBuilder,
+        private toastr: ToastrService,
         private userservice: UserService,
-        private employeeservice: EmployeeService
+        private employeeservice: EmployeeService,
+        public dialog: MatDialog,
+        private router: Router,
+        private route: ActivatedRoute,
     ) {
 
         this.workExperience = this.fb.group({
@@ -63,25 +74,7 @@ export class WorkExperienceComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.itemId = this.getUserId(); // Get ID from route
-        if (this.itemId) {
-            this.employeeservice.getDataProfile().subscribe({
-                next: (response) => {
-                    if (response.status === 200) {
-                        let employee = response.body ?? {} as Employee;
-                        this.workExperience.patchValue(employee); // Populate form with API data
-                        this.experiencias = employee.experiencias_laborales;
-                    } else {
-                        console.log('No se pudo cargar datos', response);
-                    }
-                },
-                error: (err) => {
-                    this.toastr.error(err.error.error, 'Ocurrió un error');
-                    console.error('Error al cargar datos', err);
-                }
-
-            });
-        }
+        this.getDataProfile();
     }
 
     editWorkExperience(): void {
@@ -154,6 +147,124 @@ export class WorkExperienceComponent implements OnInit {
         const storedTokenString = localStorage.getItem("token") ?? "";
         const decodedToken = jwtDecode<User>(storedTokenString);
         return decodedToken.id;
+    }
+
+
+    editWorkExperienceById() {
+        let workExperience = {
+            "nombre_empresa": this.workExperience.get('nombre_empresa')?.value,
+            "desde": this.workExperience.get('desde')?.value,
+            "hasta": this.workExperience.get('hasta')?.value,
+            "comentario": this.workExperience.get('comentario')?.value,
+        };
+        if (this.workExperience.invalid) return;
+        this.employeeservice.editWorkExperience(this.workExperienceId, JSON.stringify(workExperience)).subscribe({
+            next: (response) => {
+                if (response.status === 200) {
+                    this.toastr.success('Actualización exitosa', 'Experiencia editada')
+                    console.log('Actualización exitosa', response);
+                    this.workExperience.reset();
+                    this.clearEditionMode();
+                    this.getDataProfile();
+                } else {
+                    console.log('No se pudo editar la experiencia', response);
+                }
+            },
+            error: (err) => {
+                this.toastr.error(err.error.error, 'Ocurrió un error');
+                console.error('Error al actualizar experiencia', err);
+
+            }
+        });
+    }
+
+    deleteWorkExperience(id: any) {
+        this.employeeservice.deleteWorkExperienceById(id).subscribe({
+            next: (response) => {
+                if (response.status === 200) {
+                    this.toastr.success('Actualización exitosa', 'Experiencia laboral borrada');
+                    let indexToRemove = this.experiencias.findIndex(item => item.id === id);
+                    if (indexToRemove !== -1) {
+                        this.experiencias.splice(indexToRemove, 1); // Removes 1 element at the found index
+                    }
+                    console.log('Actualización exitosa', response);
+                } else {
+                    console.log('No se pudo borrar la experiencia', response);
+                }
+            },
+            error: (err) => {
+                this.toastr.error(err.error.error, 'Ocurrió un error');
+                console.error('Error al borrar experiencia', err);
+
+            }
+        });
+
+    }
+
+    openDialog(id: any): void {
+        const dialogConfig = new MatDialogConfig();
+
+        // Configure dialog options (optional)
+        dialogConfig.disableClose = true; // Prevent closing by clicking outside
+        dialogConfig.autoFocus = true; // Automatically focus the first tabbable element
+        dialogConfig.width = '400px'; // Set dialog width
+        dialogConfig.data = {
+            title: 'Borrar Experiencia laboral',
+            content: 'Desea borrar la experiencia laboral?',
+            trueAction: 'Sí, quiero borrarla'
+        }; // Pass data to the dialog
+
+        const dialogRef = this.dialog.open(DeleteDialogComponent, dialogConfig);
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.deleteWorkExperience(id);
+                console.log('Borrar experiencia');
+            }
+
+            console.log('Dialog was closed with result:', result);
+        });
+    }
+
+    getDataProfile() {
+        this.itemId = this.getUserId(); // Get ID from route
+        if (this.itemId) {
+            this.employeeservice.getDataProfile().subscribe({
+                next: (response) => {
+                    if (response.status === 200) {
+                        let employee = response.body ?? {} as Employee;
+                        this.workExperience.patchValue(employee); // Populate form with API data
+                        this.experiencias = employee.experiencias_laborales;
+                    } else {
+                        console.log('No se pudo cargar datos', response);
+                    }
+                },
+                error: (err) => {
+                    this.toastr.error(err.error.error, 'Ocurrió un error');
+                    console.error('Error al cargar datos', err);
+                }
+
+            });
+        }
+    }
+
+    openFormToEditExperience(id: any, nombre_empresa: string, desde: string, hasta: string, comentario: string) {
+        this.addNewCardExperience = true;
+        this.editCardExperience = true;
+        let workExperience = {
+            "nombre_empresa": nombre_empresa,
+            "desde": desde,
+            "hasta": hasta,
+            "comentario": comentario
+        }
+        this.workExperience.patchValue(workExperience);
+        this.workExperienceId = id;
+    }
+
+    clearEditionMode() {
+        this.addNewCardExperience = false;
+        this.editCardExperience = false;
+        this.workExperienceId = "";
     }
 
 }
