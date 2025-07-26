@@ -192,10 +192,12 @@ export const getPostulacionesPendientesPorEmpresa = async (idEmpresa) => {
 export const obtenerPostulacionesPendientes = async (idEmpresa) => {
   return await sql`
     SELECT p.id, p.id_oferta, p.id_ciudadano, p.fecha_postulacion, p.mensaje, p.cv_url,
-           o.puesto_requerido, c.nombre
+           o.puesto_requerido, c.nombre, pe.calle, pe.numero, pe.piso, pe.dpto, 
+           pe.localidad, pe.provincia, pe.pais
     FROM postulaciones p
     JOIN ofertas_laborales o ON p.id_oferta = o.id
     JOIN usuarios c ON p.id_ciudadano = c.id
+    JOIN perfiles_ciudadanos pe ON pe.id_ciudadano=p.id_ciudadano
     WHERE o.id_empresa = ${idEmpresa}
       AND p.leido_por_empresa = false
       AND p.estado = 'pendiente'
