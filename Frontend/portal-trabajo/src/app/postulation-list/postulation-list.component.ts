@@ -49,9 +49,8 @@ export class PostulationListComponent implements OnInit {
     //obtengo la oferta con id igual a url
     this.getCurrentOffer()
 
+    //obtengo postulaciones a esa oferta 
     this.getPosulations();
-    //obtengo los empleados postulados a esa oferta 
-    // this.getEmployees()
   }
 
   navigateToProfile(id?: string) {
