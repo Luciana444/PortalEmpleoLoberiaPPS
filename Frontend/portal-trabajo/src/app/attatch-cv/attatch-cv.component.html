@@ -1,11 +1,14 @@
 <div>
-    @if (cvUrl) {
+    @if (hasCV) {
     <h4>CV Adjunto</h4>
 
     <img src="/word.png" alt="">
 
-    <button matTooltip="Descargá tu CV">
+    <button matTooltip="Descargá el CV que subiste" (click)="getCV(name)">
         Descargar CV <i class="fa-solid fa-download"></i>
+    </button>
+    <button (click)="downloadCv()" matTooltip="Descargá un CV generado a partir de los datos de tu perfil">
+        Generar CV <i class="fa-solid fa-file-export"></i>
     </button>
 
     } @else {

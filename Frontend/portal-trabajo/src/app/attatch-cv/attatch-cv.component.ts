@@ -4,7 +4,7 @@ import { CvUploaderComponent } from '../cv-uploader/cv-uploader.component';
 import { ToastrService } from 'ngx-toastr';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AuthService } from '../services/auth.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 @Component({
@@ -21,7 +21,9 @@ export class AttatchCvComponent {
     private authService: AuthService,) {
   }
   @Input()
-  cvUrl: string = '';
+  hasCV: string = '';
+  @Input()
+  name: string = '';
 
   downloadCv() {
     const url = '/ciudadano/generar_cv';
@@ -67,32 +69,32 @@ export class AttatchCvComponent {
   }
 
   // getCV() {
-  //   // userName: string
-  //   console.log("getCV called");
-  //   console.log(this.cvUrl);
-  //   this.http.get(this.cvUrl, { responseType: 'blob' }).subscribe({
-  //     next: (blob) => {
-  //       const pdfBlob = new Blob([blob], { type: 'application/pdf' });
-  //       const fileURL = URL.createObjectURL(pdfBlob);
+  //http://localhost:3000/api/ciudadano/get_cv
+  getCV(name: string) {
+    let url = "http://localhost:3000/api/ciudadano/get_cv";
+    const headers = this.getAuthHeaders();
+    this.http.get(url, { headers, responseType: 'blob' }).subscribe({
+      next: (blob) => {
+        const fileURL = URL.createObjectURL(blob);
 
-  //       // Open PDF in a new tab
-  //       window.open(fileURL, '_blank');
+        const a = document.createElement('a');
+        a.href = fileURL;
+        a.download = `${name} - CV.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(fileURL), 10000);
+      },
+      error: (err) => {
+        console.error('Error downloading CV:', err);
+      }
+    });
+  }
 
-  //       // Optionally, download the file with the user's name
-  //       const a = document.createElement('a');
-  //       a.href = fileURL;
-  //       // a.download = `${userName}.pdf`;
-  //       a.download = `cv.pdf`;
-  //       document.body.appendChild(a);
-  //       a.click();
-  //       document.body.removeChild(a);
-
-  //       setTimeout(() => URL.revokeObjectURL(fileURL), 10000);
-  //     },
-  //     error: (err) => {
-  //       this.toastr.error('No se pudo descargar el CV', 'Error');
-  //       console.error('Error downloading CV:', err);
-  //     }
-  //   });
-  // }
+  private getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  }
 }

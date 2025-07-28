@@ -99,10 +99,6 @@ export class PostulationListComponent implements OnInit {
     this.router.navigate(['employee-profile', id]);
   }
 
-  // getCV(cvUrl: string) {
-  //   console.log(cvUrl);
-  // }
-
   //TODO: hecho con IA, sin testear
   getCV(cvUrl: string) {
     const headers = this.getAuthHeaders();
