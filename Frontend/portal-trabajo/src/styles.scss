@@ -5,11 +5,56 @@
 @use '@angular/material' as mat;
 @use 'sass:color';
 
+
+
+@font-face {
+    font-family: 'Linotte Regular';
+    src: url('assets/fonts/LinotteRegular.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Linotte Light';
+    src: url('assets/fonts/LinotteLight.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Linotte Semi bold';
+    src: url('assets/fonts/LinotteSemiBold.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Linotte Bold';
+    src: url('assets/fonts/LinotteBold.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Linotte Heavy';
+    src: url('assets/fonts/LinotteHeavy.otf') format('truetype');
+}
+
 /* You can add global styles to this file, and also import other style files */
 $green: #57AF31;
 $white: #F5F5F5;
 $text-color: #49454F;
-$font: Linotte, Signika, Montserrat, sans-serif;
+$font: 'Linotte Regular', 'Linotte Light', 'Linotte Semi Bold', 'Linotte Bold', 'Linotte Heavy';
+
+
+:root {
+    @include mat.datepicker-overrides((calendar-body-label-text-color: #57AF31,
+            calendar-date-selected-state-background-color:#57AF31,
+            calendar-date-focus-state-background-color: #57AF31,
+            calendar-date-selected-state-text-color:#ffffff,
+            calendar-date-hover-state-background-color:#ECF8E7,
+            toggle-active-state-icon-color: #57AF31,
+            toggle-icon-color:#57AF31,
+            calendar-header-divider-color:#57AF31,
+        ));
+
+    @include mat.select-overrides((focused-arrow-color:#57AF31,
+    enabled-arrow-color:#57AF31,
+    placeholder-text-color:#57AF31,
+        ));
+}
 
 h1,
 h2,
@@ -26,6 +71,11 @@ label {
 
 app-root {
     min-height: 100%;
+}
+
+p {
+    font-family: 'Linotte Light';
+    color: #49454F;
 }
 
 button {
@@ -96,6 +146,7 @@ input {
     border: 1px solid #B3B3B3;
     min-height: 1.7rem;
     text-indent: 10px;
+    caret-color: #57AF31 !important;
 }
 
 option {
@@ -155,6 +206,13 @@ footer {
 .mdc-tooltip--multiline .mat-mdc-tooltip-surface {
     text-align: center !important;
 }
+.mdc-list-item--selected.mat-mdc-option-active > span.mdc-list-item__primary-text, .mat-mdc-option .mat-pseudo-checkbox {
+    color: #57AF31 !important;
+}
+ .mat-mdc-option .mat-pseudo-checkbox {
+    --mat-minimal-pseudo-checkbox-selected-checkmark-color: #57AF31 !important;
+}
+
 
 button.delete-account-btn {
     margin-right: 0 !important;
@@ -182,6 +240,10 @@ app-file-uploader>mat-form-field {
     width: 100%;
 }
 
-button.hide-btn, app-cv-uploader.hide-btn {
+button.hide-btn,
+app-cv-uploader.hide-btn {
     visibility: hidden;
+}
+mat-label{
+    color:#49454F;
 }

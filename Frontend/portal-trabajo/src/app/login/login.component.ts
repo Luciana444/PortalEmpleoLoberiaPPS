@@ -8,11 +8,17 @@ import { UserService } from '../services/user.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { BigLogoComponent } from '../big-logo/big-logo.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, BigLogoComponent, MatFormFieldModule,
-    MatInputModule, CommonModule],
+  imports: [
+    ReactiveFormsModule,
+    BigLogoComponent,
+    MatFormFieldModule,
+    MatInputModule,
+    CommonModule,
+    MatButtonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
