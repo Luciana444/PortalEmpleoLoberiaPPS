@@ -3,7 +3,7 @@
     @if (jobOffer?.id_empresa === currentUserId && jobOffer?.id) {
     <div class="list-header">
         <div class="text-wrapper">
-            <h1>{{jobOffer?.puesto_requerido}}</h1>
+            <h1>Bachero{{jobOffer?.puesto_requerido}}</h1>
         </div>
     </div>
     @if (postulations.length) {
@@ -15,7 +15,8 @@
             </div>
             <div class="username-wrapper">
                 <p class="user-field">{{postulation.nombre}}</p>
-                <p class="user-field">{{postulation.localidad}}</p>
+
+                <p class="user-field"><i class="fa-solid fa-location-dot"></i> {{postulation.localidad}}</p>
             </div>
         </div>
 
@@ -23,7 +24,7 @@
 
         <div class="button-wrapper">
             <button (click)="navigateToProfile(postulation.id_ciudadano)">Ver Perfil</button>
-            <button (click)="getCV(postulation.cv_url)">Ver CV</button>
+            <button (click)="getCV(postulation.id)">Ver CV</button>
         </div>
     </div>
     }

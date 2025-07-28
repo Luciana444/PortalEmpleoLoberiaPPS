@@ -32,6 +32,10 @@ export class PostulationListComponent implements OnInit {
     return `http://localhost:3000/api/empresa/ofertas/${id}/postulaciones`;
   }
 
+  private getCVUrl(id: string): string {
+    return `http://localhost:3000/api/empresa/ofertas/${id}/cv`;
+  }
+
   currentUserType?: string | null;
   currentUserId?: string | null;
   employees?: Employee[] = [];
@@ -51,6 +55,7 @@ export class PostulationListComponent implements OnInit {
 
     //obtengo postulaciones a esa oferta 
     this.getPosulations();
+
   }
 
   navigateToProfile(id?: string) {
@@ -58,14 +63,16 @@ export class PostulationListComponent implements OnInit {
     this.router.navigate(['employee-profile', id]);
   }
 
-  // getCV(cvUrl: string) {
-  //   console.log(cvUrl);
-  // }
+  getCVs() {
 
-  //TODO: hecho con IA, sin testear
-  getCV(cvUrl: string) {
+  }
+
+  getCV(postulationId: string) {
+    console.log(postulationId);
+
     const headers = this.getAuthHeaders();
-    this.http.get(cvUrl, { headers, responseType: 'blob' }).subscribe({
+
+    this.http.get(this.getCVUrl(postulationId), { headers, responseType: 'blob' }).subscribe({
       next: (blob) => {
         const fileURL = URL.createObjectURL(blob);
         window.open(fileURL, '_blank');
@@ -83,22 +90,22 @@ export class PostulationListComponent implements OnInit {
     });
   }
 
-  getEmployees() {
-    if (!this.itemId) return; // Guard clause
+  // getEmployees() {
+  //   if (!this.itemId) return; // Guard clause
 
-    const headers = this.getAuthHeaders();
-    const url = this.getPostulationsUrl(this.itemId);
+  //   const headers = this.getAuthHeaders();
+  //   const url = this.getPostulationsUrl(this.itemId);
 
-    this.http.get<Employee[]>(url, { headers }).subscribe({
-      next: (data) => {
-        this.employees = data || []; // Ensure array
-      },
-      error: (err) => {
-        console.error('Error fetching employees:', err);
-        this.employees = []; // Fallback
-      }
-    });
-  }
+  //   this.http.get<Employee[]>(url, { headers }).subscribe({
+  //     next: (data) => {
+  //       this.employees = data || []; // Ensure array
+  //     },
+  //     error: (err) => {
+  //       console.error('Error fetching employees:', err);
+  //       this.employees = []; // Fallback
+  //     }
+  //   });
+  // }
 
   getPosulations() {
     this.itemId = this.route.snapshot.params['id'] ?? "";
