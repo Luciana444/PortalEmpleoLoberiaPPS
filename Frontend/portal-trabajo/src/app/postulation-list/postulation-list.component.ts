@@ -38,7 +38,45 @@ export class PostulationListComponent implements OnInit {
 
   itemId?: string;
 
-  postulations: EmployerPostulation[] = [];
+  postulations: EmployerPostulation[] = [{
+    id: '1',
+    id_ciudadano: '100',
+    nombre: 'Juan Pérez',
+    localidad: 'Lobería',
+    id_oferta: '200',
+    fecha_postulacion: '2025-07-28',
+    mensaje: 'Estoy interesado en la oferta.',
+    cv_url: '/files/cv-juan-perez.pdf',
+    estado: 'pendiente',
+    leido_por_empresa: false,
+    perfil_url: '/profiles/juan-perez'
+  },
+  {
+    id: '2',
+    id_ciudadano: '101',
+    nombre: 'Ana Gómez',
+    localidad: 'Necochea',
+    id_oferta: '201',
+    fecha_postulacion: '2025-07-27',
+    mensaje: 'Me gustaría postularme para este puesto.',
+    cv_url: '/files/cv-ana-gomez.pdf',
+    estado: 'aceptado',
+    leido_por_empresa: true,
+    perfil_url: '/profiles/ana-gomez'
+  },
+  {
+    id: '3',
+    id_ciudadano: '102',
+    nombre: 'Carlos López',
+    localidad: 'Mar del Plata',
+    id_oferta: '202',
+    fecha_postulacion: '2025-07-26',
+    mensaje: 'Tengo experiencia relevante para la posición.',
+    cv_url: '/files/cv-carlos-lopez.pdf',
+    estado: 'rechazado',
+    leido_por_empresa: true,
+    perfil_url: '/profiles/carlos-lopez'
+  }];
   jobOffer: JobOffer | null = null;
 
   ngOnInit(): void {
@@ -50,7 +88,10 @@ export class PostulationListComponent implements OnInit {
     this.getCurrentOffer()
 
     //obtengo postulaciones a esa oferta 
-    this.getPosulations();
+    // this.getPosulations();
+
+    //TODO delete this
+    console.log(this.postulations)
   }
 
   navigateToProfile(id?: string) {

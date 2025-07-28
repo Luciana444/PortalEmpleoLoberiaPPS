@@ -20,12 +20,9 @@ main{
     align-self: center;
 }
 
-.user-container, .list-content{
+.list-content{
     display: flex;
     justify-content: space-between;
-}
-.user-container{
-    align-items:center
 }
 
 .user-field{
@@ -37,9 +34,6 @@ main{
     padding-bottom: 0.5rem;
 }
 
-.user-container{
-    gap: 0.5rem;
-}
 
 button{
     width: 8rem;
@@ -57,13 +51,25 @@ button{
 }
 
 .user-container, h1{
-    padding-left: 5rem;
+    padding-left: 3rem;
+}
+
+.user-container{
+    display: flex;
+    align-items:center;
+    width: 11rem;
+    max-width: 11rem;
+    gap: 0.5rem;
 }
 
 h1{
     color: #57AF31;
     font-weight: 700;
     margin: 0;
+}
+
+i{
+    color: #57AF31 !important;
 }
 
 .text-wrapper{

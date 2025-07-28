@@ -1,9 +1,10 @@
 <app-header></app-header>
 <main>
-    @if (jobOffer?.id_empresa === currentUserId && jobOffer?.id) {
+    <!-- @if (jobOffer?.id_empresa === currentUserId && jobOffer?.id) { -->
+    @if (true) {
     <div class="list-header">
         <div class="text-wrapper">
-            <h1>{{jobOffer?.puesto_requerido}}</h1>
+            <h1>Bachero{{jobOffer?.puesto_requerido}}</h1>
         </div>
     </div>
     @if (postulations.length) {
@@ -15,7 +16,8 @@
             </div>
             <div class="username-wrapper">
                 <p class="user-field">{{postulation.nombre}}</p>
-                <p class="user-field">{{postulation.localidad}}</p>
+
+                <p class="user-field"><i class="fa-solid fa-location-dot"></i> {{postulation.localidad}}</p>
             </div>
         </div>
 
