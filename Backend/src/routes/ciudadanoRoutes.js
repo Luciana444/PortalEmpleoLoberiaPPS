@@ -1,6 +1,6 @@
 import express from 'express';
 // Controllers: funciones que contienen la lógica de negocio
-import { cancelarPostulacion, editarCapacitacion, editarExperienciaLaboral, eliminarCapacitacion, eliminarExperienciaLaboral, generarPdf, postularseAOferta, subirCV } from '../controllers/ciudadanoController.js';
+import { cancelarPostulacion, editarCapacitacion, editarExperienciaLaboral, eliminarCapacitacion, eliminarExperienciaLaboral, generarPdf, obtenerCv, postularseAOferta, subirCV } from '../controllers/ciudadanoController.js';
 // Middlewares de seguridad y autorización
 import {authMiddleware} from '../middlewares/authMiddleware.js'
 import {onlyCiudadano} from '../middlewares/onlyCiudadano.js'
@@ -538,6 +538,8 @@ ciudadanoRoutes.delete('/capacitaciones/:id',authMiddleware,onlyCiudadano, elimi
 ciudadanoRoutes.patch('/experiencia/:id',authMiddleware,onlyCiudadano, editarExperienciaLaboral);
 
 ciudadanoRoutes.delete('/experiencia/:id',authMiddleware,onlyCiudadano, eliminarExperienciaLaboral);
+
+ciudadanoRoutes.get('/get_cv',authMiddleware,onlyCiudadano,obtenerCv);
 
 export default ciudadanoRoutes;
 

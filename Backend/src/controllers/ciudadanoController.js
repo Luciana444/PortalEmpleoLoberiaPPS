@@ -1,8 +1,11 @@
 
 // Importamos la lógica de negocio desde el servicio correspondiente
-import { cancelarPostulacionOferta, crearPostulacion, editarCapacitacionUsuario, editarExperienciaLaboralUsuario, eliminarCapacitacionUsuario, eliminarExperienciaLaboralUsuario, subirCvBD, verificarPostulacion } from "../services/ciudadanoService.js";
+import { cancelarPostulacionOferta, crearPostulacion, editarCapacitacionUsuario, editarExperienciaLaboralUsuario, eliminarCapacitacionUsuario, eliminarExperienciaLaboralUsuario, getCvUsuario, subirCvBD, verificarPostulacion } from "../services/ciudadanoService.js";
 import  {generarPdfUsuario, obtenerPostulacionesService,buscarOfertasFiltradasService }  from "../services/ciudadanoService.js";
 import fs from 'fs/promises';
+import path from 'path';
+import fsa from 'fs';
+import { fileURLToPath } from 'url';
 
 //================================================================
 // subir perfil
@@ -638,3 +641,31 @@ export const eliminarExperienciaLaboral = async(req,res)=>{
      res.status(500).json({message:'Error al borrar la experiencia laboral'})
   }
 }
+
+export const obtenerCv = async(req,res)=>{
+  try {
+
+    const id_usuario = req.usuario.id;
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+
+
+    const perfil_usuario = await getCvUsuario(id_usuario);
+
+    const rutaRelativa = perfil_usuario.cv_url.startsWith('/')
+        ? perfil_usuario.cv_url.slice(1)
+        : perfil_usuario.cv_url;
+
+    const rutaCv = path.resolve(__dirname, '..', rutaRelativa);
+
+    if (!fsa.existsSync(rutaCv)) {
+        return res.status(404).json({ message: 'CV no encontrado' });
+    }
+
+    res.sendFile(rutaCv);
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({message:'Error al obtener el cv'})
+  }
+};

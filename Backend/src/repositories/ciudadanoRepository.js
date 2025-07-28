@@ -242,3 +242,11 @@ export const editarExperienciaLaboralRepository = async(datosActualizados,experi
 export const eliminarExperienciaLaboralRepository = async(id_experiencia)=>{
   await sql`DELETE FROM experiencias_laborales_ciudadanos WHERE id=${id_experiencia}`;
 };
+
+
+export const getCvUsuarioRepository = async(id_usuario)=>{
+
+  const url = await sql`SELECT cv_url FROM perfiles_ciudadanos WHERE id_ciudadano=${id_usuario}`;
+
+  return url[0];
+};
