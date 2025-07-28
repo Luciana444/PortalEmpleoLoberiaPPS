@@ -1,12 +1,15 @@
 <app-header></app-header>
 <div class="container">
-    <app-employer-profile-sidebar></app-employer-profile-sidebar>
+    <app-employer-profile-sidebar [currentUserId]="currentUserId" [currentUserType]="currentUserType"
+        [itemId]="itemId"></app-employer-profile-sidebar>
     <main>
         <div class="main-header">
             <h2>Ofertas</h2>
             <div class="create-offer">
                 <i class="fa-solid fa-filter"></i>
+                @if (currentUserId===itemId) {
                 <button (click)="navigateToCreateOffer()">Crear Oferta</button>
+                }
             </div>
         </div>
         @for (offer of offers; track offer.id) {

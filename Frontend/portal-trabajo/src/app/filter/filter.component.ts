@@ -26,11 +26,11 @@ export class FilterComponent implements OnInit {
   puesto_requerido?: string = '';
 
   ngOnInit() {
-    this.loadInitialOffers();
+    this.loadOffers();
   }
 
-  loadInitialOffers() {
-    this.offerService.getPublicOffers().subscribe({
+  loadOffers() {
+    this.offerService.getOffers().subscribe({
       next: (offers) => {
         this.workLocations = this.getDistinctWorkLocations(offers);
         this.workModalities = this.getDistinctModalities(offers);

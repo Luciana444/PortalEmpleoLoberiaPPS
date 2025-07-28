@@ -3,7 +3,7 @@
     <div class="container">
         <app-profile [employeeData]=employee></app-profile>
         <app-academic-background [employeeData]=employee></app-academic-background>
-        <app-attatch-cv></app-attatch-cv>
+        <app-attatch-cv [cvUrl]="employee.cv_url"></app-attatch-cv>
     </div>
 </main>
 

@@ -7,6 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JobOffer } from '../../models/jobOffer.model';
 import { EmployerService } from '../services/employer.service';
 import { AuthService } from '../services/auth.service';
+import { EmployerPostulation } from '../../models/employerPostulation.model';
 
 @Component({
   selector: 'app-postulation-list',
@@ -24,15 +25,20 @@ export class PostulationListComponent implements OnInit {
   ) { }
   //TODO: ver que hacer con CV
 
+  // private getPostulationsUrl(id: string): string {
+  //   return `http://localhost:3000/api/empresa/ofertas/${id}/postulaciones`;
+  // }
   private getPostulationsUrl(id: string): string {
     return `http://localhost:3000/api/empresa/ofertas/${id}/postulaciones`;
   }
-  // private urlCV = 'http://localhost:3000/api/empresa/postulaciones/{id}/cv'
 
   currentUserType?: string | null;
   currentUserId?: string | null;
   employees?: Employee[] = [];
+
   itemId?: string;
+
+  postulations: EmployerPostulation[] = [];
   jobOffer: JobOffer | null = null;
 
   ngOnInit(): void {
@@ -43,8 +49,8 @@ export class PostulationListComponent implements OnInit {
     //obtengo la oferta con id igual a url
     this.getCurrentOffer()
 
-    //obtengo los empleados postulados a esa oferta 
-    this.getEmployees()
+    //obtengo postulaciones a esa oferta 
+    this.getPosulations();
   }
 
   navigateToProfile(id?: string) {
@@ -52,8 +58,22 @@ export class PostulationListComponent implements OnInit {
     this.router.navigate(['employee-profile', id]);
   }
 
+  // getCV(cvUrl: string) {
+  //   console.log(cvUrl);
+  // }
+
+  //TODO: hecho con IA, sin testear
   getCV(cvUrl: string) {
-    console.log(cvUrl);
+    const headers = this.getAuthHeaders();
+    this.http.get(cvUrl, { headers, responseType: 'blob' }).subscribe({
+      next: (blob) => {
+        const fileURL = URL.createObjectURL(blob);
+        window.open(fileURL, '_blank');
+      },
+      error: (err) => {
+        console.error('Error downloading CV:', err);
+      }
+    });
   }
 
   private getAuthHeaders(): HttpHeaders {
@@ -80,24 +100,41 @@ export class PostulationListComponent implements OnInit {
     });
   }
 
-  getCurrentOffer() {
+  getPosulations() {
     this.itemId = this.route.snapshot.params['id'] ?? "";
     if (this.itemId) {
-      this.employerservice.getOfferById(this.itemId).subscribe({
+      const headers = this.getAuthHeaders();
+      this.http.get<EmployerPostulation[]>(this.getPostulationsUrl(this.itemId), { headers }).subscribe({
         next: (response) => {
-          if (response.status === 200) {
-            this.jobOffer = response.body[0] as JobOffer;
+          if (response) {
+            this.postulations = response;
+            console.log('Postulaciones obtenida:', this.postulations);
+
           } else {
-            console.log('No se pudo cargar oferta', response);
+            console.log('No se pudo cargar la postulación');
           }
         },
         error: (err) => {
-          console.error('Error al cargar oferta', err);
+          console.error('Error al cargar la postulación', err);
         }
-
       });
     }
+  }
 
+  getCurrentOffer() {
+    this.employerservice.getOfferById(this.itemId).subscribe({
+      next: (response) => {
+        if (response.status === 200) {
+          this.jobOffer = response.body[0] as JobOffer;
+          console.log("Oferta obtenida:", this.jobOffer);
+        } else {
+          console.log('No se pudo cargar oferta', response);
+        }
+      },
+      error: (err) => {
+        console.error('Error al cargar oferta', err);
+      }
+    });
   }
 
 }

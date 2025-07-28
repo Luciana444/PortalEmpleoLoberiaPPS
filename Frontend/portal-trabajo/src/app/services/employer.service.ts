@@ -32,6 +32,17 @@ export class EmployerService {
         });
     }
 
+    getEmployerOffers() {
+        return this.httpClient.get<JobOffer[]>(`${URL}/empresa/traer/ofertas`, {
+            observe: 'response',
+            withCredentials: true,
+            headers: new HttpHeaders()
+                .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+                .append('Content-Type', 'application/json')
+        });
+    }
+
+
     deleteOfferById(id: any) {
         return this.httpClient.delete(`${URL}/empresa/eliminar/oferta/${id}`, {
             observe: 'response',

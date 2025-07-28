@@ -23,14 +23,12 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log("profile alive")
     const userType = this.getUserType();
 
     this.userservice.getDataProfile(userType)?.subscribe({
       next: (response) => {
         if (response) {
           this.user = response;
-          console.log(this.user.imagen_url)
         } else {
           console.log('Profile load failed', response);
         }
@@ -72,7 +70,7 @@ export class ProfileComponent implements OnInit {
     }
     return "";
   }
-   getImageUrl(image_url:string){
+  getImageUrl(image_url: string) {
     return image_url ? `http://localhost:3000${image_url}` : null;
   }
 

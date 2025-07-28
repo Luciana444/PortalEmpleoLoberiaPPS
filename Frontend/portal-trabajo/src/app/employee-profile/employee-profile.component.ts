@@ -26,11 +26,11 @@ export class EmployeeProfileComponent implements OnInit {
 
   getProfile() {
     this.http.get<Employee>(this.url, {
-            observe: 'response',
-            withCredentials: true,
-            headers: new HttpHeaders()
-                .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
-              })      
+      observe: 'response',
+      withCredentials: true,
+      headers: new HttpHeaders()
+        .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+    })
       .subscribe({
         next: (response) => {
           this.employee = response.body ?? {} as Employee;

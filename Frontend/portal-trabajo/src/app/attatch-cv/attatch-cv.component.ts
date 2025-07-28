@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { CvUploaderComponent } from '../cv-uploader/cv-uploader.component';
 import { ToastrService } from 'ngx-toastr';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AuthService } from '../services/auth.service';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -13,9 +14,14 @@ import { AuthService } from '../services/auth.service';
   styleUrl: './attatch-cv.component.scss'
 })
 export class AttatchCvComponent {
-  constructor(private userservice: UserService, private toastr: ToastrService, private authService: AuthService,) {
+  constructor(
+    private http: HttpClient,
+    private userservice: UserService,
+    private toastr: ToastrService,
+    private authService: AuthService,) {
   }
-  hasCV = false;
+  @Input()
+  cvUrl: string = '';
 
   downloadCv() {
     const url = '/ciudadano/generar_cv';
@@ -55,7 +61,38 @@ export class AttatchCvComponent {
       }
     });
   }
-   getUserType(): string | null{
+
+  getUserType(): string | null {
     return this.authService.getCurrentUserType();
   }
+
+  // getCV() {
+  //   // userName: string
+  //   console.log("getCV called");
+  //   console.log(this.cvUrl);
+  //   this.http.get(this.cvUrl, { responseType: 'blob' }).subscribe({
+  //     next: (blob) => {
+  //       const pdfBlob = new Blob([blob], { type: 'application/pdf' });
+  //       const fileURL = URL.createObjectURL(pdfBlob);
+
+  //       // Open PDF in a new tab
+  //       window.open(fileURL, '_blank');
+
+  //       // Optionally, download the file with the user's name
+  //       const a = document.createElement('a');
+  //       a.href = fileURL;
+  //       // a.download = `${userName}.pdf`;
+  //       a.download = `cv.pdf`;
+  //       document.body.appendChild(a);
+  //       a.click();
+  //       document.body.removeChild(a);
+
+  //       setTimeout(() => URL.revokeObjectURL(fileURL), 10000);
+  //     },
+  //     error: (err) => {
+  //       this.toastr.error('No se pudo descargar el CV', 'Error');
+  //       console.error('Error downloading CV:', err);
+  //     }
+  //   });
+  // }
 }

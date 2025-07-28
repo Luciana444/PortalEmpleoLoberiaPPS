@@ -2,52 +2,72 @@ import { Component, LOCALE_ID, OnInit } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { EmployerProfileSidebarComponent } from "../employer-profile-sidebar/employer-profile-sidebar.component";
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EmployerService } from '../services/employer.service';
 import { DatePipe } from '@angular/common'
+import { JobOffer } from '../../models/jobOffer.model';
+import { AuthService } from '../services/auth.service';
+import { MatIconModule } from "@angular/material/icon";
 
 @Component({
   selector: 'app-employer-profile',
-  imports: [HeaderComponent, FooterComponent, EmployerProfileSidebarComponent, DatePipe],
+  imports: [HeaderComponent, FooterComponent, EmployerProfileSidebarComponent, DatePipe, MatIconModule],
   templateUrl: './employer-profile.component.html',
   styleUrl: './employer-profile.component.scss',
   providers: [{ provide: LOCALE_ID, useValue: 'es-AR' }],
 })
+
 export class EmployerProfileComponent implements OnInit {
-  [x: string]: any;
-  itemId: string = "";
-  offers: ActiveOffer[] = [];
   constructor(
     private router: Router,
     private employerService: EmployerService,
-    private route: ActivatedRoute
+    private authService: AuthService,
+    private route: ActivatedRoute,
   ) { }
 
+  offers: JobOffer[] = [];
+  currentUserId: string | null = null;
+  currentUserType: string | null = null;
+  itemId: string = '';
+  isOwnProfile: boolean = false;
 
   ngOnInit(): void {
-    this.employerService.getACtiveOffers().subscribe({
+    this.itemId = this.route.snapshot.paramMap.get('id') || '';
+
+    this.loadEmployerOffers();
+    this.currentUserId = this.authService.getCurrentUserId();
+    this.currentUserType = this.authService.getCurrentUserType();
+
+    //flagueo estar en mi propio perfil
+    if (this.currentUserId === this.itemId || (this.itemId === '' && this.currentUserType === 'empresa'))
+      this.isOwnProfile = true;
+  }
+
+  //cargo las ofertas del empleador
+  loadEmployerOffers(): void {
+    this.employerService.getEmployerOffers().subscribe({
       next: (response) => {
         if (response.status === 200) {
-          response.body?.forEach(element => {
-            const offer: ActiveOffer = {
-              id: element.id,
-              puesto_requerido: element.puesto_requerido,
-              descripcion: element.descripcion,
-              fecha_publicacion: element.fecha_publicacion
-            };
-            this.offers.push(offer);
-          });
-        } else {
-          console.log('No se pudo cargar oferta', response);
+          const allOffers = response.body ?? [];
+
+          //si veo el perfil de un empleador especifico
+          if (this.itemId) {
+            this.offers = allOffers.filter(offer => offer.id_empresa === this.itemId);
+          } else {
+            //si veo mi propio perfil
+            const currentEmployerId = this.getCurrentEmployerId();
+            this.offers = allOffers.filter(offer => offer.id_empresa === currentEmployerId);
+          }
         }
       },
       error: (err) => {
-        // this.toastr.error(err.error.error, 'Ocurrió un error');
-        console.error('Error al cargar oferta', err);
+        console.error('Error al cargar ofertas', err);
       }
-
     });
+  }
 
+  getCurrentEmployerId(): string {
+    return this.authService.getCurrentUserId() || '';
   }
 
   navigateToCreateOffer() {
@@ -57,12 +77,5 @@ export class EmployerProfileComponent implements OnInit {
   navigateToPostulationDetail(id: any) {
     this.router.navigate(['/detail', id])
   }
-}
 
-
-interface ActiveOffer {
-  id: string;
-  puesto_requerido: string;
-  descripcion: string;
-  fecha_publicacion: string;
 }

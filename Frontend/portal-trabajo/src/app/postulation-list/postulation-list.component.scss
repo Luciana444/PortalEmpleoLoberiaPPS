@@ -17,15 +17,19 @@ main{
 }
 
 .profile-pic{
-    background-color: black;
-    width: 60px;
-    height: 60px;
     align-self: center;
-    border-radius: 100px;
 }
+
 .user-container, .list-content{
     display: flex;
     justify-content: space-between;
+}
+.user-container{
+    align-items:center
+}
+
+.user-field{
+    margin: 0;
 }
 
 .list-content{
@@ -38,7 +42,6 @@ main{
 }
 
 button{
-    // margin-right: 5rem;
     width: 8rem;
     padding: 8px 2px;
     height: fit-content;
