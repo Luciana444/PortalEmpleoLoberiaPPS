@@ -32,51 +32,17 @@ export class PostulationListComponent implements OnInit {
     return `http://localhost:3000/api/empresa/ofertas/${id}/postulaciones`;
   }
 
+  private getCVUrl(id: string): string {
+    return `http://localhost:3000/api/empresa/ofertas/${id}/cv`;
+  }
+
   currentUserType?: string | null;
   currentUserId?: string | null;
   employees?: Employee[] = [];
 
   itemId?: string;
 
-  postulations: EmployerPostulation[] = [{
-    id: '1',
-    id_ciudadano: '100',
-    nombre: 'Juan Pérez',
-    localidad: 'Lobería',
-    id_oferta: '200',
-    fecha_postulacion: '2025-07-28',
-    mensaje: 'Estoy interesado en la oferta.',
-    cv_url: '/files/cv-juan-perez.pdf',
-    estado: 'pendiente',
-    leido_por_empresa: false,
-    perfil_url: '/profiles/juan-perez'
-  },
-  {
-    id: '2',
-    id_ciudadano: '101',
-    nombre: 'Ana Gómez',
-    localidad: 'Necochea',
-    id_oferta: '201',
-    fecha_postulacion: '2025-07-27',
-    mensaje: 'Me gustaría postularme para este puesto.',
-    cv_url: '/files/cv-ana-gomez.pdf',
-    estado: 'aceptado',
-    leido_por_empresa: true,
-    perfil_url: '/profiles/ana-gomez'
-  },
-  {
-    id: '3',
-    id_ciudadano: '102',
-    nombre: 'Carlos López',
-    localidad: 'Mar del Plata',
-    id_oferta: '202',
-    fecha_postulacion: '2025-07-26',
-    mensaje: 'Tengo experiencia relevante para la posición.',
-    cv_url: '/files/cv-carlos-lopez.pdf',
-    estado: 'rechazado',
-    leido_por_empresa: true,
-    perfil_url: '/profiles/carlos-lopez'
-  }];
+  postulations: EmployerPostulation[] = [];
   jobOffer: JobOffer | null = null;
 
   ngOnInit(): void {
@@ -88,10 +54,8 @@ export class PostulationListComponent implements OnInit {
     this.getCurrentOffer()
 
     //obtengo postulaciones a esa oferta 
-    // this.getPosulations();
+    this.getPosulations();
 
-    //TODO delete this
-    console.log(this.postulations)
   }
 
   navigateToProfile(id?: string) {
@@ -99,10 +63,16 @@ export class PostulationListComponent implements OnInit {
     this.router.navigate(['employee-profile', id]);
   }
 
-  //TODO: hecho con IA, sin testear
-  getCV(cvUrl: string) {
+  getCVs() {
+
+  }
+
+  getCV(postulationId: string) {
+    console.log(postulationId);
+
     const headers = this.getAuthHeaders();
-    this.http.get(cvUrl, { headers, responseType: 'blob' }).subscribe({
+
+    this.http.get(this.getCVUrl(postulationId), { headers, responseType: 'blob' }).subscribe({
       next: (blob) => {
         const fileURL = URL.createObjectURL(blob);
         window.open(fileURL, '_blank');
@@ -120,22 +90,22 @@ export class PostulationListComponent implements OnInit {
     });
   }
 
-  getEmployees() {
-    if (!this.itemId) return; // Guard clause
+  // getEmployees() {
+  //   if (!this.itemId) return; // Guard clause
 
-    const headers = this.getAuthHeaders();
-    const url = this.getPostulationsUrl(this.itemId);
+  //   const headers = this.getAuthHeaders();
+  //   const url = this.getPostulationsUrl(this.itemId);
 
-    this.http.get<Employee[]>(url, { headers }).subscribe({
-      next: (data) => {
-        this.employees = data || []; // Ensure array
-      },
-      error: (err) => {
-        console.error('Error fetching employees:', err);
-        this.employees = []; // Fallback
-      }
-    });
-  }
+  //   this.http.get<Employee[]>(url, { headers }).subscribe({
+  //     next: (data) => {
+  //       this.employees = data || []; // Ensure array
+  //     },
+  //     error: (err) => {
+  //       console.error('Error fetching employees:', err);
+  //       this.employees = []; // Fallback
+  //     }
+  //   });
+  // }
 
   getPosulations() {
     this.itemId = this.route.snapshot.params['id'] ?? "";

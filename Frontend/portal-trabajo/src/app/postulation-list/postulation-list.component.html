@@ -1,7 +1,6 @@
 <app-header></app-header>
 <main>
-    <!-- @if (jobOffer?.id_empresa === currentUserId && jobOffer?.id) { -->
-    @if (true) {
+    @if (jobOffer?.id_empresa === currentUserId && jobOffer?.id) {
     <div class="list-header">
         <div class="text-wrapper">
             <h1>Bachero{{jobOffer?.puesto_requerido}}</h1>
@@ -25,7 +24,7 @@
 
         <div class="button-wrapper">
             <button (click)="navigateToProfile(postulation.id_ciudadano)">Ver Perfil</button>
-            <button (click)="getCV(postulation.cv_url)">Ver CV</button>
+            <button (click)="getCV(postulation.id)">Ver CV</button>
         </div>
     </div>
     }
