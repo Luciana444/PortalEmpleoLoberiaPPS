@@ -101,6 +101,10 @@ export class LandingComponent implements OnInit {
   toggleFilter() {
     this.showFilter = !this.showFilter;
   }
+
+   getImageUrl(image_url:string){
+    return image_url ? `http://localhost:3000${image_url}` : null;
+  }
 }
 
 

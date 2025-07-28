@@ -18,7 +18,7 @@
         <div class="offer-card">
             <div class="card-header">
                 <div class="profile-pic">
-                    <img [src]="offer.logo || 'sample_pfp.png'" alt="Profile picture">
+                    <img [src]="getImageUrl(offer.logo) || 'sample_pfp.png'" alt="Profile picture">
                 </div>
                 <div>
                     <h4 class="card-user">{{offer.nombre_empresa}}</h4>
