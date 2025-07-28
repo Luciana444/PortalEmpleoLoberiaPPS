@@ -51,4 +51,9 @@ export class EmployerProfileSidebarComponent implements OnInit {
       });
   }
 
+   getImageUrl(logo: string) {
+    return logo ? `http://localhost:3000${logo}` : null;
+  }
+
+
 }

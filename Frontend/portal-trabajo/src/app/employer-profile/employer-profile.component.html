@@ -12,6 +12,7 @@
                 }
             </div>
         </div>
+        @if (offers.length) {
         @for (offer of offers; track offer.id) {
         <div class="postulation">
             <div class="postulation-header">
@@ -23,6 +24,9 @@
                 <button (click)="navigateToPostulationDetail(offer.id)">Ver Oferta</button>
             </div>
         </div>
+        }
+        }@else {
+        <h3>No hay ofertas cargadas</h3>
         }
     </main>
 
