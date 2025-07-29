@@ -61,7 +61,6 @@ export class PostulationListComponent implements OnInit {
   }
 
   navigateToProfile(id?: string) {
-    if (!id || !this.employees?.some(e => e.id === id)) return;
     this.router.navigate(['employee-profile', id]);
   }
 
