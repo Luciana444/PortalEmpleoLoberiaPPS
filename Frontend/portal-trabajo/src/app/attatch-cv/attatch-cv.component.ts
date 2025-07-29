@@ -68,10 +68,9 @@ export class AttatchCvComponent {
     return this.authService.getCurrentUserType();
   }
 
-  // getCV() {
-  //http://localhost:3000/api/ciudadano/get_cv
   getCV(name: string) {
-    let url = "http://localhost:3000/api/ciudadano/get_cv";
+    const url = "http://localhost:3000/api/ciudadano/get_cv";
+
     const headers = this.getAuthHeaders();
     this.http.get(url, { headers, responseType: 'blob' }).subscribe({
       next: (blob) => {

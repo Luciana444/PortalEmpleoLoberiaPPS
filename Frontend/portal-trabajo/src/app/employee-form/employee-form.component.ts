@@ -29,7 +29,6 @@ export class EmployeeFormComponent implements OnInit {
   constructor(private router: Router, private fb: FormBuilder, private userservice: UserService, private toastr: ToastrService) {
     this.registerForm = this.fb.group({
       nombre: [null, Validators.required],
-      //surname:[null,Validators.required],
       tipo_usuario: [null, Validators.required],
       email: [null, Validators.compose([Validators.required, Validators.email])],
       contrasena: [null, Validators.compose([Validators.required, Validators.minLength(8)])]

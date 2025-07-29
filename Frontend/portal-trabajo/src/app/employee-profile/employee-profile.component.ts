@@ -16,13 +16,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class EmployeeProfileComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
+  url = 'http://localhost:3000/api/ciudadano/traer/perfil';
+  employee: Employee = {} as Employee;
+
   ngOnInit() {
     this.getProfile();
   }
-
-  url = 'http://localhost:3000/api/ciudadano/traer/perfil';
-
-  employee: Employee = {} as Employee;
 
   getProfile() {
     this.http.get<Employee>(this.url, {
