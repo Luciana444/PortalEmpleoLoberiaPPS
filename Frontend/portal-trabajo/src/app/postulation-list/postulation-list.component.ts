@@ -29,7 +29,7 @@ export class PostulationListComponent implements OnInit {
   }
 
   private getCVUrl(id: string): string {
-    return `http://localhost:3000/api/empresa/ofertas/${id}/cv`;
+    return `http://localhost:3000/api/empresa/postulaciones/${id}/cv`;
   }
 
   currentUserType?: string | null;
@@ -62,11 +62,8 @@ export class PostulationListComponent implements OnInit {
   }
 
   getCV(postulationId: string) {
-    console.log(postulationId);
-
-    const headers = this.getAuthHeaders();
-
-    this.http.get(this.getCVUrl(postulationId), { headers, responseType: 'blob' }).subscribe({
+    console.log(postulationId);  
+    this.http.get(this.getCVUrl(postulationId), { responseType: 'blob' }).subscribe({
       next: (blob) => {
         const fileURL = URL.createObjectURL(blob);
         window.open(fileURL, '_blank');
