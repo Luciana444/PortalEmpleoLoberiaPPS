@@ -7,7 +7,6 @@ export function authInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn):
   try {
     console.log(req.url);
     if (intercept(req)) {
-      console.log('request intercepted');
       const modifiedRequest = req.clone({
         setHeaders: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -18,7 +17,7 @@ export function authInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn):
       // Pass the modified request to the next handler in the chain
       return next(modifiedRequest);
     }
-    console.log('request not intercepted');
+    
     return next(req);
   } catch (e) {
     console.log('Error en http auth intercept', e);

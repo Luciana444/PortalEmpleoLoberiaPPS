@@ -158,7 +158,7 @@ export class UserService {
         map(res => {
           const p: Profile = {
             nombre: res.body?.nombre_empresa,
-            imagen_url: res.body?.imagen_url
+            imagen_url: res.body?.logo
           };
           return p
         })

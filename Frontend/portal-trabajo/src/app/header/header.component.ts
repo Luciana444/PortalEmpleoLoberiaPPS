@@ -14,6 +14,7 @@ import { Notification } from '../../models/notification.model';
 import { MatDividerModule } from '@angular/material/divider';
 import { DatePipe } from '@angular/common'
 import { MatButtonModule } from '@angular/material/button';
+import { Employer } from '../../models/employer.model';
 
 @Component({
   selector: 'app-header',
@@ -31,6 +32,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class HeaderComponent implements OnInit {
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger | undefined;
   user: Profile = {} as Profile;
+  employer: Employer = {} as Employer;
   itemId: string = '';
   notification: Notification = {} as Notification;
   hidden = false;
@@ -76,7 +78,9 @@ export class HeaderComponent implements OnInit {
     //     console.error('Error al cargar el perfil', err);
     //   }
     // });  
-    this.getNotifications();
+    if (this.getUserType() === "empresa") {
+      this.getNotifications();
+    }
   }
 
   hasNotifications(): boolean {
@@ -178,10 +182,9 @@ export class HeaderComponent implements OnInit {
     this.hidden = true;
   }
 
-  getImageUrl(image_url:string){
+  getImageUrl(image_url: string) {
     return image_url ? `http://localhost:3000${image_url}` : null;
   }
-
 }
 
 

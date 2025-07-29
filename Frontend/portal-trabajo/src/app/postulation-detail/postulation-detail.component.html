@@ -17,7 +17,7 @@
 
             <div class="profile-header">
                 <div class="profile-pic">
-                    <img [src]="offer.logo || 'sample_pfp.png'" alt="Profile picture">
+                    <img [src]="getImageUrl(offer.logo)  || 'sample_pfp.png'" alt="Profile picture">
                 </div>
                 <div class="profile-info">
                     <h4>{{offer.nombre_empresa}}</h4>

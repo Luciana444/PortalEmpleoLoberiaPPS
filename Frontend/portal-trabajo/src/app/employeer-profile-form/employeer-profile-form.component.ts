@@ -96,6 +96,7 @@ export class EmployeerProfileFormComponent implements OnInit {
 
     editProfile() {
         if (this.employeerProfile.invalid) return;
+        this.employeerProfile.value.logo = null;
         this.userservice.editProfileEmployeer(JSON.stringify(this.employeerProfile.value)).subscribe({
             next: (response) => {
                 if (response.status === 200) {

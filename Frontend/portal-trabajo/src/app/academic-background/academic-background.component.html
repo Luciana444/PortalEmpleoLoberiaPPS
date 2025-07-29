@@ -65,12 +65,12 @@
             <div>
                 @for (experiencia of employeeData?.experiencias_laborales; track $id) {
                 <li>
-                    <p>Nombre de empresa: {{experiencia.nombre_empresa}}</p>
                     <div class="dates">
-                        <p>Desde: {{convertToLocalDate(experiencia.desde)}}</p>
-                        <p>Hasta: {{convertToLocalDate(experiencia.hasta)}}</p>
+                        <p><strong> Empresa:</strong> {{experiencia.nombre_empresa}}</p>
+                        <p><strong> De: </strong>{{convertToLocalDate(experiencia.desde)}}</p>
+                        <p><strong> A:</strong> {{convertToLocalDate(experiencia.hasta)}}</p>
                     </div>
-                    <p>{{experiencia.comentario}}</p>
+                    <p class="descripcion-margin"><strong> Descripción:</strong> {{experiencia.comentario}}</p>
                 </li>
                 <mat-divider></mat-divider>
                 }
