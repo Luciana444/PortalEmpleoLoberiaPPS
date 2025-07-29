@@ -57,7 +57,26 @@ export class PostulationDetailComponent implements OnInit {
       this.employerservice.getOfferById(this.itemId).subscribe({
         next: (response) => {
           if (response.status === 200) { // Populate form with API data
-            this.offer = response.body[0] as JobOffer;
+            let o = response.body[0];
+            let e = response.body[1];
+            let jo: JobOffer = {
+              puesto_requerido: o.puesto_requerido,
+              nombre_empresa: e.nombre_empresa,
+              lugar_trabajo: o.lugar_trabajo,
+              id: '',
+              id_empresa: o.id_empresa,
+              localidad: e.localidad,
+              descripcion: o.descripcion,
+              modalidad: o.modalidad,
+              tipo_contrato: o.tipo_contrato,
+              fecha_publicacion: o.fecha_publicacion,
+              fecha_cierre: '',
+              experiencia_requerida: o.experiencia_requerida,
+              otros_requisitos: o.otros_requisitos,
+              nivel_educativo_requerido: o.nivel_educativo_requerido,
+              logo: e.logo
+            }
+            this.offer = jo;
           } else {
             console.log('No se pudo cargar oferta', response);
           }
@@ -236,5 +255,9 @@ export class PostulationDetailComponent implements OnInit {
   receiveData(file: File, msg: string) {
     this.cv = file;
     this.msg = msg;
+  }
+
+  getImageUrl(image_url: string) {
+    return image_url ? `http://localhost:3000${image_url}` : null;
   }
 }

@@ -101,10 +101,10 @@
         <li *ngFor="let exp of experiencias">
             <div class="align-elements">
                 <div class="align-elements">
-                    <p><strong>Empresa:</strong> {{ exp.nombre_empresa }}</p>
-                    <p><strong> Desde:</strong> {{ exp.desde | date }}</p>
-                    <p><strong> Hasta:</strong> {{ exp.hasta | date }}</p>
-                    <p><strong> Comentario:</strong> {{ exp.comentario }}</p>
+                    <p><strong> Empresa:   </strong> {{ exp.nombre_empresa }}</p>
+                    <p><strong> Desde:   </strong> {{ exp.desde | date }}</p>
+                    <p><strong> Hasta:   </strong> {{ exp.hasta | date }}</p>
+                    <p><strong> Comentario:   </strong> {{ exp.comentario }}</p>
                 </div>
                 <div class="align-elements">
                     <button class="edit-exp-btn" (click)="openFormToEditExperience(exp.id, exp.nombre_empresa, exp.desde, exp.hasta, exp.comentario)"> <i

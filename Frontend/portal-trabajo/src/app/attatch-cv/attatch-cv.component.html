@@ -3,7 +3,7 @@
     <h4>CV Adjunto</h4>
 
     <img src="/word.png" alt="">
-
+    <app-cv-uploader (cvUploaded)="receiveCv($event)"></app-cv-uploader>
     <button matTooltip="Descargá tu CV adjunto" (click)="getCV(name)">
         Descargar CV <i class="fa-solid fa-download"></i>
     </button>
