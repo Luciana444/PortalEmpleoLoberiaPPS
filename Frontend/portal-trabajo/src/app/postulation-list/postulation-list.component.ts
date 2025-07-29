@@ -24,9 +24,6 @@ export class PostulationListComponent implements OnInit {
     private employerservice: EmployerService,
   ) { }
 
-  // private getPostulationsUrl(id: string): string {
-  //   return `http://localhost:3000/api/empresa/ofertas/${id}/postulaciones`;
-  // }
   private getPostulationsUrl(id: string): string {
     return `http://localhost:3000/api/empresa/ofertas/${id}/postulaciones`;
   }
@@ -53,19 +50,15 @@ export class PostulationListComponent implements OnInit {
     this.itemId = this.route.snapshot.params['id'] ?? "";
 
     //obtengo la oferta con id igual a url
-    this.getCurrentOffer()
+    this.getCurrentOffer(this.itemId);
 
     //obtengo postulaciones a esa oferta 
-    this.getPosulations();
+    this.getPosulations(this.itemId);
 
   }
 
   navigateToProfile(id?: string) {
     this.router.navigate(['employee-profile', id]);
-  }
-
-  getCVs() {
-
   }
 
   getCV(postulationId: string) {
@@ -91,27 +84,10 @@ export class PostulationListComponent implements OnInit {
     });
   }
 
-  // getEmployees() {
-  //   if (!this.itemId) return; // Guard clause
-
-  //   const headers = this.getAuthHeaders();
-  //   const url = this.getPostulationsUrl(this.itemId);
-
-  //   this.http.get<Employee[]>(url, { headers }).subscribe({
-  //     next: (data) => {
-  //       this.employees = data || []; // Ensure array
-  //     },
-  //     error: (err) => {
-  //       console.error('Error fetching employees:', err);
-  //       this.employees = []; // Fallback
-  //     }
-  //   });
-  // }
-
-  getPosulations() {
-    if (this.itemId) {
+  getPosulations(itemId: any) {
+    if (itemId) {
       const headers = this.getAuthHeaders();
-      this.http.get<EmployerPostulation[]>(this.getPostulationsUrl(this.itemId), { headers }).subscribe({
+      this.http.get<EmployerPostulation[]>(this.getPostulationsUrl(itemId), { headers }).subscribe({
         next: (response) => {
           if (response) {
             this.postulations = response;
@@ -128,9 +104,8 @@ export class PostulationListComponent implements OnInit {
     }
   }
 
-  getCurrentOffer() {
-    console.log("error aca")
-    this.employerservice.getOfferById(this.itemId).subscribe({
+  getCurrentOffer(itemId: any) {
+    this.employerservice.getOfferById(itemId).subscribe({
       next: (response) => {
         if (response.status === 200) {
           this.jobOffer = response.body[0] as JobOffer;
@@ -145,4 +120,7 @@ export class PostulationListComponent implements OnInit {
     });
   }
 
+  getImageUrl(image_url: string) {
+    return image_url ? `http://localhost:3000${image_url}` : null;
+  }
 }

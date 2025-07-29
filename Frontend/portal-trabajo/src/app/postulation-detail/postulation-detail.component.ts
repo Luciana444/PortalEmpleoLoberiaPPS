@@ -39,8 +39,10 @@ export class PostulationDetailComponent implements OnInit {
   itemId: string = "";
   offer = {} as JobOffer;
   postulado: boolean = false;
+  previousUrl: string = '/'; // Default route if not set
 
   ngOnInit(): void {
+    this.previousUrl = history.state.from;
 
     let isPostulado = this.route.snapshot.params['postulado'] ?? null; // Get Postulado from route   
     this.postulado = !!isPostulado;
@@ -203,6 +205,10 @@ export class PostulationDetailComponent implements OnInit {
       }
     });
 
+  }
+
+  navigateBack() {
+    this.router.navigateByUrl(this.previousUrl);
   }
 
   navigateToLanding() {
