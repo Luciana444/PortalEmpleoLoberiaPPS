@@ -130,6 +130,7 @@ export class PostulationListComponent implements OnInit {
   }
 
   getCurrentOffer() {
+    console.log("error aca")
     this.employerservice.getOfferById(this.itemId).subscribe({
       next: (response) => {
         if (response.status === 200) {

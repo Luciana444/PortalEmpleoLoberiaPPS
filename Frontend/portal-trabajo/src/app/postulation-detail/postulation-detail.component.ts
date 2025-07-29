@@ -46,7 +46,6 @@ export class PostulationDetailComponent implements OnInit {
     this.postulado = !!isPostulado;
 
     this.getCurrentOffer();
-    // this.OfferService.getCurrentOffer()
     this.currentUserType = this.authService.getCurrentUserType();
     this.currentUserId = this.authService.getCurrentUserId();
   }
@@ -63,14 +62,14 @@ export class PostulationDetailComponent implements OnInit {
               puesto_requerido: o.puesto_requerido,
               nombre_empresa: e.nombre_empresa,
               lugar_trabajo: o.lugar_trabajo,
-              id: '',
+              id: o.id,
               id_empresa: o.id_empresa,
               localidad: e.localidad,
               descripcion: o.descripcion,
               modalidad: o.modalidad,
               tipo_contrato: o.tipo_contrato,
               fecha_publicacion: o.fecha_publicacion,
-              fecha_cierre: '',
+              fecha_cierre: o.fecha_cierre,
               experiencia_requerida: o.experiencia_requerida,
               otros_requisitos: o.otros_requisitos,
               nivel_educativo_requerido: o.nivel_educativo_requerido,

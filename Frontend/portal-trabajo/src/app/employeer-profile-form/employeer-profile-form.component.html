@@ -27,7 +27,7 @@
       <!-- CUIT -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>CUIT</mat-label>
-        <input matInput formControlName="cuit" required>
+        <input placeholder="Solo números, sin guiones." matInput formControlName="cuit" required>
         <mat-error *ngIf="employeerProfile.get('cuit')?.hasError('required')">
           Este campo es obligatorio
         </mat-error>
@@ -107,7 +107,7 @@
       <!-- Teléfono -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Teléfono</mat-label>
-        <input matInput formControlName="telefono">
+        <input placeholder="Solo números, sin guiones." matInput formControlName="telefono">
       </mat-form-field>
     </div>
     <div class="size-form email-input">
@@ -122,10 +122,10 @@
           Ingresá un email válido
         </mat-error>
       </mat-form-field>
-        <!-- Logo (URL) -->
-     <app-file-uploader></app-file-uploader>
+      <!-- Logo (URL) -->
+      <app-file-uploader></app-file-uploader>
     </div>
-  
+
     <div>
       <button type="button" class="delete-account-btn" (click)="openDialogDeleteAccount()"
         matTooltip="En el próximo paso vas a confirmar la eliminación">

@@ -1,8 +1,13 @@
 <app-header></app-header>
 <div class="container">
+    <!-- TODO: bug -->
+    <!-- cuando entro como empresa y hago click en una oferta,  -->
+    <!-- el retornar siempre es al perfil. -->
+    <!-- entrar del perfil deberia volver al perfil -->
+    <!-- entrar de la landing deberia volver a la landing -->
     @if(currentUserType === "empresa"){
     <div class="fallback">
-        <i class="fa-solid fa-arrow-left" (click)="navigateToLanding()"></i> <a (click)="navigateToProfile()"> Volver a
+        <i class="fa-solid fa-arrow-left" (click)="navigateToProfile()"></i> <a (click)="navigateToProfile()"> Volver a
             Perfil</a>
     </div>
     }@else{
