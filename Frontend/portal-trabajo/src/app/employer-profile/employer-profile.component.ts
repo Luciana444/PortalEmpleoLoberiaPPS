@@ -32,9 +32,13 @@ export class EmployerProfileComponent implements OnInit {
   isOwnProfile: boolean = false;
 
   ngOnInit(): void {
+    //obtengo id de empleador de la url
     this.itemId = this.route.snapshot.paramMap.get('id') || '';
 
-    this.loadEmployerOffers();
+    //cargo las ofertas de ese empleador
+    this.loadEmployerOffers(this.itemId);
+    
+    //obtengo id de usuario y tipo de usuario
     this.currentUserId = this.authService.getCurrentUserId();
     this.currentUserType = this.authService.getCurrentUserType();
 
@@ -43,23 +47,22 @@ export class EmployerProfileComponent implements OnInit {
       this.isOwnProfile = true;
   }
 
-  //cargo las ofertas del empleador
-  loadEmployerOffers(): void {
+  loadEmployerOffers(itemId: any): void {
     this.employerService.getEmployerOffers().subscribe({
       next: (response) => {
         if (response.status === 200) {
           const allOffers = response.body ?? [];
 
-          //si veo el perfil de un empleador especifico
-          if (this.itemId) {
-            this.offers = allOffers
-            // .filter(offer => offe  r.id_empresa === this.itemId);
-          } else {
-            //si veo mi propio perfil
-            // const currentEmployerId = this.getCurrentEmployerId();
-            this.offers = allOffers
-            // .filter(offer => offer.id_empresa === currentEmployerId);
-          }
+          this.offers = allOffers
+          // if (itemId) {
+          //   this.offers = allOffers
+          //   // .filter(offer => offe  r.id_empresa === this.itemId);
+          // } else {
+          //   //si veo mi propio perfil
+          //   // const currentEmployerId = this.getCurrentEmployerId();
+          //   this.offers = allOffers
+          //   // .filter(offer => offer.id_empresa === currentEmployerId);
+          // }
         }
       },
       error: (err) => {
@@ -77,7 +80,6 @@ export class EmployerProfileComponent implements OnInit {
   }
 
   navigateToPostulationDetail(id: any) {
-    this.router.navigate(['/detail', id])
+    this.router.navigate(['/detail', id], { state: { from: this.router.url } });
   }
-
 }
