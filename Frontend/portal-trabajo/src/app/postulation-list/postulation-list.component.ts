@@ -130,7 +130,6 @@ export class PostulationListComponent implements OnInit {
   }
 
   getCurrentOffer() {
-    console.log("error aca")
     this.employerservice.getOfferById(this.itemId).subscribe({
       next: (response) => {
         if (response.status === 200) {
@@ -146,4 +145,7 @@ export class PostulationListComponent implements OnInit {
     });
   }
 
+  getImageUrl(image_url: string) {
+    return image_url ? `http://localhost:3000${image_url}` : null;
+  }
 }
