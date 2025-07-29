@@ -189,6 +189,18 @@ export const obtenerDetallesOferta = async(req,res)=>{
 };
 
 
+//====================================================
+/**
+ * Controlador para eliminar la cuenta del usuario autenticado.
+ *
+ * Verifica que el usuario exista y luego elimina su cuenta.
+ *
+ * @param {Object} req - Objeto de solicitud (Express), debe incluir `req.usuario` con `id` y `email`.
+ * @param {Object} res - Objeto de respuesta (Express).
+ * @returns {void} Devuelve una respuesta JSON con mensaje de éxito o error.
+ */
+
+
 export const eliminarCuenta = async(req,res)=>{
   try {
       const id_usuario = req.usuario.id;

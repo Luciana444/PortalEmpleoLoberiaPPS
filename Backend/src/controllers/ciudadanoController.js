@@ -540,6 +540,19 @@ try {
 };
 
 
+//==============================================
+
+/**
+ * Controlador para editar una capacitación del ciudadano autenticado.
+ *
+ * Verifica que la capacitación exista para el usuario actual y actualiza sus datos.
+ *
+ * @param {Object} req - Objeto de solicitud (Express), debe incluir `req.usuario` con el ID del usuario y los datos en el body.
+ * @param {Object} res - Objeto de respuesta (Express).
+ * @returns {void} Devuelve una respuesta JSON con mensaje de éxito o error.
+ */
+
+
 export const editarCapacitacion = async(req,res)=>{
   try {
       const id_capacitacion = req.params.id;
@@ -565,6 +578,19 @@ export const editarCapacitacion = async(req,res)=>{
   }
 };
 
+
+//==========================================
+/**
+ * Controlador para eliminar una capacitación del ciudadano autenticado.
+ *
+ * Verifica que la capacitación exista para el usuario actual y la elimina.
+ *
+ * @param {Object} req - Objeto de solicitud (Express), debe incluir `req.usuario` con el ID del usuario.
+ * @param {Object} res - Objeto de respuesta (Express).
+ * @returns {void} Devuelve una respuesta JSON con mensaje de éxito o error.
+ */
+
+
 export const eliminarCapacitacion = async(req,res)=>{
   try {
       const id_capacitacion = req.params.id;
@@ -589,6 +615,20 @@ export const eliminarCapacitacion = async(req,res)=>{
     res.status(500).json({message:'Error al eliminar la capacitacion'})
   }
 };
+
+
+//====================================================
+
+/**
+ * Controlador para editar una experiencia laboral del ciudadano autenticado.
+ *
+ * Verifica que la experiencia exista para el usuario actual y actualiza sus datos.
+ *
+ * @param {Object} req - Objeto de solicitud (Express), con `req.usuario.id` y datos en el body.
+ * @param {Object} res - Objeto de respuesta (Express).
+ * @returns {void} Devuelve una respuesta JSON con mensaje de éxito o error.
+ */
+
 
 export const editarExperienciaLaboral = async(req,res)=>{
     try {
@@ -616,6 +656,19 @@ export const editarExperienciaLaboral = async(req,res)=>{
     }
 }
 
+//====================================
+/**
+ * Controlador para eliminar una experiencia laboral del ciudadano autenticado.
+ *
+ * Verifica que la experiencia exista para el usuario actual y la elimina.
+ *
+ * @param {Object} req - Objeto de solicitud (Express), con `req.usuario.id` y `req.params.id`.
+ * @param {Object} res - Objeto de respuesta (Express).
+ * @returns {void} Devuelve una respuesta JSON con mensaje de éxito o error.
+ */
+
+
+
 export const eliminarExperienciaLaboral = async(req,res)=>{
   try {
       const id_experiencia = req.params.id;
@@ -641,6 +694,19 @@ export const eliminarExperienciaLaboral = async(req,res)=>{
      res.status(500).json({message:'Error al borrar la experiencia laboral'})
   }
 }
+
+//==================================
+/**
+ * Controlador para obtener el archivo CV en PDF del ciudadano autenticado.
+ *
+ * Verifica la existencia del archivo y lo envía como respuesta. Si no se encuentra, devuelve un error.
+ *
+ * @param {Object} req - Objeto de solicitud (Express), con `req.usuario.id`.
+ * @param {Object} res - Objeto de respuesta (Express).
+ * @returns {void} Devuelve el archivo PDF o un mensaje de error.
+ */
+
+
 
 export const obtenerCv = async(req,res)=>{
   try {
@@ -669,3 +735,5 @@ export const obtenerCv = async(req,res)=>{
     res.status(500).json({message:'Error al obtener el cv'})
   }
 };
+
+

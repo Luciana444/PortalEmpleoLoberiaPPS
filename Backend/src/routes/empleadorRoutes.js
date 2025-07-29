@@ -686,7 +686,7 @@ empleadorRoutes.get('/ofertas/:id/postulaciones',authMiddleware, onlyEmpresa, ob
 
 empleadorRoutes.get('/postulaciones/:id/cv',authMiddleware, onlyEmpresa, obtenerCvPorPostulacion);
 
-//================================================00
+//================================================
 //end point para obtener el perfil del postulante
 /**
  * @swagger

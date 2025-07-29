@@ -150,6 +150,52 @@ usuarioRoutes.post('/foto/perfil',authMiddleware, upload.single('foto'), subirFo
 usuarioRoutes.get('/ofertas/:id',obtenerDetallesOferta);
 
 
+//==================================================
+//================================================
+// End point eliminar cuenta de usuario autenticado
+/**
+ * @swagger
+ * /usuario/eliminar_cuenta:
+ *   delete:
+ *     summary: Eliminar la cuenta del usuario autenticado
+ *     tags:
+ *       - Usuario
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Cuenta eliminada exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Cuenta borrada exitosamente
+ *       404:
+ *         description: Usuario no encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Este usuario no existe
+ *       500:
+ *         description: Error al borrar la cuenta
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Error al borrar la cuenta
+ */
+
+
 
 usuarioRoutes.delete('/eliminar_cuenta',authMiddleware,eliminarCuenta);
 
