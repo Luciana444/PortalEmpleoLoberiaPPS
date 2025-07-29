@@ -531,13 +531,363 @@ ciudadanoRoutes.post('/ofertas/:id/postular',authMiddleware,onlyCiudadano,subirC
 
 ciudadanoRoutes.delete('/ofertas/:id/cancelar_postulacion',authMiddleware,onlyCiudadano,cancelarPostulacion);
 
+
+//=====================================================
+
+//================================================
+// End point editar una capacitación del ciudadano
+/**
+ * @swagger
+ * /ciudadano/capacitaciones/{id}:
+ *   put:
+ *     summary: Editar una capacitación del ciudadano autenticado
+ *     tags:
+ *       - Ciudadano - Capacitaciones
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID de la capacitación a editar
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               nombre:
+ *                 type: string
+ *                 example: Curso de React
+ *               institucion:
+ *                 type: string
+ *                 example: Coderhouse
+ *               fecha_inicio:
+ *                 type: string
+ *                 format: date
+ *                 example: 2023-03-01
+ *               fecha_fin:
+ *                 type: string
+ *                 format: date
+ *                 example: 2023-06-01
+ *     responses:
+ *       200:
+ *         description: Capacitación editada correctamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Capacitacion editada correctamente
+ *       401:
+ *         description: Falta el ID de la capacitación
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Falta el id de la capacitacion
+ *       404:
+ *         description: Capacitación no encontrada
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Esa capacitacion no existe
+ *       500:
+ *         description: Error al editar la capacitación
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Error al editar la capacitacion
+ */
+
+
+
 ciudadanoRoutes.put('/capacitaciones/:id',authMiddleware,onlyCiudadano, editarCapacitacion);
+
+
+//==================================================
+
+//================================================
+// End point eliminar una capacitación del ciudadano
+/**
+ * @swagger
+ * /ciudadano/capacitaciones/{id}:
+ *   delete:
+ *     summary: Eliminar una capacitación del ciudadano autenticado
+ *     tags:
+ *       - Ciudadano - Capacitaciones
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID de la capacitación a eliminar
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Capacitación eliminada correctamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Capacitacion eliminada
+ *       401:
+ *         description: Falta el ID de la capacitación
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Falta el id de la capacitacion
+ *       404:
+ *         description: Capacitación no encontrada
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Esa capacitacion no existe
+ *       500:
+ *         description: Error al eliminar la capacitación
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Error al eliminar la capacitacion
+ */
+
+
+
 
 ciudadanoRoutes.delete('/capacitaciones/:id',authMiddleware,onlyCiudadano, eliminarCapacitacion);
 
+//==============================================
+//================================================
+// End point editar experiencia laboral del ciudadano
+/**
+ * @swagger
+ * /ciudadano/experiencia/{id}:
+ *   patch:
+ *     summary: Editar una experiencia laboral del ciudadano autenticado
+ *     tags:
+ *       - Ciudadano - Experiencia Laboral
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID de la experiencia laboral a editar
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               puesto:
+ *                 type: string
+ *                 example: Desarrollador Frontend
+ *               empresa:
+ *                 type: string
+ *                 example: Globant
+ *               fecha_inicio:
+ *                 type: string
+ *                 format: date
+ *                 example: 2022-01-01
+ *               fecha_fin:
+ *                 type: string
+ *                 format: date
+ *                 example: 2023-06-01
+ *               descripcion:
+ *                 type: string
+ *                 example: Desarrollo de aplicaciones en Angular
+ *     responses:
+ *       200:
+ *         description: Experiencia laboral actualizada correctamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Se actualizo la experiencia laboral correctamente
+ *       401:
+ *         description: Falta el ID de la experiencia
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Falta el id de la experiencia
+ *       404:
+ *         description: Experiencia laboral no encontrada
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Esta experiencia no existe
+ *       500:
+ *         description: Error al editar la experiencia laboral
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Error al editar datos de la experiencia laboral
+ */
+
+
+
 ciudadanoRoutes.patch('/experiencia/:id',authMiddleware,onlyCiudadano, editarExperienciaLaboral);
 
-ciudadanoRoutes.delete('/experiencia/:id',authMiddleware,onlyCiudadano, eliminarExperienciaLaboral);
+//=====================================================
+
+//================================================
+// End point eliminar una experiencia laboral del ciudadano
+/**
+ * @swagger
+ * /ciudadano/experiencia/{id}:
+ *   delete:
+ *     summary: Eliminar una experiencia laboral del ciudadano autenticado
+ *     tags:
+ *       - Ciudadano - Experiencia Laboral
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID de la experiencia laboral a eliminar
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Experiencia laboral eliminada correctamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Experiencia laboral eliminada
+ *       401:
+ *         description: Falta el ID de la experiencia
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Falta el id de la experiencia
+ *       404:
+ *         description: Experiencia laboral no encontrada
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Esta experiencia no existe
+ *       500:
+ *         description: Error al eliminar la experiencia laboral
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Error al borrar la experiencia laboral
+ */
+
+ciudadanoRoutes.delete('/experiencia/:id', authMiddleware, onlyCiudadano, eliminarExperienciaLaboral);
+
+//================================
+
+//================================================
+// End point obtener el archivo CV del ciudadano
+/**
+ * @swagger
+ * /ciudadano/get_cv:
+ *   get:
+ *     summary: Obtener el archivo PDF del CV del ciudadano autenticado
+ *     tags:
+ *       - Ciudadano - CV
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: CV encontrado y enviado correctamente
+ *         content:
+ *           application/pdf:
+ *             schema:
+ *               type: string
+ *               format: binary
+ *       404:
+ *         description: CV no encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: CV no encontrado
+ *       500:
+ *         description: Error al obtener el CV
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Error al obtener el cv
+ */
+
+
 
 ciudadanoRoutes.get('/get_cv',authMiddleware,onlyCiudadano,obtenerCv);
 
