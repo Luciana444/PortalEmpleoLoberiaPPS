@@ -32,9 +32,8 @@ export class FilterComponent implements OnInit {
   loadOffers() {
     this.offerService.getOffers().subscribe({
       next: (offers) => {
-        this.workLocations = this.getDistinctWorkLocations(offers);
-        this.workModalities = this.getDistinctModalities(offers);
-
+        // this.workLocations = this.getDistinctWorkLocations(offers);
+        // this.workModalities = this.getDistinctModalities(offers);
         this.offersLoaded.emit(offers);
       },
       error: (err) => {
@@ -71,20 +70,20 @@ export class FilterComponent implements OnInit {
     });
   }
 
-  private getDistinctWorkLocations(offers: JobOffer[]): string[] {
-    return [...new Set(
-      offers
-        .map(offer => offer.lugar_trabajo)
-        .filter(location => !!location)
-    )];
-  }
+  // private getDistinctWorkLocations(offers: JobOffer[]): string[] {
+  //   return [...new Set(
+  //     offers
+  //       .map(offer => offer.lugar_trabajo)
+  //       .filter(location => !!location)
+  //   )];
+  // }
 
-  private getDistinctModalities(offers: JobOffer[]): string[] {
-    return [...new Set(
-      offers
-        .map(offer => offer.modalidad)
-        .filter(modality => !!modality)
-    )];
-  }
+  // private getDistinctModalities(offers: JobOffer[]): string[] {
+  //   return [...new Set(
+  //     offers
+  //       .map(offer => offer.modalidad)
+  //       .filter(modality => !!modality)
+  //   )];
+  // }
 
 }

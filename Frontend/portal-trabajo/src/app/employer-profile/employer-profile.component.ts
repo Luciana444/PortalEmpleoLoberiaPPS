@@ -52,11 +52,13 @@ export class EmployerProfileComponent implements OnInit {
 
           //si veo el perfil de un empleador especifico
           if (this.itemId) {
-            this.offers = allOffers.filter(offer => offer.id_empresa === this.itemId);
+            this.offers = allOffers
+            // .filter(offer => offe  r.id_empresa === this.itemId);
           } else {
             //si veo mi propio perfil
-            const currentEmployerId = this.getCurrentEmployerId();
-            this.offers = allOffers.filter(offer => offer.id_empresa === currentEmployerId);
+            // const currentEmployerId = this.getCurrentEmployerId();
+            this.offers = allOffers
+            // .filter(offer => offer.id_empresa === currentEmployerId);
           }
         }
       },

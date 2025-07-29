@@ -23,7 +23,6 @@ export class PostulationListComponent implements OnInit {
     private route: ActivatedRoute,
     private employerservice: EmployerService,
   ) { }
-  //TODO: ver que hacer con CV
 
   // private getPostulationsUrl(id: string): string {
   //   return `http://localhost:3000/api/empresa/ofertas/${id}/postulaciones`;
@@ -49,6 +48,9 @@ export class PostulationListComponent implements OnInit {
     //verifico que la oferta corresponda a la empresa
     this.currentUserType = this.authService.getCurrentUserType();
     this.currentUserId = this.authService.getCurrentUserId();
+
+    //asigno itemId (url de la pagina)
+    this.itemId = this.route.snapshot.params['id'] ?? "";
 
     //obtengo la oferta con id igual a url
     this.getCurrentOffer()
@@ -108,7 +110,6 @@ export class PostulationListComponent implements OnInit {
   // }
 
   getPosulations() {
-    this.itemId = this.route.snapshot.params['id'] ?? "";
     if (this.itemId) {
       const headers = this.getAuthHeaders();
       this.http.get<EmployerPostulation[]>(this.getPostulationsUrl(this.itemId), { headers }).subscribe({
