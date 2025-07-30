@@ -17,11 +17,12 @@
         @for (offer of pagedOffers; track offer.id) {
         <div class="offer-card">
             <div class="card-header">
-                <div class="profile-pic">
+                <div (click)="navigateToEmpoyerProfile(offer.id_empresa)" class="profile-pic">
                     <img [src]="getImageUrl(offer.logo) || 'sample_pfp.png'" alt="Profile picture">
                 </div>
                 <div>
-                    <h4 class="card-user">{{offer.nombre_empresa}}</h4>
+                    <h4 (click)="navigateToEmpoyerProfile(offer.id_empresa)" class="card-user">{{offer.nombre_empresa}}
+                    </h4>
                     <div>
                         <i class="fa-solid fa-location-dot"></i>
                         <h5 class="card-location">{{offer.localidad}}</h5>

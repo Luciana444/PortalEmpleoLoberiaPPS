@@ -15,12 +15,16 @@ import { UserService } from '../services/user.service';
   styleUrl: './profile.component.scss'
 })
 export class ProfileComponent implements OnInit {
-
   constructor(
     private router: Router,
     private userservice: UserService,
     @Inject(PLATFORM_ID) private platformId: Object,
   ) { }
+
+  @Input()
+  employeeData: Employee | null = null;
+  user: Profile = {} as Profile;
+
 
   ngOnInit(): void {
     const userType = this.getUserType();
@@ -56,22 +60,24 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  user: Profile = {} as Profile;
-
-  @Input() employeeData: Employee | null = null;
 
   navigateToEditProfile() {
     this.router.navigate(['/edit-profile']);
   }
 
   convertToLocalDate(date: string | undefined) {
-    if (date) {
+    if (date)
       return AppUtils.convertToLocalString(date);
-    }
+
     return "";
   }
+
   getImageUrl(image_url: string) {
     return image_url ? `http://localhost:3000${image_url}` : null;
+  }
+
+  navigateToLanding() {
+    this.router.navigate(['/']);
   }
 
 

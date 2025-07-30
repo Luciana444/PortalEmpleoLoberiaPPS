@@ -32,6 +32,7 @@ export const routes: Routes = [
     { path: 'detail/:id/:postulado', component: PostulationDetailComponent },
     { path: 'edit-profile-employer', component: EmployeerProfileFormComponent },
     { path: 'employer-profile', component: EmployerProfileComponent },
+    { path: 'employer-profile/:id', component: EmployerProfileComponent },
     { path: 'work-experience', component: WorkExperienceComponent },
     { path: 'academic-background-edit', component: AcademicBackgroundEditComponent },
     { path: 'postulaciones-por-oferta', component: PostulationListComponent },

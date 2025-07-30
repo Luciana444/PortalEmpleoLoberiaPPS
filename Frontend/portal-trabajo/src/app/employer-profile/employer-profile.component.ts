@@ -32,37 +32,47 @@ export class EmployerProfileComponent implements OnInit {
   isOwnProfile: boolean = false;
 
   ngOnInit(): void {
-    //obtengo id de empleador de la url
+    //obtengo id de empleador desde la url
     this.itemId = this.route.snapshot.paramMap.get('id') || '';
 
-    //cargo las ofertas de ese empleador
-    this.loadEmployerOffers(this.itemId);
-    
     //obtengo id de usuario y tipo de usuario
     this.currentUserId = this.authService.getCurrentUserId();
     this.currentUserType = this.authService.getCurrentUserType();
+    console.log('ID de usuario actual:', this.currentUserId);
 
     //flagueo estar en mi propio perfil
     if (this.currentUserId === this.itemId || (this.itemId === '' && this.currentUserType === 'empresa'))
       this.isOwnProfile = true;
+
+    //si estoy en mi perfil, cargo mis ofertas
+    if (this.isOwnProfile)
+      this.loadCurrentEmployerOffers();
+    else
+      //sino, cargo ofertas del empleador cuyo perfil estoy viendo
+      this.loadEmployerOffers(this.itemId);
   }
 
-  loadEmployerOffers(itemId: any): void {
+  private loadEmployerOffers(itemId: any) {
+    this.employerService.getACtiveOffers().subscribe({
+      next: (response) => {
+        if (response.status === 200) {
+          this.offers = response.body || [];
+          this.offers = this.offers.filter(offer => offer.id_empresa === itemId);
+          console.log('Ofertas del empleador cargadas:', this.offers);
+        }
+      },
+      error: (err) => {
+        console.error('Error al cargar ofertas del empleador', err);
+      }
+    });
+  }
+
+  loadCurrentEmployerOffers(): void {
     this.employerService.getEmployerOffers().subscribe({
       next: (response) => {
         if (response.status === 200) {
           const allOffers = response.body ?? [];
-
           this.offers = allOffers
-          // if (itemId) {
-          //   this.offers = allOffers
-          //   // .filter(offer => offe  r.id_empresa === this.itemId);
-          // } else {
-          //   //si veo mi propio perfil
-          //   // const currentEmployerId = this.getCurrentEmployerId();
-          //   this.offers = allOffers
-          //   // .filter(offer => offer.id_empresa === currentEmployerId);
-          // }
         }
       },
       error: (err) => {

@@ -102,8 +102,12 @@ export class LandingComponent implements OnInit {
     this.showFilter = !this.showFilter;
   }
 
-   getImageUrl(image_url:string){
+  getImageUrl(image_url: string) {
     return image_url ? `http://localhost:3000${image_url}` : null;
+  }
+
+  navigateToEmpoyerProfile(id: string) {
+    this.router.navigate(['/employer-profile', id]);
   }
 }
 
