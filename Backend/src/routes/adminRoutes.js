@@ -1,6 +1,7 @@
 import express from 'express';
-import { authMiddleware } from '../middlewares/authMiddleware';
-import { onlyAdmin } from '../middlewares/onlyAdmin';
+import { authMiddleware } from '../middlewares/authMiddleware.js';
+import { onlyAdmin } from '../middlewares/onlyAdmin.js';
+import { getPostulacionesTotales } from '../controllers/adminController.js';
 
 
 export const adminRoutes = express.Router();
