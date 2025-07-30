@@ -14,6 +14,7 @@ import { AcademicBackgroundEditComponent } from './academic-background-edit/acad
 import { EmployerProfileComponent } from './employer-profile/employer-profile.component';
 import { PostulationListComponent } from './postulation-list/postulation-list.component';
 import { ProfileSelectorComponent } from './profile-selector/profile-selector.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 export const routes: Routes = [
     { path: '', component: LandingComponent },
@@ -38,5 +39,6 @@ export const routes: Routes = [
     { path: 'postulaciones-por-oferta', component: PostulationListComponent },
     { path: 'postulaciones-por-oferta/:id', component: PostulationListComponent },
     { path: 'profile', component: ProfileSelectorComponent },
+    { path: 'admin-panel', component: AdminPanelComponent },
 
 ];

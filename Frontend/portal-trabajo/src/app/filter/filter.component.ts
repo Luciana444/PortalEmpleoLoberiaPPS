@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { JobOffer } from '../../models/jobOffer.model';
 import { OfferService } from '../services/offer.service';
-import { FormsModule } from '@angular/forms';
+import { FormControlName, FormsModule } from '@angular/forms';
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
 import { MatIconModule } from "@angular/material/icon";
@@ -25,6 +25,8 @@ export class FilterComponent implements OnInit {
   descripcion?: string = '';
   puesto_requerido?: string = '';
 
+  
+
   ngOnInit() {
     this.loadOffers();
   }
@@ -38,7 +40,8 @@ export class FilterComponent implements OnInit {
         console.error('Error loading initial offers:', err);
         this.offersLoaded.emit([]);
       }
-    });
+    }); 
+   
   }
 
   setFilter(locationSelect: string, modalitySelect: string, descripcion: string, puestoRequerido: string) {

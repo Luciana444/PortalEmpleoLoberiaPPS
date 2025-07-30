@@ -51,8 +51,13 @@ $font: 'Linotte Regular', 'Linotte Light', 'Linotte Semi Bold', 'Linotte Bold', 
         ));
 
     @include mat.select-overrides((focused-arrow-color:#57AF31,
-    enabled-arrow-color:#57AF31,
-    placeholder-text-color:#57AF31,
+            enabled-arrow-color:#57AF31,
+            placeholder-text-color:#57AF31,
+        ));
+
+    @include mat.expansion-overrides((header-indicator-color:#57AF31,
+    header-text-color:#57AF31,
+    container-background-color: transparent,
         ));
 }
 
@@ -215,11 +220,17 @@ footer {
 .mdc-tooltip--multiline .mat-mdc-tooltip-surface {
     text-align: center !important;
 }
-.mdc-list-item--selected.mat-mdc-option-active > span.mdc-list-item__primary-text, .mat-mdc-option .mat-pseudo-checkbox {
+
+.mdc-list-item--selected.mat-mdc-option-active>span.mdc-list-item__primary-text,
+.mat-mdc-option .mat-pseudo-checkbox {
     color: #57AF31 !important;
 }
- .mat-mdc-option .mat-pseudo-checkbox {
+
+.mat-mdc-option .mat-pseudo-checkbox {
     --mat-minimal-pseudo-checkbox-selected-checkmark-color: #57AF31 !important;
+}
+.mat-expansion-panel-body{
+    padding:0 !important;
 }
 
 
@@ -253,9 +264,11 @@ button.hide-btn,
 app-cv-uploader.hide-btn {
     visibility: hidden;
 }
-mat-label{
-    color:#49454F;
+
+mat-label {
+    color: #49454F;
 }
-    p.descripcion-margin{
+
+p.descripcion-margin {
     margin-top: 0.7rem;
 }

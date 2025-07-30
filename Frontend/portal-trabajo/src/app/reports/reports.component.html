@@ -1,1 +1,44 @@
-<p>reports works!</p>
+<mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+        <mat-expansion-panel-header>
+            <mat-panel-title><h1>Reportes</h1> </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="list-content">
+            <div class="profile">
+                <h4>Visitas al sitio</h4>
+                <p class="report-nmb">45</p>
+                <button matTooltip="Descargá el reporte">
+                    Descargar Reporte <i class="fa-solid fa-download"></i>
+                </button>
+            </div>
+            <div class="profile">
+                <h4>Registros al sitio</h4>
+                <p class="report-nmb">45</p>
+                <button matTooltip="Descargá el reporte">
+                    Descargar Reporte <i class="fa-solid fa-download"></i>
+                </button>
+            </div>
+            <div class="profile">
+                <h4>Postulaciones</h4>
+                <p class="report-nmb">45</p>
+                <button matTooltip="Descargá el reporte">
+                    Descargar Reporte <i class="fa-solid fa-download"></i>
+                </button>
+            </div>
+            <div class="profile">
+                <h4>Ofertas Laborales</h4>
+                <p class="report-nmb">45</p>
+                <button matTooltip="Descargá el reporte">
+                    Descargar Reporte <i class="fa-solid fa-download"></i>
+                </button>
+            </div>
+            <div class="profile">
+                <h4>Empleadores</h4>
+                <p class="report-nmb">45</p>
+                <button matTooltip="Descargá el reporte">
+                    Descargar Reporte <i class="fa-solid fa-download"></i>
+                </button>
+            </div>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

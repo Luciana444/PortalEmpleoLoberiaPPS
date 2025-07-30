@@ -19,7 +19,7 @@ import { Employee } from '../../models/employee.model';
 import { EmployeeService } from '../services/employee.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @Component({
@@ -37,7 +37,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
         CommonModule,
         FileUploaderComponent,
         HeaderComponent,
-        FooterComponent, 
+        FooterComponent,
         MatTooltipModule
     ],
     templateUrl: './profile-form.component.html',
@@ -162,7 +162,7 @@ export class ProfileFormComponent implements OnInit {
                 if (response.status === 200) {
                     this.toastr.success('Actualización exitosa', 'Cuenta borrada')
                     console.log('Cuenta borrada', response);
-
+                    this.userservice.logout();
                     this.router.navigate(['login']);
                 } else {
                     console.log('No se pudo borrar la cuenta', response);

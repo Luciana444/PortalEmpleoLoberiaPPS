@@ -149,7 +149,7 @@ export class EmployeerProfileFormComponent implements OnInit {
                 if (response.status === 200) {
                     this.toastr.success('Actualización exitosa', 'Cuenta borrada')
                     console.log('Cuenta borrada', response);
-
+                     this.userservice.logout();
                     this.router.navigate(['login']);
                 } else {
                     console.log('No se pudo borrar la cuenta', response);
