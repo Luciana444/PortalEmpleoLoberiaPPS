@@ -631,3 +631,21 @@ export const obtenerPerfilPorPostulacion = async(req,res)=>{
       res.status(500).json({message:'Error al obtener el perfil del usuario'});
   }
 };
+
+export const obtenerInformacionEmpresa =async(req,res)=>{
+  try {
+      const id_empresa = req.params.id;
+
+      const datos_empresa = await getDatosEmpresa(id_empresa);
+
+
+      return res.status(200).json(datos_empresa);
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({message:'Error al obtener datos de la empresa'})
+  }
+
+
+
+};

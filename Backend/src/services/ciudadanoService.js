@@ -136,9 +136,9 @@ export const generarPdfUsuario = async (id,res) =>{
 
         doc.fontSize(30).fillColor('black').text(`${usuario.nombre} ${usuario.apellido}`, { align: 'center' });
         doc.moveDown(0.5);
-        doc.fontSize(12).fillColor('gray').text(`Correo: ${usuario.email}`, { align: 'center' });
+        doc.fontSize(12).fillColor('black').text(`Correo: ${usuario.email}`, { align: 'center' });
         doc.moveDown(0.2);
-        doc.fontSize(12).fillColor('gray').text(`Telefono: ${usuario.telefono}`, { align: 'center' });
+        doc.fontSize(12).fillColor('black').text(`Telefono: ${usuario.telefono}`, { align: 'center' });
         doc.moveDown(2);
 
 
@@ -150,13 +150,10 @@ export const generarPdfUsuario = async (id,res) =>{
         doc.moveDown(0.5);
         doc.font('Regular').fontSize(12).text('Soy un ciudadano registrado en el portal de empleo de la municipalidad, con interés en oportunidades laborales acordes a mi perfil.');
 
-        doc.moveDown(1.5);
-        doc.font('Bold').fontSize(16).fillColor('#000').text('Habilidades', { underline: true });
-        doc.moveDown(0.5);
-        doc.font('Regular').fontSize(12).text('• Responsabilidad\n• Trabajo en equipo\n• Compromiso con el empleo público');
+      
 
         doc.moveDown(1.5);
-        if(experiencia){
+        if(experiencia.length > 0){
           doc.font('Bold').fontSize(16).fillColor('#000').text('Experiencia', { underline: true });
           doc.moveDown(0.5);
           for(let e of experiencia){
@@ -167,13 +164,13 @@ export const generarPdfUsuario = async (id,res) =>{
           }
         }
         doc.moveDown(0.5);
-        if(capacitacion){
+        if(capacitacion.length > 0){
           doc.font('Bold').fontSize(16).fillColor('black').text('Capacitaciones', {underline:true});
-          doc.moveDown(0.5);
-          for(let c of capacitacion){
-            doc.font('Regular').fontSize(12).fillColor('black').text(`• ${c.nombre_capacitacion}`);
-            doc.moveDown(1.2);
-          }
+            doc.moveDown(0.5);
+            for(let c of capacitacion){
+              doc.font('Regular').fontSize(12).fillColor('black').text(`• ${c.nombre_capacitacion}`);
+              doc.moveDown(1.2);
+            }
         }
 
 

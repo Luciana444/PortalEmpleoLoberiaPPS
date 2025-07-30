@@ -1,7 +1,7 @@
 import express from 'express';
 import { authMiddleware } from '../middlewares/authMiddleware.js';
 import { onlyEmpresa } from '../middlewares/onlyEmpresa.js';
-import { actualizarPerfilEmpresa, crearOfertaLaboral, obtenerDatosEmpresa,obtenerOfertasEmpresa,traerOfertasActivas,eliminarOfertaEmpresa, editarOfertaLaboral,obtenerNotificaciones, obtenerPostulacionesOferta, obtenerCvPorPostulacion, obtenerPerfilPorPostulacion } from '../controllers/empleadorController.js';
+import { actualizarPerfilEmpresa, crearOfertaLaboral, obtenerDatosEmpresa,obtenerOfertasEmpresa,traerOfertasActivas,eliminarOfertaEmpresa, editarOfertaLaboral,obtenerNotificaciones, obtenerPostulacionesOferta, obtenerCvPorPostulacion, obtenerPerfilPorPostulacion, obtenerInformacionEmpresa } from '../controllers/empleadorController.js';
 
 export const empleadorRoutes = express.Router();
 
@@ -748,6 +748,9 @@ empleadorRoutes.get('/postulaciones/:id/cv',authMiddleware, onlyEmpresa, obtener
  */
 
 
-empleadorRoutes.get('/postulaciones/:id/perfil',authMiddleware,onlyEmpresa,obtenerPerfilPorPostulacion)
+empleadorRoutes.get('/postulaciones/:id/perfil',authMiddleware,onlyEmpresa,obtenerPerfilPorPostulacion);
+
+
+empleadorRoutes.get('/:id/datos_empresa',obtenerInformacionEmpresa);
 
 export default empleadorRoutes;
