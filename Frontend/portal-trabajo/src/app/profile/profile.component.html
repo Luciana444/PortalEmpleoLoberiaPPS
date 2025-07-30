@@ -1,3 +1,9 @@
+<!-- TODO: estetica -->
+<div class="fallback">
+    <i class="fa-solid fa-arrow-left" (click)="navigateToLanding()"></i> <a (click)="navigateToLanding()"> Volver a
+        ofertas</a>
+</div>
+
 <div class="profile">
     <div class="profile-header">
         <div class="profile-pic">
@@ -40,9 +46,8 @@
         </div>
         <div class="info-row">
             <h5>¿Tiene alguna discapacidad?</h5>
-            @if (employeeData?.discapacidad) {
+            @if (employeeData?.discapacidad === true) {
             <p>Sí</p>
-
             } @else {
             <p>No</p>
             }

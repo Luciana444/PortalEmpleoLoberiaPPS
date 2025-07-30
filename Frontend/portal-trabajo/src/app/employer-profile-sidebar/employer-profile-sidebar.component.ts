@@ -26,19 +26,33 @@ export class EmployerProfileSidebarComponent implements OnInit {
   itemId: string = '';
 
   ngOnInit(): void {
-    this.getProfile();
-
     //flagueo estar en mi propio perfil
     if (this.currentUserId === this.itemId || (this.itemId === '' && this.currentUserType === 'empresa'))
       this.isOwnProfile = true;
 
+    if (this.isOwnProfile) {
+      this.getCurrentProfile();
+    } else {
+      //TODO: preguntar a back si podemos tener un endpoint asi:
+      this.getProfileById();
+    }
   }
 
-  navigateToEditProfile() {
-    this.router.navigate(['/edit-profile-employer']);
+  private getProfileById() {
+    this.http.get<Employer>(`${this.url}/${this.itemId}`)
+      .subscribe({
+        next: (response) => {
+          this.employer = response;
+        },
+        error: (err) => {
+          console.error('Error loading employer profile:', err);
+          this.employer;
+        }
+      });
   }
 
-  getProfile() {
+
+  getCurrentProfile() {
     this.http.get<Employer>(this.url)
       .subscribe({
         next: (response) => {
@@ -51,9 +65,15 @@ export class EmployerProfileSidebarComponent implements OnInit {
       });
   }
 
-   getImageUrl(logo: string) {
-    return logo ? `http://localhost:3000${logo}` : null;
+  navigateToEditProfile() {
+    this.router.navigate(['/edit-profile-employer']);
   }
 
+  navigateToLanding() {
+    this.router.navigate(['/']);
+  }
 
+  getImageUrl(logo: string) {
+    return logo ? `http://localhost:3000${logo}` : null;
+  }
 }

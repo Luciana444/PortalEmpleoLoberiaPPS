@@ -1,6 +1,14 @@
 @use '../../styles.scss' as *;
 @use 'sass:color';
 
+
+.profile-pic, .card-user{
+    cursor: pointer;
+}
+.card-user:hover{
+    text-decoration: underline;
+}
+
 .container{
     min-height: 100vh;
 }

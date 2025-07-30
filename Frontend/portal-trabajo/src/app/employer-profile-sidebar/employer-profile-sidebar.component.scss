@@ -48,7 +48,11 @@ p, h5{
     gap: 0.25rem;
 }
 
-.location > i, .title-wrapper > i{
+.fallback{
+    margin-bottom: 1rem;
+}
+
+.location > i, .title-wrapper > i, .fallback > i {
     color: $green !important;
 }
 

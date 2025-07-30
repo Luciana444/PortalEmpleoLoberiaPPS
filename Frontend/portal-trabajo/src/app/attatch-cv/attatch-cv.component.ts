@@ -47,9 +47,9 @@ export class AttatchCvComponent {
     this.userservice.uploadCv(file).subscribe({
       next: (response) => {
         if (response.status === 200) {
-
           this.toastr.success('Tu Cv ya está disponible', 'Archivo subido')
           console.log('Archivo subido con éxito', response);
+          window.location.reload();
 
         } else {
           console.log('No se pudo subir el archivo', response);

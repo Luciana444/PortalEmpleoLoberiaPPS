@@ -1,6 +1,18 @@
 @use '../../styles.scss' as *;
 @use 'sass:color';
 
+.main{
+    min-height: 100vh;
+}
+
+.fallback{
+    margin-bottom: 1rem;
+}
+
+.fallback > i {
+    color: $green !important;
+}
+
 .title{
     margin: 0;
     padding-top: 1rem;
