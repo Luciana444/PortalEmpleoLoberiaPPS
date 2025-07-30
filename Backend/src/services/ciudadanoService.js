@@ -134,11 +134,15 @@ export const generarPdfUsuario = async (id,res) =>{
         doc.pipe(res);
 
 
-        doc.fontSize(30).fillColor('black').text(`${usuario.nombre} ${usuario.apellido}`, { align: 'center' });
+        doc.font('Bold').fontSize(30).fillColor('black').text(`${usuario.nombre} ${usuario.apellido}`, { align: 'center' });
         doc.moveDown(0.5);
-        doc.fontSize(12).fillColor('black').text(`Correo: ${usuario.email}`, { align: 'center' });
+        doc.font('Regular').fontSize(12).fillColor('black').text(`Correo: ${usuario.email}`, { align: 'center' });
         doc.moveDown(0.2);
         doc.fontSize(12).fillColor('black').text(`Telefono: ${usuario.telefono}`, { align: 'center' });
+        doc.moveDown(0.2);
+        doc.fontSize(12).fillColor('black').text(`Dni: ${usuario.dni}`, { align: 'center' });
+        doc.moveDown(0.2);
+        doc.fontSize(12).fillColor('black').text(`Localidad: ${usuario.localidad}`, { align: 'center' });
         doc.moveDown(2);
 
 
@@ -153,6 +157,20 @@ export const generarPdfUsuario = async (id,res) =>{
       
 
         doc.moveDown(1.5);
+        doc.font('Bold').fontSize(16).fillColor('#000').text('Formacion',{underline:true})
+        doc.moveDown(0.5);
+        doc.fontSize(12).fillColor('black').text(`Nivel de estudios alcanzado: `);
+        doc.moveDown(0.5)
+        doc.font('Regular').fontSize(12).fillColor('#000').text(`• ${usuario.nivel_educativo}\n`)
+        if(usuario.esta_cursando_carrera == true){
+           doc.moveDown(0.5);
+           doc.font('Bold').fontSize(12).fillColor('#000').text(`Estudios actuales: `)
+           doc.moveDown(0.5)
+           doc.font('Regular').fontSize(12).fillColor('#000').text(`• ${usuario.carrera_en_curso}\n`);
+           doc.moveDown(1.5);
+        }else{
+          doc.moveDown(1.5);
+        }
         if(experiencia.length > 0){
           doc.font('Bold').fontSize(16).fillColor('#000').text('Experiencia', { underline: true });
           doc.moveDown(0.5);
