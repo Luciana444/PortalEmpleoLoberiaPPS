@@ -149,7 +149,30 @@ export const crearPostulacionRepository = async(id_oferta,id_usuario,mensaje,url
 
 
 export const buscarOfertasFiltradas = async ({ modalidad, lugarTrabajo, descripcion, puestoRequerido }) => {
-  let query = 'SELECT o.*, e.* FROM ofertas_laborales o JOIN empresas e ON e.id_usuario = o.id_empresa WHERE o.estado_publicacion = \'aprobada\'';
+  let query = `
+  SELECT 
+    o.id AS oferta_id,
+    o.id_empresa,
+    e.nombre_empresa,
+    e.localidad,
+    e.logo,
+    o.puesto_requerido,
+    o.descripcion,
+    o.nivel_educativo_requerido,
+    o.experiencia_requerida,
+    o.otros_requisitos,
+    o.lugar_trabajo,
+    o.modalidad,
+    o.tipo_contrato,
+    o.fecha_publicacion,
+    o.fecha_cierre,
+    o.estado,
+    o.estado_publicacion,
+    o.fecha_aprobacion,
+    o.localidad_del_puesto
+  FROM ofertas_laborales o
+  JOIN empresas e ON e.id_usuario = o.id_empresa
+  WHERE o.estado_publicacion = 'aprobada'`;
   const valores = [];
 
   if (modalidad) {
