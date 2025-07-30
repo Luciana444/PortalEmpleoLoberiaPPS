@@ -151,7 +151,7 @@ export const crearPostulacionRepository = async(id_oferta,id_usuario,mensaje,url
 export const buscarOfertasFiltradas = async ({ modalidad, lugarTrabajo, descripcion, puestoRequerido }) => {
   let query = `
   SELECT 
-    o.id AS oferta_id,
+    o.id,
     o.id_empresa,
     e.nombre_empresa,
     e.localidad,
