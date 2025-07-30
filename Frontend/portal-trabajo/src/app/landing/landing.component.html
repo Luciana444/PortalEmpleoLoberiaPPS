@@ -18,7 +18,8 @@
         <div class="offer-card">
             <div class="card-header">
                 <div (click)="navigateToEmpoyerProfile(offer.id_empresa)" class="profile-pic">
-                    <img [src]="getImageUrl(offer.logo) || 'sample_pfp.png'" alt="Profile picture">
+                    <img [src]="getImageUrl(offer.logo) || 'sample_pfp.png'" alt="Profile picture"
+                        matTooltip="Ver perfil">
                 </div>
                 <div>
                     <h4 (click)="navigateToEmpoyerProfile(offer.id_empresa)" class="card-user">{{offer.nombre_empresa}}

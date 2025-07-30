@@ -30,16 +30,16 @@ export class EmployerProfileSidebarComponent implements OnInit {
     if (this.currentUserId === this.itemId || (this.itemId === '' && this.currentUserType === 'empresa'))
       this.isOwnProfile = true;
 
-    if (this.isOwnProfile) {
+    if (this.isOwnProfile)
       this.getCurrentProfile();
-    } else {
-      //TODO: preguntar a back si podemos tener un endpoint asi:
-      this.getProfileById();
-    }
+    else
+      this.getProfileById(this.itemId);
   }
 
-  private getProfileById() {
-    this.http.get<Employer>(`${this.url}/${this.itemId}`)
+  private getProfileById(itemId: string) {
+    const urlEmployer = `http://localhost:3000/api/empresa/${itemId}/datos_empresa`;
+
+    this.http.get<Employer>(urlEmployer)
       .subscribe({
         next: (response) => {
           this.employer = response;
