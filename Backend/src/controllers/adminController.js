@@ -13,7 +13,9 @@ export const getPostulacionesTotales = async(req,res)=>{
 
 export const getOfertasLaborales = async (req, res) => {
   try {
-    const ofertas = await obtenerOfertasLaborales();
+    const { estado_publicacion } = req.query;
+
+    const ofertas = await obtenerOfertasLaborales(estado_publicacion);
     res.status(200).json(ofertas);
   } catch (error) {
     console.error('Error al obtener las ofertas laborales:', error);

@@ -5,6 +5,6 @@ export const getCanPostulacionesTotales = async()=>{
   return postulaciones_totales;
 };
 
-export const obtenerOfertasLaborales = async () => {
-  return await listarOfertasLaborales();
+export const obtenerOfertasLaborales = async (estadoPublicacion) => {
+  return await listarOfertasLaborales(estadoPublicacion);
 };
