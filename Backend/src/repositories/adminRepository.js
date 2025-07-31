@@ -45,3 +45,13 @@ export const getCantOfertasTotalesRepository = async()=>{
   const ofertas_totales = await sql`SELECT COUNT(*) FROM ofertas_laborales`;
   return ofertas_totales[0];
 }
+
+export const listarResumenUsuarios = async () => {
+  const result = await sql`
+    SELECT
+      (SELECT COUNT(*) FROM usuarios WHERE estado = true AND tipo_usuario IN ('ciudadano', 'empresa')) AS total_usuarios,
+      (SELECT COUNT(*) FROM usuarios WHERE tipo_usuario = 'ciudadano' AND estado = true) AS total_ciudadanos,
+      (SELECT COUNT(*) FROM usuarios WHERE tipo_usuario = 'empresa' AND estado = true) AS total_empresas
+  `;
+  return result[0];
+};
