@@ -39,3 +39,9 @@ export const listarOfertasLaborales = async (estadoPublicacion) => {
   `;
   return resultados;
 };
+
+
+export const getCantOfertasTotalesRepository = async()=>{
+  const ofertas_totales = await sql`SELECT COUNT(*) FROM ofertas_laborales`;
+  return ofertas_totales[0];
+}
