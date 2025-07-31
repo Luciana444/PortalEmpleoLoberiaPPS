@@ -23,6 +23,7 @@ export interface Employee {
     tiene_emprendimiento: string;
     discapacidad: boolean;
     foto: string;
+    imagen_url: string;
     cv_url: string;
     capacitaciones: AcademicBackground[];
     experiencias_laborales: WorkExperience[];
