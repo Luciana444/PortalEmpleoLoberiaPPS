@@ -1,4 +1,4 @@
-import { getCanPostulacionesTotales } from "../services/adminService.js";
+import { getCanPostulacionesTotales,obtenerOfertasLaborales } from "../services/adminService.js";
 
 export const getPostulacionesTotales = async(req,res)=>{
    try {
@@ -9,4 +9,14 @@ export const getPostulacionesTotales = async(req,res)=>{
     res.status(500).json({message:'Error al obtener postulaciones totales'});        
    }
 
+};
+
+export const getOfertasLaborales = async (req, res) => {
+  try {
+    const ofertas = await obtenerOfertasLaborales();
+    res.status(200).json(ofertas);
+  } catch (error) {
+    console.error('Error al obtener las ofertas laborales:', error);
+    res.status(500).json({ error: 'Error del servidor' });
+  }
 };
