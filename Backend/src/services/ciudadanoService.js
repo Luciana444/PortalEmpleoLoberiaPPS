@@ -127,7 +127,8 @@ export const generarPdfUsuario = async (id,res) =>{
         const doc = new PDFDocument({ margin: 50 });
 
         res.setHeader('Content-Type', 'application/pdf');
-        res.setHeader('Content-Disposition', 'inline; filename=cv.pdf');
+
+        res.setHeader('Content-Disposition', `inline; filename="${usuario.nombre}_${usuario.apellido}_CV.pdf"`);
         doc.registerFont('Regular', 'fonts/OpenSans-Regular.ttf');
         doc.registerFont('Bold', 'fonts/OpenSans-Bold.ttf');
 
