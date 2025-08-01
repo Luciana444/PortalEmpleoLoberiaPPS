@@ -40,7 +40,27 @@ export const authMiddleware = async(req, res, next)=>{
         return res.status(401).json({mensaje:'Token invalido o expirado'})
     }
 
-
 }
 
+export const verificarToken = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+
+  if (authHeader && authHeader.startsWith('Bearer ')) {
+    const token = authHeader.split(' ')[1];
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      req.usuario = {
+        id_usuario: decoded.id,
+        tipo_usuario: decoded.tipo_usuario
+      };
+    } catch (error) {
+      console.warn('Token inválido o expirado');
+      req.usuario = {}; 
+    }
+  } else {
+    req.usuario = {}; 
+  }
+
+  next();
+};
 

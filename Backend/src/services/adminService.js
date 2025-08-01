@@ -1,4 +1,4 @@
-import { getCantOfertasTotalesRepository, getCantPostulacionesTotalesRepository,listarOfertasLaborales,listarResumenUsuarios  } from "../repositories/adminRepository.js";
+import { getCantOfertasTotalesRepository, getCantPostulacionesTotalesRepository,listarOfertasLaborales,listarResumenUsuarios,listarReporteVisitas  } from "../repositories/adminRepository.js";
 
 export const getCanPostulacionesTotales = async()=>{
   const postulaciones_totales = await getCantPostulacionesTotalesRepository();
@@ -17,4 +17,8 @@ export const getCantOfertasTotales = async()=>{
 
 export const obtenerResumenUsuarios = async () => {
   return await listarResumenUsuarios();
+};
+
+export const obtenerReporteVisitas = async () => {
+  return await listarReporteVisitas();
 };

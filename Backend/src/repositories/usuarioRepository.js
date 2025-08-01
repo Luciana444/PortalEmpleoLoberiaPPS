@@ -123,3 +123,12 @@ export const borrarCuentaByIdUsuario = async(id_usuario)=>{
   await sql`DELETE FROM usuarios WHERE id=${id_usuario}`;
 
 };
+
+export const registrarVisitaRepository = async ({ pagina, ip, userAgent, id_usuario, tipo_usuario }) => {
+  await sql`
+    INSERT INTO visitas_portal (pagina, fecha, ip, user_agent, tipo_usuario, id_usuario)
+    VALUES (
+      ${pagina ?? null}, NOW(), ${ip ?? null}, ${userAgent ?? null}, ${tipo_usuario ?? null}, ${id_usuario ?? null}
+    )
+  `;
+};

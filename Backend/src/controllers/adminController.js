@@ -1,4 +1,4 @@
-import { getCanPostulacionesTotales,getCantOfertasTotales,obtenerOfertasLaborales,obtenerResumenUsuarios } from "../services/adminService.js";
+import { getCanPostulacionesTotales,getCantOfertasTotales,obtenerOfertasLaborales,obtenerResumenUsuarios,obtenerReporteVisitas } from "../services/adminService.js";
 
 export const getPostulacionesTotales = async(req,res)=>{
    try {
@@ -41,5 +41,15 @@ export const getResumenUsuarios = async (req, res) => {
   } catch (error) {
     console.error('Error al obtener resumen de usuarios:', error);
     res.status(500).json({ error: 'Error del servidor' });
+  }
+};
+
+export const getReporteVisitas = async (req, res) => {
+  try {
+    const reporte = await obtenerReporteVisitas();
+    res.status(200).json(reporte);
+  } catch (error) {
+    console.error('Error al obtener reporte de visitas:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
   }
 };

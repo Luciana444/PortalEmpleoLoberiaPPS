@@ -55,3 +55,19 @@ export const listarResumenUsuarios = async () => {
   `;
   return result[0];
 };
+
+
+export const listarReporteVisitas = async () => {
+  const result = await sql`
+    SELECT
+      COUNT(*) AS total_visitas,
+      COUNT(*) FILTER (WHERE tipo_usuario = 'ciudadano') AS visitas_ciudadanos,
+      COUNT(*) FILTER (WHERE tipo_usuario = 'empresa') AS visitas_empresas,
+      COUNT(*) FILTER (WHERE tipo_usuario = 'admin') AS visitas_admins,
+      COUNT(*) FILTER (WHERE tipo_usuario IS NULL) AS visitas_anonimas
+    FROM visitas_portal
+  `;
+
+
+  return result[0];
+};
