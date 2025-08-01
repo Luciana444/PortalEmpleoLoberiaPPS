@@ -1,0 +1,40 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+
+
+const URL = 'http://localhost:3000/api';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ReportsService {
+    constructor(private httpClient: HttpClient) { }
+
+    getTotalOffers() {
+        return this.httpClient.get<any>(`${URL}/admin/ofertas_totales`, {
+            observe: 'response',
+            withCredentials: true,
+            headers: new HttpHeaders()
+                .append('Content-Type', 'application/json')
+        })
+    }
+
+    getTotalUsers() {
+        return this.httpClient.get<any>(`${URL}/admin/usuarios/resumen`, {
+            observe: 'response',
+            withCredentials: true,
+            headers: new HttpHeaders()
+                .append('Content-Type', 'application/json')
+        })
+    }
+
+    getTotalPostulations() {
+        return this.httpClient.get<any>(`${URL}/admin/postulaciones_totales`, {
+            observe: 'response',
+            withCredentials: true,
+            headers: new HttpHeaders()
+                .append('Content-Type', 'application/json')
+        })
+    }
+
+}

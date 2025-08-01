@@ -36,7 +36,11 @@ box-shadow: none!important;
     background-color: white!important;
 }
 
-
+.report-btn{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
 .list-content {
     display: flex;
     justify-content: space-between;

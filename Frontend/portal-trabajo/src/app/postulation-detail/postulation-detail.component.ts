@@ -75,7 +75,8 @@ export class PostulationDetailComponent implements OnInit {
               experiencia_requerida: o.experiencia_requerida,
               otros_requisitos: o.otros_requisitos,
               nivel_educativo_requerido: o.nivel_educativo_requerido,
-              logo: e.logo
+              logo: e.logo,
+              estado_publicacion:o.estado_publicacion
             }
             this.offer = jo;
           } else {

@@ -1,41 +1,39 @@
 <mat-accordion>
-    <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+    <mat-expansion-panel [expanded]="true" (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
         <mat-expansion-panel-header>
-            <mat-panel-title><h1>Reportes</h1> </mat-panel-title>
+            <mat-panel-title>
+                <h1>Estadísticas</h1>
+            </mat-panel-title>
         </mat-expansion-panel-header>
-        <div class="list-content">
-            <div class="profile">
-                <h4>Visitas al sitio</h4>
-                <p class="report-nmb">45</p>
-                <button matTooltip="Descargá el reporte">
-                    Descargar Reporte <i class="fa-solid fa-download"></i>
-                </button>
+        <div class="container">
+            <div class="list-content">
+                <div class="profile">
+                    <h4>Visitas al sitio</h4>
+                    <p class="report-nmb">-</p>
+                </div>
+                <div class="profile">
+                    <h4>Registros al sitio</h4>
+                    <p class="report-nmb">{{totalUsers.total_usuarios}}</p>
+                </div>
+                <div class="profile">
+                    <h4>Postulaciones</h4>
+                    <p class="report-nmb">{{totalPostulations}}</p>
+                </div>
+                <div class="profile">
+                    <h4>Ofertas Laborales</h4>
+                    <p class="report-nmb">{{totalOffers}}</p>
+                </div>
+                <div class="profile">
+                    <h4>Empresas</h4>
+                    <p class="report-nmb">{{totalUsers.total_empresas}}</p>
+                </div>
+                <div class="profile">
+                    <h4>Ciudadanos</h4>
+                    <p class="report-nmb">{{totalUsers.total_ciudadanos}}</p>
+                </div>
             </div>
-            <div class="profile">
-                <h4>Registros al sitio</h4>
-                <p class="report-nmb">45</p>
-                <button matTooltip="Descargá el reporte">
-                    Descargar Reporte <i class="fa-solid fa-download"></i>
-                </button>
-            </div>
-            <div class="profile">
-                <h4>Postulaciones</h4>
-                <p class="report-nmb">45</p>
-                <button matTooltip="Descargá el reporte">
-                    Descargar Reporte <i class="fa-solid fa-download"></i>
-                </button>
-            </div>
-            <div class="profile">
-                <h4>Ofertas Laborales</h4>
-                <p class="report-nmb">45</p>
-                <button matTooltip="Descargá el reporte">
-                    Descargar Reporte <i class="fa-solid fa-download"></i>
-                </button>
-            </div>
-            <div class="profile">
-                <h4>Empleadores</h4>
-                <p class="report-nmb">45</p>
-                <button matTooltip="Descargá el reporte">
+            <div class="report-btn">
+                <button matTooltip="Descargá un reporte con todas las estadísticas del sitio">
                     Descargar Reporte <i class="fa-solid fa-download"></i>
                 </button>
             </div>
