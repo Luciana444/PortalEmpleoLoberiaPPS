@@ -56,8 +56,11 @@ $font: 'Linotte Regular', 'Linotte Light', 'Linotte Semi Bold', 'Linotte Bold', 
         ));
 
     @include mat.expansion-overrides((header-indicator-color:#57AF31,
-    header-text-color:#57AF31,
-    container-background-color: transparent,
+            header-text-color:#57AF31,
+            container-background-color: transparent,
+        ));
+
+    @include mat.progress-spinner-overrides((active-indicator-color: #57AF31,
         ));
 }
 
@@ -229,8 +232,9 @@ footer {
 .mat-mdc-option .mat-pseudo-checkbox {
     --mat-minimal-pseudo-checkbox-selected-checkmark-color: #57AF31 !important;
 }
-.mat-expansion-panel-body{
-    padding:0 !important;
+
+.mat-expansion-panel-body {
+    padding: 0 !important;
 }
 
 

@@ -18,6 +18,7 @@ export class ReportsComponent implements OnInit {
   totalOffers: any;
   totalUsers: any;
   totalPostulations: any;
+  totalVisits: any;
 
   constructor(
     private reportservice: ReportsService,
@@ -31,6 +32,7 @@ export class ReportsComponent implements OnInit {
     this.getTotalNumberOffers();
     this.getNumberUsers();
     this.getTotalNumberPostulations();
+    this.getVisitsToSite();
   }
 
   getTotalNumberOffers() {
@@ -81,6 +83,40 @@ export class ReportsComponent implements OnInit {
         console.error('Error al mostrar los datos', err);
 
       }
+    });
+  }
+
+  getVisitsToSite() {
+    this.reportservice.getTotalVisits().subscribe({
+      next: (response) => {
+        if (response.status === 200) {
+          this.totalVisits = response.body;
+        } else {
+          console.log('No se pueden obtener los datos', response);
+        }
+      },
+      error: (err) => {
+        this.toastr.error(err.error.error, 'Ocurrió un error');
+        console.error('Error al mostrar los datos', err);
+
+      }
+    });
+  }
+
+  downloadReport() {
+    this.reportservice.downloadReportSite().subscribe({
+      next(response) {
+        const a = document.createElement('a');
+        const objectUrl = URL.createObjectURL(response.body ?? new Blob());
+        a.href = objectUrl;
+        a.download = 'ReportePortalEmpleo.pdf';
+        a.click();
+        URL.revokeObjectURL(objectUrl);
+      },
+      error(err) {
+        console.error(err);
+      }
+
     });
   }
 }

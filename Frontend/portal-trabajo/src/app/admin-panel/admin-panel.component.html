@@ -14,29 +14,33 @@
                     @for (offer of offers; track offer.id) {
                     <li>
                         <div class="profile">
-                            <h1>{{offer.puesto_requerido}}</h1>
-                            <div class="profile-header">
-                                <div class="profile-pic">
-                                    <img [src]="getImageUrl(offer.logo)  || 'sample_pfp.png'" alt="Profile picture">
-                                </div>
-                                <div class="profile-info">
-                                    <h4>{{offer.nombre_empresa}}</h4>
-                                    <div class="location">
-                                        <i class="fa-solid fa-location-dot"></i>
-                                        <p>{{offer.localidad}}</p>
+                            <h1 class="name-work">{{offer.puesto_requerido}}</h1>
+                            <div class="offer-data">
+                                <div class="profile-header">
+                                    <div class="profile-pic">
+                                        <img [src]="getImageUrl(offer.logo)  || 'sample_pfp.png'" alt="Profile picture">
+                                    </div>
+                                    <div class="profile-info">
+                                        <h4>{{offer.nombre_empresa}}</h4>
+                                        <div class="location">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                            <p>{{offer.localidad}}</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p>Publicada el: {{convertToLocalDate(offer.fecha_publicacion)}}</p>
                                     </div>
                                 </div>
+
+                                <div class="detail-categories">
+                                    <h5 class="state-flag"><i class="fa-solid fa-circle-exclamation"></i>
+                                        {{offer.estado_publicacion}}
+                                    </h5>
+                                </div>
+                                <div class="offer-btn">
+                                    <button (click)="navigateToPostulationDetail(offer.id)">Ver Oferta</button>
+                                </div>
                             </div>
-                            <div>
-                                <p>Publicada el: {{offer.fecha_publicacion}}</p>
-                            </div>
-                            <div class="detail-categories">
-                                <h5><i class="fa-solid fa-file-signature"></i> {{offer.tipo_contrato}}</h5>
-                                <h5 class="state-flag"><i class="fa-solid fa-clock"></i> {{offer.estado_publicacion}}</h5>
-                            </div>
-                            <div>
-                             <button (click)="navigateToPostulationDetail(offer.id)">Ver Oferta</button>
-                             </div>
                         </div>
                     </li>
                     }

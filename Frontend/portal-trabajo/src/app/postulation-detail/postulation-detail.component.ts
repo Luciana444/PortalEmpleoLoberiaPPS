@@ -224,6 +224,10 @@ export class PostulationDetailComponent implements OnInit {
     this.router.navigate(['profile'])
   }
 
+   navigateToAdminPanel() {
+    this.router.navigate(['admin-panel'])
+  }
+
   navigateToEditOffer(id: any) {
     if (!this.offer.fecha_cierre || this.compareDatesOffer(Date.parse(this.offer.fecha_cierre))) {
       this.router.navigate(['create-offer', id]);

@@ -15,6 +15,7 @@ import { EmployeeService } from '../services/employee.service';
 import { User } from '../profile-form/profile-form.component';
 import { jwtDecode } from 'jwt-decode';
 import { MatIconModule } from "@angular/material/icon";
+import { UserService } from '../services/user.service';
 
 
 registerLocaleData(localeEsAR);
@@ -28,7 +29,7 @@ registerLocaleData(localeEsAR);
 })
 
 export class LandingComponent implements OnInit {
-  constructor(private router: Router, private employeeservice: EmployeeService) { }
+  constructor(private router: Router, private employeeservice: EmployeeService, private userservice: UserService) { }
 
   offers: JobOffer[] = [];
   postulations: Postulation[] = [];
@@ -109,6 +110,22 @@ export class LandingComponent implements OnInit {
   navigateToEmpoyerProfile(id: string) {
     this.router.navigate(['/employer-profile', id]);
   }
+
+  /*saveVisitsToSite() {
+    this.userservice.saveVisits().subscribe({
+            next: (response) => {
+                if (response.status === 200) {
+                    console.log('Actualización exitosa', response);
+                } else {
+                    console.log('No se pudo editar la formación', response);
+                }
+            },
+            error: (err) => {
+                this.toastr.error(err.error.error, 'Ocurrió un error');
+                console.error('Error al actualizar formación', err);
+            }
+        });
+  }*/
 }
 
 
