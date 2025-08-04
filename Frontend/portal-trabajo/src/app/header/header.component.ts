@@ -80,6 +80,7 @@ export class HeaderComponent implements OnInit {
     // });  
     if (this.getUserType() === "empresa") {
       this.getNotifications();
+      this.getNotificationsOffersAproved();
     }
   }
 
@@ -90,6 +91,25 @@ export class HeaderComponent implements OnInit {
   getNotifications() {
 
     this.employerservice.getNotifications().subscribe({
+      next: (response) => {
+        if (response.status === 200) { // Populate form with API data
+          this.notification = response.body ?? {} as Notification;
+        } else {
+          console.log('No se pudo cargar las notificaciones', response);
+        }
+      },
+      error: (err) => {
+        //this.toastr.error(err.error.error, 'Ocurrió un error');
+        console.error('No se pudo cargar las notificaciones', err);
+      }
+
+    });
+
+  }
+
+  getNotificationsOffersAproved() {
+
+    this.employerservice.getNotificationsOffers().subscribe({
       next: (response) => {
         if (response.status === 200) { // Populate form with API data
           this.notification = response.body ?? {} as Notification;
@@ -122,6 +142,10 @@ export class HeaderComponent implements OnInit {
   }
   navigateToProfile() {
     this.router.navigate(['/profile']);
+  }
+
+    navigateToAdminPanel() {
+    this.router.navigate(['/admin-panel']);
   }
   onLogout() {
     this.userservice.logout();

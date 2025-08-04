@@ -3,7 +3,9 @@ import { WorkExperience } from "./work-experience.model";
 
 export interface Employee {
     id: string;
+    id_ciudadano:string;
     nombre: string;
+    apellido: string;
     email: string;
     dni: string;
     cuil: string;

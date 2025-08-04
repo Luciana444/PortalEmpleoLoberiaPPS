@@ -16,6 +16,7 @@ import { User } from '../profile-form/profile-form.component';
 import { jwtDecode } from 'jwt-decode';
 import { MatIconModule } from "@angular/material/icon";
 import { UserService } from '../services/user.service';
+import { VisitTrackingService } from '../services/visit-tracking.service';
 
 
 registerLocaleData(localeEsAR);
@@ -29,7 +30,13 @@ registerLocaleData(localeEsAR);
 })
 
 export class LandingComponent implements OnInit {
-  constructor(private router: Router, private employeeservice: EmployeeService, private userservice: UserService) { }
+  constructor(
+    private router: Router,
+    private employeeservice: EmployeeService,
+    private userservice: UserService,
+    private http: HttpClient,
+    private visitTracker: VisitTrackingService,
+  ) { }
 
   offers: JobOffer[] = [];
   postulations: Postulation[] = [];
@@ -39,9 +46,10 @@ export class LandingComponent implements OnInit {
   showFilter = false;
 
   ngOnInit(): void {
-    if (this.getUserType() === 'ciudadano') {
+    if (this.getUserType() === 'ciudadano')
       this.getPostulations();
-    }
+
+    this.trackPageVisit();
   }
 
   handleOffersLoaded(offers: JobOffer[]) {
@@ -111,21 +119,10 @@ export class LandingComponent implements OnInit {
     this.router.navigate(['/employer-profile', id]);
   }
 
-  /*saveVisitsToSite() {
-    this.userservice.saveVisits().subscribe({
-            next: (response) => {
-                if (response.status === 200) {
-                    console.log('Actualización exitosa', response);
-                } else {
-                    console.log('No se pudo editar la formación', response);
-                }
-            },
-            error: (err) => {
-                this.toastr.error(err.error.error, 'Ocurrió un error');
-                console.error('Error al actualizar formación', err);
-            }
-        });
-  }*/
+  private trackPageVisit(): void {
+    const pagePath = this.router.url;
+    this.visitTracker.trackVisit(pagePath)
+      .catch(err => console.error('Component error handling:', err));
+  }
+
 }
-
-
