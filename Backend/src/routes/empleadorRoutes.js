@@ -750,6 +750,56 @@ empleadorRoutes.get('/postulaciones/:id/cv',authMiddleware, onlyEmpresa, obtener
 
 empleadorRoutes.get('/postulaciones/:id/perfil',authMiddleware,onlyEmpresa,obtenerPerfilPorPostulacion);
 
+//============================
+
+// Endpoint para obtener información de una empresa por su ID
+/**
+ * @swagger
+ * /empresa/{id}/datos_empresa:
+ *   get:
+ *     summary: Obtener información de una empresa
+ *     tags:
+ *       - Empleador - Empresa
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *         description: ID de la empresa
+ *     responses:
+ *       200:
+ *         description: Información de la empresa obtenida correctamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: string
+ *                   format: uuid
+ *                 nombre:
+ *                   type: string
+ *                 email:
+ *                   type: string
+ *                 telefono:
+ *                   type: string
+ *                 direccion:
+ *                   type: string
+ *                 rubro:
+ *                   type: string
+ *       400:
+ *         description: ID de empresa inválido o faltante
+ *       404:
+ *         description: Empresa no encontrada
+ *       500:
+ *         description: Error interno del servidor
+ */
+
+
 
 empleadorRoutes.get('/:id/datos_empresa',obtenerInformacionEmpresa);
 

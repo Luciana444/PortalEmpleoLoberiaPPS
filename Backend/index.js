@@ -9,6 +9,7 @@ import {router} from './src/routes/router.js';
 import cors from 'cors';
 import path from 'path';
 // Documentación Swagger (OpenAPI)
+//import { swaggerSpec } from './docs/swagger_config.js';
 import { swaggerSpec } from './src/docs/swagger_config.js';
 import swaggerUi from 'swagger-ui-express';
 

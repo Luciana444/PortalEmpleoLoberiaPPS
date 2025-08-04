@@ -1,5 +1,17 @@
 import { getCanPostulacionesTotales } from "../services/adminService.js";
 
+
+
+/**
+ * Controlador para obtener la cantidad total de postulaciones.
+ * Solo accesible por usuarios con rol de administrador.
+ *
+ * @param {import('express').Request} req - Objeto de solicitud HTTP.
+ * @param {import('express').Response} res - Objeto de respuesta HTTP.
+ * @returns {Promise<void>} - Retorna la cantidad total de postulaciones o un mensaje de error.
+ */
+
+
 export const getPostulacionesTotales = async(req,res)=>{
    try {
        const postulaciones_totales = await getCanPostulacionesTotales();

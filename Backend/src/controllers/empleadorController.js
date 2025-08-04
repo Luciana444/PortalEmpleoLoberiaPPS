@@ -347,7 +347,7 @@ export const editarOfertaLaboral = async(req,res)=>{
     }
 
     if(oferta.id_empresa !== id_empresa){
-      return res.status(500).json({message:'Esta oferta no pertenece a su empresa'});
+      return res.status(403).json({message:'Esta oferta no pertenece a su empresa'});
     }
 
     if(oferta.estado !== 'activa'){
@@ -459,9 +459,14 @@ export const obtenerNotificaciones = async (req, res) => {
 
 
 export const obtenerPostulacionesOferta = async(req,res)=>{
+
+
   try {
       const id_oferta = req.params.id;
       const id_empresa = req.usuario.id;
+
+      console.log('ID OFERTA:', id_oferta);
+    console.log('ID EMPRESA:', id_empresa);
 
       if(!id_oferta){
         return res.status(401).json({message:'Falta el id de la oferta'});
@@ -474,7 +479,7 @@ export const obtenerPostulacionesOferta = async(req,res)=>{
       }
 
       if(oferta.id_empresa !== id_empresa){
-        return res.status(500).json({message:'Solo puede verificar detalles de su empresa'});
+        return res.status(403).json({message:'Solo puede verificar detalles de su empresa'});
       }
 
       const postulaciones = await obtenerPostulacionesPorOfertaId(id_oferta);
@@ -490,10 +495,14 @@ export const obtenerPostulacionesOferta = async(req,res)=>{
     
       return res.status(200).json(postulacionesConUrls);
 
-  } catch (error) {
-    res.status(500).json({message:'Error al obtener las postulaciones de la oferta'})
+     
+
+ } catch (error) {
+         console.error('Error en obtenerPostulacionesOferta:', error);
+         res.status(500).json({message:'Error al obtener las postulaciones de la oferta'})
   }
 };
+
 //==================================================================
 /**
  * Controlador para obtener el archivo CV del postulante, correspondiente a una postulación específica.
@@ -631,6 +640,15 @@ export const obtenerPerfilPorPostulacion = async(req,res)=>{
       res.status(500).json({message:'Error al obtener el perfil del usuario'});
   }
 };
+
+//==============================================
+/**
+ * Controlador para obtener los datos de una empresa por su ID.
+ *
+ * @param {import('express').Request} req - Objeto de solicitud HTTP.
+ * @param {import('express').Response} res - Objeto de respuesta HTTP.
+ * @returns {Promise<void>} - Retorna los datos de la empresa o un mensaje de error.
+ */
 
 export const obtenerInformacionEmpresa =async(req,res)=>{
   try {
