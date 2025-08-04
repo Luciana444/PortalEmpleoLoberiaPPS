@@ -180,6 +180,14 @@ export class UserService {
       //headers: new HttpHeaders()
       //   .append('Authorization', `Bearer ${localStorage.getItem("token")}`)                    
     });
+  }
 
+  
+  saveVisits() {
+    return this.httpClient.post(`${URL}/auth/visitas`, {
+      observe: 'body',
+      withCredentials: true,
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    })
   }
 }

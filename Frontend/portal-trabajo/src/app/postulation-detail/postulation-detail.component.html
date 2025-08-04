@@ -5,7 +5,14 @@
         <i class="fa-solid fa-arrow-left" (click)="navigateToProfile()"></i> <a (click)="navigateToProfile()"> Volver a
             Perfil</a>
     </div>
-    }@else{
+    }@if(previousUrl === "/admin-panel"){
+    <div class="fallback">
+        <i class="fa-solid fa-arrow-left" (click)="navigateToAdminPanel()"></i> <a (click)="navigateToAdminPanel()">
+            Volver a
+            Administración</a>
+    </div>
+    }
+    @else{
     <div class="fallback">
         <i class="fa-solid fa-arrow-left" (click)="navigateToLanding()"></i> <a (click)="navigateToLanding()"> Volver a
             ofertas</a>
@@ -39,15 +46,19 @@
             } @else {
             <button (click)="openDialogPostulation(offer.id)">POSTULARME</button>
             }
-
-
-            } @else {
+            }
             @if (offer.id_empresa === currentUserId) {
             <button (click)="navigateToViewPostulations(offer.id)">Ver postulantes</button>
             <button class="edit" (click)="navigateToEditOffer(offer.id)"> <i class="fa-solid fa-pen "></i> Editar
                 Oferta</button>
             <button class="delete" (click)="openDialog(offer.id)" matTooltip="Eliminar oferta">
                 <i class="fa-solid fa-trash fa-xl "></i> </button>
+            }@else {
+            @if (currentUserType === "admin"){
+            <button class="edit"> <i class="fa-solid fa-check "></i> APROBAR</button>
+            <button class="delete" (click)="openDialog(offer.id)" matTooltip="Eliminar oferta">
+                <i class="fa-solid fa-trash fa-xl "></i> </button>
+
             }
             }
         </div>
@@ -97,5 +108,4 @@
 
     </div>
 </div>
-
 <app-footer></app-footer>

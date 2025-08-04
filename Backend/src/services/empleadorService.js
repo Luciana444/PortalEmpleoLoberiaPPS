@@ -1,5 +1,5 @@
 
-import { getDatosEmpresaById, updatePerfilEmpresaById, getOfertasByEmpresaId,getOfertasActivas, crearOfertaNueva, deleteOfertaById, buscarOfertaPorId, editarOfertaExistente,obtenerPostulacionesPendientes, marcarPostulacionesComoLeidas, getPostulacionesPorOferta, getPostulacionById } from "../repositories/empleadorRepository.js";
+import { getDatosEmpresaById, updatePerfilEmpresaById, getOfertasByEmpresaId,getOfertasActivas, crearOfertaNueva, deleteOfertaById, buscarOfertaPorId, editarOfertaExistente,obtenerPostulacionesPendientes, marcarPostulacionesComoLeidas, getPostulacionesPorOferta, getPostulacionById,  buscarNotificacionOfertaRepository, borrarNotificacionOfertaRepository } from "../repositories/empleadorRepository.js";
 import { getPerfilCompleto } from "./ciudadanoService.js";
 
 
@@ -120,4 +120,15 @@ export const obtenerPerfilPostulante = async(id_ciudadano)=>{
   } catch (error) {
     console.log(error);
   }
-}
+};
+
+export const obtenerYBorrarNotificacionEmpresa = async (idEmpresa) => {
+  const notificacion = await buscarNotificacionOfertaRepository(idEmpresa);
+
+  if (!notificacion) return null;
+
+  await borrarNotificacionOfertaRepository(notificacion.id);
+
+  return notificacion.notificacion; 
+};
+

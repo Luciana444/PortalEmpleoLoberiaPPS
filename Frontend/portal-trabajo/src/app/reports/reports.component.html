@@ -9,7 +9,7 @@
             <div class="list-content">
                 <div class="profile">
                     <h4>Visitas al sitio</h4>
-                    <p class="report-nmb">-</p>
+                    <p class="report-nmb">{{totalVisits.total_visitas}}</p>
                 </div>
                 <div class="profile">
                     <h4>Registros al sitio</h4>
@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="report-btn">
-                <button matTooltip="Descargá un reporte con todas las estadísticas del sitio">
+                <button matTooltip="Descargá un reporte con todas las estadísticas del sitio" (click) ="downloadReport()">
                     Descargar Reporte <i class="fa-solid fa-download"></i>
                 </button>
             </div>

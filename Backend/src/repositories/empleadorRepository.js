@@ -225,3 +225,24 @@ export const getPostulacionById = async(id_postulacion)=>{
   return postulacion;
 }
 
+export const buscarNotificacionOfertaRepository = async (idEmpresa) => {
+  const resultado = await sql`
+    SELECT id, notificacion
+    FROM ofertas_laborales
+    WHERE id_empresa = ${idEmpresa}
+      AND notificacion IS NOT NULL
+    ORDER BY fecha_publicacion DESC
+    LIMIT 1;
+  `;
+
+  return resultado[0];
+};
+
+export const borrarNotificacionOfertaRepository = async (idOferta) => {
+  await sql`
+    UPDATE ofertas_laborales
+    SET notificacion = NULL
+    WHERE id = ${idOferta};
+  `;
+};
+

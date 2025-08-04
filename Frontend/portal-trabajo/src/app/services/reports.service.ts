@@ -37,4 +37,23 @@ export class ReportsService {
         })
     }
 
+        getTotalVisits() {
+        return this.httpClient.get<any>(`${URL}/admin/ver/visitas`, {
+            observe: 'response',
+            withCredentials: true,
+            headers: new HttpHeaders()
+                .append('Content-Type', 'application/json')
+        })
+    }
+
+    downloadReportSite(){
+         return this.httpClient.get(`${URL}/admin/generar_reporte`,
+              {
+                responseType: 'blob',
+                observe: 'response',
+                withCredentials: true,
+                headers: new HttpHeaders().append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+              });
+        
+    }
 }
