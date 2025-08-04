@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, LOCALE_ID, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
@@ -16,6 +16,7 @@ import { User } from '../profile-form/profile-form.component';
 import { jwtDecode } from 'jwt-decode';
 import { MatIconModule } from "@angular/material/icon";
 import { UserService } from '../services/user.service';
+import { VisitTrackingService } from '../services/visit-tracking.service';
 
 
 registerLocaleData(localeEsAR);
@@ -34,6 +35,7 @@ export class LandingComponent implements OnInit {
     private employeeservice: EmployeeService,
     private userservice: UserService,
     private http: HttpClient,
+    private visitTracker: VisitTrackingService,
   ) { }
 
   offers: JobOffer[] = [];
@@ -47,7 +49,7 @@ export class LandingComponent implements OnInit {
     if (this.getUserType() === 'ciudadano')
       this.getPostulations();
 
-    this.registerVisit();
+    this.trackPageVisit();
   }
 
   handleOffersLoaded(offers: JobOffer[]) {
@@ -117,76 +119,10 @@ export class LandingComponent implements OnInit {
     this.router.navigate(['/employer-profile', id]);
   }
 
-  private getAuthHeaders(): HttpHeaders {
-    const token = localStorage.getItem('token');
-
-    if (!token)
-      return new HttpHeaders();
-
-    return new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    });
-  }
-
-  registerVisit(): void {
-    const pageName = this.router.url;
-
-    if (!this.isAuthenticated()) {
-      console.warn('Usuario no autenticado, no se registrará la visita');
-      return;
-    }
-
-    const headers = this.getAuthHeaders();
-    if (!headers.has('Authorization'))
-      return;
-
-    this.http.post(
-      'http://localhost:3000/api/auth/visitas',
-      { pagina: pageName },
-      { headers }
-    ).subscribe({
-      next: (response: any) => {
-        console.log('Visita registrada con exito:', response);
-      },
-      error: (error) => {
-        console.error('[VisitCounter] Failed to register visit:', error);
-        if (error.status === 401)
-          console.warn('[VisitCounter] Unauthorized - token might be invalid or expired');
-      },
-      complete: () => {
-        console.log('[VisitCounter] Visit registration complete');
-      }
-    });
-  }
-
-  private isAuthenticated(): boolean {
-    try {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        console.log('[VisitCounter] No token found in localStorage');
-        return false;
-      }
-
-      // Basic token validation
-      const decoded = jwtDecode(token);
-      if (!decoded || !decoded.exp) {
-        console.warn('[VisitCounter] Invalid token format');
-        return false;
-      }
-
-      // Check if token is expired
-      const isExpired = Date.now() >= decoded.exp * 1000;
-      if (isExpired) {
-        console.warn('[VisitCounter] Token has expired');
-        return false;
-      }
-
-      return true;
-    } catch (error) {
-      console.error('[VisitCounter] Error checking authentication:', error);
-      return false;
-    }
+  private trackPageVisit(): void {
+    const pagePath = this.router.url;
+    this.visitTracker.trackVisit(pagePath)
+      .catch(err => console.error('Component error handling:', err));
   }
 
 }
