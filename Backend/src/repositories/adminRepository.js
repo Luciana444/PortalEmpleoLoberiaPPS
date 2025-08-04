@@ -71,3 +71,9 @@ export const listarReporteVisitas = async () => {
 
   return result[0];
 };
+
+
+export const getCiudadanosRepository = async()=>{
+  const result = await sql`SELECT * FROM perfiles_ciudadanos`;
+  return result;
+}

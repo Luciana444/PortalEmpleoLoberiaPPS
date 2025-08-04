@@ -1,4 +1,4 @@
-import { getCanPostulacionesTotales,getCantOfertasTotales,obtenerOfertasLaborales,obtenerResumenUsuarios,obtenerReporteVisitas, generarReporteMetricasService } from "../services/adminService.js";
+import { getCanPostulacionesTotales,getCantOfertasTotales,obtenerOfertasLaborales,obtenerResumenUsuarios,obtenerReporteVisitas, generarReporteMetricasService, getCiudadanos } from "../services/adminService.js";
 
 
 
@@ -63,5 +63,16 @@ export const generarReporteMetricas = async(req,res)=>{
   } catch (error) {
     console.log(error);
     res.status(500).json({message:'Error al generar el reporte de metricas'})
+  }
+};
+
+
+export const getListaCiudadanos = async(req,res)=>{
+  try {
+      const lista_ciudadanos = await getCiudadanos();
+      return res.status(200).json(lista_ciudadanos);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({message:'Error al obtener la lista de los ciudadanos'});
   }
 };
