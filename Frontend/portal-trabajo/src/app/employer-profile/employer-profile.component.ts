@@ -92,4 +92,8 @@ export class EmployerProfileComponent implements OnInit {
   navigateToPostulationDetail(id: any) {
     this.router.navigate(['/detail', id], { state: { from: this.router.url } });
   }
+
+  navigateToLanding() {
+    this.router.navigate(['/']);
+  }
 }

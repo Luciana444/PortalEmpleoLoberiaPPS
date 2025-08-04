@@ -79,10 +79,10 @@
     </div>
 </main>
 
+@if(getUserType() === 'ciudadano'){
 <div class="postulations-header">
     <h1>Postulaciones</h1>
 </div>
-
 @if (postulations.length) {
 @for (p of postulations; track p.id) {
 <div class="postulations">
@@ -99,4 +99,5 @@
 </div>
 }} @else {
 <h3>No hay postulaciones.</h3>
+}
 }

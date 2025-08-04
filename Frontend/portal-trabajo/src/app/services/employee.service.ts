@@ -4,6 +4,8 @@ import { Employee } from '../../models/employee.model';
 import { Postulation } from '../../models/postulation.model';
 import { WorkExperience } from '../../models/work-experience.model';
 import { AcademicBackground } from '../../models/academic-background.model';
+import { Profile } from '../../models/profile.model';
+import { map } from 'rxjs/operators';
 
 const URL = 'http://localhost:3000/api';
 
@@ -21,6 +23,28 @@ export class EmployeeService {
                 .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
                 .append('Content-Type', 'application/json')
         })
+    }
+
+    getDataProfileByPostulationId(id: string) {
+        return this.httpClient.get<Employee>(`${URL}/empresa/postulaciones/${id}/perfil`, {
+            observe: 'response',
+            withCredentials: true,
+            headers: new HttpHeaders()
+                .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+                .append('Content-Type', 'application/json')
+        })
+    }
+
+    getDataProfileForEmployerByPostulationId(id: string) {
+        return this.getDataProfileByPostulationId(id)
+        .pipe(
+            map(emp => {
+                const p: Profile = {
+                    nombre: emp.body?.nombre ?? "",
+                    imagen_url: emp.body?.imagen_url ?? ""
+                };
+                return p
+            }))
     }
 
 

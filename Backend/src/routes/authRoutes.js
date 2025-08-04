@@ -5,8 +5,8 @@
 import express from 'express';
 import { iniciarSesion } from '../controllers/authController.js';
 import{registrarse} from '../controllers/authController.js';
-import{enviarTokenRecuperacion,resetearContrasena} from '../controllers/authController.js';
-
+import{enviarTokenRecuperacion,resetearContrasena,registrarVisita } from '../controllers/authController.js';
+import{verificarToken} from '../middlewares/authMiddleware.js';
 //Inicializa el router específico para autenticación
 export const authRoutes = express.Router();
 
@@ -162,5 +162,7 @@ authRoutes.post('/reset/password', resetearContrasena);
 
 authRoutes.post('/login',iniciarSesion);
 
+
+authRoutes.post('/visitas',verificarToken,registrarVisita);
 
 export default authRoutes;

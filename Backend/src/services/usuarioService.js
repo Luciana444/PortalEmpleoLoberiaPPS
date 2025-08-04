@@ -2,7 +2,7 @@
 //  Importación de funciones desde los repositorios
 
 import {existeEmail, crearUsuario, findUserById, borrarCuentaByIdUsuario} from '../repositories/usuarioRepository.js';
-import {findAll, findUserByEmail, actualizarContrasena} from '../repositories/usuarioRepository.js';
+import {findAll, findUserByEmail, actualizarContrasena,registrarVisitaRepository} from '../repositories/usuarioRepository.js';
 
 
 //Librerías para manejo de seguridad
@@ -289,7 +289,11 @@ export const guardarFotoPerfil = async (userId, file, tipoUsuario) => {
 
 
 
-
 export const borrarCuenta = async(id_usuario)=>{
   await borrarCuentaByIdUsuario(id_usuario);
 }
+
+
+export const registrarVisitaService = async (visitaData) => {
+  await registrarVisitaRepository(visitaData);
+};

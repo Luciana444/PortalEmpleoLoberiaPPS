@@ -3,7 +3,9 @@ import { WorkExperience } from "./work-experience.model";
 
 export interface Employee {
     id: string;
+    id_ciudadano:string;
     nombre: string;
+    apellido: string;
     email: string;
     dni: string;
     cuil: string;
@@ -23,6 +25,7 @@ export interface Employee {
     tiene_emprendimiento: string;
     discapacidad: boolean;
     foto: string;
+    imagen_url: string;
     cv_url: string;
     capacitaciones: AcademicBackground[];
     experiencias_laborales: WorkExperience[];

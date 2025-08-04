@@ -1,9 +1,26 @@
 <app-header></app-header>
 <main>
+
     <div class="container">
-        <app-profile [employeeData]=employee></app-profile>
-        <app-academic-background [employeeData]=employee></app-academic-background>
-        <app-attatch-cv [hasCV]="employee.cv_url" [name]="employee.nombre"></app-attatch-cv>
+        <div class="fallback">
+            @if(getUserType()=== 'ciudadano'){
+            <i class="fa-solid fa-arrow-left" (click)="navigateToLanding()"></i> <a (click)="navigateToLanding()">
+                Volver a
+                ofertas</a>
+            }@else {
+            <i class="fa-solid fa-arrow-left" (click)="navigateToAdminPanel()"></i> <a (click)="navigateToAdminPanel()">
+                Volver a
+                Administración</a>
+            }
+        </div>
+        <div class="container-profile">
+            <app-profile [employeeData]=employee></app-profile>
+            <app-academic-background [employeeData]=employee></app-academic-background>
+            @if(getUserType() === 'ciudadano'){
+            <app-attatch-cv [hasCV]="employee.cv_url" [name]="employee.nombre"></app-attatch-cv>
+            }
+        </div>
+
     </div>
 </main>
 

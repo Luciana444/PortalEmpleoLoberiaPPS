@@ -1,11 +1,24 @@
 @use '../../styles.scss' as *;
 
-.container{
+.container-profile{
     display: flex;
     flex-direction: row;
     gap: 1rem;
     padding: 1rem 0;
     max-width: 90vw;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    //max-width: 90vw;
+}
+.fallback > i{
+  color:#57AF31;
+}
+.fallback{
+  font-family: 'Linotte Light';
+  font-size: 1.2rem;
 }
 
 main{

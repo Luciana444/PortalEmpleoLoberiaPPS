@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from '../../models/employee.model';
 import { AppUtils } from '../../utils/app.utils';
 import { Profile } from '../../models/profile.model';
@@ -7,6 +7,7 @@ import { jwtDecode } from 'jwt-decode';
 import { User } from '../profile-form/profile-form.component';
 import { isPlatformBrowser } from '@angular/common';
 import { UserService } from '../services/user.service';
+import { EmployeeService } from '../services/employee.service';
 
 @Component({
   selector: 'app-profile',
@@ -17,17 +18,35 @@ import { UserService } from '../services/user.service';
 export class ProfileComponent implements OnInit {
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private userservice: UserService,
+    private employeeservice: EmployeeService,
     @Inject(PLATFORM_ID) private platformId: Object,
   ) { }
 
-  @Input()
-  employeeData: Employee | null = null;
+  @Input() employeeData: Employee | null = null;
   user: Profile = {} as Profile;
 
+  itemId: string = "";
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     const userType = this.getUserType();
+    if(userType=== 'empresa'){
+      this.itemId = this.route.snapshot.params['id'] ?? "";
+      this.employeeservice.getDataProfileForEmployerByPostulationId(this.itemId)?.subscribe({
+      next: (response) => {
+        if (response) {
+          this.user = response;
+        } else {
+          console.log('Profile load failed', response);
+        }
+      },
+      error: (err) => {
+        console.error('Profile load error', err);
+      }
+    });
+
+    }else{
 
     this.userservice.getDataProfile(userType)?.subscribe({
       next: (response) => {
@@ -42,6 +61,7 @@ export class ProfileComponent implements OnInit {
       }
     });
   }
+}
 
   getUserType(): string | null {
     if (!isPlatformBrowser(this.platformId))

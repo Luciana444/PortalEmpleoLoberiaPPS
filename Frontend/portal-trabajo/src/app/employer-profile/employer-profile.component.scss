@@ -1,68 +1,85 @@
 @use '../../styles.scss' as *;
 @use 'sass:color';
 
-.container{
-    min-height: 100vh;
+.container-profile {
+    //min-height: 100vh;
     display: flex;
+    flex-direction: row;
     gap: 2rem;
     margin: 1rem;
     margin-left: 6rem;
     margin-right: 6rem;
 }
 
-p{
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    //max-width: 90vw;
+}
+
+p {
     font-weight: 300;
 }
 
-h4, h5{
+h4,
+h5 {
     font-weight: 500;
     text-wrap: nowrap;
 }
 
-p, h5{
+p,
+h5 {
     color: $text-color;
     font-size: 1rem;
 }
 
-.create-offer{
+.create-offer {
     margin-right: 1rem;
 }
 
-main{
+main {
     width: 80%;
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-.postulation, .main-header{
+.postulation,
+.main-header {
     border-radius: 10px;
     background-color: white;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.postulation{
+.postulation {
     min-height: fit-content;
 }
 
-h2{
+h2 {
     color: $green;
     margin: 0.5rem;
     margin-left: 4rem;
 }
 
-h4{
+h4 {
     color: $green;
 }
 
-.postulation-header, .postulation-body{
+.fallback {
+    font-family: 'Linotte Light';
+    font-size: 1.2rem;
+    margin-left:6rem;
+}
+.postulation-header,
+.postulation-body {
     display: flex;
     justify-content: space-between;
     padding: 1rem;
     padding-left: 2rem;
 }
 
-.postulation-header{
+.postulation-header {
     background-color: #ECF8E7;
     padding-bottom: 0rem;
     padding-top: 0;
@@ -71,12 +88,13 @@ h4{
     font-size: 1.25rem;
 }
 
-.postulation-header > p, .postulation-header > h4{
+.postulation-header>p,
+.postulation-header>h4 {
     margin: 0.5rem;
     margin-left: 0;
 }
 
-.postulation-body > p{
+.postulation-body>p {
     margin: 0;
     min-width: 50%;
     max-width: 85%;
@@ -85,7 +103,7 @@ h4{
     padding-right: 1rem;
 }
 
-button{
+button {
     min-width: 100px;
     padding: 8px 4px;
     height: fit-content;
@@ -93,23 +111,23 @@ button{
     white-space: nowrap;
 }
 
-.postulation-header > p{
+.postulation-header>p {
     font-size: 0.75rem;
     align-self: center;
 }
 
-.main-header{
+.main-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-i{
+i {
     color: $green;
     margin-right: 1rem;
 }
 
-i:hover{
+i:hover {
     color: color.adjust(#57AF31, $lightness: -10%);
     cursor: pointer;
 }

@@ -1,7 +1,7 @@
 // Controlador de autenticación de usuarios.
 // Contiene funciones para registrar, iniciar y cerrar sesión, y recuperar contraseña.
 
-import {registrarUsuario, iniciarSesionUsuario} from '../services/usuarioService.js';
+import {registrarUsuario, iniciarSesionUsuario,registrarVisitaService} from '../services/usuarioService.js';
 
 
 import dotenv from 'dotenv';
@@ -254,6 +254,34 @@ export const resetearContrasena = async (req, res) => {
   } catch (error) {
     console.error('Error al resetear contraseña:', error);
     res.status(400).json({ error: error.message || 'Token inválido o expirado' });
+  }
+};
+
+
+export const registrarVisita = async (req, res) => {
+  try {
+    const { pagina } = req.body;
+
+    if (!pagina || typeof pagina !== 'string' || pagina.trim() === '') {
+      return res.status(400).json({ error: 'El campo "pagina" es obligatorio y debe ser un texto no vacío' });
+    }
+
+    const ip = req.ip;
+    const userAgent = req.headers['user-agent'];
+    const { id_usuario, tipo_usuario } = req.usuario ?? {};
+
+    await registrarVisitaService({
+      pagina: pagina.trim(),
+      ip,
+      userAgent,
+      id_usuario,
+      tipo_usuario
+    });
+
+    res.status(201).json({ mensaje: 'Visita registrada' });
+  } catch (error) {
+    console.error('Error al registrar visita:', error);
+    res.status(500).json({ error: 'Error al registrar visita' });
   }
 };
 

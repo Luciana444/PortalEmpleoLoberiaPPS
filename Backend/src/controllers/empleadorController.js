@@ -1,4 +1,4 @@
-import { getDatosEmpresa, updatePerfilEmpresa, obtenerOfertasPorEmpresa, obtenerOfertasActivas, crearOferta, eliminarOferta, getOfertaById, editarOferta,obtenerYMarcarNotificaciones, obtenerPostulacionesPorOfertaId, obtenerPostulacionPorId, obtenerPerfilPostulante } from "../services/empleadorService.js";
+import { getDatosEmpresa, updatePerfilEmpresa, obtenerOfertasPorEmpresa, obtenerOfertasActivas, crearOferta, eliminarOferta, getOfertaById, editarOferta,obtenerYMarcarNotificaciones, obtenerPostulacionesPorOfertaId, obtenerPostulacionPorId, obtenerPerfilPostulante,obtenerYBorrarNotificacionEmpresa } from "../services/empleadorService.js";
 import { empresaValidation } from "../validations/empresaValidation.js";
 import { crearOfertaSchema, editarOfertaSchema } from "../validations/ofertaValidation.js";
 import path from 'path';
@@ -665,5 +665,25 @@ export const obtenerInformacionEmpresa =async(req,res)=>{
   }
 
 
+};
 
+export const obtenerNotificacionOferta = async (req, res) => {
+  try {
+    const idEmpresa = req.usuario?.id;
+
+    if (!idEmpresa) {
+      return res.status(401).json({ error: 'Empresa no autenticada' });
+    }
+
+    const mensaje = await obtenerYBorrarNotificacionEmpresa(idEmpresa);
+
+    if (!mensaje) {
+      return res.status(204).send(); 
+    }
+
+    res.status(200).json({ mensaje });
+  } catch (error) {
+    console.error('Error al obtener notificación:', error);
+    res.status(500).json({ error: 'Error interno al obtener notificación' });
+  }
 };
