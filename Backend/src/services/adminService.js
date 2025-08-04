@@ -85,7 +85,7 @@ export const generarReporteMetricasService= async(res)=>{
 
       doc.font('Bold').fontSize(14).fillColor('black').text('Resumen de Postulaciones a Ofertas Laborales',{underline:true});
       doc.moveDown(0.5);
-      doc.font('Regular').fontSize(12).fillColor('black').text(`• Total de ofertas publicadas al dia de la fecha: ${postulaciones_totales.count}`);
+      doc.font('Regular').fontSize(12).fillColor('black').text(`• Total de postulaciones realizadas al dia de la fecha: ${postulaciones_totales.count}`);
       
       doc.moveDown(9.7);
       doc.font('Bold').fontSize(14).fillColor('black').text('Municipio de Loberia',{align:'center'});
