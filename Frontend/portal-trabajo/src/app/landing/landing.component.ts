@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, LOCALE_ID, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
@@ -29,7 +29,12 @@ registerLocaleData(localeEsAR);
 })
 
 export class LandingComponent implements OnInit {
-  constructor(private router: Router, private employeeservice: EmployeeService, private userservice: UserService) { }
+  constructor(
+    private router: Router,
+    private employeeservice: EmployeeService,
+    private userservice: UserService,
+    private http: HttpClient,
+  ) { }
 
   offers: JobOffer[] = [];
   postulations: Postulation[] = [];
@@ -39,9 +44,10 @@ export class LandingComponent implements OnInit {
   showFilter = false;
 
   ngOnInit(): void {
-    if (this.getUserType() === 'ciudadano') {
+    if (this.getUserType() === 'ciudadano')
       this.getPostulations();
-    }
+
+    this.registerVisit();
   }
 
   handleOffersLoaded(offers: JobOffer[]) {
@@ -111,21 +117,76 @@ export class LandingComponent implements OnInit {
     this.router.navigate(['/employer-profile', id]);
   }
 
-  /*saveVisitsToSite() {
-    this.userservice.saveVisits().subscribe({
-            next: (response) => {
-                if (response.status === 200) {
-                    console.log('Actualización exitosa', response);
-                } else {
-                    console.log('No se pudo editar la formación', response);
-                }
-            },
-            error: (err) => {
-                this.toastr.error(err.error.error, 'Ocurrió un error');
-                console.error('Error al actualizar formación', err);
-            }
-        });
-  }*/
+  private getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+
+    if (!token)
+      return new HttpHeaders();
+
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+  }
+
+  registerVisit(): void {
+    const pageName = this.router.url;
+
+    if (!this.isAuthenticated()) {
+      console.warn('Usuario no autenticado, no se registrará la visita');
+      return;
+    }
+
+    const headers = this.getAuthHeaders();
+    if (!headers.has('Authorization'))
+      return;
+
+    this.http.post(
+      'http://localhost:3000/api/auth/visitas',
+      { pagina: pageName },
+      { headers }
+    ).subscribe({
+      next: (response: any) => {
+        console.log('Visita registrada con exito:', response);
+      },
+      error: (error) => {
+        console.error('[VisitCounter] Failed to register visit:', error);
+        if (error.status === 401)
+          console.warn('[VisitCounter] Unauthorized - token might be invalid or expired');
+      },
+      complete: () => {
+        console.log('[VisitCounter] Visit registration complete');
+      }
+    });
+  }
+
+  private isAuthenticated(): boolean {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.log('[VisitCounter] No token found in localStorage');
+        return false;
+      }
+
+      // Basic token validation
+      const decoded = jwtDecode(token);
+      if (!decoded || !decoded.exp) {
+        console.warn('[VisitCounter] Invalid token format');
+        return false;
+      }
+
+      // Check if token is expired
+      const isExpired = Date.now() >= decoded.exp * 1000;
+      if (isExpired) {
+        console.warn('[VisitCounter] Token has expired');
+        return false;
+      }
+
+      return true;
+    } catch (error) {
+      console.error('[VisitCounter] Error checking authentication:', error);
+      return false;
+    }
+  }
+
 }
-
-
