@@ -11,6 +11,7 @@ import { ReportsService } from "../services/reports.service";
 import { AdminService } from "../services/admin.service";
 import { AppUtils } from "../../utils/app.utils";
 import { MatDivider } from "@angular/material/divider";
+import { Employee } from "../../models/employee.model";
 
 
 @Component({
@@ -25,6 +26,7 @@ import { MatDivider } from "@angular/material/divider";
 export class AdminPanelComponent implements OnInit {
     itemId: string = "";
     offers: JobOffer[] = [];
+    employees: Employee[] = [];
 
     constructor(
         private authService: AuthService,
@@ -36,14 +38,13 @@ export class AdminPanelComponent implements OnInit {
 
     ngOnInit(): void {
         this.getOffers();
+        this.getEmployees();
 
     }
 
     readonly panelOpenState = signal(false);
 
     getOffers() {
-        //this.itemId = this.route.snapshot.params['id'] ?? ""; // Get ID from route
-        //if (this.itemId) {
         this.adminservice.getOffersLikeAdmin().subscribe({
             next: (response) => {
                 if (response.status === 200) { // Populate form with API data
@@ -53,12 +54,26 @@ export class AdminPanelComponent implements OnInit {
                 }
             },
             error: (err) => {
-                //this.toastr.error(err.error.error, 'Ocurrió un error');
                 console.error('Error al cargar oferta', err);
             }
         });
-        //}
     }
+
+        getEmployees() {
+        this.adminservice.getEmployeesLikeAdmin().subscribe({
+            next: (response) => {
+                if (response.status === 200) { // Populate form with API data
+                    this.employees = response.body || [];
+                } else {
+                    console.log('No se pudo cargar ciudadanos', response);
+                }
+            },
+            error: (err) => {
+                console.error('Error al cargar ciudadano', err);
+            }
+        });
+    }
+
 
     getImageUrl(image_url: string) {
         return image_url ? `http://localhost:3000${image_url}` : null;
@@ -66,6 +81,10 @@ export class AdminPanelComponent implements OnInit {
 
     navigateToPostulationDetail(id: any) {
         this.router.navigate(['/detail', id], { state: { from: this.router.url } });
+    }
+
+     navigateToProfile(id: any) {
+        this.router.navigate(['/employee-profile', id], { state: { from: this.router.url } });
     }
 
     convertToLocalDate(date: string | undefined) {

@@ -82,6 +82,15 @@ export class EmployerService {
         })
     }
 
+      getNotificationsOffers() {
+        return this.httpClient.get<Notification>(`${URL}/empresa/notificaciones/ofertas`, {
+            observe: 'response',
+            withCredentials: true,
+            headers: new HttpHeaders()
+                .append('Content-Type', 'application/json')
+        })
+    }
+
 
 
 

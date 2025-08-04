@@ -16,13 +16,23 @@
     </div>
     @if (isLoggedIn){
     <div class="user-container">
+        @if (getUserType() === 'empresa' || getUserType() === 'ciudadano'){
         <div class="profile-pic" (click)="navigateToProfile()">
             <img [src]="getImageUrl(user.imagen_url) || 'sample_pfp.png'" alt="Profile picture" matTooltip="Ver perfil">
         </div>
-
+        }@else {
+        <div class="profile-pic" (click)="navigateToAdminPanel()">
+            <img src="../../assets/profilePic/ProfilePicMunicipio.jpg" alt="Profile picture"
+                matTooltip="Ir a Panel de administración">
+        </div>
+        }
         <div class="text-wrapper">
             <div class="notify">
+                @if (getUserType()=== 'ciudadano' || getUserType()=== 'empresa'){
                 <p class="username">{{user.nombre}}</p>
+                }@else {
+                <p class="username">Municipio de Loberia</p>
+                }
                 @if (getUserType() === 'empresa' && hasNotifications()) {
                 <button class="bell-btn" [matMenuTriggerFor]="menu" (click)="toggleBadgeVisibility()">
                     <mat-icon class="bell-icon" matBadgeSize="small" [matBadge]="notification.cantidad"
@@ -54,7 +64,8 @@
     }@else {
     <div class="buttons-container">
         <button class="register-button" (click)="navigateToRegister()">Crear Cuenta</button>
-        <button class="login-button" (click)="navigateToLogin()">Ingresar</button>
+        <button class="login-button" (click)="navigateToLogin()">Iniciar Sesión</button>
     </div>
     }
+
 </header>

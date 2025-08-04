@@ -86,4 +86,7 @@ export class EmployeeProfileComponent implements OnInit {
    navigateToLanding() {
     this.router.navigate(['/']);
   }
+    navigateToAdminPanel() {
+    this.router.navigate(['admin-panel']);
+  }
 }

@@ -17,9 +17,40 @@
     gap: 1rem;
 }
 
+.employee-data {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+}
+
 .profile-header {
     display: flex;
     gap: 0.5rem;
+}
+.profile-header-employee {
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.profile-info-employee {
+    margin-left: 2rem;
+    margin-bottom:0.5rem;
+    margin-top: 0.5rem;
+}
+.employee-date{
+    margin-left: 2rem;
+}
+
+.profile-info-employee > h4 {
+    margin-bottom:0.5rem;
+}
+
+.location-employee {
+    display: flex;
+    gap: 0.3rem;
 }
 
 .profile-pic {
@@ -30,7 +61,7 @@
 }
 
 .profile-info>h4,
-.location>p {
+.location>p, .location-employee>p, .profile-info-employee>h4  {
     color: #49454F;
     margin: 0;
 }
@@ -59,6 +90,17 @@
     background-color: white;
 }
 
+.profile-employee {
+    align-items: center;
+    height: fit-content;
+    width: 100%;
+    border-radius: 10px;
+    gap: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); // Added subtle shadow
+    overflow: hidden;
+    background-color: white;
+}
+
 .state-flag {
     color: white;
     background-color: #b3261e;
@@ -68,7 +110,24 @@
     border-radius: 10px;
 }
 
-.state-flag>i {
+
+.state-flag-check {
+    color: white;
+    background-color: #57AF31;
+    font-family: 'Linotte Light';
+    font-size: 1rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+.employee-btn{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+
+.state-flag>i, .state-flag-check>i {
     color: white;
 }
 
@@ -88,9 +147,10 @@
 
 .name-work {
     color: #57AF31;
-    font-family: 'Linotte Heavy';
+    font-family: 'Linotte Regular';
     margin-left: 2rem;
     margin-right: 2rem;
+    font-size: 1.5rem;
 
 }
 
@@ -103,23 +163,6 @@ li {
 }
 
 
-/*
-.profile {
-    background-color: white;
-    height: fit-content;
-    width: fit-content;
-    padding: 1rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); // Added subtle shadow
-    overflow: hidden;
-    display: inline;
-    justify-content: center;
-}
-
-.profile>h4 {
-    color: #57AF31;
-    font-family: 'Linotte Bold';
-*/
 
 .report-nmb {
     color: #57AF31;
