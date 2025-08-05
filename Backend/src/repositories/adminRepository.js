@@ -77,3 +77,19 @@ export const getCiudadanosRepository = async()=>{
   const result = await sql`SELECT * FROM perfiles_ciudadanos`;
   return result;
 }
+
+
+export const autorizarOfertaRepository = async(email,id_oferta,estado_publicacion)=>{
+  await sql`UPDATE ofertas_laborales SET email_admin_autorizador=${email}, estado_publicacion=${estado_publicacion}, 
+  fecha_aprobacion = NOW() WHERE id=${id_oferta}`;
+};
+
+export const getEmpresasRepository = async()=>{
+  const result = await sql`SELECT * FROM empresas`;
+  return result;
+};
+
+export const autorizarEmpresaRepository = async(email,id_empresa,estado_publicacion)=>{
+  await sql`UPDATE empresas SET email_admin_autorizador=${email}, estado_aprobacion=${estado_publicacion}, 
+  fecha_aprobacion = NOW() WHERE id_usuario=${id_empresa}`;
+};

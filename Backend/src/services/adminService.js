@@ -1,4 +1,4 @@
-import { getCantOfertasTotalesRepository, getCantPostulacionesTotalesRepository,listarOfertasLaborales,listarResumenUsuarios,listarReporteVisitas, getCiudadanosRepository  } from "../repositories/adminRepository.js";
+import { getCantOfertasTotalesRepository, getCantPostulacionesTotalesRepository,listarOfertasLaborales,listarResumenUsuarios,listarReporteVisitas, getCiudadanosRepository ,autorizarOfertaRepository, getEmpresasRepository, autorizarEmpresaRepository } from "../repositories/adminRepository.js";
 import PDFDocument from 'pdfkit';
 
 
@@ -100,4 +100,18 @@ export const generarReporteMetricasService= async(res)=>{
 export const getCiudadanos = async()=>{
   const lista = await getCiudadanosRepository();
   return lista;
+};
+
+
+export const autorizarOfertaLaboral = async(email,id_oferta,estado_publicacion)=>{
+  await autorizarOfertaRepository(email,id_oferta,estado_publicacion);
+};
+
+export const getListaEmpresasService = async()=>{
+  const lista_empresas = await getEmpresasRepository();
+  return lista_empresas;
+}
+
+export const autorizarEmpresaService = async(email,id_empresa,estado_publicacion)=>{
+  await autorizarEmpresaRepository(email,id_empresa,estado_publicacion);
 };
