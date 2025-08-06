@@ -1,8 +1,13 @@
 @use '../../styles.scss' as *;
 @use 'sass:color';
 
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 .container-profile {
-    //min-height: 100vh;
     display: flex;
     flex-direction: row;
     gap: 2rem;
@@ -15,7 +20,8 @@
     display: flex;
     flex-direction: column;
     padding: 1rem 0;
-    //max-width: 90vw;
+    flex: 1;
+    min-height: 100vh;
 }
 
 p {
@@ -130,4 +136,91 @@ i {
 i:hover {
     color: color.adjust(#57AF31, $lightness: -10%);
     cursor: pointer;
+}
+
+.offers-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media (max-width: 600px){
+    .fallback{
+        margin-left: 2rem;
+    }
+    
+    .fa-arrow-left{
+        margin-right: 0 !important;
+    }
+
+    .container-profile {
+        flex-direction: column;
+        margin: 1rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    main {
+        width: 100%;
+    }
+
+    .main-header {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    h2{
+        margin-left: 0;
+        text-align: left;
+    }
+
+    .postulation-header, .postulation-body {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .postulation-body{
+        padding: 1rem !important;
+    }
+
+    .postulation-header {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .postulation-body>p {
+        max-width: 100%;
+    }
+
+    .postulation{
+        padding: 0!important;
+    }
+
+    button {
+        min-width: auto;
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    .create-offer {
+        margin-right: 0;
+        width: 100%;
+    }
+
+  .main-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+
+  .create-offer {
+    width: 100%;
+    
+    button {
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+  }
 }
