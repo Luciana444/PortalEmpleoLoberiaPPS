@@ -80,8 +80,9 @@ export const getCiudadanosRepository = async()=>{
 
 
 export const autorizarOfertaRepository = async(email,id_oferta,estado_publicacion)=>{
+  let msj = `Oferta ${estado_publicacion}`;
   await sql`UPDATE ofertas_laborales SET email_admin_autorizador=${email}, estado_publicacion=${estado_publicacion}, 
-  fecha_aprobacion = NOW() WHERE id=${id_oferta}`;
+  fecha_aprobacion = NOW(), notificacion=${msj} WHERE id=${id_oferta}`;
 };
 
 export const getEmpresasRepository = async()=>{

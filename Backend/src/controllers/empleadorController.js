@@ -465,14 +465,12 @@ export const obtenerPostulacionesOferta = async(req,res)=>{
       const id_oferta = req.params.id;
       const id_empresa = req.usuario.id;
 
-      console.log('ID OFERTA:', id_oferta);
-    console.log('ID EMPRESA:', id_empresa);
-
       if(!id_oferta){
         return res.status(401).json({message:'Falta el id de la oferta'});
       }
 
       const oferta = await getOfertaById(id_oferta);
+
 
       if(!oferta){
         return res.status(404).json({message:'La oferta no existe'});
@@ -483,6 +481,8 @@ export const obtenerPostulacionesOferta = async(req,res)=>{
       }
 
       const postulaciones = await obtenerPostulacionesPorOfertaId(id_oferta);
+
+
 
       const postulacionesConUrls = postulaciones.map((postulacion) => ({
           ...postulacion,
