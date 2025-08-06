@@ -216,7 +216,7 @@ export const marcarPostulacionesComoLeidas = async (ids) => {
 
 
 export const getPostulacionesPorOferta = async(id_oferta) =>{
-  const postulaciones = await sql`SELECT * FROM postulaciones WHERE id_oferta=${id_oferta}`;
+  const postulaciones = await sql`SELECT p.*, pe.nombre, pe.apellido, pe.localidad, pe.imagen_url FROM postulaciones p JOIN perfiles_ciudadanos pe ON p.id_ciudadano=pe.id_ciudadano WHERE p.id_oferta=${id_oferta}`;
   return postulaciones;
 };
 
@@ -227,7 +227,7 @@ export const getPostulacionById = async(id_postulacion)=>{
 
 export const buscarNotificacionOfertaRepository = async (idEmpresa) => {
   const resultado = await sql`
-    SELECT id, notificacion
+    SELECT id, notificacion, puesto_requerido,fecha_aprobacion
     FROM ofertas_laborales
     WHERE id_empresa = ${idEmpresa}
       AND notificacion IS NOT NULL

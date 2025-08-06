@@ -803,6 +803,40 @@ empleadorRoutes.get('/postulaciones/:id/perfil',authMiddleware,onlyEmpresa,obten
 
 empleadorRoutes.get('/:id/datos_empresa',obtenerInformacionEmpresa);
 
+//========================================================
+
+// Endpoint para obtener (y borrar) la notificación pendiente para la empresa
+/**
+ * @swagger
+ * /empresa/notificaciones/ofertas:
+ *   get:
+ *     summary: Obtener y borrar notificación pendiente para la empresa
+ *     tags:
+ *       - Empleador - Notificaciones
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Notificación obtenida correctamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 mensaje:
+ *                   type: string
+ *                   example: "Hay una nueva postulación en tu oferta activa"
+ *       204:
+ *         description: No hay notificaciones disponibles
+ *       401:
+ *         description: No autorizado - Empresa no autenticada
+ *       403:
+ *         description: Acceso prohibido - Requiere rol de empresa
+ *       500:
+ *         description: Error interno al obtener notificación
+ */
+
+
 empleadorRoutes.get('/notificaciones/ofertas', authMiddleware, onlyEmpresa, obtenerNotificacionOferta);
 
 export default empleadorRoutes;

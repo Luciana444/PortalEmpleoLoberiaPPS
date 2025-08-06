@@ -162,6 +162,46 @@ authRoutes.post('/reset/password', resetearContrasena);
 
 authRoutes.post('/login',iniciarSesion);
 
+//=================================================
+/**
+ * @swagger
+ * /auth/visitas:
+ *   post:
+ *     summary: Registrar una visita a una página del portal
+ *     tags:
+ *       - Autenticación - Visitas
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - pagina
+ *             properties:
+ *               pagina:
+ *                 type: string
+ *                 description: Nombre o URL de la página visitada
+ *     responses:
+ *       201:
+ *         description: Visita registrada correctamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 mensaje:
+ *                   type: string
+ *                   example: Visita registrada
+ *       400:
+ *         description: Petición inválida - El campo "pagina" es obligatorio y debe ser texto no vacío
+ *       401:
+ *         description: No autorizado - Token ausente o inválido
+ *       500:
+ *         description: Error interno al registrar la visita
+ */
 
 authRoutes.post('/visitas',verificarToken,registrarVisita);
 
