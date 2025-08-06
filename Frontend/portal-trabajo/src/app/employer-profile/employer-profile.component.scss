@@ -62,15 +62,49 @@ h2 {
     margin-left: 4rem;
 }
 
-h4 {
+h4, h3 {
     color: $green;
+}
+
+.state {
+    display: flex;
+    align-items: center;
+}
+
+.pendiente-flag,
+.reject-flag,
+.check-flag {
+    font-family: 'Linotte Light';
+    color: white;
+    margin-right: 1rem;
+    border-radius: 1.5rem;
+    padding: 0.2rem 0.8rem;
+}
+
+.pendiente-flag {
+    background-color: #e9a426;
+}
+
+.reject-flag {
+    background-color: #b3261e;
+}
+
+.check-flag {
+    background-color: #57AF31;
+}
+
+.pendiente-flag i,
+.reject-flag i,
+.check-flag i {
+    color: white;
 }
 
 .fallback {
     font-family: 'Linotte Light';
     font-size: 1.2rem;
-    margin-left:6rem;
+    margin-left: 6rem;
 }
+
 .postulation-header,
 .postulation-body {
     display: flex;

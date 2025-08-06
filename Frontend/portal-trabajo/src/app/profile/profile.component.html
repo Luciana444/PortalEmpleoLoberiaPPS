@@ -5,7 +5,7 @@
             <img [src]="getImageUrl(user.imagen_url) || 'sample_pfp.png'" alt="Profile picture">
         </div>
         <div class="profile-info">
-            <h4>{{employeeData?.nombre}}</h4>
+            <h4>{{employeeData?.nombre}} {{employeeData?.apellido}}</h4>
             <div class="location">
                 <i class="fa-solid fa-location-dot"></i>
                 <p>{{employeeData?.localidad}}</p>

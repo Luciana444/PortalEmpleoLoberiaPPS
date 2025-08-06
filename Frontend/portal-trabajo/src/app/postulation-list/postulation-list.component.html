@@ -1,5 +1,9 @@
 <app-header></app-header>
 <main>
+    <div class="fallback">
+        <i class="fa-solid fa-arrow-left" (click)="navigateToOffer(jobOffer?.id)"></i> <a (click)="navigateToOffer(jobOffer?.id)"> Volver a
+            Oferta</a>
+    </div>
     @if (jobOffer?.id_empresa === currentUserId && jobOffer?.id) {
     <div class="list-header">
         <div class="text-wrapper">
@@ -25,15 +29,18 @@
 
         <div class="button-wrapper">
             <button (click)="navigateToProfile(postulation.id)">Ver Perfil</button>
+            @if(postulation.cv_url === null){
+            <h4>No hay CV adjunto</h4>
+            }@else{
             <button (click)="getCV(postulation.id)">Ver CV</button>
+            }
+
         </div>
     </div>
     }
     } @else {
     <h3>No hay postulantes.</h3>
     }
-    } @else {
-    <h3>Error al cargar ofertas.</h3>
-    }
+    } 
 </main>
 <app-footer></app-footer>

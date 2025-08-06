@@ -1,4 +1,8 @@
 <app-header></app-header>
+ <div class="fallback">
+            <i class="fa-solid fa-arrow-left" (click)="navigateToProfile()"></i> <a (click)="navigateToProfile()">
+                Volver a Perfil</a>
+        </div>
 <h3>Editá tu Formación académica</h3>
 <div class="form-container">
     <form [formGroup]="educationForm" (ngSubmit)="editEducationForm()">

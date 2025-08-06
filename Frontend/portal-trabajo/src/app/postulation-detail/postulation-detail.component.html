@@ -5,7 +5,7 @@
         <i class="fa-solid fa-arrow-left" (click)="navigateToProfile()"></i> <a (click)="navigateToProfile()"> Volver a
             Perfil</a>
     </div>
-    }@if(previousUrl === "/admin-panel"){
+    }@else if(previousUrl === "/admin-panel"){
     <div class="fallback">
         <i class="fa-solid fa-arrow-left" (click)="navigateToAdminPanel()"></i> <a (click)="navigateToAdminPanel()">
             Volver a
@@ -15,7 +15,7 @@
     @else{
     <div class="fallback">
         <i class="fa-solid fa-arrow-left" (click)="navigateToLanding()"></i> <a (click)="navigateToLanding()"> Volver a
-            ofertas</a>
+            Ofertas</a>
     </div>
     }
     <div class="postulation-header">

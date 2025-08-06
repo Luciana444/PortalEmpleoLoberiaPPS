@@ -141,7 +141,7 @@ export class UserService {
       }).pipe(
         map(res => {
           const p: Profile = {
-            nombre: res.body?.nombre + " " + res.body?.apellido,
+            nombre: res.body?.nombre + " " + (res.body?.apellido ?? ''),
             imagen_url: res.body?.imagen_url
           };
           return p

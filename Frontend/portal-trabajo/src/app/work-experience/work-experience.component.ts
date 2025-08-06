@@ -88,7 +88,7 @@ export class WorkExperienceComponent implements OnInit {
                 if (response.status === 200) {
                     this.toastr.success('Cambios guardados', 'Actualización exitosa')
                     console.log('Actualización exitosa', response);
-                    this.workExperience.reset();
+                    //this.workExperience.reset();
 
                 } else {
                     console.log('No se pudo guardar los cambios', response);
@@ -113,11 +113,12 @@ export class WorkExperienceComponent implements OnInit {
         this.userservice.addWorkExperience(JSON.stringify(experiencia)).subscribe({
             next: (response) => {
                 if (response.status === 200) {
-                    this.experiencias.push(experiencia);
+                    //this.experiencias.push(experiencia);
                     this.toastr.success('Nueva experiencia laboral agregada', 'Actualización exitosa')
                     console.log('Actualización exitosa', response);
-                    this.workExperience.reset();
+                    //this.workExperience.reset();
                     this.addNewCardExperience = false;
+                    this.getDataProfile();
                 } else {
                     console.log('No se pudo agregar experiencia', response);
                 }
@@ -163,7 +164,10 @@ export class WorkExperienceComponent implements OnInit {
                 if (response.status === 200) {
                     this.toastr.success('Actualización exitosa', 'Experiencia editada')
                     console.log('Actualización exitosa', response);
-                    this.workExperience.reset();
+                    this.workExperience.get('nombre_empresa')?.setValue('');
+                    this.workExperience.get('desde')?.setValue('');
+                    this.workExperience.get('hasta')?.setValue('');
+                    this.workExperience.get('comentario')?.setValue('');
                     this.clearEditionMode();
                     this.getDataProfile();
                 } else {
@@ -266,5 +270,9 @@ export class WorkExperienceComponent implements OnInit {
         this.editCardExperience = false;
         this.workExperienceId = "";
     }
+
+       navigateToProfile(){
+    this.router.navigate(['profile']);
+  }
 
 }

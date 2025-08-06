@@ -22,8 +22,17 @@
             @for (offer of offers; track offer.id) {
             <div class="postulation">
                 <div class="postulation-header">
-                    <h4>{{offer.puesto_requerido}}</h4>
+                    <h3>{{offer.puesto_requerido}}</h3>
+                    <div class="state">
+                    @if (offer.estado_publicacion === 'aprobada'){
+                     <h5 class="check-flag"><i class="fa fa-check" aria-hidden="true"></i> Aprobada</h5>
+                    }@else if (offer.estado_publicacion === 'pendiente'){
+                      <h5 class="pendiente-flag"><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i> Pendiente</h5>
+                    }@else{
+                     <h5 class="reject-flag"><i class="fa-solid fa-xmark" aria-hidden="true"></i>Rechazada</h5>
+                    }
                     <p>Publicado {{offer.fecha_publicacion | date:'longDate'}}</p>
+                    </div>
                 </div>
                 <div class="postulation-body">
                     <p>{{offer.descripcion}}</p>

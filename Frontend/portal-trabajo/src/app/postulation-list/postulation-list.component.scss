@@ -67,6 +67,9 @@ h1{
     font-weight: 700;
     margin: 0;
 }
+h4{
+    color: #57AF31;
+}
 
 i{
     color: #57AF31 !important;
@@ -95,4 +98,11 @@ i{
   text-overflow: ellipsis;
   line-height: 1.4;
   max-height: calc(1.4em * 2);
+}
+
+.fallback{
+    margin-left: 8rem;
+    margin-bottom: 1rem;
+    font-family: 'Linotte Light';
+    font-size: 1.2rem;
 }
