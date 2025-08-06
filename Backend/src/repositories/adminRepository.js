@@ -31,7 +31,7 @@ export const listarOfertasLaborales = async (estadoPublicacion) => {
       o.estado_publicacion,
       o.fecha_aprobacion,
       o.email_admin_autorizador,
-      o.localidad_del_puesto
+      o.localidad_del_puesto AS localidad
     FROM ofertas_laborales o
     JOIN empresas e ON o.id_empresa = e.id_usuario
     WHERE o.estado_publicacion = ${estadoPublicacion}
@@ -80,8 +80,9 @@ export const getCiudadanosRepository = async()=>{
 
 
 export const autorizarOfertaRepository = async(email,id_oferta,estado_publicacion)=>{
+  let msj = `Oferta ${estado_publicacion}`;
   await sql`UPDATE ofertas_laborales SET email_admin_autorizador=${email}, estado_publicacion=${estado_publicacion}, 
-  fecha_aprobacion = NOW() WHERE id=${id_oferta}`;
+  fecha_aprobacion = NOW(), notificacion=${msj} WHERE id=${id_oferta}`;
 };
 
 export const getEmpresasRepository = async()=>{

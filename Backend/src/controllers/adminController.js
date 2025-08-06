@@ -26,6 +26,19 @@ export const getPostulacionesTotales = async(req,res)=>{
 
 };
 
+//====================================================
+
+/**
+ * Controlador para obtener todas las ofertas laborales, con posibilidad de filtrar por estado de publicación.
+ * Solo accesible por usuarios administradores.
+ *
+ * @param {import('express').Request} req - Objeto de solicitud HTTP
+ * @param {import('express').Response} res - Objeto de respuesta HTTP
+ * @returns {Promise<void>}
+ */
+
+
+
 export const getOfertasLaborales = async (req, res) => {
   try {
     const { estado_publicacion } = req.query;
@@ -38,6 +51,17 @@ export const getOfertasLaborales = async (req, res) => {
   }
 };
 
+//==================================================
+/**
+ * Controlador para obtener la cantidad total de ofertas laborales.
+ * Solo accesible por usuarios administradores.
+ *
+ * @param {import('express').Request} req - Objeto de solicitud HTTP
+ * @param {import('express').Response} res - Objeto de respuesta HTTP
+ * @returns {Promise<void>}
+ */
+
+
 export const getOfertasTotales = async(req,res)=>{
   try {
       const ofertas_totales = await getCantOfertasTotales();
@@ -49,6 +73,18 @@ export const getOfertasTotales = async(req,res)=>{
 
 };
 
+
+//=====================================
+
+/**
+ * Controlador para obtener un resumen de usuarios registrados, agrupados por tipo.
+ * Solo accesible por administradores.
+ *
+ * @param {import('express').Request} req - Objeto de solicitud HTTP
+ * @param {import('express').Response} res - Objeto de respuesta HTTP
+ * @returns {Promise<void>}
+ */
+
 export const getResumenUsuarios = async (req, res) => {
   try {
     const resumen = await obtenerResumenUsuarios();
@@ -58,6 +94,18 @@ export const getResumenUsuarios = async (req, res) => {
     res.status(500).json({ error: 'Error del servidor' });
   }
 };
+
+
+//===============================================
+
+/**
+ * Controlador para obtener el reporte de visitas al portal.
+ * Solo accesible por administradores.
+ *
+ * @param {import('express').Request} req - Objeto de solicitud HTTP
+ * @param {import('express').Response} res - Objeto de respuesta HTTP
+ * @returns {Promise<void>}
+ */
 
 export const getReporteVisitas = async (req, res) => {
   try {
@@ -69,6 +117,17 @@ export const getReporteVisitas = async (req, res) => {
   }
 };
 
+//===================================================
+
+/**
+ * Controlador para generar y enviar el reporte de métricas del sistema.
+ * Llama al servicio que genera el archivo (PDF/Excel) y lo devuelve como descarga.
+ *
+ * @param {import('express').Request} req - Objeto de solicitud HTTP
+ * @param {import('express').Response} res - Objeto de respuesta HTTP
+ * @returns {Promise<void>}
+ */
+
 export const generarReporteMetricas = async(req,res)=>{
   try {
       await generarReporteMetricasService(res);
@@ -78,6 +137,15 @@ export const generarReporteMetricas = async(req,res)=>{
   }
 };
 
+//====================================================
+
+/**
+ * Controlador para obtener la lista completa de ciudadanos registrados.
+ *
+ * @param {import('express').Request} req - Objeto de solicitud HTTP
+ * @param {import('express').Response} res - Objeto de respuesta HTTP
+ * @returns {Promise<void>}
+ */
 
 export const getListaCiudadanos = async(req,res)=>{
   try {
@@ -88,6 +156,17 @@ export const getListaCiudadanos = async(req,res)=>{
     res.status(500).json({message:'Error al obtener la lista de los ciudadanos'});
   }
 };
+
+//=========================================
+
+/**
+ * Controlador para autorizar o rechazar una oferta laboral.
+ *
+ * @param {import('express').Request} req - Objeto de solicitud HTTP
+ * @param {import('express').Response} res - Objeto de respuesta HTTP
+ * @returns {Promise<void>}
+ */
+
 
 export const autorizarOferta = async(req,res)=>{
   try {
@@ -110,6 +189,17 @@ export const autorizarOferta = async(req,res)=>{
   }
 };
 
+//=====================================================
+
+/**
+ * Controlador para obtener la lista completa de empresas registradas.
+ *
+ * @param {import('express').Request} req - Objeto de solicitud HTTP
+ * @param {import('express').Response} res - Objeto de respuesta HTTP
+ * @returns {Promise<void>}
+ */
+
+
 export const getListaEmpresas = async(req,res)=>{
   try {
       const empresas = await getListaEmpresasService();
@@ -119,6 +209,16 @@ export const getListaEmpresas = async(req,res)=>{
     res.status(500).json({message:'Error al obtener la lista de empresas'})
   }
 };
+
+//===========================================
+
+/**
+ * Controlador para autorizar o rechazar una empresa.
+ *
+ * @param {import('express').Request} req - Objeto de solicitud HTTP
+ * @param {import('express').Response} res - Objeto de respuesta HTTP
+ * @returns {Promise<void>}
+ */
 
 export const autorizarEmpresa = async(req,res)=>{
   try {

@@ -465,14 +465,12 @@ export const obtenerPostulacionesOferta = async(req,res)=>{
       const id_oferta = req.params.id;
       const id_empresa = req.usuario.id;
 
-      console.log('ID OFERTA:', id_oferta);
-    console.log('ID EMPRESA:', id_empresa);
-
       if(!id_oferta){
         return res.status(401).json({message:'Falta el id de la oferta'});
       }
 
       const oferta = await getOfertaById(id_oferta);
+
 
       if(!oferta){
         return res.status(404).json({message:'La oferta no existe'});
@@ -483,6 +481,8 @@ export const obtenerPostulacionesOferta = async(req,res)=>{
       }
 
       const postulaciones = await obtenerPostulacionesPorOfertaId(id_oferta);
+
+
 
       const postulacionesConUrls = postulaciones.map((postulacion) => ({
           ...postulacion,
@@ -666,6 +666,18 @@ export const obtenerInformacionEmpresa =async(req,res)=>{
 
 
 };
+
+//===========================================================
+
+/**
+ * Controlador para obtener y borrar la notificación pendiente de una empresa.
+ * Solo accesible por usuarios con rol de empresa autenticada.
+ *
+ * @param {import('express').Request} req - Objeto de solicitud HTTP.
+ * @param {import('express').Response} res - Objeto de respuesta HTTP.
+ * @returns {Promise<void>} - Devuelve el mensaje si existe, o un 204 si no hay notificaciones.
+ */
+
 
 export const obtenerNotificacionOferta = async (req, res) => {
   try {
