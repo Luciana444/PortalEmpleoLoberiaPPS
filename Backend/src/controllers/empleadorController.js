@@ -667,6 +667,18 @@ export const obtenerInformacionEmpresa =async(req,res)=>{
 
 };
 
+//===========================================================
+
+/**
+ * Controlador para obtener y borrar la notificación pendiente de una empresa.
+ * Solo accesible por usuarios con rol de empresa autenticada.
+ *
+ * @param {import('express').Request} req - Objeto de solicitud HTTP.
+ * @param {import('express').Response} res - Objeto de respuesta HTTP.
+ * @returns {Promise<void>} - Devuelve el mensaje si existe, o un 204 si no hay notificaciones.
+ */
+
+
 export const obtenerNotificacionOferta = async (req, res) => {
   try {
     const idEmpresa = req.usuario?.id;

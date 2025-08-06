@@ -257,6 +257,15 @@ export const resetearContrasena = async (req, res) => {
   }
 };
 
+//===============================================
+
+/**
+ * Controlador para registrar una visita a una página del portal.
+ *
+ * @param {import('express').Request} req - Objeto de solicitud HTTP
+ * @param {import('express').Response} res - Objeto de respuesta HTTP
+ * @returns {Promise<void>}
+ */
 
 export const registrarVisita = async (req, res) => {
   try {
