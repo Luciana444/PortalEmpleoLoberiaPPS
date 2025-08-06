@@ -227,7 +227,7 @@ export const getPostulacionById = async(id_postulacion)=>{
 
 export const buscarNotificacionOfertaRepository = async (idEmpresa) => {
   const resultado = await sql`
-    SELECT id, notificacion
+    SELECT id, notificacion, puesto_requerido,fecha_aprobacion
     FROM ofertas_laborales
     WHERE id_empresa = ${idEmpresa}
       AND notificacion IS NOT NULL

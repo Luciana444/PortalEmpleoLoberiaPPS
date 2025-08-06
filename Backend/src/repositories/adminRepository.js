@@ -31,7 +31,7 @@ export const listarOfertasLaborales = async (estadoPublicacion) => {
       o.estado_publicacion,
       o.fecha_aprobacion,
       o.email_admin_autorizador,
-      o.localidad_del_puesto
+      o.localidad_del_puesto AS localidad
     FROM ofertas_laborales o
     JOIN empresas e ON o.id_empresa = e.id_usuario
     WHERE o.estado_publicacion = ${estadoPublicacion}
