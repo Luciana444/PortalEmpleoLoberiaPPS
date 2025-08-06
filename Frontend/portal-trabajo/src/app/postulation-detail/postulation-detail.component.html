@@ -53,14 +53,35 @@
                 Oferta</button>
             <button class="delete" (click)="openDialog(offer.id)" matTooltip="Eliminar oferta">
                 <i class="fa-solid fa-trash fa-xl "></i> </button>
-            }@else {
-            @if (currentUserType === "admin"){
-            <button class="edit"> <i class="fa-solid fa-check "></i> APROBAR</button>
+            } @else if (currentUserType === "admin" && offer.estado_publicacion === 'pendiente') {
+            <div>
+                <h5 class="pendiente-flag"><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i> Pendiente
+                </h5>
+            </div>
+            <button class="edit" (click)="changeOfferStatus(offer.id, 'aprobada')"> <i class="fa-solid fa-check "></i>
+                APROBAR</button>
+            <button class="reject" (click)="changeOfferStatus(offer.id, 'rechazada')"> <i class="fa-solid fa-xmark"></i>
+                RECHAZAR</button>
+            <button class="delete" (click)="openDialog(offer.id)" matTooltip="Eliminar oferta">
+                <i class="fa-solid fa-trash fa-xl "></i> </button>
+            } @else if (currentUserType === "admin" && offer.estado_publicacion === 'rechazada') {
+            <div>
+                <h5 class="reject-flag"><i class="fa-solid fa-xmark" aria-hidden="true"></i> Rechazada</h5>
+            </div>
+            <button class="edit" (click)="changeOfferStatus(offer.id, 'aprobada')"> <i class="fa-solid fa-check "></i>
+                APROBAR</button>
             <button class="delete" (click)="openDialog(offer.id)" matTooltip="Eliminar oferta">
                 <i class="fa-solid fa-trash fa-xl "></i> </button>
 
-            }
-            }
+            } @else if (currentUserType === "admin" && offer.estado_publicacion === 'aprobada') {
+            <div>
+                <h5 class="check-flag"><i class="fa fa-check" aria-hidden="true"></i> Aprobada</h5>
+            </div>
+            <button class="reject" (click)="changeOfferStatus(offer.id, 'rechazada')"> <i class="fa-solid fa-xmark"></i>
+                RECHAZAR</button>
+            <button class="delete" (click)="openDialog(offer.id)" matTooltip="Eliminar oferta">
+                <i class="fa-solid fa-trash fa-xl "></i> </button>
+            }                    
         </div>
     </div>
 
