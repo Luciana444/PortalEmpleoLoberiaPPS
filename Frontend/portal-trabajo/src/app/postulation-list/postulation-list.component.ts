@@ -62,7 +62,7 @@ export class PostulationListComponent implements OnInit {
   }
 
   getCV(postulationId: string) {
-    console.log(postulationId);  
+    console.log(postulationId);
     this.http.get(this.getCVUrl(postulationId), { responseType: 'blob' }).subscribe({
       next: (blob) => {
         const fileURL = URL.createObjectURL(blob);
@@ -74,6 +74,7 @@ export class PostulationListComponent implements OnInit {
     });
   }
 
+  
   private getAuthHeaders(): HttpHeaders {
     const token = localStorage.getItem('token');
     return new HttpHeaders({

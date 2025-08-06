@@ -12,6 +12,7 @@ import { PostulateDialogComponent } from '../postulate-dialog/postulate-dialog.c
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AuthService } from '../services/auth.service';
 import { OfferService } from '../services/offer.service';
+import { AdminService } from '../services/admin.service';
 
 @Component({
   selector: 'app-postulation-detail',
@@ -23,6 +24,7 @@ import { OfferService } from '../services/offer.service';
 export class PostulationDetailComponent implements OnInit {
 
   constructor(
+    private adminservice: AdminService,
     private authService: AuthService,
     private toastr: ToastrService,
     private router: Router,
@@ -266,6 +268,25 @@ export class PostulationDetailComponent implements OnInit {
     this.cv = file;
     this.msg = msg;
   }
+
+  changeOfferStatus(id: string, estado:string) {
+    this.adminservice.changeOfferStatusByAdmin(id, estado).subscribe({
+      next: (response) => {
+        if (response.status === 200) {
+          this.toastr.success('Ya podes verla en el panel de administración', 'Oferta actualizada')
+          this.navigateToAdminPanel();
+          console.log('Oferta actualizada', response);
+        } else {
+          console.log('No se pudo actualizar la  oferta', response);
+        }
+      },
+      error: (err) => {
+        this.toastr.error(err.error.error, 'Ocurrió un error');
+        console.error('Error al actualizaroferta', err);
+      }
+    });
+  }
+
 
   getImageUrl(image_url: string) {
     return image_url ? `http://localhost:3000${image_url}` : null;

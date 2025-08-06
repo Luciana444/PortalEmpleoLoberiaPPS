@@ -58,7 +58,6 @@
     height: 50px;
     width: 50px;
     border-radius: 100px;
-    background-color: black
 }
 
 .profile-info>h4,
@@ -104,7 +103,7 @@
 
 .state-flag {
     color: white;
-    background-color: #b3261e;
+    background-color: #e9a426;
     font-family: 'Linotte Light';
     font-size: 1rem;
     padding: 0.5rem;
@@ -120,6 +119,15 @@
     padding: 0.5rem;
     border-radius: 10px;
 }
+
+.state-flag-reject  {
+    color: white;
+    background-color: #b3261e;
+    font-family: 'Linotte Light';
+    font-size: 1rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+}
 .employee-btn{
     display: flex;
     align-items: center;
@@ -128,7 +136,7 @@
 
 
 
-.state-flag>i, .state-flag-check>i {
+.state-flag>i, .state-flag-check>i, .state-flag-reject >i{
     color: white;
 }
 

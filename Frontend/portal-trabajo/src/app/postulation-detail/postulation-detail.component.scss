@@ -13,6 +13,20 @@ h5{
     padding: 0.25rem 0.5rem;
     font-weight: 100;
 }
+.pendiente-flag, .reject-flag, .check-flag{
+    font-family: 'Linotte Light';
+    color:white;
+    margin-right:1rem;
+}
+.pendiente-flag{
+  background-color: #e9a426;
+}
+.reject-flag{
+ background-color: #b3261e;
+}
+.check-flag{
+ background-color: #57AF31;
+}
 
 .postulation-header{
     display: flex;
@@ -166,6 +180,13 @@ p{
 
 button :hover{
     color: #57AF31 !important;
+}
+.reject{
+    background-color:#b3261e;
+}
+.reject:hover, i:hover{
+   color:#b3261e;
+   background-color:#f5f5f5;
 }
 
 .delete {
