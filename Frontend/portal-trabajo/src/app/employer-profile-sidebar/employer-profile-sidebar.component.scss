@@ -32,6 +32,10 @@ h5 {
     text-wrap: nowrap;
 }
 
+h5{
+    align-self: start;
+}
+
 p,
 h5 {
     color: $text-color;
@@ -51,8 +55,6 @@ h5 {
     gap: 0.25rem;
 }
 
-
-
 .location>i,
 .title-wrapper>i,
 .fallback>i {
@@ -69,6 +71,15 @@ h5 {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+
+}
+
+.info-row{
+    margin-bottom: 0.5rem;
+}
+
+.info-row > p{
+    hyphens: auto;
 }
 
 .contact-info .info-row {
@@ -85,12 +96,12 @@ h5 {
 .profile {
     background-color: white;
     height: fit-content;
-    width: fit-content;
     padding: 1rem;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     overflow: hidden;
 }
+
 
 .profile-footer {
     display: flex;
