@@ -16,7 +16,7 @@ import { Employee } from "../../models/employee.model";
 
 @Component({
     selector: 'app-postulation-list',
-    imports: [FooterComponent, HeaderComponent, ReportsComponent, MatExpansionModule, MatTooltipModule, MatDivider],
+    imports: [FooterComponent, HeaderComponent, ReportsComponent, MatExpansionModule, MatTooltipModule],
     templateUrl: './admin-panel.component.html',
     styleUrl: './admin-panel.component.scss',
     providers: [],
@@ -59,7 +59,7 @@ export class AdminPanelComponent implements OnInit {
         });
     }
 
-        getEmployees() {
+    getEmployees() {
         this.adminservice.getEmployeesLikeAdmin().subscribe({
             next: (response) => {
                 if (response.status === 200) { // Populate form with API data
@@ -83,7 +83,7 @@ export class AdminPanelComponent implements OnInit {
         this.router.navigate(['/detail', id], { state: { from: this.router.url } });
     }
 
-     navigateToProfile(id: any) {
+    navigateToProfile(id: any) {
         this.router.navigate(['/employee-profile', id], { state: { from: this.router.url } });
     }
 
