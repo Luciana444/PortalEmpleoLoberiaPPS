@@ -530,7 +530,7 @@ empleadorRoutes.patch('/ofertas/:id',authMiddleware,onlyEmpresa,editarOfertaLabo
 
 
 
-// faltan tests....
+
 //======================================================================
 //End point notificaciones de ofertas
 

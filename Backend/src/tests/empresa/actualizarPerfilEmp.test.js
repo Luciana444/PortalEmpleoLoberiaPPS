@@ -1,11 +1,13 @@
 import request from 'supertest';
 import app from '../../../app.js';
 import sql from '../../database/db.js';
+import { crearEmpresaYObtenerToken } from '../helpers/empresa.js'; // Ajustá la ruta si cambia
+
 
 
 
 // Función auxiliar para crear empresa y obtener token
-async function crearEmpresaYObtenerToken() {
+/*async function crearEmpresaYObtenerToken() {
   const email = `empresa${Date.now()}@mail.com`;
 
   await request(app).post('/auth/register').send({
@@ -22,6 +24,8 @@ async function crearEmpresaYObtenerToken() {
 
   return resLogin.body.resultado.token;
 }
+*/
+
 
 describe('PATCH /empresa/actualizar/perfil', () => {
   let tokenEmpresa;
@@ -93,9 +97,15 @@ describe('PATCH /empresa/actualizar/perfil', () => {
       .send({
         nombre_empresa: "No debería poder actualizar"
       });
+console.log('Respuesta completa:', res.body, res.text);
 
     expect(res.statusCode).toBe(403);
-    expect(res.body.error || res.body.mensaje || res.text).toMatch(/no autorizado|solo empresas/i);
+    const mensaje = String(res.body.error || res.body.mensaje || res.text);
+    expect(mensaje).toMatch(/solo empresas/i);
+
+//    expect(res.body.error || res.body.mensaje || res.text).toMatch(/solo empresas/i);
+
+    
   });
 });
 
