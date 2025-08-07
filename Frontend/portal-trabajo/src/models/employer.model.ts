@@ -1,4 +1,5 @@
 export interface Employer {
+  id_usuario:string;
   nombre_empresa: string;
   email_contacto: string;
   logo: string;
@@ -13,4 +14,5 @@ export interface Employer {
   localidad: string;
   provincia: string;
   pais: string;
+  estado_aprobacion:string;
 }

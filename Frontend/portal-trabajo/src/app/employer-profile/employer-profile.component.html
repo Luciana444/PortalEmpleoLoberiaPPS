@@ -1,9 +1,50 @@
 <app-header></app-header>
 <div class="container">
     <div class="fallback">
-        <i class="fa-solid fa-arrow-left" (click)="navigateToLanding()"></i> <a (click)="navigateToLanding()">
-            Volver a
-            ofertas</a>
+
+        @if (currentUserType === 'empresa' || currentUserType === 'ciudadano'){
+        <div>
+            <i class="fa-solid fa-arrow-left" (click)="navigateToLanding()"></i> <a (click)="navigateToLanding()">
+                Volver a
+                ofertas</a>
+        </div>
+
+        }@else {
+        <div>
+            <i class="fa-solid fa-arrow-left" (click)="navigateToAdmin()"></i> <a (click)="navigateToAdmin()">
+                Volver a
+                Administración</a>
+        </div>
+        <div>
+            @if (employer.estado_aprobacion === 'pendiente') {
+
+            <div class="options-employer">
+                <h5 class="pendiente-flag"><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i> Pendiente
+                </h5>
+
+                <button class="edit" (click)="changeEmployerStatus('aprobada')"> <i class="fa-solid fa-check "></i>
+                    APROBAR</button>
+                <button class="reject" (click)="changeEmployerStatus('rechazada')"> <i class="fa-solid fa-xmark"></i>
+                    RECHAZAR</button>
+            </div>
+            } @else if (employer.estado_aprobacion === 'rechazada') {
+            <div class="options-employer">
+                <h5 class="reject-flag"><i class="fa-solid fa-xmark" aria-hidden="true"></i> Rechazada</h5>
+
+                <button class="edit" (click)="changeEmployerStatus('aprobada')"> <i class="fa-solid fa-check "></i>
+                    APROBAR</button>
+            </div>
+            } @else if(employer.estado_aprobacion=== 'aprobada') {
+            <div class="options-employer">
+                <h5 class="check-flag"><i class="fa fa-check" aria-hidden="true"></i> Aprobada</h5>
+
+                <button class="reject" (click)="changeEmployerStatus('rechazada')"> <i class="fa-solid fa-xmark"></i>
+                    RECHAZAR</button>
+            </div>
+            }
+        </div>
+        }
+
     </div>
     <div class="container-profile">
         <app-employer-profile-sidebar [currentUserId]="currentUserId" [currentUserType]="currentUserType"
@@ -24,14 +65,15 @@
                 <div class="postulation-header">
                     <h3>{{offer.puesto_requerido}}</h3>
                     <div class="state">
-                    @if (offer.estado_publicacion === 'aprobada'){
-                     <h5 class="check-flag"><i class="fa fa-check" aria-hidden="true"></i> Aprobada</h5>
-                    }@else if (offer.estado_publicacion === 'pendiente'){
-                      <h5 class="pendiente-flag"><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i> Pendiente</h5>
-                    }@else{
-                     <h5 class="reject-flag"><i class="fa-solid fa-xmark" aria-hidden="true"></i>Rechazada</h5>
-                    }
-                    <p>Publicado {{offer.fecha_publicacion | date:'longDate'}}</p>
+                        @if (offer.estado_publicacion === 'aprobada'){
+                        <h5 class="check-flag"><i class="fa fa-check" aria-hidden="true"></i> Aprobada</h5>
+                        }@else if (offer.estado_publicacion === 'pendiente'){
+                        <h5 class="pendiente-flag"><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+                            Pendiente</h5>
+                        }@else{
+                        <h5 class="reject-flag"><i class="fa-solid fa-xmark" aria-hidden="true"></i>Rechazada</h5>
+                        }
+                        <p>Publicado {{offer.fecha_publicacion | date:'longDate'}}</p>
                     </div>
                 </div>
                 <div class="postulation-body">
@@ -46,5 +88,5 @@
         </main>
     </div>
 
-    </div>
-    <app-footer></app-footer>
+</div>
+<app-footer></app-footer>

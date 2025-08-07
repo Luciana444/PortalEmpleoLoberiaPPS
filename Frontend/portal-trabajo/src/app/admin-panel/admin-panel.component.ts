@@ -12,6 +12,7 @@ import { AdminService } from "../services/admin.service";
 import { AppUtils } from "../../utils/app.utils";
 import { MatDivider } from "@angular/material/divider";
 import { Employee } from "../../models/employee.model";
+import { Employer } from "../../models/employer.model";
 
 
 @Component({
@@ -27,6 +28,7 @@ export class AdminPanelComponent implements OnInit {
     itemId: string = "";
     offers: JobOffer[] = [];
     employees: Employee[] = [];
+    employers: Employer[] = [];
 
     constructor(
         private authService: AuthService,
@@ -39,6 +41,7 @@ export class AdminPanelComponent implements OnInit {
     ngOnInit(): void {
         this.getOffers();
         this.getEmployees();
+        this.getEmployers();
 
     }
 
@@ -59,7 +62,7 @@ export class AdminPanelComponent implements OnInit {
         });
     }
 
-        getEmployees() {
+    getEmployees() {
         this.adminservice.getEmployeesLikeAdmin().subscribe({
             next: (response) => {
                 if (response.status === 200) { // Populate form with API data
@@ -74,6 +77,21 @@ export class AdminPanelComponent implements OnInit {
         });
     }
 
+    getEmployers() {
+        this.adminservice.getEmployersLikeAdmin().subscribe({
+            next: (response) => {
+                if (response.status === 200) { // Populate form with API data
+                    this.employers = response.body || [];
+                } else {
+                    console.log('No se pudo cargar empresas', response);
+                }
+            },
+            error: (err) => {
+                console.error('Error al cargar empresa', err);
+            }
+        });
+    }
+
 
     getImageUrl(image_url: string) {
         return image_url ? `http://localhost:3000${image_url}` : null;
@@ -83,8 +101,12 @@ export class AdminPanelComponent implements OnInit {
         this.router.navigate(['/detail', id], { state: { from: this.router.url } });
     }
 
-     navigateToProfile(id: any) {
+    navigateToProfile(id: any) {
         this.router.navigate(['/employee-profile', id], { state: { from: this.router.url } });
+    }
+
+      navigateToProfileEmployer(id: any) {
+        this.router.navigate(['/employer-profile', id], { state: { from: this.router.url } });
     }
 
     convertToLocalDate(date: string | undefined) {
