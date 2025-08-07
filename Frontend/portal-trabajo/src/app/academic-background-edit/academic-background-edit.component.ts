@@ -88,7 +88,7 @@ export class AcademicBackgroundEditComponent implements OnInit {
                 if (response.status === 200) {
                     this.toastr.success('Cambios guardados', 'Actualización exitosa')
                     console.log('Actualización exitosa', response);
-                    this.educationForm.reset();
+                    //this.educationForm.reset();
 
                 } else {
                     console.log('No se pudo guardar los cambios', response);
@@ -156,7 +156,7 @@ export class AcademicBackgroundEditComponent implements OnInit {
                 if (response.status === 200) {
                     this.toastr.success('Actualización exitosa', 'Formación editada')
                     console.log('Actualización exitosa', response);
-                    this.educationForm.get('nombre_capacitacion')?.setValue('');
+                    this.educationForm.get('nombre_capacitacion')?.reset('');
                     this.clearEditionMode();
                     this.getDataProfile();
                 } else {
