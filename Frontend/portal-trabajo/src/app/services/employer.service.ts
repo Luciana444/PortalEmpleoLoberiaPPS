@@ -73,6 +73,17 @@ export class EmployerService {
         })
     }
 
+    getEmployerById(itemId: string) {
+        return this.httpClient.get<Employer>(`${URL}/empresa/${itemId}/datos_empresa`, {
+            observe: 'response',
+            withCredentials: true,
+            headers: new HttpHeaders()
+                .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+                .append('Content-Type', 'application/json')
+        })
+    }
+
+
     getNotifications() {
         return this.httpClient.get<Notification>(`${URL}/empresa/notificaciones`, {
             observe: 'response',
@@ -82,7 +93,7 @@ export class EmployerService {
         })
     }
 
-      getNotificationsOffers() {
+    getNotificationsOffers() {
         return this.httpClient.get<Notification>(`${URL}/empresa/notificaciones/ofertas`, {
             observe: 'response',
             withCredentials: true,

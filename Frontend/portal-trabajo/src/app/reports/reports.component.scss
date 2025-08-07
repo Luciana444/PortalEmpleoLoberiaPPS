@@ -1,12 +1,13 @@
 .profile {
     background-color: white;
     height: fit-content;
-    width: fit-content;
+    width: 10rem;
     padding: 1rem;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); // Added subtle shadow
     overflow: hidden;
-    display: inline;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
@@ -20,8 +21,6 @@
     color: #57AF31;
     font-family: 'Linotte Heavy';
     font-size: 4rem;
-    margin: 3rem;
-
 }
 
 mat-expansion-panel-header {

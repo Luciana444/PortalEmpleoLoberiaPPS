@@ -88,7 +88,7 @@ export class WorkExperienceComponent implements OnInit {
                 if (response.status === 200) {
                     this.toastr.success('Cambios guardados', 'Actualización exitosa')
                     console.log('Actualización exitosa', response);
-                    this.workExperience.reset();
+                    //this.workExperience.reset();
 
                 } else {
                     console.log('No se pudo guardar los cambios', response);
@@ -113,11 +113,13 @@ export class WorkExperienceComponent implements OnInit {
         this.userservice.addWorkExperience(JSON.stringify(experiencia)).subscribe({
             next: (response) => {
                 if (response.status === 200) {
-                    this.experiencias.push(experiencia);
+                    //this.experiencias.push(experiencia);
                     this.toastr.success('Nueva experiencia laboral agregada', 'Actualización exitosa')
                     console.log('Actualización exitosa', response);
-                    this.workExperience.reset();
+                    //this.workExperience.reset();
                     this.addNewCardExperience = false;
+                    this.clearExperienceForm();
+                    this.getDataProfile();
                 } else {
                     console.log('No se pudo agregar experiencia', response);
                 }
@@ -163,8 +165,8 @@ export class WorkExperienceComponent implements OnInit {
                 if (response.status === 200) {
                     this.toastr.success('Actualización exitosa', 'Experiencia editada')
                     console.log('Actualización exitosa', response);
-                    this.workExperience.reset();
                     this.clearEditionMode();
+                    this.clearExperienceForm();
                     this.getDataProfile();
                 } else {
                     console.log('No se pudo editar la experiencia', response);
@@ -265,6 +267,17 @@ export class WorkExperienceComponent implements OnInit {
         this.addNewCardExperience = false;
         this.editCardExperience = false;
         this.workExperienceId = "";
+    }
+
+    clearExperienceForm() {
+        this.workExperience.get('nombre_empresa')?.reset('');
+        this.workExperience.get('desde')?.reset('');
+        this.workExperience.get('hasta')?.reset('');
+        this.workExperience.get('comentario')?.reset('');
+    }
+
+    navigateToProfile() {
+        this.router.navigate(['profile']);
     }
 
 }

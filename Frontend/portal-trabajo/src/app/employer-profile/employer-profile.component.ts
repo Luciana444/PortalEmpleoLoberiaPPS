@@ -8,6 +8,9 @@ import { DatePipe } from '@angular/common'
 import { JobOffer } from '../../models/jobOffer.model';
 import { AuthService } from '../services/auth.service';
 import { MatIconModule } from "@angular/material/icon";
+import { AdminService } from '../services/admin.service';
+import { ToastrService } from 'ngx-toastr';
+import { Employer } from '../../models/employer.model';
 
 @Component({
   selector: 'app-employer-profile',
@@ -22,10 +25,13 @@ export class EmployerProfileComponent implements OnInit {
     private router: Router,
     private employerService: EmployerService,
     private authService: AuthService,
+    private adminservice: AdminService,
     private route: ActivatedRoute,
+    private toastr: ToastrService,
   ) { }
 
   offers: JobOffer[] = [];
+  employer: Employer = {} as Employer;
   currentUserId: string | null = null;
   currentUserType: string | null = null;
   itemId: string = '';
@@ -47,10 +53,28 @@ export class EmployerProfileComponent implements OnInit {
     //si estoy en mi perfil, cargo mis ofertas
     if (this.isOwnProfile)
       this.loadCurrentEmployerOffers();
-    else
+    else {
       //sino, cargo ofertas del empleador cuyo perfil estoy viendo
       this.loadEmployerOffers(this.itemId);
+      this.getEmployerData(this.itemId);
+    }
+
+
   }
+
+  private getEmployerData(itemId: any) {
+    this.employerService.getEmployerById(itemId).subscribe({
+      next: (response) => {
+        if (response.status === 200) {
+          this.employer = response.body ?? {} as Employer;
+        }
+      },
+      error: (err) => {
+        console.error('Error al cargar datos del empleador', err);
+      }
+    });
+  }
+
 
   private loadEmployerOffers(itemId: any) {
     this.employerService.getACtiveOffers().subscribe({
@@ -85,6 +109,25 @@ export class EmployerProfileComponent implements OnInit {
     return this.authService.getCurrentUserId() || '';
   }
 
+
+  changeEmployerStatus(estado: string) {
+    this.adminservice.changeEmployerStatusByAdmin(this.itemId, estado).subscribe({
+      next: (response) => {
+        if (response.status === 200) {
+          this.toastr.success('Ya podes verla en el panel de administración', 'Empresa actualizada')
+          this.navigateToAdmin();
+          console.log('Empresa actualizada', response);
+        } else {
+          console.log('No se pudo actualizar la empresa', response);
+        }
+      },
+      error: (err) => {
+        this.toastr.error(err.error.error, 'Ocurrió un error');
+        console.error('Error al actualizar empresa', err);
+      }
+    });
+  }
+
   navigateToCreateOffer() {
     this.router.navigate(['/create-offer'])
   }
@@ -96,4 +139,9 @@ export class EmployerProfileComponent implements OnInit {
   navigateToLanding() {
     this.router.navigate(['/']);
   }
+
+  navigateToAdmin() {
+    this.router.navigate(['admin-panel']);
+  }
+
 }

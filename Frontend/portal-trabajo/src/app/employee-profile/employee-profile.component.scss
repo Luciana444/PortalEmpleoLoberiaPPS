@@ -23,6 +23,7 @@
 main{
     display: flex;
     justify-content: space-evenly;
+    min-height: 100vh;
 }
 
 @media (max-width: 600px) {

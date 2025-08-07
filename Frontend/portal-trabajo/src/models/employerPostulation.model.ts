@@ -10,4 +10,5 @@ export interface EmployerPostulation {
     estado: string,
     leido_por_empresa: boolean,
     perfil_url: string,
+    imagen_url:string;
 }

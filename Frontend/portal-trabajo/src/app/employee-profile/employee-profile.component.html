@@ -7,7 +7,11 @@
             <i class="fa-solid fa-arrow-left" (click)="navigateToLanding()"></i> <a (click)="navigateToLanding()">
                 Volver a
                 ofertas</a>
-            }@else {
+            }@else if(getUserType() === 'empresa'){
+            <i class="fa-solid fa-arrow-left" (click)="navigateToPostulations()"></i> <a (click)="navigateToPostulations()">
+                Volver a
+                Postulaciones</a>
+            } @else {
             <i class="fa-solid fa-arrow-left" (click)="navigateToAdminPanel()"></i> <a (click)="navigateToAdminPanel()">
                 Volver a
                 Administración</a>

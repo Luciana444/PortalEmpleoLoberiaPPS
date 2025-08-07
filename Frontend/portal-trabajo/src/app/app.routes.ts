@@ -15,7 +15,6 @@ import { EmployerProfileComponent } from './employer-profile/employer-profile.co
 import { PostulationListComponent } from './postulation-list/postulation-list.component';
 import { ProfileSelectorComponent } from './profile-selector/profile-selector.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
-
 export const routes: Routes = [
     { path: '', component: LandingComponent },
     { path: 'register-user', component: EmployeeFormComponent },
@@ -28,7 +27,8 @@ export const routes: Routes = [
     { path: 'create-offer/:id', component: JobOfferFormComponent },
     { path: 'employee-profile', component: EmployeeProfileComponent },
     { path: 'employee-profile/:id', component: EmployeeProfileComponent },
-    { path: 'detail', component: PostulationDetailComponent },
+    //remover detail path
+    // { path: 'detail', component: PostulationDetailComponent },
     { path: 'detail/:id', component: PostulationDetailComponent },
     { path: 'detail/:id/:postulado', component: PostulationDetailComponent },
     { path: 'edit-profile-employer', component: EmployeerProfileFormComponent },
@@ -36,7 +36,7 @@ export const routes: Routes = [
     { path: 'employer-profile/:id', component: EmployerProfileComponent },
     { path: 'work-experience', component: WorkExperienceComponent },
     { path: 'academic-background-edit', component: AcademicBackgroundEditComponent },
-    { path: 'postulaciones-por-oferta', component: PostulationListComponent },
+    // { path: 'postulaciones-por-oferta', component: PostulationListComponent },
     { path: 'postulaciones-por-oferta/:id', component: PostulationListComponent },
     { path: 'profile', component: ProfileSelectorComponent },
     { path: 'admin-panel', component: AdminPanelComponent },

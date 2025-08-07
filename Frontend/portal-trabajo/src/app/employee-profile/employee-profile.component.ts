@@ -89,4 +89,7 @@ export class EmployeeProfileComponent implements OnInit {
     navigateToAdminPanel() {
     this.router.navigate(['admin-panel']);
   }
+    navigateToPostulations(/*id: any*/) {
+    //this.router.navigate(['postulaciones-por-oferta', id]);
+  }
 }

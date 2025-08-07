@@ -118,6 +118,10 @@ export class PostulationListComponent implements OnInit {
     });
   }
 
+  navigateToOffer(id:any){
+    this.router.navigate(['detail', id]);
+  }
+
   getImageUrl(image_url: string) {
     return image_url ? `http://localhost:3000${image_url}` : null;
   }
