@@ -1,3 +1,4 @@
+
 import request from 'supertest';
 import app from '../../../app.js';
 import sql from '../../database/db.js';
@@ -29,8 +30,13 @@ describe('PUT /admin/empresas/:id/autorizar', () => {
       .set('Authorization', `Bearer ${tokenAdmin}`)
       .send({});
 
+      console.log('TOKEN ADMIN:', tokenAdmin);
+     console.log('STATUS:', res.statusCode);
+     console.log('BODY:', res.body);
+
     expect(res.statusCode).toBe(400);
-    expect(res.body.error || res.body.mensaje).toMatch(/faltan datos/i);
+    expect(res.body.message).toMatch(/faltan datos/i);
+
   });
 
   it('debería devolver 401 si no se envía token', async () => {

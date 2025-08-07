@@ -1,11 +1,6 @@
 import request from 'supertest';
 import app from '../../../app.js';
 
-/**
- * Crea una oferta laboral básica y retorna su ID
- * @param {string} token - Token JWT de empresa
- * @returns {Promise<string>} - ID de la oferta creada
- */
 export async function crearOferta(token) {
   const res = await request(app)
     .post('/empresa/ofertas')
@@ -20,5 +15,5 @@ export async function crearOferta(token) {
 
   console.log("Respuesta al crear oferta:", res.body);
 
-  return res.body.oferta?.id; 
+  return res.body.id_oferta; // 👈 directamente desde la respuesta
 }

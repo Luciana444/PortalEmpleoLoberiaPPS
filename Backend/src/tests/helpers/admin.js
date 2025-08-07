@@ -17,6 +17,17 @@ export async function crearAdminYObtenerToken() {
     email,
     contrasena: 'test1234'
   });
+  
+  console.log('Respuesta login completa:', resLogin.body);
+
+const token = resLogin.body.resultado?.token || resLogin.body.token || null;
+
+if (!token) {
+  throw new Error('No se recibió token en login');
+}
+
+//return token;
+
 
   return resLogin.body.resultado.token;
 }

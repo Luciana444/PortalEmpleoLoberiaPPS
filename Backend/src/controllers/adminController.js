@@ -227,7 +227,7 @@ export const autorizarEmpresa = async(req,res)=>{
       const {estado_publicacion} = req.body;
       
       if(!estado_publicacion){
-        return res.status(401).json({message:'Faltan datos en el body'})
+        return res.status(400).json({message:'Faltan datos en el body'})
       };
 
       await autorizarEmpresaService(email,id_empresa,estado_publicacion);
