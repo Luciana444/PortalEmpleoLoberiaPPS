@@ -61,6 +61,73 @@
             </mat-expansion-panel>
         </mat-accordion>
 
+        
+        <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <h1>Empresas</h1>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="list-content">
+                    @if (employers.length) {
+                    @for (employer of employers; track employer.id_usuario) {
+                    <li>
+                        <div class="profile-employee">
+                            <div class="employer-data">
+                                <div class="profile-header-employee">
+                                    <div class="profile-pic">
+                                        <img [src]="getImageUrl(employer.logo)  || 'sample_pfp.png'"
+                                            alt="Profile picture">
+                                    </div>
+                                    <div class="profile-info-employee">
+                                        <h4>{{employer.nombre_empresa}}</h4>
+                                        <div class="location-employee">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                            <p>{{employer.localidad}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="employee-btn">
+                                    @if(employer.email_contacto === null){
+                                    <div class="employee-date">
+                                        <p>Email: No informado</p>
+                                    </div>
+                                    }@else{
+                                    <div class="employee-date">
+                                        <p>Email: {{employer.email_contacto}}</p>
+                                    </div>
+                                    }
+
+                                    <div class="detail-categories">
+                                    @if (employer.estado_aprobacion === 'pendiente') {
+                                    <h5 class="state-flag"><i class="fa-solid fa-circle-exclamation"></i>
+                                        Pendiente de aprobación
+                                    </h5>
+                                    } @else if(employer.estado_aprobacion === 'rechazada') {
+                                    <h5 class="state-flag-reject"><i class="fa-solid fa-xmark"></i>
+                                        Rechazada
+                                    </h5>
+                                    }
+                                    @else {
+                                    <h5 class="state-flag-check"><i class="fa-solid fa-check"></i>
+                                        Aprobada
+                                    </h5>
+                                    }
+                                </div>
+                                    <div class="offer-btn">
+                                        <button (click)="navigateToProfileEmployer(employer.id_usuario)">Ver Perfil</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    }
+                    }
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+
         <mat-accordion>
             <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
                 <mat-expansion-panel-header>
@@ -120,28 +187,7 @@
                 </div>
             </mat-expansion-panel>
         </mat-accordion>
+
     </div>
-    <!--
-<mat-accordion>
-    <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
-        <mat-expansion-panel-header>
-            <mat-panel-title><h1>Empleadores</h1> </mat-panel-title>
-        </mat-expansion-panel-header>
-        <div class="list-content">
-           
-        </div>
-    </mat-expansion-panel>
-</mat-accordion>
-<mat-accordion>
-    <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
-        <mat-expansion-panel-header>
-            <mat-panel-title><h1>Ciudadanos</h1> </mat-panel-title>
-        </mat-expansion-panel-header>
-        <div class="list-content">
-           
-        </div>
-    </mat-expansion-panel>
-</mat-accordion>
--->
 </div>
 <app-footer></app-footer>

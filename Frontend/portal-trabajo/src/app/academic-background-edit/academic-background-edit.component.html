@@ -1,4 +1,8 @@
 <app-header></app-header>
+ <div class="fallback">
+            <i class="fa-solid fa-arrow-left" (click)="navigateToProfile()"></i> <a (click)="navigateToProfile()">
+                Volver a Perfil</a>
+        </div>
 <h3>Editá tu Formación académica</h3>
 <div class="form-container">
     <form [formGroup]="educationForm" (ngSubmit)="editEducationForm()">
@@ -53,7 +57,7 @@
         <!-- Capacitaciones -->
         <div class="addEducation-btn">
             <div class="experience-div">
-                <button class="experience-btn" type="button" (click)="addNewCardEducation = !addNewCardEducation">
+                <button class="experience-btn" type="button" (click)="this.educationForm.get('nombre_capacitacion')?.reset(''); addNewCardEducation = !addNewCardEducation">
                     <i class="fa-solid fa-plus"></i>
                     Agregar nueva capacitación
                 </button>

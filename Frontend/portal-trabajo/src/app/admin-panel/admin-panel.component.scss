@@ -29,6 +29,14 @@
     width: 100%;
 }
 
+.employer-data {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    gap: 1rem;
+    width: 100%;
+}
 .profile-header {
     display: flex;
     gap: 0.5rem;
