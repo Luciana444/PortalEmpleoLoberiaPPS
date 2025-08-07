@@ -7,29 +7,28 @@
         descriptionSelect.value,
         puestoSelect.value
       )" class="filter-form">
-
                 <div class="filter-fields">
                     <!-- Descripción Field -->
                     <mat-form-field appearance="outline" class="filter-field">
                         <mat-label>Descripción</mat-label>
-                        <input matInput #descriptionSelect name="descripcion" placeholder="Palabras clave relacionadas">
+                        <input matInput [(ngModel)]="descripcion" name="descripcion" #descriptionSelect
+                            placeholder="Palabras clave relacionadas">
                     </mat-form-field>
 
                     <!-- Puesto (Position) Field -->
                     <mat-form-field appearance="outline" class="filter-field">
                         <mat-label>Puesto</mat-label>
-                        <input matInput #puestoSelect type="search" name="puesto"
+                        <input matInput [(ngModel)]="puesto_requerido" name="puesto" #puestoSelect type="search"
                             placeholder="Ej: Desarrollador Frontend">
                         <mat-icon matSuffix>search</mat-icon>
                     </mat-form-field>
 
-
                     <!-- Location Select -->
                     <mat-form-field appearance="outline" class="filter-field">
                         <mat-label>Lugar de trabajo</mat-label>
-                        <mat-select #locationSelect name="location">
+                        <mat-select [(ngModel)]="lugar_trabajo" name="location" #locationSelect>
                             <mat-option value="">Todos los lugares</mat-option>
-                            <mat-option value="Presencial">Presencial </mat-option>
+                            <mat-option value="Presencial">Presencial</mat-option>
                             <mat-option value="Remoto">Remoto</mat-option>
                             <mat-option value="Mixto">Mixto</mat-option>
                         </mat-select>
@@ -39,7 +38,7 @@
                     <!-- Modality Select -->
                     <mat-form-field appearance="outline" class="filter-field">
                         <mat-label>Modalidad</mat-label>
-                        <mat-select #modalitySelect name="modality">
+                        <mat-select [(ngModel)]="modalidad" name="modality" #modalitySelect>
                             <mat-option value="">Todas las modalidades</mat-option>
                             <mat-option value="Tiempo completo">Tiempo Completo</mat-option>
                             <mat-option value="Medio tiempo">Medio Tiempo</mat-option>
@@ -49,19 +48,19 @@
                         </mat-select>
                         <mat-icon matSuffix>work_outline</mat-icon>
                     </mat-form-field>
-                </div>
 
-                <!-- Action Buttons -->
-                <div class="action-buttons">
-                    <button mat-raised-button color="primary" type="submit" class="filter-button">
-                        <mat-icon>filter_alt</mat-icon>
-                        Filtrar
-                    </button>
-                    <button mat-stroked-button color="primary" type="button" (click)="loadOffers()"
-                        class="reset-button">
-                        <mat-icon>refresh</mat-icon>
-                        Restaurar
-                    </button>
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button mat-raised-button color="primary" type="submit" class="filter-button">
+                            <mat-icon>filter_alt</mat-icon>
+                            Filtrar
+                        </button>
+                        <button mat-stroked-button color="primary" type="button" (click)="refreshFilter(filterForm)"
+                            class="reset-button">
+                            <mat-icon>refresh</mat-icon>
+                            Restaurar
+                        </button>
+                    </div>
                 </div>
             </form>
         </mat-card-content>
