@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   min-height: 100vh;
-  // align-items: center;
 }
 
 form {
@@ -52,4 +51,61 @@ mat-form-field {
   display: flex;
   justify-content: center;
   width: 100%;
+}
+
+@media (max-width: 600px) {
+  .form-container {
+    width: 90%;
+    padding: 1rem;
+    margin: 0 auto; // Center the container
+  }
+
+  form {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; // Center all child elements
+  }
+
+  // Force single-column layout
+  .size-form {
+    flex-direction: column;
+    width: 100%;
+    align-items: center; // Center fields horizontally
+  }
+
+  // Style adjustments for all mat-form-field elements
+  mat-form-field {
+    width: 100% !important;
+    margin-right: 0;
+    margin-bottom: 1rem;
+    max-width: 400px; // Optional: Limits field width for better readability
+
+    // Center the input/label container
+    .mat-mdc-form-field-infix {
+      width: 100%;
+    }
+  }
+
+  // Full-width textareas
+  mat-form-field.full-width {
+    width: 100% !important;
+    textarea {
+      width: 100%;
+    }
+  }
+
+  // Center buttons
+  button {
+    width: 100%;
+    max-width: 200px; // Better mobile button sizing
+    margin: 1.5rem auto 3rem;
+  }
+
+  // Center the form title
+  h3 {
+    text-align: center;
+    width: 100%;
+  }
 }
