@@ -1,4 +1,3 @@
-
 button{
     display: block;
     margin-top: 1.5rem;
@@ -44,11 +43,11 @@ div > p{
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
-
  
 .img-container{
     margin-top: 2rem;
 }
+
 mat-form-field.full-width {
     margin-right: 15px;
     width: 100%;
@@ -57,18 +56,63 @@ mat-form-field.full-width {
 .mat-mdc-form-field-flex{
     width: 100%;
 }
+
 form {
   width: 60%;
 }
+
 .size-form {
   display: flex;
   justify-content: center;
   width: 100%;
 }
+
 mat-form-field {
   width: 50%;
 
 }
+
 .margin-input{
   margin-right: 15px;
+}
+
+@media (max-width: 600px) {
+  .form-container {
+    width: 90%;
+    padding: 1rem;
+    margin: 0 auto; // Centers the container horizontally
+  }
+
+  form {
+    width: 100%;
+    max-width: 100%; // Prevents overflow
+    display: flex;
+    flex-direction: column;
+    align-items: center; // Centers child elements (like fields and buttons)
+  }
+
+  .size-form {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  mat-form-field {
+    width: 100% !important;
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  // Center textareas and other full-width elements
+  mat-form-field.full-width {
+    width: 100% !important;
+    textarea {
+      width: 100%; // Ensures textarea fills the field
+    }
+  }
+
+  // Center buttons
+  button {
+    width: 100%; // Full width for better mobile tap targets
+    margin: 1.5rem auto 3rem; // Centers horizontally
+  }
 }

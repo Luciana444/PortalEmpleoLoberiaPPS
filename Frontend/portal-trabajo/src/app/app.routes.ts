@@ -23,9 +23,9 @@ export const routes: Routes = [
     { path: 'recovery', component: RecoveryComponent },
     { path: 'reset', component: ResetPasswordComponent },
     { path: 'edit-profile', component: ProfileFormComponent },
-    //check mobile friendly
     { path: 'create-offer', component: JobOfferFormComponent },
     { path: 'create-offer/:id', component: JobOfferFormComponent },
+    //check mobile friendly
     { path: 'employee-profile', component: EmployeeProfileComponent },
     { path: 'employee-profile/:id', component: EmployeeProfileComponent },
     //remover detail path
