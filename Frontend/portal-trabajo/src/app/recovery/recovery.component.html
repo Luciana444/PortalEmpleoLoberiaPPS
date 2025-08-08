@@ -5,10 +5,11 @@
     <form [formGroup]="recovery" (ngSubmit)="submit()" fxLayout="column" fxLayoutGap="16px" class="full-width">
 
         <h3 style="text-align: center;">Recuperá el acceso a tu cuenta</h3>
-        
+
         <mat-form-field appearance="outline" class="full-width">
- <mat-label>Email</mat-label>
-            <input matInput formControlName="email" type="email" placeholder="Ingresá tu email" required class="inputstyle" />
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" type="email" placeholder="Ingresá tu email" required
+                class="inputstyle" />
             <mat-error *ngIf="recovery.get('email')?.hasError('required')">
                 El email es obligatorio
             </mat-error>
@@ -17,7 +18,7 @@
             </mat-error>
         </mat-form-field>
 
-        <button mat-raised-button  type="submit" [disabled]="recovery.invalid">
+        <button mat-raised-button type="submit" [disabled]="recovery.invalid">
             Enviar solicitud
         </button>
 

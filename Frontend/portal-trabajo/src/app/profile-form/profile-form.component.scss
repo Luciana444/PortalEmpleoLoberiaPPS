@@ -63,3 +63,28 @@ div.email-input > mat-form-field {
   width: 97% !important;
 }
 
+@media (max-width: 600px) {
+  .form-container {
+    width: 90%;
+    padding: 1rem;
+  }
+
+  form {
+    width: 100%;
+  }
+
+  .size-form {
+    flex-direction: column; // Stacks children vertically
+    align-items: center;    // Centers fields horizontally
+  }
+
+  mat-form-field {
+    width: 100% !important; // Forces full width on mobile
+    margin-right: 0;        // Removes right margin
+    margin-bottom: 1rem;    // Adds spacing between stacked fields
+  }
+
+  div.email-input > mat-form-field {
+    width: 100% !important; // Ensures email field takes full width
+  }
+}
