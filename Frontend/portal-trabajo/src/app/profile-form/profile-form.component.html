@@ -108,9 +108,9 @@
         <input matInput formControlName="pais" />
       </mat-form-field>
 
-      <!-- Campo: ¿Tiene alguna discapacidad? -->
+      <!-- Campo: ¿Tenés alguna discapacidad? -->
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>¿Tiene alguna discapacidad?</mat-label>
+        <mat-label>¿Tenés alguna discapacidad?</mat-label>
         <mat-select formControlName="discapacidad">
           <mat-option value="si">Sí</mat-option>
           <mat-option value="no">No</mat-option>
@@ -132,9 +132,10 @@
       </mat-form-field>
       <app-file-uploader></app-file-uploader>
     </div>
-    
+
     <div>
-      <button type="button" class="delete-account-btn"(click)="openDialogDeleteAccount()" matTooltip="En el próximo paso vas a confirmar la eliminación">
+      <button type="button" class="delete-account-btn" (click)="openDialogDeleteAccount()"
+        matTooltip="En el próximo paso vas a confirmar la eliminación">
         <i class="fa-solid fa-trash"></i> Eliminar cuenta</button>
     </div>
     <button mat-raised-button type="submit" [disabled]="profile.invalid">
