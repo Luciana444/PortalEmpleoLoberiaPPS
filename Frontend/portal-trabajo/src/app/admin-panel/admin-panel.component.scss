@@ -221,3 +221,74 @@ button {
 mat-panel-title {
     font-family: 'Linotte Heavy';
 }
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  .container-list {
+    width: 95%;
+  }
+
+  .profile, 
+  .profile-employee {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .offer-data,
+  .employee-data,
+  .employer-data {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .profile-header,
+  .profile-header-employee {
+    flex-direction: column;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .employee-btn {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .offer-btn {
+    margin: 0 auto;
+    width: 90%;
+    button {
+      width: 90%;
+    }
+  }
+
+  .detail-categories {
+    width: 90%;
+  }
+
+  .employee-date {
+    margin-left: 0;
+  }
+
+  mat-panel-title h1 {
+    font-size: 1.2rem;
+  }
+
+  .profile-header-info{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  h5{
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
