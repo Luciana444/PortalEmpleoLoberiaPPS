@@ -36,10 +36,8 @@ input {
 .form-container {
   display: flex;
   justify-content: center;
-  // align-items: center;
   min-height: 100vh;
 }
-
 
 p {
   margin-bottom: 2px;
@@ -145,5 +143,78 @@ div.size-form>mat-form-field {
 }
 
 li{
-list-style:none;
+  list-style:none;
+}
+
+@media (max-width: 600px) {
+  .form-container {
+    width: 90%;
+    padding: 1rem;
+    margin: 0 auto;
+  }
+
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .size-form {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  mat-form-field {
+    width: 100% !important;
+    margin-right: 0 !important;
+    margin-bottom: 1rem;
+  }
+
+  .container-experience {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .addExperience-btn, 
+  .experience-div {
+    justify-content: center !important;
+  }
+
+  button.experience-btn {
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto 1rem !important;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .align-elements {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+    > div {
+      width: 100%;
+    }
+  }
+
+  .edit-exp-btn,
+  .delete {
+    margin: 0.5rem auto !important;
+    display: block;
+  }
+
+  .fallback {
+    margin-left: 1rem !important;
+  }
+
+  h3 {
+    text-align: center;
+    width: 100%;
+  }
 }
