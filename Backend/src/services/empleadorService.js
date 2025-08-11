@@ -132,9 +132,13 @@ export const obtenerYBorrarNotificacionEmpresa = async (idEmpresa) => {
   await borrarNotificacionOfertaRepository(ids);
 
 
-  return notificaciones.map(n => ({
-    mensaje: n.notificacion,
-    puesto: n.puesto_requerido,
-    fecha_aprobacion: n.fecha_aprobacion
-   }));
+  return {
+    cantidad: notificaciones.length,
+    notificaciones: notificaciones.map(n => ({
+      id: n.id,
+      mensaje: n.notificacion,
+      puesto: n.puesto_requerido,
+      fecha_aprobacion: n.fecha_aprobacion
+    }))
+  };
 };
