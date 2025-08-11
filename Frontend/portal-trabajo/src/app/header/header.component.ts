@@ -87,7 +87,7 @@ export class HeaderComponent implements OnInit {
   }
 
   hasNotifications(): boolean {
-    return this.notification.notificaciones?.length > 0;
+    return this.countNotifications() > 0;
   }
 
   getNotifications() {
