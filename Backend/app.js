@@ -5,6 +5,8 @@ import authRoutes  from './src/routes/authRoutes.js';
 import  usuarioRoutes  from './src/routes/usuarioRoutes.js';
 import  ciudadanoRoutes  from './src/routes/ciudadanoRoutes.js';
 import  empleadorRoutes  from './src/routes/empleadorRoutes.js';
+import adminRoutes from './src/routes/adminRoutes.js';
+
 
 
 
@@ -20,6 +22,7 @@ app.use('/auth', authRoutes);
 app.use('/usuario', usuarioRoutes); 
 app.use('/ciudadano', ciudadanoRoutes);
 app.use('/empresa', empleadorRoutes);
+app.use('/admin', adminRoutes);
 
 
 export default app;

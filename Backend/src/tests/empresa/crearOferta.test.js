@@ -1,6 +1,11 @@
 import request from 'supertest';
 import app from '../../../app.js';
 import sql from '../../database/db.js';
+import { crearEmpresaYObtenerToken } from '../helpers/empresa.js'; // Ajustá la ruta si cambia
+import { crearCiudadanoYObtenerToken } from '../helpers/ciudadano.js';
+
+
+
 
 async function crearOferta(token) {
   const res = await request(app)
@@ -23,7 +28,7 @@ describe('POST /empresa/ofertas', () => {
   let tokenEmpresa;
 
   beforeAll(async () => {
-    tokenEmpresa = await crearEmpresa();
+    tokenEmpresa = await crearEmpresaYObtenerToken();
   });
 
   it('debería crear una oferta con datos válidos y devolver status 200', async () => {
@@ -87,22 +92,11 @@ expect(res.body.errores[0]).toMatch(/puesto_requerido|is required/i);
 
   it('debería devolver 403 si el token no es de empresa', async () => {
     // Crear ciudadano
-    const email = `ciudadano${Date.now()}@mail.com`;
 
-    await request(app).post('/auth/register').send({
-      nombre: 'Ciudadano Prueba',
-      email,
-      contrasena: 'test1234',
-      tipo_usuario: 'ciudadano'
-    });
+    const tokenCiudadano = await crearCiudadanoYObtenerToken();
 
-    const resLogin = await request(app).post('/auth/login').send({
-      email,
-      contrasena: 'test1234'
-    });
 
-    const tokenCiudadano = resLogin.body.resultado.token;
-
+  
     const res = await request(app)
       .post('/empresa/ofertas')
       .set('Authorization', `Bearer ${tokenCiudadano}`)

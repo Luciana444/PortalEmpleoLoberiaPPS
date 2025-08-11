@@ -236,7 +236,9 @@ export const crearOfertaLaboral = async (req,res)=>{
     await crearOferta(id_empresa, req.body);
 
     
-    res.status(200).json({ message: 'Oferta creada correctamente' });
+    //res.status(200).json({ message: 'Oferta creada correctamente' });
+    //agrego que devuelva el id de la oferta para el test:
+    res.status(200).json({ message: 'Oferta creada correctamente', id_oferta: nuevaOferta.id });
 
   } catch (error) {
     res.status(500).json({message:'Error al crear oferta'})
@@ -687,13 +689,14 @@ export const obtenerNotificacionOferta = async (req, res) => {
       return res.status(401).json({ error: 'Empresa no autenticada' });
     }
 
-    const mensaje = await obtenerYBorrarNotificacionEmpresa(idEmpresa);
+    const notificacion = await obtenerYBorrarNotificacionEmpresa(idEmpresa);
 
-    if (!mensaje) {
+    if (!notificacion) {
       return res.status(204).send(); 
     }
 
-    res.status(200).json({ mensaje });
+
+    res.status(200).json(notificacion);
   } catch (error) {
     console.error('Error al obtener notificación:', error);
     res.status(500).json({ error: 'Error interno al obtener notificación' });

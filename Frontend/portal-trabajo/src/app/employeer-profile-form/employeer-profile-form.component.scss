@@ -1,20 +1,21 @@
 .form-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  min-height: 100vh;
+  // align-items: center;
 }
 
 form {
   width: 60%;
 }
+
 app-file-uploader, .email-input{
   width: 100%;
 }
+
 div.email-input > mat-form-field {
   width: 97%;
 }
-
-
 
 p {
   margin-bottom: 2px;
