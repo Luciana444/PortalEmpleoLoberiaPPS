@@ -247,8 +247,11 @@ mat-panel-title {
     width: 100%;
   }
 
-  .profile-header,
-  .profile-header-employee {
+  .employer-data {
+    padding: 0;
+  }
+
+  .profile-header{
     flex-direction: column;
     margin-left: 0;
     width: 100%;
@@ -287,8 +290,16 @@ mat-panel-title {
     gap: 0.5rem;
   }
 
+  .profile-header-employee{
+    margin-left: 0;
+  }
+
   h5{
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .profile-info-employee {
+    margin: 0;
   }
 }

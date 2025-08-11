@@ -2,9 +2,10 @@
 @use 'sass:color';
 
 button{
-    width: 8rem;
     padding: 8px 2px;
+    white-space:nowrap
 }
+
 button:hover{
     background-color: color.adjust($white);
     color: black;
@@ -20,30 +21,31 @@ button:hover{
     flex-direction: column;
     justify-content: center;
     align-items: flex-end; 
-    background-image: url('/capacitaciones.png');
+    // background-image: url('/capacitaciones.png');
+    background-color: #232D4F;
     background-size: cover;
     background-position: center;
     overflow: hidden;
 }
 
-.header-banner::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.3); 
-    opacity: 1;
-    z-index: 0;
-    pointer-events: none;
-}
+// .header-banner::before {
+//     content: "";
+//     position: absolute;
+//     inset: 0;
+//     background: rgba(0, 0, 0, 0.3); 
+//     opacity: 1;
+//     z-index: 0;
+//     pointer-events: none;
+// }
 
 .header-banner > * {
     position: relative;
     z-index: 1;
 }
 
-.header-banner:hover{
-    background-color: color.adjust(#57AF31, $lightness: -10%);
-}
+// .header-banner:hover{
+//     background-color: color.adjust(#57AF31, $lightness: -10%);
+// }
 
 .img-text{
     text-align: end;
@@ -55,14 +57,12 @@ button:hover{
     max-width: 40rem;
 }
 
-
 .training-button{
     background-color: $white;
     color: $white;
     border: 1px solid $white;
     font-size: 2rem;
     margin-right: 8rem;
-    width: 10rem;
     background-color: rgba(255,255,255,0);
 }
 

@@ -1,6 +1,7 @@
 <app-header></app-header>
 <div class="container">
-    <app-reports></app-reports>
+    <!-- uncoment this later -->
+    <!-- <app-reports></app-reports> -->
     <div class="container-list">
         <mat-accordion>
             <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
@@ -65,7 +66,6 @@
             </mat-expansion-panel>
         </mat-accordion>
 
-
         <mat-accordion>
             <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
                 <mat-expansion-panel-header>
@@ -80,15 +80,17 @@
                         <div class="profile-employee">
                             <div class="employer-data">
                                 <div class="profile-header-employee">
-                                    <div class="profile-pic">
-                                        <img [src]="getImageUrl(employer.logo)  || 'sample_pfp.png'"
-                                            alt="Profile picture">
-                                    </div>
-                                    <div class="profile-info-employee">
-                                        <h4>{{employer.nombre_empresa}}</h4>
-                                        <div class="location-employee">
-                                            <i class="fa-solid fa-location-dot"></i>
-                                            <p>{{employer.localidad}}</p>
+                                    <div class="profile-header-info">
+                                        <div class="profile-pic">
+                                            <img [src]="getImageUrl(employer.logo)  || 'sample_pfp.png'"
+                                                alt="Profile picture">
+                                        </div>
+                                        <div class="profile-info-employee">
+                                            <h4>{{employer.nombre_empresa}}</h4>
+                                            <div class="location-employee">
+                                                <i class="fa-solid fa-location-dot"></i>
+                                                <p>{{employer.localidad}}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

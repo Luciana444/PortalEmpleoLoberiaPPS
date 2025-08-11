@@ -25,7 +25,6 @@ export const routes: Routes = [
     { path: 'edit-profile', component: ProfileFormComponent },
     { path: 'create-offer', component: JobOfferFormComponent },
     { path: 'create-offer/:id', component: JobOfferFormComponent },
-    //check mobile friendly
     { path: 'employee-profile', component: EmployeeProfileComponent },
     { path: 'employee-profile/:id', component: EmployeeProfileComponent },
     //remover detail path
@@ -40,6 +39,7 @@ export const routes: Routes = [
     // { path: 'postulaciones-por-oferta', component: PostulationListComponent },
     { path: 'postulaciones-por-oferta/:id', component: PostulationListComponent },
     { path: 'profile', component: ProfileSelectorComponent },
+    //check mobile friendly
     { path: 'admin-panel', component: AdminPanelComponent },
 
 ];

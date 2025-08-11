@@ -78,7 +78,7 @@ export class PostulationDetailComponent implements OnInit {
               otros_requisitos: o.otros_requisitos,
               nivel_educativo_requerido: o.nivel_educativo_requerido,
               logo: e.logo,
-              estado_publicacion:o.estado_publicacion
+              estado_publicacion: o.estado_publicacion
             }
             this.offer = jo;
           } else {
@@ -174,8 +174,8 @@ export class PostulationDetailComponent implements OnInit {
     dialogConfig.width = '400px'; // Set dialog width
     dialogConfig.data = {
       title: 'Cancelar postulación',
-      content: 'Desea cancelar la postulación?',
-      trueAction: 'Sí, quiero cancelarla'
+      content: '¿Desea cancelar la postulación?',
+      trueAction: 'Sí'
     }; // Pass data to the dialog
 
     const dialogRef = this.dialog.open(DeleteDialogComponent, dialogConfig);
@@ -226,7 +226,7 @@ export class PostulationDetailComponent implements OnInit {
     this.router.navigate(['profile'])
   }
 
-   navigateToAdminPanel() {
+  navigateToAdminPanel() {
     this.router.navigate(['admin-panel'])
   }
 
@@ -269,7 +269,7 @@ export class PostulationDetailComponent implements OnInit {
     this.msg = msg;
   }
 
-  changeOfferStatus(id: string, estado:string) {
+  changeOfferStatus(id: string, estado: string) {
     this.adminservice.changeOfferStatusByAdmin(id, estado).subscribe({
       next: (response) => {
         if (response.status === 200) {

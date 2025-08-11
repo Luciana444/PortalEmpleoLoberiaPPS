@@ -1,7 +1,8 @@
 <h2 mat-dialog-title>{{data.title}}</h2>
 <mat-dialog-content>{{data.content}}</mat-dialog-content>
 <mat-dialog-actions>
-  <button class="cancel" matButton mat-dialog-close cdkFocusInitial>Cancelar</button>
+  <button class="cancel" matButton mat-dialog-close cdkFocusInitial>No</button>
   <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-  <button class="delete" matButton [mat-dialog-close]="true"><i class="fa-solid fa-trash"></i> {{data.trueAction}}</button>
+  <button class="delete" matButton [mat-dialog-close]="true"><i class="fa-solid fa-trash"></i>
+    {{data.trueAction}}</button>
 </mat-dialog-actions>
