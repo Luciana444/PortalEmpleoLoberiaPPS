@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JobOffer } from '../../models/jobOffer.model';
 import { Employer } from '../../models/employer.model';
 import { Notification } from '../../models/notification.model';
+import { NotificationOffer } from '../../models/notificationOffer.model';
 
 const URL = 'http://localhost:3000/api';
 
@@ -94,7 +95,7 @@ export class EmployerService {
     }
 
     getNotificationsOffers() {
-        return this.httpClient.get<Notification>(`${URL}/empresa/notificaciones/ofertas`, {
+        return this.httpClient.get<NotificationOffer>(`${URL}/empresa/notificaciones/ofertas`, {
             observe: 'response',
             withCredentials: true,
             headers: new HttpHeaders()

@@ -176,9 +176,7 @@ export class UserService {
   deleteAccountById() {
     return this.httpClient.delete(`${URL}/usuario/eliminar_cuenta`, {
       observe: 'response',
-      withCredentials: true
-      //headers: new HttpHeaders()
-      //   .append('Authorization', `Bearer ${localStorage.getItem("token")}`)                    
+      withCredentials: true                    
     });
   }
 
