@@ -227,22 +227,21 @@ export const getPostulacionById = async(id_postulacion)=>{
 
 export const buscarNotificacionOfertaRepository = async (idEmpresa) => {
   const resultado = await sql`
-    SELECT id, notificacion, puesto_requerido,fecha_aprobacion
+    SELECT id, notificacion, puesto_requerido, fecha_aprobacion
     FROM ofertas_laborales
     WHERE id_empresa = ${idEmpresa}
       AND notificacion IS NOT NULL
-    ORDER BY fecha_publicacion DESC
-    LIMIT 1;
+    ORDER BY fecha_publicacion DESC;
   `;
-
-  return resultado[0];
+  return resultado;
 };
 
-export const borrarNotificacionOfertaRepository = async (idOferta) => {
+export const borrarNotificacionOfertaRepository = async (ids) => {
+  if (!ids || ids.length === 0) return;
   await sql`
     UPDATE ofertas_laborales
     SET notificacion = NULL
-    WHERE id = ${idOferta};
+    WHERE id = ANY(${ids});
   `;
 };
 

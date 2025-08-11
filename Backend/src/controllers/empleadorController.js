@@ -689,13 +689,14 @@ export const obtenerNotificacionOferta = async (req, res) => {
       return res.status(401).json({ error: 'Empresa no autenticada' });
     }
 
-    const mensaje = await obtenerYBorrarNotificacionEmpresa(idEmpresa);
+    const notificacion = await obtenerYBorrarNotificacionEmpresa(idEmpresa);
 
-    if (!mensaje) {
+    if (!notificacion) {
       return res.status(204).send(); 
     }
 
-    res.status(200).json({ mensaje });
+
+    res.status(200).json(notificacion);
   } catch (error) {
     console.error('Error al obtener notificación:', error);
     res.status(500).json({ error: 'Error interno al obtener notificación' });
