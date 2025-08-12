@@ -15,6 +15,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { DatePipe } from '@angular/common'
 import { MatButtonModule } from '@angular/material/button';
 import { Employer } from '../../models/employer.model';
+import { NotificationOffer } from '../../models/notificationOffer.model';
 
 @Component({
   selector: 'app-header',
@@ -35,6 +36,7 @@ export class HeaderComponent implements OnInit {
   employer: Employer = {} as Employer;
   itemId: string = '';
   notification: Notification = {} as Notification;
+  notificationOffer: NotificationOffer = {} as NotificationOffer;
   hidden = false;
 
   constructor(
@@ -85,7 +87,7 @@ export class HeaderComponent implements OnInit {
   }
 
   hasNotifications(): boolean {
-    return this.notification.notificaciones?.length > 0;
+    return this.countNotifications() > 0;
   }
 
   getNotifications() {
@@ -112,7 +114,7 @@ export class HeaderComponent implements OnInit {
     this.employerservice.getNotificationsOffers().subscribe({
       next: (response) => {
         if (response.status === 200) { // Populate form with API data
-          this.notification = response.body ?? {} as Notification;
+          this.notificationOffer = response.body ?? {} as NotificationOffer;
         } else {
           console.log('No se pudo cargar las notificaciones', response);
         }
@@ -208,6 +210,10 @@ export class HeaderComponent implements OnInit {
 
   getImageUrl(image_url: string) {
     return image_url ? `http://localhost:3000${image_url}` : null;
+  }
+
+  countNotifications(){
+    return this.notification.cantidad + this.notificationOffer.cantidad;
   }
 }
 

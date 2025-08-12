@@ -123,16 +123,22 @@ export const obtenerPerfilPostulante = async(id_ciudadano)=>{
 };
 
 export const obtenerYBorrarNotificacionEmpresa = async (idEmpresa) => {
-  const notificacion = await buscarNotificacionOfertaRepository(idEmpresa);
+  const notificaciones = await buscarNotificacionOfertaRepository(idEmpresa);
 
-  if (!notificacion) return null;
+  if (!notificaciones || notificaciones.length === 0) return null;
 
-  await borrarNotificacionOfertaRepository(notificacion.id);
 
- return {
-    mensaje: notificacion.notificacion,
-    puesto: notificacion.puesto_requerido,
-    fecha_aprobacion: notificacion.fecha_aprobacion
-  }; 
+  const ids = notificaciones.map(n => n.id);
+  await borrarNotificacionOfertaRepository(ids);
+
+
+  return {
+    cantidad: notificaciones.length,
+    notificaciones: notificaciones.map(n => ({
+      id: n.id,
+      mensaje: n.notificacion,
+      puesto: n.puesto_requerido,
+      fecha_aprobacion: n.fecha_aprobacion
+    }))
+  };
 };
-
