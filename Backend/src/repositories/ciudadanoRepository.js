@@ -273,3 +273,8 @@ export const getCvUsuarioRepository = async(id_usuario)=>{
 
   return url[0];
 };
+
+export const getDatosCiudadanoRepository = async(id_ciudadano)=>{
+  const datos = await sql`SELECT * FROM perfiles_ciudadanos WHERE id_ciudadano =${id_ciudadano}`;
+  return datos[0];
+};
