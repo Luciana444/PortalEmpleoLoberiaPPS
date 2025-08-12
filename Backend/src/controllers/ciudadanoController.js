@@ -1,6 +1,6 @@
 
 // Importamos la lógica de negocio desde el servicio correspondiente
-import { cancelarPostulacionOferta, crearPostulacion, editarCapacitacionUsuario, editarExperienciaLaboralUsuario, eliminarCapacitacionUsuario, eliminarExperienciaLaboralUsuario, getCvUsuario, subirCvBD, verificarPostulacion } from "../services/ciudadanoService.js";
+import { cancelarPostulacionOferta, crearPostulacion, editarCapacitacionUsuario, editarExperienciaLaboralUsuario, eliminarCapacitacionUsuario, eliminarExperienciaLaboralUsuario, getCvUsuario, getDatosCiudadano, subirCvBD, verificarPostulacion } from "../services/ciudadanoService.js";
 import  {generarPdfUsuario, obtenerPostulacionesService,buscarOfertasFiltradasService }  from "../services/ciudadanoService.js";
 import fs from 'fs/promises';
 import path from 'path';
@@ -737,3 +737,16 @@ export const obtenerCv = async(req,res)=>{
 };
 
 
+export const obtenerDatosCiudadano = async(req,res)=>{
+  try {
+      const id_ciudadano = req.params.id;
+
+      const datosCiudadano = await getDatosCiudadano(id_ciudadano);
+
+      return res.status(200).json(datosCiudadano);
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({message:'Error al obtener datos de ciudadano'})
+  }
+};
