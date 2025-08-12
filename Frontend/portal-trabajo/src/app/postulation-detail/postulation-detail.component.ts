@@ -123,7 +123,7 @@ export class PostulationDetailComponent implements OnInit {
     dialogConfig.width = '400px'; // Set dialog width
     dialogConfig.data = {
       title: 'Borrar oferta',
-      content: 'Desea borrar la oferta?',
+      content: '¿Desea borrar la oferta?',
       trueAction: 'Sí, quiero borrarla'
     }; // Pass data to the dialog
 
@@ -175,7 +175,7 @@ export class PostulationDetailComponent implements OnInit {
     dialogConfig.data = {
       title: 'Cancelar postulación',
       content: '¿Desea cancelar la postulación?',
-      trueAction: 'Sí'
+      trueAction: 'Sí, quiero cancelarla'
     }; // Pass data to the dialog
 
     const dialogRef = this.dialog.open(DeleteDialogComponent, dialogConfig);

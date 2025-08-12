@@ -83,13 +83,15 @@ export class EmployeeProfileComponent implements OnInit {
     }
   }
 
-   navigateToLanding() {
+  navigateToLanding() {
     this.router.navigate(['/']);
   }
-    navigateToAdminPanel() {
+
+  navigateToAdminPanel() {
     this.router.navigate(['admin-panel']);
   }
-    navigateToPostulations(/*id: any*/) {
-    //this.router.navigate(['postulaciones-por-oferta', id]);
+
+  navigateToPostulations(/*id: any*/) {
+    // this.router.navigate(['postulaciones-por-oferta', id]);
   }
 }

@@ -21,22 +21,22 @@ button:hover{
     flex-direction: column;
     justify-content: center;
     align-items: flex-end; 
-    // background-image: url('/capacitaciones.png');
-    background-color: #232D4F;
+    background-image: url('/fomentar-empleo.jpeg');
+    // background-color: #232D4F;
     background-size: cover;
     background-position: center;
     overflow: hidden;
 }
 
-// .header-banner::before {
-//     content: "";
-//     position: absolute;
-//     inset: 0;
-//     background: rgba(0, 0, 0, 0.3); 
-//     opacity: 1;
-//     z-index: 0;
-//     pointer-events: none;
-// }
+.header-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3); 
+    opacity: 1;
+    z-index: 0;
+    pointer-events: none;
+}
 
 .header-banner > * {
     position: relative;
