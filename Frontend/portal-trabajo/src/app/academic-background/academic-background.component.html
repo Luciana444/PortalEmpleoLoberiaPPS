@@ -2,7 +2,7 @@
     <div>
         <div class="title-wrapper">
             <h2>Formacion academica y cursos</h2>
-            @if(getUserType()=== "empresa"){
+            @if(getUserType()=== "empresa" || getUserType()=== 'admin'){
             <button class="hide-btn"> <i class="fa-solid fa-graduation-cap"></i>
                 Completar Formación</button>}
             @else{
@@ -42,7 +42,7 @@
     <div>
         <div class="title-wrapper">
             <h2>Experiencia laboral</h2>
-            @if(getUserType()=== "empresa"){
+            @if(getUserType()=== "empresa" || getUserType() === 'admin'){
             <button class="hide-btn"><i class="fa-solid fa-briefcase"></i> Completar
                 Experiencia</button>}
             @else{

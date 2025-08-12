@@ -29,39 +29,54 @@ export class ProfileComponent implements OnInit {
 
   itemId: string = "";
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     const userType = this.getUserType();
-    if(userType=== 'empresa'){
+    if (userType === 'empresa') {
       this.itemId = this.route.snapshot.params['id'] ?? "";
       this.employeeservice.getDataProfileForEmployerByPostulationId(this.itemId)?.subscribe({
-      next: (response) => {
-        if (response) {
-          this.user = response;
-        } else {
-          console.log('Profile load failed', response);
+        next: (response) => {
+          if (response) {
+            this.user = response;
+          } else {
+            console.log('Profile load failed', response);
+          }
+        },
+        error: (err) => {
+          console.error('Profile load error', err);
         }
-      },
-      error: (err) => {
-        console.error('Profile load error', err);
-      }
-    });
+      });
 
-    }else{
-
-    this.userservice.getDataProfile(userType)?.subscribe({
-      next: (response) => {
-        if (response) {
-          this.user = response;
-        } else {
-          console.log('Profile load failed', response);
+    } else if (userType === 'admin') {
+      this.itemId = this.route.snapshot.params['id'] ?? "";
+      this.employeeservice.getDataProfileForAdminByCiudadanoId(this.itemId)?.subscribe({
+        next: (response) => {
+          if (response) {
+            this.user = response;
+          } else {
+            console.log('Profile load failed', response);
+          }
+        },
+        error: (err) => {
+          console.error('Profile load error', err);
         }
-      },
-      error: (err) => {
-        console.error('Profile load error', err);
-      }
-    });
+      });
+    }
+    else {
+
+      this.userservice.getDataProfile(userType)?.subscribe({
+        next: (response) => {
+          if (response) {
+            this.user = response;
+          } else {
+            console.log('Profile load failed', response);
+          }
+        },
+        error: (err) => {
+          console.error('Profile load error', err);
+        }
+      });
+    }
   }
-}
 
   getUserType(): string | null {
     if (!isPlatformBrowser(this.platformId))
