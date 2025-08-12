@@ -1,3 +1,16 @@
+// Ensure text wraps and input expands
+.mat-mdc-text-field-wrapper {
+  overflow: hidden; // Prevents overflow
+}
+
+// For text inputs
+input {
+  white-space: normal; // Allows text to wrap
+  overflow: hidden;    // Hides overflow
+  text-overflow: ellipsis; // Adds ellipsis if text is too long
+  width: 100% !important; // Ensures input takes full width of its container
+}
+
 button{
     display: block;
     margin-top: 1.5rem;

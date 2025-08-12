@@ -20,21 +20,24 @@
     }
     <div class="postulation-header">
         <div class="profile">
-            <h1>{{offer.puesto_requerido}}</h1>
+            <div class="postulation-title">
+                <h1 matTooltip={{offer.puesto_requerido}}>{{offer.puesto_requerido}}</h1>
+            </div>
+        </div>
 
-            <div class="profile-header">
-                <div class="profile-pic">
-                    <img [src]="getImageUrl(offer.logo)  || 'sample_pfp.png'" alt="Profile picture">
-                </div>
-                <div class="profile-info">
-                    <h4>{{offer.nombre_empresa}}</h4>
-                    <div class="location">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <p>{{offer.localidad}}</p>
-                    </div>
+        <div class="profile-header">
+            <div class="profile-pic">
+                <img [src]="getImageUrl(offer.logo)  || 'sample_pfp.png'" alt="Profile picture">
+            </div>
+            <div class="profile-info">
+                <h4>{{offer.nombre_empresa}}</h4>
+                <div class="location">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p>{{offer.localidad}}</p>
                 </div>
             </div>
         </div>
+        <!-- </div> -->
         <div class="button-wrapper">
             @if (currentUserType === "ciudadano") {
             @if(postulado) {
@@ -81,7 +84,7 @@
                 RECHAZAR</button>
             <button class="delete" (click)="openDialog(offer.id)" matTooltip="Eliminar oferta">
                 <i class="fa-solid fa-trash fa-xl "></i> </button>
-            }                    
+            }
         </div>
     </div>
 

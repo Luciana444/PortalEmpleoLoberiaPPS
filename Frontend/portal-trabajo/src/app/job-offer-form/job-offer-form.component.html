@@ -10,9 +10,9 @@
     <!-- Puesto requerido -->
     <div>
       <div class="size-form">
-        <mat-form-field appearance="outline" class="margin-input">
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Nombre del puesto o cargo</mat-label>
-          <input matInput formControlName="puesto_requerido" required>
+          <input matInput formControlName="puesto_requerido" required maxlength="100">
           <mat-error *ngIf="offersForm.get('puesto_requerido')?.hasError('required')">
             Este campo es obligatorio
           </mat-error>
@@ -95,7 +95,7 @@
         <!-- Tipo de contrato -->
         <mat-form-field appearance="outline" class="margin-input">
           <mat-label>Tipo de contrato</mat-label>
-          <input matInput formControlName="tipo_contrato">
+          <input matInput formControlName="tipo_contrato" maxlength="50">
         </mat-form-field>
 
         <!-- Localidad del puesto -->
