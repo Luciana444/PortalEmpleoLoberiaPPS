@@ -71,48 +71,67 @@ Para ver el diseño completo e interactivo:
 ---
 
 ## 📝 Registro de Usuario
+Capturas de las diferentes pantallas y tipos de registro.
 
-Capturas de las diferentes pantallas y tipos de registro:
+<table>
+  <tr>
+    <td><img src="ImagenesFigma/registro/Form%20registro.jpg" width="250"><br>Formulario de registro general.</td>
+    <td><img src="ImagenesFigma/registro/Form%20registro%20postulanteMobile.jpg" width="250"><br>Registro de postulante en vista móvil.</td>
+    <td><img src="ImagenesFigma/registro/Login%20Mobile.jpg" width="250"><br>Pantalla de inicio de sesión en móvil.</td>
+  </tr>
+  <tr>
+    <td><img src="ImagenesFigma/registro/Login.jpg" width="250"><br>Pantalla de inicio de sesión en escritorio.</td>
+    <td><img src="ImagenesFigma/registro/Perfil%20Postulante.jpg" width="250"><br>Perfil del postulante en vista general.</td>
+    <td><img src="ImagenesFigma/registro/Perfil%20Postulante-%20Vista%20edición.jpg" width="250"><br>Edición del perfil del postulante.</td>
+  </tr>
+  <tr>
+    <td><img src="ImagenesFigma/registro/Postulante%20mobile.jpg" width="250"><br>Vista del perfil del postulante en móvil.</td>
+    <td><img src="ImagenesFigma/registro/Recuperación%20Mobile.jpg" width="250"><br>Pantalla de recuperación de contraseña en móvil.</td>
+    <td><img src="ImagenesFigma/registro/Recuperación%20contrasena.jpg" width="250"><br>Pantalla de recuperación de contraseña en escritorio.</td>
+  </tr>
+</table>
 
-![Form registro](ImagenesFigma/registro/Form%20registro.jpg)  
-![Form registro postulanteMobile](ImagenesFigma/registro/Form%20registro%20postulanteMobile.jpg)  
-![Login Mobile](ImagenesFigma/registro/Login%20Mobile.jpg)  
-![Login](ImagenesFigma/registro/Login.jpg)  
-![Perfil Postulante](ImagenesFigma/registro/Perfil%20Postulante.jpg)  
-![Perfil Postulante Vista edición](ImagenesFigma/registro/Perfil%20Postulante-%20Vista%20edición.jpg)  
-![Postulante mobile](ImagenesFigma/registro/Postulante%20mobile.jpg)  
-![Recuperacion Mobile](ImagenesFigma/registro/Recuperación%20Mobile.jpg)  
-![Recuperacion contraseña](ImagenesFigma/registro/Recuperación%20contrasena.jpg)  
-
+---
 
 ## 🔍 Ofertas Laborales
+Ejemplos de vistas de ofertas en distintas resoluciones y modos.
 
-![Detalle Oferta](ImagenesFigma/ofertas/Detalle%20oferta.jpg)  
-![Detalle Oferta mobile](ImagenesFigma/ofertas/Detalle%20oferta%20mobile.jpg)  
-![Detalle Oferta Edición empleador](ImagenesFigma/ofertas/Detalle%20oferta-%20Edición%20empleador.jpg)  
-![Landing Ofertas mobile](ImagenesFigma/ofertas/Landing%20Ofertas%20mobile.jpg)  
-![Landing Ofertas mobile](ImagenesFigma/ofertas/Landing%20Ofertas%20mobile.jpg)  
-![Landing Ofertas Logueado](ImagenesFigma/ofertas/Landing%20Ofertas-%20Logueado.jpg)  
-![Landing Ofertas](ImagenesFigma/ofertas/Landing%20Ofertas.jpg)  
+<table>
+  <tr>
+    <td><img src="ImagenesFigma/ofertas/Detalle%20oferta.jpg" width="250"><br>Detalle de oferta en escritorio.</td>
+    <td><img src="ImagenesFigma/ofertas/Detalle%20oferta%20mobile.jpg" width="250"><br>Detalle de oferta en móvil.</td>
+    <td><img src="ImagenesFigma/ofertas/Detalle%20oferta-%20Edición%20empleador.jpg" width="250"><br>Edición de oferta por el empleador.</td>
+  </tr>
+  <tr>
+    <td><img src="ImagenesFigma/ofertas/Landing%20Ofertas%20mobile.jpg" width="250"><br>Página principal de ofertas en móvil.</td>
+    <td><img src="ImagenesFigma/ofertas/Landing%20Ofertas%20mobile.jpg" width="250"><br>Otra vista móvil de ofertas (duplicada).</td>
+    <td><img src="ImagenesFigma/ofertas/Landing%20Ofertas-%20Logueado.jpg" width="250"><br>Vista de ofertas con usuario logueado.</td>
+  </tr>
+  <tr>
+    <td><img src="ImagenesFigma/ofertas/Landing%20Ofertas.jpg" width="250"><br>Vista general de ofertas en escritorio.</td>
+  </tr>
+</table>
 
 ---
 
 ## 👔 Perfil Empleador
+Pantallas relacionadas con la administración y vista del perfil de un empleador.
 
-![Perfil empleador - Empleador mobile](ImagenesFigma/empleador/Empleador%20mobile.jpg)  
-![Perfil empleador - Vista aprobación](ImagenesFigma/empleador/Perfil%20Empleador-%20Vista%20aprobación.jpg)  
-![Perfil empleador - Vista edición](ImagenesFigma/empleador/Perfil%20Empleador-%20Vista%20edición.jpg)  
-![Perfil empleador - Empleador mobile (repetida)](ImagenesFigma/empleador/Empleador%20mobile.jpg)  
-
+<table>
+  <tr>
+    <td><img src="ImagenesFigma/empleador/Empleador%20mobile.jpg" width="250"><br>Perfil del empleador en móvil.</td>
+    <td><img src="ImagenesFigma/empleador/Perfil%20Empleador-%20Vista%20aprobación.jpg" width="250"><br>Vista de aprobación del perfil.</td>
+    <td><img src="ImagenesFigma/empleador/Perfil%20Empleador-%20Vista%20edición.jpg" width="250"><br>Edición del perfil del empleador.</td>
+  </tr>
+</table>
 
 ---
 
 ## 🛠️ Panel de Administración
+Vista del panel de reportes para el administrador.
 
-![Panel admin](ImagenesFigma/admin/Reportes.jpg)
+<img src="ImagenesFigma/admin/Reportes.jpg" width="400"><br>Pantalla de reportes en el panel de administración.
 
-
----
 
 
 
