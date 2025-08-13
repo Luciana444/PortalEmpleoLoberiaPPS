@@ -175,14 +175,14 @@ Podés explorar y probar todos los endpoints de la API desde Swagger:
 ### 🖼️ Capturas de pantalla
 
 <p align="center">
-  <img src="ImagenesFigma/swagger/1.png" width="250"><br>Vista general de los endpoints disponibles.
-  <img src="ImagenesFigma/swagger/2.png" width="250"><br>
-  <img src="ImagenesFigma/swagger/3.png" width="250"><br>
+  <img src="ImagenesFigma/swagger/1.png" width="500"><br>Vista general de los endpoints disponibles.
+  <img src="ImagenesFigma/swagger/2.png" width="500"><br>
+  <img src="ImagenesFigma/swagger/3.png" width="500"><br>
 </p>
 
 <p align="center">
-  <img src="ImagenesFigma/swagger/4.png" width="250"><br>Vista de un endpoint protegido con token.
-  <img src="ImagenesFigma/swagger/5.png" width="250"><br>
+  <img src="ImagenesFigma/swagger/4.png" width="500"><br>Vista de un endpoint protegido con token.
+  <img src="ImagenesFigma/swagger/5.png" width="500"><br>
 </p>
 
 ------
