@@ -94,47 +94,56 @@ Capturas adaptadas a dispositivos móviles, manteniendo la misma funcionalidad p
 
 
 ## 🔍 Ofertas Laborales
-Ejemplos de vistas de ofertas en distintas resoluciones y modos.
 
-<table>
-  <tr>
-    <td><img src="ImagenesFigma/ofertas/Detalle%20oferta.jpg" width="250"><br>Detalle de oferta en escritorio.</td>
-    <td><img src="ImagenesFigma/ofertas/Detalle%20oferta%20mobile.jpg" width="250"><br>Detalle de oferta en móvil.</td>
-    <td><img src="ImagenesFigma/ofertas/Detalle%20oferta-%20Edición%20empleador.jpg" width="250"><br>Edición de oferta por el empleador.</td>
-  </tr>
-  <tr>
-    <td><img src="ImagenesFigma/ofertas/Landing%20Ofertas%20mobile.jpg" width="250"><br>Página principal de ofertas en móvil.</td>
-    <td><img src="ImagenesFigma/ofertas/Landing%20Ofertas%20mobile.jpg" width="250"><br>Otra vista móvil de ofertas (duplicada).</td>
-    <td><img src="ImagenesFigma/ofertas/Landing%20Ofertas-%20Logueado.jpg" width="250"><br>Vista de ofertas con usuario logueado.</td>
-  </tr>
-  <tr>
-    <td><img src="ImagenesFigma/ofertas/Landing%20Ofertas.jpg" width="250"><br>Vista general de ofertas en escritorio.</td>
-  </tr>
-</table>
+### 💻 Vistas Desktop
+Pantallas principales del módulo de ofertas, tanto para postulantes como empleadores.
+
+| | |
+|---|---|
+| ![Detalle Oferta](ImagenesFigma/ofertas/Detalle%20oferta.jpg) | ![Detalle Oferta Edición empleador](ImagenesFigma/ofertas/Detalle%20oferta-%20Edición%20empleador.jpg) |
+| ![Landing Ofertas Logueado](ImagenesFigma/ofertas/Landing%20Ofertas-%20Logueado.jpg) | ![Landing Ofertas](ImagenesFigma/ofertas/Landing%20Ofertas.jpg) |
+
+---
+
+### 📱 Vistas Mobile
+Diseños optimizados para pantallas pequeñas.
+
+| | |
+|---|---|
+| ![Detalle Oferta mobile](ImagenesFigma/ofertas/Detalle%20oferta%20mobile.jpg) | ![Landing Ofertas mobile](ImagenesFigma/ofertas/Landing%20Ofertas%20mobile.jpg) |
+
 
 ---
 
 ## 👔 Perfil Empleador
-Pantallas relacionadas con la administración y vista del perfil de un empleador.
 
-<table>
-  <tr>
-    <td><img src="ImagenesFigma/empleador/Empleador%20mobile.jpg" width="250"><br>Perfil del empleador en móvil.</td>
-    <td><img src="ImagenesFigma/empleador/Perfil%20Empleador-%20Vista%20aprobación.jpg" width="250"><br>Vista de aprobación del perfil.</td>
-    <td><img src="ImagenesFigma/empleador/Perfil%20Empleador-%20Vista%20edición.jpg" width="250"><br>Edición del perfil del empleador.</td>
-  </tr>
-</table>
+### 💻 Vistas Desktop
+Panel del empleador para gestión de perfil y aprobación de empresa.
+
+| | |
+|---|---|
+| ![Perfil empleador - Vista aprobación](ImagenesFigma/empleador/Perfil%20Empleador-%20Vista%20aprobación.jpg) | ![Perfil empleador - Vista edición](ImagenesFigma/empleador/Perfil%20Empleador-%20Vista%20edición.jpg) |
+
+---
+
+### 📱 Vistas Mobile
+Versión móvil del perfil de empleador.
+
+| | |
+|---|---|
+| ![Perfil empleador - Empleador mobile](ImagenesFigma/empleador/Empleador%20mobile.jpg) |
+
 
 ---
 
 ## 🛠️ Panel de Administración
-Vista del panel de reportes para el administrador.
 
-<img src="ImagenesFigma/admin/Reportes.jpg" width="400"><br>Pantalla de reportes en el panel de administración.
+### 💻 Vista Desktop
+Interfaz de administración con herramientas de gestión y reportes.
 
-
-
-
+| | |
+|---|---|
+| ![Panel admin](ImagenesFigma/admin/Reportes.jpg) |  |
 ## 📚 Documentación del Backend (JSDoc)
 
 Este proyecto incluye documentación generada automáticamente con [JSDoc](https://jsdoc.app/) para los controladores y servicios del backend.
