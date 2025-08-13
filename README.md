@@ -144,6 +144,8 @@ Interfaz de administración con herramientas de gestión y reportes.
 | | |
 |---|---|
 | ![Panel admin](ImagenesFigma/admin/Reportes.jpg) |  |
+
+
 ## 📚 Documentación del Backend (JSDoc)
 
 Este proyecto incluye documentación generada automáticamente con [JSDoc](https://jsdoc.app/) para los controladores y servicios del backend.
@@ -163,6 +165,27 @@ La documentación está disponible en: Backend/docs/index.html
 
 ---
 
+## 📚 Documentación Swagger
+
+Podés explorar y probar todos los endpoints de la API desde Swagger:
+
+[🔗 Ver Swagger](https://mi-dominio.com/api-docs)  
+> Este enlace estará disponible cuando el backend esté desplegado en el servidor.
+
+### 🖼️ Capturas de pantalla
+
+<p align="center">
+  <img src="ImagenesFigma/swagger/1.png" width="250"><br>Vista general de los endpoints disponibles.
+  <img src="ImagenesFigma/swagger/2.png" width="250"><br>
+  <img src="ImagenesFigma/swagger/3.png" width="250"><br>
+</p>
+
+<p align="center">
+  <img src="ImagenesFigma/swagger/4.png" width="250"><br>Vista de un endpoint protegido con token.
+  <img src="ImagenesFigma/swagger/5.png" width="250"><br>
+</p>
+
+------
 
 > 📝 **Nota:** Este documento forma parte de un proyecto académico de formación en desarrollo de software y tiene fines educativos.
 
