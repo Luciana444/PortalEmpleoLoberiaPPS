@@ -181,9 +181,50 @@ Podés explorar y probar todos los endpoints de la API desde Swagger:
 
 ------
 
+## 🧪 Testing
+
+El proyecto incluye pruebas automatizadas para garantizar el correcto funcionamiento de los endpoints del backend y la lógica de negocio.
+
+### Tipos de tests
+
+- **Unitarios**: pruebas de funciones individuales y lógica del backend.  
+- **Integración / API**: tests de endpoints usando **Jest** y **Supertest**, incluyendo:
+  - Endpoints de **ciudadanos**:
+    - Subir CV
+    - Actualizar perfil
+    - Generar PDF
+    - Obtener perfil completo
+    - `PATCH /ciudadano/actualizar/perfil`
+  - Endpoints de **empresas**:
+    - Editar oferta (`PATCH /empresa/ofertas/:id`)
+    - Aprobar ofertas y empresas
+  - **Control de roles y permisos**: se verifica que usuarios no autorizados reciban errores 403 o 401 según corresponda.
+
+- **Flujos encadenados**: pruebas que dependen de estados previos, por ejemplo:
+  1. Aprobar una empresa/oferta
+  2. Postulaciones a ofertas verificando permisos y estados
+
+### Cómo ejecutar los tests
+
+```bash
+# Instalar dependencias si no se hizo
+npm install
+
+# Ejecutar todos los tests
+npm test
+
+# Ver cobertura de tests (si está configurado)
+npm run test:coverage
+
+
+
+----------
+
+
 > 📝 **Nota:** Este documento forma parte de un proyecto académico de formación en desarrollo de software y tiene fines educativos.
 
----
+------
+
 
 
 ## Tecnologías utilizadas
