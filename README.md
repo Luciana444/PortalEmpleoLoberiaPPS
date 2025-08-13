@@ -66,56 +66,84 @@ Crear un sistema de intermediación laboral que facilite la conexión entre la o
 # 📐 Diseño del Portal de Empleo
 
 Para ver el diseño completo e interactivo:  
-[🔗 Ver diseño en Figma]()
+[🔗 Ver diseño en Figma](https://www.figma.com/proto/K7Q1OdzFcDaMqwZFJcMqdY/Portal-Empleo-Loberia?node-id=0-1&t=03AYvFDayHHGo0rx-1)
 
 ---
 
 ## 📝 Registro de Usuario
 
-Capturas de las diferentes pantallas y tipos de registro:
+### 💻 Vistas Desktop
+Capturas principales del flujo de registro y perfil desde un navegador.
 
-![Form registro](ImagenesFigma/registro/Form%20registro.jpg)  
-![Form registro postulanteMobile](ImagenesFigma/registro/Form%20registro%20postulanteMobile.jpg)  
-![Login Mobile](ImagenesFigma/registro/Login%20Mobile.jpg)  
-![Login](ImagenesFigma/registro/Login.jpg)  
-![Perfil Postulante](ImagenesFigma/registro/Perfil%20Postulante.jpg)  
-![Perfil Postulante Vista edición](ImagenesFigma/registro/Perfil%20Postulante-Vista%20edicion.jpg)  
-![Postulante mobile](ImagenesFigma/registro/%20Postulante%20mobile.jpg)  
-![Recuperacion Mobile](ImagenesFigma/registro/Recuperacion%20Mobile.jpg)  
-![Recuperacion contraseña](ImagenesFigma/registro/Recuperacion%20contrasena.jpg)  
+| | |
+|---|---|
+| ![Form registro](ImagenesFigma/registro/Form%20registro.jpg) | ![Login](ImagenesFigma/registro/Login.jpg) |
+| ![Perfil Postulante](ImagenesFigma/registro/Perfil%20Postulante.jpg) | ![Perfil Postulante Vista edición](ImagenesFigma/registro/Perfil%20Postulante-%20Vista%20edición.jpg) |
+| ![Recuperacion contraseña](ImagenesFigma/registro/Recuperación%20contrasena.jpg) |  |
+
+---
+
+### 📱 Vistas Mobile
+Capturas adaptadas a dispositivos móviles, manteniendo la misma funcionalidad pero con diseño responsivo.
+
+| | |
+|---|---|
+| ![Form registro postulanteMobile](ImagenesFigma/registro/Form%20registro%20postulanteMobile.jpg) | ![Login Mobile](ImagenesFigma/registro/Login%20Mobile.jpg) |
+| ![Postulante mobile](ImagenesFigma/registro/Postulante%20mobile.jpg) | ![Recuperacion Mobile](ImagenesFigma/registro/Recuperación%20Mobile.jpg) |
+
 
 
 ## 🔍 Ofertas Laborales
 
-![Detalle Oferta](ImagenesFigma/ofertas/Detalle%20Oferta.jpg)  
-![Detalle Oferta mobile](ImagenesFigma/ofertas/Detalle%20Oferta%20mobile.jpg)  
-![Detalle Oferta Edición empleador](ImagenesFigma/ofertas/Detalle%20Oferta-Edicion%20empleador.jpg)  
-![Landing Ofertas mobile](ImagenesFigma/ofertas/Landing%20Ofertas%20mobile.jpg)  
-![Landing Ofertas mobile](ImagenesFigma/ofertas/Landing%20Ofertas%20mobile.jpg)  
-![Landing Ofertas Logueado](ImagenesFigma/ofertas/Landing%20Ofertas-%20Logueado.jpg)  
-![Landing Ofertas](ImagenesFigma/ofertas/Landing%20Ofertas.jpg)  
+### 💻 Vistas Desktop
+Pantallas principales del módulo de ofertas, tanto para postulantes como empleadores.
+
+| | |
+|---|---|
+| ![Detalle Oferta](ImagenesFigma/ofertas/Detalle%20oferta.jpg) | ![Detalle Oferta Edición empleador](ImagenesFigma/ofertas/Detalle%20oferta-%20Edición%20empleador.jpg) |
+| ![Landing Ofertas Logueado](ImagenesFigma/ofertas/Landing%20Ofertas-%20Logueado.jpg) | ![Landing Ofertas](ImagenesFigma/ofertas/Landing%20Ofertas.jpg) |
+
+---
+
+### 📱 Vistas Mobile
+Diseños optimizados para pantallas pequeñas.
+
+| | |
+|---|---|
+| ![Detalle Oferta mobile](ImagenesFigma/ofertas/Detalle%20oferta%20mobile.jpg) | ![Landing Ofertas mobile](ImagenesFigma/ofertas/Landing%20Ofertas%20mobile.jpg) |
+
 
 ---
 
 ## 👔 Perfil Empleador
 
-![Perfil empleador - Empleador mobile](ImagenesFigma/empleador/Empleador%20mobile.jpg)  
-![Perfil empleador - Vista aprobación](ImagenesFigma/empleador/Perfil%20Empleador-%20Vista%20aprobacion.jpg)  
-![Perfil empleador - Vista edición](ImagenesFigma/empleador/Perfil%20Empleador-%20Vista%20edicion.jpg)  
-![Perfil empleador - Empleador mobile (repetida)](ImagenesFigma/empleador/Empleador%20mobile.jpg)  
+### 💻 Vistas Desktop
+Panel del empleador para gestión de perfil y aprobación de empresa.
+
+| | |
+|---|---|
+| ![Perfil empleador - Vista aprobación](ImagenesFigma/empleador/Perfil%20Empleador-%20Vista%20aprobación.jpg) | ![Perfil empleador - Vista edición](ImagenesFigma/empleador/Perfil%20Empleador-%20Vista%20edición.jpg) |
+
+---
+
+### 📱 Vistas Mobile
+Versión móvil del perfil de empleador.
+
+| | |
+|---|---|
+| ![Perfil empleador - Empleador mobile](ImagenesFigma/empleador/Empleador%20mobile.jpg) |
 
 
 ---
 
 ## 🛠️ Panel de Administración
 
-![Panel admin](ImagenesFigma/admin/Reportes.jpg)
+### 💻 Vista Desktop
+Interfaz de administración con herramientas de gestión y reportes.
 
-
----
-
-
-
+| | |
+|---|---|
+| ![Panel admin](ImagenesFigma/admin/Reportes.jpg) |  |
 ## 📚 Documentación del Backend (JSDoc)
 
 Este proyecto incluye documentación generada automáticamente con [JSDoc](https://jsdoc.app/) para los controladores y servicios del backend.
