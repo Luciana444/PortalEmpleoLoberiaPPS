@@ -79,10 +79,10 @@ Capturas de las diferentes pantallas y tipos de registro:
 ![Login Mobile](ImagenesFigma/registro/Login%20Mobile.jpg)  
 ![Login](ImagenesFigma/registro/Login.jpg)  
 ![Perfil Postulante](ImagenesFigma/registro/Perfil%20Postulante.jpg)  
-![Perfil Postulante Vista edición](ImagenesFigma/registro/Perfil%20Postulante-Vista%20edicion.jpg)  
-![Postulante mobile](ImagenesFigma/registro/%20Postulante%20mobile.jpg)  
-![Recuperacion Mobile](ImagenesFigma/registro/Recuperacion%20Mobile.jpg)  
-![Recuperacion contraseña](ImagenesFigma/registro/Recuperacion%20contrasena.jpg)  
+![Perfil Postulante Vista edición](ImagenesFigma/registro/Perfil%20Postulante-Vista%20edición.jpg)  
+![Postulante mobile](ImagenesFigma/registro/Postulante%20mobile.jpg)  
+![Recuperacion Mobile](ImagenesFigma/registro/Recuperación%20Mobile.jpg)  
+![Recuperacion contraseña](ImagenesFigma/registro/Recuperación%20contrasena.jpg)  
 
 
 ## 🔍 Ofertas Laborales
