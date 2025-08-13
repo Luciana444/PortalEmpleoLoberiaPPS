@@ -63,6 +63,59 @@ Crear un sistema de intermediación laboral que facilite la conexión entre la o
 
 ---
 
+# 📐 Diseño del Portal de Empleo
+
+Para ver el diseño completo e interactivo:  
+[🔗 Ver diseño en Figma]()
+
+---
+
+## 📝 Registro de Usuario
+
+Capturas de las diferentes pantallas y tipos de registro:
+
+![Form registro](ImagenesFigma/registro/Form%20registro.jpg)  
+![Form registro postulanteMobile](ImagenesFigma/registro/Form%20registro%20postulanteMobile.jpg)  
+![Login Mobile](ImagenesFigma/registro/Login%20Mobile.jpg)  
+![Login](ImagenesFigma/registro/Login.jpg)  
+![Perfil Postulante](ImagenesFigma/registro/Perfil%20Postulante.jpg)  
+![Perfil Postulante Vista edición](ImagenesFigma/registro/Perfil%20Postulante-Vista%20edicion.jpg)  
+![Postulante mobile](ImagenesFigma/registro/%20Postulante%20mobile.jpg)  
+![Recuperacion Mobile](ImagenesFigma/registro/Recuperacion%20Mobile.jpg)  
+![Recuperacion contraseña](ImagenesFigma/registro/Recuperacion%20contrasena.jpg)  
+
+
+## 🔍 Ofertas Laborales
+
+![Detalle Oferta](ImagenesFigma/ofertas/Detalle%20Oferta.jpg)  
+![Detalle Oferta mobile](ImagenesFigma/ofertas/Detalle%20Oferta%20mobile.jpg)  
+![Detalle Oferta Edición empleador](ImagenesFigma/ofertas/Detalle%20Oferta-Edicion%20empleador.jpg)  
+![Landing Ofertas mobile](ImagenesFigma/ofertas/Landing%20Ofertas%20mobile.jpg)  
+![Landing Ofertas mobile](ImagenesFigma/ofertas/Landing%20Ofertas%20mobile.jpg)  
+![Landing Ofertas Logueado](ImagenesFigma/ofertas/Landing%20Ofertas-%20Logueado.jpg)  
+![Landing Ofertas](ImagenesFigma/ofertas/Landing%20Ofertas.jpg)  
+
+---
+
+## 👔 Perfil Empleador
+
+![Perfil empleador - Empleador mobile](ImagenesFigma/empleador/Empleador%20mobile.jpg)  
+![Perfil empleador - Vista aprobación](ImagenesFigma/empleador/Perfil%20Empleador-%20Vista%20aprobacion.jpg)  
+![Perfil empleador - Vista edición](ImagenesFigma/empleador/Perfil%20Empleador-%20Vista%20edicion.jpg)  
+![Perfil empleador - Empleador mobile (repetida)](ImagenesFigma/empleador/Empleador%20mobile.jpg)  
+
+
+---
+
+## 🛠️ Panel de Administración
+
+![Panel admin](ImagenesFigma/admin/Reportes.jpg)
+
+
+---
+
+
+
 ## 📚 Documentación del Backend (JSDoc)
 
 Este proyecto incluye documentación generada automáticamente con [JSDoc](https://jsdoc.app/) para los controladores y servicios del backend.
