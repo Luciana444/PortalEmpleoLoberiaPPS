@@ -62,6 +62,9 @@ $font: 'Linotte Regular', 'Linotte Light', 'Linotte Semi Bold', 'Linotte Bold', 
 
     @include mat.progress-spinner-overrides((active-indicator-color: #57AF31,
         ));
+    @include mat.button-toggle-overrides((selected-state-background-color: #ECF8E7,
+    text-color:#49454F,
+        ));
 }
 
 h1,
@@ -234,6 +237,9 @@ footer {
 
 .mat-expansion-panel-body {
     padding: 0 !important;
+}
+mat-button-toggle > mat-pseudo-checkbox{
+    --mat-minimal-pseudo-checkbox-selected-checkmark-color:$text-color !important;
 }
 
 

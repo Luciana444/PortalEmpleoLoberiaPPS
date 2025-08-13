@@ -12,8 +12,8 @@ const URL = 'http://localhost:3000/api';
 export class AdminService {
     constructor(private httpClient: HttpClient) { }
 
-    getOffersLikeAdmin() {
-        return this.httpClient.get<JobOffer[]>(`${URL}/admin/ofertas/laborales`, {
+    getOffersLikeAdmin(state:string) {
+        return this.httpClient.get<JobOffer[]>(`${URL}/admin/ofertas/laborales?estado_publicacion=${state}`, {
             observe: 'response',
             withCredentials: true,
             headers: new HttpHeaders()

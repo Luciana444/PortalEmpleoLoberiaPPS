@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, signal } from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy, signal, ChangeDetectorRef } from "@angular/core";
 import { FooterComponent } from "../footer/footer.component";
 import { HeaderComponent } from "../header/header.component";
 import { ReportsComponent } from "../reports/reports.component";
@@ -10,14 +10,14 @@ import { AuthService } from "../services/auth.service";
 import { ReportsService } from "../services/reports.service";
 import { AdminService } from "../services/admin.service";
 import { AppUtils } from "../../utils/app.utils";
-import { MatDivider } from "@angular/material/divider";
+import { MatButtonToggleChange, MatButtonToggleModule } from '@angular/material/button-toggle';
 import { Employee } from "../../models/employee.model";
 import { Employer } from "../../models/employer.model";
 
 
 @Component({
     selector: 'app-postulation-list',
-    imports: [FooterComponent, HeaderComponent, ReportsComponent, MatExpansionModule, MatTooltipModule],
+    imports: [FooterComponent, HeaderComponent, ReportsComponent, MatExpansionModule, MatTooltipModule, MatButtonToggleModule],
     templateUrl: './admin-panel.component.html',
     styleUrl: './admin-panel.component.scss',
     providers: [],
@@ -36,10 +36,11 @@ export class AdminPanelComponent implements OnInit {
         private route: ActivatedRoute,
         private reportsservice: ReportsService,
         private adminservice: AdminService,
+        private cdr: ChangeDetectorRef
     ) { }
 
     ngOnInit(): void {
-        this.getOffers();
+        this.getOffers('pendiente');
         this.getEmployees();
         this.getEmployers();
 
@@ -47,11 +48,12 @@ export class AdminPanelComponent implements OnInit {
 
     readonly panelOpenState = signal(false);
 
-    getOffers() {
-        this.adminservice.getOffersLikeAdmin().subscribe({
+    getOffers(state: string) {
+        this.adminservice.getOffersLikeAdmin(state).subscribe({
             next: (response) => {
                 if (response.status === 200) { // Populate form with API data
                     this.offers = response.body || [];
+                    this.cdr.detectChanges();
                 } else {
                     console.log('No se pudo cargar oferta', response);
                 }
@@ -60,6 +62,9 @@ export class AdminPanelComponent implements OnInit {
                 console.error('Error al cargar oferta', err);
             }
         });
+    }
+    onStateOfferChange(event: MatButtonToggleChange) {
+        this.getOffers(event.value);
     }
 
     getEmployees() {
