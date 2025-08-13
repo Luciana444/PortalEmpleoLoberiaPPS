@@ -216,9 +216,10 @@ npm test
 # Ver cobertura de tests (si está configurado)
 npm run test:coverage
 
-
+```
 
 ----------
+
 
 
 > 📝 **Nota:** Este documento forma parte de un proyecto académico de formación en desarrollo de software y tiene fines educativos.
@@ -250,4 +251,4 @@ npm run test:coverage
    ```bash
    git clone https://github.com/Lusiana444/PortalEmpleoLoberiaPPS.git
    cd PortalEmpleoLoberiaPPS
-
+```
