@@ -66,7 +66,7 @@ Crear un sistema de intermediación laboral que facilite la conexión entre la o
 # 📐 Diseño del Portal de Empleo
 
 Para ver el diseño completo e interactivo:  
-[🔗 Ver diseño en Figma]()
+[🔗 Ver diseño en Figma](https://www.figma.com/proto/K7Q1OdzFcDaMqwZFJcMqdY/Portal-Empleo-Loberia?node-id=0-1&t=03AYvFDayHHGo0rx-1)
 
 ---
 
