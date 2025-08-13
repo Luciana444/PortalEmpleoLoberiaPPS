@@ -79,7 +79,7 @@ Capturas de las diferentes pantallas y tipos de registro:
 ![Login Mobile](ImagenesFigma/registro/Login%20Mobile.jpg)  
 ![Login](ImagenesFigma/registro/Login.jpg)  
 ![Perfil Postulante](ImagenesFigma/registro/Perfil%20Postulante.jpg)  
-![Perfil Postulante Vista edición](ImagenesFigma/registro/Perfil%20Postulante-Vista%20edición.jpg)  
+![Perfil Postulante Vista edición](ImagenesFigma/registro/Perfil%20Postulante-%20Vista%20edición.jpg)  
 ![Postulante mobile](ImagenesFigma/registro/Postulante%20mobile.jpg)  
 ![Recuperacion Mobile](ImagenesFigma/registro/Recuperación%20Mobile.jpg)  
 ![Recuperacion contraseña](ImagenesFigma/registro/Recuperación%20contrasena.jpg)  
@@ -87,9 +87,9 @@ Capturas de las diferentes pantallas y tipos de registro:
 
 ## 🔍 Ofertas Laborales
 
-![Detalle Oferta](ImagenesFigma/ofertas/Detalle%20Oferta.jpg)  
-![Detalle Oferta mobile](ImagenesFigma/ofertas/Detalle%20Oferta%20mobile.jpg)  
-![Detalle Oferta Edición empleador](ImagenesFigma/ofertas/Detalle%20Oferta-Edicion%20empleador.jpg)  
+![Detalle Oferta](ImagenesFigma/ofertas/Detalle%20oferta.jpg)  
+![Detalle Oferta mobile](ImagenesFigma/ofertas/Detalle%20oferta%20mobile.jpg)  
+![Detalle Oferta Edición empleador](ImagenesFigma/ofertas/Detalle%20oferta-%20Edición%20empleador.jpg)  
 ![Landing Ofertas mobile](ImagenesFigma/ofertas/Landing%20Ofertas%20mobile.jpg)  
 ![Landing Ofertas mobile](ImagenesFigma/ofertas/Landing%20Ofertas%20mobile.jpg)  
 ![Landing Ofertas Logueado](ImagenesFigma/ofertas/Landing%20Ofertas-%20Logueado.jpg)  
@@ -100,8 +100,8 @@ Capturas de las diferentes pantallas y tipos de registro:
 ## 👔 Perfil Empleador
 
 ![Perfil empleador - Empleador mobile](ImagenesFigma/empleador/Empleador%20mobile.jpg)  
-![Perfil empleador - Vista aprobación](ImagenesFigma/empleador/Perfil%20Empleador-%20Vista%20aprobacion.jpg)  
-![Perfil empleador - Vista edición](ImagenesFigma/empleador/Perfil%20Empleador-%20Vista%20edicion.jpg)  
+![Perfil empleador - Vista aprobación](ImagenesFigma/empleador/Perfil%20Empleador-%20Vista%20aprobación.jpg)  
+![Perfil empleador - Vista edición](ImagenesFigma/empleador/Perfil%20Empleador-%20Vista%20edición.jpg)  
 ![Perfil empleador - Empleador mobile (repetida)](ImagenesFigma/empleador/Empleador%20mobile.jpg)  
 
 
