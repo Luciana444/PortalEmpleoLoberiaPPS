@@ -63,6 +63,63 @@ Crear un sistema de intermediación laboral que facilite la conexión entre la o
 
 ---
 
+# 📐 Diseño del Portal de Empleo
+
+Para ver el diseño completo e interactivo:  
+[🔗 Ver diseño en Figma]()
+
+---
+
+## 📝 Registro de Usuario
+
+Capturas de las diferentes pantallas y tipos de registro:
+
+![Registro ]
+(ImagenesFigma/registro/Form registro.jpg) 
+(ImagenesFigma/registro/Form registro postulanteMobile.jpg) 
+(ImagenesFigma/registro/Login Mobile.jpg) 
+(ImagenesFigma/registro/Login.jpg) 
+(ImagenesFigma/registro/Perfil Postulante.jpg) 
+(ImagenesFigma/registro/Perfil Postulante-Vista edicion.jpg) 
+(ImagenesFigma/registro/ Postulante mobile.jpg) 
+(ImagenesFigma/registro/Recuperacion Mobile.jpg) 
+(ImagenesFigma/registro/Recuperacion contrasena.jpg) 
+
+
+## 🔍 Ofertas Laborales
+
+![Listado de ofertas]
+
+(ImagenesFigma/ofertas/Detalle Oferta.jpg)  
+(ImagenesFigma/ofertas/Detalle Oferta mobile.jpg) 
+(ImagenesFigma/ofertas/Detalle Oferta-Edicion empleador.jpg) 
+(ImagenesFigma/ofertas/Landing Ofertas mobile.jpg) 
+(ImagenesFigma/ofertas/Landing Ofertas mobile.jpg) 
+(ImagenesFigma/ofertas/Landing Ofertas- Logueadojpg)
+(ImagenesFigma/ofertas/Landing Ofertas.jpg) 
+---
+
+## 👔 Perfil Empleador
+
+![Perfil empleador]
+(ImagenesFigma/empleador/Empleador mobile.jpg) 
+(ImagenesFigma/empleador/Perfil Empleador- Vista aprobacion.jpg)  
+(ImagenesFigma/empleador/Perfil Empleador- Vista edicion.jpg)  
+(ImagenesFigma/empleador/Empleador mobile.jpg)  
+
+
+---
+
+## 🛠️ Panel de Administración
+
+![Panel admin]
+(ImagenesFigma/admin/Reportes.jpg)  
+
+
+---
+
+
+
 ## 📚 Documentación del Backend (JSDoc)
 
 Este proyecto incluye documentación generada automáticamente con [JSDoc](https://jsdoc.app/) para los controladores y servicios del backend.
