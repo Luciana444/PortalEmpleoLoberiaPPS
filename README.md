@@ -74,46 +74,42 @@ Para ver el diseño completo e interactivo:
 
 Capturas de las diferentes pantallas y tipos de registro:
 
-![Registro ]
-(ImagenesFigma/registro/Form registro.jpg) 
-(ImagenesFigma/registro/Form registro postulanteMobile.jpg) 
-(ImagenesFigma/registro/Login Mobile.jpg) 
-(ImagenesFigma/registro/Login.jpg) 
-(ImagenesFigma/registro/Perfil Postulante.jpg) 
-(ImagenesFigma/registro/Perfil Postulante-Vista edicion.jpg) 
-(ImagenesFigma/registro/ Postulante mobile.jpg) 
-(ImagenesFigma/registro/Recuperacion Mobile.jpg) 
-(ImagenesFigma/registro/Recuperacion contrasena.jpg) 
+![Form registro](ImagenesFigma/registro/Form%20registro.jpg)  
+![Form registro postulanteMobile](ImagenesFigma/registro/Form%20registro%20postulanteMobile.jpg)  
+![Login Mobile](ImagenesFigma/registro/Login%20Mobile.jpg)  
+![Login](ImagenesFigma/registro/Login.jpg)  
+![Perfil Postulante](ImagenesFigma/registro/Perfil%20Postulante.jpg)  
+![Perfil Postulante Vista edición](ImagenesFigma/registro/Perfil%20Postulante-Vista%20edicion.jpg)  
+![Postulante mobile](ImagenesFigma/registro/%20Postulante%20mobile.jpg)  
+![Recuperacion Mobile](ImagenesFigma/registro/Recuperacion%20Mobile.jpg)  
+![Recuperacion contraseña](ImagenesFigma/registro/Recuperacion%20contrasena.jpg)  
 
 
 ## 🔍 Ofertas Laborales
 
-![Listado de ofertas]
+![Detalle Oferta](ImagenesFigma/ofertas/Detalle%20Oferta.jpg)  
+![Detalle Oferta mobile](ImagenesFigma/ofertas/Detalle%20Oferta%20mobile.jpg)  
+![Detalle Oferta Edición empleador](ImagenesFigma/ofertas/Detalle%20Oferta-Edicion%20empleador.jpg)  
+![Landing Ofertas mobile](ImagenesFigma/ofertas/Landing%20Ofertas%20mobile.jpg)  
+![Landing Ofertas mobile](ImagenesFigma/ofertas/Landing%20Ofertas%20mobile.jpg)  
+![Landing Ofertas Logueado](ImagenesFigma/ofertas/Landing%20Ofertas-%20Logueado.jpg)  
+![Landing Ofertas](ImagenesFigma/ofertas/Landing%20Ofertas.jpg)  
 
-(ImagenesFigma/ofertas/Detalle Oferta.jpg)  
-(ImagenesFigma/ofertas/Detalle Oferta mobile.jpg) 
-(ImagenesFigma/ofertas/Detalle Oferta-Edicion empleador.jpg) 
-(ImagenesFigma/ofertas/Landing Ofertas mobile.jpg) 
-(ImagenesFigma/ofertas/Landing Ofertas mobile.jpg) 
-(ImagenesFigma/ofertas/Landing Ofertas- Logueadojpg)
-(ImagenesFigma/ofertas/Landing Ofertas.jpg) 
 ---
 
 ## 👔 Perfil Empleador
 
-![Perfil empleador]
-(ImagenesFigma/empleador/Empleador mobile.jpg) 
-(ImagenesFigma/empleador/Perfil Empleador- Vista aprobacion.jpg)  
-(ImagenesFigma/empleador/Perfil Empleador- Vista edicion.jpg)  
-(ImagenesFigma/empleador/Empleador mobile.jpg)  
+![Perfil empleador - Empleador mobile](ImagenesFigma/empleador/Empleador%20mobile.jpg)  
+![Perfil empleador - Vista aprobación](ImagenesFigma/empleador/Perfil%20Empleador-%20Vista%20aprobacion.jpg)  
+![Perfil empleador - Vista edición](ImagenesFigma/empleador/Perfil%20Empleador-%20Vista%20edicion.jpg)  
+![Perfil empleador - Empleador mobile (repetida)](ImagenesFigma/empleador/Empleador%20mobile.jpg)  
 
 
 ---
 
 ## 🛠️ Panel de Administración
 
-![Panel admin]
-(ImagenesFigma/admin/Reportes.jpg)  
+![Panel admin](ImagenesFigma/admin/Reportes.jpg)
 
 
 ---
