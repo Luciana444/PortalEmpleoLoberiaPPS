@@ -71,27 +71,27 @@ Para ver el diseño completo e interactivo:
 ---
 
 ## 📝 Registro de Usuario
-Capturas de las diferentes pantallas y tipos de registro.
 
-<table>
-  <tr>
-    <td><img src="ImagenesFigma/registro/Form%20registro.jpg" width="250"><br>Formulario de registro general.</td>
-    <td><img src="ImagenesFigma/registro/Form%20registro%20postulanteMobile.jpg" width="250"><br>Registro de postulante en vista móvil.</td>
-    <td><img src="ImagenesFigma/registro/Login%20Mobile.jpg" width="250"><br>Pantalla de inicio de sesión en móvil.</td>
-  </tr>
-  <tr>
-    <td><img src="ImagenesFigma/registro/Login.jpg" width="250"><br>Pantalla de inicio de sesión en escritorio.</td>
-    <td><img src="ImagenesFigma/registro/Perfil%20Postulante.jpg" width="250"><br>Perfil del postulante en vista general.</td>
-    <td><img src="ImagenesFigma/registro/Perfil%20Postulante-%20Vista%20edición.jpg" width="250"><br>Edición del perfil del postulante.</td>
-  </tr>
-  <tr>
-    <td><img src="ImagenesFigma/registro/Postulante%20mobile.jpg" width="250"><br>Vista del perfil del postulante en móvil.</td>
-    <td><img src="ImagenesFigma/registro/Recuperación%20Mobile.jpg" width="250"><br>Pantalla de recuperación de contraseña en móvil.</td>
-    <td><img src="ImagenesFigma/registro/Recuperación%20contrasena.jpg" width="250"><br>Pantalla de recuperación de contraseña en escritorio.</td>
-  </tr>
-</table>
+### 💻 Vistas Desktop
+Capturas principales del flujo de registro y perfil desde un navegador.
+
+| | |
+|---|---|
+| ![Form registro](ImagenesFigma/registro/Form%20registro.jpg) | ![Login](ImagenesFigma/registro/Login.jpg) |
+| ![Perfil Postulante](ImagenesFigma/registro/Perfil%20Postulante.jpg) | ![Perfil Postulante Vista edición](ImagenesFigma/registro/Perfil%20Postulante-%20Vista%20edición.jpg) |
+| ![Recuperacion contraseña](ImagenesFigma/registro/Recuperación%20contrasena.jpg) |  |
 
 ---
+
+### 📱 Vistas Mobile
+Capturas adaptadas a dispositivos móviles, manteniendo la misma funcionalidad pero con diseño responsivo.
+
+| | |
+|---|---|
+| ![Form registro postulanteMobile](ImagenesFigma/registro/Form%20registro%20postulanteMobile.jpg) | ![Login Mobile](ImagenesFigma/registro/Login%20Mobile.jpg) |
+| ![Postulante mobile](ImagenesFigma/registro/Postulante%20mobile.jpg) | ![Recuperacion Mobile](ImagenesFigma/registro/Recuperación%20Mobile.jpg) |
+
+
 
 ## 🔍 Ofertas Laborales
 Ejemplos de vistas de ofertas en distintas resoluciones y modos.
