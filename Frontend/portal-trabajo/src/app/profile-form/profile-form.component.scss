@@ -15,6 +15,15 @@ button{
     padding-bottom: 2rem;
 
 }
+.fallback > i{
+  color:#57AF31;
+}
+.fallback{
+  font-family: 'Linotte Light';
+  font-size: 1.2rem;
+  margin-top:1rem;
+  margin-left: 3rem;
+}
 
 .form-container{
   display: flex;

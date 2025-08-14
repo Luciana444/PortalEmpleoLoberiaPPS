@@ -22,6 +22,16 @@ p {
   margin-left: 2px;
 }
 
+.fallback > i{
+  color:#57AF31;
+}
+.fallback{
+  font-family: 'Linotte Light';
+  font-size: 1.2rem;
+  margin-top:1rem;
+  margin-left: 3rem;
+}
+
 button {
   display: block;
   margin-top: 1.5rem;

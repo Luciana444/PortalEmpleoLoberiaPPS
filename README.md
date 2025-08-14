@@ -144,6 +144,8 @@ Interfaz de administración con herramientas de gestión y reportes.
 | | |
 |---|---|
 | ![Panel admin](ImagenesFigma/admin/Reportes.jpg) |  |
+
+
 ## 📚 Documentación del Backend (JSDoc)
 
 Este proyecto incluye documentación generada automáticamente con [JSDoc](https://jsdoc.app/) para los controladores y servicios del backend.
@@ -163,10 +165,67 @@ La documentación está disponible en: Backend/docs/index.html
 
 ---
 
+## 📚 Documentación Swagger
+
+Podés explorar y probar todos los endpoints de la API desde Swagger:
+
+[🔗 Ver Swagger](https://mi-dominio.com/api-docs)  
+> Este enlace estará disponible cuando el backend esté desplegado en el servidor.
+
+### 🖼️ Capturas de pantalla
+
+| | | |
+|---|---|---|
+| <img src="ImagenesFigma/swagger/1.png" width="300"><br>Vista general de los endpoints disponibles. | <img src="ImagenesFigma/swagger/2.png" width="300"><br>Detalle de un endpoint con parámetros de entrada. | <img src="ImagenesFigma/swagger/3.png" width="300"><br>Ejemplo de response de un endpoint. |
+| <img src="ImagenesFigma/swagger/4.png" width="300"><br>Vista de un endpoint protegido con token. | <img src="ImagenesFigma/swagger/5.png" width="300"><br>Ejemplo de error y mensajes de validación. | |
+
+------
+
+## 🧪 Testing
+
+El proyecto incluye pruebas automatizadas para garantizar el correcto funcionamiento de los endpoints del backend y la lógica de negocio.
+
+### Tipos de tests
+
+- **Unitarios**: pruebas de funciones individuales y lógica del backend.  
+- **Integración / API**: tests de endpoints usando **Jest** y **Supertest**, incluyendo:
+  - Endpoints de **ciudadanos**:
+    - Subir CV
+    - Actualizar perfil
+    - Generar PDF
+    - Obtener perfil completo
+    - `PATCH /ciudadano/actualizar/perfil`
+  - Endpoints de **empresas**:
+    - Editar oferta (`PATCH /empresa/ofertas/:id`)
+    - Aprobar ofertas y empresas
+  - **Control de roles y permisos**: se verifica que usuarios no autorizados reciban errores 403 o 401 según corresponda.
+
+- **Flujos encadenados**: pruebas que dependen de estados previos, por ejemplo:
+  1. Aprobar una empresa/oferta
+  2. Postulaciones a ofertas verificando permisos y estados
+
+### Cómo ejecutar los tests
+
+```bash
+# Instalar dependencias si no se hizo
+npm install
+
+# Ejecutar todos los tests
+npm test
+
+# Ver cobertura de tests (si está configurado)
+npm run test:coverage
+
+```
+
+----------
+
+
 
 > 📝 **Nota:** Este documento forma parte de un proyecto académico de formación en desarrollo de software y tiene fines educativos.
 
----
+------
+
 
 
 ## Tecnologías utilizadas
@@ -192,4 +251,4 @@ La documentación está disponible en: Backend/docs/index.html
    ```bash
    git clone https://github.com/Lusiana444/PortalEmpleoLoberiaPPS.git
    cd PortalEmpleoLoberiaPPS
-
+```

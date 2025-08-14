@@ -1,4 +1,8 @@
 <app-header></app-header>
+ <div class="fallback">
+            <i class="fa-solid fa-arrow-left" (click)="navigateToProfile()"></i> <a (click)="navigateToProfile()">
+                Volver a Perfil</a>
+        </div>
 @if (itemId === "") {
 <h3>Creá una nueva oferta</h3>
 }@else {
