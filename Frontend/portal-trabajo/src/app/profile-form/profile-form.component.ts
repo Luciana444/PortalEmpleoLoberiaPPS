@@ -176,9 +176,10 @@ export class ProfileFormComponent implements OnInit {
         });
     }
 
+    navigateToProfile() {
+        this.router.navigate(['profile']);
+    }
 }
-
-
 
 
 export interface User {

@@ -1,142 +1,142 @@
-@use '../../styles.scss' as *;
+@use "../../styles.scss" as *;
 
 main,
 .postulations,
 .postulations-header {
-    background-color: white;
-    padding: 0.5rem 1.5rem 1rem 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background-color: white;
+  padding: 0.5rem 1.5rem 1rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .postulations {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 .postulations-header {
-    margin-top: 2rem;
+  margin-top: 2rem;
 }
 
 button {
-    padding: 8px 25px;
-    height: fit-content;
-    margin-left: 2rem;
-    white-space: nowrap;
+  padding: 8px 25px;
+  height: fit-content;
+  margin-left: 2rem;
+  white-space: nowrap;
 }
 
 .info-row {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 p {
-    font-weight: 300;
+  font-weight: 300;
 }
 
 h1 {
-    font-weight: 800;
-    color: $green;
-    margin: 0;
+  font-weight: 800;
+  color: $green;
+  margin: 0;
 }
 
 h5,
 h2 {
-    font-weight: 500;
+  font-weight: 500;
 }
 
 p,
 h5 {
-    color: $text-color;
-    font-size: 1rem;
-    margin: 0;
+  color: $text-color;
+  font-size: 1rem;
+  margin: 0;
 }
 
 .title-wrapper,
 .postulation-title {
-    background-color: #ECF8E7;
-    padding-left: 0.5rem;
-    margin-left: -2rem;
-    width: calc(100% + 3rem);
+  background-color: #ecf8e7;
+  padding-left: 0.5rem;
+  margin-left: -2rem;
+  width: calc(100% + 3rem);
 }
 
-.title-wrapper>h2,
-.postulation-title>h2 {
-    margin-left: 2rem;
+.title-wrapper > h2,
+.postulation-title > h2 {
+  margin-left: 2rem;
 }
 
 .title-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
-.title-wrapper>button {
-    margin-right: 2rem;
+.title-wrapper > button {
+  margin-right: 2rem;
 }
 
 .postulation-title {
-    display: flex;
-    flex: row;
-    align-items: center;
-    text-align: end;
-    gap: 0.5rem;
+  display: flex;
+  flex: row;
+  align-items: center;
+  text-align: end;
+  gap: 0.5rem;
 }
 
 h2 {
-    color: $green;
+  color: $green;
 }
 
 .postulation-date {
-    margin-left: auto;
-    color: $text-color;
-    font-size: 0.75rem;
-    margin-right: 1rem;
+  margin-left: auto;
+  color: $text-color;
+  font-size: 0.75rem;
+  margin-right: 1rem;
 }
 
 main,
 .postulations {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .postulations-content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
 }
 
 .postulations-text {
-    max-width: 20rem;
-    word-break: break-word;
-    hyphens: auto;
+  max-width: 20rem;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 .postulations-text-wrapper {
-    min-width: 0;
+  min-width: 0;
 }
 
 li {
-    color: #424242;
-    list-style-type: none;
+  color: #424242;
+  list-style-type: none;
 }
 
 mat-divider {
-    color: #ECF8E7;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+  color: #ecf8e7;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .dates {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
-.experiences{
-    margin-top: 1rem;
+.experiences {
+  margin-top: 1rem;
 }
 
 @media (max-width: 600px) {
@@ -147,6 +147,10 @@ mat-divider {
     margin: 0.5rem 0; /* Consistent margin */
     text-align: center; /* Center button text */
     box-sizing: border-box; /* Include padding in width */
+  }
+
+  .postulations-content {
+    flex-direction: column;
   }
 
   .title-wrapper {
@@ -161,12 +165,14 @@ mat-divider {
     width: 90%; /* Full width */
   }
 
-  main, .postulations-header, .postulations {
+  main,
+  .postulations-header,
+  .postulations {
     width: 80vw;
     margin-right: auto;
     margin-left: auto;
     padding-left: 1rem;
-    padding-right: 1rem;    
+    padding-right: 1rem;
   }
 
   h2 {
@@ -175,7 +181,7 @@ mat-divider {
     font-size: 1.25rem;
   }
 
-  h1{
+  h1 {
     text-align: center;
   }
 }

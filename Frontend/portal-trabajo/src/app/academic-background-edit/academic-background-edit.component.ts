@@ -113,7 +113,7 @@ export class AcademicBackgroundEditComponent implements OnInit {
                 if (response.status === 200) {
                     this.toastr.success('Nueva capacitación agregada', 'Actualización exitosa')
                     console.log('Actualización exitosa', response);
-                   // this.educationForm.reset();
+                    // this.educationForm.reset();
                     this.addNewCardEducation = false;
                     this.getDataProfile();
                 } else {
@@ -257,7 +257,7 @@ export class AcademicBackgroundEditComponent implements OnInit {
         this.capacitacionId = "";
     }
 
-     navigateToProfile(){
-    this.router.navigate(['profile']);
-  }
+    navigateToProfile() {
+        this.router.navigate(['profile']);
+    }
 }
