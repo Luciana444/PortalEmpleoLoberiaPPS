@@ -115,7 +115,8 @@ i{
     }
 
     .user-container{
-        padding-left: 0;
+        padding-left: 1rem;
+        margin-right: auto;
     }
 
     .list-header{
@@ -126,7 +127,7 @@ i{
         flex-direction: column;
         gap: 1rem;
         align-items: center;
-        width: fit-content;
+        width: 100%;
     }
 
     .button-wrapper{
@@ -145,5 +146,17 @@ i{
 
     .fallback{
         margin-left: 1rem;
+    }
+
+    .button-wrapper{
+        width: 90%;
+    }
+
+    button{
+        width: 100%;
+    }
+
+    h3{
+        text-align: center;
     }
 }

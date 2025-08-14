@@ -3,8 +3,8 @@
     <i class="fa-solid fa-arrow-left" (click)="navigateToProfile()"></i> <a (click)="navigateToProfile()">
         Volver a Perfil</a>
 </div>
-<h3>Editá tu Experiencia laboral</h3>
 <div class="form-container">
+    <h3>Editá tu Experiencia laboral</h3>
     <form [formGroup]="workExperience" (ngSubmit)="editWorkExperience()">
 
         <div class="size-form">
@@ -98,30 +98,31 @@
             Guardar cambios
         </button>
     </form>
-</div>
 
-<div class="experience-list" *ngIf="experiencias.length > 0">
-    <h3>Experiencias laborales cargadas</h3>
-    <ul>
-        <li *ngFor="let exp of experiencias">
-            <div class="align-elements">
-                <div class="align-elements">
-                    <p><strong> Empresa: </strong> {{ exp.nombre_empresa }}</p>
-                    <p><strong> Desde: </strong> {{ exp.desde | date }}</p>
-                    <p><strong> Hasta: </strong> {{ exp.hasta | date }}</p>
-                    <p><strong> Comentario: </strong> {{ exp.comentario }}</p>
-                </div>
-                <div class="align-elements">
-                    <button class="edit-exp-btn"
-                        (click)="openFormToEditExperience(exp.id, exp.nombre_empresa, exp.desde, exp.hasta, exp.comentario)">
-                        <i class="fa-solid fa-pencil"></i> Editar Experiencia</button>
-                    <button class="delete" matTooltip="Eliminar experiencia" (click)="openDialog(exp.id)"> <i
-                            class="fa-solid fa-trash"></i></button>
-                </div>
-            </div>
-            <mat-divider></mat-divider>
-        </li>
 
-    </ul>
+    <div class="experience-list" *ngIf="experiencias.length > 0">
+        <h3>Experiencias laborales cargadas</h3>
+        <ul>
+            <li *ngFor="let exp of experiencias">
+                <div class="align-elements">
+                    <div class="align-elements">
+                        <p><strong> Empresa: </strong> {{ exp.nombre_empresa }}</p>
+                        <p><strong> Desde: </strong> {{ exp.desde | date }}</p>
+                        <p><strong> Hasta: </strong> {{ exp.hasta | date }}</p>
+                        <p><strong> Comentario: </strong> {{ exp.comentario }}</p>
+                    </div>
+                    <div class="align-elements">
+                        <button class="edit-exp-btn"
+                            (click)="openFormToEditExperience(exp.id, exp.nombre_empresa, exp.desde, exp.hasta, exp.comentario)">
+                            <i class="fa-solid fa-pencil"></i> Editar Experiencia</button>
+                        <button class="delete" matTooltip="Eliminar experiencia" (click)="openDialog(exp.id)"> <i
+                                class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+            </li>
+
+        </ul>
+    </div>
 </div>
 <app-footer></app-footer>

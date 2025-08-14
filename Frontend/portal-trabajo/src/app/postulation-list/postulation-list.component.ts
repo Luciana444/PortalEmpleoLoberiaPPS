@@ -54,7 +54,6 @@ export class PostulationListComponent implements OnInit {
 
     //obtengo postulaciones a esa oferta 
     this.getPosulations(this.itemId);
-
   }
 
   navigateToProfile(id?: string) {
@@ -74,7 +73,7 @@ export class PostulationListComponent implements OnInit {
     });
   }
 
-  
+
   private getAuthHeaders(): HttpHeaders {
     const token = localStorage.getItem('token');
     return new HttpHeaders({
@@ -118,7 +117,7 @@ export class PostulationListComponent implements OnInit {
     });
   }
 
-  navigateToOffer(id:any){
+  navigateToOffer(id: any) {
     this.router.navigate(['detail', id]);
   }
 

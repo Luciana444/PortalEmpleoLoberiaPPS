@@ -30,18 +30,12 @@ export const routes: Routes = [
     { path: 'detail/:id', component: PostulationDetailComponent },
     { path: 'detail/:id/:postulado', component: PostulationDetailComponent },
     { path: 'edit-profile-employer', component: EmployeerProfileFormComponent },
-    //TODO: mobile friendly
     { path: 'employer-profile', component: EmployerProfileComponent },
     { path: 'employer-profile/:id', component: EmployerProfileComponent },
-    //TODO: mobile friendly
     { path: 'work-experience', component: WorkExperienceComponent },
     { path: 'academic-background-edit', component: AcademicBackgroundEditComponent },
-    // { path: 'postulaciones-por-oferta', component: PostulationListComponent },
-    //TODO: mobile friendly
+    { path: 'postulaciones-por-oferta', component: PostulationListComponent },
     { path: 'postulaciones-por-oferta/:id', component: PostulationListComponent },
-    //TODO: mobile friendly
     { path: 'profile', component: ProfileSelectorComponent },
-    //check mobile friendly
     { path: 'admin-panel', component: AdminPanelComponent },
-
 ];

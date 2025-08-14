@@ -1,5 +1,10 @@
 @use '../../styles.scss' as *;
 
+.username:hover{
+    cursor: pointer;
+    color: $green;
+}
+
 header {
     top: 0;
     z-index: 99;
@@ -74,6 +79,7 @@ button {
 li {
     list-style: none;
 }
+
 .date-notification{
     color:#898888;
     font-size: 0.7rem;
@@ -95,6 +101,7 @@ div.notification-header > h4{
 }
 
 @media (max-width: 600px) {
+    
     .small-logo>svg {
         margin-left: 1rem;
         margin-right: 1rem;
@@ -126,5 +133,7 @@ div.notification-header > h4{
         display: none;
     }
 
-
+    header {
+        width: 100vw;
+    }
 }

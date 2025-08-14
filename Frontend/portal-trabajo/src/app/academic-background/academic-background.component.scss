@@ -134,29 +134,48 @@ mat-divider {
     display: flex;
     justify-content: space-between;
 }
+
 .experiences{
     margin-top: 1rem;
 }
 
 @media (max-width: 600px) {
-    button{
-        display: none;
-    }
+  button {
+    white-space: normal;
+    padding: 0.5rem;
+    width: 100%; /* Make buttons full width */
+    margin: 0.5rem 0; /* Consistent margin */
+    text-align: center; /* Center button text */
+    box-sizing: border-box; /* Include padding in width */
+  }
 
-    main, .postulations-header, .postulations{
-        width: 80vw;
-        margin-right: auto;
-        margin-left: auto;
-        padding-left: 1rem;
-        padding-right: 1rem;    
-    }
+  .title-wrapper {
+    flex-direction: column; /* Stack title and button vertically */
+    align-items: flex-start; /* Align items to the left */
+    gap: 0.5rem; /* Add spacing between elements */
+  }
 
-    h2{
-        margin: 0.5rem;
-        margin-left: 0.5rem;
-        font-size: 1.25rem;
-    }
+  .title-wrapper > button {
+    margin-left: auto; /* Remove left margin */
+    margin-right: auto; /* Remove right margin */
+    width: 90%; /* Full width */
+  }
 
-   
+  main, .postulations-header, .postulations {
+    width: 80vw;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;    
+  }
 
+  h2 {
+    padding-top: 0.5rem;
+    margin: 0rem;
+    font-size: 1.25rem;
+  }
+
+  h1{
+    text-align: center;
+  }
 }

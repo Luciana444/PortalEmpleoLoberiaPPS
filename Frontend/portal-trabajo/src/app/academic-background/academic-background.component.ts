@@ -19,7 +19,7 @@ export class AcademicBackgroundComponent implements OnInit {
   $id: any;
   postulations: Postulation[] = [];
 
-  constructor(private router: Router, private employeeService: EmployeeService,private authService: AuthService,) { }
+  constructor(private router: Router, private employeeService: EmployeeService, private authService: AuthService,) { }
   ngOnInit(): void {
     this.employeeService.getPostulations().subscribe({
       next: (response) => {
@@ -49,14 +49,14 @@ export class AcademicBackgroundComponent implements OnInit {
   }
 
   navigateToPostulationDetail(id: any) {
-    this.router.navigate(['/detail', id, true])
+    this.router.navigate(['/detail', id, true], { state: { from: this.router.url } })
   }
 
   convertToLocalDate(date: string) {
     return AppUtils.convertToLocalString(date);
   }
 
-  getUserType(): string | null{
+  getUserType(): string | null {
     return this.authService.getCurrentUserType();
   }
 

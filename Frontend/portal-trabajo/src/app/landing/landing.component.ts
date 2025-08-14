@@ -33,8 +33,6 @@ export class LandingComponent implements OnInit {
   constructor(
     private router: Router,
     private employeeservice: EmployeeService,
-    private userservice: UserService,
-    private http: HttpClient,
     private visitTracker: VisitTrackingService,
   ) { }
 

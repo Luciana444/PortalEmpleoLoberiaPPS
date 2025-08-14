@@ -12,7 +12,9 @@ h5{
     margin: 0;
     padding: 0.25rem 0.5rem;
     font-weight: 100;
+    white-space: nowrap;
 }
+
 .pendiente-flag, .reject-flag, .check-flag{
     font-family: 'Linotte Light';
     color:white;
@@ -145,8 +147,6 @@ h5 > i{
     color: white !important;
 }
 
-
-
 .profile-pic{
     min-height: 50px;
     min-width: 50px;
@@ -200,13 +200,14 @@ p{
 button :hover{
     color: #57AF31 !important;
 }
+
 .reject{
     background-color:#b3261e;
 }
-.reject:hover, i:hover{
-   color:#b3261e;
-   background-color:#f5f5f5;
-}
+// .reject:hover, i:hover{
+//    color:#b3261e;
+//    background-color:#f5f5f5;
+// }
 
 .delete {
     background-color: transparent;

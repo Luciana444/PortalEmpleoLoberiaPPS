@@ -1,7 +1,8 @@
 <app-header></app-header>
 <main>
     <div class="fallback">
-        <i class="fa-solid fa-arrow-left" (click)="navigateToOffer(jobOffer?.id)"></i> <a (click)="navigateToOffer(jobOffer?.id)"> Volver a
+        <i class="fa-solid fa-arrow-left" (click)="navigateToOffer(jobOffer?.id)"></i> <a
+            (click)="navigateToOffer(jobOffer?.id)"> Volver a
             Oferta</a>
     </div>
     @if (jobOffer?.id_empresa === currentUserId && jobOffer?.id) {
@@ -16,7 +17,8 @@
         <div class="user-container">
             <div class="profile-pic">
                 <!--TODO: usar la pfp correcta -->
-                <img [src]="getImageUrl(postulation.imagen_url)  || 'sample_pfp.png'" alt="Profile picture" matTooltip="Ver perfil">
+                <img [src]="getImageUrl(postulation.imagen_url)  || 'sample_pfp.png'" alt="Profile picture"
+                    matTooltip="Ver perfil">
             </div>
             <div class="username-wrapper">
                 <p class="user-field">{{postulation.nombre}}</p>
@@ -41,6 +43,6 @@
     } @else {
     <h3>No hay postulantes.</h3>
     }
-    } 
+    }
 </main>
 <app-footer></app-footer>
