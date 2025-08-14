@@ -11,10 +11,18 @@
             Volver a
             Administración</a>
     </div>
+    }@else if (previousUrl.startsWith("/postulaciones-por-oferta")) {
+    <div class="fallback">
+        <i class="fa-solid fa-arrow-left" (click)="navigateToViewPostulations(itemId)"></i> <a
+            (click)="navigateToViewPostulations(itemId)">
+            Volver a
+            Administración</a>
+    </div>
     }
     @else{
     <div class="fallback">
-        <i class="fa-solid fa-arrow-left" (click)="navigateToLanding()"></i> <a (click)="navigateToLanding()"> Volver a
+        <i class="fa-solid fa-arrow-left" (click)="navigateToLanding()"></i> <a (click)="navigateToLanding()">
+            Volver a
             Ofertas</a>
     </div>
     }
@@ -58,7 +66,8 @@
                 <i class="fa-solid fa-trash fa-xl "></i> </button>
             } @else if (currentUserType === "admin" && offer.estado_publicacion === 'pendiente') {
             <div>
-                <h5 class="pendiente-flag"><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i> Pendiente
+                <h5 class="pendiente-flag"><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+                    Pendiente
                 </h5>
             </div>
             <button class="edit" (click)="changeOfferStatus(offer.id, 'aprobada')"> <i class="fa-solid fa-check "></i>

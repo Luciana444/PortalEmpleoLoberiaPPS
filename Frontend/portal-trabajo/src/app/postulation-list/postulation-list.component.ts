@@ -57,7 +57,7 @@ export class PostulationListComponent implements OnInit {
   }
 
   navigateToProfile(id?: string) {
-    this.router.navigate(['employee-profile', id]);
+    this.router.navigate(['employee-profile', id], { state: { from: this.router.url } });
   }
 
   getCV(postulationId: string) {
@@ -118,7 +118,7 @@ export class PostulationListComponent implements OnInit {
   }
 
   navigateToOffer(id: any) {
-    this.router.navigate(['detail', id]);
+    this.router.navigate(['detail', id], { state: { from: this.router.url } });
   }
 
   getImageUrl(image_url: string) {

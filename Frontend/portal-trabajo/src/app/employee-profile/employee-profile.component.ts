@@ -31,6 +31,9 @@ export class EmployeeProfileComponent implements OnInit {
 
   ngOnInit() {
     const userType = this.getUserType();
+
+    this.previousRoute = history.state?.from || '/';
+
     if (userType === 'empresa') {
       this.itemId = this.route.snapshot.params['id'] ?? "";
       this.employeeservice.getDataProfileByPostulationId(this.itemId)?.subscribe({
@@ -44,6 +47,8 @@ export class EmployeeProfileComponent implements OnInit {
     } else {
       this.getProfile();
     }
+    console.log("previous url", this.previousRoute);
+
   }
 
   getProfile() {
@@ -77,33 +82,30 @@ export class EmployeeProfileComponent implements OnInit {
     }
   }
 
-  getPreviousRoute() {
-    return this.previousRoute;
-  }
-
   navigateBack() {
-    if (this.previousRoute.includes('profile')) {
+    if (this.previousRoute.includes('profile'))
       this.router.navigate(['/profile']);
-    } else if (this.previousRoute.includes('admin-panel')) {
+    else if (this.previousRoute.includes('admin-panel'))
       this.router.navigate(['/admin-panel']);
-    } else {
+    else if (this.previousRoute.includes('postulaciones-por-oferta'))
+      this.router.navigate([this.previousRoute]);
+    else
       // Default to home or previous route
       this.router.navigate(['/']);
-    }
   }
 
   // Update your navigation methods
-  navigateToLanding() {
-    this.navigateBack();
-  }
+  // navigateToLanding() {
+  //   this.navigateBack();
+  // }
 
-  navigateToAdminPanel() {
-    this.navigateBack();
-  }
+  // navigateToAdminPanel() {
+  //   this.navigateBack();
+  // }
 
-  navigateToPostulations() {
-    this.navigateBack();
-  }
+  // navigateToPostulations() {
+  //   this.navigateBack();
+  // }
 
   // navigateToLanding() {
   //   this.router.navigate(['/']);
