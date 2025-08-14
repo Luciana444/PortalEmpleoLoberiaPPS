@@ -220,7 +220,17 @@ npm run test:coverage
 
 ----------
 
+## 📋 Gestión de Proyecto con Jira
 
+Para la planificación y seguimiento del desarrollo utilizamos **Jira**, donde gestionamos historias de usuario, tareas y bugs organizados en sprints.  
+
+### 🖼️ Capturas de Jira
+
+| | | |
+|---|---|---|
+| <img src="ImagenesFigma/jira/1.png" width="300"><br>Vista general del tablero con las historias de usuario. | <img src="ImagenesFigma/jira/2.png" width="300"><br>Detalle de una historia con sus tareas y estados. | <img src="ImagenesFigma/jira/3.png" width="300"><br>Seguimiento de sprint mostrando progreso y tareas completadas. |
+
+-------
 
 > 📝 **Nota:** Este documento forma parte de un proyecto académico de formación en desarrollo de software y tiene fines educativos.
 
