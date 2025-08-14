@@ -1,292 +1,289 @@
-@use '../../styles.scss' as *;
-@use 'sass:color';
+@use "../../styles.scss" as *;
+@use "sass:color";
 
 .page-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .container-profile {
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
-    margin: 1rem;
-    margin-left: 6rem;
-    margin-right: 6rem;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  margin: 1rem;
+  margin-left: 6rem;
+  margin-right: 6rem;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem 0;
-    flex: 1;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  flex: 1;
+  min-height: 100vh;
 }
 
 p {
-    font-weight: 300;
+  font-weight: 300;
 }
 
 h4,
 h5 {
-    font-weight: 500;
-    text-wrap: nowrap;
+  font-weight: 500;
+  text-wrap: nowrap;
 }
 
 p,
 h5 {
-    color: $text-color;
-    font-size: 1rem;
+  color: $text-color;
+  font-size: 1rem;
 }
 
 .create-offer {
-    margin-right: 1rem;
+  margin-right: 1rem;
 }
 
 main {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .postulation,
 .main-header {
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .postulation {
-    min-height: fit-content;
+  min-height: fit-content;
 }
 
 h2 {
-    color: $green;
-    margin: 0.5rem;
-    margin-left: 4rem;
+  color: $green;
+  margin: 0.5rem;
+  margin-left: 4rem;
 }
 
 h4,
 h3 {
-    color: $green;
+  color: $green;
 }
 
 .state {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
 }
 
 .reject {
-    background-color: #b3261e;
+  background-color: #b3261e;
 }
 
 .reject:hover,
 i:hover {
-    color: #b3261e;
-    background-color: #f5f5f5;
+  color: #b3261e;
+  background-color: #f5f5f5;
 }
 
 .pendiente-flag,
 .reject-flag,
 .check-flag {
-    font-family: 'Linotte Light';
-    color: white;
-    margin-right: 1rem;
-    border-radius: 1.5rem;
-    padding: 0.2rem 0.8rem;
+  font-family: "Linotte Light";
+  color: white;
+  margin-right: 1rem;
+  border-radius: 1.5rem;
+  padding: 0.2rem 0.8rem;
 }
 
-.pendiente-flag  i ,
-.reject-flag  i ,
-.check-flag  i  {
-    color: white;
+.pendiente-flag i,
+.reject-flag i,
+.check-flag i {
+  color: white;
 }
 
 .pendiente-flag {
-    background-color: #e9a426;
+  background-color: #e9a426;
 }
 
 .reject-flag {
-    background-color: #b3261e;
+  background-color: #b3261e;
 }
 
 .check-flag {
-    background-color: #57AF31;
+  background-color: #57af31;
 }
 
-.edit, .reject{
-padding: 0.5rem 0.5rem;
+.edit,
+.reject {
+  padding: 0.5rem 0.5rem;
 }
 .reject i,
 .edit i {
-    color: white;
+  color: white;
 }
 
-
-
-
 .fallback {
-    font-family: 'Linotte Light';
-    font-size: 1.2rem;
-    margin-left: 6rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  font-family: "Linotte Light";
+  font-size: 1.2rem;
+  margin-left: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .postulation-header,
 .postulation-body {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-    padding-left: 2rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  padding-left: 2rem;
 }
 
 .postulation-header {
-    background-color: #ECF8E7;
-    padding-bottom: 0rem;
-    padding-top: 0;
-    margin-top: 1rem;
-    padding-left: 2rem;
-    font-size: 1.25rem;
+  background-color: #ecf8e7;
+  padding-bottom: 0rem;
+  padding-top: 0;
+  margin-top: 1rem;
+  padding-left: 2rem;
+  font-size: 1.25rem;
 }
 
-.postulation-header>p,
-.postulation-header>h4 {
-    margin: 0.5rem;
-    margin-left: 0;
+.postulation-header > p,
+.postulation-header > h4 {
+  margin: 0.5rem;
+  margin-left: 0;
 }
 
-.postulation-body>p {
-    margin: 0;
-    min-width: 50%;
-    max-width: 85%;
-    line-break: auto;
-    hyphens: auto;
-    padding-right: 1rem;
+.postulation-body > p {
+  margin: 0;
+  min-width: 50%;
+  max-width: 85%;
+  line-break: auto;
+  hyphens: auto;
+  padding-right: 1rem;
 }
 
 button {
-    min-width: 100px;
-    padding: 8px 4px;
-    height: fit-content;
-    align-self: center;
-    white-space: nowrap;
+  min-width: 100px;
+  padding: 8px 4px;
+  height: fit-content;
+  align-self: center;
+  white-space: nowrap;
 }
 
-.postulation-header>p {
-    font-size: 0.75rem;
-    align-self: center;
+.postulation-header > p {
+  font-size: 0.75rem;
+  align-self: center;
 }
 
 .main-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 i {
-    color: $green;
-    margin-right: 1rem;
+  color: $green;
+  margin-right: 1rem;
 }
 
 i:hover {
-    color: color.adjust(#57AF31, $lightness: -10%);
-    cursor: pointer;
+  color: color.adjust(#57af31, $lightness: -10%);
+  cursor: pointer;
 }
 
 .offers-title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.options-employer{
- gap: 1rem;
-    display: flex;
-    margin-right: 9rem;
+.options-employer {
+  gap: 1rem;
+  display: flex;
+  margin-right: 9rem;
 }
 @media (max-width: 600px) {
-    .fallback {
-        margin-left: 2rem;
-    }
+  .fallback {
+    margin-left: 2rem;
+  }
 
-    .fa-arrow-left {
-        margin-right: 0 !important;
-    }
+  .fa-arrow-left {
+    margin-right: 0 !important;
+  }
 
-    .container-profile {
-        flex-direction: column;
-        margin: 1rem;
-        margin-left: 1rem;
-        margin-right: 1rem;
-    }
+  .container-profile {
+    flex-direction: column;
+    margin: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
 
-    main {
-        width: 100%;
-    }
+  main {
+    width: 100%;
+  }
 
-    .main-header {
-        flex-direction: column;
-        align-items: center;
-        padding: 1rem;
-    }
+  .main-header {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
 
-    h2 {
-        margin-left: 0;
-        text-align: left;
-    }
-    
+  h2 {
+    margin-left: 0;
+    text-align: left;
+  }
 
-    .postulation-header,
-    .postulation-body {
-        flex-direction: column;
-        align-items: center;
-    }
+  .postulation-header,
+  .postulation-body {
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .postulation-body {
-        padding: 1rem !important;
-    }
+  .postulation-body {
+    padding: 1rem !important;
+  }
 
-    .postulation-header {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
+  .postulation-header {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 
-    .postulation-body>p {
-        max-width: 100%;
-    }
+  .postulation-body > p {
+    max-width: 100%;
+  }
 
-    .postulation {
-        padding: 0 !important;
-    }
+  .postulation {
+    padding: 0 !important;
+  }
+
+  button {
+    min-width: auto;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .create-offer {
+    margin-right: 0;
+    width: 100%;
+  }
+
+  .main-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .create-offer {
+    width: 100%;
 
     button {
-        min-width: auto;
-        width: 100%;
-        margin-top: 0.5rem;
+      width: 100%;
+      margin-top: 0.5rem;
     }
-
-    .create-offer {
-        margin-right: 0;
-        width: 100%;
-    }
-
-    .main-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
-
-
-    .create-offer {
-        width: 100%;
-
-        button {
-            width: 100%;
-            margin-top: 0.5rem;
-        }
-    }
+  }
 }

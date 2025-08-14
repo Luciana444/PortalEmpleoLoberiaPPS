@@ -1,3 +1,14 @@
+.fallback {
+  font-family: "Linotte Light";
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  margin-left: 3rem;
+}
+
+.fallback > i {
+  color: #57af31;
+}
+
 .form-container {
   display: flex;
   justify-content: center;
@@ -8,7 +19,8 @@ form {
   width: 60%;
 }
 
-app-file-uploader, .email-input{
+app-file-uploader,
+.email-input {
   width: 100%;
 }
 
@@ -33,10 +45,9 @@ button {
   grid-column: 1 / -1;
 }
 
-
 select {
   border-radius: 5px;
-  border: 1px solid #B3B3B3;
+  border: 1px solid #b3b3b3;
   min-height: 1.7rem;
   text-indent: 10px;
 }
@@ -44,7 +55,6 @@ select {
 mat-form-field {
   margin-right: 15px;
   width: 50%;
-
 }
 
 .size-form {

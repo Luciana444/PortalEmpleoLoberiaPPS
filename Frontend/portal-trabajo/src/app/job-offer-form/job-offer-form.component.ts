@@ -105,9 +105,9 @@ export class JobOfferFormComponent implements OnInit {
     }
 
 
-    editOffer(id:any) {
+    editOffer(id: any) {
         if (this.offersForm.invalid) return;
-        this.employerservice.editOffer(id,JSON.stringify(this.offersForm.value)).subscribe({
+        this.employerservice.editOffer(id, JSON.stringify(this.offersForm.value)).subscribe({
             next: (response) => {
                 if (response.status === 200) {
                     this.toastr.success('Actualización exitosa', 'Oferta editada')
@@ -129,5 +129,9 @@ export class JobOfferFormComponent implements OnInit {
     }
 
     onFileSelected(event: any) {
+    }
+
+    navigateToProfile() {
+        this.router.navigate(['profile']);
     }
 }
