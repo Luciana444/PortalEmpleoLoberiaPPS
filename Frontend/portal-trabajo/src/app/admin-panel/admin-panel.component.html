@@ -1,6 +1,7 @@
 <app-header></app-header>
 <div class="container">
-    <app-reports></app-reports>
+    <!-- TODO: UNCOMENT LATER -->
+    <!-- <app-reports></app-reports> -->
     <div class="container-list">
         <mat-accordion>
             <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
@@ -31,7 +32,7 @@
                                         </div>
 
                                     </div>
-                                    <div>
+                                    <div class="offer-date">
                                         <p>Publicada el: {{convertToLocalDate(offer.fecha_publicacion)}}</p>
                                     </div>
                                 </div>

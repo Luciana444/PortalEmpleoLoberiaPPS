@@ -1,10 +1,26 @@
+button{
+  white-space: nowrap;
+}
+
+.location {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+h4{
+    overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem 0;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  min-height: 100vh;
 }
 
 .container-list {
@@ -17,7 +33,6 @@
 .offer-data {
     display: inline-flex;
     align-items: center;
-    justify-content: space-between;
     gap: 1rem;
 }
 
@@ -33,10 +48,9 @@
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem;
-    gap: 1rem;
     width: 100%;
 }
+
 .profile-header {
     display: flex;
     gap: 0.5rem;
@@ -55,52 +69,63 @@
 }
 
 .employee-date{
-    margin-left: 2rem;
+  margin-left: 2rem;
 }
 
 .profile-info-employee > h4 {
-    margin-bottom:0.5rem;
+  margin-bottom:0.5rem;
 }
 
 .location-employee {
-    display: flex;
-    gap: 0.3rem;
+  display: flex;
+  gap: 0.3rem;
 }
 
 .profile-pic {
-    height: 50px;
-    width: 50px;
-    border-radius: 100px;
+  min-height: 50px;
+  min-width: 50px;
+  border-radius: 100px;
+  object-fit: cover;
 }
 
 .profile-info>h4,
 .location>p, .location-employee>p, .profile-info-employee>h4  {
-    color: #49454F;
-    margin: 0;
+  color: #49454F;
+  margin: 0;
 }
 
 .profile>div {
-    display: flex;
+  display: flex;
 }
 
 .location {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.25rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25rem;
 }
 
 .profile {
-    align-items: center;
-    height: fit-content;
-    width: 100%;
-    border-radius: 10px;
-    gap: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); // Added subtle shadow
-    overflow: hidden;
-    display: inline-flex;
-    justify-content: space-between;
-    background-color: white;
+  align-items: center;
+  height: 5rem;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); // Added subtle shadow
+  overflow: hidden;
+  display: inline-flex;
+  justify-content: space-between;
+  background-color: white;
+}
+
+.profile-header-info{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 55%;
+}
+
+.offer-date{
+  white-space: nowrap;
 }
 
 .profile-employee {
@@ -133,93 +158,97 @@
 }
 
 .state-flag-reject  {
-    color: white;
-    background-color: #b3261e;
-    font-family: 'Linotte Light';
-    font-size: 1rem;
-    padding: 0.5rem;
-    border-radius: 10px;
-}
-.employee-btn{
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+  color: white;
+  background-color: #b3261e;
+  font-family: 'Linotte Light';
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 10px;
 }
 
+.employee-btn{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
 
 .state-flag>i, .state-flag-check>i, .state-flag-reject >i{
-    color: white;
+  color: white;
 }
 
 .offer-btn,
 .profile-info {
-    margin-right: 2rem;
+  margin-right: 2rem;
 }
 
 .detail-categories {
-    //margin-right: 2rem;
-    display: flex;
-    gap: 0.5rem;
-    font-weight: 100;
-    width: fit-content;
-    white-space: nowrap;
+  display: flex;
+  gap: 0.5rem;
+  font-weight: 100;
+  width: fit-content;
+  white-space: nowrap;
 }
 
 .name-work {
-    color: #57AF31;
-    font-family: 'Linotte Regular';
-    margin-left: 2rem;
-    margin-right: 2rem;
-    font-size: 1.5rem;
-
+  color: #57AF31;
+  font-family: 'Linotte Regular';
+  margin-left: 2rem;
+  margin-right: 2rem;
+  font-size: 1.5rem;
+  max-width: 20%;
+  min-width: 20%;
+  overflow: hidden;
+  hyphens: auto;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;    // Limit to 2 lines
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;      // Allow wrapping
 }
 
 i {
-    color: #57AF31;
+  color: #57AF31;
 }
 
 li {
-    list-style: none;
+  list-style: none;
 }
 
-
-
 .report-nmb {
-    color: #57AF31;
-    font-family: 'Linotte Heavy';
-    font-size: 4rem;
-    margin: 3rem;
-
+  color: #57AF31;
+  font-family: 'Linotte Heavy';
+  font-size: 4rem;
+  margin: 3rem;
 }
 
 mat-expansion-panel-header {
-    background-color: white;
-    margin-bottom: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background-color: white;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 mat-expansion-panel {
-    box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 .mat-expansion-panel-header.mat-expanded {
-    background-color: white !important;
+  background-color: white !important;
 }
 
-
 .list-content {
-    display: flex;
-    justify-content: left;
-    gap: 1rem;
-    flex-direction: column;
+  display: flex;
+  justify-content: left;
+  gap: 1rem;
+  flex-direction: column;
 }
 
 button {
-    padding: 1rem;
+  padding: 1rem;
 }
 
 mat-panel-title {
-    font-family: 'Linotte Heavy';
+  font-family: 'Linotte Heavy';
 }
 
 @media (max-width: 600px) {
