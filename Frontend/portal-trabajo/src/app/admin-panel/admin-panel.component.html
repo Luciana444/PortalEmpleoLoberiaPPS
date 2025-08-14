@@ -13,52 +13,45 @@
                 <div class="list-content">
                     @if (offers.length) {
                     @for (offer of offers; track offer.id) {
-                    <li>
-                        <div class="profile">
-                            <h1 class="name-work">{{offer.puesto_requerido}}</h1>
-                            <div class="offer-data">
-                                <div class="profile-header">
-                                    <div class="profile-header-info">
-                                        <div class="profile-pic">
-                                            <img [src]="getImageUrl(offer.logo)  || 'sample_pfp.png'"
-                                                alt="Profile picture">
-                                        </div>
-                                        <div class="profile-info">
-                                            <h4>{{offer.nombre_empresa}}</h4>
-                                            <div class="location">
-                                                <i class="fa-solid fa-location-dot"></i>
-                                                <p>{{offer.localidad}}</p>
-                                            </div>
-                                        </div>
+                    <!-- <li> -->
+                    <div class="profile">
+                        <!-- Column 1: Offer Name -->
+                        <h1 class="name-work">{{offer.puesto_requerido}}</h1>
 
-                                    </div>
-                                    <div class="offer-date">
-                                        <p>Publicada el: {{convertToLocalDate(offer.fecha_publicacion)}}</p>
-                                    </div>
-                                </div>
-
-                                <div class="detail-categories">
-                                    @if (offer.estado_publicacion === 'pendiente') {
-                                    <h5 class="state-flag"><i class="fa-solid fa-circle-exclamation"></i>
-                                        Pendiente de aprobación
-                                    </h5>
-                                    } @else if(offer.estado_publicacion === 'rechazada') {
-                                    <h5 class="state-flag-reject"><i class="fa-solid fa-xmark"></i>
-                                        Rechazada
-                                    </h5>
-                                    }
-                                    @else {
-                                    <h5 class="state-flag-check"><i class="fa-solid fa-check"></i>
-                                        Aprobada
-                                    </h5>
-                                    }
-                                </div>
-                                <div class="offer-btn">
-                                    <button (click)="navigateToPostulationDetail(offer.id)">Ver Oferta</button>
+                        <!-- Column 2: Company & Location -->
+                        <div class="company-info">
+                            <div class="profile-pic">
+                                <img [src]="getImageUrl(offer.logo) || 'sample_pfp.png'" alt="Profile picture">
+                            </div>
+                            <div class="company-details">
+                                <h4>{{offer.nombre_empresa}}</h4>
+                                <div class="location">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <p>{{offer.localidad}}</p>
                                 </div>
                             </div>
                         </div>
-                    </li>
+
+                        <!-- Column 3: Date -->
+                        <div class="offer-date">
+                            <p>Publicada el: {{convertToLocalDate(offer.fecha_publicacion)}}</p>
+                        </div>
+
+                        <!-- Column 4: Button & Status -->
+                        <div class="action-column">
+                            @if (offer.estado_publicacion === 'pendiente') {
+                            <h5 class="state-flag"><i class="fa-solid fa-circle-exclamation"></i>Pendiente</h5>
+                            } @else if(offer.estado_publicacion === 'rechazada') {
+                            <h5 class="state-flag-reject"><i class="fa-solid fa-xmark"></i>Rechazada</h5>
+                            } @else {
+                            <h5 class="state-flag-check"><i class="fa-solid fa-check"></i>Aprobada</h5>
+                            }
+                            <div class="offer-btn">
+                                <button (click)="navigateToPostulationDetail(offer.id)">Ver Oferta</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- </li> -->
                     }
                     }
 
@@ -78,53 +71,41 @@
                     @for (employer of employers; track employer.id_usuario) {
                     <li>
                         <div class="profile-employee">
-                            <div class="employer-data">
-                                <div class="profile-header-employee">
-                                    <div class="profile-header-info">
-                                        <div class="profile-pic">
-                                            <img [src]="getImageUrl(employer.logo)  || 'sample_pfp.png'"
-                                                alt="Profile picture">
-                                        </div>
-                                        <div class="profile-info-employee">
-                                            <h4>{{employer.nombre_empresa}}</h4>
-                                            <div class="location-employee">
-                                                <i class="fa-solid fa-location-dot"></i>
-                                                <p>{{employer.localidad}}</p>
-                                            </div>
-                                        </div>
+                            <!-- Column 1: Company Name -->
+                            <h1 class="profile-name">{{employer.nombre_empresa}}</h1>
+
+                            <!-- Column 2: Location -->
+                            <div class="profile-details">
+                                <div class="profile-pic">
+                                    <img [src]="getImageUrl(employer.logo) || 'sample_pfp.png'" alt="Profile picture">
+                                </div>
+                                <div class="profile-info">
+                                    <div class="location">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                        <p>{{employer.localidad}}</p>
                                     </div>
                                 </div>
-                                <div class="employee-btn">
-                                    @if(employer.email_contacto === null){
-                                    <div class="employee-date">
-                                        <p>Email: No informado</p>
-                                    </div>
-                                    }@else{
-                                    <div class="employee-date">
-                                        <p>Email: {{employer.email_contacto}}</p>
-                                    </div>
-                                    }
+                            </div>
 
-                                    <div class="detail-categories">
-                                        @if (employer.estado_aprobacion === 'pendiente') {
-                                        <h5 class="state-flag"><i class="fa-solid fa-circle-exclamation"></i>
-                                            Pendiente de aprobación
-                                        </h5>
-                                        } @else if(employer.estado_aprobacion === 'rechazada') {
-                                        <h5 class="state-flag-reject"><i class="fa-solid fa-xmark"></i>
-                                            Rechazada
-                                        </h5>
-                                        }
-                                        @else {
-                                        <h5 class="state-flag-check"><i class="fa-solid fa-check"></i>
-                                            Aprobada
-                                        </h5>
-                                        }
-                                    </div>
-                                    <div class="offer-btn">
-                                        <button (click)="navigateToProfileEmployer(employer.id_usuario)">Ver
-                                            Perfil</button>
-                                    </div>
+                            <!-- Column 3: Email -->
+                            <div class="profile-info-column">
+                                <p>@if(employer.email_contacto === null){Email: No informado}@else{Email:
+                                    {{employer.email_contacto}}}</p>
+                            </div>
+
+                            <!-- Column 4: Status & Button -->
+                            <div class="profile-actions">
+                                <div class="status-flag">
+                                    @if (employer.estado_aprobacion === 'pendiente') {
+                                    <h5 class="state-flag"><i class="fa-solid fa-circle-exclamation"></i>Pendiente</h5>
+                                    } @else if(employer.estado_aprobacion === 'rechazada') {
+                                    <h5 class="state-flag-reject"><i class="fa-solid fa-xmark"></i>Rechazada</h5>
+                                    } @else {
+                                    <h5 class="state-flag-check"><i class="fa-solid fa-check"></i>Aprobada</h5>
+                                    }
+                                </div>
+                                <div class="profile-btn">
+                                    <button (click)="navigateToProfileEmployer(employer.id_usuario)">Ver Perfil</button>
                                 </div>
                             </div>
                         </div>
@@ -147,44 +128,40 @@
                     @for (employee of employees; track employee.id) {
                     <li>
                         <div class="profile-employee">
-                            <div class="employee-data">
-                                <div class="profile-header-employee">
-                                    <div class="profile-pic">
-                                        <img [src]="getImageUrl(employee.imagen_url)  || 'sample_pfp.png'"
-                                            alt="Profile picture">
-                                    </div>
-                                    <div class="profile-info-employee">
-                                        <h4>{{employee.nombre}} {{employee.apellido}}</h4>
-                                        <div class="location-employee">
-                                            <i class="fa-solid fa-location-dot"></i>
-                                            <p>{{employee.localidad}}</p>
-                                        </div>
+                            <!-- Column 1: Full Name -->
+                            <h1 class="profile-name">{{employee.nombre}} {{employee.apellido}}</h1>
+
+                            <!-- Column 2: Location -->
+                            <div class="profile-details">
+                                <div class="profile-pic">
+                                    <img [src]="getImageUrl(employee.imagen_url) || 'sample_pfp.png'"
+                                        alt="Profile picture">
+                                </div>
+                                <div class="profile-info">
+                                    <div class="location">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                        <p>{{employee.localidad}}</p>
                                     </div>
                                 </div>
-                                <div class="employee-btn">
-                                    @if(employee.fecha_nacimiento === null){
-                                    <div class="employee-date">
-                                        <p>Fecha de nacimiento: No informada</p>
-                                    </div>
-                                    }@else{
-                                    <div class="employee-date">
-                                        <p>Fecha de nacimiento: {{convertToLocalDate(employee.fecha_nacimiento)}}</p>
-                                    </div>
+                            </div>
+
+                            <!-- Column 3: Date of Birth -->
+                            <div class="profile-info-column">
+                                <p>@if(employee.fecha_nacimiento === null){Fecha no informada}@else{Nacimiento:
+                                    {{convertToLocalDate(employee.fecha_nacimiento)}}}</p>
+                            </div>
+
+                            <!-- Column 4: CV Status & Button -->
+                            <div class="profile-actions">
+                                <div class="status-flag">
+                                    @if (employee.cv_url === null) {
+                                    <h5 class="state-flag"><i class="fa-solid fa-circle-exclamation"></i>Sin CV</h5>
+                                    } @else {
+                                    <h5 class="state-flag-check"><i class="fa-solid fa-check"></i>CV Adjunto</h5>
                                     }
-                                    <div class="detail-categories">
-                                        @if (employee.cv_url === null){
-                                        <h5 class="state-flag"><i class="fa-solid fa-circle-exclamation"></i>
-                                            No tiene CV adjunto
-                                        </h5>
-                                        }@else{
-                                        <h5 class="state-flag-check"><i class="fa-solid fa-check"></i>
-                                            Tiene CV adjunto
-                                        </h5>
-                                        }
-                                    </div>
-                                    <div class="offer-btn">
-                                        <button (click)="navigateToProfile(employee.id_ciudadano)">Ver Perfil</button>
-                                    </div>
+                                </div>
+                                <div class="profile-btn">
+                                    <button (click)="navigateToProfile(employee.id_ciudadano)">Ver Perfil</button>
                                 </div>
                             </div>
                         </div>
