@@ -9,6 +9,11 @@
                         <h1>Ofertas</h1>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
+                <mat-button-toggle-group value="pendiente" (change)="onStateOfferChange($event)">
+                    <mat-button-toggle value="pendiente">Pendiente</mat-button-toggle>
+                    <mat-button-toggle value="aprobada">Aprobada</mat-button-toggle>
+                    <mat-button-toggle value="rechazada">Rechazada</mat-button-toggle>
+                </mat-button-toggle-group>
                 <div class="list-content">
                     @if (offers.length) {
                     @for (offer of offers; track offer.id) {

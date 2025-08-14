@@ -44,7 +44,21 @@ export class EmployeeProfileComponent implements OnInit {
           console.error('Profile load error', err);
         }
       });
-    } else {
+    } else if (userType === 'admin') {
+      this.itemId = this.route.snapshot.params['id'] ?? "";
+      this.employeeservice.getDataProfileForAdmin(this.itemId)?.subscribe({
+        next: (response) => {
+          if (response) {
+            this.employee = response.body ?? {} as Employee;;
+          } else {
+            console.log('Profile load failed', response);
+          }
+        },
+        error: (err) => {
+          console.error('Profile load error', err);
+        }
+      });
+    }else {
       this.getProfile();
     }
     console.log("previous url", this.previousRoute);

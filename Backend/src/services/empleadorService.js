@@ -64,7 +64,8 @@ export const obtenerOfertasActivas = async () => {
 
 export const crearOferta = async(id_empresa,datosOferta)=>{
     try {
-        await crearOfertaNueva(id_empresa,datosOferta);
+        const result = await crearOfertaNueva(id_empresa,datosOferta);
+        return result;
     } catch (error) {
         console.log(error);
     }

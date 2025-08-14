@@ -25,6 +25,16 @@ export class EmployeeService {
         })
     }
 
+       getDataProfileForAdmin(id:string) {
+        return this.httpClient.get<Employee>(`${URL}/ciudadano/${id}/datos_ciudadano`, {
+            observe: 'response',
+            withCredentials: true,
+            headers: new HttpHeaders()
+                .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+                .append('Content-Type', 'application/json')
+        })
+    }
+
     getDataProfileByPostulationId(id: string) {
         return this.httpClient.get<Employee>(`${URL}/empresa/postulaciones/${id}/perfil`, {
             observe: 'response',
@@ -37,6 +47,18 @@ export class EmployeeService {
 
     getDataProfileForEmployerByPostulationId(id: string) {
         return this.getDataProfileByPostulationId(id)
+        .pipe(
+            map(emp => {
+                const p: Profile = {
+                    nombre: emp.body?.nombre ?? "",
+                    imagen_url: emp.body?.imagen_url ?? ""
+                };
+                return p
+            }))
+    }
+
+        getDataProfileForAdminByCiudadanoId(id: string) {
+        return this.getDataProfileForAdmin(id)
         .pipe(
             map(emp => {
                 const p: Profile = {

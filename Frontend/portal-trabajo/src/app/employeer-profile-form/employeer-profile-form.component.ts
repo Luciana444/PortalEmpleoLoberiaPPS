@@ -20,6 +20,7 @@ import { EmployerService } from '../services/employer.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
 
 
@@ -150,6 +151,7 @@ export class EmployeerProfileFormComponent implements OnInit {
                     this.toastr.success('Actualización exitosa', 'Cuenta borrada')
                     console.log('Cuenta borrada', response);
                     this.userservice.logout();
+                    this.userservice.logout();
                     this.router.navigate(['login']);
                 } else {
                     console.log('No se pudo borrar la cuenta', response);
@@ -163,6 +165,11 @@ export class EmployeerProfileFormComponent implements OnInit {
         });
     }
 
+    getUserId() {
+        const storedTokenString = localStorage.getItem("token") ?? "";
+        const decodedToken = jwtDecode<User>(storedTokenString);
+        return decodedToken.id;
+    }
     getUserId() {
         const storedTokenString = localStorage.getItem("token") ?? "";
         const decodedToken = jwtDecode<User>(storedTokenString);
