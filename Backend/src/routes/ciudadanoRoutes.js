@@ -891,6 +891,62 @@ ciudadanoRoutes.delete('/experiencia/:id', authMiddleware, onlyCiudadano, elimin
 
 ciudadanoRoutes.get('/get_cv',authMiddleware,onlyCiudadano,obtenerCv);
 
+//======================================================
+
+/**
+ * @swagger
+ * /ciudadano/{id}/datos_ciudadano:
+ *   get:
+ *     summary: Obtener datos completos de un ciudadano
+ *     description: Retorna toda la información del perfil de un ciudadano especificado por su ID. Requiere autenticación.
+ *     tags:
+ *       - Ciudadano
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID único del ciudadano.
+ *         schema:
+ *           type: integer
+ *           example: 5
+ *     responses:
+ *       200:
+ *         description: Datos completos del ciudadano obtenidos correctamente.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               example:
+ *                 id_ciudadano: 5
+ *                 nombre: Juan
+ *                 apellido: Pérez
+ *                 email: juan.perez@mail.com
+ *                 telefono: "123456789"
+ *                 direccion: Calle Falsa 123
+ *                 fecha_nacimiento: "1990-05-15"
+ *                 experiencia:
+ *                   - empresa: "Empresa A"
+ *                     puesto: "Desarrollador"
+ *                     fecha_inicio: "2015-01-01"
+ *                     fecha_fin: "2018-12-31"
+ *                 educacion:
+ *                   - institucion: "Universidad X"
+ *                     titulo: "Licenciatura en Informática"
+ *                     anio_inicio: 2010
+ *                     anio_fin: 2014
+ *       401:
+ *         description: No se envió token o el token es inválido.
+ *       403:
+ *         description: El usuario no tiene permisos para acceder a estos datos.
+ *       404:
+ *         description: No se encontró el ciudadano con el ID especificado.
+ *       500:
+ *         description: Error interno del servidor.
+ */
+
+
 ciudadanoRoutes.get('/:id/datos_ciudadano',authMiddleware, obtenerDatosCiudadano);
 
 export default ciudadanoRoutes;
