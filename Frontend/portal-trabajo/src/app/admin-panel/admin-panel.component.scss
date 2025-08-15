@@ -2,6 +2,10 @@ button {
   white-space: nowrap;
 }
 
+i {
+  margin-right: 5px;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -231,6 +235,7 @@ mat-expansion-panel {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  margin-top: 1rem;
 }
 
 mat-panel-title {
