@@ -13,6 +13,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { AuthService } from '../services/auth.service';
 import { OfferService } from '../services/offer.service';
 import { AdminService } from '../services/admin.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-postulation-detail',
@@ -289,6 +290,6 @@ export class PostulationDetailComponent implements OnInit {
 
 
   getImageUrl(image_url: string) {
-    return image_url ? `http://localhost:3000${image_url}` : null;
+    return image_url ? `${environment.apiUrl}${image_url}` : null;
   }
 }

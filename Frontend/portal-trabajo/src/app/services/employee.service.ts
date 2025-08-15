@@ -6,8 +6,9 @@ import { WorkExperience } from '../../models/work-experience.model';
 import { AcademicBackground } from '../../models/academic-background.model';
 import { Profile } from '../../models/profile.model';
 import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
-const URL = 'http://localhost:3000/api';
+const URL =`${environment.apiUrl}/api`;
 
 @Injectable({
     providedIn: 'root'

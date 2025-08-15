@@ -8,6 +8,7 @@ import { User } from '../profile-form/profile-form.component';
 import { isPlatformBrowser } from '@angular/common';
 import { UserService } from '../services/user.service';
 import { EmployeeService } from '../services/employee.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-profile',
@@ -108,7 +109,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getImageUrl(image_url: string) {
-    return image_url ? `http://localhost:3000${image_url}` : null;
+    return image_url ? `${environment.apiUrl}${image_url}` : null;
   }
 
   navigateToLanding() {

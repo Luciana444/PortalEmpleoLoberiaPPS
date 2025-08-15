@@ -17,6 +17,7 @@ import { jwtDecode } from 'jwt-decode';
 import { MatIconModule } from "@angular/material/icon";
 import { UserService } from '../services/user.service';
 import { VisitTrackingService } from '../services/visit-tracking.service';
+import { environment } from '../../environments/environment';
 
 
 registerLocaleData(localeEsAR);
@@ -40,7 +41,7 @@ export class LandingComponent implements OnInit {
 
   offers: JobOffer[] = [];
   postulations: Postulation[] = [];
-  url: string = 'http://localhost:3000/api/empresa/ofertas/activas';
+  url: string = `${environment.apiUrl}/api/empresa/ofertas/activas`;
   currentPage = 0;
   pageSize = 10;
   showFilter = false;
@@ -112,7 +113,7 @@ export class LandingComponent implements OnInit {
   }
 
   getImageUrl(image_url: string) {
-    return image_url ? `http://localhost:3000${image_url}` : null;
+    return image_url ? `${environment.apiUrl}${image_url}` : null;
   }
 
   navigateToEmpoyerProfile(id: string) {
