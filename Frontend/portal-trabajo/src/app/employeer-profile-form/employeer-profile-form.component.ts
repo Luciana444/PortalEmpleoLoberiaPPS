@@ -20,7 +20,6 @@ import { EmployerService } from '../services/employer.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
 
 
@@ -165,11 +164,6 @@ export class EmployeerProfileFormComponent implements OnInit {
         });
     }
 
-    getUserId() {
-        const storedTokenString = localStorage.getItem("token") ?? "";
-        const decodedToken = jwtDecode<User>(storedTokenString);
-        return decodedToken.id;
-    }
     getUserId() {
         const storedTokenString = localStorage.getItem("token") ?? "";
         const decodedToken = jwtDecode<User>(storedTokenString);
