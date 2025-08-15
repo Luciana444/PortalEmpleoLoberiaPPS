@@ -1,139 +1,151 @@
-@use '../../styles.scss' as *;
+@use "../../styles.scss" as *;
 
-.username:hover{
-    cursor: pointer;
-    color: $green;
+.username:hover {
+  cursor: pointer;
+  color: $green;
 }
 
 header {
-    top: 0;
-    z-index: 99;
-    position: sticky;
-    width: 100%;
-    background-color: #F2F2F2;
-    margin: 0;
-    min-height: 70px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  top: 0;
+  z-index: 99;
+  position: sticky;
+  width: 100%;
+  background-color: #f2f2f2;
+  margin: 0;
+  min-height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.small-logo>svg {
-    height: 4.5rem;
-    margin-left: 4.5rem;
+.small-logo > svg {
+  height: 4.5rem;
+  margin-left: 4.5rem;
 }
 
 svg {
-    width: fit-content;
-    fill: $green;
+  width: fit-content;
+  fill: $green;
 }
 
 svg:hover {
-    filter: brightness(0.8);
-    cursor: pointer;
+  filter: brightness(0.8);
+  cursor: pointer;
 }
 
 .register-button {
-    background-color: $white;
-    color: $green;
-    border: 1px solid $green;
+  background-color: $white;
+  color: $green;
+  border: 1px solid $green;
 }
 
 .register-button:hover {
-    background-color: $green;
-    color: $white;
+  background-color: $green;
+  color: $white;
 }
 
 .buttons-container,
 .user-container {
-    gap: 1rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-left: 0;
-    margin-right: 4.5rem;
-    align-self: auto;
+  gap: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 0;
+  margin-right: 4.5rem;
+  align-self: auto;
 }
 
 .user-container {
-    margin-right: 5rem;
-    align-items: center;
+  margin-right: 5rem;
+  align-items: center;
 }
 
 .username {
-    color: #424242;
-    margin-bottom: 0;
+  color: #424242;
+  margin-bottom: 0;
 }
 
 .notify {
-    display: flex;
-    align-items: flex-start;
+  display: flex;
+  align-items: flex-start;
 }
 
 button {
-    width: 8rem;
-    padding: 8px 2px;
+  width: 8rem;
+  padding: 8px 2px;
 }
 
 li {
-    list-style: none;
+  list-style: none;
 }
 
-.date-notification{
-    color:#898888;
-    font-size: 0.7rem;
-    margin-top: 0.3rem;
+.date-notification {
+  color: #898888;
+  font-size: 0.7rem;
+  margin-top: 0.3rem;
+}
+.notification-header {
+  color: #49454f;
+}
+div .notification-header > p {
+  margin-top: 0.1rem;
+}
 
-}
-.notification-header{
-    color:#49454F;
-}
-div .notification-header > p{
-    margin-top: 0.1rem;
-}
-
-div.notification-header > h4{
-    color: $green;
-    margin-top: 1.5rem;
-    padding-top: 0.5rem;
-    margin-bottom: 0;
+div.notification-header > h4 {
+  color: $green;
+  margin-top: 1.5rem;
+  padding-top: 0.5rem;
+  margin-bottom: 0;
 }
 
 @media (max-width: 600px) {
-    
-    .small-logo>svg {
-        margin-left: 1rem;
-        margin-right: 1rem;
-    }
+  .small-logo > svg {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
 
-    .buttons-container {
-        gap: 0.5rem;
-        flex-wrap: wrap;
-        margin-right: 1rem;
-        justify-content: flex-end;
-    }
+  .buttons-container {
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-right: 1rem;
+    justify-content: flex-end;
+  }
 
-    .text-wrapper {
-        display: none;
-    }
+  // .text-wrapper {
+  //     display: none;
+  // }
 
-    button {
-        width: 120px;
-        min-width: 80px;
-        padding: 8px 0.5rem;
-        font-size: 0.95rem;
-    }
+  path {
+    display: none;
+  }
 
-    .user-container {
-        margin-right: 1rem;
-    }
+  .username {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-    .register-button {
-        display: none;
-    }
+  .small-logo {
+    width: 30%;
+  }
 
-    header {
-        width: 100vw;
-    }
+  button {
+    width: 120px;
+    min-width: 80px;
+    padding: 8px 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .user-container {
+    margin-right: 1rem;
+  }
+
+  .register-button {
+    display: none;
+  }
+
+  header {
+    width: 100vw;
+  }
 }
