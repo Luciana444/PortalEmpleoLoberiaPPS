@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 
-const URL = 'http://localhost:3000/api';
+const URL =`${environment.apiUrl}/api`;
 
 @Injectable({
     providedIn: 'root'

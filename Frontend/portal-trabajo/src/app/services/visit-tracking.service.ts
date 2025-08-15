@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { jwtDecode } from 'jwt-decode';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class VisitTrackingService {
-    private readonly API_URL = 'http://localhost:3000/api/auth/visitas';
+    private readonly API_URL = `${environment.apiUrl}/api/auth/visitas`;
 
     constructor(private http: HttpClient) { }
 

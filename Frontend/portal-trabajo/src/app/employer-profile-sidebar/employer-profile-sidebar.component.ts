@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Employer } from '../../models/employer.model';
 import { AuthService } from '../services/auth.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-employer-profile-sidebar',
@@ -14,7 +15,7 @@ export class EmployerProfileSidebarComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient, private authService: AuthService,
   ) { }
 
-  url = 'http://localhost:3000/api/empresa/datos';
+  url = `${environment.apiUrl}/api/empresa/datos`;
   employer: Employer = {} as Employer;
   isOwnProfile: boolean = false;
 
@@ -37,7 +38,7 @@ export class EmployerProfileSidebarComponent implements OnInit {
   }
 
   private getProfileById(itemId: string) {
-    const urlEmployer = `http://localhost:3000/api/empresa/${itemId}/datos_empresa`;
+    const urlEmployer = `${environment.apiUrl}/api/empresa/${itemId}/datos_empresa`;
 
     this.http.get<Employer>(urlEmployer)
       .subscribe({
@@ -74,6 +75,6 @@ export class EmployerProfileSidebarComponent implements OnInit {
   }
 
   getImageUrl(logo: string) {
-    return logo ? `http://localhost:3000${logo}` : null;
+    return logo ? `${environment.apiUrl}${logo}` : null;
   }
 }

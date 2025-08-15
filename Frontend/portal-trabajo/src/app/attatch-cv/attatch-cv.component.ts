@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AuthService } from '../services/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -69,7 +70,7 @@ export class AttatchCvComponent {
   }
 
   getCV(name: string) {
-    const url = "http://localhost:3000/api/ciudadano/get_cv";
+    const url = `${environment.apiUrl}/api/ciudadano/get_cv`;
 
     const headers = this.getAuthHeaders();
     this.http.get(url, { headers, responseType: 'blob' }).subscribe({

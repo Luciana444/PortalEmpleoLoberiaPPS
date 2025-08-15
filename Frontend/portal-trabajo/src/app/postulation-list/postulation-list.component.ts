@@ -8,6 +8,7 @@ import { JobOffer } from '../../models/jobOffer.model';
 import { EmployerService } from '../services/employer.service';
 import { AuthService } from '../services/auth.service';
 import { EmployerPostulation } from '../../models/employerPostulation.model';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-postulation-list',
@@ -25,11 +26,11 @@ export class PostulationListComponent implements OnInit {
   ) { }
 
   private getPostulationsUrl(id: string): string {
-    return `http://localhost:3000/api/empresa/ofertas/${id}/postulaciones`;
+    return `${environment.apiUrl}/api/empresa/ofertas/${id}/postulaciones`;
   }
 
   private getCVUrl(id: string): string {
-    return `http://localhost:3000/api/empresa/postulaciones/${id}/cv`;
+    return `${environment.apiUrl}0/api/empresa/postulaciones/${id}/cv`;
   }
 
   currentUserType?: string | null;
@@ -122,6 +123,6 @@ export class PostulationListComponent implements OnInit {
   }
 
   getImageUrl(image_url: string) {
-    return image_url ? `http://localhost:3000${image_url}` : null;
+    return image_url ? `${environment.apiUrl}${image_url}` : null;
   }
 }

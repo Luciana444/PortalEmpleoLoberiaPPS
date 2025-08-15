@@ -736,6 +736,34 @@ export const obtenerCv = async(req,res)=>{
   }
 };
 
+//=================================================
+
+/**
+ * Obtiene los datos completos de un ciudadano por su ID.
+ *
+ * @async
+ * @function obtenerDatosCiudadano
+ * @param {Object} req - Objeto de solicitud de Express.
+ * @param {Object} req.params - Parámetros de la URL.
+ * @param {number} req.params.id - ID del ciudadano a consultar.
+ * @param {Object} res - Objeto de respuesta de Express.
+ * @returns {Promise<void>} Retorna una respuesta JSON con los datos del ciudadano o un mensaje de error.
+ *
+ * @throws {Error} Si ocurre un problema al consultar los datos.
+ *
+ * @example
+ * // Ejemplo de uso
+ * // GET /ciudadano/5/datos_ciudadano
+ * {
+ *   "id_ciudadano": 5,
+ *   "nombre": "Juan",
+ *   "apellido": "Pérez",
+ *   "email": "juan.perez@mail.com",
+ *   "telefono": "123456789",
+ *   "direccion": "Calle Falsa 123"
+ * }
+ */
+
 
 export const obtenerDatosCiudadano = async(req,res)=>{
   try {

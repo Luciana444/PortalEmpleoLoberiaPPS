@@ -4,10 +4,11 @@ import { isPlatformBrowser } from '@angular/common';
 import { Observable, catchError, of } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 import { JobOffer } from '../../models/jobOffer.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class OfferService {
-    private url = 'http://localhost:3000/api/ciudadano/filtrar/ofertas';
+    private url = `${environment.apiUrl}/api/ciudadano/filtrar/ofertas`;
 
     constructor(
         private http: HttpClient,

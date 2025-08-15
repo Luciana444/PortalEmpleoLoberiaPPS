@@ -16,6 +16,7 @@ import { DatePipe } from '@angular/common'
 import { MatButtonModule } from '@angular/material/button';
 import { Employer } from '../../models/employer.model';
 import { NotificationOffer } from '../../models/notificationOffer.model';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -209,7 +210,7 @@ export class HeaderComponent implements OnInit {
   }
 
   getImageUrl(image_url: string) {
-    return image_url ? `http://localhost:3000${image_url}` : null;
+    return image_url ? `${environment.apiUrl}${image_url}` : null;
   }
 
   countNotifications(){

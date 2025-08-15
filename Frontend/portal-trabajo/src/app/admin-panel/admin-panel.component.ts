@@ -13,6 +13,7 @@ import { AppUtils } from "../../utils/app.utils";
 import { MatButtonToggleChange, MatButtonToggleModule } from '@angular/material/button-toggle';
 import { Employee } from "../../models/employee.model";
 import { Employer } from "../../models/employer.model";
+import { environment } from "../../environments/environment";
 
 
 @Component({
@@ -99,7 +100,7 @@ export class AdminPanelComponent implements OnInit {
 
 
     getImageUrl(image_url: string) {
-        return image_url ? `http://localhost:3000${image_url}` : null;
+        return image_url ? `${environment.apiUrl}${image_url}` : null;
     }
 
     navigateToPostulationDetail(id: any) {
