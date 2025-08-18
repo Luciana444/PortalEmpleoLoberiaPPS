@@ -3,8 +3,9 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { JobOffer } from '../../models/jobOffer.model';
 import { Employee } from '../../models/employee.model';
 import { Employer } from '../../models/employer.model';
+import { environment } from '../../environments/environment';
 
-const URL = 'http://localhost:3000/api';
+const URL =`${environment.apiUrl}/api`;
 
 @Injectable({
     providedIn: 'root'

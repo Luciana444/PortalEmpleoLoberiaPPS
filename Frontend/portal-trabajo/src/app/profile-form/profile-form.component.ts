@@ -100,7 +100,7 @@ export class ProfileFormComponent implements OnInit {
 
     editProfile() {
         if (this.profile.invalid) return;
-        this.userservice.editProfileEmployee(JSON.stringify(this.profile.value)).subscribe({
+        this.employeeservice.editProfileEmployee(JSON.stringify(this.profile.value)).subscribe({
             next: (response) => {
                 if (response.status === 200) {
                     this.toastr.success('Ya podes ver tu perfil completo', 'Actualización exitosa')
@@ -176,13 +176,11 @@ export class ProfileFormComponent implements OnInit {
         });
     }
 
-    navigateToProfile(){
-    this.router.navigate(['profile']);
-}
+    navigateToProfile() {
+        this.router.navigate(['profile']);
+    }
 
 }
-
-
 
 
 export interface User {

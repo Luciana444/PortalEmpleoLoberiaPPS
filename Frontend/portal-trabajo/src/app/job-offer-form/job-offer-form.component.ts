@@ -83,7 +83,7 @@ export class JobOfferFormComponent implements OnInit {
 
     createOffer() {
         if (this.offersForm.invalid) return;
-        this.userservice.createNewOffer(JSON.stringify(this.offersForm.value)).subscribe({
+        this.employerservice.createNewOffer(JSON.stringify(this.offersForm.value)).subscribe({
             next: (response) => {
                 if (response.status === 200) {
                     this.toastr.success('Esperando aprobación', 'Oferta creada')

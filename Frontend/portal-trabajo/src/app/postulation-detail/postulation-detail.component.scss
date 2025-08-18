@@ -12,7 +12,9 @@ h5{
     margin: 0;
     padding: 0.25rem 0.5rem;
     font-weight: 100;
+    white-space: nowrap;
 }
+
 .pendiente-flag, .reject-flag, .check-flag{
     font-family: 'Linotte Light';
     color:white;
@@ -28,13 +30,29 @@ h5{
  background-color: #57AF31;
 }
 
-.postulation-header{
+.postulation-header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-color: white;
     border-radius: 8px;
+    padding: 1rem;
+    width: 100%;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.profile-header {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 1rem;
 }
 
 .detail-header{
@@ -78,9 +96,18 @@ main{
 
 h1, h2{
     margin: 0;
-    margin-left: 2rem;
     color: $green;
     font-weight: 700;
+}
+
+h2{
+    margin-left: 2rem;
+}
+
+.postulation-title{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 h4, p{
@@ -120,14 +147,9 @@ h5 > i{
     color: white !important;
 }
 
-.profile-header{
-    display: flex;
-    gap: 0.5rem;
-}
-
 .profile-pic{
-    height: 50px;
-    width: 50px;
+    min-height: 50px;
+    min-width: 50px;
     border-radius: 100px;
     background-color: black
 }
@@ -145,13 +167,9 @@ h5 > i{
 }
 
 .profile{
+    width: 100%;
     display: flex;
-    align-items: center;
-    height: fit-content;
-    width: fit-content;
-    padding: 1rem;
     border-radius: 10px;
-    gap: 1rem;
 }
 
 .postulation-header > button{
@@ -182,13 +200,14 @@ p{
 button :hover{
     color: #57AF31 !important;
 }
+
 .reject{
     background-color:#b3261e;
 }
-.reject:hover, i:hover{
-   color:#b3261e;
-   background-color:#f5f5f5;
-}
+// .reject:hover, i:hover{
+//    color:#b3261e;
+//    background-color:#f5f5f5;
+// }
 
 .delete {
     background-color: transparent;
@@ -220,22 +239,60 @@ button :hover{
     .profile, .postulation-header, .detail-header{
         flex-direction: column;
     }
-    .postulation-header{
-        padding-bottom: 0.5rem;
-    }  
 
-    .profile{
-        align-items: start;
+
+    .postulation-header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 0;
     }
 
-    .profile-header{
+    // Reorder elements
+    .profile {
         order: 1;
+        width: 100%;
+        text-align: center;
     }
+
+    .profile-header {
+        order: 2;
+        width: 100%;
+        margin: 1rem 0;
+        justify-content: center; // Center profile header content
+    }
+
+    .button-wrapper {
+        order: 3;
+        width: 100%;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    // Adjust button styles
+    button {
+        width: 80%;
+        margin: 0;
+    }
+
+    // Keep title styles
+
+    // .profile{
+    //     align-items: start;
+    // }
+
+    // .profile-header{
+    //     order: 1;
+    // }
 
     .profile>h1, h2{
         order: 2;
         margin: 0;
         text-align: center;
+    }
+
+    h1{
+        width: 100%;
+        text-justify: auto;
     }
 
     h2{
@@ -260,4 +317,22 @@ button :hover{
         width: 200%;
     }
 
+    .profile-header{
+        margin-right: auto;
+    }
+
+    .postulation-title {
+        width: 100%;
+        text-align: center;
+        text-justify: inter-word; // For better justification
+        white-space: normal; // Allow text wrapping
+        word-break: break-word; // Prevent overflow
+        
+        h1 {
+            text-align: center;
+            margin: 0 auto; // Center the heading
+            width: 100%;
+            max-width: 100%; // Ensure it doesn't exceed container
+        }
+    }
 }

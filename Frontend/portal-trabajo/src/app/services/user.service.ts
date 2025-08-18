@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/operators';
 import { Profile } from '../../models/profile.model';
+import { environment } from '../../environments/environment';
 
 
 
-const URL = 'http://localhost:3000/api';
+const URL =`${environment.apiUrl}/api`;
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
 
   constructor(private httpClient: HttpClient) { }
 
@@ -31,6 +30,7 @@ export class UserService {
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     })
   }
+
   registerNewUser(userData: any) {
     return this.httpClient.post(`${URL}/auth/register`, userData, {
       observe: 'response',
@@ -38,6 +38,7 @@ export class UserService {
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     })
   }
+
   resetPassword(credentials: any) {
     return this.httpClient.post(`${URL}/auth/reset/password`, credentials, {
       observe: 'response',
@@ -46,40 +47,6 @@ export class UserService {
     });
   }
 
-  editProfileEmployee(profileData: any) {
-    return this.httpClient.patch(`${URL}/ciudadano/actualizar/perfil`, profileData, {
-      observe: 'response',
-      withCredentials: true,
-      headers: new HttpHeaders()
-        .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
-        .append('Content-Type', 'application/json')
-    });
-
-  }
-
-  editProfileEmployeer(profileEmployeerData: any) {
-    return this.httpClient.patch(`${URL}/empresa/actualizar/perfil`, profileEmployeerData, {
-      observe: 'response',
-      withCredentials: true,
-      headers: new HttpHeaders()
-        .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
-        .append('Content-Type', 'application/json')
-    });
-
-  }
-
-  createNewOffer(newOffer: any) {
-    return this.httpClient.post(`${URL}/empresa/ofertas`, newOffer, {
-      observe: 'response',
-      withCredentials: true,
-      headers: new HttpHeaders()
-        .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
-        .append('Content-Type', 'application/json')
-    });
-  }
-
-
-
   uploadProfilePicture(foto: File, tipo_usuario: string) {
     var formdata = new FormData();
     formdata.append("foto", foto)
@@ -87,46 +54,6 @@ export class UserService {
       observe: 'response',
       withCredentials: true,
       headers: new HttpHeaders().append('Authorization', `Bearer ${localStorage.getItem("token")}`)
-    });
-  }
-
-  uploadCv(cv: File) {
-    var formdata = new FormData();
-    formdata.append("cv", cv)
-    return this.httpClient.put(`${URL}/ciudadano/upload_cv`, formdata, {
-      observe: 'response',
-      withCredentials: true,
-      headers: new HttpHeaders().append('Authorization', `Bearer ${localStorage.getItem("token")}`)
-    });
-  }
-
-  downloadGeneratedCv(url: string) {
-    return this.httpClient.get(`${URL}/ciudadano/generar_cv`,
-      {
-        responseType: 'blob',
-        observe: 'response',
-        withCredentials: true,
-        headers: new HttpHeaders().append('Authorization', `Bearer ${localStorage.getItem("token")}`)
-      });
-
-  }
-  addWorkExperience(workExperienceData: any) {
-    return this.httpClient.patch(`${URL}/ciudadano/actualizar/perfil`, workExperienceData, {
-      observe: 'response',
-      withCredentials: true,
-      headers: new HttpHeaders()
-        .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
-        .append('Content-Type', 'application/json')
-    });
-  }
-
-  addeducationForm(educationData: any) {
-    return this.httpClient.patch(`${URL}/ciudadano/actualizar/perfil`, educationData, {
-      observe: 'response',
-      withCredentials: true,
-      headers: new HttpHeaders()
-        .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
-        .append('Content-Type', 'application/json')
     });
   }
 
@@ -179,8 +106,7 @@ export class UserService {
       withCredentials: true                    
     });
   }
-
-  
+ 
   saveVisits() {
     return this.httpClient.post(`${URL}/auth/visitas`, {
       observe: 'body',

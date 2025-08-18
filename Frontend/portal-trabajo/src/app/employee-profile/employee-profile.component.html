@@ -3,16 +3,16 @@
 
     <div class="container">
         <div class="fallback">
-            @if(getUserType()=== 'ciudadano'){
-            <i class="fa-solid fa-arrow-left" (click)="navigateToLanding()"></i> <a (click)="navigateToLanding()">
+            @if((getUserType() === 'ciudadano' )){
+            <i class="fa-solid fa-arrow-left" (click)="navigateBack()"></i> <a (click)="navigateBack()">
                 Volver a
                 ofertas</a>
             }@else if(getUserType() === 'empresa'){
-            <i class="fa-solid fa-arrow-left" (click)="navigateToPostulations()"></i> <a (click)="navigateToPostulations()">
+            <i class="fa-solid fa-arrow-left" (click)="navigateBack()"></i> <a (click)="navigateBack()">
                 Volver a
                 Postulaciones</a>
             } @else {
-            <i class="fa-solid fa-arrow-left" (click)="navigateToAdminPanel()"></i> <a (click)="navigateToAdminPanel()">
+            <i class="fa-solid fa-arrow-left" (click)="navigateBack()"></i> <a (click)="navigateBack()">
                 Volver a
                 Administración</a>
             }

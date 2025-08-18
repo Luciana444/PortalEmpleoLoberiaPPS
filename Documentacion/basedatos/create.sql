@@ -108,6 +108,7 @@ CREATE TABLE public.perfiles_ciudadanos (
     REFERENCES usuarios (id) ON DELETE CASCADE
 ) TABLESPACE pg_default;
 
+------------------------------------------------
 
 --tabla de capacitaciones y habilidades:  (unida al formulario de perfil ciudadano)
 
@@ -221,6 +222,19 @@ CREATE TABLE public.experiencias_laborales_ciudadanos (
   CONSTRAINT fk_experiencia_ciudadano FOREIGN KEY (id_ciudadano) REFERENCES perfiles_ciudadanos (id_ciudadano) ON DELETE CASCADE
 ) TABLESPACE pg_default;
 
+----------------------------------------------------
+--tabla para registrar visitas al portal
+
+create table public.visitas_portal (
+  id uuid not null default gen_random_uuid (),
+  pagina text not null,
+  fecha timestamp without time zone null default now(),
+  ip text null,
+  user_agent text null,
+  tipo_usuario text null,
+  id_usuario uuid null,
+  constraint visitas_portal_pkey primary key (id)
+) TABLESPACE pg_default;
 
 
 */

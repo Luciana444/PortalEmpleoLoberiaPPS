@@ -83,7 +83,7 @@ export class AcademicBackgroundEditComponent implements OnInit {
             esta_cursando_carrera: this.educationForm.value.esta_cursando_carrera,
             carrera_en_curso: this.educationForm.value.carrera_en_curso,
         };
-        this.userservice.addeducationForm(JSON.stringify(academicBackground)).subscribe({
+        this.employeeservice.addeducationForm(JSON.stringify(academicBackground)).subscribe({
             next: (response) => {
                 if (response.status === 200) {
                     this.toastr.success('Cambios guardados', 'Actualización exitosa')
@@ -108,12 +108,12 @@ export class AcademicBackgroundEditComponent implements OnInit {
             nombre_capacitacion: this.educationForm.value.nombre_capacitacion,
 
         };
-        this.userservice.addeducationForm(JSON.stringify(education)).subscribe({
+        this.employeeservice.addeducationForm(JSON.stringify(education)).subscribe({
             next: (response) => {
                 if (response.status === 200) {
                     this.toastr.success('Nueva capacitación agregada', 'Actualización exitosa')
                     console.log('Actualización exitosa', response);
-                   // this.educationForm.reset();
+                    // this.educationForm.reset();
                     this.addNewCardEducation = false;
                     this.getDataProfile();
                 } else {
@@ -257,7 +257,7 @@ export class AcademicBackgroundEditComponent implements OnInit {
         this.capacitacionId = "";
     }
 
-     navigateToProfile(){
-    this.router.navigate(['profile']);
-  }
+    navigateToProfile() {
+        this.router.navigate(['profile']);
+    }
 }

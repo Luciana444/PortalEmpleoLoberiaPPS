@@ -1,3 +1,9 @@
+mat-acordion {
+    max-width: 90vw;
+    display: block;
+    margin-top: 1rem;
+}
+
 .profile {
     background-color: white;
     height: fit-content;
@@ -28,9 +34,11 @@ mat-expansion-panel-header {
     margin-bottom: 1rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
+
 mat-expansion-panel{
-box-shadow: none!important;
+    box-shadow: none!important;
 }
+
 .mat-expansion-panel-header.mat-expanded{
     background-color: white!important;
 }
@@ -40,6 +48,7 @@ box-shadow: none!important;
     justify-content: center;
     margin-top: 1rem;
 }
+
 .list-content {
     display: flex;
     justify-content: space-between;

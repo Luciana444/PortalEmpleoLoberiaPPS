@@ -1,70 +1,93 @@
-button{
-    display: block;
-    margin-top: 1.5rem;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 3rem;
-    width: 9rem;
-    padding: 8px 2px;
-}
-
-.no-account {
-    text-align: center;
-    margin-top: 0;
-    padding-bottom: 2rem;
-
-}
-
-.fallback > i{
-  color:#57AF31;
-}
-.fallback{
-  font-family: 'Linotte Light';
+.fallback {
+  font-family: "Linotte Light";
   font-size: 1.2rem;
-  margin-top:1rem;
+  margin-top: 1rem;
   margin-left: 3rem;
 }
 
-.form-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.fallback > i {
+  color: #57af31;
 }
 
-.form-header > h3{
-    text-align: start;
-    margin-bottom: 1rem;
+// Ensure text wraps and input expands
+.mat-mdc-text-field-wrapper {
+  overflow: hidden; // Prevents overflow
 }
 
-input{
-    width: 20rem;
-    padding-top:0;
+// For text inputs
+input {
+  white-space: normal; // Allows text to wrap
+  overflow: hidden; // Hides overflow
+  text-overflow: ellipsis; // Adds ellipsis if text is too long
+  width: 100% !important; // Ensures input takes full width of its container
 }
 
-div > p{
-    margin-bottom: 2px;
-    padding-bottom: 0;
-    margin-left: 2px;
+button {
+  display: block;
+  margin-top: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3rem;
+  width: 9rem;
+  padding: 8px 2px;
+}
+
+.no-account {
+  text-align: center;
+  margin-top: 0;
+  padding-bottom: 2rem;
+}
+
+.fallback > i {
+  color: #57af31;
+}
+.fallback {
+  font-family: "Linotte Light";
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  margin-left: 3rem;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-header > h3 {
+  text-align: start;
+  margin-bottom: 1rem;
+}
+
+input {
+  width: 20rem;
+  padding-top: 0;
+}
+
+div > p {
+  margin-bottom: 2px;
+  padding-bottom: 0;
+  margin-left: 2px;
 }
 
 .forgotten-password {
-    display: block;
-    text-align: right;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+  display: block;
+  text-align: right;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
- 
-.img-container{
-    margin-top: 2rem;
+
+.img-container {
+  margin-top: 2rem;
 }
 
 mat-form-field.full-width {
-    margin-right: 15px;
-    width: 100%;
+  margin-right: 15px;
+  width: 100%;
 }
 
-.mat-mdc-form-field-flex{
-    width: 100%;
+.mat-mdc-form-field-flex {
+  width: 100%;
 }
 
 form {
@@ -79,10 +102,9 @@ form {
 
 mat-form-field {
   width: 50%;
-
 }
 
-.margin-input{
+.margin-input {
   margin-right: 15px;
 }
 

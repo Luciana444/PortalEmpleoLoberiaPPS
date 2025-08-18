@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AuthService } from '../services/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { EmployeeService } from '../services/employee.service';
 
 
 @Component({
@@ -17,6 +19,7 @@ export class AttatchCvComponent {
   constructor(
     private http: HttpClient,
     private userservice: UserService,
+    private employeeservice: EmployeeService,
     private toastr: ToastrService,
     private authService: AuthService,) {
   }
@@ -27,7 +30,7 @@ export class AttatchCvComponent {
 
   downloadCv() {
     const url = '/ciudadano/generar_cv';
-    this.userservice.downloadGeneratedCv(url).subscribe({
+    this.employeeservice.downloadGeneratedCv(url).subscribe({
       next(response) {
         const a = document.createElement('a');
         const objectUrl = URL.createObjectURL(response.body ?? new Blob());
@@ -44,7 +47,7 @@ export class AttatchCvComponent {
   }
 
   receiveCv(file: File) {
-    this.userservice.uploadCv(file).subscribe({
+    this.employeeservice.uploadCv(file).subscribe({
       next: (response) => {
         if (response.status === 200) {
           this.toastr.success('Tu Cv ya está disponible', 'Archivo subido')
@@ -69,7 +72,7 @@ export class AttatchCvComponent {
   }
 
   getCV(name: string) {
-    const url = "http://localhost:3000/api/ciudadano/get_cv";
+    const url = `${environment.apiUrl}/api/ciudadano/get_cv`;
 
     const headers = this.getAuthHeaders();
     this.http.get(url, { headers, responseType: 'blob' }).subscribe({

@@ -28,7 +28,7 @@
         <div class="text-wrapper">
             <div class="notify">
                 @if (getUserType()=== 'ciudadano' || getUserType()=== 'empresa'){
-                <p class="username">{{user.nombre}}</p>
+                <p class="username" (click)="navigateToProfile()">{{user.nombre}}</p>
                 }@else {
                 <p class="username">Municipio de Loberia</p>
                 }
@@ -55,7 +55,7 @@
                     <li>
                         <div mat-menu-item class="notification">
                             <div class="notification-header">
-                                <h4>Oferta  {{notification.mensaje}} </h4>
+                                <h4>Oferta {{notification.mensaje}} </h4>
                                 <p> Novedades en oferta {{notification.puesto}}</p>
                                 <p class="date-notification">{{notification.fecha_aprobacion | date:'longDate'}}</p>
                             </div>

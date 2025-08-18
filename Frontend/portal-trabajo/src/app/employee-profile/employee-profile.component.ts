@@ -19,29 +19,26 @@ import { EmployeeService } from '../services/employee.service';
   styleUrl: './employee-profile.component.scss'
 })
 export class EmployeeProfileComponent implements OnInit {
-  constructor(private http: HttpClient,
-    private router: Router,
+  constructor(private router: Router,
     private route: ActivatedRoute,
     private employeeservice: EmployeeService,
     @Inject(PLATFORM_ID) private platformId: Object,
-
   ) { }
 
   employee: Employee = {} as Employee;
   itemId: string = "";
-
+  previousRoute: string = '/';
 
   ngOnInit() {
     const userType = this.getUserType();
+
+    this.previousRoute = history.state?.from || '/';
+
     if (userType === 'empresa') {
       this.itemId = this.route.snapshot.params['id'] ?? "";
       this.employeeservice.getDataProfileByPostulationId(this.itemId)?.subscribe({
         next: (response) => {
-          if (response) {
-            this.employee = response.body ?? {} as Employee;
-          } else {
-            console.log('Profile load failed', response);
-          }
+          this.employee = response.body ?? {} as Employee;
         },
         error: (err) => {
           console.error('Profile load error', err);
@@ -64,6 +61,8 @@ export class EmployeeProfileComponent implements OnInit {
     }else {
       this.getProfile();
     }
+    console.log("previous url", this.previousRoute);
+
   }
 
   getProfile() {
@@ -97,15 +96,40 @@ export class EmployeeProfileComponent implements OnInit {
     }
   }
 
-  navigateToLanding() {
-    this.router.navigate(['/']);
+  navigateBack() {
+    if (this.previousRoute.includes('profile'))
+      this.router.navigate(['/profile']);
+    else if (this.previousRoute.includes('admin-panel'))
+      this.router.navigate(['/admin-panel']);
+    else if (this.previousRoute.includes('postulaciones-por-oferta'))
+      this.router.navigate([this.previousRoute]);
+    else
+      // Default to home or previous route
+      this.router.navigate(['/']);
   }
 
-  navigateToAdminPanel() {
-    this.router.navigate(['admin-panel']);
-  }
+  // Update your navigation methods
+  // navigateToLanding() {
+  //   this.navigateBack();
+  // }
 
-  navigateToPostulations(/*id: any*/) {
-    // this.router.navigate(['postulaciones-por-oferta', id]);
-  }
+  // navigateToAdminPanel() {
+  //   this.navigateBack();
+  // }
+
+  // navigateToPostulations() {
+  //   this.navigateBack();
+  // }
+
+  // navigateToLanding() {
+  //   this.router.navigate(['/']);
+  // }
+
+  // navigateToAdminPanel() {
+  //   this.router.navigate(['admin-panel']);
+  // }
+
+  // navigateToPostulations(/*id: any*/) {
+  //   // this.router.navigate(['postulaciones-por-oferta', id]);
+  // }
 }

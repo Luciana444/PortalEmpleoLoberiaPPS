@@ -1,8 +1,9 @@
 <app-header></app-header>
- <div class="fallback">
-            <i class="fa-solid fa-arrow-left" (click)="navigateToProfile()"></i> <a (click)="navigateToProfile()">
-                Volver a Perfil</a>
-        </div>
+<div class="fallback">
+  <i class="fa-solid fa-arrow-left" (click)="navigateToProfile()"></i> <a (click)="navigateToProfile()">
+    Volver a Perfil</a>
+</div>
+
 @if (itemId === "") {
 <h3>Creá una nueva oferta</h3>
 }@else {
@@ -14,9 +15,9 @@
     <!-- Puesto requerido -->
     <div>
       <div class="size-form">
-        <mat-form-field appearance="outline" class="margin-input">
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Nombre del puesto o cargo</mat-label>
-          <input matInput formControlName="puesto_requerido" required>
+          <input matInput formControlName="puesto_requerido" required maxlength="100">
           <mat-error *ngIf="offersForm.get('puesto_requerido')?.hasError('required')">
             Este campo es obligatorio
           </mat-error>
@@ -99,7 +100,7 @@
         <!-- Tipo de contrato -->
         <mat-form-field appearance="outline" class="margin-input">
           <mat-label>Tipo de contrato</mat-label>
-          <input matInput formControlName="tipo_contrato">
+          <input matInput formControlName="tipo_contrato" maxlength="50">
         </mat-form-field>
 
         <!-- Localidad del puesto -->

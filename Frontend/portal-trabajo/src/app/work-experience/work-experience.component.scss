@@ -35,8 +35,11 @@ input {
 
 .form-container {
   display: flex;
-  justify-content: center;
+  // justify-content: center;
   min-height: 100vh;
+  max-width: 100%;
+  flex-direction: column;
+  align-items: center;
 }
 
 p {
@@ -47,7 +50,6 @@ p {
 
 button {
   display: block;
-  margin-top: 1.5rem;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 1rem;
@@ -67,6 +69,11 @@ button.addExperience-btn {
   display: flex;
   justify-content: right;
 
+}
+
+.experience-list{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 select {
@@ -105,6 +112,8 @@ button.experience-btn {
   display: flex;
   justify-content: space-between;
   color: #424242;
+  gap: 1rem;
+  align-items: center;
 }
 
 .delete {
@@ -158,6 +167,11 @@ li{
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  input{
+    width: 80%;
+    // margin-bottom: 1rem;
   }
 
   .size-form {
@@ -216,5 +230,14 @@ li{
   h3 {
     text-align: center;
     width: 100%;
+  }
+
+  ul{
+    padding: 0;
+  }
+
+  .align-elements > p{
+    margin-right: auto;
+    margin-left: 0.5rem;
   }
 }

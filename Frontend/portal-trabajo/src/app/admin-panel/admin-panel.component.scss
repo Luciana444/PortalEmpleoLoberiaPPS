@@ -1,230 +1,419 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem 0;
-    min-height: 100vh;
-}
-
-.container-list {
-    width: 78%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.offer-data {
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-}
-mat-button-toggle-group{
-  margin-bottom: 1rem;
-}
-
-.employee-data {
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    width: 100%;
-}
-
-.employer-data {
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-    gap: 1rem;
-    width: 100%;
-}
-.profile-header {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.profile-header-employee {
-    margin-left: 2rem;
-    display: flex;
-    align-items: center;
-}
-
-.profile-info-employee {
-    margin-left: 2rem;
-    margin-bottom:0.5rem;
-    margin-top: 0.5rem;
-}
-
-.employee-date{
-    margin-left: 2rem;
-}
-
-.profile-info-employee > h4 {
-    margin-bottom:0.5rem;
-}
-
-.location-employee {
-    display: flex;
-    gap: 0.3rem;
-}
-
-.profile-pic {
-    height: 50px;
-    width: 50px;
-    border-radius: 100px;
-}
-
-.profile-info>h4,
-.location>p, .location-employee>p, .profile-info-employee>h4  {
-    color: #49454F;
-    margin: 0;
-}
-
-.profile>div {
-    display: flex;
-}
-
-.location {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.25rem;
-}
-
-.profile {
-    align-items: center;
-    height: fit-content;
-    width: 100%;
-    border-radius: 10px;
-    gap: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); // Added subtle shadow
-    overflow: hidden;
-    display: inline-flex;
-    justify-content: space-between;
-    background-color: white;
-}
-
-.profile-employee {
-    align-items: center;
-    height: fit-content;
-    width: 100%;
-    border-radius: 10px;
-    gap: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); // Added subtle shadow
-    overflow: hidden;
-    background-color: white;
-}
-
-.state-flag {
-    color: white;
-    background-color: #e9a426;
-    font-family: 'Linotte Light';
-    font-size: 1rem;
-    padding: 0.5rem;
-    border-radius: 10px;
-}
-
-.state-flag-check {
-    color: white;
-    background-color: #57AF31;
-    font-family: 'Linotte Light';
-    font-size: 1rem;
-    padding: 0.5rem;
-    border-radius: 10px;
-}
-
-.state-flag-reject  {
-    color: white;
-    background-color: #b3261e;
-    font-family: 'Linotte Light';
-    font-size: 1rem;
-    padding: 0.5rem;
-    border-radius: 10px;
-}
-.employee-btn{
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-
-.state-flag>i, .state-flag-check>i, .state-flag-reject >i{
-    color: white;
-}
-
-.offer-btn,
-.profile-info {
-    margin-right: 2rem;
-}
-
-.detail-categories {
-    //margin-right: 2rem;
-    display: flex;
-    gap: 0.5rem;
-    font-weight: 100;
-    width: fit-content;
-    white-space: nowrap;
-}
-
-.name-work {
-    color: #57AF31;
-    font-family: 'Linotte Regular';
-    margin-left: 2rem;
-    margin-right: 2rem;
-    font-size: 1.5rem;
-
+button {
+  white-space: nowrap;
 }
 
 i {
-    color: #57AF31;
+  margin-right: 5px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  min-height: 100vh;
+}
+
+.container-list {
+  width: 78%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 li {
-    list-style: none;
+  list-style: none;
+  width: 100%;
 }
 
+// 4-column grid layout
+.profile,
+.profile-employee {
+  display: grid;
+  grid-template-columns:
+    minmax(150px, 25%) minmax(200px, 30%) minmax(150px, 20%)
+    minmax(200px, 25%);
+  align-items: center;
+  width: 96%;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background-color: white;
+  gap: 1rem;
+  margin: 0 auto;
+}
 
+.profile {
+  padding: 0 1rem;
+}
 
-.report-nmb {
-    color: #57AF31;
-    font-family: 'Linotte Heavy';
-    font-size: 4rem;
-    margin: 3rem;
+.profile-employee {
+  padding: 1rem;
+}
 
+.profile-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  min-width: 0; // Allows flex items to shrink
+
+  .status-flag {
+    flex-shrink: 1; // Allows flag to shrink if needed
+    h5 {
+      margin: 0;
+      font-family: "Linotte Light";
+      font-size: 1rem;
+      padding: 0.5rem;
+      border-radius: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .profile-btn {
+    flex-shrink: 0; // Prevents button from shrinking
+    button {
+      padding: 0.8rem 1rem;
+      min-width: 120px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.name-work,
+.profile-name,
+.profile-info h4,
+.profile-info-column p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Column 1: Offer Name
+.name-work {
+  color: #57af31;
+  font-family: "Linotte Regular";
+  font-size: 1.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 1rem;
+  min-height: 1.5rem;
+}
+
+// Column 2: Company & Location
+.company-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+
+  .profile-pic {
+    min-height: 50px;
+    min-width: 50px;
+    border-radius: 100px;
+    object-fit: cover;
+  }
+
+  .company-details {
+    h4 {
+      color: #49454f;
+      margin: 0 0 0.3rem 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .location {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+
+      p {
+        color: #49454f;
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+// Column 3: Date
+.offer-date {
+  text-align: center;
+  p {
+    white-space: nowrap;
+    color: #49454f;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+// Column 4: Button & Status
+.action-column {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+
+  .detail-categories {
+    h5 {
+      margin: 0;
+      font-family: "Linotte Light";
+      font-size: 1rem;
+      padding: 0.5rem;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+  }
+
+  .offer-btn button {
+    padding: 0.8rem 1.2rem;
+    min-width: 120px;
+  }
+}
+
+// Status flags
+.state-flag {
+  color: white;
+  background-color: #e9a426;
+  font-family: "Linotte Light";
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+.state-flag-check {
+  color: white;
+  background-color: #57af31;
+  font-family: "Linotte Light";
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+.state-flag-reject {
+  color: white;
+  background-color: #b3261e;
+  font-family: "Linotte Light";
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+.state-flag > i,
+.state-flag-check > i,
+.state-flag-reject > i {
+  color: white;
+}
+i {
+  color: #57af31;
 }
 
 mat-expansion-panel-header {
-    background-color: white;
-    margin-bottom: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background-color: white;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 mat-expansion-panel {
-    box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 .mat-expansion-panel-header.mat-expanded {
-    background-color: white !important;
+  background-color: white !important;
 }
-
 
 .list-content {
-    display: flex;
-    justify-content: left;
-    gap: 1rem;
-    flex-direction: column;
-}
-
-button {
-    padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 mat-panel-title {
-    font-family: 'Linotte Heavy';
+  font-family: "Linotte Heavy";
+}
+// Update your SCSS with these additions:
+
+// Common styles for all profile types
+
+// Column 1: Main Name/Title
+.name-work,
+.profile-name {
+  color: #57af31;
+  font-family: "Linotte Regular";
+  font-size: 1.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 1rem;
 }
 
+// Column 2: Details (Company/Location or Personal Info)
+.profile-details {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+
+  .profile-pic {
+    min-height: 50px;
+    min-width: 50px;
+    border-radius: 100px;
+    object-fit: cover;
+  }
+
+  .profile-info {
+    h4 {
+      color: #49454f;
+      margin: 0 0 0.3rem 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .location {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+
+      p {
+        color: #49454f;
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+// Column 3: Additional Info (Date/Email/Date of Birth)
+.profile-info-column {
+  text-align: center;
+  p {
+    white-space: nowrap;
+    color: #49454f;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+// Column 4: Actions (Buttons & Status)
+.profile-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+
+  .status-flag {
+    h5 {
+      margin: 0;
+      font-family: "Linotte Light";
+      font-size: 1rem;
+      padding: 0.5rem;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+  }
+
+  .profile-btn button {
+    padding: 0.8rem 1.2rem;
+    min-width: 120px;
+  }
+}
+
+// @media (max-width: 600px) {
+//   .container {
+//     padding: 0.5rem;
+//   }
+
+//   .container-list {
+//     width: 95%;
+//   }
+
+//   .profile,
+//   .profile-employee {
+//     flex-direction: column;
+//     align-items: flex-start;
+//     padding: 0 1rem;
+//   }
+
+//   .offer-data,
+//   .employee-data,
+//   .employer-data {
+//     flex-direction: column;
+//     align-items: flex-start;
+//     gap: 1rem;
+//     width: 100%;
+//   }
+
+//   .employer-data {
+//     padding: 0;
+//   }
+
+//   .profile-header{
+//     flex-direction: column;
+//     margin-left: 0;
+//     width: 100%;
+//   }
+
+//   .employee-btn {
+//     flex-direction: column;
+//     align-items: flex-start;
+//     gap: 1rem;
+//     width: 100%;
+//   }
+
+//   .offer-btn {
+//     margin: 0 auto;
+//     width: 90%;
+//     button {
+//       width: 90%;
+//     }
+//   }
+
+//   .detail-categories {
+//     width: 90%;
+//   }
+
+//   .employee-date {
+//     margin-left: 0;
+//   }
+
+//   mat-panel-title h1 {
+//     font-size: 1.2rem;
+//   }
+
+//   .profile-header-info{
+//     display: flex;
+//     align-items: center;
+//     gap: 0.5rem;
+//   }
+
+//   .profile-header-employee{
+//     margin-left: 0;
+//   }
+
+//   h5{
+//     margin-left: auto;
+//     margin-right: auto;
+//   }
+
+//   .profile-info-employee {
+//     margin: 0;
+//   }
+// }
+// Add these mobile styles at the bottom of your SCSS file
 @media (max-width: 600px) {
   .container {
     padding: 0.5rem;
@@ -234,75 +423,86 @@ mat-panel-title {
     width: 95%;
   }
 
-  .profile, 
+  // Switch from grid to flex column layout
+  .profile,
   .profile-employee {
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     padding: 1rem;
-  }
-
-  .offer-data,
-  .employee-data,
-  .employer-data {
-    flex-direction: column;
-    align-items: flex-start;
     gap: 1rem;
-    width: 100%;
-  }
-
-  .employer-data {
-    padding: 0;
-  }
-
-  .profile-header{
-    flex-direction: column;
-    margin-left: 0;
-    width: 100%;
-  }
-
-  .employee-btn {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-    width: 100%;
-  }
-
-  .offer-btn {
-    margin: 0 auto;
     width: 90%;
-    button {
-      width: 90%;
+  }
+
+  // Make all content sections stack vertically
+  .name-work,
+  .profile-name,
+  .company-info,
+  .profile-details,
+  .offer-date,
+  .profile-info-column,
+  .action-column,
+  .profile-actions {
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+
+  // Center-align all text on mobile
+  .name-work,
+  .profile-name,
+  .offer-date p,
+  .profile-info-column p {
+    text-align: center;
+  }
+
+  // Adjust company info layout
+  .company-info,
+  .profile-details {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+
+    .profile-info,
+    .company-details {
+      align-items: center;
+      text-align: center;
     }
   }
 
-  .detail-categories {
-    width: 90%;
-  }
-
-  .employee-date {
-    margin-left: 0;
-  }
-
-  mat-panel-title h1 {
-    font-size: 1.2rem;
-  }
-
-  .profile-header-info{
-    display: flex;
+  // Stack action items vertically
+  .action-column,
+  .profile-actions {
+    flex-direction: column;
     align-items: center;
     gap: 0.5rem;
+
+    .detail-categories,
+    .status-flag {
+      width: 100%;
+      text-align: center;
+    }
+
+    .offer-btn,
+    .profile-btn {
+      width: 100%;
+
+      button {
+        width: 100%;
+      }
+    }
   }
 
-  .profile-header-employee{
-    margin-left: 0;
+  // Adjust status flags
+  .state-flag,
+  .state-flag-check,
+  .state-flag-reject {
+    text-align: center;
   }
 
-  h5{
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .profile-info-employee {
-    margin: 0;
+  // Make profile pics smaller on mobile
+  .profile-pic {
+    min-height: 40px;
+    min-width: 40px;
   }
 }

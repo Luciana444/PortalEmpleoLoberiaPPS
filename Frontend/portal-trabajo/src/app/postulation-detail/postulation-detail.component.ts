@@ -13,6 +13,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { AuthService } from '../services/auth.service';
 import { OfferService } from '../services/offer.service';
 import { AdminService } from '../services/admin.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-postulation-detail',
@@ -31,7 +32,7 @@ export class PostulationDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private employerservice: EmployerService,
     private employeeservice: EmployeeService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
   ) { }
 
   currentUserType: any;
@@ -41,10 +42,10 @@ export class PostulationDetailComponent implements OnInit {
   itemId: string = "";
   offer = {} as JobOffer;
   postulado: boolean = false;
-  previousUrl: string = '/'; // Default route if not set
+  previousUrl: string = '/';
 
   ngOnInit(): void {
-    this.previousUrl = history.state.from;
+    this.previousUrl = history.state?.from || '/'; // Get previous URL from state or current URL
 
     let isPostulado = this.route.snapshot.params['postulado'] ?? null; // Get Postulado from route   
     this.postulado = !!isPostulado;
@@ -52,6 +53,7 @@ export class PostulationDetailComponent implements OnInit {
     this.getCurrentOffer();
     this.currentUserType = this.authService.getCurrentUserType();
     this.currentUserId = this.authService.getCurrentUserId();
+    console.log("Previous url", this.previousUrl);
   }
 
   private getCurrentOffer() {
@@ -287,8 +289,12 @@ export class PostulationDetailComponent implements OnInit {
     });
   }
 
+  // getPreviousRoute(): string {
+  //   return this.location.getState()?.navigationId ?
+  //     this.location.getState()?.from || '/' : '/';
+  // }
 
   getImageUrl(image_url: string) {
-    return image_url ? `http://localhost:3000${image_url}` : null;
+    return image_url ? `${environment.apiUrl}${image_url}` : null;
   }
 }
