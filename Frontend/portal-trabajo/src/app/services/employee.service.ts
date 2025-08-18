@@ -70,6 +70,17 @@ export class EmployeeService {
             }))
     }
 
+      editProfileEmployee(profileData: any) {
+        return this.httpClient.patch(`${URL}/ciudadano/actualizar/perfil`, profileData, {
+          observe: 'response',
+          withCredentials: true,
+          headers: new HttpHeaders()
+            .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+            .append('Content-Type', 'application/json')
+        });
+    
+      }
+
 
     postulateToOffer(id: any, cv: any, msg: string) {
         var formdata = new FormData();
@@ -133,4 +144,45 @@ export class EmployeeService {
             withCredentials: true
         });
     }
+
+      addWorkExperience(workExperienceData: any) {
+        return this.httpClient.patch(`${URL}/ciudadano/actualizar/perfil`, workExperienceData, {
+          observe: 'response',
+          withCredentials: true,
+          headers: new HttpHeaders()
+            .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+            .append('Content-Type', 'application/json')
+        });
+      }
+    
+      addeducationForm(educationData: any) {
+        return this.httpClient.patch(`${URL}/ciudadano/actualizar/perfil`, educationData, {
+          observe: 'response',
+          withCredentials: true,
+          headers: new HttpHeaders()
+            .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+            .append('Content-Type', 'application/json')
+        });
+      }
+
+        uploadCv(cv: File) {
+          var formdata = new FormData();
+          formdata.append("cv", cv)
+          return this.httpClient.put(`${URL}/ciudadano/upload_cv`, formdata, {
+            observe: 'response',
+            withCredentials: true,
+            headers: new HttpHeaders().append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+          });
+        }
+      
+        downloadGeneratedCv(url: string) {
+          return this.httpClient.get(`${URL}/ciudadano/generar_cv`,
+            {
+              responseType: 'blob',
+              observe: 'response',
+              withCredentials: true,
+              headers: new HttpHeaders().append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+            });
+      
+        }
 }

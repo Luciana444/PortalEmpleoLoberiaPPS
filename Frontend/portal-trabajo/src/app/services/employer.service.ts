@@ -6,13 +6,24 @@ import { Notification } from '../../models/notification.model';
 import { NotificationOffer } from '../../models/notificationOffer.model';
 import { environment } from '../../environments/environment';
 
-const URL =`${environment.apiUrl}/api`;
+const URL = `${environment.apiUrl}/api`;
 
 @Injectable({
     providedIn: 'root'
 })
 export class EmployerService {
     constructor(private httpClient: HttpClient) { }
+
+      editProfileEmployeer(profileEmployeerData: any) {
+        return this.httpClient.patch(`${URL}/empresa/actualizar/perfil`, profileEmployeerData, {
+          observe: 'response',
+          withCredentials: true,
+          headers: new HttpHeaders()
+            .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+            .append('Content-Type', 'application/json')
+        });
+    
+      }
 
     getOfferById(id: any) {
         return this.httpClient.get<any>(`${URL}/usuario/ofertas/${id}`, {
@@ -47,6 +58,16 @@ export class EmployerService {
 
     deleteOfferById(id: any) {
         return this.httpClient.delete(`${URL}/empresa/eliminar/oferta/${id}`, {
+            observe: 'response',
+            withCredentials: true,
+            headers: new HttpHeaders()
+                .append('Authorization', `Bearer ${localStorage.getItem("token")}`)
+                .append('Content-Type', 'application/json')
+        });
+    }
+
+    createNewOffer(newOffer: any) {
+        return this.httpClient.post(`${URL}/empresa/ofertas`, newOffer, {
             observe: 'response',
             withCredentials: true,
             headers: new HttpHeaders()

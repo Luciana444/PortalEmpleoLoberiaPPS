@@ -83,7 +83,7 @@ export class WorkExperienceComponent implements OnInit {
             situacion_laboral: this.workExperience.value.situacion_laboral,
             tiene_emprendimiento: this.workExperience.value.tiene_emprendimiento,
         };
-        this.userservice.addWorkExperience(JSON.stringify(situacionLaboral)).subscribe({
+        this.employeeservice.addWorkExperience(JSON.stringify(situacionLaboral)).subscribe({
             next: (response) => {
                 if (response.status === 200) {
                     this.toastr.success('Cambios guardados', 'Actualización exitosa')
@@ -110,7 +110,7 @@ export class WorkExperienceComponent implements OnInit {
             hasta: this.workExperience.value.hasta,
             comentario: this.workExperience.value.comentario
         };
-        this.userservice.addWorkExperience(JSON.stringify(experiencia)).subscribe({
+        this.employeeservice.addWorkExperience(JSON.stringify(experiencia)).subscribe({
             next: (response) => {
                 if (response.status === 200) {
                     //this.experiencias.push(experiencia);
