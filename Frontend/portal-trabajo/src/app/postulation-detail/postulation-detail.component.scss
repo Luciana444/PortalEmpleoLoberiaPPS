@@ -13,6 +13,11 @@ h5{
     padding: 0.25rem 0.5rem;
     font-weight: 100;
     white-space: nowrap;
+    font-family: 'Linotte Light';
+}
+h4, h5 {
+    display: flex;
+    align-items: center;
 }
 
 .pendiente-flag, .reject-flag, .check-flag{
@@ -30,7 +35,7 @@ h5{
  fill:#e9a426;
  
 }
-.edit svg{
+.edit svg, .highlight svg{
     fill:#57AF31;
 }
 .reject svg{
@@ -74,6 +79,9 @@ button.edit, button.reject{
     padding: 1rem;
     width: 100%;
 }
+.postulado-flag svg{
+    fill:white;
+}
 
 .profile {
     display: flex;
@@ -103,6 +111,9 @@ button.edit, button.reject{
     font-weight: 100;
     width: fit-content;
     white-space: nowrap;
+}
+.detail-categories svg{
+    fill:white;
 }
 .fallback{
     margin-bottom: 1rem;
@@ -200,6 +211,9 @@ h5 > i{
     align-items: center;
     gap: 0.25rem;
 }
+.location svg{
+    fill:#57AF31;
+}
 
 .profile{
     width: 100%;
@@ -274,6 +288,9 @@ button :hover{
     .container{
         margin-left: 0.5rem;
         margin-right: 0.5rem;
+    }
+    .container-flags{
+        width: 90%;
     }
 
     .profile, .postulation-header, .detail-header{

@@ -63,7 +63,14 @@ button.addExperience-btn {
   margin-bottom: 3rem;
 
 }
-
+.experience-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.experience-btn svg{
+  fill:#57AF31;
+}
 
 .experience-div {
   display: flex;
@@ -122,6 +129,9 @@ button.experience-btn {
   margin-left: 1rem;
   margin-right: 1rem;
 }
+.delete svg{
+  fill:#57AF31;
+}
 
 .delete i {
   color: #57AF31 !important;
@@ -129,6 +139,15 @@ button.experience-btn {
 
 .edit-exp-btn {
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.edit-exp-btn svg{
+  fill:white;
+}
+.edit-exp-btn:hover svg{
+  fill:#57AF31;
 }
 
 .size-form {
@@ -220,7 +239,6 @@ li{
   .edit-exp-btn,
   .delete {
     margin: 0.5rem auto !important;
-    display: block;
   }
 
   .fallback {

@@ -60,6 +60,16 @@ h5 {
   margin-left: -2rem;
   width: calc(100% + 3rem);
 }
+ .title-wrapper svg{
+    fill:white;
+  }
+  button:hover svg{
+  fill:#57AF31;
+  }
+  .title-wrapper button{
+    display: flex;
+    align-items: center;
+  }
 
 .title-wrapper > h2,
 .postulation-title > h2 {
@@ -163,6 +173,7 @@ mat-divider {
     margin-left: auto; /* Remove left margin */
     margin-right: auto; /* Remove right margin */
     width: 90%; /* Full width */
+    justify-content: center;
   }
 
   main,
