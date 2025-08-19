@@ -208,12 +208,21 @@ li {
   border-radius: 10px;
 }
 
-
-.state-flag svg
-{
-fill: #e9a426;
+.status-flag h5 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
-.state-flag-check svg{
+
+.status-flag svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.state-flag svg {
+  fill: #e9a426;
+}
+.state-flag-check svg {
   fill: #57af31;
 }
 .state-flag-reject svg {
@@ -331,8 +340,10 @@ mat-panel-title {
       white-space: nowrap;
     }
   }
-  
-  h5.state-flag, h5.state-flag-check, h5.state-flag-reject{
+
+  h5.state-flag,
+  h5.state-flag-check,
+  h5.state-flag-reject {
     display: flex;
     align-items: center;
   }

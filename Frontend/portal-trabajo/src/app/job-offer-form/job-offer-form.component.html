@@ -100,13 +100,13 @@
         <!-- Tipo de contrato -->
         <mat-form-field appearance="outline" class="margin-input">
           <mat-label>Tipo de contrato</mat-label>
-          <input matInput formControlName="tipo_contrato" maxlength="50">
+          <input matInput formControlName="tipo_contrato" maxlength="35">
         </mat-form-field>
 
         <!-- Localidad del puesto -->
         <mat-form-field appearance="outline">
           <mat-label>Localidad del puesto</mat-label>
-          <input matInput formControlName="localidad_del_puesto" required>
+          <input matInput formControlName="localidad_del_puesto" required maxlength="35">
           <mat-error *ngIf="offersForm.get('localidad_puesto')?.hasError('required')">
             Este campo es obligatorio
           </mat-error>

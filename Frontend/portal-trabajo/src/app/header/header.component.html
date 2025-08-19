@@ -30,7 +30,8 @@
                 @if (getUserType()=== 'ciudadano' || getUserType()=== 'empresa'){
                 <p class="username" (click)="navigateToProfile()">{{user.nombre}}</p>
                 }@else {
-                <p class="username">Municipio de Loberia</p>
+                <p class="username" (click)="navigateToAdminPanel()" matTooltip="Ir a Panel de administración">Municipio
+                    de Loberia</p>
                 }
                 @if (getUserType() === 'empresa' && hasNotifications()) {
                 <button class="bell-btn" [matMenuTriggerFor]="menu" (click)="toggleBadgeVisibility()">
