@@ -36,7 +36,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Inicializa el servidor en el puerto 3000 y muestra un mensaje de confirmación en consola
 app.listen(3000, () => {
-  console.log(`Server running on http://localhost:3000`);
+  console.log(`Server running on ${process.env.API_URL}`);
 });
 
 // Punto de montaje de todas las rutas definidas en el router principal
