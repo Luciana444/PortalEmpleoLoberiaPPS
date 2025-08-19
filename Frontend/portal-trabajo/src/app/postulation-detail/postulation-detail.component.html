@@ -51,8 +51,8 @@
             <div>
                 <h5 class="postulado-flag"><i class="fa fa-check" aria-hidden="true"></i> Postulado</h5>
             </div>
-            <button class="delete" (click)="openDialogDeletePostulation(offer.id)" matTooltip="Cancelar postulación"><i
-                    class="fa-solid fa-trash fa-xl "></i> </button>
+            <button class="delete" (click)="openDialogDeletePostulation(offer.id)" matTooltip="Cancelar postulación">
+                <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"><path d="M298.61-160q-23.91 0-41.18-17.28-17.28-17.27-17.28-41.18v-510.77H200v-33.85h156.1v-27.69h247.8v27.69H760v33.85h-40.15v510.77q0 24.58-16.95 41.52Q685.96-160 661.39-160H298.61ZM686-729.23H274v510.77q0 10.77 7.18 17.69 7.18 6.92 17.43 6.92h362.78q9.23 0 16.92-7.69 7.69-7.69 7.69-16.92v-510.77ZM394.41-275.79h33.85v-372.16h-33.85v372.16Zm137.33 0h33.85v-372.16h-33.85v372.16ZM274-729.23v535.38-535.38Z"/></svg> </button>
             } @else {
             <button (click)="openDialogPostulation(offer.id)">POSTULARME</button>
             }
@@ -62,36 +62,36 @@
             <button class="edit" (click)="navigateToEditOffer(offer.id)"> <i class="fa-solid fa-pen "></i> Editar
                 Oferta</button>
             <button class="delete" (click)="openDialog(offer.id)" matTooltip="Eliminar oferta">
-                <i class="fa-solid fa-trash fa-xl "></i> </button>
+                <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"><path d="M298.61-160q-23.91 0-41.18-17.28-17.28-17.27-17.28-41.18v-510.77H200v-33.85h156.1v-27.69h247.8v27.69H760v33.85h-40.15v510.77q0 24.58-16.95 41.52Q685.96-160 661.39-160H298.61ZM686-729.23H274v510.77q0 10.77 7.18 17.69 7.18 6.92 17.43 6.92h362.78q9.23 0 16.92-7.69 7.69-7.69 7.69-16.92v-510.77ZM394.41-275.79h33.85v-372.16h-33.85v372.16Zm137.33 0h33.85v-372.16h-33.85v372.16ZM274-729.23v535.38-535.38Z"/></svg> </button>
             } @else if (currentUserType === "admin" && offer.estado_publicacion === 'pendiente') {
             <div>
-                <h5 class="pendiente-flag"><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+                <h5 class="pendiente-flag"><svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"><path d="M109.23-160 480-800l370.77 640H109.23Zm58.41-33.85h624.72L480-732.31 167.64-193.85Zm313.61-60.56q9.21 0 15.31-6.23 6.11-6.23 6.11-15.43 0-9.21-6.23-15.31-6.23-6.11-15.44-6.11-9.21 0-15.31 6.23t-6.1 15.44q0 9.2 6.23 15.31 6.23 6.1 15.43 6.1Zm-17.04-86.31h33.84v-207.79h-33.84v207.79ZM480-463.08Z"/></svg>
                     Pendiente
                 </h5>
             </div>
-            <button class="edit" (click)="changeOfferStatus(offer.id, 'aprobada')"> <i class="fa-solid fa-check "></i>
+            <button class="edit" (click)="changeOfferStatus(offer.id, 'aprobada')"> <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"><path d="M380.87-269.64 183.23-467.28l24.33-23.82 173.31 173.31 371.41-371.93 24.34 24.34-395.75 395.74Z"/></svg>
                 APROBAR</button>
-            <button class="reject" (click)="changeOfferStatus(offer.id, 'rechazada')"> <i class="fa-solid fa-xmark"></i>
+            <button class="reject" (click)="changeOfferStatus(offer.id, 'rechazada')"> <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"><path d="M256-227.69 227.69-256l224-224-224-224L256-732.31l224 224 224-224L732.31-704l-224 224 224 224L704-227.69l-224-224-224 224Z"/></svg>
                 RECHAZAR</button>
             <button class="delete" (click)="openDialog(offer.id)" matTooltip="Eliminar oferta">
-                <i class="fa-solid fa-trash fa-xl "></i> </button>
+                <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"><path d="M298.61-160q-23.91 0-41.18-17.28-17.28-17.27-17.28-41.18v-510.77H200v-33.85h156.1v-27.69h247.8v27.69H760v33.85h-40.15v510.77q0 24.58-16.95 41.52Q685.96-160 661.39-160H298.61ZM686-729.23H274v510.77q0 10.77 7.18 17.69 7.18 6.92 17.43 6.92h362.78q9.23 0 16.92-7.69 7.69-7.69 7.69-16.92v-510.77ZM394.41-275.79h33.85v-372.16h-33.85v372.16Zm137.33 0h33.85v-372.16h-33.85v372.16ZM274-729.23v535.38-535.38Z"/></svg> </button>
             } @else if (currentUserType === "admin" && offer.estado_publicacion === 'rechazada') {
             <div>
-                <h5 class="reject-flag"><i class="fa-solid fa-xmark" aria-hidden="true"></i> Rechazada</h5>
+                <h5 class="reject-flag"><svg xmlns="http://www.w3.org/2000/svg" height="30x" viewBox="0 -960 960 960" width="30px"><path d="m336-307.69 144-144 144 144L652.31-336l-144-144 144-144L624-652.31l-144 144-144-144L307.69-624l144 144-144 144L336-307.69ZM480.13-120q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41 28.34-65.73 76.92-114.36 48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34 65.73 28.34 114.36 76.92 48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41-28.34 65.73-76.92 114.36-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg> Rechazada</h5>
             </div>
-            <button class="edit" (click)="changeOfferStatus(offer.id, 'aprobada')"> <i class="fa-solid fa-check "></i>
+            <button class="edit" (click)="changeOfferStatus(offer.id, 'aprobada')"> <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"><path d="M380.87-269.64 183.23-467.28l24.33-23.82 173.31 173.31 371.41-371.93 24.34 24.34-395.75 395.74Z"/></svg>
                 APROBAR</button>
             <button class="delete" (click)="openDialog(offer.id)" matTooltip="Eliminar oferta">
-                <i class="fa-solid fa-trash fa-xl "></i> </button>
+                <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"><path d="M298.61-160q-23.91 0-41.18-17.28-17.28-17.27-17.28-41.18v-510.77H200v-33.85h156.1v-27.69h247.8v27.69H760v33.85h-40.15v510.77q0 24.58-16.95 41.52Q685.96-160 661.39-160H298.61ZM686-729.23H274v510.77q0 10.77 7.18 17.69 7.18 6.92 17.43 6.92h362.78q9.23 0 16.92-7.69 7.69-7.69 7.69-16.92v-510.77ZM394.41-275.79h33.85v-372.16h-33.85v372.16Zm137.33 0h33.85v-372.16h-33.85v372.16ZM274-729.23v535.38-535.38Z"/></svg> </button>
 
             } @else if (currentUserType === "admin" && offer.estado_publicacion === 'aprobada') {
             <div>
-                <h5 class="check-flag"><i class="fa fa-check" aria-hidden="true"></i> Aprobada</h5>
+                <h5 class="check-flag"><svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"><path d="m422.46-323.69 255.85-255.85L650-607.85 422.46-380.31l-114-114L280.15-466l142.31 142.31ZM480.13-120q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41 28.34-65.73 76.92-114.36 48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34 65.73 28.34 114.36 76.92 48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41-28.34 65.73-76.92 114.36-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg> Aprobada</h5>
             </div>
-            <button class="reject" (click)="changeOfferStatus(offer.id, 'rechazada')"> <i class="fa-solid fa-xmark"></i>
+            <button class="reject" (click)="changeOfferStatus(offer.id, 'rechazada')"><svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"><path d="M256-227.69 227.69-256l224-224-224-224L256-732.31l224 224 224-224L732.31-704l-224 224 224 224L704-227.69l-224-224-224 224Z"/></svg>
                 RECHAZAR</button>
             <button class="delete" (click)="openDialog(offer.id)" matTooltip="Eliminar oferta">
-                <i class="fa-solid fa-trash fa-xl "></i> </button>
+                <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"><path d="M298.61-160q-23.91 0-41.18-17.28-17.28-17.27-17.28-41.18v-510.77H200v-33.85h156.1v-27.69h247.8v27.69H760v33.85h-40.15v510.77q0 24.58-16.95 41.52Q685.96-160 661.39-160H298.61ZM686-729.23H274v510.77q0 10.77 7.18 17.69 7.18 6.92 17.43 6.92h362.78q9.23 0 16.92-7.69 7.69-7.69 7.69-16.92v-510.77ZM394.41-275.79h33.85v-372.16h-33.85v372.16Zm137.33 0h33.85v-372.16h-33.85v372.16ZM274-729.23v535.38-535.38Z"/></svg> </button>
             }
         </div>
     </div>

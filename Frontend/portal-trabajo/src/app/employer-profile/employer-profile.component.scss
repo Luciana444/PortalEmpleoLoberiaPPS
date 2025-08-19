@@ -78,6 +78,9 @@ h3 {
   align-items: center;
   white-space: nowrap;
 }
+.state p{
+  margin-left:1rem;
+}
 
 .reject {
   background-color: #b3261e;
@@ -90,40 +93,76 @@ i:hover {
 }
 
 .pendiente-flag,
-.reject-flag,
-.check-flag {
+.reject-flag{
   font-family: "Linotte Light";
   color: white;
   margin-right: 1rem;
-  border-radius: 1.5rem;
   padding: 0.2rem 0.8rem;
 }
 
-.pendiente-flag i,
-.reject-flag i,
-.check-flag i {
-  color: white;
+.check-flag svg{
+    fill:#57AF31;
+}
+.check-flag{
+   font-family: "Linotte Light";
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    color: #57AF31;
 }
 
-.pendiente-flag {
-  background-color: #e9a426;
+.edit svg{
+    fill:#57AF31;
 }
 
-.reject-flag {
-  background-color: #b3261e;
+.edit{
+        border: 1px solid #57af31;
+        background-color: transparent;
+        color:#57af31;
 }
 
-.check-flag {
-  background-color: #57af31;
+.reject{
+    border:1px solid #b3261e;
+    background-color:transparent;
+    color:#b3261e;
+}
+.reject svg{
+    fill:#b3261e;
+}
+.reject-flag svg{
+    fill:#b3261e;
+}
+.reject-flag, .check-flag{
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+
 }
 
-.edit,
-.reject {
-  padding: 0.5rem 0.5rem;
+.reject-flag{
+       color: #b3261e;
 }
-.reject i,
-.edit i {
-  color: white;
+
+.pendiente-flag{
+  background-color: transparent;
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    color:#e9a426;
+}
+.pendiente-flag svg{
+ fill:#e9a426;
+ 
+}
+
+button.edit, button.reject{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:fit-content;
+    padding: 0.1rem 1rem;
 }
 
 .fallback {
