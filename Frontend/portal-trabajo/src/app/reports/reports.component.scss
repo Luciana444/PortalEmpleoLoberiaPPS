@@ -84,3 +84,18 @@ mat-panel-title {
         align-items: center;
     }
 }
+
+@media only screen and (min-width: 768px) and (max-width:991px){
+
+    .profile{
+        width:5rem;
+        
+    }
+    .profile h4{
+        font-size: 0.6rem;
+        font-family: 'Linotte Regular';
+    }
+    .report-nmb{
+        font-size: 2rem;
+    }
+}
