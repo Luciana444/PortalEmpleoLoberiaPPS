@@ -26,7 +26,7 @@ main{
     min-height: 100vh;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 600px){
   main {
     justify-content: center; // Center container on mobile
   }
@@ -47,5 +47,59 @@ main{
 
   .fallback > i {
     margin-left: 1rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width:991px){
+  main {
+    justify-content: center; // Center container on mobile
+  }
+
+  .container {
+    flex-direction: column;
+    width: 100%; // Ensure full width for centering
+    margin: 0 auto; // Center the container itself
+  }
+
+  .container-profile{
+    flex-direction: column; // Stack items vertically on mobile
+    align-items: center; // Center items horizontally
+    gap: 0.5rem; // Adjust gap for better spacing on smaller screens
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .fallback > i {
+    margin-left: 1rem;
+  }
+  app-profile, app-attatch-cv{
+    width: 100%;
+  }
+}
+
+@media (min-width: 992px) and (max-width:1200px){
+  main {
+    justify-content: center; // Center container on mobile
+  }
+
+  .container {
+    flex-direction: column;
+    width: 100%; // Ensure full width for centering
+    margin: 0 auto; // Center the container itself
+  }
+
+  .container-profile{
+    flex-direction: column; // Stack items vertically on mobile
+    align-items: center; // Center items horizontally
+    gap: 0.5rem; // Adjust gap for better spacing on smaller screens
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .fallback > i {
+    margin-left: 1rem;
+  }
+  app-profile, app-attatch-cv{
+    width: 100%;
   }
 }

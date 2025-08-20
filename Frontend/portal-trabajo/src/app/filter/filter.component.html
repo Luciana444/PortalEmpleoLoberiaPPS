@@ -8,53 +8,61 @@
         puestoSelect.value
       )" class="filter-form">
                 <div class="filter-fields">
-                    <!-- Descripción Field -->
-                    <mat-form-field appearance="outline" class="filter-field">
-                        <mat-label>Descripción</mat-label>
-                        <input matInput [(ngModel)]="descripcion" name="descripcion" #descriptionSelect
-                            placeholder="Palabras clave relacionadas">
-                    </mat-form-field>
+                    <div class="container-inputs-filter">
+                        <!-- Descripción Field -->
+                        <mat-form-field appearance="outline" class="filter-field">
+                            <mat-label>Descripción</mat-label>
+                            <input matInput [(ngModel)]="descripcion" name="descripcion" #descriptionSelect
+                                placeholder="Palabras clave relacionadas">
+                        </mat-form-field>
 
-                    <!-- Puesto (Position) Field -->
-                    <mat-form-field appearance="outline" class="filter-field">
-                        <mat-label>Puesto</mat-label>
-                        <input matInput [(ngModel)]="puesto_requerido" name="puesto" #puestoSelect type="search"
-                            placeholder="Ej: Desarrollador Frontend">
-                    </mat-form-field>
+                        <!-- Puesto (Position) Field -->
+                        <mat-form-field appearance="outline" class="filter-field">
+                            <mat-label>Puesto</mat-label>
+                            <input matInput [(ngModel)]="puesto_requerido" name="puesto" #puestoSelect type="search"
+                                placeholder="Ej: Desarrollador Frontend">
+                        </mat-form-field>
 
-                    <!-- Location Select -->
-                    <mat-form-field appearance="outline" class="filter-field">
-                        <mat-label>Lugar de trabajo</mat-label>
-                        <mat-select [(ngModel)]="lugar_trabajo" name="location" #locationSelect>
-                            <mat-option value="">Todos los lugares</mat-option>
-                            <mat-option value="Presencial">Presencial</mat-option>
-                            <mat-option value="Remoto">Remoto</mat-option>
-                            <mat-option value="Mixto">Mixto</mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                        <!-- Location Select -->
+                        <mat-form-field appearance="outline" class="filter-field">
+                            <mat-label>Lugar de trabajo</mat-label>
+                            <mat-select [(ngModel)]="lugar_trabajo" name="location" #locationSelect>
+                                <mat-option value="">Todos los lugares</mat-option>
+                                <mat-option value="Presencial">Presencial</mat-option>
+                                <mat-option value="Remoto">Remoto</mat-option>
+                                <mat-option value="Mixto">Mixto</mat-option>
+                            </mat-select>
+                        </mat-form-field>
 
-                    <!-- Modality Select -->
-                    <mat-form-field appearance="outline" class="filter-field">
-                        <mat-label>Modalidad</mat-label>
-                        <mat-select [(ngModel)]="modalidad" name="modality" #modalitySelect>
-                            <mat-option value="">Todas las modalidades</mat-option>
-                            <mat-option value="Tiempo completo">Tiempo Completo</mat-option>
-                            <mat-option value="Medio tiempo">Medio Tiempo</mat-option>
-                            <mat-option value="Contrato a plazo fijo">Contrato a plazo fijo</mat-option>
-                            <mat-option value="Pasantia">Pasantia</mat-option>
-                            <mat-option value="Freelance">Freelance</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
+                        <!-- Modality Select -->
+                        <mat-form-field appearance="outline" class="filter-field">
+                            <mat-label>Modalidad</mat-label>
+                            <mat-select [(ngModel)]="modalidad" name="modality" #modalitySelect>
+                                <mat-option value="">Todas las modalidades</mat-option>
+                                <mat-option value="Tiempo completo">Tiempo Completo</mat-option>
+                                <mat-option value="Medio tiempo">Medio Tiempo</mat-option>
+                                <mat-option value="Contrato a plazo fijo">Contrato a plazo fijo</mat-option>
+                                <mat-option value="Pasantia">Pasantia</mat-option>
+                                <mat-option value="Freelance">Freelance</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
                     <!-- Action Buttons -->
                     <div class="action-buttons">
                         <button mat-raised-button color="primary" type="submit" class="filter-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M470.77-200q-13.15 0-21.96-8.81T440-230.77v-223.08L224.15-726.77q-8.07-10.77-2.19-22Q227.85-760 240.77-760h478.46q12.92 0 18.81 11.23 5.88 11.23-2.19 22L520-453.85v223.08q0 13.15-8.81 21.96T489.23-200h-18.46ZM480-468l198-252H282l198 252Zm0 0Z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+                                <path
+                                    d="M470.77-200q-13.15 0-21.96-8.81T440-230.77v-223.08L224.15-726.77q-8.07-10.77-2.19-22Q227.85-760 240.77-760h478.46q12.92 0 18.81 11.23 5.88 11.23-2.19 22L520-453.85v223.08q0 13.15-8.81 21.96T489.23-200h-18.46ZM480-468l198-252H282l198 252Zm0 0Z" />
+                            </svg>
                             Filtrar
                         </button>
                         <button mat-stroked-button color="primary" type="button" (click)="refreshFilter(filterForm)"
                             class="reset-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M440-163.54q-104.08-14.23-172.04-92.81Q200-334.92 200-440q0-56 22.15-107.27 22.16-51.27 60.93-90.88l28.54 28.53q-35.7 33.24-53.66 77.08Q240-488.69 240-440q0 88 56.38 154.73 56.39 66.73 143.62 81.73v40Zm80 1.54v-40q86.23-19.08 143.12-84.92Q720-352.77 720-440q0-100-70-170t-170-70h-25.31l64 64-28.31 28.31L378.08-700l112.3-112.31L518.69-784l-64 64H480q117.08 0 198.54 81.46T760-440q0 104.85-68.35 182.65Q623.31-179.54 520-162Z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                                fill="#1f1f1f">
+                                <path
+                                    d="M440-163.54q-104.08-14.23-172.04-92.81Q200-334.92 200-440q0-56 22.15-107.27 22.16-51.27 60.93-90.88l28.54 28.53q-35.7 33.24-53.66 77.08Q240-488.69 240-440q0 88 56.38 154.73 56.39 66.73 143.62 81.73v40Zm80 1.54v-40q86.23-19.08 143.12-84.92Q720-352.77 720-440q0-100-70-170t-170-70h-25.31l64 64-28.31 28.31L378.08-700l112.3-112.31L518.69-784l-64 64H480q117.08 0 198.54 81.46T760-440q0 104.85-68.35 182.65Q623.31-179.54 520-162Z" />
+                            </svg>
                             Restaurar
                         </button>
                     </div>

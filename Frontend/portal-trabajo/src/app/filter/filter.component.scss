@@ -1,17 +1,26 @@
 .filter-container {
   padding: 1rem;
   margin: 0 auto;
+  width:85%;
 
   mat-card {
     border-radius: 0.5rem;
     box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1);
   }
 }
-.filter-button svg, .reset-button svg{
-  fill:white,
+  .container-inputs-filter {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+.filter-button svg,
+.reset-button svg {
+  fill: white,
 }
-.filter-button:hover svg, .reset-button:hover svg{
-  fill:#57af31,
+
+.filter-button:hover svg,
+.reset-button:hover svg {
+  fill: #57af31,
 }
 
 .filter-form {
@@ -72,7 +81,7 @@
   gap: 0.75rem;
   justify-content: flex-end; // Align buttons to the right
   padding-bottom: 0.5rem;
-  
+
   button {
     flex: 0 1 auto; // Don't grow, but can shrink
     min-width: 7.5rem;
@@ -80,7 +89,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     mat-icon {
       font-size: 1.25rem;
       height: 1.25rem;
@@ -92,22 +101,63 @@
 @media (max-width: 37.5rem) {
   .filter-field {
     flex: 1 1 100%;
-      
+
     .mat-mdc-form-field-infix {
       min-height: 3.25rem;
     }
   }
-  
-  .filter-fields{
+
+  .filter-fields {
     flex-direction: column;
+    gap:0;
   }
 
 
   .action-buttons {
     flex-direction: column;
-    
+
     button {
       width: 100%;
     }
+  }
+  mat-form-field{
+    width: 100%;
+  }
+   .container-inputs-filter {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width:991px) {
+  .action-buttons {
+    justify-content: center;
+  }
+
+  .container-inputs-filter {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .filter-fields {
+    flex-direction: column;
+    gap:0;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width:1200px) {
+  .action-buttons {
+    justify-content: center;
+  }
+
+  .container-inputs-filter {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .filter-fields {
+    flex-direction: column;
+    gap:0;
   }
 }

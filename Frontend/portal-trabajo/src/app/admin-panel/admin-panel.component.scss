@@ -536,3 +536,27 @@ mat-panel-title {
     min-width: 40px;
   }
 }
+
+  @media only screen and (min-width: 768px) and (max-width:991px) {
+    .profile, .profile-employee {
+      display: flex;
+      flex-direction: column;
+    }
+    .action-column, .profile-actions{
+      flex-direction: column;
+    }
+    .offer-btn button{
+      margin-bottom: 1rem;
+    }
+    .company-info, .profile-details{
+      justify-content: center;
+    }
+  
+  }
+
+   @media only screen and (min-width: 992px) and (max-width:1200px) {
+    .container-list {
+      width:95%;
+    }
+    
+  }
