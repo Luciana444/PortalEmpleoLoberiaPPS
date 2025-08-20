@@ -21,6 +21,9 @@
     gap: 0.5rem;
     width: 120%;
 }
+.title-wrapper svg{
+    fill:#57AF31;
+}
 
 p {
     font-weight: 300;
@@ -60,7 +63,9 @@ h5 {
 .fallback>i {
     color: $green !important;
 }
-
+.location svg{
+    fill:#57AF31;
+}
 
 
 .personal-info {
@@ -116,6 +121,14 @@ h5 {
     margin-top: 1rem;
     width: 8rem;
     padding: 8px 2px;
+    display: flex;
+    align-items: center;
+}
+.edit-profile svg{
+    fill:white;
+}
+.edit-profile:hover svg{
+    fill:#57AF31;
 }
 
 .profile-header {

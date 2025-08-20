@@ -13,21 +13,60 @@ h5{
     padding: 0.25rem 0.5rem;
     font-weight: 100;
     white-space: nowrap;
+    font-family: 'Linotte Light';
+}
+h4, h5 {
+    display: flex;
+    align-items: center;
 }
 
 .pendiente-flag, .reject-flag, .check-flag{
     font-family: 'Linotte Light';
-    color:white;
     margin-right:1rem;
 }
 .pendiente-flag{
-  background-color: #e9a426;
+  background-color: transparent;
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    color:#e9a426;
+}
+.pendiente-flag svg{
+ fill:#e9a426;
+ 
+}
+.edit svg, .highlight svg{
+    fill:#57AF31;
+}
+.reject svg{
+    fill:#b3261e;
+}
+.reject-flag svg{
+    fill:#b3261e;
 }
 .reject-flag{
- background-color: #b3261e;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    color: #b3261e;
+}
+.check-flag svg{
+    fill:#57AF31;
 }
 .check-flag{
- background-color: #57AF31;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    color: #57AF31;
+}
+button.edit, button.reject{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:fit-content;
+    padding: 0.1rem 1rem;
 }
 
 .postulation-header {
@@ -39,6 +78,9 @@ h5{
     border-radius: 8px;
     padding: 1rem;
     width: 100%;
+}
+.postulado-flag svg{
+    fill:white;
 }
 
 .profile {
@@ -70,6 +112,9 @@ h5{
     width: fit-content;
     white-space: nowrap;
 }
+.detail-categories svg{
+    fill:white;
+}
 .fallback{
     margin-bottom: 1rem;
     font-family: 'Linotte Light';
@@ -92,6 +137,7 @@ main{
     border-radius: 8px;
     padding: 1rem;
     overflow: hidden;
+    width:100%;
 }
 
 h1, h2{
@@ -165,6 +211,9 @@ h5 > i{
     align-items: center;
     gap: 0.25rem;
 }
+.location svg{
+    fill:#57AF31;
+}
 
 .profile{
     width: 100%;
@@ -202,22 +251,27 @@ button :hover{
 }
 
 .reject{
-    background-color:#b3261e;
+    border:1px solid #b3261e;
+    background-color:transparent;
+    color:#b3261e;
 }
-// .reject:hover, i:hover{
-//    color:#b3261e;
-//    background-color:#f5f5f5;
-// }
+ .reject:hover, i:hover{
+    color:#b3261e;
+}
 
 .delete {
     background-color: transparent;
-    width: 2rem;
-    margin-left: 1rem;
+    width: 3rem;
     margin-right: 1rem;
 }
-.delete i
+.delete svg
 {
-    color: #57AF31 !important;
+    fill: #57AF31;
+}
+.edit{
+        border: 1px solid #57af31;
+        background-color: transparent;
+        color:#57af31;
 }
 
 @media (max-width: 600px) {
@@ -234,6 +288,9 @@ button :hover{
     .container{
         margin-left: 0.5rem;
         margin-right: 0.5rem;
+    }
+    .container-flags{
+        width: 90%;
     }
 
     .profile, .postulation-header, .detail-header{
@@ -334,5 +391,11 @@ button :hover{
             width: 100%;
             max-width: 100%; // Ensure it doesn't exceed container
         }
+    }
+    main{
+        width:auto;
+    }
+    button.edit, button.reject{
+        width: 90%;
     }
 }

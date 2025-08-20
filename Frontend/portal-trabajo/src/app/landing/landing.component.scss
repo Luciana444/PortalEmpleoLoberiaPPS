@@ -48,6 +48,7 @@ i{
     gap: 0.5rem;
 }
 
+
 .offer-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -160,6 +161,13 @@ i{
 
 .card-info > p{
     margin: 0;
+}
+.card-info svg, .card-header svg, .filter-toggle svg{
+    fill:#57AF31;
+}
+.card-info h5{
+    display: flex;
+    align-items: center;
 }
 
 .card-info > div {

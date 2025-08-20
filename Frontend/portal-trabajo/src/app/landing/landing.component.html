@@ -4,7 +4,7 @@
 
     <div class="filter">
         <span (click)="toggleFilter()" class="filter-toggle">
-            <i class="fa-solid fa-filter fa-2x"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"><path d="M470.77-200q-13.15 0-21.96-8.81T440-230.77v-223.08L224.15-726.77q-8.07-10.77-2.19-22Q227.85-760 240.77-760h478.46q12.92 0 18.81 11.23 5.88 11.23-2.19 22L520-453.85v223.08q0 13.15-8.81 21.96T489.23-200h-18.46ZM480-468l198-252H282l198 252Zm0 0Z"/></svg>
             <span>{{ showFilter ? ' Ocultar filtros' : ' Mostrar filtros' }}</span>
         </span>
     </div>
@@ -25,7 +25,7 @@
                     <h4 (click)="navigateToEmpoyerProfile(offer.id_empresa)" class="card-user">{{offer.nombre_empresa}}
                     </h4>
                     <div>
-                        <i class="fa-solid fa-location-dot"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M480.14-490.77q26.71 0 45.59-19.02 18.89-19.02 18.89-45.73 0-26.71-19.03-45.6Q506.57-620 479.86-620q-26.71 0-45.59 19.02-18.89 19.02-18.89 45.73 0 26.71 19.03 45.6 19.02 18.88 45.73 18.88ZM480-172.92q112.77-98.16 178.31-199.66t65.54-175.57q0-109.77-69.5-181.2-69.5-71.42-174.35-71.42t-174.35 71.42q-69.5 71.43-69.5 181.2 0 74.07 65.54 175.57T480-172.92Zm0 53.69Q339-243.92 267.58-351.81q-71.43-107.88-71.43-196.34 0-126.93 82.66-209.39Q361.46-840 480-840q118.54 0 201.19 82.46 82.66 82.46 82.66 209.39 0 88.46-71.43 196.34Q621-243.92 480-119.23Zm0-436.15Z"/></svg>
                         <h5 class="card-location">{{offer.localidad}}</h5>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
             <div class="card-footer">
                 <div class="card-info">
                     <div>
-                        <i class="fa-solid fa-globe"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M160-160v-452.31l449.23-173.07V-440h67.69q0-25.38 18.06-43.46 18.07-18.08 43.43-18.08t43.47 18.08Q800-465.38 800-440v280H160Zm40-40h200v-240h169.23v-287.85L200-585v385Zm240 0h129.23v-92.31h61.54V-200H760v-200H440v200Zm-80-280Zm240 280Zm0-26.15Z"/></svg>
                         <p class="card-modality">{{offer.lugar_trabajo}}</p>
 
                     </div>
