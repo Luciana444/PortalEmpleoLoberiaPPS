@@ -267,6 +267,11 @@ export const crearOfertaLaboral = async (req,res)=>{
 export const eliminarOfertaEmpresa = async (req, res) => {
   const idOferta = req.params.id;
   const idEmpresa = req.usuario?.id;
+  const tipo_usuario = req.usuario.tipo_usuario;
+
+  if(tipo_usuario === 'ciudadano'){
+    return res.status(500).json({message:'Solo las empresas y administradores pueden acceder a esta opcion'})
+  }
 
   if (!idOferta || !idEmpresa) {
     return res.status(400).json({ error: 'Faltan datos necesarios' });
@@ -280,8 +285,10 @@ export const eliminarOfertaEmpresa = async (req, res) => {
       return res.status(404).json({ error: 'Oferta no encontrada' });
     }
 
-    if (oferta.id_empresa !== idEmpresa) {
-      return res.status(403).json({ error: 'No tienes permiso para eliminar esta oferta' });
+    if(tipo_usuario === 'empresa'){
+      if (oferta.id_empresa !== idEmpresa) {
+          return res.status(403).json({ error: 'No tienes permiso para eliminar esta oferta' });
+        }
     }
 
     await eliminarOferta(idOferta);
