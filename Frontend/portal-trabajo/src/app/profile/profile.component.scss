@@ -22,6 +22,9 @@
     padding-bottom: 1rem;
     color: #57AF31;
 }
+.title-wrapper svg{
+    fill:#57AF31;
+}
 
 .title-wrapper {
     background-color: #ECF8E7;
@@ -56,11 +59,24 @@ h5 {
 h5{
     align-self: start;
 }
+.profile-footer svg{
+fill:white;
+}
+.edit-profile{
+    display: flex;
+    align-items: center;
+}
+.edit-profile:hover svg{
+    fill:#57AF31;
+}
 
 .profile-info>h4,
 .location>p {
     color: #49454F;
     margin: 0;
+}
+.location svg{
+    fill:#57AF31;
 }
 
 .location {

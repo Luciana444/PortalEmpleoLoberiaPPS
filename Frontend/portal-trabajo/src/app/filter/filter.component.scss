@@ -7,6 +7,12 @@
     box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1);
   }
 }
+.filter-button svg, .reset-button svg{
+  fill:white,
+}
+.filter-button:hover svg, .reset-button:hover svg{
+  fill:#57af31,
+}
 
 .filter-form {
   display: flex;

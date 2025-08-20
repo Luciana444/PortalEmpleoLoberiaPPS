@@ -6,6 +6,17 @@ i {
   margin-right: 5px;
 }
 
+.status-flag h5 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-flag svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -32,8 +43,7 @@ li {
 .profile-employee {
   display: grid;
   grid-template-columns:
-    minmax(150px, 25%) minmax(200px, 30%) minmax(150px, 20%)
-    minmax(200px, 25%);
+    minmax(150px, 25%) minmax(200px, 30%) minmax(150px, 20%) minmax(200px, 25%);
   align-items: center;
   width: 96%;
   border-radius: 10px;
@@ -60,6 +70,7 @@ li {
 
   .status-flag {
     flex-shrink: 1; // Allows flag to shrink if needed
+
     h5 {
       margin: 0;
       font-family: "Linotte Light";
@@ -74,6 +85,7 @@ li {
 
   .profile-btn {
     flex-shrink: 0; // Prevents button from shrinking
+
     button {
       padding: 0.8rem 1rem;
       min-width: 120px;
@@ -147,6 +159,7 @@ li {
 // Column 3: Date
 .offer-date {
   text-align: center;
+
   p {
     white-space: nowrap;
     color: #49454f;
@@ -182,8 +195,8 @@ li {
 
 // Status flags
 .state-flag {
-  color: white;
-  background-color: #e9a426;
+  color: #e9a426;
+  background-color: transparent;
   font-family: "Linotte Light";
   font-size: 1rem;
   padding: 0.5rem;
@@ -191,8 +204,8 @@ li {
 }
 
 .state-flag-check {
-  color: white;
-  background-color: #57af31;
+  color: #57af31;
+  background-color: trasparent;
   font-family: "Linotte Light";
   font-size: 1rem;
   padding: 0.5rem;
@@ -200,19 +213,27 @@ li {
 }
 
 .state-flag-reject {
-  color: white;
-  background-color: #b3261e;
+  color: #b3261e;
+  background-color: trasparent;
   font-family: "Linotte Light";
   font-size: 1rem;
   padding: 0.5rem;
   border-radius: 10px;
 }
 
-.state-flag > i,
-.state-flag-check > i,
-.state-flag-reject > i {
-  color: white;
+
+.state-flag svg {
+  fill: #e9a426;
 }
+
+.state-flag-check svg {
+  fill: #57af31;
+}
+
+.state-flag-reject svg {
+  fill: #b3261e;
+}
+
 i {
   color: #57af31;
 }
@@ -241,6 +262,7 @@ mat-expansion-panel {
 mat-panel-title {
   font-family: "Linotte Heavy";
 }
+
 // Update your SCSS with these additions:
 
 // Common styles for all profile types
@@ -299,6 +321,7 @@ mat-panel-title {
 // Column 3: Additional Info (Date/Email/Date of Birth)
 .profile-info-column {
   text-align: center;
+
   p {
     white-space: nowrap;
     color: #49454f;
@@ -324,6 +347,13 @@ mat-panel-title {
       border-radius: 10px;
       white-space: nowrap;
     }
+  }
+
+  h5.state-flag,
+  h5.state-flag-check,
+  h5.state-flag-reject {
+    display: flex;
+    align-items: center;
   }
 
   .profile-btn button {
