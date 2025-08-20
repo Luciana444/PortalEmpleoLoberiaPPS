@@ -1,6 +1,7 @@
 import express from 'express';
 import { authMiddleware } from '../middlewares/authMiddleware.js';
 import { onlyEmpresa } from '../middlewares/onlyEmpresa.js';
+import { onlyAdmin } from '../middlewares/onlyAdmin.js';
 import { actualizarPerfilEmpresa, crearOfertaLaboral, obtenerDatosEmpresa,obtenerOfertasEmpresa,traerOfertasActivas,eliminarOfertaEmpresa, editarOfertaLaboral,obtenerNotificaciones, obtenerPostulacionesOferta, obtenerCvPorPostulacion, obtenerPerfilPorPostulacion, obtenerInformacionEmpresa,obtenerNotificacionOferta } from '../controllers/empleadorController.js';
 
 export const empleadorRoutes = express.Router();
@@ -413,7 +414,7 @@ empleadorRoutes.post('/ofertas', authMiddleware,onlyEmpresa,crearOfertaLaboral);
  */
 
 
-empleadorRoutes.delete('/eliminar/oferta/:id', authMiddleware, onlyEmpresa, eliminarOfertaEmpresa);
+empleadorRoutes.delete('/eliminar/oferta/:id', authMiddleware, eliminarOfertaEmpresa);
 
 //====================================
 // End point editar oferta
