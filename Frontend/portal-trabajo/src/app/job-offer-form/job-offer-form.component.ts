@@ -14,6 +14,7 @@ import { EmployerService } from '../services/employer.service';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
+import { RouteTranslationService } from '../services/route-translation.service';
 
 @Component({
     standalone: true,
@@ -39,7 +40,7 @@ export class JobOfferFormComponent implements OnInit {
     itemId: string = "";
 
     constructor(
-        private router: Router,
+        private routeTranslation: RouteTranslationService,
         private fb: FormBuilder,
         private userservice: UserService,
         private employerservice: EmployerService,
@@ -89,7 +90,7 @@ export class JobOfferFormComponent implements OnInit {
                     this.toastr.success('Esperando aprobación', 'Oferta creada')
                     console.log('Actualización exitosa', response);
                     this.offersForm.reset();
-                    this.router.navigate(['employer-profile']);
+                    this.routeTranslation.navigateToTranslated(['employer-profile']);
                 } else {
                     console.log('No se pudo crear la oferta', response);
                 }
@@ -113,7 +114,7 @@ export class JobOfferFormComponent implements OnInit {
                     this.toastr.success('Actualización exitosa', 'Oferta editada')
                     console.log('Actualización exitosa', response);
                     this.offersForm.reset();
-                    this.router.navigate(['detail', this.itemId]);
+                    this.routeTranslation.navigateToTranslated(['detail', this.itemId]);
                 } else {
                     console.log('No se pudo crear la oferta', response);
                 }
@@ -132,6 +133,6 @@ export class JobOfferFormComponent implements OnInit {
     }
 
     navigateToProfile() {
-        this.router.navigate(['profile']);
+        this.routeTranslation.navigateToTranslated(['profile']);
     }
 }

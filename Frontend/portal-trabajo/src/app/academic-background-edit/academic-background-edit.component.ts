@@ -13,7 +13,6 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
-import { AcademicBackground } from '../../models/academic-background.model';
 import { Employee } from '../../models/employee.model';
 import { EmployeeService } from '../services/employee.service';
 import { jwtDecode } from 'jwt-decode';
@@ -23,6 +22,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { Router, ActivatedRoute } from '@angular/router';
+import { RouteTranslationService } from '../services/route-translation.service';
 
 @Component({
     selector: 'app-academic-background-edit',
@@ -56,12 +56,9 @@ export class AcademicBackgroundEditComponent implements OnInit {
 
     constructor(private fb: FormBuilder,
         private toastr: ToastrService,
-        private userservice: UserService,
         private employeeservice: EmployeeService,
         public dialog: MatDialog,
-        private router: Router,
-        private route: ActivatedRoute,
-
+        private routeTranslation: RouteTranslationService,
     ) {
 
         this.educationForm = this.fb.group({
@@ -127,8 +124,6 @@ export class AcademicBackgroundEditComponent implements OnInit {
             }
         });
     }
-
-
 
     isValidAcademicBackground() {
         return this.educationForm.get('nivel_educativo')?.valid &&
@@ -258,6 +253,6 @@ export class AcademicBackgroundEditComponent implements OnInit {
     }
 
     navigateToProfile() {
-        this.router.navigate(['profile']);
+        this.routeTranslation.navigateToTranslated(['profile']);
     }
 }

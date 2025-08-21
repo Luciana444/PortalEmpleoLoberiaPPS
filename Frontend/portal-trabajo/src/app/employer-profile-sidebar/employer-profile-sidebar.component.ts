@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Employer } from '../../models/employer.model';
 import { AuthService } from '../services/auth.service';
 import { environment } from '../../environments/environment';
+import { RouteTranslationService } from '../services/route-translation.service';
 
 @Component({
   selector: 'app-employer-profile-sidebar',
@@ -12,7 +13,9 @@ import { environment } from '../../environments/environment';
   styleUrl: './employer-profile-sidebar.component.scss'
 })
 export class EmployerProfileSidebarComponent implements OnInit {
-  constructor(private router: Router, private http: HttpClient, private authService: AuthService,
+  constructor(
+    private http: HttpClient,
+    private routeTranslation: RouteTranslationService
   ) { }
 
   url = `${environment.apiUrl}/api/empresa/datos`;
@@ -67,11 +70,11 @@ export class EmployerProfileSidebarComponent implements OnInit {
   }
 
   navigateToEditProfile() {
-    this.router.navigate(['/edit-profile-employer']);
+    this.routeTranslation.navigateToTranslated(['/edit-profile-employer']);
   }
 
   navigateToLanding() {
-    this.router.navigate(['/']);
+    this.routeTranslation.navigateToTranslated(['']);
   }
 
   getImageUrl(logo: string) {

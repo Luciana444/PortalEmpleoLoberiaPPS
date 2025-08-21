@@ -20,6 +20,7 @@ import { EmployeeService } from '../services/employee.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { RouteTranslationService } from '../services/route-translation.service';
 
 
 @Component({
@@ -48,11 +49,12 @@ export class ProfileFormComponent implements OnInit {
     profile: FormGroup;
     itemId: string = "";
 
-    constructor(private router: Router,
+    constructor(
         private fb: FormBuilder,
         private userservice: UserService,
         private toastr: ToastrService,
         private employeeservice: EmployeeService,
+        private routeTranslation: RouteTranslationService,
         public dialog: MatDialog
     ) {
         this.profile = this.fb.group({
@@ -106,7 +108,7 @@ export class ProfileFormComponent implements OnInit {
                     this.toastr.success('Ya podes ver tu perfil completo', 'Actualización exitosa')
                     console.log('Actualización exitosa', response);
                     this.profile.reset();
-                    this.router.navigate(['profile']);
+                    this.routeTranslation.navigateToTranslated(['profile']);
                 } else {
                     console.log('No se pudo actualizar tu perfil', response);
                 }
@@ -163,7 +165,7 @@ export class ProfileFormComponent implements OnInit {
                     this.toastr.success('Actualización exitosa', 'Cuenta borrada')
                     console.log('Cuenta borrada', response);
                     this.userservice.logout();
-                    this.router.navigate(['login']);
+                    this.routeTranslation.navigateToTranslated(['login']);
                 } else {
                     console.log('No se pudo borrar la cuenta', response);
                 }
@@ -177,7 +179,7 @@ export class ProfileFormComponent implements OnInit {
     }
 
     navigateToProfile() {
-        this.router.navigate(['profile']);
+        this.routeTranslation.navigateToTranslated(['profile']);
     }
 
 }

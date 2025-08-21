@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { RouteTranslationService } from '../services/route-translation.service';
 
 @Component({
   selector: 'app-big-logo',
@@ -8,9 +9,9 @@ import { Router } from '@angular/router';
   styleUrl: './big-logo.component.scss'
 })
 export class BigLogoComponent {
-  constructor(private router: Router) { }
+  constructor(private router: Router, private routeTranslation: RouteTranslationService,) { }
 
   navigateToLanding() {
-    this.router.navigate(['']);
+    this.routeTranslation.navigateToTranslated(['']);
   }
 }

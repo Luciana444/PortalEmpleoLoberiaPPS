@@ -9,6 +9,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { UserService } from '../services/user.service';
 import { EmployeeService } from '../services/employee.service';
 import { environment } from '../../environments/environment';
+import { RouteTranslationService } from '../services/route-translation.service';
 
 @Component({
   selector: 'app-profile',
@@ -19,6 +20,7 @@ import { environment } from '../../environments/environment';
 export class ProfileComponent implements OnInit {
   constructor(
     private router: Router,
+    private routeTranslation: RouteTranslationService,
     private route: ActivatedRoute,
     private userservice: UserService,
     private employeeservice: EmployeeService,
@@ -98,7 +100,7 @@ export class ProfileComponent implements OnInit {
 
 
   navigateToEditProfile() {
-    this.router.navigate(['/edit-profile']);
+    this.routeTranslation.navigateToTranslated(['edit-profile']);
   }
 
   convertToLocalDate(date: string | undefined) {
@@ -113,7 +115,7 @@ export class ProfileComponent implements OnInit {
   }
 
   navigateToLanding() {
-    this.router.navigate(['/']);
+    this.routeTranslation.navigateToTranslated(['']);
   }
 
 

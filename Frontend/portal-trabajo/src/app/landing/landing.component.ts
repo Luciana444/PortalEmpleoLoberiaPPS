@@ -18,12 +18,14 @@ import { MatIconModule } from "@angular/material/icon";
 import { UserService } from '../services/user.service';
 import { VisitTrackingService } from '../services/visit-tracking.service';
 import { environment } from '../../environments/environment';
+import { RouteTranslationService } from '../services/route-translation.service';
 
 
 registerLocaleData(localeEsAR);
 
 @Component({
   selector: 'app-landing',
+  standalone: true,
   imports: [MatPaginator, HeaderComponent, FooterComponent, TrainingLinkComponent, DatePipe, FilterComponent, MatIconModule],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss',
@@ -35,6 +37,7 @@ export class LandingComponent implements OnInit {
     private router: Router,
     private employeeservice: EmployeeService,
     private visitTracker: VisitTrackingService,
+    private routeTranslation: RouteTranslationService
   ) { }
 
   offers: JobOffer[] = [];
@@ -68,9 +71,9 @@ export class LandingComponent implements OnInit {
 
   navigateToOffer(id: any) {
     if (this.postulations.find(p => p.id_oferta === id)) {
-      this.router.navigate(['detail', id, true]);
+      this.routeTranslation.navigateToTranslated(['detail', id, true]);
     } else {
-      this.router.navigate(['detail', id]);
+      this.routeTranslation.navigateToTranslated(['detail', id]);
     }
   }
 
@@ -115,7 +118,7 @@ export class LandingComponent implements OnInit {
   }
 
   navigateToEmpoyerProfile(id: string) {
-    this.router.navigate(['/employer-profile', id]);
+    this.routeTranslation.navigateToTranslated(['employer-profile', id]);
   }
 
   private trackPageVisit(): void {

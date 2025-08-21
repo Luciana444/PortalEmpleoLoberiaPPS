@@ -14,6 +14,7 @@ import { AuthService } from '../services/auth.service';
 import { OfferService } from '../services/offer.service';
 import { AdminService } from '../services/admin.service';
 import { environment } from '../../environments/environment';
+import { RouteTranslationService } from '../services/route-translation.service';
 
 @Component({
   selector: 'app-postulation-detail',
@@ -29,6 +30,7 @@ export class PostulationDetailComponent implements OnInit {
     private authService: AuthService,
     private toastr: ToastrService,
     private router: Router,
+    private routeTranslation: RouteTranslationService,
     private route: ActivatedRoute,
     private employerservice: EmployerService,
     private employeeservice: EmployeeService,
@@ -102,7 +104,7 @@ export class PostulationDetailComponent implements OnInit {
           this.toastr.success('Actualización exitosa', 'Oferta borrada')
           console.log('Actualización exitosa', response);
 
-          this.router.navigate(['employer-profile']);
+          this.routeTranslation.navigateToTranslated(['employer-profile']);
         } else {
           console.log('No se pudo borrar la oferta', response);
         }
@@ -217,24 +219,24 @@ export class PostulationDetailComponent implements OnInit {
   }
 
   navigateToLanding() {
-    this.router.navigate(['']);
+    this.routeTranslation.navigateToTranslated(['']);
   }
 
   navigateToViewPostulations(id: string) {
-    this.router.navigate(['postulaciones-por-oferta', id])
+    this.routeTranslation.navigateToTranslated(['postulaciones-por-oferta', id])
   }
 
   navigateToProfile() {
-    this.router.navigate(['profile'])
+    this.routeTranslation.navigateToTranslated(['profile'])
   }
 
   navigateToAdminPanel() {
-    this.router.navigate(['admin-panel'])
+    this.routeTranslation.navigateToTranslated(['admin-panel'])
   }
 
   navigateToEditOffer(id: any) {
     if (!this.offer.fecha_cierre || this.compareDatesOffer(Date.parse(this.offer.fecha_cierre))) {
-      this.router.navigate(['create-offer', id]);
+      this.routeTranslation.navigateToTranslated(['create-offer', id]);
     } else {
       this.toastr.warning('Oferta cerrada', 'No es posible editar la oferta cerrada')
       console.log('La oferta ya cerró y no se puede editar');
@@ -288,11 +290,6 @@ export class PostulationDetailComponent implements OnInit {
       }
     });
   }
-
-  // getPreviousRoute(): string {
-  //   return this.location.getState()?.navigationId ?
-  //     this.location.getState()?.from || '/' : '/';
-  // }
 
   getImageUrl(image_url: string) {
     return image_url ? `${environment.apiUrl}${image_url}` : null;

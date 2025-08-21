@@ -17,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Employer } from '../../models/employer.model';
 import { NotificationOffer } from '../../models/notificationOffer.model';
 import { environment } from '../../environments/environment';
+import { RouteTranslationService } from '../services/route-translation.service';
 
 @Component({
   selector: 'app-header',
@@ -41,6 +42,7 @@ export class HeaderComponent implements OnInit {
   hidden = false;
 
   constructor(
+    private routeTranslation: RouteTranslationService,
     private route: ActivatedRoute,
     private router: Router,
     private userservice: UserService,
@@ -68,19 +70,6 @@ export class HeaderComponent implements OnInit {
         }
       });
     }
-    // this.userservice.getDataProfile(this.getUserType())?.subscribe({
-    //   next: (response) => {
-    //     if (response) { // Populate form with API data
-    //       this.user = response;
-    //     } else {
-    //       console.log('No se pudo cargar el perfil', response);
-    //     }
-    //   },
-    //   error: (err) => {
-    //     //this.toastr.error(err.error.error, 'Ocurrió un error');
-    //     console.error('Error al cargar el perfil', err);
-    //   }
-    // });  
     if (this.getUserType() === "empresa") {
       this.getNotifications();
       this.getNotificationsOffersAproved();
@@ -131,25 +120,26 @@ export class HeaderComponent implements OnInit {
 
   item: string = 'token';
 
-
   navigateToLogin() {
-    this.router.navigate(['/login']);
+    this.routeTranslation.navigateToTranslated(['login']);
   }
 
   navigateToRegister() {
-    this.router.navigate(['/register-user']);
+    this.routeTranslation.navigateToTranslated(['register-user']);
   }
 
   navigateToLanding() {
-    this.router.navigate(['']);
-  }
-  navigateToProfile() {
-    this.router.navigate(['/profile']);
+    this.routeTranslation.navigateToTranslated(['']);
   }
 
-    navigateToAdminPanel() {
-    this.router.navigate(['/admin-panel']);
+  navigateToProfile() {
+    this.routeTranslation.navigateToTranslated(['profile']);
   }
+
+  navigateToAdminPanel() {
+    this.routeTranslation.navigateToTranslated(['admin-panel']);
+  }
+
   onLogout() {
     this.userservice.logout();
     this.navigateToLogin();
@@ -161,15 +151,6 @@ export class HeaderComponent implements OnInit {
     }
     return false;  // Default for server-side
   }
-
-  // getUserType() {
-  //   if (isPlatformBrowser(this.platformId)) {  // Check if running in browser
-  //     const storedTokenString = localStorage.getItem("token") ?? "";
-  //     const decodedToken = jwtDecode<User>(storedTokenString);
-  //     return decodedToken.tipo_usuario;
-  //   }
-  //   return null;  // Default for server-side
-  // }
 
   getUserType(): string | null {
     if (!isPlatformBrowser(this.platformId))
@@ -213,7 +194,7 @@ export class HeaderComponent implements OnInit {
     return image_url ? `${environment.apiUrl}${image_url}` : null;
   }
 
-  countNotifications(){
+  countNotifications() {
     return this.notification.cantidad + this.notificationOffer.cantidad;
   }
 }

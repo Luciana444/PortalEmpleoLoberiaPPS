@@ -11,6 +11,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { AdminService } from '../services/admin.service';
 import { ToastrService } from 'ngx-toastr';
 import { Employer } from '../../models/employer.model';
+import { RouteTranslationService } from '../services/route-translation.service';
 
 @Component({
   selector: 'app-employer-profile',
@@ -23,6 +24,7 @@ import { Employer } from '../../models/employer.model';
 export class EmployerProfileComponent implements OnInit {
   constructor(
     private router: Router,
+    private routeTranslation: RouteTranslationService,
     private employerService: EmployerService,
     private authService: AuthService,
     private adminservice: AdminService,
@@ -129,19 +131,19 @@ export class EmployerProfileComponent implements OnInit {
   }
 
   navigateToCreateOffer() {
-    this.router.navigate(['/create-offer'])
+    this.routeTranslation.navigateToTranslated(['create-offer'])
   }
 
   navigateToPostulationDetail(id: any) {
-    this.router.navigate(['/detail', id], { state: { from: this.router.url } });
+    this.routeTranslation.navigateToTranslated(['detail', id], { state: { from: this.router.url } });
   }
 
   navigateToLanding() {
-    this.router.navigate(['/']);
+    this.routeTranslation.navigateToTranslated(['']);
   }
 
   navigateToAdmin() {
-    this.router.navigate(['admin-panel']);
+    this.routeTranslation.navigateToTranslated(['admin-panel']);
   }
 
 }

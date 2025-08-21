@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { BigLogoComponent } from '../big-logo/big-logo.component';
 import { MatButtonModule } from '@angular/material/button';
+import { RouteTranslationService } from '../services/route-translation.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,11 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup
-  constructor(private router: Router, private fb: FormBuilder, private userservice: UserService, private toastr: ToastrService) {
+  constructor(
+    private routeTranslation: RouteTranslationService,
+    private fb: FormBuilder,
+    private userservice: UserService,
+    private toastr: ToastrService) {
     this.loginForm = this.fb.group({
       email: [null, Validators.required],
       contrasena: [null, Validators.compose([Validators.required, Validators.minLength(8)])]
@@ -44,7 +49,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('currentuser', this.loginForm.value.email);
           this.toastr.success('Inicio de sesión exitoso', '¡Bienvenido!');
           setTimeout(() => {
-            this.router.navigate(['landing']);
+            this.routeTranslation.navigateToTranslated(['landing']);
           }, 1000);
         }
       },
@@ -62,6 +67,6 @@ export class LoginComponent implements OnInit {
 
   goToEmployeeForm(event: Event) {
     event.preventDefault(); // Prevent default link behavior
-    this.router.navigate(['/register-user']);
+    this.routeTranslation.navigateToTranslated(['register-user']);
   }
 }

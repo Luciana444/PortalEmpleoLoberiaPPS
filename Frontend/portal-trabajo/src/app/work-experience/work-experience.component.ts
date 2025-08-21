@@ -23,6 +23,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { RouteTranslationService } from '../services/route-translation.service';
 
 @Component({
     selector: 'app-work-experience',
@@ -61,6 +62,7 @@ export class WorkExperienceComponent implements OnInit {
         public dialog: MatDialog,
         private router: Router,
         private route: ActivatedRoute,
+        private routeTranslation: RouteTranslationService,
     ) {
 
         this.workExperience = this.fb.group({
@@ -277,7 +279,7 @@ export class WorkExperienceComponent implements OnInit {
     }
 
     navigateToProfile() {
-        this.router.navigate(['profile']);
+        this.routeTranslation.navigateToTranslated(['profile']);
     }
 
 }

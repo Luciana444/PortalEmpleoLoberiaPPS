@@ -9,6 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BigLogoComponent } from '../big-logo/big-logo.component';
+import { RouteTranslationService } from '../services/route-translation.service';
 
 @Component({
   selector: 'app-employee-form',
@@ -26,7 +27,12 @@ import { BigLogoComponent } from '../big-logo/big-logo.component';
 export class EmployeeFormComponent implements OnInit {
   registerForm: FormGroup
 
-  constructor(private router: Router, private fb: FormBuilder, private userservice: UserService, private toastr: ToastrService) {
+  constructor(private router: Router,
+    private fb: FormBuilder,
+    private userservice: UserService,
+    private toastr: ToastrService,
+    private routeTranslation: RouteTranslationService,
+  ) {
     this.registerForm = this.fb.group({
       nombre: [null, Validators.required],
       tipo_usuario: [null, Validators.required],
@@ -49,7 +55,7 @@ export class EmployeeFormComponent implements OnInit {
           this.toastr.success('Ya podes acceder al sitio', 'Registro exitoso')
           console.log('Registro exitoso', response);
           this.registerForm.reset();
-          this.router.navigate(['login']);
+          this.routeTranslation.navigateToTranslated(['login']);
         } else {
           console.log('El usuario no se pudo registrar', response);
         }

@@ -6,6 +6,7 @@ import { Postulation } from '../../models/postulation.model';
 import { MatDividerModule } from '@angular/material/divider';
 import { AuthService } from '../services/auth.service';
 import { AppUtils } from '../../utils/app.utils';
+import { RouteTranslationService } from '../services/route-translation.service';
 
 
 @Component({
@@ -16,10 +17,14 @@ import { AppUtils } from '../../utils/app.utils';
 })
 
 export class AcademicBackgroundComponent implements OnInit {
+  constructor(private router: Router,
+    private employeeService: EmployeeService,
+    private authService: AuthService,
+    private routeTranslation: RouteTranslationService,) { }
+
   $id: any;
   postulations: Postulation[] = [];
 
-  constructor(private router: Router, private employeeService: EmployeeService, private authService: AuthService,) { }
   ngOnInit(): void {
     this.employeeService.getPostulations().subscribe({
       next: (response) => {
@@ -41,15 +46,15 @@ export class AcademicBackgroundComponent implements OnInit {
   @Input() employeeData: Employee | null = null;
 
   navigateToAcademicBackgroundEditComponent() {
-    this.router.navigate(['/academic-background-edit']);
+    this.routeTranslation.navigateToTranslated(['academic-background-edit']);
   }
 
   navigateToWorkExperience() {
-    this.router.navigate(['/work-experience']);
+    this.routeTranslation.navigateToTranslated(['work-experience']);
   }
 
   navigateToPostulationDetail(id: any) {
-    this.router.navigate(['/detail', id, true], { state: { from: this.router.url } })
+    this.routeTranslation.navigateToTranslated(['detail', id], { state: { from: this.router.url } })
   }
 
   convertToLocalDate(date: string) {

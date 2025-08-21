@@ -9,6 +9,7 @@ import { EmployerService } from '../services/employer.service';
 import { AuthService } from '../services/auth.service';
 import { EmployerPostulation } from '../../models/employerPostulation.model';
 import { environment } from '../../environments/environment';
+import { RouteTranslationService } from '../services/route-translation.service';
 
 @Component({
   selector: 'app-postulation-list',
@@ -23,6 +24,7 @@ export class PostulationListComponent implements OnInit {
     private http: HttpClient,
     private route: ActivatedRoute,
     private employerservice: EmployerService,
+    private routeTranslation: RouteTranslationService,
   ) { }
 
   private getPostulationsUrl(id: string): string {
@@ -58,7 +60,8 @@ export class PostulationListComponent implements OnInit {
   }
 
   navigateToProfile(id?: string) {
-    this.router.navigate(['employee-profile', id], { state: { from: this.router.url } });
+    const safeId = id ?? '';
+    this.routeTranslation.navigateToTranslated(['employee-profile', safeId], { state: { from: this.router.url } });
   }
 
   getCV(postulationId: string) {
@@ -119,7 +122,7 @@ export class PostulationListComponent implements OnInit {
   }
 
   navigateToOffer(id: any) {
-    this.router.navigate(['detail', id], { state: { from: this.router.url } });
+    this.routeTranslation.navigateToTranslated(['detail', id], { state: { from: this.router.url } });
   }
 
   getImageUrl(image_url: string) {

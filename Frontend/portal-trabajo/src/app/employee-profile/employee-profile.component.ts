@@ -11,6 +11,7 @@ import { jwtDecode } from 'jwt-decode';
 import { User } from '../profile-form/profile-form.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from '../services/employee.service';
+import { RouteTranslationService } from '../services/route-translation.service';
 
 @Component({
   selector: 'app-employee-profile',
@@ -19,7 +20,8 @@ import { EmployeeService } from '../services/employee.service';
   styleUrl: './employee-profile.component.scss'
 })
 export class EmployeeProfileComponent implements OnInit {
-  constructor(private router: Router,
+  constructor(
+    private routeTranslation: RouteTranslationService,
     private route: ActivatedRoute,
     private employeeservice: EmployeeService,
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -27,12 +29,12 @@ export class EmployeeProfileComponent implements OnInit {
 
   employee: Employee = {} as Employee;
   itemId: string = "";
-  previousRoute: string = '/';
+  previousRoute: string = ' ';
 
   ngOnInit() {
     const userType = this.getUserType();
 
-    this.previousRoute = history.state?.from || '/';
+    this.previousRoute = history.state?.from || ' ';
 
     if (userType === 'empresa') {
       this.itemId = this.route.snapshot.params['id'] ?? "";
@@ -58,7 +60,7 @@ export class EmployeeProfileComponent implements OnInit {
           console.error('Profile load error', err);
         }
       });
-    }else {
+    } else {
       this.getProfile();
     }
     console.log("previous url", this.previousRoute);
@@ -98,38 +100,14 @@ export class EmployeeProfileComponent implements OnInit {
 
   navigateBack() {
     if (this.previousRoute.includes('profile'))
-      this.router.navigate(['/profile']);
+      this.routeTranslation.navigateToTranslated(['profile']);
     else if (this.previousRoute.includes('admin-panel'))
-      this.router.navigate(['/admin-panel']);
+      this.routeTranslation.navigateToTranslated(['admin-panel']);
     else if (this.previousRoute.includes('postulaciones-por-oferta'))
-      this.router.navigate([this.previousRoute]);
+      this.routeTranslation.navigateToTranslated([this.previousRoute]);
     else
       // Default to home or previous route
-      this.router.navigate(['/']);
+      this.routeTranslation.navigateToTranslated(['']);
   }
 
-  // Update your navigation methods
-  // navigateToLanding() {
-  //   this.navigateBack();
-  // }
-
-  // navigateToAdminPanel() {
-  //   this.navigateBack();
-  // }
-
-  // navigateToPostulations() {
-  //   this.navigateBack();
-  // }
-
-  // navigateToLanding() {
-  //   this.router.navigate(['/']);
-  // }
-
-  // navigateToAdminPanel() {
-  //   this.router.navigate(['admin-panel']);
-  // }
-
-  // navigateToPostulations(/*id: any*/) {
-  //   // this.router.navigate(['postulaciones-por-oferta', id]);
-  // }
 }

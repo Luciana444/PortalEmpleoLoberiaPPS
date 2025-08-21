@@ -14,6 +14,7 @@ import { MatButtonToggleChange, MatButtonToggleModule } from '@angular/material/
 import { Employee } from "../../models/employee.model";
 import { Employer } from "../../models/employer.model";
 import { environment } from "../../environments/environment";
+import { RouteTranslationService } from "../services/route-translation.service";
 
 
 @Component({
@@ -32,12 +33,10 @@ export class AdminPanelComponent implements OnInit {
     employers: Employer[] = [];
 
     constructor(
-        private authService: AuthService,
         private router: Router,
-        private route: ActivatedRoute,
-        private reportsservice: ReportsService,
         private adminservice: AdminService,
-        private cdr: ChangeDetectorRef
+        private cdr: ChangeDetectorRef,
+        private routeTranslation: RouteTranslationService,
     ) { }
 
     ngOnInit(): void {
@@ -104,15 +103,15 @@ export class AdminPanelComponent implements OnInit {
     }
 
     navigateToPostulationDetail(id: any) {
-        this.router.navigate(['/detail', id], { state: { from: this.router.url } });
+        this.routeTranslation.navigateToTranslated(['detail', id], { state: { from: this.router.url } });
     }
 
     navigateToProfile(id: any) {
-        this.router.navigate(['/employee-profile', id], { state: { from: this.router.url } });
+        this.routeTranslation.navigateToTranslated(['employee-profile', id], { state: { from: this.router.url } });
     }
 
     navigateToProfileEmployer(id: any) {
-        this.router.navigate(['/employer-profile', id], { state: { from: this.router.url } });
+        this.routeTranslation.navigateToTranslated(['employer-profile', id], { state: { from: this.router.url } });
     }
 
     convertToLocalDate(date: string | undefined) {

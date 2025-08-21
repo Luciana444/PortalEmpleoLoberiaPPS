@@ -21,6 +21,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
+import { RouteTranslationService } from '../services/route-translation.service';
 
 
 @Component({
@@ -47,7 +48,8 @@ export class EmployeerProfileFormComponent implements OnInit {
     employeerProfile: FormGroup;
     itemId: string = "";
 
-    constructor(private router: Router,
+    constructor(
+        private routeTranslation: RouteTranslationService,
         private fb: FormBuilder,
         private userservice: UserService,
         private toastr: ToastrService,
@@ -103,7 +105,7 @@ export class EmployeerProfileFormComponent implements OnInit {
                     this.toastr.success('Ya podes ver tu perfil completo', 'Actualización exitosa')
                     console.log('Actualización exitosa', response);
                     this.employeerProfile.reset();
-                    this.router.navigate(['employer-profile']);
+                    this.routeTranslation.navigateToTranslated(['employer-profile']);
                 } else {
                     console.log('No se pudo actualizar tu perfil', response);
                 }
@@ -151,7 +153,7 @@ export class EmployeerProfileFormComponent implements OnInit {
                     console.log('Cuenta borrada', response);
                     this.userservice.logout();
                     this.userservice.logout();
-                    this.router.navigate(['login']);
+                    this.routeTranslation.navigateToTranslated(['login']);
                 } else {
                     console.log('No se pudo borrar la cuenta', response);
                 }
@@ -171,6 +173,6 @@ export class EmployeerProfileFormComponent implements OnInit {
     }
 
     navigateToProfile() {
-        this.router.navigate(['profile']);
+        this.routeTranslation.navigateToTranslated(['profile']);
     }
 }

@@ -4,6 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../services/user.service';
 import { BigLogoComponent } from '../big-logo/big-logo.component';
+import { RouteTranslationService } from '../services/route-translation.service';
 
 @Component({
     templateUrl: './reset-password.component.html',
@@ -19,7 +20,8 @@ export class ResetPasswordComponent implements OnInit {
         private userService: UserService,
         private route: ActivatedRoute,
         private router: Router,
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        private routeTranslation: RouteTranslationService,
     ) {
         this.credentials = formBuilder.group({
             token: [''],
@@ -44,7 +46,7 @@ export class ResetPasswordComponent implements OnInit {
                 if (res.status === 200) {
                     this.toastr.success('Contrasena reseteada con éxito', 'Nueva contrasena')
                     setTimeout(() => {
-                        this.router.navigate(['login']);
+                        this.routeTranslation.navigateToTranslated(['login']);
                     }, 2000);
                 }
             },

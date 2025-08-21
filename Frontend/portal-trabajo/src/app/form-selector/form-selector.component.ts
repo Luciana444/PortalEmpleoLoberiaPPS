@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { RouteTranslationService } from '../services/route-translation.service';
 
 @Component({
   selector: 'app-form-selector',
@@ -8,10 +9,10 @@ import { Router } from '@angular/router';
   styleUrl: './form-selector.component.scss'
 })
 export class FormSelectorComponent {
-  constructor(private router: Router) {}
+  constructor(private routeTranslation: RouteTranslationService) { }
 
   navigateToEmployeeForm() {
-    this.router.navigate(['/register-user']);
+    this.routeTranslation.navigateToTranslated(['register-user']);
   }
 
 }
