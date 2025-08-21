@@ -15,7 +15,7 @@
                 Volver a
                 Administración</a>
         </div>
-        <div>
+        <div class="container-options">
             @if (employer.estado_aprobacion === 'pendiente') {
 
             <div class="options-employer">
@@ -53,7 +53,6 @@
             <div class="main-header">
                 <h2>Ofertas</h2>
                 <div class="create-offer">
-                    <i class="fa-solid fa-filter"></i>
                     @if (isOwnProfile) {
                     <button (click)="navigateToCreateOffer()">Crear Oferta</button>
                     }

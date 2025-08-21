@@ -1,11 +1,11 @@
 @use '../../styles.scss' as *;
 
-a{
+a {
     font-size: 1.25rem;
     font-weight: 100;
 }
 
-h5{
+h5 {
     background-color: $green;
     border-radius: 10px;
     color: white;
@@ -13,54 +13,74 @@ h5{
     padding: 0.25rem 0.5rem;
     font-weight: 100;
     white-space: nowrap;
+    font-family: 'Linotte Light';
 }
 
-.pendiente-flag, .reject-flag, .check-flag{
-    font-family: 'Linotte Light';
-    margin-right:1rem;
+h4,
+h5 {
+    display: flex;
+    align-items: center;
 }
-.pendiente-flag{
-  background-color: transparent;
+
+.pendiente-flag,
+.reject-flag,
+.check-flag {
+    font-family: 'Linotte Light';
+    margin-right: 1rem;
+}
+
+.pendiente-flag {
+    background-color: transparent;
     display: flex;
     align-items: center;
     font-size: 1.1rem;
-    color:#e9a426;
+    color: #e9a426;
 }
-.pendiente-flag svg{
- fill:#e9a426;
- 
+
+.pendiente-flag svg {
+    fill: #e9a426;
+
 }
-.edit svg{
-    fill:#57AF31;
+
+.edit svg,
+.highlight svg {
+    fill: #57AF31;
 }
-.reject svg{
-    fill:#b3261e;
+
+.reject svg {
+    fill: #b3261e;
 }
-.reject-flag svg{
-    fill:#b3261e;
+
+.reject-flag svg {
+    fill: #b3261e;
 }
-.reject-flag{
+
+.reject-flag {
     background-color: transparent;
     display: flex;
     align-items: center;
     font-size: 1.1rem;
     color: #b3261e;
 }
-.check-flag svg{
-    fill:#57AF31;
+
+.check-flag svg {
+    fill: #57AF31;
 }
-.check-flag{
+
+.check-flag {
     background-color: transparent;
     display: flex;
     align-items: center;
     font-size: 1.1rem;
     color: #57AF31;
 }
-button.edit, button.reject{
+
+button.edit,
+button.reject {
     display: flex;
     align-items: center;
     justify-content: center;
-    width:fit-content;
+    width: fit-content;
     padding: 0.1rem 1rem;
 }
 
@@ -73,6 +93,10 @@ button.edit, button.reject{
     border-radius: 8px;
     padding: 1rem;
     width: 100%;
+}
+
+.postulado-flag svg {
+    fill: white;
 }
 
 .profile {
@@ -89,14 +113,14 @@ button.edit, button.reject{
     margin-right: 1rem;
 }
 
-.detail-header{
+.detail-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
 }
 
-.detail-categories{
+.detail-categories {
     margin-left: auto;
     display: flex;
     gap: 0.5rem;
@@ -104,13 +128,18 @@ button.edit, button.reject{
     width: fit-content;
     white-space: nowrap;
 }
-.fallback{
+
+.detail-categories svg {
+    fill: white;
+}
+
+.fallback {
     margin-bottom: 1rem;
     font-family: 'Linotte Light';
     font-size: 1.2rem;
 }
 
-.container{
+.container {
     margin-left: 7.25rem;
     margin-right: 7.25rem;
     margin-bottom: 2rem;
@@ -119,48 +148,50 @@ button.edit, button.reject{
     min-height: 100vh;
 }
 
-main{
+main {
     margin-top: 1.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-color: white;
     border-radius: 8px;
     padding: 1rem;
     overflow: hidden;
-    width:100%;
+    width: 100%;
 }
 
-h1, h2{
+h1,
+h2 {
     margin: 0;
     color: $green;
     font-weight: 700;
 }
 
-h2{
+h2 {
     margin-left: 2rem;
 }
 
-.postulation-title{
+.postulation-title {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-h4, p{
+h4,
+p {
     margin: 0;
     margin-left: 2rem;
 }
 
-h4{
-color:#49454F;
-    }
+h4 {
+    color: #49454F;
+}
 
-.highlight{
+.highlight {
     width: 137.5%;
     margin-left: -1rem;
     background-color: #ECF8E7;
 }
 
-.highlight > h4{
+.highlight>h4 {
     margin-left: 3rem !important;
     color: $green;
     margin-top: 1.5rem;
@@ -170,79 +201,87 @@ color:#49454F;
     font-size: 1.5rem;
 }
 
-.description-text{
+.description-text {
     margin-top: 0.5rem;
 }
 
-.fa-location-dot, .fa-arrow-left{
+.fa-location-dot,
+.fa-arrow-left {
     color: $green !important;
 }
 
-h5 > i{
+h5>i {
     color: white !important;
 }
 
-.profile-pic{
+.profile-pic {
     min-height: 50px;
     min-width: 50px;
     border-radius: 100px;
     background-color: black
 }
 
-.profile-info > h4, .location > p {
+.profile-info>h4,
+.location>p {
     color: #49454F;
     margin: 0;
 }
 
-.location{
+.location {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 0.25rem;
 }
 
-.profile{
+.location svg {
+    fill: #57AF31;
+}
+
+.profile {
     width: 100%;
     display: flex;
     border-radius: 10px;
 }
 
-.postulation-header > button{
+.postulation-header>button {
     margin-right: 3rem;
 }
 
-button{
+button {
     width: 9rem;
     padding: 8px 2px;
     margin-right: 1rem;
     align-self: center;
 }
 
-.button-wrapper{
+.button-wrapper {
     align-items: center;
     display: flex;
 }
 
-.detail-description{
+.detail-description {
     width: 75%;
 }
 
-p{
+p {
     font-size: 1rem;
     font-weight: 200;
 }
 
-button :hover{
+button :hover {
     color: #57AF31 !important;
 }
 
-.reject{
-    border:1px solid #b3261e;
-    background-color:transparent;
-    color:#b3261e;
+.reject {
+    border: 1px solid #b3261e;
+    background-color: transparent;
+    color: #b3261e;
 }
- .reject:hover, i:hover{
-    color:#b3261e;
+
+.reject:hover,
+i:hover {
+    color: #b3261e;
 }
 
 .delete {
@@ -250,33 +289,40 @@ button :hover{
     width: 3rem;
     margin-right: 1rem;
 }
-.delete svg
-{
+
+.delete svg {
     fill: #57AF31;
 }
-.edit{
-        border: 1px solid #57af31;
-        background-color: transparent;
-        color:#57af31;
+
+.edit {
+    border: 1px solid #57af31;
+    background-color: transparent;
+    color: #57af31;
 }
 
 @media (max-width: 600px) {
-    .button-wrapper{
+    .button-wrapper {
         flex-direction: column;
         gap: 0.5rem;
     }
 
-    button{
+    button {
         width: 200%;
         margin-right: 0;
     }
 
-    .container{
+    .container {
         margin-left: 0.5rem;
         margin-right: 0.5rem;
     }
 
-    .profile, .postulation-header, .detail-header{
+    .container-flags {
+        width: 90%;
+    }
+
+    .profile,
+    .postulation-header,
+    .detail-header {
         flex-direction: column;
     }
 
@@ -324,40 +370,41 @@ button :hover{
     //     order: 1;
     // }
 
-    .profile>h1, h2{
+    .profile>h1,
+    h2 {
         order: 2;
         margin: 0;
         text-align: center;
     }
 
-    h1{
+    h1 {
         width: 100%;
         text-justify: auto;
     }
 
-    h2{
+    h2 {
         order: 1
     }
 
-    .detail-categories{
+    .detail-categories {
         order: 2;
         flex-wrap: wrap;
     }
 
-    h4{
+    h4 {
         margin: 0;
     }
 
-    p{
+    p {
         margin: 0;
         margin-bottom: 1rem;
     }
 
-    .highlight{
+    .highlight {
         width: 200%;
     }
 
-    .profile-header{
+    .profile-header {
         margin-right: auto;
     }
 
@@ -367,7 +414,7 @@ button :hover{
         text-justify: inter-word; // For better justification
         white-space: normal; // Allow text wrapping
         word-break: break-word; // Prevent overflow
-        
+
         h1 {
             text-align: center;
             margin: 0 auto; // Center the heading
@@ -375,10 +422,41 @@ button :hover{
             max-width: 100%; // Ensure it doesn't exceed container
         }
     }
-    main{
-        width:auto;
+
+    main {
+        width: auto;
     }
-    button.edit, button.reject{
+
+    button.edit,
+    button.reject {
         width: 90%;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width:991px) {
+    .postulation-header {
+        display: block;
+    }
+
+    .button-wrapper {
+        justify-content: center;
+    }
+
+    .postulation-title {
+        margin-bottom: 1rem;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width:1200px) {
+    .postulation-header {
+        display: block;
+    }
+
+    .button-wrapper {
+        justify-content: center;
+    }
+
+    .postulation-title {
+        margin-bottom: 1rem;
     }
 }

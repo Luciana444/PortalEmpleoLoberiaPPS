@@ -12,6 +12,19 @@ div{
     align-items: center;
     gap: 1rem;
 }
+svg{
+    fill:white;
+}
+button:hover svg{
+    fill:#57af31;
+}
+button{
+    display: flex;
+    align-items: center;
+}
+app-cv-uploader{
+    width: 100%;
+}
 
 img{
     display: block;
@@ -25,9 +38,10 @@ h4{
 }
 
 button{
+    justify-content: center;
     padding: 8px 25px;
-    width: 10rem;
-    height: fit-content;
+    width: 100%;
+    //height: fit-content;
     white-space: nowrap;
 }
 

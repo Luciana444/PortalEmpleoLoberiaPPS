@@ -93,11 +93,13 @@ i:hover {
 }
 
 .pendiente-flag,
-.reject-flag{
+.reject-flag, .check-flag{
   font-family: "Linotte Light";
   color: white;
   margin-right: 1rem;
   padding: 0.2rem 0.8rem;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .check-flag svg{
@@ -249,10 +251,27 @@ i:hover {
 @media (max-width: 600px) {
   .fallback {
     margin-left: 2rem;
+    margin-right: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  button.edit, button.reject{
+    width: 90%;
+  }
+  
+  .container-options{
+    width: 100%;
   }
 
   .fa-arrow-left {
     margin-right: 0 !important;
+  }
+  .options-employer{
+    flex-direction: column;
+    margin-right:0;
+  }
+  .pendiente-flag, .check-flag, .reject-flag{
+    margin-top: 1rem;
   }
 
   .container-profile {
@@ -326,3 +345,5 @@ i:hover {
     }
   }
 }
+
+

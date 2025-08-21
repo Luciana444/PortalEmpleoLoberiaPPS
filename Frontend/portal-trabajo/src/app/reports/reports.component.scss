@@ -35,18 +35,31 @@ mat-expansion-panel-header {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-mat-expansion-panel{
-    box-shadow: none!important;
+mat-expansion-panel {
+    box-shadow: none !important;
 }
 
-.mat-expansion-panel-header.mat-expanded{
-    background-color: white!important;
+.mat-expansion-panel-header.mat-expanded {
+    background-color: white !important;
 }
 
-.report-btn{
+.report-btn {
     display: flex;
     justify-content: center;
     margin-top: 1rem;
+}
+
+button {
+    display: flex;
+    align-items: center;
+}
+
+.report-btn svg {
+    fill: white;
+}
+
+.report-btn:hover svg {
+    fill: #57AF31;
 }
 
 .list-content {
@@ -69,5 +82,39 @@ mat-panel-title {
         flex-direction: column;
         gap: 0.5rem;
         align-items: center;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width:991px) {
+
+    .profile {
+        width: 5rem;
+
+    }
+
+    .profile h4 {
+        font-size: 0.6rem;
+        font-family: 'Linotte Regular';
+    }
+
+    .report-nmb {
+        font-size: 2rem;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width:1200px) {
+    mat-accordion {
+        display: flex;
+        justify-content: center;
+    }
+    mat-expansion-panel{
+        width: 80%;
+    }
+       .report-nmb {
+        font-size: 2rem;
+    }
+     .profile h4 {
+        font-size: 0.6rem;
+        font-family: 'Linotte Regular';
     }
 }

@@ -6,6 +6,17 @@ i {
   margin-right: 5px;
 }
 
+.status-flag h5 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-flag svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -31,9 +42,10 @@ li {
 .profile,
 .profile-employee {
   display: grid;
-  grid-template-columns:
-    minmax(150px, 25%) minmax(200px, 30%) minmax(150px, 20%)
-    minmax(200px, 25%);
+  grid-template-columns: minmax(150px, 25%) minmax(200px, 30%) minmax(
+      150px,
+      20%
+    ) minmax(200px, 25%);
   align-items: center;
   width: 96%;
   border-radius: 10px;
@@ -60,6 +72,7 @@ li {
 
   .status-flag {
     flex-shrink: 1; // Allows flag to shrink if needed
+
     h5 {
       margin: 0;
       font-family: "Linotte Light";
@@ -74,6 +87,7 @@ li {
 
   .profile-btn {
     flex-shrink: 0; // Prevents button from shrinking
+
     button {
       padding: 0.8rem 1rem;
       min-width: 120px;
@@ -147,6 +161,7 @@ li {
 // Column 3: Date
 .offer-date {
   text-align: center;
+
   p {
     white-space: nowrap;
     color: #49454f;
@@ -225,9 +240,11 @@ li {
 .state-flag-check svg {
   fill: #57af31;
 }
+
 .state-flag-reject svg {
   fill: #b3261e;
 }
+
 i {
   color: #57af31;
 }
@@ -256,6 +273,7 @@ mat-expansion-panel {
 mat-panel-title {
   font-family: "Linotte Heavy";
 }
+
 // Update your SCSS with these additions:
 
 // Common styles for all profile types
@@ -314,6 +332,7 @@ mat-panel-title {
 // Column 3: Additional Info (Date/Email/Date of Birth)
 .profile-info-column {
   text-align: center;
+
   p {
     white-space: nowrap;
     color: #49454f;
@@ -526,5 +545,30 @@ mat-panel-title {
   .profile-pic {
     min-height: 40px;
     min-width: 40px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .profile,
+  .profile-employee {
+    display: flex;
+    flex-direction: column;
+  }
+  .action-column,
+  .profile-actions {
+    flex-direction: column;
+  }
+  .offer-btn button {
+    margin-bottom: 1rem;
+  }
+  .company-info,
+  .profile-details {
+    justify-content: center;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  .container-list {
+    width: 95%;
   }
 }

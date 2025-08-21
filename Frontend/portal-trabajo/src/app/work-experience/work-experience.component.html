@@ -32,7 +32,7 @@
             <div class="experience-div">
                 <button class="experience-btn" type="button"
                     (click)="this.clearExperienceForm(); addNewCardExperience = !addNewCardExperience">
-                    <i class="fa-solid fa-plus"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M460-460H240v-40h220v-220h40v220h220v40H500v220h-40v-220Z"/></svg>
                     Agregar nueva experiencia
                 </button>
 
@@ -83,13 +83,13 @@
             </div>
             @if(editCardExperience){
             <button class="experience-btn" type="button" (click)="editWorkExperienceById()">
-                <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M200-400v-40h280v40H200Zm0-160v-40h440v40H200Zm0-160v-40h440v40H200Zm329.23 520v-88.38l213.31-212.31q5.92-5.93 12.22-8 6.3-2.08 12.6-2.08 6.87 0 13.5 2.58 6.64 2.57 12.06 7.73l37 37.77q4.93 5.92 7.5 12.31Q840-444 840-437.62q0 6.39-2.46 12.89-2.46 6.5-7.62 12.42L617.62-200h-88.39Zm275.39-237.62-37-37.76 37 37.76Zm-240 202.24h38l138.69-138.93-18.77-19-18.23-19.54-139.69 139.47v38Zm157.92-157.93-18.23-19.54 37 38.54-18.77-19Z"/></svg>
                 Actualizar experiencia
             </button>
             }@else{
             <button class="experience-btn" type="button" (click)="addWorkExperience()">
-                <i class="fa-solid fa-arrow-up-from-bracket"></i>
-                Guardar experiencia
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M460-336.92v-346l-93.23 93.23-28.31-28.77L480-760l141.54 141.54-28.31 28.77L500-682.92v346h-40ZM264.62-200q-27.62 0-46.12-18.5Q200-237 200-264.62v-96.92h40v96.92q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69h430.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93v-96.92h40v96.92q0 27.62-18.5 46.12Q723-200 695.38-200H264.62Z"/></svg>
+                Agregar experiencia
             </button>
             }
         </div>
@@ -114,9 +114,8 @@
                     <div class="align-elements">
                         <button class="edit-exp-btn"
                             (click)="openFormToEditExperience(exp.id, exp.nombre_empresa, exp.desde, exp.hasta, exp.comentario)">
-                            <i class="fa-solid fa-pencil"></i> Editar Experiencia</button>
-                        <button class="delete" matTooltip="Eliminar experiencia" (click)="openDialog(exp.id)"> <i
-                                class="fa-solid fa-trash"></i></button>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M200-200h43.92l427.93-427.92-43.93-43.93L200-243.92V-200Zm-40 40v-100.77l527.23-527.77q6.15-5.48 13.57-8.47 7.43-2.99 15.49-2.99t15.62 2.54q7.55 2.54 13.94 9.15l42.69 42.93q6.61 6.38 9.04 14 2.42 7.63 2.42 15.25 0 8.13-2.74 15.56-2.74 7.42-8.72 13.57L260.77-160H160Zm600.77-556.31-44.46-44.46 44.46 44.46ZM649.5-649.5l-21.58-22.35 43.93 43.93-22.35-21.58Z"/></svg> Editar Experiencia</button>
+                        <button class="delete" matTooltip="Eliminar experiencia" (click)="openDialog(exp.id)"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M304.62-160q-26.85 0-45.74-18.88Q240-197.77 240-224.62V-720h-40v-40h160v-30.77h240V-760h160v40h-40v495.38q0 27.62-18.5 46.12Q683-160 655.38-160H304.62ZM680-720H280v495.38q0 10.77 6.92 17.7 6.93 6.92 17.7 6.92h350.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93V-720ZM392.31-280h40v-360h-40v360Zm135.38 0h40v-360h-40v360ZM280-720v520-520Z"/></svg></button>
                     </div>
                 </div>
                 <mat-divider></mat-divider>

@@ -38,7 +38,11 @@
             <div class="profile-info">
                 <h4>{{offer.nombre_empresa}}</h4>
                 <div class="location">
-                    <i class="fa-solid fa-location-dot"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                        fill="#1f1f1f">
+                        <path
+                            d="M480.14-490.77q26.71 0 45.59-19.02 18.89-19.02 18.89-45.73 0-26.71-19.03-45.6Q506.57-620 479.86-620q-26.71 0-45.59 19.02-18.89 19.02-18.89 45.73 0 26.71 19.03 45.6 19.02 18.88 45.73 18.88ZM480-172.92q112.77-98.16 178.31-199.66t65.54-175.57q0-109.77-69.5-181.2-69.5-71.42-174.35-71.42t-174.35 71.42q-69.5 71.43-69.5 181.2 0 74.07 65.54 175.57T480-172.92Zm0 53.69Q339-243.92 267.58-351.81q-71.43-107.88-71.43-196.34 0-126.93 82.66-209.39Q361.46-840 480-840q118.54 0 201.19 82.46 82.66 82.46 82.66 209.39 0 88.46-71.43 196.34Q621-243.92 480-119.23Zm0-436.15Z" />
+                    </svg>
                     <p>{{offer.localidad}}</p>
                 </div>
             </div>
@@ -48,7 +52,10 @@
             @if (currentUserType === "ciudadano") {
             @if(postulado) {
             <div>
-                <h5 class="postulado-flag"><i class="fa fa-check" aria-hidden="true"></i> Postulado</h5>
+                <h5 class="postulado-flag"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+                        viewBox="0 -960 960 960" width="24px" fill="#1f1f1f">
+                        <path d="M400-332.46 268.46-464 296-491.54l104 104 264-264L691.54-624 400-332.46Z" />
+                    </svg> Postulado</h5>
             </div>
             <button class="delete" (click)="openDialogDeletePostulation(offer.id)" matTooltip="Cancelar postulación">
                 <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px">
@@ -61,7 +68,11 @@
             }
             @if (offer.id_empresa === currentUserId) {
             <button (click)="navigateToViewPostulations(offer.id)">Ver postulantes</button>
-            <button class="edit" (click)="navigateToEditOffer(offer.id)"> <i class="fa-solid fa-pen "></i> Editar
+            <button class="edit" (click)="navigateToEditOffer(offer.id)"> <svg xmlns="http://www.w3.org/2000/svg"
+                    height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f">
+                    <path
+                        d="M200-200h43.92l427.93-427.92-43.93-43.93L200-243.92V-200Zm-40 40v-100.77l527.23-527.77q6.15-5.48 13.57-8.47 7.43-2.99 15.49-2.99t15.62 2.54q7.55 2.54 13.94 9.15l42.69 42.93q6.61 6.38 9.04 14 2.42 7.63 2.42 15.25 0 8.13-2.74 15.56-2.74 7.42-8.72 13.57L260.77-160H160Zm600.77-556.31-44.46-44.46 44.46 44.46ZM649.5-649.5l-21.58-22.35 43.93 43.93-22.35-21.58Z" />
+                </svg> Editar
                 Oferta</button>
             <button class="delete" (click)="openDialog(offer.id)" matTooltip="Eliminar oferta">
                 <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px">
@@ -69,14 +80,12 @@
                         d="M298.61-160q-23.91 0-41.18-17.28-17.28-17.27-17.28-41.18v-510.77H200v-33.85h156.1v-27.69h247.8v27.69H760v33.85h-40.15v510.77q0 24.58-16.95 41.52Q685.96-160 661.39-160H298.61ZM686-729.23H274v510.77q0 10.77 7.18 17.69 7.18 6.92 17.43 6.92h362.78q9.23 0 16.92-7.69 7.69-7.69 7.69-16.92v-510.77ZM394.41-275.79h33.85v-372.16h-33.85v372.16Zm137.33 0h33.85v-372.16h-33.85v372.16ZM274-729.23v535.38-535.38Z" />
                 </svg> </button>
             } @else if (currentUserType === "admin" && offer.estado_publicacion === 'pendiente') {
-            <div>
+            <div class="container-flags">
                 <h5 class="pendiente-flag"><svg xmlns="http://www.w3.org/2000/svg" height="30px"
                         viewBox="0 -960 960 960" width="30px">
                         <path
                             d="M109.23-160 480-800l370.77 640H109.23Zm58.41-33.85h624.72L480-732.31 167.64-193.85Zm313.61-60.56q9.21 0 15.31-6.23 6.11-6.23 6.11-15.43 0-9.21-6.23-15.31-6.23-6.11-15.44-6.11-9.21 0-15.31 6.23t-6.1 15.44q0 9.2 6.23 15.31 6.23 6.1 15.43 6.1Zm-17.04-86.31h33.84v-207.79h-33.84v207.79ZM480-463.08Z" />
-                    </svg>
-                    Pendiente
-                </h5>
+                    </svg> Pendiente </h5>
             </div>
             <button class="edit" (click)="changeOfferStatus(offer.id, 'aprobada')"> <svg
                     xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px">
@@ -96,7 +105,7 @@
                         d="M298.61-160q-23.91 0-41.18-17.28-17.28-17.27-17.28-41.18v-510.77H200v-33.85h156.1v-27.69h247.8v27.69H760v33.85h-40.15v510.77q0 24.58-16.95 41.52Q685.96-160 661.39-160H298.61ZM686-729.23H274v510.77q0 10.77 7.18 17.69 7.18 6.92 17.43 6.92h362.78q9.23 0 16.92-7.69 7.69-7.69 7.69-16.92v-510.77ZM394.41-275.79h33.85v-372.16h-33.85v372.16Zm137.33 0h33.85v-372.16h-33.85v372.16ZM274-729.23v535.38-535.38Z" />
                 </svg> </button>
             } @else if (currentUserType === "admin" && offer.estado_publicacion === 'rechazada') {
-            <div>
+            <div class="container-flags">
                 <h5 class="reject-flag"><svg xmlns="http://www.w3.org/2000/svg" height="30x" viewBox="0 -960 960 960"
                         width="30px">
                         <path
@@ -116,7 +125,7 @@
                 </svg> </button>
 
             } @else if (currentUserType === "admin" && offer.estado_publicacion === 'aprobada') {
-            <div>
+            <div class="container-flags">
                 <h5 class="check-flag"><svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
                         width="30px">
                         <path
@@ -142,15 +151,30 @@
         <div class="detail-header">
             <h2>Detalle del empleo</h2>
             <div class="detail-categories">
-                <h5><i class="fa-solid fa-file-signature"></i> {{offer.tipo_contrato}}</h5>
-                <h5><i class="fa-solid fa-globe"></i> {{offer.lugar_trabajo}}</h5>
-                <h5><i class="fa-solid fa-clock"></i> {{offer.modalidad}}</h5>
+                <h5><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                        fill="#1f1f1f">
+                        <path
+                            d="M240-120q-33.85 0-56.92-23.08Q160-166.15 160-200v-110.77h120V-840h520v640q0 33.85-23.08 56.92Q753.85-120 720-120H240Zm480-40q17 0 28.5-11.5T760-200v-600H320v489.23h360V-200q0 17 11.5 28.5T720-160ZM375.38-624.62v-40h329.24v40H375.38Zm0 110.77v-40h329.24v40H375.38ZM240-160h400v-110.77H200V-200q0 17 11.5 28.5T240-160Zm0 0h-40 440-400Z" />
+                    </svg> {{offer.tipo_contrato}}</h5>
+                <h5><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                        fill="#1f1f1f">
+                        <path
+                            d="M160-160v-452.31l449.23-173.07V-440h67.69q0-25.38 18.06-43.46 18.07-18.08 43.43-18.08t43.47 18.08Q800-465.38 800-440v280H160Zm40-40h200v-240h169.23v-287.85L200-585v385Zm240 0h129.23v-92.31h61.54V-200H760v-200H440v200Zm-80-280Zm240 280Zm0-26.15Z" />
+                    </svg> {{offer.lugar_trabajo}}</h5>
+                <h5><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                        fill="#1f1f1f">
+                        <path
+                            d="M480.13-120q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41 28.34-65.73 76.92-114.36 48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34 65.73 28.34 114.36 76.92 48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41-28.34 65.73-76.92 114.36-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-64-24.38-122.62-24.39-58.61-69.26-103.61L480-480v-320q-134 0-227 93t-93 227q0 134 93 227t227 93Z" />
+                    </svg> {{offer.modalidad}}</h5>
             </div>
         </div>
 
         <div class="detail-description">
             <div class="highlight">
-                <h4><i class="fa-regular fa-file-lines"></i> Descripción</h4>
+                <h4><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+                        <path
+                            d="M229.23-324.62h501.54v-40H229.23v40Zm0-135.38h501.54v-40H229.23v40Zm0-135.38H580v-40H229.23v40ZM184.62-200q-27.62 0-46.12-18.5Q120-237 120-264.62v-430.76q0-27.62 18.5-46.12Q157-760 184.62-760h590.76q27.62 0 46.12 18.5Q840-723 840-695.38v430.76q0 27.62-18.5 46.12Q803-200 775.38-200H184.62Zm0-40h590.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93v-430.76q0-9.24-7.69-16.93-7.69-7.69-16.93-7.69H184.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93v430.76q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69ZM160-240v-480 480Z" />
+                    </svg> Descripción</h4>
             </div>
             <div class="description-text">
                 <p>{{offer.descripcion}}</p>
@@ -159,7 +183,10 @@
 
         <div class="detail-benefits">
             <div class="highlight">
-                <h4><i class="fa-regular fa-heart"></i> Requisitos</h4>
+                <h4><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+                        <path
+                            d="M400-727.69q-27.92 0-47.81-19.89-19.88-19.88-19.88-47.8 0-27.93 19.88-47.81 19.89-19.89 47.81-19.89t47.81 19.89q19.88 19.88 19.88 47.81 0 27.92-19.88 47.8-19.89 19.89-47.81 19.89Zm260 500q46.62 0 79.46-32.85 32.85-32.84 32.85-79.46 0-46.62-32.85-79.46-32.84-32.85-79.46-32.85-46.62 0-79.46 32.85-32.85 32.84-32.85 79.46 0 46.62 32.85 79.46 32.84 32.85 79.46 32.85Zm204 119.23L752.92-219.54q-20.46 15.54-43.96 23.69-23.5 8.16-48.96 8.16-63.46 0-107.88-44.43-44.43-44.42-44.43-107.88 0-63.46 44.43-107.88 44.42-44.43 107.88-44.43 63.46 0 107.88 44.43 44.43 44.42 44.43 107.88 0 25.46-8.16 48.96-8.15 23.5-23.69 43.96L891.54-136 864-108.46ZM447.69-100v-112.54q8.08 14 18.19 25.92 10.12 11.93 21.81 22.54V-100h-40Zm-135.38 0v-523.08q-58.69-5-116.77-12.96Q137.46-644 80-658.46l9.23-40q77.08 19.15 154.19 27.27 77.11 8.11 156.5 8.11t156.58-8.11q77.19-8.12 154.27-27.27l9.23 40Q662.54-644 604.46-636.04q-58.08 7.96-116.77 12.96v107.16q-32.46 30.38-52.38 72.11-19.93 41.73-22.23 89.96v2.31q0 1.16.23 2.31h-61V-100h-40Z" />
+                    </svg>Requisitos</h4>
             </div>
 
             <div class="description-text">
