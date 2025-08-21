@@ -105,7 +105,11 @@ export class PostulationDetailComponent implements OnInit {
           this.toastr.success('Actualización exitosa', 'Oferta borrada')
           console.log('Actualización exitosa', response);
 
-          this.routeTranslation.navigateToTranslated(['employer-profile']);
+          if (this.currentUserType === 'admin')
+            this.routeTranslation.navigateToTranslated(['admin-panel']);
+          else if (this.currentUserType === 'employer')
+            this.routeTranslation.navigateToTranslated(['employer-profile']);
+
         } else {
           console.log('No se pudo borrar la oferta', response);
         }

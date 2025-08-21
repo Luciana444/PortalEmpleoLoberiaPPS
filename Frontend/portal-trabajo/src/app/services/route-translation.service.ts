@@ -21,7 +21,8 @@ export class RouteTranslationService {
         'employer-profile': 'perfil-empleador',
         'work-experience': 'experiencia-laboral',
         'academic-background-edit': 'editar-formacion-academica',
-        'postulaciones-por-oferta': 'postulaciones',
+        // 'postulaciones-por-oferta': 'postulaciones',
+        'postulations-by-offer': 'postulaciones-por-oferta',
         'profile': 'perfil',
         'admin-panel': 'panel-administrador',
     };

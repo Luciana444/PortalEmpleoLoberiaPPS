@@ -67,7 +67,9 @@ export const routes: Routes = [
     { path: 'academic-background-edit', component: AcademicBackgroundEditComponent },
     { path: 'editar-formacion-academica', component: AcademicBackgroundEditComponent },
 
+    { path: 'postulations-by-offer', component: PostulationListComponent },
     { path: 'postulaciones-por-oferta', component: PostulationListComponent },
+    { path: 'postulations-by-offer/:id', component: PostulationListComponent },
     { path: 'postulaciones-por-oferta/:id', component: PostulationListComponent },
 
     { path: 'profile', component: ProfileSelectorComponent },

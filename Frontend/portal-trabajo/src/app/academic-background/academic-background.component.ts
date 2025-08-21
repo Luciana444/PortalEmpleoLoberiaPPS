@@ -54,7 +54,7 @@ export class AcademicBackgroundComponent implements OnInit {
   }
 
   navigateToPostulationDetail(id: any) {
-    this.routeTranslation.navigateToTranslated(['detail', id], { state: { from: this.router.url } })
+    this.routeTranslation.navigateToTranslated(['detail', id, true], { state: { from: this.router.url } })
   }
 
   convertToLocalDate(date: string) {
