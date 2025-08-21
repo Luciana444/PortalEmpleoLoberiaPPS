@@ -24,6 +24,7 @@ export class EmployeeProfileComponent implements OnInit {
     private routeTranslation: RouteTranslationService,
     private route: ActivatedRoute,
     private employeeservice: EmployeeService,
+    private router: Router,
     @Inject(PLATFORM_ID) private platformId: Object,
   ) { }
 
@@ -99,15 +100,13 @@ export class EmployeeProfileComponent implements OnInit {
   }
 
   navigateBack() {
-    if (this.previousRoute.includes('profile'))
-      this.routeTranslation.navigateToTranslated(['profile']);
-    else if (this.previousRoute.includes('admin-panel'))
-      this.routeTranslation.navigateToTranslated(['admin-panel']);
-    else if (this.previousRoute.includes('postulaciones-por-oferta'))
-      this.routeTranslation.navigateToTranslated([this.previousRoute]);
-    else
-      // Default to home or previous route
+    if (this.previousRoute && this.previousRoute !== ' ') {
+      // Use navigateByUrl for direct URL navigation
+      this.router.navigateByUrl(this.previousRoute);
+    } else {
+      // Default to home
       this.routeTranslation.navigateToTranslated(['']);
+    }
   }
 
 }
