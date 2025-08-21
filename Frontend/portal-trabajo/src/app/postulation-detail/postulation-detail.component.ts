@@ -48,7 +48,8 @@ export class PostulationDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.previousUrl = history.state?.from || '/'; // Get previous URL from state or current URL
-
+    console.log("Previous URL:", this.previousUrl);
+    console.log("History state from:", history.state?.from);
     let isPostulado = this.route.snapshot.params['postulado'] ?? null; // Get Postulado from route   
     this.postulado = !!isPostulado;
 

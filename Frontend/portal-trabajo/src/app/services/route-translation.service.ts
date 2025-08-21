@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NavigationExtras } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -23,22 +24,6 @@ export class RouteTranslationService {
         'postulaciones-por-oferta': 'postulaciones',
         'profile': 'perfil',
         'admin-panel': 'panel-administrador',
-        'inicio': 'landing', // Add reverse translations
-        'registrar-usuario': 'register-user',
-        'iniciar-sesion': 'login',
-        'recuperar-contrasena': 'recovery',
-        'restablecer-contrasena': 'reset',
-        'editar-perfil': 'edit-profile',
-        'crear-oferta': 'create-offer',
-        'perfil-empleado': 'employee-profile',
-        'detalle': 'detail',
-        'editar-perfil-empleador': 'edit-profile-employer',
-        'perfil-empleador': 'employer-profile',
-        'experiencia-laboral': 'work-experience',
-        'editar-formacion-academica': 'academic-background-edit',
-        'postulaciones': 'postulaciones-por-oferta',
-        'perfil': 'profile',
-        'panel-administrador': 'admin-panel'
     };
 
     constructor(private router: Router, private route: ActivatedRoute) { }
@@ -74,15 +59,19 @@ export class RouteTranslationService {
         }).join('/');
     }
 
-    navigateToTranslated(route: string[], queryParams?: any) {
+    navigateToTranslated(route: any[], extras: NavigationExtras = {}) {
         const translatedRoute = route.map(segment => {
-            // Skip translation for route parameters
-            if (segment.startsWith(':')) {
-                return segment;
+            // Convert to string first
+            const segmentStr = String(segment);
+
+            // Skip translation for route parameters (starting with :)
+            if (segmentStr.startsWith(':')) {
+                return segmentStr;
             }
-            return this.getTranslatedPath(segment) || segment;
+            return this.getTranslatedPath(segmentStr) || segmentStr;
         });
-        this.router.navigate(translatedRoute, { queryParams });
+
+        this.router.navigate(translatedRoute, extras);
     }
 
     // Get current translated URL
