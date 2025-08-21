@@ -1,0 +1,1467 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>portal-trabajo documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">portal-trabajo documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  EmployerProfileComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/employer-profile/employer-profile.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                            <code>{ provide: LOCALE_ID, useValue:  }</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-employer-profile</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../components/HeaderComponent.html" target="_self" >HeaderComponent</a></code>
+                                <code><a href="../components/FooterComponent.html" target="_self" >FooterComponent</a></code>
+                                <code><a href="../components/EmployerProfileSidebarComponent.html" target="_self" >EmployerProfileSidebarComponent</a></code>
+                            <code>DatePipe</code>
+                            <code>MatIconModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./employer-profile.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./employer-profile.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#currentUserId" >currentUserId</a>
+                            </li>
+                            <li>
+                                <a href="#currentUserType" >currentUserType</a>
+                            </li>
+                            <li>
+                                <a href="#employer" >employer</a>
+                            </li>
+                            <li>
+                                <a href="#isOwnProfile" >isOwnProfile</a>
+                            </li>
+                            <li>
+                                <a href="#itemId" >itemId</a>
+                            </li>
+                            <li>
+                                <a href="#offers" >offers</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#changeEmployerStatus" >changeEmployerStatus</a>
+                            </li>
+                            <li>
+                                <a href="#getCurrentEmployerId" >getCurrentEmployerId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getEmployerData" >getEmployerData</a>
+                            </li>
+                            <li>
+                                <a href="#loadCurrentEmployerOffers" >loadCurrentEmployerOffers</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#loadEmployerOffers" >loadEmployerOffers</a>
+                            </li>
+                            <li>
+                                <a href="#navigateToAdmin" >navigateToAdmin</a>
+                            </li>
+                            <li>
+                                <a href="#navigateToCreateOffer" >navigateToCreateOffer</a>
+                            </li>
+                            <li>
+                                <a href="#navigateToLanding" >navigateToLanding</a>
+                            </li>
+                            <li>
+                                <a href="#navigateToPostulationDetail" >navigateToPostulationDetail</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(router: Router, routeTranslation: <a href="../injectables/RouteTranslationService.html" target="_self">RouteTranslationService</a>, employerService: <a href="../injectables/EmployerService.html" target="_self">EmployerService</a>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, adminservice: <a href="../injectables/AdminService.html" target="_self">AdminService</a>, route: ActivatedRoute, toastr: ToastrService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/employer-profile/employer-profile.component.ts:24</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>routeTranslation</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/RouteTranslationService.html" target="_self" >RouteTranslationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>employerService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/EmployerService.html" target="_self" >EmployerService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>adminservice</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AdminService.html" target="_self" >AdminService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>toastr</td>
+                                                  
+                                                        <td>
+                                                                    <code>ToastrService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeEmployerStatus"></a>
+                    <span class="name">
+                        <span ><b>changeEmployerStatus</b></span>
+                        <a href="#changeEmployerStatus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeEmployerStatus(estado: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="115"
+                                    class="link-to-prism">src/app/employer-profile/employer-profile.component.ts:115</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>estado</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCurrentEmployerId"></a>
+                    <span class="name">
+                        <span ><b>getCurrentEmployerId</b></span>
+                        <a href="#getCurrentEmployerId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getCurrentEmployerId()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="110"
+                                    class="link-to-prism">src/app/employer-profile/employer-profile.component.ts:110</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getEmployerData"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>getEmployerData</b></span>
+                        <a href="#getEmployerData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getEmployerData(itemId: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="67"
+                                    class="link-to-prism">src/app/employer-profile/employer-profile.component.ts:67</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>itemId</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadCurrentEmployerOffers"></a>
+                    <span class="name">
+                        <span ><b>loadCurrentEmployerOffers</b></span>
+                        <a href="#loadCurrentEmployerOffers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadCurrentEmployerOffers()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="96"
+                                    class="link-to-prism">src/app/employer-profile/employer-profile.component.ts:96</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadEmployerOffers"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>loadEmployerOffers</b></span>
+                        <a href="#loadEmployerOffers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadEmployerOffers(itemId: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="81"
+                                    class="link-to-prism">src/app/employer-profile/employer-profile.component.ts:81</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>itemId</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateToAdmin"></a>
+                    <span class="name">
+                        <span ><b>navigateToAdmin</b></span>
+                        <a href="#navigateToAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateToAdmin()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="145"
+                                    class="link-to-prism">src/app/employer-profile/employer-profile.component.ts:145</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateToCreateOffer"></a>
+                    <span class="name">
+                        <span ><b>navigateToCreateOffer</b></span>
+                        <a href="#navigateToCreateOffer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateToCreateOffer()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="133"
+                                    class="link-to-prism">src/app/employer-profile/employer-profile.component.ts:133</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateToLanding"></a>
+                    <span class="name">
+                        <span ><b>navigateToLanding</b></span>
+                        <a href="#navigateToLanding"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateToLanding()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="141"
+                                    class="link-to-prism">src/app/employer-profile/employer-profile.component.ts:141</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateToPostulationDetail"></a>
+                    <span class="name">
+                        <span ><b>navigateToPostulationDetail</b></span>
+                        <a href="#navigateToPostulationDetail"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateToPostulationDetail(id: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="137"
+                                    class="link-to-prism">src/app/employer-profile/employer-profile.component.ts:137</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="42"
+                                    class="link-to-prism">src/app/employer-profile/employer-profile.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentUserId"></a>
+                    <span class="name">
+                        <span ><b>currentUserId</b></span>
+                        <a href="#currentUserId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/employer-profile/employer-profile.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentUserType"></a>
+                    <span class="name">
+                        <span ><b>currentUserType</b></span>
+                        <a href="#currentUserType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/employer-profile/employer-profile.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="employer"></a>
+                    <span class="name">
+                        <span ><b>employer</b></span>
+                        <a href="#employer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Employer.html" target="_self" >Employer</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{} as Employer</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/employer-profile/employer-profile.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isOwnProfile"></a>
+                    <span class="name">
+                        <span ><b>isOwnProfile</b></span>
+                        <a href="#isOwnProfile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/employer-profile/employer-profile.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="itemId"></a>
+                    <span class="name">
+                        <span ><b>itemId</b></span>
+                        <a href="#itemId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/employer-profile/employer-profile.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="offers"></a>
+                    <span class="name">
+                        <span ><b>offers</b></span>
+                        <a href="#offers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/JobOffer.html" target="_self" >JobOffer[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/employer-profile/employer-profile.component.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, LOCALE_ID, OnInit } from &#x27;@angular/core&#x27;;
+import { HeaderComponent } from &quot;../header/header.component&quot;;
+import { FooterComponent } from &quot;../footer/footer.component&quot;;
+import { EmployerProfileSidebarComponent } from &quot;../employer-profile-sidebar/employer-profile-sidebar.component&quot;;
+import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
+import { EmployerService } from &#x27;../services/employer.service&#x27;;
+import { DatePipe } from &#x27;@angular/common&#x27;
+import { JobOffer } from &#x27;../../models/jobOffer.model&#x27;;
+import { AuthService } from &#x27;../services/auth.service&#x27;;
+import { MatIconModule } from &quot;@angular/material/icon&quot;;
+import { AdminService } from &#x27;../services/admin.service&#x27;;
+import { ToastrService } from &#x27;ngx-toastr&#x27;;
+import { Employer } from &#x27;../../models/employer.model&#x27;;
+import { RouteTranslationService } from &#x27;../services/route-translation.service&#x27;;
+
+@Component({
+  selector: &#x27;app-employer-profile&#x27;,
+  imports: [HeaderComponent, FooterComponent, EmployerProfileSidebarComponent, DatePipe, MatIconModule],
+  templateUrl: &#x27;./employer-profile.component.html&#x27;,
+  styleUrl: &#x27;./employer-profile.component.scss&#x27;,
+  providers: [{ provide: LOCALE_ID, useValue: &#x27;es-AR&#x27; }],
+})
+
+export class EmployerProfileComponent implements OnInit {
+  constructor(
+    private router: Router,
+    private routeTranslation: RouteTranslationService,
+    private employerService: EmployerService,
+    private authService: AuthService,
+    private adminservice: AdminService,
+    private route: ActivatedRoute,
+    private toastr: ToastrService,
+  ) { }
+
+  offers: JobOffer[] &#x3D; [];
+  employer: Employer &#x3D; {} as Employer;
+  currentUserId: string | null &#x3D; null;
+  currentUserType: string | null &#x3D; null;
+  itemId: string &#x3D; &#x27;&#x27;;
+  isOwnProfile: boolean &#x3D; false;
+
+  ngOnInit(): void {
+    //obtengo id de empleador desde la url
+    this.itemId &#x3D; this.route.snapshot.paramMap.get(&#x27;id&#x27;) || &#x27;&#x27;;
+
+    //obtengo id de usuario y tipo de usuario
+    this.currentUserId &#x3D; this.authService.getCurrentUserId();
+    this.currentUserType &#x3D; this.authService.getCurrentUserType();
+    console.log(&#x27;ID de usuario actual:&#x27;, this.currentUserId);
+
+    //flagueo estar en mi propio perfil
+    if (this.currentUserId &#x3D;&#x3D;&#x3D; this.itemId || (this.itemId &#x3D;&#x3D;&#x3D; &#x27;&#x27; &amp;&amp; this.currentUserType &#x3D;&#x3D;&#x3D; &#x27;empresa&#x27;))
+      this.isOwnProfile &#x3D; true;
+
+    //si estoy en mi perfil, cargo mis ofertas
+    if (this.isOwnProfile)
+      this.loadCurrentEmployerOffers();
+    else {
+      //sino, cargo ofertas del empleador cuyo perfil estoy viendo
+      this.loadEmployerOffers(this.itemId);
+      this.getEmployerData(this.itemId);
+    }
+
+
+  }
+
+  private getEmployerData(itemId: any) {
+    this.employerService.getEmployerById(itemId).subscribe({
+      next: (response) &#x3D;&gt; {
+        if (response.status &#x3D;&#x3D;&#x3D; 200) {
+          this.employer &#x3D; response.body ?? {} as Employer;
+        }
+      },
+      error: (err) &#x3D;&gt; {
+        console.error(&#x27;Error al cargar datos del empleador&#x27;, err);
+      }
+    });
+  }
+
+
+  private loadEmployerOffers(itemId: any) {
+    this.employerService.getACtiveOffers().subscribe({
+      next: (response) &#x3D;&gt; {
+        if (response.status &#x3D;&#x3D;&#x3D; 200) {
+          this.offers &#x3D; response.body || [];
+          this.offers &#x3D; this.offers.filter(offer &#x3D;&gt; offer.id_empresa &#x3D;&#x3D;&#x3D; itemId);
+          console.log(&#x27;Ofertas del empleador cargadas:&#x27;, this.offers);
+        }
+      },
+      error: (err) &#x3D;&gt; {
+        console.error(&#x27;Error al cargar ofertas del empleador&#x27;, err);
+      }
+    });
+  }
+
+  loadCurrentEmployerOffers(): void {
+    this.employerService.getEmployerOffers().subscribe({
+      next: (response) &#x3D;&gt; {
+        if (response.status &#x3D;&#x3D;&#x3D; 200) {
+          const allOffers &#x3D; response.body ?? [];
+          this.offers &#x3D; allOffers
+        }
+      },
+      error: (err) &#x3D;&gt; {
+        console.error(&#x27;Error al cargar ofertas&#x27;, err);
+      }
+    });
+  }
+
+  getCurrentEmployerId(): string {
+    return this.authService.getCurrentUserId() || &#x27;&#x27;;
+  }
+
+
+  changeEmployerStatus(estado: string) {
+    this.adminservice.changeEmployerStatusByAdmin(this.itemId, estado).subscribe({
+      next: (response) &#x3D;&gt; {
+        if (response.status &#x3D;&#x3D;&#x3D; 200) {
+          this.toastr.success(&#x27;Ya podes verla en el panel de administración&#x27;, &#x27;Empresa actualizada&#x27;)
+          this.navigateToAdmin();
+          console.log(&#x27;Empresa actualizada&#x27;, response);
+        } else {
+          console.log(&#x27;No se pudo actualizar la empresa&#x27;, response);
+        }
+      },
+      error: (err) &#x3D;&gt; {
+        this.toastr.error(err.error.error, &#x27;Ocurrió un error&#x27;);
+        console.error(&#x27;Error al actualizar empresa&#x27;, err);
+      }
+    });
+  }
+
+  navigateToCreateOffer() {
+    this.routeTranslation.navigateToTranslated([&#x27;create-offer&#x27;])
+  }
+
+  navigateToPostulationDetail(id: any) {
+    this.routeTranslation.navigateToTranslated([&#x27;detail&#x27;, id], { state: { from: this.router.url } });
+  }
+
+  navigateToLanding() {
+    this.routeTranslation.navigateToTranslated([&#x27;&#x27;]);
+  }
+
+  navigateToAdmin() {
+    this.routeTranslation.navigateToTranslated([&#x27;admin-panel&#x27;]);
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;app-header&gt;&lt;/app-header&gt;
+&lt;div class&#x3D;&quot;container&quot;&gt;
+    &lt;div class&#x3D;&quot;fallback&quot;&gt;
+
+        @if (currentUserType &#x3D;&#x3D;&#x3D; &#x27;empresa&#x27; || currentUserType &#x3D;&#x3D;&#x3D; &#x27;ciudadano&#x27;){
+        &lt;div&gt;
+            &lt;i class&#x3D;&quot;fa-solid fa-arrow-left&quot; (click)&#x3D;&quot;navigateToLanding()&quot;&gt;&lt;/i&gt; &lt;a (click)&#x3D;&quot;navigateToLanding()&quot;&gt;
+                Volver a
+                ofertas&lt;/a&gt;
+        &lt;/div&gt;
+
+        }@else {
+        &lt;div&gt;
+            &lt;i class&#x3D;&quot;fa-solid fa-arrow-left&quot; (click)&#x3D;&quot;navigateToAdmin()&quot;&gt;&lt;/i&gt; &lt;a (click)&#x3D;&quot;navigateToAdmin()&quot;&gt;
+                Volver a
+                Administración&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;container-options&quot;&gt;
+            @if (employer.estado_aprobacion &#x3D;&#x3D;&#x3D; &#x27;pendiente&#x27;) {
+
+            &lt;div class&#x3D;&quot;options-employer&quot;&gt;
+                &lt;h5 class&#x3D;&quot;pendiente-flag&quot;&gt;&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;30px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;30px&quot;&gt;&lt;path d&#x3D;&quot;M109.23-160 480-800l370.77 640H109.23Zm58.41-33.85h624.72L480-732.31 167.64-193.85Zm313.61-60.56q9.21 0 15.31-6.23 6.11-6.23 6.11-15.43 0-9.21-6.23-15.31-6.23-6.11-15.44-6.11-9.21 0-15.31 6.23t-6.1 15.44q0 9.2 6.23 15.31 6.23 6.1 15.43 6.1Zm-17.04-86.31h33.84v-207.79h-33.84v207.79ZM480-463.08Z&quot;/&gt;&lt;/svg&gt; Pendiente
+                &lt;/h5&gt;
+
+                &lt;button class&#x3D;&quot;edit&quot; (click)&#x3D;&quot;changeEmployerStatus(&#x27;aprobada&#x27;)&quot;&gt; &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;30px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;30px&quot;&gt;&lt;path d&#x3D;&quot;M380.87-269.64 183.23-467.28l24.33-23.82 173.31 173.31 371.41-371.93 24.34 24.34-395.75 395.74Z&quot;/&gt;&lt;/svg&gt;
+                    APROBAR&lt;/button&gt;
+                &lt;button class&#x3D;&quot;reject&quot; (click)&#x3D;&quot;changeEmployerStatus(&#x27;rechazada&#x27;)&quot;&gt; &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;30px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;30px&quot;&gt;&lt;path d&#x3D;&quot;M256-227.69 227.69-256l224-224-224-224L256-732.31l224 224 224-224L732.31-704l-224 224 224 224L704-227.69l-224-224-224 224Z&quot;/&gt;&lt;/svg&gt;
+                    RECHAZAR&lt;/button&gt;
+            &lt;/div&gt;
+            } @else if (employer.estado_aprobacion &#x3D;&#x3D;&#x3D; &#x27;rechazada&#x27;) {
+            &lt;div class&#x3D;&quot;options-employer&quot;&gt;
+                &lt;h5 class&#x3D;&quot;reject-flag&quot;&gt;&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;30x&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;30px&quot;&gt;&lt;path d&#x3D;&quot;m336-307.69 144-144 144 144L652.31-336l-144-144 144-144L624-652.31l-144 144-144-144L307.69-624l144 144-144 144L336-307.69ZM480.13-120q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41 28.34-65.73 76.92-114.36 48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34 65.73 28.34 114.36 76.92 48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41-28.34 65.73-76.92 114.36-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z&quot;/&gt;&lt;/svg&gt; Rechazada&lt;/h5&gt;
+
+                &lt;button class&#x3D;&quot;edit&quot; (click)&#x3D;&quot;changeEmployerStatus(&#x27;aprobada&#x27;)&quot;&gt; &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;30px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;30px&quot;&gt;&lt;path d&#x3D;&quot;M380.87-269.64 183.23-467.28l24.33-23.82 173.31 173.31 371.41-371.93 24.34 24.34-395.75 395.74Z&quot;/&gt;&lt;/svg&gt;
+                    APROBAR&lt;/button&gt;
+            &lt;/div&gt;
+            } @else if(employer.estado_aprobacion&#x3D;&#x3D;&#x3D; &#x27;aprobada&#x27;) {
+            &lt;div class&#x3D;&quot;options-employer&quot;&gt;
+                &lt;h5 class&#x3D;&quot;check-flag&quot;&gt;&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;30px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;30px&quot;&gt;&lt;path d&#x3D;&quot;m422.46-323.69 255.85-255.85L650-607.85 422.46-380.31l-114-114L280.15-466l142.31 142.31ZM480.13-120q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41 28.34-65.73 76.92-114.36 48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34 65.73 28.34 114.36 76.92 48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41-28.34 65.73-76.92 114.36-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z&quot;/&gt;&lt;/svg&gt; Aprobada&lt;/h5&gt;
+
+                &lt;button class&#x3D;&quot;reject&quot; (click)&#x3D;&quot;changeEmployerStatus(&#x27;rechazada&#x27;)&quot;&gt; &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;30px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;30px&quot;&gt;&lt;path d&#x3D;&quot;M256-227.69 227.69-256l224-224-224-224L256-732.31l224 224 224-224L732.31-704l-224 224 224 224L704-227.69l-224-224-224 224Z&quot;/&gt;&lt;/svg&gt;
+                    RECHAZAR&lt;/button&gt;
+            &lt;/div&gt;
+            }
+        &lt;/div&gt;
+        }
+
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;container-profile&quot;&gt;
+        &lt;app-employer-profile-sidebar [currentUserId]&#x3D;&quot;currentUserId&quot; [currentUserType]&#x3D;&quot;currentUserType&quot;
+            [itemId]&#x3D;&quot;itemId&quot;&gt;&lt;/app-employer-profile-sidebar&gt;
+        &lt;main&gt;
+            &lt;div class&#x3D;&quot;main-header&quot;&gt;
+                &lt;h2&gt;Ofertas&lt;/h2&gt;
+                &lt;div class&#x3D;&quot;create-offer&quot;&gt;
+                    @if (isOwnProfile) {
+                    &lt;button (click)&#x3D;&quot;navigateToCreateOffer()&quot;&gt;Crear Oferta&lt;/button&gt;
+                    }
+                &lt;/div&gt;
+            &lt;/div&gt;
+            @if (offers.length) {
+            @for (offer of offers; track offer.id) {
+            &lt;div class&#x3D;&quot;postulation&quot;&gt;
+                &lt;div class&#x3D;&quot;postulation-header&quot;&gt;
+                    &lt;h3&gt;{{offer.puesto_requerido}}&lt;/h3&gt;
+                    &lt;div class&#x3D;&quot;state&quot;&gt;
+                        @if (offer.estado_publicacion &#x3D;&#x3D;&#x3D; &#x27;aprobada&#x27;){
+                        &lt;h5 class&#x3D;&quot;check-flag&quot;&gt;&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;30px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;30px&quot;&gt;&lt;path d&#x3D;&quot;m422.46-323.69 255.85-255.85L650-607.85 422.46-380.31l-114-114L280.15-466l142.31 142.31ZM480.13-120q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41 28.34-65.73 76.92-114.36 48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34 65.73 28.34 114.36 76.92 48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41-28.34 65.73-76.92 114.36-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z&quot;/&gt;&lt;/svg&gt;Aprobada &lt;/h5&gt;
+                        }@else if (offer.estado_publicacion &#x3D;&#x3D;&#x3D; &#x27;pendiente&#x27;){
+                        &lt;h5 class&#x3D;&quot;pendiente-flag&quot;&gt;&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;30px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;30px&quot;&gt;&lt;path d&#x3D;&quot;M109.23-160 480-800l370.77 640H109.23Zm58.41-33.85h624.72L480-732.31 167.64-193.85Zm313.61-60.56q9.21 0 15.31-6.23 6.11-6.23 6.11-15.43 0-9.21-6.23-15.31-6.23-6.11-15.44-6.11-9.21 0-15.31 6.23t-6.1 15.44q0 9.2 6.23 15.31 6.23 6.1 15.43 6.1Zm-17.04-86.31h33.84v-207.79h-33.84v207.79ZM480-463.08Z&quot;/&gt;&lt;/svg&gt;Pendiente &lt;/h5&gt;
+                        }@else{
+                        &lt;h5 class&#x3D;&quot;reject-flag&quot;&gt;&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;30x&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;30px&quot;&gt;&lt;path d&#x3D;&quot;m336-307.69 144-144 144 144L652.31-336l-144-144 144-144L624-652.31l-144 144-144-144L307.69-624l144 144-144 144L336-307.69ZM480.13-120q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41 28.34-65.73 76.92-114.36 48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34 65.73 28.34 114.36 76.92 48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41-28.34 65.73-76.92 114.36-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z&quot;/&gt;&lt;/svg&gt;Rechazada &lt;/h5&gt;
+                        }
+                        &lt;p&gt;Publicado {{offer.fecha_publicacion | date:&#x27;longDate&#x27;}}&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;postulation-body&quot;&gt;
+                    &lt;p&gt;{{offer.descripcion}}&lt;/p&gt;
+                    &lt;button (click)&#x3D;&quot;navigateToPostulationDetail(offer.id)&quot;&gt;Ver Oferta&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            }
+            }@else {
+            &lt;h3&gt;No hay ofertas cargadas&lt;/h3&gt;
+            }
+        &lt;/main&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;
+&lt;app-footer&gt;&lt;/app-footer&gt;</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><app-header></app-header><div class="container">    <div class="fallback">        @if (currentUserType === \'empresa\' || currentUserType === \'ciudadano\'){        <div>            <i class="fa-solid fa-arrow-left" (click)="navigateToLanding()"></i> <a (click)="navigateToLanding()">                Volver a                ofertas</a>        </div>        }@else {        <div>            <i class="fa-solid fa-arrow-left" (click)="navigateToAdmin()"></i> <a (click)="navigateToAdmin()">                Volver a                Administración</a>        </div>        <div class="container-options">            @if (employer.estado_aprobacion === \'pendiente\') {            <div class="options-employer">                <h5 class="pendiente-flag"><svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"><path d="M109.23-160 480-800l370.77 640H109.23Zm58.41-33.85h624.72L480-732.31 167.64-193.85Zm313.61-60.56q9.21 0 15.31-6.23 6.11-6.23 6.11-15.43 0-9.21-6.23-15.31-6.23-6.11-15.44-6.11-9.21 0-15.31 6.23t-6.1 15.44q0 9.2 6.23 15.31 6.23 6.1 15.43 6.1Zm-17.04-86.31h33.84v-207.79h-33.84v207.79ZM480-463.08Z"/></svg> Pendiente                </h5>                <button class="edit" (click)="changeEmployerStatus(\'aprobada\')"> <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"><path d="M380.87-269.64 183.23-467.28l24.33-23.82 173.31 173.31 371.41-371.93 24.34 24.34-395.75 395.74Z"/></svg>                    APROBAR</button>                <button class="reject" (click)="changeEmployerStatus(\'rechazada\')"> <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"><path d="M256-227.69 227.69-256l224-224-224-224L256-732.31l224 224 224-224L732.31-704l-224 224 224 224L704-227.69l-224-224-224 224Z"/></svg>                    RECHAZAR</button>            </div>            } @else if (employer.estado_aprobacion === \'rechazada\') {            <div class="options-employer">                <h5 class="reject-flag"><svg xmlns="http://www.w3.org/2000/svg" height="30x" viewBox="0 -960 960 960" width="30px"><path d="m336-307.69 144-144 144 144L652.31-336l-144-144 144-144L624-652.31l-144 144-144-144L307.69-624l144 144-144 144L336-307.69ZM480.13-120q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41 28.34-65.73 76.92-114.36 48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34 65.73 28.34 114.36 76.92 48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41-28.34 65.73-76.92 114.36-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg> Rechazada</h5>                <button class="edit" (click)="changeEmployerStatus(\'aprobada\')"> <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"><path d="M380.87-269.64 183.23-467.28l24.33-23.82 173.31 173.31 371.41-371.93 24.34 24.34-395.75 395.74Z"/></svg>                    APROBAR</button>            </div>            } @else if(employer.estado_aprobacion=== \'aprobada\') {            <div class="options-employer">                <h5 class="check-flag"><svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"><path d="m422.46-323.69 255.85-255.85L650-607.85 422.46-380.31l-114-114L280.15-466l142.31 142.31ZM480.13-120q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41 28.34-65.73 76.92-114.36 48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34 65.73 28.34 114.36 76.92 48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41-28.34 65.73-76.92 114.36-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg> Aprobada</h5>                <button class="reject" (click)="changeEmployerStatus(\'rechazada\')"> <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"><path d="M256-227.69 227.69-256l224-224-224-224L256-732.31l224 224 224-224L732.31-704l-224 224 224 224L704-227.69l-224-224-224 224Z"/></svg>                    RECHAZAR</button>            </div>            }        </div>        }    </div>    <div class="container-profile">        <app-employer-profile-sidebar [currentUserId]="currentUserId" [currentUserType]="currentUserType"            [itemId]="itemId"></app-employer-profile-sidebar>        <main>            <div class="main-header">                <h2>Ofertas</h2>                <div class="create-offer">                    @if (isOwnProfile) {                    <button (click)="navigateToCreateOffer()">Crear Oferta</button>                    }                </div>            </div>            @if (offers.length) {            @for (offer of offers; track offer.id) {            <div class="postulation">                <div class="postulation-header">                    <h3>{{offer.puesto_requerido}}</h3>                    <div class="state">                        @if (offer.estado_publicacion === \'aprobada\'){                        <h5 class="check-flag"><svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"><path d="m422.46-323.69 255.85-255.85L650-607.85 422.46-380.31l-114-114L280.15-466l142.31 142.31ZM480.13-120q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41 28.34-65.73 76.92-114.36 48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34 65.73 28.34 114.36 76.92 48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41-28.34 65.73-76.92 114.36-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>Aprobada </h5>                        }@else if (offer.estado_publicacion === \'pendiente\'){                        <h5 class="pendiente-flag"><svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"><path d="M109.23-160 480-800l370.77 640H109.23Zm58.41-33.85h624.72L480-732.31 167.64-193.85Zm313.61-60.56q9.21 0 15.31-6.23 6.11-6.23 6.11-15.43 0-9.21-6.23-15.31-6.23-6.11-15.44-6.11-9.21 0-15.31 6.23t-6.1 15.44q0 9.2 6.23 15.31 6.23 6.1 15.43 6.1Zm-17.04-86.31h33.84v-207.79h-33.84v207.79ZM480-463.08Z"/></svg>Pendiente </h5>                        }@else{                        <h5 class="reject-flag"><svg xmlns="http://www.w3.org/2000/svg" height="30x" viewBox="0 -960 960 960" width="30px"><path d="m336-307.69 144-144 144 144L652.31-336l-144-144 144-144L624-652.31l-144 144-144-144L307.69-624l144 144-144 144L336-307.69ZM480.13-120q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41 28.34-65.73 76.92-114.36 48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34 65.73 28.34 114.36 76.92 48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41-28.34 65.73-76.92 114.36-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>Rechazada </h5>                        }                        <p>Publicado {{offer.fecha_publicacion | date:\'longDate\'}}</p>                    </div>                </div>                <div class="postulation-body">                    <p>{{offer.descripcion}}</p>                    <button (click)="navigateToPostulationDetail(offer.id)">Ver Oferta</button>                </div>            </div>            }            }@else {            <h3>No hay ofertas cargadas</h3>            }        </main>    </div></div><app-footer></app-footer></div>'
+    var COMPONENTS = [{'name': 'AcademicBackgroundComponent', 'selector': 'app-academic-background'},{'name': 'AcademicBackgroundEditComponent', 'selector': 'app-academic-background-edit'},{'name': 'AdminPanelComponent', 'selector': 'app-postulation-list'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AttatchCvComponent', 'selector': 'app-attatch-cv'},{'name': 'BigLogoComponent', 'selector': 'app-big-logo'},{'name': 'CvUploaderComponent', 'selector': 'app-cv-uploader'},{'name': 'DeleteDialogComponent', 'selector': 'app-delete-dialog'},{'name': 'EmployeeFormComponent', 'selector': 'app-employee-form'},{'name': 'EmployeeProfileComponent', 'selector': 'app-employee-profile'},{'name': 'EmployeerProfileFormComponent', 'selector': 'app-employeer-profile-form'},{'name': 'EmployerProfileComponent', 'selector': 'app-employer-profile'},{'name': 'EmployerProfileSidebarComponent', 'selector': 'app-employer-profile-sidebar'},{'name': 'FileUploaderComponent', 'selector': 'app-file-uploader'},{'name': 'FilterComponent', 'selector': 'app-filter'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'FormSelectorComponent', 'selector': 'app-form-selector'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'JobOfferFormComponent', 'selector': 'app-profile-form'},{'name': 'LandingComponent', 'selector': 'app-landing'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PostulateDialogComponent', 'selector': 'app-Postulate-dialog'},{'name': 'PostulationDetailComponent', 'selector': 'app-postulation-detail'},{'name': 'PostulationListComponent', 'selector': 'app-postulation-list'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProfileFormComponent', 'selector': 'app-profile-form'},{'name': 'ProfilePictureComponent', 'selector': 'app-profile-picture'},{'name': 'ProfileSelectorComponent', 'selector': 'app-profile-selector'},{'name': 'ProgressSpinner', 'selector': 'progress-spinner-overview-example'},{'name': 'RecoveryComponent', 'selector': 'app-recovery'},{'name': 'ReportsComponent', 'selector': 'app-reports'},{'name': 'ResetPasswordComponent', 'selector': ''},{'name': 'TrainingLinkComponent', 'selector': 'app-training-link'},{'name': 'WorkExperienceComponent', 'selector': 'app-work-experience'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'EmployerProfileComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'EmployerProfileComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

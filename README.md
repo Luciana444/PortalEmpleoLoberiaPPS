@@ -26,7 +26,7 @@ Crear un sistema de intermediación laboral que facilite la conexión entre la o
 
 ## 🧰 Tecnologías utilizadas
 
-- **Frontend:** Angular
+- **Frontend:** Angular y Material
 - **Backend:** Node.js con Express
 - **Base de Datos:** PostgreSQL (gestionada desde Supabase)
 - **Cliente de base de datos / ORM:** Supabase-js
@@ -162,6 +162,25 @@ La documentación está disponible en: Backend/docs/index.html
    > O abrir directamente en el navegador con doble clic.
 
 > ⚠️ Este archivo **no es la interfaz del sistema**, sino la **documentación técnica** del código backend generada automáticamente por JSDoc.
+
+---
+
+## 📚 Documentación del Frontend (CompoDoc)
+
+Este proyecto incluye documentación generada automáticamente con [CompoDoc](https://compodoc.app/) para los componentes y servicios del frontend.
+
+### 📄 Ver documentación
+
+La documentación está disponible en: Frontend/portal-trabajo/documentation/index.html
+
+### 🔍 ¿Cómo visualizarla?
+
+1. Abrir el proyecto en Visual Studio Code.
+2. Navegar hasta `Frontend/portal-trabajo/documentation/index.html`.
+3. Hacer clic derecho sobre el archivo y elegir **"Open with Live Server"**.
+   > O abrir directamente en el navegador con doble clic.
+
+> ⚠️ Este archivo **no es la interfaz del sistema**, sino la **documentación técnica** del código frontend generada automáticamente por CompoDoc.
 
 ---
 

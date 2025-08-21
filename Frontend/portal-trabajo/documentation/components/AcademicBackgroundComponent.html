@@ -1,0 +1,1031 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>portal-trabajo documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">portal-trabajo documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  AcademicBackgroundComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/academic-background/academic-background.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-academic-background</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>MatDividerModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./academic-background.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./academic-background.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#$id" >$id</a>
+                            </li>
+                            <li>
+                                <a href="#postulations" >postulations</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#convertToLocalDate" >convertToLocalDate</a>
+                            </li>
+                            <li>
+                                <a href="#getUserType" >getUserType</a>
+                            </li>
+                            <li>
+                                <a href="#navigateToAcademicBackgroundEditComponent" >navigateToAcademicBackgroundEditComponent</a>
+                            </li>
+                            <li>
+                                <a href="#navigateToPostulationDetail" >navigateToPostulationDetail</a>
+                            </li>
+                            <li>
+                                <a href="#navigateToWorkExperience" >navigateToWorkExperience</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#employeeData" >employeeData</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(router: Router, employeeService: <a href="../injectables/EmployeeService.html" target="_self">EmployeeService</a>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, routeTranslation: <a href="../injectables/RouteTranslationService.html" target="_self">RouteTranslationService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/academic-background/academic-background.component.ts:19</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>employeeService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/EmployeeService.html" target="_self" >EmployeeService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>routeTranslation</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/RouteTranslationService.html" target="_self" >RouteTranslationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="employeeData"></a>
+                        <b>employeeData</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Employee.html" target="_self" >Employee | null</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/academic-background/academic-background.component.ts:46</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convertToLocalDate"></a>
+                    <span class="name">
+                        <span ><b>convertToLocalDate</b></span>
+                        <a href="#convertToLocalDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>convertToLocalDate(date: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="60"
+                                    class="link-to-prism">src/app/academic-background/academic-background.component.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>date</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUserType"></a>
+                    <span class="name">
+                        <span ><b>getUserType</b></span>
+                        <a href="#getUserType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getUserType()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="64"
+                                    class="link-to-prism">src/app/academic-background/academic-background.component.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string | null</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateToAcademicBackgroundEditComponent"></a>
+                    <span class="name">
+                        <span ><b>navigateToAcademicBackgroundEditComponent</b></span>
+                        <a href="#navigateToAcademicBackgroundEditComponent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateToAcademicBackgroundEditComponent()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">src/app/academic-background/academic-background.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateToPostulationDetail"></a>
+                    <span class="name">
+                        <span ><b>navigateToPostulationDetail</b></span>
+                        <a href="#navigateToPostulationDetail"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateToPostulationDetail(id: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/app/academic-background/academic-background.component.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateToWorkExperience"></a>
+                    <span class="name">
+                        <span ><b>navigateToWorkExperience</b></span>
+                        <a href="#navigateToWorkExperience"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateToWorkExperience()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="52"
+                                    class="link-to-prism">src/app/academic-background/academic-background.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="28"
+                                    class="link-to-prism">src/app/academic-background/academic-background.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="$id"></a>
+                    <span class="name">
+                        <span ><b>$id</b></span>
+                        <a href="#$id"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/academic-background/academic-background.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="postulations"></a>
+                    <span class="name">
+                        <span ><b>postulations</b></span>
+                        <a href="#postulations"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Postulation.html" target="_self" >Postulation[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/academic-background/academic-background.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, OnInit } from &#x27;@angular/core&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { Employee } from &#x27;../../models/employee.model&#x27;;
+import { EmployeeService } from &#x27;../services/employee.service&#x27;;
+import { Postulation } from &#x27;../../models/postulation.model&#x27;;
+import { MatDividerModule } from &#x27;@angular/material/divider&#x27;;
+import { AuthService } from &#x27;../services/auth.service&#x27;;
+import { AppUtils } from &#x27;../../utils/app.utils&#x27;;
+import { RouteTranslationService } from &#x27;../services/route-translation.service&#x27;;
+
+
+@Component({
+  selector: &#x27;app-academic-background&#x27;,
+  imports: [MatDividerModule],
+  templateUrl: &#x27;./academic-background.component.html&#x27;,
+  styleUrl: &#x27;./academic-background.component.scss&#x27;
+})
+
+export class AcademicBackgroundComponent implements OnInit {
+  constructor(private router: Router,
+    private employeeService: EmployeeService,
+    private authService: AuthService,
+    private routeTranslation: RouteTranslationService,) { }
+
+  $id: any;
+  postulations: Postulation[] &#x3D; [];
+
+  ngOnInit(): void {
+    this.employeeService.getPostulations().subscribe({
+      next: (response) &#x3D;&gt; {
+        if (response.status &#x3D;&#x3D;&#x3D; 200) {
+          this.postulations &#x3D; response.body ?? [];
+        } else {
+          console.log(&#x27;No se pudo cargar postulación&#x27;, response);
+        }
+      },
+      error: (err) &#x3D;&gt; {
+        // this.toastr.error(err.error.error, &#x27;Ocurrió un error&#x27;);
+        console.error(&#x27;Error al cargar postulación&#x27;, err);
+      }
+
+    });
+
+  }
+
+  @Input() employeeData: Employee | null &#x3D; null;
+
+  navigateToAcademicBackgroundEditComponent() {
+    this.routeTranslation.navigateToTranslated([&#x27;academic-background-edit&#x27;]);
+  }
+
+  navigateToWorkExperience() {
+    this.routeTranslation.navigateToTranslated([&#x27;work-experience&#x27;]);
+  }
+
+  navigateToPostulationDetail(id: any) {
+    this.routeTranslation.navigateToTranslated([&#x27;detail&#x27;, id, true], { state: { from: this.router.url } })
+  }
+
+  convertToLocalDate(date: string) {
+    return AppUtils.convertToLocalString(date);
+  }
+
+  getUserType(): string | null {
+    return this.authService.getCurrentUserType();
+  }
+
+}
+
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;main&gt;
+    &lt;div&gt;
+        &lt;div class&#x3D;&quot;title-wrapper&quot;&gt;
+            &lt;h2&gt;Formacion academica y cursos&lt;/h2&gt;
+            @if(getUserType()&#x3D;&#x3D;&#x3D; &quot;empresa&quot; || getUserType()&#x3D;&#x3D;&#x3D; &#x27;admin&#x27;){
+            &lt;button class&#x3D;&quot;hide-btn&quot;&gt; &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;30px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;30px&quot;&gt;&lt;path d&#x3D;&quot;M480-212.31 240-342.77v-193.85L123.08-600 480-793.85 836.92-600v255.39h-40v-232.93L720-536.62v193.85L480-212.31ZM480-452l273.23-148L480-748 206.77-600 480-452Zm0 194.08 200-108v-148.7L480-406.3 280-514.62v148.7l200 108ZM480-452Zm0 54.62Zm0 0Z&quot;/&gt;&lt;/svg&gt;
+                Completar Formación&lt;/button&gt;}
+            @else{
+            &lt;button (click)&#x3D;&quot;navigateToAcademicBackgroundEditComponent()&quot;&gt;&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;30px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;30px&quot;&gt;&lt;path d&#x3D;&quot;M480-212.31 240-342.77v-193.85L123.08-600 480-793.85 836.92-600v255.39h-40v-232.93L720-536.62v193.85L480-212.31ZM480-452l273.23-148L480-748 206.77-600 480-452Zm0 194.08 200-108v-148.7L480-406.3 280-514.62v148.7l200 108ZM480-452Zm0 54.62Zm0 0Z&quot;/&gt;&lt;/svg&gt;
+                Completar
+                Formación&lt;/button&gt;
+            }
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;info-row&quot;&gt;
+            &lt;h5&gt;Nivel Educativo Alcanzado: &lt;/h5&gt;
+            &lt;p&gt;{{employeeData?.nivel_educativo}}&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;info-row&quot;&gt;
+            &lt;h5&gt;¿Está cursando actualmente una carrera? &lt;/h5&gt;
+            @if (employeeData?.esta_cursando_carrera) {
+            &lt;p&gt;Sí&lt;/p&gt;
+            } @else {
+            &lt;p&gt;No&lt;/p&gt;
+            }
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;info-row&quot;&gt;
+            &lt;h5&gt;Carrera en curso: &lt;/h5&gt;
+            &lt;p&gt;{{employeeData?.carrera_en_curso}}&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;info-row&quot;&gt;
+            &lt;h5&gt;Cursos o capacitaciones realizados: &lt;/h5&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;experiences&quot;&gt;
+            @for (capacitacion of employeeData?.capacitaciones; track $id) {
+            &lt;li&gt;
+                &lt;p&gt;{{capacitacion.nombre_capacitacion}}&lt;/p&gt;
+            &lt;/li&gt;
+            &lt;mat-divider&gt;&lt;/mat-divider&gt;
+            }
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;div class&#x3D;&quot;title-wrapper&quot;&gt;
+            &lt;h2&gt;Experiencia laboral&lt;/h2&gt;
+            @if(getUserType()&#x3D;&#x3D;&#x3D; &quot;empresa&quot; || getUserType() &#x3D;&#x3D;&#x3D; &#x27;admin&#x27;){
+            &lt;button class&#x3D;&quot;hide-btn&quot;&gt;&lt;i class&#x3D;&quot;fa-solid fa-briefcase&quot;&gt;&lt;/i&gt; Completar
+                Experiencia&lt;/button&gt;}
+            @else{
+            &lt;button (click)&#x3D;&quot;navigateToWorkExperience()&quot;&gt;&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;30px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;30px&quot;&gt;&lt;path d&#x3D;&quot;M184.62-160q-27.62 0-46.12-18.5Q120-197 120-224.62v-390.76q0-27.62 18.5-46.12Q157-680 184.62-680H360v-55.39q0-27.61 18.5-46.11t46.12-18.5h110.76q27.62 0 46.12 18.5Q600-763 600-735.39V-680h175.38q27.62 0 46.12 18.5Q840-643 840-615.38v390.76q0 27.62-18.5 46.12Q803-160 775.38-160H184.62ZM400-680h160v-55.39q0-9.23-7.69-16.92-7.69-7.69-16.93-7.69H424.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.92V-680Zm400 300H560v60H400v-60H160v155.38q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69h590.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93V-380Zm-360 20h80v-80h-80v80Zm-280-60h240v-60h160v60h240v-195.38q0-9.24-7.69-16.93-7.69-7.69-16.93-7.69H184.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93V-420Zm320 20Z&quot;/&gt;&lt;/svg&gt; Completar
+                Experiencia&lt;/button&gt;
+            }
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;info-row&quot;&gt;
+            &lt;h5&gt;Situación laboral actual: &lt;/h5&gt;
+            &lt;p&gt;{{employeeData?.situacion_laboral}}&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;info-row&quot;&gt;
+            &lt;h5&gt;¿Tiene un emprendimiento propio?&lt;/h5&gt;
+            @if (employeeData?.tiene_emprendimiento) {
+            &lt;p&gt;Sí&lt;/p&gt;
+            } @else {
+            &lt;p&gt;No&lt;/p&gt;
+            }
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;experiences&quot;&gt;
+            &lt;div&gt;
+                @for (experiencia of employeeData?.experiencias_laborales; track $id) {
+                &lt;li&gt;
+                    &lt;div class&#x3D;&quot;dates&quot;&gt;
+                        &lt;p&gt;&lt;strong&gt; Empresa:&lt;/strong&gt; {{experiencia.nombre_empresa}}&lt;/p&gt;
+                        &lt;p&gt;&lt;strong&gt; De: &lt;/strong&gt;{{convertToLocalDate(experiencia.desde)}}&lt;/p&gt;
+                        &lt;p&gt;&lt;strong&gt; A:&lt;/strong&gt; {{convertToLocalDate(experiencia.hasta)}}&lt;/p&gt;
+                    &lt;/div&gt;
+                    &lt;p class&#x3D;&quot;descripcion-margin&quot;&gt;&lt;strong&gt; Descripción:&lt;/strong&gt; {{experiencia.comentario}}&lt;/p&gt;
+                &lt;/li&gt;
+                &lt;mat-divider&gt;&lt;/mat-divider&gt;
+                }
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/main&gt;
+
+@if(getUserType() &#x3D;&#x3D;&#x3D; &#x27;ciudadano&#x27;){
+&lt;div class&#x3D;&quot;postulations-header&quot;&gt;
+    &lt;h1&gt;Postulaciones&lt;/h1&gt;
+&lt;/div&gt;
+@if (postulations.length) {
+@for (p of postulations; track p.id) {
+&lt;div class&#x3D;&quot;postulations&quot;&gt;
+    &lt;div class&#x3D;&quot;postulation-title&quot;&gt;
+        &lt;h2&gt;{{p.puesto_requerido}}&lt;/h2&gt;
+        &lt;p class&#x3D;&quot;postulation-date&quot;&gt;Postulado el {{convertToLocalDate(p.fecha_postulacion)}}&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;postulations-content&quot;&gt;
+        &lt;div class&#x3D;&quot;postulations-text-wrapper&quot;&gt;
+            &lt;p class&#x3D;&quot;postulations-text&quot;&gt;{{p.descripcion}}&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;button (click)&#x3D;&quot;navigateToPostulationDetail(p.id_oferta)&quot;&gt;Ver Oferta&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+}} @else {
+&lt;h3&gt;No hay postulaciones.&lt;/h3&gt;
+}
+}</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><main>    <div>        <div class="title-wrapper">            <h2>Formacion academica y cursos</h2>            @if(getUserType()=== "empresa" || getUserType()=== \'admin\'){            <button class="hide-btn"> <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"><path d="M480-212.31 240-342.77v-193.85L123.08-600 480-793.85 836.92-600v255.39h-40v-232.93L720-536.62v193.85L480-212.31ZM480-452l273.23-148L480-748 206.77-600 480-452Zm0 194.08 200-108v-148.7L480-406.3 280-514.62v148.7l200 108ZM480-452Zm0 54.62Zm0 0Z"/></svg>                Completar Formación</button>}            @else{            <button (click)="navigateToAcademicBackgroundEditComponent()"><svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"><path d="M480-212.31 240-342.77v-193.85L123.08-600 480-793.85 836.92-600v255.39h-40v-232.93L720-536.62v193.85L480-212.31ZM480-452l273.23-148L480-748 206.77-600 480-452Zm0 194.08 200-108v-148.7L480-406.3 280-514.62v148.7l200 108ZM480-452Zm0 54.62Zm0 0Z"/></svg>                Completar                Formación</button>            }        </div>        <div class="info-row">            <h5>Nivel Educativo Alcanzado: </h5>            <p>{{employeeData?.nivel_educativo}}</p>        </div>        <div class="info-row">            <h5>¿Está cursando actualmente una carrera? </h5>            @if (employeeData?.esta_cursando_carrera) {            <p>Sí</p>            } @else {            <p>No</p>            }        </div>        <div class="info-row">            <h5>Carrera en curso: </h5>            <p>{{employeeData?.carrera_en_curso}}</p>        </div>        <div class="info-row">            <h5>Cursos o capacitaciones realizados: </h5>        </div>        <div class="experiences">            @for (capacitacion of employeeData?.capacitaciones; track $id) {            <li>                <p>{{capacitacion.nombre_capacitacion}}</p>            </li>            <mat-divider></mat-divider>            }        </div>    </div>    <div>        <div class="title-wrapper">            <h2>Experiencia laboral</h2>            @if(getUserType()=== "empresa" || getUserType() === \'admin\'){            <button class="hide-btn"><i class="fa-solid fa-briefcase"></i> Completar                Experiencia</button>}            @else{            <button (click)="navigateToWorkExperience()"><svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"><path d="M184.62-160q-27.62 0-46.12-18.5Q120-197 120-224.62v-390.76q0-27.62 18.5-46.12Q157-680 184.62-680H360v-55.39q0-27.61 18.5-46.11t46.12-18.5h110.76q27.62 0 46.12 18.5Q600-763 600-735.39V-680h175.38q27.62 0 46.12 18.5Q840-643 840-615.38v390.76q0 27.62-18.5 46.12Q803-160 775.38-160H184.62ZM400-680h160v-55.39q0-9.23-7.69-16.92-7.69-7.69-16.93-7.69H424.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.92V-680Zm400 300H560v60H400v-60H160v155.38q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69h590.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93V-380Zm-360 20h80v-80h-80v80Zm-280-60h240v-60h160v60h240v-195.38q0-9.24-7.69-16.93-7.69-7.69-16.93-7.69H184.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93V-420Zm320 20Z"/></svg> Completar                Experiencia</button>            }        </div>        <div class="info-row">            <h5>Situación laboral actual: </h5>            <p>{{employeeData?.situacion_laboral}}</p>        </div>        <div class="info-row">            <h5>¿Tiene un emprendimiento propio?</h5>            @if (employeeData?.tiene_emprendimiento) {            <p>Sí</p>            } @else {            <p>No</p>            }        </div>        <div class="experiences">            <div>                @for (experiencia of employeeData?.experiencias_laborales; track $id) {                <li>                    <div class="dates">                        <p><strong> Empresa:</strong> {{experiencia.nombre_empresa}}</p>                        <p><strong> De: </strong>{{convertToLocalDate(experiencia.desde)}}</p>                        <p><strong> A:</strong> {{convertToLocalDate(experiencia.hasta)}}</p>                    </div>                    <p class="descripcion-margin"><strong> Descripción:</strong> {{experiencia.comentario}}</p>                </li>                <mat-divider></mat-divider>                }            </div>        </div>    </div></main>@if(getUserType() === \'ciudadano\'){<div class="postulations-header">    <h1>Postulaciones</h1></div>@if (postulations.length) {@for (p of postulations; track p.id) {<div class="postulations">    <div class="postulation-title">        <h2>{{p.puesto_requerido}}</h2>        <p class="postulation-date">Postulado el {{convertToLocalDate(p.fecha_postulacion)}}</p>    </div>    <div class="postulations-content">        <div class="postulations-text-wrapper">            <p class="postulations-text">{{p.descripcion}}</p>        </div>        <button (click)="navigateToPostulationDetail(p.id_oferta)">Ver Oferta</button>    </div></div>}} @else {<h3>No hay postulaciones.</h3>}}</div>'
+    var COMPONENTS = [{'name': 'AcademicBackgroundComponent', 'selector': 'app-academic-background'},{'name': 'AcademicBackgroundEditComponent', 'selector': 'app-academic-background-edit'},{'name': 'AdminPanelComponent', 'selector': 'app-postulation-list'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AttatchCvComponent', 'selector': 'app-attatch-cv'},{'name': 'BigLogoComponent', 'selector': 'app-big-logo'},{'name': 'CvUploaderComponent', 'selector': 'app-cv-uploader'},{'name': 'DeleteDialogComponent', 'selector': 'app-delete-dialog'},{'name': 'EmployeeFormComponent', 'selector': 'app-employee-form'},{'name': 'EmployeeProfileComponent', 'selector': 'app-employee-profile'},{'name': 'EmployeerProfileFormComponent', 'selector': 'app-employeer-profile-form'},{'name': 'EmployerProfileComponent', 'selector': 'app-employer-profile'},{'name': 'EmployerProfileSidebarComponent', 'selector': 'app-employer-profile-sidebar'},{'name': 'FileUploaderComponent', 'selector': 'app-file-uploader'},{'name': 'FilterComponent', 'selector': 'app-filter'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'FormSelectorComponent', 'selector': 'app-form-selector'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'JobOfferFormComponent', 'selector': 'app-profile-form'},{'name': 'LandingComponent', 'selector': 'app-landing'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PostulateDialogComponent', 'selector': 'app-Postulate-dialog'},{'name': 'PostulationDetailComponent', 'selector': 'app-postulation-detail'},{'name': 'PostulationListComponent', 'selector': 'app-postulation-list'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProfileFormComponent', 'selector': 'app-profile-form'},{'name': 'ProfilePictureComponent', 'selector': 'app-profile-picture'},{'name': 'ProfileSelectorComponent', 'selector': 'app-profile-selector'},{'name': 'ProgressSpinner', 'selector': 'progress-spinner-overview-example'},{'name': 'RecoveryComponent', 'selector': 'app-recovery'},{'name': 'ReportsComponent', 'selector': 'app-reports'},{'name': 'ResetPasswordComponent', 'selector': ''},{'name': 'TrainingLinkComponent', 'selector': 'app-training-link'},{'name': 'WorkExperienceComponent', 'selector': 'app-work-experience'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'AcademicBackgroundComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AcademicBackgroundComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

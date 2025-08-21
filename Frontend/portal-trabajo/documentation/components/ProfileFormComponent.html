@@ -1,0 +1,1241 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>portal-trabajo documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">portal-trabajo documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ProfileFormComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/profile-form/profile-form.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-profile-form</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>ReactiveFormsModule</code>
+                            <code>MatFormFieldModule</code>
+                            <code>MatInputModule</code>
+                            <code>MatSelectModule</code>
+                            <code>MatDatepickerModule</code>
+                            <code>MatNativeDateModule</code>
+                            <code>MatRadioModule</code>
+                            <code>MatButtonModule</code>
+                            <code>CommonModule</code>
+                                <code><a href="../components/FileUploaderComponent.html" target="_self" >FileUploaderComponent</a></code>
+                                <code><a href="../components/HeaderComponent.html" target="_self" >HeaderComponent</a></code>
+                                <code><a href="../components/FooterComponent.html" target="_self" >FooterComponent</a></code>
+                            <code>MatTooltipModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./profile-form.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./profile-form.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#dialog" >dialog</a>
+                            </li>
+                            <li>
+                                <a href="#itemId" >itemId</a>
+                            </li>
+                            <li>
+                                <a href="#profile" >profile</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#deleteAccount" >deleteAccount</a>
+                            </li>
+                            <li>
+                                <a href="#editProfile" >editProfile</a>
+                            </li>
+                            <li>
+                                <a href="#getUserId" >getUserId</a>
+                            </li>
+                            <li>
+                                <a href="#navigateToProfile" >navigateToProfile</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onFileSelected" >onFileSelected</a>
+                            </li>
+                            <li>
+                                <a href="#openDialogDeleteAccount" >openDialogDeleteAccount</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(fb: FormBuilder, userservice: <a href="../injectables/UserService.html" target="_self">UserService</a>, toastr: ToastrService, employeeservice: <a href="../injectables/EmployeeService.html" target="_self">EmployeeService</a>, routeTranslation: <a href="../injectables/RouteTranslationService.html" target="_self">RouteTranslationService</a>, dialog: MatDialog)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/profile-form/profile-form.component.ts:50</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                    <code>FormBuilder</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>userservice</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>toastr</td>
+                                                  
+                                                        <td>
+                                                                    <code>ToastrService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>employeeservice</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/EmployeeService.html" target="_self" >EmployeeService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>routeTranslation</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/RouteTranslationService.html" target="_self" >RouteTranslationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteAccount"></a>
+                    <span class="name">
+                        <span ><b>deleteAccount</b></span>
+                        <a href="#deleteAccount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteAccount()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="161"
+                                    class="link-to-prism">src/app/profile-form/profile-form.component.ts:161</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editProfile"></a>
+                    <span class="name">
+                        <span ><b>editProfile</b></span>
+                        <a href="#editProfile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>editProfile()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="103"
+                                    class="link-to-prism">src/app/profile-form/profile-form.component.ts:103</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUserId"></a>
+                    <span class="name">
+                        <span ><b>getUserId</b></span>
+                        <a href="#getUserId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getUserId()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="129"
+                                    class="link-to-prism">src/app/profile-form/profile-form.component.ts:129</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateToProfile"></a>
+                    <span class="name">
+                        <span ><b>navigateToProfile</b></span>
+                        <a href="#navigateToProfile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateToProfile()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="181"
+                                    class="link-to-prism">src/app/profile-form/profile-form.component.ts:181</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="80"
+                                    class="link-to-prism">src/app/profile-form/profile-form.component.ts:80</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onFileSelected"></a>
+                    <span class="name">
+                        <span ><b>onFileSelected</b></span>
+                        <a href="#onFileSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onFileSelected(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="125"
+                                    class="link-to-prism">src/app/profile-form/profile-form.component.ts:125</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openDialogDeleteAccount"></a>
+                    <span class="name">
+                        <span ><b>openDialogDeleteAccount</b></span>
+                        <a href="#openDialogDeleteAccount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openDialogDeleteAccount()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="135"
+                                    class="link-to-prism">src/app/profile-form/profile-form.component.ts:135</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dialog"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>dialog</b></span>
+                        <a href="#dialog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatDialog</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/profile-form/profile-form.component.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="itemId"></a>
+                    <span class="name">
+                        <span ><b>itemId</b></span>
+                        <a href="#itemId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;&quot;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/profile-form/profile-form.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="profile"></a>
+                    <span class="name">
+                        <span ><b>profile</b></span>
+                        <a href="#profile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormGroup</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/profile-form/profile-form.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from &#x27;@angular/forms&#x27;;
+import { MatFormFieldModule } from &#x27;@angular/material/form-field&#x27;;
+import { MatInputModule } from &#x27;@angular/material/input&#x27;;
+import { MatSelectModule } from &#x27;@angular/material/select&#x27;;
+import { MatDatepickerModule } from &#x27;@angular/material/datepicker&#x27;;
+import { MatNativeDateModule } from &#x27;@angular/material/core&#x27;;
+import { MatRadioModule } from &#x27;@angular/material/radio&#x27;;
+import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
+import { ToastrService } from &#x27;ngx-toastr&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { UserService } from &#x27;../services/user.service&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { jwtDecode } from &#x27;jwt-decode&#x27;;
+import { FileUploaderComponent } from &#x27;../file-uploader/file-uploader.component&#x27;;
+import { HeaderComponent } from &#x27;../header/header.component&#x27;;
+import { FooterComponent } from &#x27;../footer/footer.component&#x27;;
+import { Employee } from &#x27;../../models/employee.model&#x27;;
+import { EmployeeService } from &#x27;../services/employee.service&#x27;;
+import { MatDialog, MatDialogConfig } from &#x27;@angular/material/dialog&#x27;;
+import { DeleteDialogComponent } from &#x27;../delete-dialog/delete-dialog.component&#x27;;
+import { MatTooltipModule } from &#x27;@angular/material/tooltip&#x27;;
+import { RouteTranslationService } from &#x27;../services/route-translation.service&#x27;;
+
+
+@Component({
+    standalone: true,
+    selector: &#x27;app-profile-form&#x27;,
+    imports: [
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatRadioModule,
+        MatButtonModule,
+        CommonModule,
+        FileUploaderComponent,
+        HeaderComponent,
+        FooterComponent,
+        MatTooltipModule
+    ],
+    templateUrl: &#x27;./profile-form.component.html&#x27;,
+    styleUrl: &#x27;./profile-form.component.scss&#x27;
+})
+
+export class ProfileFormComponent implements OnInit {
+    profile: FormGroup;
+    itemId: string &#x3D; &quot;&quot;;
+
+    constructor(
+        private fb: FormBuilder,
+        private userservice: UserService,
+        private toastr: ToastrService,
+        private employeeservice: EmployeeService,
+        private routeTranslation: RouteTranslationService,
+        public dialog: MatDialog
+    ) {
+        this.profile &#x3D; this.fb.group({
+            nombre: [&#x27;&#x27;, Validators.required],
+            apellido: [&#x27;&#x27;, Validators.required],
+            fecha_nacimiento: [&#x27;&#x27;, Validators.required],
+            telefono: [&#x27;&#x27;, Validators.required],
+            email: [&#x27;&#x27;, [Validators.required, Validators.email]],
+            dni: [&#x27;&#x27;, Validators.required],
+            cuil: [&#x27;&#x27;, Validators.required],
+            calle: [&#x27;&#x27;],
+            numero: [&#x27;&#x27;],
+            piso: [&#x27;&#x27;],
+            dpto: [&#x27;&#x27;],
+            localidad: [&#x27;&#x27;],
+            provincia: [&#x27;&#x27;],
+            pais: [&#x27;&#x27;, Validators.required],
+            discapacidad: [&#x27;&#x27;, Validators.required],
+            cv_url: [&#x27;&#x27;]
+        });
+    }
+
+    ngOnInit(): void {
+        this.itemId &#x3D; this.getUserId(); // Get ID from route
+        if (this.itemId) {
+            this.employeeservice.getDataProfile().subscribe({
+                next: (response) &#x3D;&gt; {
+                    if (response.status &#x3D;&#x3D;&#x3D; 200) {
+                        let employee &#x3D; response.body ?? {} as Employee;
+                        this.profile.patchValue(employee); // Populate form with API data
+                    } else {
+                        console.log(&#x27;No se pudo cargar datos&#x27;, response);
+                    }
+                },
+                error: (err) &#x3D;&gt; {
+                    this.toastr.error(err.error.error, &#x27;Ocurrió un error&#x27;);
+                    console.error(&#x27;Error al cargar datos&#x27;, err);
+                }
+
+            });
+        }
+
+    }
+
+
+    editProfile() {
+        if (this.profile.invalid) return;
+        this.employeeservice.editProfileEmployee(JSON.stringify(this.profile.value)).subscribe({
+            next: (response) &#x3D;&gt; {
+                if (response.status &#x3D;&#x3D;&#x3D; 200) {
+                    this.toastr.success(&#x27;Ya podes ver tu perfil completo&#x27;, &#x27;Actualización exitosa&#x27;)
+                    console.log(&#x27;Actualización exitosa&#x27;, response);
+                    this.profile.reset();
+                    this.routeTranslation.navigateToTranslated([&#x27;profile&#x27;]);
+                } else {
+                    console.log(&#x27;No se pudo actualizar tu perfil&#x27;, response);
+                }
+            },
+            error: (err) &#x3D;&gt; {
+                this.toastr.error(err.error.error, &#x27;Ocurrió un error&#x27;);
+                console.error(&#x27;Error al actualizat perfil&#x27;, err);
+
+            }
+        });
+
+    }
+
+    onFileSelected(event: any) {
+    }
+
+
+    getUserId() {
+        const storedTokenString &#x3D; localStorage.getItem(&quot;token&quot;) ?? &quot;&quot;;
+        const decodedToken &#x3D; jwtDecode&lt;User&gt;(storedTokenString);
+        return decodedToken.id;
+    }
+
+    openDialogDeleteAccount(): void {
+        const dialogConfig &#x3D; new MatDialogConfig();
+
+        // Configure dialog options (optional)
+        dialogConfig.disableClose &#x3D; true; // Prevent closing by clicking outside
+        dialogConfig.autoFocus &#x3D; true; // Automatically focus the first tabbable element
+        dialogConfig.width &#x3D; &#x27;400px&#x27;; // Set dialog width
+        dialogConfig.data &#x3D; {
+            title: &#x27;Eliminar Cuenta&#x27;,
+            content: &#x27;Desea eliminar la cuenta? Esta acción es irreversible &#x27;,
+            trueAction: &#x27;Sí, quiero eliminarla&#x27;
+        }; // Pass data to the dialog
+
+        const dialogRef &#x3D; this.dialog.open(DeleteDialogComponent, dialogConfig);
+
+        dialogRef.afterClosed().subscribe(result &#x3D;&gt; {
+            if (result) {
+                this.deleteAccount();
+                console.log(&#x27;Borrada postulación&#x27;);
+            }
+
+            console.log(&#x27;Dialog was closed with result:&#x27;, result);
+        });
+    }
+
+
+    deleteAccount() {
+        this.userservice.deleteAccountById().subscribe({
+            next: (response) &#x3D;&gt; {
+                if (response.status &#x3D;&#x3D;&#x3D; 200) {
+                    this.toastr.success(&#x27;Actualización exitosa&#x27;, &#x27;Cuenta borrada&#x27;)
+                    console.log(&#x27;Cuenta borrada&#x27;, response);
+                    this.userservice.logout();
+                    this.routeTranslation.navigateToTranslated([&#x27;login&#x27;]);
+                } else {
+                    console.log(&#x27;No se pudo borrar la cuenta&#x27;, response);
+                }
+            },
+            error: (err) &#x3D;&gt; {
+                this.toastr.error(err.error.error, &#x27;Ocurrió un error&#x27;);
+                console.error(&#x27;Error al borrar la cuenta&#x27;, err);
+
+            }
+        });
+    }
+
+    navigateToProfile() {
+        this.routeTranslation.navigateToTranslated([&#x27;profile&#x27;]);
+    }
+
+}
+
+
+export interface User {
+    id: string;
+    email: string;
+    tipo_usuario: string;
+    iat: number;
+    exp: number;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;app-header&gt;&lt;/app-header&gt;
+
+&lt;div class&#x3D;&quot;fallback&quot;&gt;
+  &lt;i class&#x3D;&quot;fa-solid fa-arrow-left&quot; (click)&#x3D;&quot;navigateToProfile()&quot;&gt;&lt;/i&gt; &lt;a (click)&#x3D;&quot;navigateToProfile()&quot;&gt;
+    Volver a Perfil&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;h3 class&#x3D;&quot;section-title&quot;&gt;Datos personales&lt;/h3&gt;
+
+&lt;div class&#x3D;&quot;form-container&quot;&gt;
+
+  &lt;form [formGroup]&#x3D;&quot;profile&quot; (ngSubmit)&#x3D;&quot;editProfile()&quot;&gt;
+
+    &lt;div class&#x3D;&quot;size-form&quot;&gt;
+      &lt;!-- Campo: Nombre --&gt;
+      &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+        &lt;mat-label&gt;Nombre&lt;/mat-label&gt;
+        &lt;input matInput formControlName&#x3D;&quot;nombre&quot; /&gt;
+        &lt;mat-error *ngIf&#x3D;&quot;profile.get(&#x27;nombre&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;
+          Este campo es obligatorio
+        &lt;/mat-error&gt;
+      &lt;/mat-form-field&gt;
+
+      &lt;!-- Campo: Apellido --&gt;
+      &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+        &lt;mat-label&gt;Apellido&lt;/mat-label&gt;
+        &lt;input matInput formControlName&#x3D;&quot;apellido&quot; /&gt;
+        &lt;mat-error *ngIf&#x3D;&quot;profile.get(&#x27;apellido&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;
+          Este campo es obligatorio
+        &lt;/mat-error&gt;
+      &lt;/mat-form-field&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;size-form&quot;&gt;
+      &lt;!-- Campo: Fecha de nacimiento --&gt;
+      &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+        &lt;mat-label&gt;Fecha de nacimiento&lt;/mat-label&gt;
+        &lt;input matInput [matDatepicker]&#x3D;&quot;picker&quot; formControlName&#x3D;&quot;fecha_nacimiento&quot; /&gt;
+        &lt;mat-datepicker-toggle matSuffix [for]&#x3D;&quot;picker&quot;&gt;&lt;/mat-datepicker-toggle&gt;
+        &lt;mat-datepicker #picker&gt;&lt;/mat-datepicker&gt;
+        &lt;mat-error *ngIf&#x3D;&quot;profile.get(&#x27;fechaNacimiento&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;
+          Este campo es obligatorio
+        &lt;/mat-error&gt;
+      &lt;/mat-form-field&gt;
+
+      &lt;!-- Campo: Teléfono --&gt;
+      &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+        &lt;mat-label&gt;Teléfono&lt;/mat-label&gt;
+        &lt;input matInput formControlName&#x3D;&quot;telefono&quot; /&gt;
+        &lt;mat-error *ngIf&#x3D;&quot;profile.get(&#x27;telefono&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;
+          Este campo es obligatorio
+        &lt;/mat-error&gt;
+      &lt;/mat-form-field&gt;
+    &lt;/div&gt;
+
+
+    &lt;div class&#x3D;&quot;size-form&quot;&gt;
+      &lt;!-- Campo: DNI --&gt;
+      &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+        &lt;mat-label&gt;DNI&lt;/mat-label&gt;
+        &lt;input matInput formControlName&#x3D;&quot;dni&quot; /&gt;
+        &lt;mat-error *ngIf&#x3D;&quot;profile.get(&#x27;dni&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;
+          Este campo es obligatorio
+        &lt;/mat-error&gt;
+      &lt;/mat-form-field&gt;
+
+      &lt;!-- Campo: CUIL --&gt;
+      &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+        &lt;mat-label&gt;CUIL&lt;/mat-label&gt;
+        &lt;input matInput formControlName&#x3D;&quot;cuil&quot; /&gt;
+        &lt;mat-error *ngIf&#x3D;&quot;profile.get(&#x27;cuil&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;
+          Este campo es obligatorio
+        &lt;/mat-error&gt;
+      &lt;/mat-form-field&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;size-form&quot;&gt;
+      &lt;!-- Dirección --&gt;
+      &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+        &lt;mat-label&gt;Calle&lt;/mat-label&gt;
+        &lt;input matInput formControlName&#x3D;&quot;calle&quot; /&gt;
+      &lt;/mat-form-field&gt;
+
+      &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+        &lt;mat-label&gt;Número&lt;/mat-label&gt;
+        &lt;input matInput formControlName&#x3D;&quot;numero&quot; /&gt;
+      &lt;/mat-form-field&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;size-form&quot;&gt;
+      &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+        &lt;mat-label&gt;Piso&lt;/mat-label&gt;
+        &lt;input matInput formControlName&#x3D;&quot;piso&quot; /&gt;
+      &lt;/mat-form-field&gt;
+
+      &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+        &lt;mat-label&gt;Dpto&lt;/mat-label&gt;
+        &lt;input matInput formControlName&#x3D;&quot;dpto&quot; /&gt;
+      &lt;/mat-form-field&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;size-form&quot;&gt;
+      &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+        &lt;mat-label&gt;Localidad&lt;/mat-label&gt;
+        &lt;input matInput formControlName&#x3D;&quot;localidad&quot; /&gt;
+      &lt;/mat-form-field&gt;
+
+      &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+        &lt;mat-label&gt;Provincia&lt;/mat-label&gt;
+        &lt;input matInput formControlName&#x3D;&quot;provincia&quot; /&gt;
+      &lt;/mat-form-field&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;size-form&quot;&gt;
+
+      &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+        &lt;mat-label&gt;País&lt;/mat-label&gt;
+        &lt;input matInput formControlName&#x3D;&quot;pais&quot; /&gt;
+      &lt;/mat-form-field&gt;
+
+      &lt;!-- Campo: ¿Tenés alguna discapacidad? --&gt;
+      &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+        &lt;mat-label&gt;¿Tenés alguna discapacidad?&lt;/mat-label&gt;
+        &lt;mat-select formControlName&#x3D;&quot;discapacidad&quot;&gt;
+          &lt;mat-option value&#x3D;&quot;si&quot;&gt;Sí&lt;/mat-option&gt;
+          &lt;mat-option value&#x3D;&quot;no&quot;&gt;No&lt;/mat-option&gt;
+          &lt;mat-option value&#x3D;&quot;prefiero_no_responder&quot;&gt;Prefiero no responder&lt;/mat-option&gt;
+        &lt;/mat-select&gt;
+      &lt;/mat-form-field&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;size-form email-input&quot;&gt;
+      &lt;!-- Campo: Email --&gt;
+      &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+        &lt;mat-label&gt;Email&lt;/mat-label&gt;
+        &lt;input matInput formControlName&#x3D;&quot;email&quot; type&#x3D;&quot;email&quot; /&gt;
+        &lt;mat-error *ngIf&#x3D;&quot;profile.get(&#x27;email&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;
+          Este campo es obligatorio
+        &lt;/mat-error&gt;
+        &lt;mat-error *ngIf&#x3D;&quot;profile.get(&#x27;email&#x27;)?.hasError(&#x27;email&#x27;)&quot;&gt;
+          Formato de email no válido
+        &lt;/mat-error&gt;
+      &lt;/mat-form-field&gt;
+      &lt;app-file-uploader&gt;&lt;/app-file-uploader&gt;
+    &lt;/div&gt;
+
+    &lt;div&gt;
+      &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;delete-account-btn&quot; (click)&#x3D;&quot;openDialogDeleteAccount()&quot;
+        matTooltip&#x3D;&quot;En el próximo paso vas a confirmar la eliminación&quot;&gt;
+        &lt;i class&#x3D;&quot;fa-solid fa-trash&quot;&gt;&lt;/i&gt; Eliminar cuenta&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;button mat-raised-button type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;profile.invalid&quot;&gt;
+      Guardar cambios
+    &lt;/button&gt;
+  &lt;/form&gt;
+&lt;/div&gt;
+&lt;app-footer&gt;&lt;/app-footer&gt;</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><app-header></app-header><div class="fallback">  <i class="fa-solid fa-arrow-left" (click)="navigateToProfile()"></i> <a (click)="navigateToProfile()">    Volver a Perfil</a></div><h3 class="section-title">Datos personales</h3><div class="form-container">  <form [formGroup]="profile" (ngSubmit)="editProfile()">    <div class="size-form">      <!-- Campo: Nombre -->      <mat-form-field appearance="outline" class="full-width">        <mat-label>Nombre</mat-label>        <input matInput formControlName="nombre" />        <mat-error *ngIf="profile.get(\'nombre\')?.hasError(\'required\')">          Este campo es obligatorio        </mat-error>      </mat-form-field>      <!-- Campo: Apellido -->      <mat-form-field appearance="outline" class="full-width">        <mat-label>Apellido</mat-label>        <input matInput formControlName="apellido" />        <mat-error *ngIf="profile.get(\'apellido\')?.hasError(\'required\')">          Este campo es obligatorio        </mat-error>      </mat-form-field>    </div>    <div class="size-form">      <!-- Campo: Fecha de nacimiento -->      <mat-form-field appearance="outline" class="full-width">        <mat-label>Fecha de nacimiento</mat-label>        <input matInput [matDatepicker]="picker" formControlName="fecha_nacimiento" />        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>        <mat-datepicker #picker></mat-datepicker>        <mat-error *ngIf="profile.get(\'fechaNacimiento\')?.hasError(\'required\')">          Este campo es obligatorio        </mat-error>      </mat-form-field>      <!-- Campo: Teléfono -->      <mat-form-field appearance="outline" class="full-width">        <mat-label>Teléfono</mat-label>        <input matInput formControlName="telefono" />        <mat-error *ngIf="profile.get(\'telefono\')?.hasError(\'required\')">          Este campo es obligatorio        </mat-error>      </mat-form-field>    </div>    <div class="size-form">      <!-- Campo: DNI -->      <mat-form-field appearance="outline" class="full-width">        <mat-label>DNI</mat-label>        <input matInput formControlName="dni" />        <mat-error *ngIf="profile.get(\'dni\')?.hasError(\'required\')">          Este campo es obligatorio        </mat-error>      </mat-form-field>      <!-- Campo: CUIL -->      <mat-form-field appearance="outline" class="full-width">        <mat-label>CUIL</mat-label>        <input matInput formControlName="cuil" />        <mat-error *ngIf="profile.get(\'cuil\')?.hasError(\'required\')">          Este campo es obligatorio        </mat-error>      </mat-form-field>    </div>    <div class="size-form">      <!-- Dirección -->      <mat-form-field appearance="outline" class="full-width">        <mat-label>Calle</mat-label>        <input matInput formControlName="calle" />      </mat-form-field>      <mat-form-field appearance="outline" class="full-width">        <mat-label>Número</mat-label>        <input matInput formControlName="numero" />      </mat-form-field>    </div>    <div class="size-form">      <mat-form-field appearance="outline" class="full-width">        <mat-label>Piso</mat-label>        <input matInput formControlName="piso" />      </mat-form-field>      <mat-form-field appearance="outline" class="full-width">        <mat-label>Dpto</mat-label>        <input matInput formControlName="dpto" />      </mat-form-field>    </div>    <div class="size-form">      <mat-form-field appearance="outline" class="full-width">        <mat-label>Localidad</mat-label>        <input matInput formControlName="localidad" />      </mat-form-field>      <mat-form-field appearance="outline" class="full-width">        <mat-label>Provincia</mat-label>        <input matInput formControlName="provincia" />      </mat-form-field>    </div>    <div class="size-form">      <mat-form-field appearance="outline" class="full-width">        <mat-label>País</mat-label>        <input matInput formControlName="pais" />      </mat-form-field>      <!-- Campo: ¿Tenés alguna discapacidad? -->      <mat-form-field appearance="outline" class="full-width">        <mat-label>¿Tenés alguna discapacidad?</mat-label>        <mat-select formControlName="discapacidad">          <mat-option value="si">Sí</mat-option>          <mat-option value="no">No</mat-option>          <mat-option value="prefiero_no_responder">Prefiero no responder</mat-option>        </mat-select>      </mat-form-field>    </div>    <div class="size-form email-input">      <!-- Campo: Email -->      <mat-form-field appearance="outline">        <mat-label>Email</mat-label>        <input matInput formControlName="email" type="email" />        <mat-error *ngIf="profile.get(\'email\')?.hasError(\'required\')">          Este campo es obligatorio        </mat-error>        <mat-error *ngIf="profile.get(\'email\')?.hasError(\'email\')">          Formato de email no válido        </mat-error>      </mat-form-field>      <app-file-uploader></app-file-uploader>    </div>    <div>      <button type="button" class="delete-account-btn" (click)="openDialogDeleteAccount()"        matTooltip="En el próximo paso vas a confirmar la eliminación">        <i class="fa-solid fa-trash"></i> Eliminar cuenta</button>    </div>    <button mat-raised-button type="submit" [disabled]="profile.invalid">      Guardar cambios    </button>  </form></div><app-footer></app-footer></div>'
+    var COMPONENTS = [{'name': 'AcademicBackgroundComponent', 'selector': 'app-academic-background'},{'name': 'AcademicBackgroundEditComponent', 'selector': 'app-academic-background-edit'},{'name': 'AdminPanelComponent', 'selector': 'app-postulation-list'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AttatchCvComponent', 'selector': 'app-attatch-cv'},{'name': 'BigLogoComponent', 'selector': 'app-big-logo'},{'name': 'CvUploaderComponent', 'selector': 'app-cv-uploader'},{'name': 'DeleteDialogComponent', 'selector': 'app-delete-dialog'},{'name': 'EmployeeFormComponent', 'selector': 'app-employee-form'},{'name': 'EmployeeProfileComponent', 'selector': 'app-employee-profile'},{'name': 'EmployeerProfileFormComponent', 'selector': 'app-employeer-profile-form'},{'name': 'EmployerProfileComponent', 'selector': 'app-employer-profile'},{'name': 'EmployerProfileSidebarComponent', 'selector': 'app-employer-profile-sidebar'},{'name': 'FileUploaderComponent', 'selector': 'app-file-uploader'},{'name': 'FilterComponent', 'selector': 'app-filter'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'FormSelectorComponent', 'selector': 'app-form-selector'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'JobOfferFormComponent', 'selector': 'app-profile-form'},{'name': 'LandingComponent', 'selector': 'app-landing'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PostulateDialogComponent', 'selector': 'app-Postulate-dialog'},{'name': 'PostulationDetailComponent', 'selector': 'app-postulation-detail'},{'name': 'PostulationListComponent', 'selector': 'app-postulation-list'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProfileFormComponent', 'selector': 'app-profile-form'},{'name': 'ProfilePictureComponent', 'selector': 'app-profile-picture'},{'name': 'ProfileSelectorComponent', 'selector': 'app-profile-selector'},{'name': 'ProgressSpinner', 'selector': 'progress-spinner-overview-example'},{'name': 'RecoveryComponent', 'selector': 'app-recovery'},{'name': 'ReportsComponent', 'selector': 'app-reports'},{'name': 'ResetPasswordComponent', 'selector': ''},{'name': 'TrainingLinkComponent', 'selector': 'app-training-link'},{'name': 'WorkExperienceComponent', 'selector': 'app-work-experience'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ProfileFormComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ProfileFormComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

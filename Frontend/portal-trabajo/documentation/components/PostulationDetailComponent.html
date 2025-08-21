@@ -1,0 +1,2440 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>portal-trabajo documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">portal-trabajo documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  PostulationDetailComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/postulation-detail/postulation-detail.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-postulation-detail</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../components/HeaderComponent.html" target="_self" >HeaderComponent</a></code>
+                                <code><a href="../components/FooterComponent.html" target="_self" >FooterComponent</a></code>
+                            <code>MatTooltipModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./postulation-detail.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./postulation-detail.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#currentUserId" >currentUserId</a>
+                            </li>
+                            <li>
+                                <a href="#currentUserType" >currentUserType</a>
+                            </li>
+                            <li>
+                                <a href="#cv" >cv</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#dialog" >dialog</a>
+                            </li>
+                            <li>
+                                <a href="#itemId" >itemId</a>
+                            </li>
+                            <li>
+                                <a href="#msg" >msg</a>
+                            </li>
+                            <li>
+                                <a href="#offer" >offer</a>
+                            </li>
+                            <li>
+                                <a href="#postulado" >postulado</a>
+                            </li>
+                            <li>
+                                <a href="#previousUrl" >previousUrl</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#changeOfferStatus" >changeOfferStatus</a>
+                            </li>
+                            <li>
+                                <a href="#compareDatesOffer" >compareDatesOffer</a>
+                            </li>
+                            <li>
+                                <a href="#deleteOffer" >deleteOffer</a>
+                            </li>
+                            <li>
+                                <a href="#deletePostulation" >deletePostulation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getCurrentOffer" >getCurrentOffer</a>
+                            </li>
+                            <li>
+                                <a href="#getImageUrl" >getImageUrl</a>
+                            </li>
+                            <li>
+                                <a href="#navigateBack" >navigateBack</a>
+                            </li>
+                            <li>
+                                <a href="#navigateToAdminPanel" >navigateToAdminPanel</a>
+                            </li>
+                            <li>
+                                <a href="#navigateToEditOffer" >navigateToEditOffer</a>
+                            </li>
+                            <li>
+                                <a href="#navigateToLanding" >navigateToLanding</a>
+                            </li>
+                            <li>
+                                <a href="#navigateToProfile" >navigateToProfile</a>
+                            </li>
+                            <li>
+                                <a href="#navigateToViewPostulations" >navigateToViewPostulations</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#openDialog" >openDialog</a>
+                            </li>
+                            <li>
+                                <a href="#openDialogDeletePostulation" >openDialogDeletePostulation</a>
+                            </li>
+                            <li>
+                                <a href="#openDialogPostulation" >openDialogPostulation</a>
+                            </li>
+                            <li>
+                                <a href="#postulate" >postulate</a>
+                            </li>
+                            <li>
+                                <a href="#receiveData" >receiveData</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(adminservice: <a href="../injectables/AdminService.html" target="_self">AdminService</a>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, toastr: ToastrService, router: Router, routeTranslation: <a href="../injectables/RouteTranslationService.html" target="_self">RouteTranslationService</a>, route: ActivatedRoute, employerservice: <a href="../injectables/EmployerService.html" target="_self">EmployerService</a>, employeeservice: <a href="../injectables/EmployeeService.html" target="_self">EmployeeService</a>, dialog: MatDialog)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:26</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>adminservice</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AdminService.html" target="_self" >AdminService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>toastr</td>
+                                                  
+                                                        <td>
+                                                                    <code>ToastrService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>routeTranslation</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/RouteTranslationService.html" target="_self" >RouteTranslationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>employerservice</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/EmployerService.html" target="_self" >EmployerService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>employeeservice</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/EmployeeService.html" target="_self" >EmployeeService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeOfferStatus"></a>
+                    <span class="name">
+                        <span ><b>changeOfferStatus</b></span>
+                        <a href="#changeOfferStatus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeOfferStatus(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, estado: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="281"
+                                    class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:281</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>estado</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="compareDatesOffer"></a>
+                    <span class="name">
+                        <span ><b>compareDatesOffer</b></span>
+                        <a href="#compareDatesOffer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>compareDatesOffer(dateOffer: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="251"
+                                    class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:251</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>dateOffer</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteOffer"></a>
+                    <span class="name">
+                        <span ><b>deleteOffer</b></span>
+                        <a href="#deleteOffer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteOffer(id: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="101"
+                                    class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:101</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deletePostulation"></a>
+                    <span class="name">
+                        <span ><b>deletePostulation</b></span>
+                        <a href="#deletePostulation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deletePostulation(id: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="202"
+                                    class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:202</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCurrentOffer"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>getCurrentOffer</b></span>
+                        <a href="#getCurrentOffer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getCurrentOffer()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getImageUrl"></a>
+                    <span class="name">
+                        <span ><b>getImageUrl</b></span>
+                        <a href="#getImageUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getImageUrl(image_url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="299"
+                                    class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:299</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>image_url</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateBack"></a>
+                    <span class="name">
+                        <span ><b>navigateBack</b></span>
+                        <a href="#navigateBack"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateBack()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="222"
+                                    class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:222</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateToAdminPanel"></a>
+                    <span class="name">
+                        <span ><b>navigateToAdminPanel</b></span>
+                        <a href="#navigateToAdminPanel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateToAdminPanel()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="238"
+                                    class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:238</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateToEditOffer"></a>
+                    <span class="name">
+                        <span ><b>navigateToEditOffer</b></span>
+                        <a href="#navigateToEditOffer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateToEditOffer(id: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="242"
+                                    class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:242</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateToLanding"></a>
+                    <span class="name">
+                        <span ><b>navigateToLanding</b></span>
+                        <a href="#navigateToLanding"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateToLanding()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="226"
+                                    class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:226</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateToProfile"></a>
+                    <span class="name">
+                        <span ><b>navigateToProfile</b></span>
+                        <a href="#navigateToProfile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateToProfile()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="234"
+                                    class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:234</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateToViewPostulations"></a>
+                    <span class="name">
+                        <span ><b>navigateToViewPostulations</b></span>
+                        <a href="#navigateToViewPostulations"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateToViewPostulations(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="230"
+                                    class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:230</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openDialog"></a>
+                    <span class="name">
+                        <span ><b>openDialog</b></span>
+                        <a href="#openDialog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openDialog(id: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="126"
+                                    class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:126</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openDialogDeletePostulation"></a>
+                    <span class="name">
+                        <span ><b>openDialogDeletePostulation</b></span>
+                        <a href="#openDialogDeletePostulation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openDialogDeletePostulation(id: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="177"
+                                    class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:177</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openDialogPostulation"></a>
+                    <span class="name">
+                        <span ><b>openDialogPostulation</b></span>
+                        <a href="#openDialogPostulation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openDialogPostulation(id: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="151"
+                                    class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:151</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="postulate"></a>
+                    <span class="name">
+                        <span ><b>postulate</b></span>
+                        <a href="#postulate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>postulate(id: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, cv: File, msg: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="256"
+                                    class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:256</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>cv</td>
+                                            <td>
+                                                        <code>File</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>msg</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="receiveData"></a>
+                    <span class="name">
+                        <span ><b>receiveData</b></span>
+                        <a href="#receiveData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>receiveData(file: File, msg: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="276"
+                                    class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:276</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>file</td>
+                                            <td>
+                                                        <code>File</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>msg</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentUserId"></a>
+                    <span class="name">
+                        <span ><b>currentUserId</b></span>
+                        <a href="#currentUserId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentUserType"></a>
+                    <span class="name">
+                        <span ><b>currentUserType</b></span>
+                        <a href="#currentUserType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cv"></a>
+                    <span class="name">
+                        <span ><b>cv</b></span>
+                        <a href="#cv"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>File</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dialog"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>dialog</b></span>
+                        <a href="#dialog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatDialog</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="itemId"></a>
+                    <span class="name">
+                        <span ><b>itemId</b></span>
+                        <a href="#itemId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;&quot;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="msg"></a>
+                    <span class="name">
+                        <span ><b>msg</b></span>
+                        <a href="#msg"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;&quot;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="offer"></a>
+                    <span class="name">
+                        <span ><b>offer</b></span>
+                        <a href="#offer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{} as JobOffer</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="postulado"></a>
+                    <span class="name">
+                        <span ><b>postulado</b></span>
+                        <a href="#postulado"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="previousUrl"></a>
+                    <span class="name">
+                        <span ><b>previousUrl</b></span>
+                        <a href="#previousUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;/&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/postulation-detail/postulation-detail.component.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { HeaderComponent } from &#x27;../header/header.component&#x27;;
+import { FooterComponent } from &#x27;../footer/footer.component&#x27;;
+import { Router, ActivatedRoute } from &#x27;@angular/router&#x27;;
+import { EmployerService } from &#x27;../services/employer.service&#x27;;
+import { JobOffer } from &#x27;../../models/jobOffer.model&#x27;;
+import { ToastrService } from &#x27;ngx-toastr&#x27;;
+import { MatDialog, MatDialogConfig } from &#x27;@angular/material/dialog&#x27;;
+import { DeleteDialogComponent } from &#x27;../delete-dialog/delete-dialog.component&#x27;;
+import { EmployeeService } from &#x27;../services/employee.service&#x27;;
+import { PostulateDialogComponent } from &#x27;../postulate-dialog/postulate-dialog.component&#x27;;
+import { MatTooltipModule } from &#x27;@angular/material/tooltip&#x27;;
+import { AuthService } from &#x27;../services/auth.service&#x27;;
+import { OfferService } from &#x27;../services/offer.service&#x27;;
+import { AdminService } from &#x27;../services/admin.service&#x27;;
+import { environment } from &#x27;../../environments/environment&#x27;;
+import { RouteTranslationService } from &#x27;../services/route-translation.service&#x27;;
+
+@Component({
+  selector: &#x27;app-postulation-detail&#x27;,
+  imports: [HeaderComponent, FooterComponent, MatTooltipModule],
+  templateUrl: &#x27;./postulation-detail.component.html&#x27;,
+  styleUrl: &#x27;./postulation-detail.component.scss&#x27;
+})
+
+export class PostulationDetailComponent implements OnInit {
+
+  constructor(
+    private adminservice: AdminService,
+    private authService: AuthService,
+    private toastr: ToastrService,
+    private router: Router,
+    private routeTranslation: RouteTranslationService,
+    private route: ActivatedRoute,
+    private employerservice: EmployerService,
+    private employeeservice: EmployeeService,
+    public dialog: MatDialog,
+  ) { }
+
+  currentUserType: any;
+  currentUserId: any;
+  cv!: File;
+  msg: string &#x3D; &quot;&quot;;
+  itemId: string &#x3D; &quot;&quot;;
+  offer &#x3D; {} as JobOffer;
+  postulado: boolean &#x3D; false;
+  previousUrl: string &#x3D; &#x27;/&#x27;;
+
+  ngOnInit(): void {
+    this.previousUrl &#x3D; history.state?.from || &#x27;/&#x27;; // Get previous URL from state or current URL
+    console.log(&quot;Previous URL:&quot;, this.previousUrl);
+    console.log(&quot;History state from:&quot;, history.state?.from);
+    let isPostulado &#x3D; this.route.snapshot.params[&#x27;postulado&#x27;] ?? null; // Get Postulado from route   
+    this.postulado &#x3D; !!isPostulado;
+
+    this.getCurrentOffer();
+    this.currentUserType &#x3D; this.authService.getCurrentUserType();
+    this.currentUserId &#x3D; this.authService.getCurrentUserId();
+    console.log(&quot;Previous url&quot;, this.previousUrl);
+  }
+
+  private getCurrentOffer() {
+    this.itemId &#x3D; this.route.snapshot.params[&#x27;id&#x27;] ?? &quot;&quot;; // Get ID from route
+    if (this.itemId) {
+      this.employerservice.getOfferById(this.itemId).subscribe({
+        next: (response) &#x3D;&gt; {
+          if (response.status &#x3D;&#x3D;&#x3D; 200) { // Populate form with API data
+            let o &#x3D; response.body[0];
+            let e &#x3D; response.body[1];
+            let jo: JobOffer &#x3D; {
+              puesto_requerido: o.puesto_requerido,
+              nombre_empresa: e.nombre_empresa,
+              lugar_trabajo: o.lugar_trabajo,
+              id: o.id,
+              id_empresa: o.id_empresa,
+              localidad: e.localidad,
+              descripcion: o.descripcion,
+              modalidad: o.modalidad,
+              tipo_contrato: o.tipo_contrato,
+              fecha_publicacion: o.fecha_publicacion,
+              fecha_cierre: o.fecha_cierre,
+              experiencia_requerida: o.experiencia_requerida,
+              otros_requisitos: o.otros_requisitos,
+              nivel_educativo_requerido: o.nivel_educativo_requerido,
+              logo: e.logo,
+              estado_publicacion: o.estado_publicacion
+            }
+            this.offer &#x3D; jo;
+          } else {
+            console.log(&#x27;No se pudo cargar oferta&#x27;, response);
+          }
+        },
+        error: (err) &#x3D;&gt; {
+          //this.toastr.error(err.error.error, &#x27;Ocurrió un error&#x27;);
+          console.error(&#x27;Error al cargar oferta&#x27;, err);
+        }
+      });
+    }
+  }
+
+  deleteOffer(id: any) {
+    this.employerservice.deleteOfferById(id).subscribe({
+      next: (response) &#x3D;&gt; {
+        if (response.status &#x3D;&#x3D;&#x3D; 200) {
+          this.toastr.success(&#x27;Actualización exitosa&#x27;, &#x27;Oferta borrada&#x27;)
+          console.log(&#x27;Actualización exitosa&#x27;, response);
+
+          if (this.currentUserType &#x3D;&#x3D;&#x3D; &#x27;admin&#x27;)
+            this.routeTranslation.navigateToTranslated([&#x27;admin-panel&#x27;]);
+          else if (this.currentUserType &#x3D;&#x3D;&#x3D; &#x27;employer&#x27;)
+            this.routeTranslation.navigateToTranslated([&#x27;employer-profile&#x27;]);
+
+        } else {
+          console.log(&#x27;No se pudo borrar la oferta&#x27;, response);
+        }
+      },
+      error: (err) &#x3D;&gt; {
+        this.toastr.error(err.error.error, &#x27;Ocurrió un error&#x27;);
+        console.error(&#x27;Error al borrar oferta&#x27;, err);
+
+      }
+    });
+
+  }
+
+  openDialog(id: any): void {
+    const dialogConfig &#x3D; new MatDialogConfig();
+
+    // Configure dialog options (optional)
+    dialogConfig.disableClose &#x3D; true; // Prevent closing by clicking outside
+    dialogConfig.autoFocus &#x3D; true; // Automatically focus the first tabbable element
+    dialogConfig.width &#x3D; &#x27;400px&#x27;; // Set dialog width
+    dialogConfig.data &#x3D; {
+      title: &#x27;Borrar oferta&#x27;,
+      content: &#x27;¿Desea borrar la oferta?&#x27;,
+      trueAction: &#x27;Sí, quiero borrarla&#x27;
+    }; // Pass data to the dialog
+
+    const dialogRef &#x3D; this.dialog.open(DeleteDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result &#x3D;&gt; {
+      if (result) {
+        this.deleteOffer(id);
+        console.log(&#x27;Borrar oferta&#x27;);
+      }
+
+      console.log(&#x27;Dialog was closed with result:&#x27;, result);
+    });
+  }
+
+  openDialogPostulation(id: any): void {
+    const dialogConfig &#x3D; new MatDialogConfig();
+
+    // Configure dialog options (optional)
+    dialogConfig.disableClose &#x3D; true; // Prevent closing by clicking outside
+    dialogConfig.autoFocus &#x3D; true; // Automatically focus the first tabbable element
+    dialogConfig.width &#x3D; &#x27;600px&#x27;; // Set dialog width
+    dialogConfig.data &#x3D; {
+      title: &#x60;Postularse a ${this.offer.puesto_requerido}&#x60;,
+      content: &#x27;Antes de confirmar la postulación podes agregar un CV personalizado y un mensaje al empleador(ambos son opcionales)&#x27;,
+      trueAction: &#x27;POSTULARME&#x27;,
+      action: (f: File, msg: string) &#x3D;&gt; this.receiveData(f, msg)
+    }; // Pass data to the dialog
+
+    const dialogRef &#x3D; this.dialog.open(PostulateDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result &#x3D;&gt; {
+      if (result) {
+        this.postulate(id, this.cv, this.msg);
+        console.log(&#x27;Postulado a la oferta&#x27;);
+      }
+
+      console.log(&#x27;Dialog was closed with result:&#x27;);
+    });
+  }
+
+  openDialogDeletePostulation(id: any): void {
+    const dialogConfig &#x3D; new MatDialogConfig();
+
+    // Configure dialog options (optional)
+    dialogConfig.disableClose &#x3D; true; // Prevent closing by clicking outside
+    dialogConfig.autoFocus &#x3D; true; // Automatically focus the first tabbable element
+    dialogConfig.width &#x3D; &#x27;400px&#x27;; // Set dialog width
+    dialogConfig.data &#x3D; {
+      title: &#x27;Cancelar postulación&#x27;,
+      content: &#x27;¿Desea cancelar la postulación?&#x27;,
+      trueAction: &#x27;Sí, quiero cancelarla&#x27;
+    }; // Pass data to the dialog
+
+    const dialogRef &#x3D; this.dialog.open(DeleteDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result &#x3D;&gt; {
+      if (result) {
+        this.deletePostulation(id);
+        console.log(&#x27;Borrada postulación&#x27;);
+      }
+
+      console.log(&#x27;Dialog was closed with result:&#x27;, result);
+    });
+  }
+
+  deletePostulation(id: any) {
+    this.employeeservice.deletePostulationByOfferId(id).subscribe({
+      next: (response) &#x3D;&gt; {
+        if (response.status &#x3D;&#x3D;&#x3D; 200) {
+          this.toastr.success(&#x27;Actualización exitosa&#x27;, &#x27;Postulación borrada&#x27;)
+          console.log(&#x27;Actualización exitosa&#x27;, response);
+          this.postulado &#x3D; false;
+        } else {
+          console.log(&#x27;No se pudo borrar la postulación&#x27;, response);
+        }
+      },
+      error: (err) &#x3D;&gt; {
+        this.toastr.error(err.error.error, &#x27;Ocurrió un error&#x27;);
+        console.error(&#x27;Error al borrar oferta&#x27;, err);
+
+      }
+    });
+
+  }
+
+  navigateBack() {
+    this.router.navigateByUrl(this.previousUrl);
+  }
+
+  navigateToLanding() {
+    this.routeTranslation.navigateToTranslated([&#x27;&#x27;]);
+  }
+
+  navigateToViewPostulations(id: string) {
+    this.routeTranslation.navigateToTranslated([&#x27;postulaciones-por-oferta&#x27;, id])
+  }
+
+  navigateToProfile() {
+    this.routeTranslation.navigateToTranslated([&#x27;profile&#x27;])
+  }
+
+  navigateToAdminPanel() {
+    this.routeTranslation.navigateToTranslated([&#x27;admin-panel&#x27;])
+  }
+
+  navigateToEditOffer(id: any) {
+    if (!this.offer.fecha_cierre || this.compareDatesOffer(Date.parse(this.offer.fecha_cierre))) {
+      this.routeTranslation.navigateToTranslated([&#x27;create-offer&#x27;, id]);
+    } else {
+      this.toastr.warning(&#x27;Oferta cerrada&#x27;, &#x27;No es posible editar la oferta cerrada&#x27;)
+      console.log(&#x27;La oferta ya cerró y no se puede editar&#x27;);
+    }
+  }
+
+  compareDatesOffer(dateOffer: number): boolean {
+    const today &#x3D; Date.now();
+    return today &lt; dateOffer;
+  }
+
+  postulate(id: any, cv: File, msg: string) {
+    this.employeeservice.postulateToOffer(id, cv, msg).subscribe({
+      next: (response) &#x3D;&gt; {
+        if (response.status &#x3D;&#x3D;&#x3D; 200) {
+          this.toastr.success(&#x27;Ya estás postulado a la oferta&#x27;, &#x27;Postulación exitosa&#x27;)
+          console.log(&#x27;Actualización exitosa&#x27;, response);
+          this.postulado &#x3D; true;
+        } else {
+          console.log(&#x27;No se pudo hacer la postulación&#x27;, response);
+        }
+      },
+      error: (err) &#x3D;&gt; {
+        this.toastr.error(err.error.error, &#x27;Ocurrió un error&#x27;);
+        console.error(&#x27;Error al postular&#x27;, err);
+        this.postulado &#x3D; false;
+      }
+    });
+
+  }
+
+  receiveData(file: File, msg: string) {
+    this.cv &#x3D; file;
+    this.msg &#x3D; msg;
+  }
+
+  changeOfferStatus(id: string, estado: string) {
+    this.adminservice.changeOfferStatusByAdmin(id, estado).subscribe({
+      next: (response) &#x3D;&gt; {
+        if (response.status &#x3D;&#x3D;&#x3D; 200) {
+          this.toastr.success(&#x27;Ya podes verla en el panel de administración&#x27;, &#x27;Oferta actualizada&#x27;)
+          this.navigateToAdminPanel();
+          console.log(&#x27;Oferta actualizada&#x27;, response);
+        } else {
+          console.log(&#x27;No se pudo actualizar la  oferta&#x27;, response);
+        }
+      },
+      error: (err) &#x3D;&gt; {
+        this.toastr.error(err.error.error, &#x27;Ocurrió un error&#x27;);
+        console.error(&#x27;Error al actualizaroferta&#x27;, err);
+      }
+    });
+  }
+
+  getImageUrl(image_url: string) {
+    return image_url ? &#x60;${environment.apiUrl}${image_url}&#x60; : null;
+  }
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;app-header&gt;&lt;/app-header&gt;
+&lt;div class&#x3D;&quot;container&quot;&gt;
+    @if(previousUrl &#x3D;&#x3D;&#x3D; &quot;/profile&quot; || previousUrl &#x3D;&#x3D;&#x3D; &quot;/perfil&quot;){
+    &lt;div class&#x3D;&quot;fallback&quot;&gt;
+        &lt;i class&#x3D;&quot;fa-solid fa-arrow-left&quot; (click)&#x3D;&quot;navigateToProfile()&quot;&gt;&lt;/i&gt; &lt;a (click)&#x3D;&quot;navigateToProfile()&quot;&gt; Volver a
+            Perfil&lt;/a&gt;
+    &lt;/div&gt;
+    }@else if(previousUrl &#x3D;&#x3D;&#x3D; &quot;/admin-panel&quot; || previousUrl &#x3D;&#x3D;&#x3D; &quot;/panel-administrador&quot;){
+    &lt;div class&#x3D;&quot;fallback&quot;&gt;
+        &lt;i class&#x3D;&quot;fa-solid fa-arrow-left&quot; (click)&#x3D;&quot;navigateToAdminPanel()&quot;&gt;&lt;/i&gt; &lt;a (click)&#x3D;&quot;navigateToAdminPanel()&quot;&gt;
+            Volver a
+            Administración&lt;/a&gt;
+    &lt;/div&gt;
+    }@else if (previousUrl.startsWith(&quot;/postulaciones-por-oferta&quot;)) {
+    &lt;div class&#x3D;&quot;fallback&quot;&gt;
+        &lt;i class&#x3D;&quot;fa-solid fa-arrow-left&quot; (click)&#x3D;&quot;navigateToProfile()&quot;&gt;&lt;/i&gt; &lt;a (click)&#x3D;&quot;navigateToProfile()&quot;&gt;
+            Volver a Perfil&lt;/a&gt;
+    &lt;/div&gt;
+    }
+    @else{
+    &lt;div class&#x3D;&quot;fallback&quot;&gt;
+        &lt;i class&#x3D;&quot;fa-solid fa-arrow-left&quot; (click)&#x3D;&quot;navigateToLanding()&quot;&gt;&lt;/i&gt; &lt;a (click)&#x3D;&quot;navigateToLanding()&quot;&gt;
+            Volver a
+            Ofertas&lt;/a&gt;
+    &lt;/div&gt;
+    }
+    &lt;div class&#x3D;&quot;postulation-header&quot;&gt;
+        &lt;div class&#x3D;&quot;profile&quot;&gt;
+            &lt;div class&#x3D;&quot;postulation-title&quot;&gt;
+                &lt;h1 matTooltip&#x3D;{{offer.puesto_requerido}}&gt;{{offer.puesto_requerido}}&lt;/h1&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;profile-header&quot;&gt;
+            &lt;div class&#x3D;&quot;profile-pic&quot;&gt;
+                &lt;img [src]&#x3D;&quot;getImageUrl(offer.logo)  || &#x27;sample_pfp.png&#x27;&quot; alt&#x3D;&quot;Profile picture&quot;&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;profile-info&quot;&gt;
+                &lt;h4&gt;{{offer.nombre_empresa}}&lt;/h4&gt;
+                &lt;div class&#x3D;&quot;location&quot;&gt;
+                    &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;24px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;24px&quot;
+                        fill&#x3D;&quot;#1f1f1f&quot;&gt;
+                        &lt;path
+                            d&#x3D;&quot;M480.14-490.77q26.71 0 45.59-19.02 18.89-19.02 18.89-45.73 0-26.71-19.03-45.6Q506.57-620 479.86-620q-26.71 0-45.59 19.02-18.89 19.02-18.89 45.73 0 26.71 19.03 45.6 19.02 18.88 45.73 18.88ZM480-172.92q112.77-98.16 178.31-199.66t65.54-175.57q0-109.77-69.5-181.2-69.5-71.42-174.35-71.42t-174.35 71.42q-69.5 71.43-69.5 181.2 0 74.07 65.54 175.57T480-172.92Zm0 53.69Q339-243.92 267.58-351.81q-71.43-107.88-71.43-196.34 0-126.93 82.66-209.39Q361.46-840 480-840q118.54 0 201.19 82.46 82.66 82.46 82.66 209.39 0 88.46-71.43 196.34Q621-243.92 480-119.23Zm0-436.15Z&quot; /&gt;
+                    &lt;/svg&gt;
+                    &lt;p&gt;{{offer.localidad}}&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- &lt;/div&gt; --&gt;
+        &lt;div class&#x3D;&quot;button-wrapper&quot;&gt;
+            @if (currentUserType &#x3D;&#x3D;&#x3D; &quot;ciudadano&quot;) {
+            @if(postulado) {
+            &lt;div&gt;
+                &lt;h5 class&#x3D;&quot;postulado-flag&quot;&gt;&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;24px&quot;
+                        viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;24px&quot; fill&#x3D;&quot;#1f1f1f&quot;&gt;
+                        &lt;path d&#x3D;&quot;M400-332.46 268.46-464 296-491.54l104 104 264-264L691.54-624 400-332.46Z&quot; /&gt;
+                    &lt;/svg&gt; Postulado&lt;/h5&gt;
+            &lt;/div&gt;
+            &lt;button class&#x3D;&quot;delete&quot; (click)&#x3D;&quot;openDialogDeletePostulation(offer.id)&quot; matTooltip&#x3D;&quot;Cancelar postulación&quot;&gt;
+                &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;40px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;40px&quot;&gt;
+                    &lt;path
+                        d&#x3D;&quot;M298.61-160q-23.91 0-41.18-17.28-17.28-17.27-17.28-41.18v-510.77H200v-33.85h156.1v-27.69h247.8v27.69H760v33.85h-40.15v510.77q0 24.58-16.95 41.52Q685.96-160 661.39-160H298.61ZM686-729.23H274v510.77q0 10.77 7.18 17.69 7.18 6.92 17.43 6.92h362.78q9.23 0 16.92-7.69 7.69-7.69 7.69-16.92v-510.77ZM394.41-275.79h33.85v-372.16h-33.85v372.16Zm137.33 0h33.85v-372.16h-33.85v372.16ZM274-729.23v535.38-535.38Z&quot; /&gt;
+                &lt;/svg&gt; &lt;/button&gt;
+            } @else {
+            &lt;button (click)&#x3D;&quot;openDialogPostulation(offer.id)&quot;&gt;POSTULARME&lt;/button&gt;
+            }
+            }
+            @if (offer.id_empresa &#x3D;&#x3D;&#x3D; currentUserId) {
+            &lt;button (click)&#x3D;&quot;navigateToViewPostulations(offer.id)&quot;&gt;Ver postulantes&lt;/button&gt;
+            &lt;button class&#x3D;&quot;edit&quot; (click)&#x3D;&quot;navigateToEditOffer(offer.id)&quot;&gt; &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+                    height&#x3D;&quot;24px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;24px&quot; fill&#x3D;&quot;#1f1f1f&quot;&gt;
+                    &lt;path
+                        d&#x3D;&quot;M200-200h43.92l427.93-427.92-43.93-43.93L200-243.92V-200Zm-40 40v-100.77l527.23-527.77q6.15-5.48 13.57-8.47 7.43-2.99 15.49-2.99t15.62 2.54q7.55 2.54 13.94 9.15l42.69 42.93q6.61 6.38 9.04 14 2.42 7.63 2.42 15.25 0 8.13-2.74 15.56-2.74 7.42-8.72 13.57L260.77-160H160Zm600.77-556.31-44.46-44.46 44.46 44.46ZM649.5-649.5l-21.58-22.35 43.93 43.93-22.35-21.58Z&quot; /&gt;
+                &lt;/svg&gt; Editar
+                Oferta&lt;/button&gt;
+            &lt;button class&#x3D;&quot;delete&quot; (click)&#x3D;&quot;openDialog(offer.id)&quot; matTooltip&#x3D;&quot;Eliminar oferta&quot;&gt;
+                &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;40px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;40px&quot;&gt;
+                    &lt;path
+                        d&#x3D;&quot;M298.61-160q-23.91 0-41.18-17.28-17.28-17.27-17.28-41.18v-510.77H200v-33.85h156.1v-27.69h247.8v27.69H760v33.85h-40.15v510.77q0 24.58-16.95 41.52Q685.96-160 661.39-160H298.61ZM686-729.23H274v510.77q0 10.77 7.18 17.69 7.18 6.92 17.43 6.92h362.78q9.23 0 16.92-7.69 7.69-7.69 7.69-16.92v-510.77ZM394.41-275.79h33.85v-372.16h-33.85v372.16Zm137.33 0h33.85v-372.16h-33.85v372.16ZM274-729.23v535.38-535.38Z&quot; /&gt;
+                &lt;/svg&gt; &lt;/button&gt;
+            } @else if (currentUserType &#x3D;&#x3D;&#x3D; &quot;admin&quot; &amp;&amp; offer.estado_publicacion &#x3D;&#x3D;&#x3D; &#x27;pendiente&#x27;) {
+            &lt;div class&#x3D;&quot;container-flags&quot;&gt;
+                &lt;h5 class&#x3D;&quot;pendiente-flag&quot;&gt;&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;30px&quot;
+                        viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;30px&quot;&gt;
+                        &lt;path
+                            d&#x3D;&quot;M109.23-160 480-800l370.77 640H109.23Zm58.41-33.85h624.72L480-732.31 167.64-193.85Zm313.61-60.56q9.21 0 15.31-6.23 6.11-6.23 6.11-15.43 0-9.21-6.23-15.31-6.23-6.11-15.44-6.11-9.21 0-15.31 6.23t-6.1 15.44q0 9.2 6.23 15.31 6.23 6.1 15.43 6.1Zm-17.04-86.31h33.84v-207.79h-33.84v207.79ZM480-463.08Z&quot; /&gt;
+                    &lt;/svg&gt; Pendiente &lt;/h5&gt;
+            &lt;/div&gt;
+            &lt;button class&#x3D;&quot;edit&quot; (click)&#x3D;&quot;changeOfferStatus(offer.id, &#x27;aprobada&#x27;)&quot;&gt; &lt;svg
+                    xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;30px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;30px&quot;&gt;
+                    &lt;path
+                        d&#x3D;&quot;M380.87-269.64 183.23-467.28l24.33-23.82 173.31 173.31 371.41-371.93 24.34 24.34-395.75 395.74Z&quot; /&gt;
+                &lt;/svg&gt;
+                APROBAR&lt;/button&gt;
+            &lt;button class&#x3D;&quot;reject&quot; (click)&#x3D;&quot;changeOfferStatus(offer.id, &#x27;rechazada&#x27;)&quot;&gt; &lt;svg
+                    xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;30px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;30px&quot;&gt;
+                    &lt;path
+                        d&#x3D;&quot;M256-227.69 227.69-256l224-224-224-224L256-732.31l224 224 224-224L732.31-704l-224 224 224 224L704-227.69l-224-224-224 224Z&quot; /&gt;
+                &lt;/svg&gt;
+                RECHAZAR&lt;/button&gt;
+            &lt;button class&#x3D;&quot;delete&quot; (click)&#x3D;&quot;openDialog(offer.id)&quot; matTooltip&#x3D;&quot;Eliminar oferta&quot;&gt;
+                &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;40px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;40px&quot;&gt;
+                    &lt;path
+                        d&#x3D;&quot;M298.61-160q-23.91 0-41.18-17.28-17.28-17.27-17.28-41.18v-510.77H200v-33.85h156.1v-27.69h247.8v27.69H760v33.85h-40.15v510.77q0 24.58-16.95 41.52Q685.96-160 661.39-160H298.61ZM686-729.23H274v510.77q0 10.77 7.18 17.69 7.18 6.92 17.43 6.92h362.78q9.23 0 16.92-7.69 7.69-7.69 7.69-16.92v-510.77ZM394.41-275.79h33.85v-372.16h-33.85v372.16Zm137.33 0h33.85v-372.16h-33.85v372.16ZM274-729.23v535.38-535.38Z&quot; /&gt;
+                &lt;/svg&gt; &lt;/button&gt;
+            } @else if (currentUserType &#x3D;&#x3D;&#x3D; &quot;admin&quot; &amp;&amp; offer.estado_publicacion &#x3D;&#x3D;&#x3D; &#x27;rechazada&#x27;) {
+            &lt;div class&#x3D;&quot;container-flags&quot;&gt;
+                &lt;h5 class&#x3D;&quot;reject-flag&quot;&gt;&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;30x&quot; viewBox&#x3D;&quot;0 -960 960 960&quot;
+                        width&#x3D;&quot;30px&quot;&gt;
+                        &lt;path
+                            d&#x3D;&quot;m336-307.69 144-144 144 144L652.31-336l-144-144 144-144L624-652.31l-144 144-144-144L307.69-624l144 144-144 144L336-307.69ZM480.13-120q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41 28.34-65.73 76.92-114.36 48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34 65.73 28.34 114.36 76.92 48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41-28.34 65.73-76.92 114.36-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z&quot; /&gt;
+                    &lt;/svg&gt; Rechazada&lt;/h5&gt;
+            &lt;/div&gt;
+            &lt;button class&#x3D;&quot;edit&quot; (click)&#x3D;&quot;changeOfferStatus(offer.id, &#x27;aprobada&#x27;)&quot;&gt; &lt;svg
+                    xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;30px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;30px&quot;&gt;
+                    &lt;path
+                        d&#x3D;&quot;M380.87-269.64 183.23-467.28l24.33-23.82 173.31 173.31 371.41-371.93 24.34 24.34-395.75 395.74Z&quot; /&gt;
+                &lt;/svg&gt;
+                APROBAR&lt;/button&gt;
+            &lt;button class&#x3D;&quot;delete&quot; (click)&#x3D;&quot;openDialog(offer.id)&quot; matTooltip&#x3D;&quot;Eliminar oferta&quot;&gt;
+                &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;30px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;30px&quot;&gt;
+                    &lt;path
+                        d&#x3D;&quot;M298.61-160q-23.91 0-41.18-17.28-17.28-17.27-17.28-41.18v-510.77H200v-33.85h156.1v-27.69h247.8v27.69H760v33.85h-40.15v510.77q0 24.58-16.95 41.52Q685.96-160 661.39-160H298.61ZM686-729.23H274v510.77q0 10.77 7.18 17.69 7.18 6.92 17.43 6.92h362.78q9.23 0 16.92-7.69 7.69-7.69 7.69-16.92v-510.77ZM394.41-275.79h33.85v-372.16h-33.85v372.16Zm137.33 0h33.85v-372.16h-33.85v372.16ZM274-729.23v535.38-535.38Z&quot; /&gt;
+                &lt;/svg&gt; &lt;/button&gt;
+
+            } @else if (currentUserType &#x3D;&#x3D;&#x3D; &quot;admin&quot; &amp;&amp; offer.estado_publicacion &#x3D;&#x3D;&#x3D; &#x27;aprobada&#x27;) {
+            &lt;div class&#x3D;&quot;container-flags&quot;&gt;
+                &lt;h5 class&#x3D;&quot;check-flag&quot;&gt;&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;30px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot;
+                        width&#x3D;&quot;30px&quot;&gt;
+                        &lt;path
+                            d&#x3D;&quot;m422.46-323.69 255.85-255.85L650-607.85 422.46-380.31l-114-114L280.15-466l142.31 142.31ZM480.13-120q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41 28.34-65.73 76.92-114.36 48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34 65.73 28.34 114.36 76.92 48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41-28.34 65.73-76.92 114.36-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z&quot; /&gt;
+                    &lt;/svg&gt; Aprobada&lt;/h5&gt;
+            &lt;/div&gt;
+            &lt;button class&#x3D;&quot;reject&quot; (click)&#x3D;&quot;changeOfferStatus(offer.id, &#x27;rechazada&#x27;)&quot;&gt;&lt;svg
+                    xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;30px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;30px&quot;&gt;
+                    &lt;path
+                        d&#x3D;&quot;M256-227.69 227.69-256l224-224-224-224L256-732.31l224 224 224-224L732.31-704l-224 224 224 224L704-227.69l-224-224-224 224Z&quot; /&gt;
+                &lt;/svg&gt;
+                RECHAZAR&lt;/button&gt;
+            &lt;button class&#x3D;&quot;delete&quot; (click)&#x3D;&quot;openDialog(offer.id)&quot; matTooltip&#x3D;&quot;Eliminar oferta&quot;&gt;
+                &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;40px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;40px&quot;&gt;
+                    &lt;path
+                        d&#x3D;&quot;M298.61-160q-23.91 0-41.18-17.28-17.28-17.27-17.28-41.18v-510.77H200v-33.85h156.1v-27.69h247.8v27.69H760v33.85h-40.15v510.77q0 24.58-16.95 41.52Q685.96-160 661.39-160H298.61ZM686-729.23H274v510.77q0 10.77 7.18 17.69 7.18 6.92 17.43 6.92h362.78q9.23 0 16.92-7.69 7.69-7.69 7.69-16.92v-510.77ZM394.41-275.79h33.85v-372.16h-33.85v372.16Zm137.33 0h33.85v-372.16h-33.85v372.16ZM274-729.23v535.38-535.38Z&quot; /&gt;
+                &lt;/svg&gt; &lt;/button&gt;
+            }
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;main&gt;
+        &lt;div class&#x3D;&quot;detail-header&quot;&gt;
+            &lt;h2&gt;Detalle del empleo&lt;/h2&gt;
+            &lt;div class&#x3D;&quot;detail-categories&quot;&gt;
+                &lt;h5&gt;&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;24px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;24px&quot;
+                        fill&#x3D;&quot;#1f1f1f&quot;&gt;
+                        &lt;path
+                            d&#x3D;&quot;M240-120q-33.85 0-56.92-23.08Q160-166.15 160-200v-110.77h120V-840h520v640q0 33.85-23.08 56.92Q753.85-120 720-120H240Zm480-40q17 0 28.5-11.5T760-200v-600H320v489.23h360V-200q0 17 11.5 28.5T720-160ZM375.38-624.62v-40h329.24v40H375.38Zm0 110.77v-40h329.24v40H375.38ZM240-160h400v-110.77H200V-200q0 17 11.5 28.5T240-160Zm0 0h-40 440-400Z&quot; /&gt;
+                    &lt;/svg&gt; {{offer.tipo_contrato}}&lt;/h5&gt;
+                &lt;h5&gt;&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;24px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;24px&quot;
+                        fill&#x3D;&quot;#1f1f1f&quot;&gt;
+                        &lt;path
+                            d&#x3D;&quot;M160-160v-452.31l449.23-173.07V-440h67.69q0-25.38 18.06-43.46 18.07-18.08 43.43-18.08t43.47 18.08Q800-465.38 800-440v280H160Zm40-40h200v-240h169.23v-287.85L200-585v385Zm240 0h129.23v-92.31h61.54V-200H760v-200H440v200Zm-80-280Zm240 280Zm0-26.15Z&quot; /&gt;
+                    &lt;/svg&gt; {{offer.lugar_trabajo}}&lt;/h5&gt;
+                &lt;h5&gt;&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;24px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;24px&quot;
+                        fill&#x3D;&quot;#1f1f1f&quot;&gt;
+                        &lt;path
+                            d&#x3D;&quot;M480.13-120q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41 28.34-65.73 76.92-114.36 48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34 65.73 28.34 114.36 76.92 48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41-28.34 65.73-76.92 114.36-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-64-24.38-122.62-24.39-58.61-69.26-103.61L480-480v-320q-134 0-227 93t-93 227q0 134 93 227t227 93Z&quot; /&gt;
+                    &lt;/svg&gt; {{offer.modalidad}}&lt;/h5&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;detail-description&quot;&gt;
+            &lt;div class&#x3D;&quot;highlight&quot;&gt;
+                &lt;h4&gt;&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;24px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;24px&quot;&gt;
+                        &lt;path
+                            d&#x3D;&quot;M229.23-324.62h501.54v-40H229.23v40Zm0-135.38h501.54v-40H229.23v40Zm0-135.38H580v-40H229.23v40ZM184.62-200q-27.62 0-46.12-18.5Q120-237 120-264.62v-430.76q0-27.62 18.5-46.12Q157-760 184.62-760h590.76q27.62 0 46.12 18.5Q840-723 840-695.38v430.76q0 27.62-18.5 46.12Q803-200 775.38-200H184.62Zm0-40h590.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93v-430.76q0-9.24-7.69-16.93-7.69-7.69-16.93-7.69H184.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93v430.76q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69ZM160-240v-480 480Z&quot; /&gt;
+                    &lt;/svg&gt; Descripción&lt;/h4&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;description-text&quot;&gt;
+                &lt;p&gt;{{offer.descripcion}}&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;detail-benefits&quot;&gt;
+            &lt;div class&#x3D;&quot;highlight&quot;&gt;
+                &lt;h4&gt;&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; height&#x3D;&quot;24px&quot; viewBox&#x3D;&quot;0 -960 960 960&quot; width&#x3D;&quot;24px&quot;&gt;
+                        &lt;path
+                            d&#x3D;&quot;M400-727.69q-27.92 0-47.81-19.89-19.88-19.88-19.88-47.8 0-27.93 19.88-47.81 19.89-19.89 47.81-19.89t47.81 19.89q19.88 19.88 19.88 47.81 0 27.92-19.88 47.8-19.89 19.89-47.81 19.89Zm260 500q46.62 0 79.46-32.85 32.85-32.84 32.85-79.46 0-46.62-32.85-79.46-32.84-32.85-79.46-32.85-46.62 0-79.46 32.85-32.85 32.84-32.85 79.46 0 46.62 32.85 79.46 32.84 32.85 79.46 32.85Zm204 119.23L752.92-219.54q-20.46 15.54-43.96 23.69-23.5 8.16-48.96 8.16-63.46 0-107.88-44.43-44.43-44.42-44.43-107.88 0-63.46 44.43-107.88 44.42-44.43 107.88-44.43 63.46 0 107.88 44.43 44.43 44.42 44.43 107.88 0 25.46-8.16 48.96-8.15 23.5-23.69 43.96L891.54-136 864-108.46ZM447.69-100v-112.54q8.08 14 18.19 25.92 10.12 11.93 21.81 22.54V-100h-40Zm-135.38 0v-523.08q-58.69-5-116.77-12.96Q137.46-644 80-658.46l9.23-40q77.08 19.15 154.19 27.27 77.11 8.11 156.5 8.11t156.58-8.11q77.19-8.12 154.27-27.27l9.23 40Q662.54-644 604.46-636.04q-58.08 7.96-116.77 12.96v107.16q-32.46 30.38-52.38 72.11-19.93 41.73-22.23 89.96v2.31q0 1.16.23 2.31h-61V-100h-40Z&quot; /&gt;
+                    &lt;/svg&gt;Requisitos&lt;/h4&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;description-text&quot;&gt;
+                &lt;div&gt;
+                    &lt;h4&gt; Nivel educativo requerido&lt;/h4&gt;
+                    &lt;p&gt;{{offer.nivel_educativo_requerido}}&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                    &lt;h4&gt; Experiencia requerida&lt;/h4&gt;
+                    &lt;p&gt;{{offer.experiencia_requerida}}&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                    &lt;h4&gt; Otros requisitos&lt;/h4&gt;
+                    &lt;p&gt;{{offer.otros_requisitos}}&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/main&gt;
+    &lt;div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;app-footer&gt;&lt;/app-footer&gt;</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><app-header></app-header><div class="container">    @if(previousUrl === "/profile" || previousUrl === "/perfil"){    <div class="fallback">        <i class="fa-solid fa-arrow-left" (click)="navigateToProfile()"></i> <a (click)="navigateToProfile()"> Volver a            Perfil</a>    </div>    }@else if(previousUrl === "/admin-panel" || previousUrl === "/panel-administrador"){    <div class="fallback">        <i class="fa-solid fa-arrow-left" (click)="navigateToAdminPanel()"></i> <a (click)="navigateToAdminPanel()">            Volver a            Administración</a>    </div>    }@else if (previousUrl.startsWith("/postulaciones-por-oferta")) {    <div class="fallback">        <i class="fa-solid fa-arrow-left" (click)="navigateToProfile()"></i> <a (click)="navigateToProfile()">            Volver a Perfil</a>    </div>    }    @else{    <div class="fallback">        <i class="fa-solid fa-arrow-left" (click)="navigateToLanding()"></i> <a (click)="navigateToLanding()">            Volver a            Ofertas</a>    </div>    }    <div class="postulation-header">        <div class="profile">            <div class="postulation-title">                <h1 matTooltip={{offer.puesto_requerido}}>{{offer.puesto_requerido}}</h1>            </div>        </div>        <div class="profile-header">            <div class="profile-pic">                <img [src]="getImageUrl(offer.logo)  || \'sample_pfp.png\'" alt="Profile picture">            </div>            <div class="profile-info">                <h4>{{offer.nombre_empresa}}</h4>                <div class="location">                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"                        fill="#1f1f1f">                        <path                            d="M480.14-490.77q26.71 0 45.59-19.02 18.89-19.02 18.89-45.73 0-26.71-19.03-45.6Q506.57-620 479.86-620q-26.71 0-45.59 19.02-18.89 19.02-18.89 45.73 0 26.71 19.03 45.6 19.02 18.88 45.73 18.88ZM480-172.92q112.77-98.16 178.31-199.66t65.54-175.57q0-109.77-69.5-181.2-69.5-71.42-174.35-71.42t-174.35 71.42q-69.5 71.43-69.5 181.2 0 74.07 65.54 175.57T480-172.92Zm0 53.69Q339-243.92 267.58-351.81q-71.43-107.88-71.43-196.34 0-126.93 82.66-209.39Q361.46-840 480-840q118.54 0 201.19 82.46 82.66 82.46 82.66 209.39 0 88.46-71.43 196.34Q621-243.92 480-119.23Zm0-436.15Z" />                    </svg>                    <p>{{offer.localidad}}</p>                </div>            </div>        </div>        <!-- </div> -->        <div class="button-wrapper">            @if (currentUserType === "ciudadano") {            @if(postulado) {            <div>                <h5 class="postulado-flag"><svg xmlns="http://www.w3.org/2000/svg" height="24px"                        viewBox="0 -960 960 960" width="24px" fill="#1f1f1f">                        <path d="M400-332.46 268.46-464 296-491.54l104 104 264-264L691.54-624 400-332.46Z" />                    </svg> Postulado</h5>            </div>            <button class="delete" (click)="openDialogDeletePostulation(offer.id)" matTooltip="Cancelar postulación">                <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px">                    <path                        d="M298.61-160q-23.91 0-41.18-17.28-17.28-17.27-17.28-41.18v-510.77H200v-33.85h156.1v-27.69h247.8v27.69H760v33.85h-40.15v510.77q0 24.58-16.95 41.52Q685.96-160 661.39-160H298.61ZM686-729.23H274v510.77q0 10.77 7.18 17.69 7.18 6.92 17.43 6.92h362.78q9.23 0 16.92-7.69 7.69-7.69 7.69-16.92v-510.77ZM394.41-275.79h33.85v-372.16h-33.85v372.16Zm137.33 0h33.85v-372.16h-33.85v372.16ZM274-729.23v535.38-535.38Z" />                </svg> </button>            } @else {            <button (click)="openDialogPostulation(offer.id)">POSTULARME</button>            }            }            @if (offer.id_empresa === currentUserId) {            <button (click)="navigateToViewPostulations(offer.id)">Ver postulantes</button>            <button class="edit" (click)="navigateToEditOffer(offer.id)"> <svg xmlns="http://www.w3.org/2000/svg"                    height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f">                    <path                        d="M200-200h43.92l427.93-427.92-43.93-43.93L200-243.92V-200Zm-40 40v-100.77l527.23-527.77q6.15-5.48 13.57-8.47 7.43-2.99 15.49-2.99t15.62 2.54q7.55 2.54 13.94 9.15l42.69 42.93q6.61 6.38 9.04 14 2.42 7.63 2.42 15.25 0 8.13-2.74 15.56-2.74 7.42-8.72 13.57L260.77-160H160Zm600.77-556.31-44.46-44.46 44.46 44.46ZM649.5-649.5l-21.58-22.35 43.93 43.93-22.35-21.58Z" />                </svg> Editar                Oferta</button>            <button class="delete" (click)="openDialog(offer.id)" matTooltip="Eliminar oferta">                <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px">                    <path                        d="M298.61-160q-23.91 0-41.18-17.28-17.28-17.27-17.28-41.18v-510.77H200v-33.85h156.1v-27.69h247.8v27.69H760v33.85h-40.15v510.77q0 24.58-16.95 41.52Q685.96-160 661.39-160H298.61ZM686-729.23H274v510.77q0 10.77 7.18 17.69 7.18 6.92 17.43 6.92h362.78q9.23 0 16.92-7.69 7.69-7.69 7.69-16.92v-510.77ZM394.41-275.79h33.85v-372.16h-33.85v372.16Zm137.33 0h33.85v-372.16h-33.85v372.16ZM274-729.23v535.38-535.38Z" />                </svg> </button>            } @else if (currentUserType === "admin" && offer.estado_publicacion === \'pendiente\') {            <div class="container-flags">                <h5 class="pendiente-flag"><svg xmlns="http://www.w3.org/2000/svg" height="30px"                        viewBox="0 -960 960 960" width="30px">                        <path                            d="M109.23-160 480-800l370.77 640H109.23Zm58.41-33.85h624.72L480-732.31 167.64-193.85Zm313.61-60.56q9.21 0 15.31-6.23 6.11-6.23 6.11-15.43 0-9.21-6.23-15.31-6.23-6.11-15.44-6.11-9.21 0-15.31 6.23t-6.1 15.44q0 9.2 6.23 15.31 6.23 6.1 15.43 6.1Zm-17.04-86.31h33.84v-207.79h-33.84v207.79ZM480-463.08Z" />                    </svg> Pendiente </h5>            </div>            <button class="edit" (click)="changeOfferStatus(offer.id, \'aprobada\')"> <svg                    xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px">                    <path                        d="M380.87-269.64 183.23-467.28l24.33-23.82 173.31 173.31 371.41-371.93 24.34 24.34-395.75 395.74Z" />                </svg>                APROBAR</button>            <button class="reject" (click)="changeOfferStatus(offer.id, \'rechazada\')"> <svg                    xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px">                    <path                        d="M256-227.69 227.69-256l224-224-224-224L256-732.31l224 224 224-224L732.31-704l-224 224 224 224L704-227.69l-224-224-224 224Z" />                </svg>                RECHAZAR</button>            <button class="delete" (click)="openDialog(offer.id)" matTooltip="Eliminar oferta">                <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px">                    <path                        d="M298.61-160q-23.91 0-41.18-17.28-17.28-17.27-17.28-41.18v-510.77H200v-33.85h156.1v-27.69h247.8v27.69H760v33.85h-40.15v510.77q0 24.58-16.95 41.52Q685.96-160 661.39-160H298.61ZM686-729.23H274v510.77q0 10.77 7.18 17.69 7.18 6.92 17.43 6.92h362.78q9.23 0 16.92-7.69 7.69-7.69 7.69-16.92v-510.77ZM394.41-275.79h33.85v-372.16h-33.85v372.16Zm137.33 0h33.85v-372.16h-33.85v372.16ZM274-729.23v535.38-535.38Z" />                </svg> </button>            } @else if (currentUserType === "admin" && offer.estado_publicacion === \'rechazada\') {            <div class="container-flags">                <h5 class="reject-flag"><svg xmlns="http://www.w3.org/2000/svg" height="30x" viewBox="0 -960 960 960"                        width="30px">                        <path                            d="m336-307.69 144-144 144 144L652.31-336l-144-144 144-144L624-652.31l-144 144-144-144L307.69-624l144 144-144 144L336-307.69ZM480.13-120q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41 28.34-65.73 76.92-114.36 48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34 65.73 28.34 114.36 76.92 48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41-28.34 65.73-76.92 114.36-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />                    </svg> Rechazada</h5>            </div>            <button class="edit" (click)="changeOfferStatus(offer.id, \'aprobada\')"> <svg                    xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px">                    <path                        d="M380.87-269.64 183.23-467.28l24.33-23.82 173.31 173.31 371.41-371.93 24.34 24.34-395.75 395.74Z" />                </svg>                APROBAR</button>            <button class="delete" (click)="openDialog(offer.id)" matTooltip="Eliminar oferta">                <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px">                    <path                        d="M298.61-160q-23.91 0-41.18-17.28-17.28-17.27-17.28-41.18v-510.77H200v-33.85h156.1v-27.69h247.8v27.69H760v33.85h-40.15v510.77q0 24.58-16.95 41.52Q685.96-160 661.39-160H298.61ZM686-729.23H274v510.77q0 10.77 7.18 17.69 7.18 6.92 17.43 6.92h362.78q9.23 0 16.92-7.69 7.69-7.69 7.69-16.92v-510.77ZM394.41-275.79h33.85v-372.16h-33.85v372.16Zm137.33 0h33.85v-372.16h-33.85v372.16ZM274-729.23v535.38-535.38Z" />                </svg> </button>            } @else if (currentUserType === "admin" && offer.estado_publicacion === \'aprobada\') {            <div class="container-flags">                <h5 class="check-flag"><svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"                        width="30px">                        <path                            d="m422.46-323.69 255.85-255.85L650-607.85 422.46-380.31l-114-114L280.15-466l142.31 142.31ZM480.13-120q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41 28.34-65.73 76.92-114.36 48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34 65.73 28.34 114.36 76.92 48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41-28.34 65.73-76.92 114.36-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />                    </svg> Aprobada</h5>            </div>            <button class="reject" (click)="changeOfferStatus(offer.id, \'rechazada\')"><svg                    xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px">                    <path                        d="M256-227.69 227.69-256l224-224-224-224L256-732.31l224 224 224-224L732.31-704l-224 224 224 224L704-227.69l-224-224-224 224Z" />                </svg>                RECHAZAR</button>            <button class="delete" (click)="openDialog(offer.id)" matTooltip="Eliminar oferta">                <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px">                    <path                        d="M298.61-160q-23.91 0-41.18-17.28-17.28-17.27-17.28-41.18v-510.77H200v-33.85h156.1v-27.69h247.8v27.69H760v33.85h-40.15v510.77q0 24.58-16.95 41.52Q685.96-160 661.39-160H298.61ZM686-729.23H274v510.77q0 10.77 7.18 17.69 7.18 6.92 17.43 6.92h362.78q9.23 0 16.92-7.69 7.69-7.69 7.69-16.92v-510.77ZM394.41-275.79h33.85v-372.16h-33.85v372.16Zm137.33 0h33.85v-372.16h-33.85v372.16ZM274-729.23v535.38-535.38Z" />                </svg> </button>            }        </div>    </div>    <main>        <div class="detail-header">            <h2>Detalle del empleo</h2>            <div class="detail-categories">                <h5><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"                        fill="#1f1f1f">                        <path                            d="M240-120q-33.85 0-56.92-23.08Q160-166.15 160-200v-110.77h120V-840h520v640q0 33.85-23.08 56.92Q753.85-120 720-120H240Zm480-40q17 0 28.5-11.5T760-200v-600H320v489.23h360V-200q0 17 11.5 28.5T720-160ZM375.38-624.62v-40h329.24v40H375.38Zm0 110.77v-40h329.24v40H375.38ZM240-160h400v-110.77H200V-200q0 17 11.5 28.5T240-160Zm0 0h-40 440-400Z" />                    </svg> {{offer.tipo_contrato}}</h5>                <h5><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"                        fill="#1f1f1f">                        <path                            d="M160-160v-452.31l449.23-173.07V-440h67.69q0-25.38 18.06-43.46 18.07-18.08 43.43-18.08t43.47 18.08Q800-465.38 800-440v280H160Zm40-40h200v-240h169.23v-287.85L200-585v385Zm240 0h129.23v-92.31h61.54V-200H760v-200H440v200Zm-80-280Zm240 280Zm0-26.15Z" />                    </svg> {{offer.lugar_trabajo}}</h5>                <h5><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"                        fill="#1f1f1f">                        <path                            d="M480.13-120q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41 28.34-65.73 76.92-114.36 48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34 65.73 28.34 114.36 76.92 48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41-28.34 65.73-76.92 114.36-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-64-24.38-122.62-24.39-58.61-69.26-103.61L480-480v-320q-134 0-227 93t-93 227q0 134 93 227t227 93Z" />                    </svg> {{offer.modalidad}}</h5>            </div>        </div>        <div class="detail-description">            <div class="highlight">                <h4><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">                        <path                            d="M229.23-324.62h501.54v-40H229.23v40Zm0-135.38h501.54v-40H229.23v40Zm0-135.38H580v-40H229.23v40ZM184.62-200q-27.62 0-46.12-18.5Q120-237 120-264.62v-430.76q0-27.62 18.5-46.12Q157-760 184.62-760h590.76q27.62 0 46.12 18.5Q840-723 840-695.38v430.76q0 27.62-18.5 46.12Q803-200 775.38-200H184.62Zm0-40h590.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93v-430.76q0-9.24-7.69-16.93-7.69-7.69-16.93-7.69H184.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93v430.76q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69ZM160-240v-480 480Z" />                    </svg> Descripción</h4>            </div>            <div class="description-text">                <p>{{offer.descripcion}}</p>            </div>        </div>        <div class="detail-benefits">            <div class="highlight">                <h4><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">                        <path                            d="M400-727.69q-27.92 0-47.81-19.89-19.88-19.88-19.88-47.8 0-27.93 19.88-47.81 19.89-19.89 47.81-19.89t47.81 19.89q19.88 19.88 19.88 47.81 0 27.92-19.88 47.8-19.89 19.89-47.81 19.89Zm260 500q46.62 0 79.46-32.85 32.85-32.84 32.85-79.46 0-46.62-32.85-79.46-32.84-32.85-79.46-32.85-46.62 0-79.46 32.85-32.85 32.84-32.85 79.46 0 46.62 32.85 79.46 32.84 32.85 79.46 32.85Zm204 119.23L752.92-219.54q-20.46 15.54-43.96 23.69-23.5 8.16-48.96 8.16-63.46 0-107.88-44.43-44.43-44.42-44.43-107.88 0-63.46 44.43-107.88 44.42-44.43 107.88-44.43 63.46 0 107.88 44.43 44.43 44.42 44.43 107.88 0 25.46-8.16 48.96-8.15 23.5-23.69 43.96L891.54-136 864-108.46ZM447.69-100v-112.54q8.08 14 18.19 25.92 10.12 11.93 21.81 22.54V-100h-40Zm-135.38 0v-523.08q-58.69-5-116.77-12.96Q137.46-644 80-658.46l9.23-40q77.08 19.15 154.19 27.27 77.11 8.11 156.5 8.11t156.58-8.11q77.19-8.12 154.27-27.27l9.23 40Q662.54-644 604.46-636.04q-58.08 7.96-116.77 12.96v107.16q-32.46 30.38-52.38 72.11-19.93 41.73-22.23 89.96v2.31q0 1.16.23 2.31h-61V-100h-40Z" />                    </svg>Requisitos</h4>            </div>            <div class="description-text">                <div>                    <h4> Nivel educativo requerido</h4>                    <p>{{offer.nivel_educativo_requerido}}</p>                </div>                <div>                    <h4> Experiencia requerida</h4>                    <p>{{offer.experiencia_requerida}}</p>                </div>                <div>                    <h4> Otros requisitos</h4>                    <p>{{offer.otros_requisitos}}</p>                </div>            </div>        </div>    </main>    <div>    </div></div><app-footer></app-footer></div>'
+    var COMPONENTS = [{'name': 'AcademicBackgroundComponent', 'selector': 'app-academic-background'},{'name': 'AcademicBackgroundEditComponent', 'selector': 'app-academic-background-edit'},{'name': 'AdminPanelComponent', 'selector': 'app-postulation-list'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AttatchCvComponent', 'selector': 'app-attatch-cv'},{'name': 'BigLogoComponent', 'selector': 'app-big-logo'},{'name': 'CvUploaderComponent', 'selector': 'app-cv-uploader'},{'name': 'DeleteDialogComponent', 'selector': 'app-delete-dialog'},{'name': 'EmployeeFormComponent', 'selector': 'app-employee-form'},{'name': 'EmployeeProfileComponent', 'selector': 'app-employee-profile'},{'name': 'EmployeerProfileFormComponent', 'selector': 'app-employeer-profile-form'},{'name': 'EmployerProfileComponent', 'selector': 'app-employer-profile'},{'name': 'EmployerProfileSidebarComponent', 'selector': 'app-employer-profile-sidebar'},{'name': 'FileUploaderComponent', 'selector': 'app-file-uploader'},{'name': 'FilterComponent', 'selector': 'app-filter'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'FormSelectorComponent', 'selector': 'app-form-selector'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'JobOfferFormComponent', 'selector': 'app-profile-form'},{'name': 'LandingComponent', 'selector': 'app-landing'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PostulateDialogComponent', 'selector': 'app-Postulate-dialog'},{'name': 'PostulationDetailComponent', 'selector': 'app-postulation-detail'},{'name': 'PostulationListComponent', 'selector': 'app-postulation-list'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProfileFormComponent', 'selector': 'app-profile-form'},{'name': 'ProfilePictureComponent', 'selector': 'app-profile-picture'},{'name': 'ProfileSelectorComponent', 'selector': 'app-profile-selector'},{'name': 'ProgressSpinner', 'selector': 'progress-spinner-overview-example'},{'name': 'RecoveryComponent', 'selector': 'app-recovery'},{'name': 'ReportsComponent', 'selector': 'app-reports'},{'name': 'ResetPasswordComponent', 'selector': ''},{'name': 'TrainingLinkComponent', 'selector': 'app-training-link'},{'name': 'WorkExperienceComponent', 'selector': 'app-work-experience'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'PostulationDetailComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'PostulationDetailComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
