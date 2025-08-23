@@ -1,0 +1,15 @@
+[Unit]
+Description=Empleo Backend Server
+After=network.target remote-fs.target nss-lookup.target
+Documentation=https://github.com/Luciana444/PortalEmpleoLoberiaPPS
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=empleo
+WorkingDirectory=/usr/local/share/empleo_backend
+ExecStart=npm start
+
+[Install]
+WantedBy=multi-user.target
