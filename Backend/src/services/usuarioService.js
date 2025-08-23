@@ -224,7 +224,8 @@ export const getUserByEmail = async (email) => {
 
 export const enviarLinkRecuperacion = async (email, userId) => {
   const token = generarTokenRecuperacion(userId);
-  const linkRecuperacion = `http://localhost:4200/reset?token=${token}`;
+  /* Esto debería estar parametrizado - Hugo */
+  const linkRecuperacion = `https://empleo.loberia.gob.ar/reset?token=${token}`;
   await enviarEmailRecuperacion(email, linkRecuperacion);
 };
 

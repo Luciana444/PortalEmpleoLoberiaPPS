@@ -16,8 +16,9 @@ import swaggerUi from 'swagger-ui-express';
 // Inicializa la instancia principal de Express
 const app = express();
 // Middleware que permite peticiones cross-origin desde otros orígenes (CORS)
+/* El origen debería estar parametrizado */
 app.use(cors({
-  origin: 'http://localhost:4200',
+  origin: 'https://empleo.loberia.gob.ar',
   credentials:true
 }));
 
@@ -34,8 +35,8 @@ app.use(express.json());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 
-// Inicializa el servidor en el puerto 3000 y muestra un mensaje de confirmación en consola
-app.listen(3000, () => {
+// Inicializa el servidor en el puerto 3800 y muestra un mensaje de confirmación en consola
+app.listen(3800, () => {
   console.log(`Server running on ${process.env.API_URL}`);
 });
 
