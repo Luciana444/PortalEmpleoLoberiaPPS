@@ -1,5 +1,4 @@
---creacion de la aprimera tabla usuarios
-/*
+﻿--creacion de la primera tabla usuarios
 create table usuarios (
   id uuid primary key default gen_random_uuid(),
   nombre text not null,
@@ -14,7 +13,7 @@ create table usuarios (
 
 --tabla empresas:
 
-create table public.empresas (
+create table empresas (
   id uuid not null default gen_random_uuid (),
   id_usuario uuid not null,
   nombre_empresa text not null,
@@ -23,8 +22,6 @@ create table public.empresas (
   sitio_web text null,
   cuit character varying(20) not null,
   rubro text null,
-
-
   telefono text null,
   calle text not null,
   numero text not null,
@@ -33,13 +30,9 @@ create table public.empresas (
   localidad text not null,
   provincia text not null,
   pais text not null,
-  
-  
   estado_aprobacion character varying null default 'pendiente'::character varying,
   fecha_aprobacion timestamp without time zone null,
   email_admin_autorizador character varying null,
-  
-
   constraint empresas_pkey primary key (id),
   constraint empresas_id_usuario_key unique (id_usuario),
   constraint empresas_id_usuario_fkey foreign KEY (id_usuario) references usuarios (id) on delete CASCADE,
@@ -56,14 +49,13 @@ create table public.empresas (
       )
     )
   )
-) TABLESPACE pg_default;
-
+) ;
 
 --=================================================================
 
 -- TABLA PERFILES ciudadanos (datos extendidos de usuarios)
 
-CREATE TABLE public.perfiles_ciudadanos (
+CREATE TABLE perfiles_ciudadanos (
   id UUID NOT NULL DEFAULT gen_random_uuid(),
   id_ciudadano UUID NOT NULL,
 
@@ -91,8 +83,6 @@ CREATE TABLE public.perfiles_ciudadanos (
   carrera_en_curso TEXT,
 
   -- Experiencia y habilidades
-  
-  
   situacion_laboral TEXT NOT NULL,
   tiene_emprendimiento TEXT,
   discapacidad TEXT NOT NULL,
@@ -106,13 +96,13 @@ CREATE TABLE public.perfiles_ciudadanos (
   CONSTRAINT perfiles_ciudadanos_id_ciudadano_key UNIQUE (id_ciudadano),
   CONSTRAINT perfiles_ciudadanos_id_ciudadano_fkey FOREIGN KEY (id_ciudadano)
     REFERENCES usuarios (id) ON DELETE CASCADE
-) TABLESPACE pg_default;
+) ;
 
 ------------------------------------------------
 
 --tabla de capacitaciones y habilidades:  (unida al formulario de perfil ciudadano)
 
-CREATE TABLE public.capacitaciones_ciudadanos (
+CREATE TABLE capacitaciones_ciudadanos (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   id_ciudadano UUID NOT NULL,
   nombre_capacitacion TEXT NOT NULL,
@@ -120,18 +110,13 @@ CREATE TABLE public.capacitaciones_ciudadanos (
     REFERENCES perfiles_ciudadanos (id_ciudadano) ON DELETE CASCADE
 );
 
-
-
-
 --=============================================
 
-
-
 -- TABLA OFERTAS LABORALES
-CREATE TABLE public.ofertas_laborales (
+CREATE TABLE ofertas_laborales (
   id UUID NOT NULL DEFAULT gen_random_uuid(),
   id_empresa UUID NOT NULL,
-  
+
   puesto_requerido TEXT NOT NULL, -- reemplaza 'titulo'
   descripcion TEXT NOT NULL,
   
@@ -173,13 +158,13 @@ CREATE TABLE public.ofertas_laborales (
   ),
 
   CONSTRAINT ofertas_laborales_id_empresa_fkey FOREIGN KEY (id_empresa)
-    REFERENCES public.empresas (id) ON DELETE CASCADE
-) TABLESPACE pg_default;
+    REFERENCES empresas (id) ON DELETE CASCADE
+) ;
 
 --=======================================================
 
 -- tabla postulaciones
-CREATE TABLE public.postulaciones (
+CREATE TABLE postulaciones (
   id UUID NOT NULL DEFAULT gen_random_uuid(),
   
   id_ciudadano UUID NOT NULL,  -- antes era id_usuario
@@ -206,12 +191,12 @@ CREATE TABLE public.postulaciones (
   CONSTRAINT postulaciones_estado_check CHECK (
     estado IN ('pendiente', 'aceptado', 'rechazado')
   )
-) TABLESPACE pg_default;
+);
 
 ---------------------------------------------------------------------------------
 --tabla para cargar las experiencias laborales de los ciudadanos en el perfil
  
-CREATE TABLE public.experiencias_laborales_ciudadanos (
+CREATE TABLE experiencias_laborales_ciudadanos (
   id uuid NOT NULL DEFAULT gen_random_uuid(),
   id_ciudadano uuid NOT NULL,
   nombre_empresa text NOT NULL,
@@ -220,12 +205,12 @@ CREATE TABLE public.experiencias_laborales_ciudadanos (
   comentario varchar(500),
   CONSTRAINT experiencias_laborales_ciudadanos_pkey PRIMARY KEY (id),
   CONSTRAINT fk_experiencia_ciudadano FOREIGN KEY (id_ciudadano) REFERENCES perfiles_ciudadanos (id_ciudadano) ON DELETE CASCADE
-) TABLESPACE pg_default;
+) ;
 
 ----------------------------------------------------
 --tabla para registrar visitas al portal
 
-create table public.visitas_portal (
+create table visitas_portal (
   id uuid not null default gen_random_uuid (),
   pagina text not null,
   fecha timestamp without time zone null default now(),
@@ -234,8 +219,4 @@ create table public.visitas_portal (
   tipo_usuario text null,
   id_usuario uuid null,
   constraint visitas_portal_pkey primary key (id)
-) TABLESPACE pg_default;
-
-
-*/
-
+);
