@@ -1,6 +1,7 @@
 ORIGEN_DESPLIEGUE=./dist/portal-trabajo/browser/
 DESTINO_DESPLIEGUE=/var/www/empleo.loberia.gob.ar
 USUARIO_DESPLIEGUE=empleo
+GRUPO_DESPLIEGUE=empleo
 
 .PHONY: help build install deploy
 
@@ -20,6 +21,7 @@ build :
 	npm run build
 
 install : build
+	sudo chown -R $(USUARIO_DESPLIEGUE):$(GRUPO_DESPLIEGUE) dist 
 	sudo install -d -m 2755 -o $(USUARIO_DESPLIEGUE) -g www-data \
 		$(DESTINO_DESPLIEGUE)
 	sudo rsync -vr --delete $(ORIGEN_DESPLIEGUE) $(DESTINO_DESPLIEGUE)
