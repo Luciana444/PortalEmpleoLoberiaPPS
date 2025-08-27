@@ -25,11 +25,11 @@ install :
 		$(DIRECTORIO_BASE)/perfiles
 	install -d -o $(USUARIO_DESPLIEGUE) -g $(GRUPO_DESPLIEGUE) -m 755 \
 		$(DIRECTORIO_BASE)/src/uploads
-	sudo install -d -o $(USUARIO_DESPLIEGUE) -g $(GRUPO_WWW) -m 2755 \
+	sudo install -d -o $(USUARIO_DESPLIEGUE) -g $(GRUPO_WWW) -m 2750 \
 		$(DIRECTORIO_VAR)
-	sudo install -d -o $(USUARIO_DESPLIEGUE) -g $(GRUPO_WWW) -m 2775 \
+	sudo install -d -o $(USUARIO_DESPLIEGUE) -g $(GRUPO_WWW) -m 2750 \
 		$(DIRECTORIO_VAR)/fotos
-	sudo install -d -o $(USUARIO_DESPLIEGUE) -g $(GRUPO_WWW) -m 2775 \
+	sudo install -d -o $(USUARIO_DESPLIEGUE) -g $(GRUPO_WWW) -m 2750 \
 		$(DIRECTORIO_VAR)/cv
 	ln -nsf $(DIRECTORIO_VAR)/fotos $(DIRECTORIO_BASE)/perfiles/fotos
 	ln -nsf $(DIRECTORIO_VAR)/cv $(DIRECTORIO_BASE)/src/uploads/cv
