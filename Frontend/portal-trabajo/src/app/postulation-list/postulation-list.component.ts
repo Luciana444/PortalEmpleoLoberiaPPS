@@ -32,7 +32,7 @@ export class PostulationListComponent implements OnInit {
   }
 
   private getCVUrl(id: string): string {
-    return `${environment.apiUrl}0/api/empresa/postulaciones/${id}/cv`;
+    return `${environment.apiUrl}/api/empresa/postulaciones/${id}/cv`;
   }
 
   currentUserType?: string | null;
