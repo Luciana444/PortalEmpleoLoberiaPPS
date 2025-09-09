@@ -100,7 +100,7 @@ export class ProfileFormComponent implements OnInit {
     }
 
 
-    eeditProfile() {
+    editProfile() {
     if (this.profile.invalid) return;
 
     const fecha: Date = this.profile.value.fecha_nacimiento;
