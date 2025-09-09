@@ -101,35 +101,25 @@ export class ProfileFormComponent implements OnInit {
 
 
     editProfile() {
-    if (this.profile.invalid) return;
+        if (this.profile.invalid) return;
+        this.employeeservice.editProfileEmployee(JSON.stringify(this.profile.value)).subscribe({
+            next: (response) => {
+                if (response.status === 200) {
+                    this.toastr.success('Ya podes ver tu perfil completo', 'Actualización exitosa')
+                    console.log('Actualización exitosa', response);
+                    this.profile.reset();
+                    this.routeTranslation.navigateToTranslated(['profile']);
+                } else {
+                    console.log('No se pudo actualizar tu perfil', response);
+                }
+            },
+            error: (err) => {
+                this.toastr.error(err.error.error, 'Ocurrió un error');
+                console.error('Error al actualizat perfil', err);
 
-    const fecha: Date = this.profile.value.fecha_nacimiento;
-    if (fecha) {
-        // Convertir a hora de Argentina (UTC-3)
-        const fechaArgentina = new Date(fecha.getTime() - 3 * 60 * 60 * 1000);
-
-        // Formato PostgreSQL TIMESTAMP: 'YYYY-MM-DD HH:mm:ss'
-        const fechaStr = fechaArgentina.toISOString().slice(0,19).replace('T',' ');
-
-        this.profile.patchValue({ fecha_nacimiento: fechaStr });
-    }
-
-    this.employeeservice.editProfileEmployee(JSON.stringify(this.profile.value)).subscribe({
-        next: (response) => {
-            if (response.status === 200) {
-                this.toastr.success('Ya podes ver tu perfil completo', 'Actualización exitosa');
-                console.log('Actualización exitosa', response);
-                this.profile.reset();
-                this.routeTranslation.navigateToTranslated(['profile']);
-            } else {
-                console.log('No se pudo actualizar tu perfil', response);
             }
-        },
-        error: (err) => {
-            this.toastr.error(err.error.error, 'Ocurrió un error');
-            console.error('Error al actualizar perfil', err);
-        }
-    });
+        });
+
     }
 
     onFileSelected(event: any) {
