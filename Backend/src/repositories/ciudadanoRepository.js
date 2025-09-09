@@ -41,13 +41,13 @@ export const updatePerfilCiudadano = async (userId, datos) => {
   const campos = [];
   const valores = [];
 
-  // Si viene fecha_nacimiento, reemplazar por hora actual de Argentina
   if (datos.fecha_nacimiento) {
-    const ahora = new Date();
-    const ahoraArgentina = new Date(ahora.getTime() - 3 * 60 * 60 * 1000); // UTC-3
-    datos.fecha_nacimiento = ahoraArgentina.toISOString().slice(0, 19).replace('T', ''); // 'YYYY-MM-DD HH:mm:ss'
-  }
+    let fecha = new Date(datos.fecha_nacimiento);
 
+    fecha = new Date(fecha.getTime() - 3 * 60 * 60 * 1000);
+
+    datos.fecha_nacimiento = fecha.toISOString().slice(0, 19).replace('T', ' ');
+}
   for (const [clave, valor] of Object.entries(datos)) {
     if (camposValidos.includes(clave)) {
       campos.push(`${clave} = $${campos.length + 1}`);
