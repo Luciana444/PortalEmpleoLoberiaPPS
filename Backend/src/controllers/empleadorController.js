@@ -641,8 +641,18 @@ export const obtenerPerfilPorPostulacion = async(req,res)=>{
 
       const perfil_usuario = await obtenerPerfilPostulante(postulacion.id_ciudadano);
 
-      console.log(perfil_usuario);
-      return res.status(200).json(perfil_usuario);
+        const perfilFormateado = {
+          ...perfil_usuario,
+          fecha_nacimiento: perfil_usuario.fecha_nacimiento
+            ? perfil_usuario.fecha_nacimiento.toLocaleDateString("es-AR", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+              })
+            : null,
+        };
+
+      return res.status(200).json(perfilFormateado);
 
   } catch (error) {
       console.log(error);
