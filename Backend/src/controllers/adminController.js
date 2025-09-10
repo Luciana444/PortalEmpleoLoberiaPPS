@@ -168,6 +168,7 @@ export const getListaCiudadanos = async (req, res) => {
       };
     });
 
+    console.log(listaFormateada);
     return res.status(200).json(listaFormateada);
   } catch (error) {
     console.log(error);
