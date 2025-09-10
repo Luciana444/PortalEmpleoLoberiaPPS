@@ -147,13 +147,31 @@ export const generarReporteMetricas = async(req,res)=>{
  * @returns {Promise<void>}
  */
 
-export const getListaCiudadanos = async(req,res)=>{
+export const getListaCiudadanos = async (req, res) => {
   try {
-      const lista_ciudadanos = await getCiudadanos();
-      return res.status(200).json(lista_ciudadanos);
+    const lista_ciudadanos = await getCiudadanos();
+
+    const listaFormateada = lista_ciudadanos.map((ciudadano) => {
+      const fechaNacimiento = ciudadano.fecha_nacimiento
+        ? new Date(ciudadano.fecha_nacimiento)
+        : null;
+
+      return {
+        ...ciudadano,
+        fecha_nacimiento: fechaNacimiento
+          ? fechaNacimiento.toLocaleDateString("es-AR", {
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+            })
+          : null,
+      };
+    });
+
+    return res.status(200).json(listaFormateada);
   } catch (error) {
     console.log(error);
-    res.status(500).json({message:'Error al obtener la lista de los ciudadanos'});
+    res.status(500).json({ message: "Error al obtener la lista de los ciudadanos" });
   }
 };
 
