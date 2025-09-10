@@ -781,7 +781,18 @@ export const obtenerDatosCiudadano = async(req,res)=>{
 
       const datosCiudadano = await getPerfilCompleto(id_ciudadano);
 
-      return res.status(200).json(datosCiudadano);
+      const perfilFormateado = {
+        ...datosCiudadano,
+        fecha_nacimiento: datosCiudadano.fecha_nacimiento
+          ? datosCiudadano.fecha_nacimiento.toLocaleDateString("es-AR", {
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+            })
+          : null,
+      };
+
+      return res.status(200).json(perfilFormateado);
 
   } catch (error) {
     console.log(error);
