@@ -65,6 +65,10 @@ $font: 'Linotte Regular', 'Linotte Light', 'Linotte Semi Bold', 'Linotte Bold', 
     @include mat.button-toggle-overrides((selected-state-background-color: #ECF8E7,
     text-color:#49454F,
         ));
+    @include mat.checkbox-overrides((
+                label-text-color: #49454F,
+                selected-checkmark-color: #57AF31,
+    ));
 }
 
 h1,

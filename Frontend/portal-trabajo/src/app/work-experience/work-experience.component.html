@@ -59,15 +59,24 @@
                         Este campo es obligatorio
                     </mat-error>
                 </mat-form-field>
+                @if(trabajaActualmente){
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Hasta</mat-label>
                     <input matInput [matDatepicker]="pickerHasta" formControlName="hasta" />
                     <mat-datepicker-toggle matSuffix [for]="pickerHasta"></mat-datepicker-toggle>
                     <mat-datepicker #pickerHasta></mat-datepicker>
-                    <mat-error *ngIf="workExperience.get('hasta')?.hasError('required')">
-                        Este campo es obligatorio
-                    </mat-error>
                 </mat-form-field>
+                }@else{
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Hasta</mat-label>
+                    <input matInput [matDatepicker]="pickerHasta" disabled formControlName="hasta" />
+                    <mat-datepicker-toggle matSuffix [for]="pickerHasta"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerHasta></mat-datepicker>
+                </mat-form-field>
+                }
+                <mat-checkbox [checked]="trabajaActualmente" (click)="cambiarCheckbox()">
+                    Trabajando Actualmente
+                </mat-checkbox>
             </div>
             <div>
                 <mat-form-field appearance="outline" class="full-width comment">

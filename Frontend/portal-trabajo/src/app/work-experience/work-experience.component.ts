@@ -24,6 +24,8 @@ import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component'
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouteTranslationService } from '../services/route-translation.service';
+import {MAT_CHECKBOX_DEFAULT_OPTIONS, MatCheckboxModule} from '@angular/material/checkbox';
+import {MatCheckboxDefaultOptions} from '@angular/material/checkbox'
 
 @Component({
     selector: 'app-work-experience',
@@ -33,6 +35,7 @@ import { RouteTranslationService } from '../services/route-translation.service';
         ReactiveFormsModule,
         MatFormFieldModule,
         MatInputModule,
+        MatCheckboxModule,
         MatSelectModule,
         MatDatepickerModule,
         MatNativeDateModule,
@@ -44,7 +47,10 @@ import { RouteTranslationService } from '../services/route-translation.service';
         FooterComponent,
         MatDividerModule,
         MatTooltipModule
-    ]
+    ],
+    providers: [
+  {provide: MAT_CHECKBOX_DEFAULT_OPTIONS, useValue: { clickAction: 'noop' } as MatCheckboxDefaultOptions}
+]
 
 })
 export class WorkExperienceComponent implements OnInit {
@@ -54,6 +60,7 @@ export class WorkExperienceComponent implements OnInit {
     experiencias: any[] = [];
     itemId: string = "";
     workExperienceId: string = "";
+    public trabajaActualmente : boolean = false;
 
     constructor(private fb: FormBuilder,
         private toastr: ToastrService,
@@ -70,7 +77,7 @@ export class WorkExperienceComponent implements OnInit {
             tiene_emprendimiento: [''],
             nombre_empresa: ['', Validators.required],
             desde: ['', Validators.required],
-            hasta: ['', Validators.required],
+            hasta: [''],
             comentario: ['', [Validators.required, Validators.minLength(10)]]
         });
     }
@@ -102,6 +109,10 @@ export class WorkExperienceComponent implements OnInit {
 
             }
         });
+    }
+
+    cambiarCheckbox():void{
+        this.trabajaActualmente = !this.trabajaActualmente;
     }
 
     addWorkExperience(): void {
