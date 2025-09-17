@@ -59,7 +59,7 @@
                         Este campo es obligatorio
                     </mat-error>
                 </mat-form-field>
-                @if(trabajaActualmente == true){
+                @if(trabajaActualmente == false){
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Hasta</mat-label>
                     <input matInput [matDatepicker]="pickerHasta" formControlName="hasta" />
