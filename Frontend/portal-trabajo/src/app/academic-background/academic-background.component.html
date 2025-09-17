@@ -56,11 +56,7 @@
         </div>
         <div class="info-row">
             <h5>¿Tiene un emprendimiento propio?</h5>
-            @if (employeeData?.tiene_emprendimiento) {
-            <p>Sí</p>
-            } @else {
-            <p>No</p>
-            }
+            <p>{{employeeData?.tiene_emprendimiento}}</p>
         </div>
         <div class="experiences">
             <div>
