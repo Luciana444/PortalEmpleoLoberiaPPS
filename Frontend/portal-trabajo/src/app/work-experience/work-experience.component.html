@@ -110,7 +110,11 @@
                     <div class="align-elements">
                         <p><strong> Empresa: </strong> {{ exp.nombre_empresa }}</p>
                         <p><strong> Desde: </strong> {{ exp.desde | date }}</p>
-                        <p><strong> Hasta: </strong> {{ exp.hasta | date }}</p>
+                        @if(exp.hasta){
+                        <p><strong> Hasta: </strong> {{ exp.hasta}}</p>
+                        }@else{
+                         <p><strong> Hasta: </strong>Actualidad</p>
+                        }
                         <p><strong> Comentario: </strong> {{ exp.comentario }}</p>
                     </div>
                     <div class="align-elements">
