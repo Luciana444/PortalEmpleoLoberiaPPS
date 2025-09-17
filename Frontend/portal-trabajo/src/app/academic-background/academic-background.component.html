@@ -28,7 +28,7 @@
             <p>{{employeeData?.carrera_en_curso}}</p>
         </div>
         <div class="info-row">
-            <h5>Cursos o capacitaciones realizados: </h5>
+            <h5>Carreras o capacitaciones realizadas: </h5>
         </div>
         <div class="experiences">
             @for (capacitacion of employeeData?.capacitaciones; track $id) {
@@ -63,7 +63,7 @@
                 @for (experiencia of employeeData?.experiencias_laborales; track $id) {
                 <li>
                     <div class="dates">
-                        <p><strong> Empresa:</strong> {{experiencia.nombre_empresa}}</p>
+                        <p><strong> Lugar de Trabajo:</strong> {{experiencia.nombre_empresa}}</p>
                         <p><strong> De: </strong>{{convertToLocalDate(experiencia.desde)}}</p>
                         <p><strong> A:</strong> {{convertToLocalDate(experiencia.hasta)}}</p>
                     </div>

@@ -69,8 +69,8 @@ export class ProfileFormComponent implements OnInit {
             numero: [''],
             piso: [''],
             dpto: [''],
-            localidad: [''],
-            provincia: [''],
+            localidad: ['', Validators.required],
+            provincia: ['', Validators.required],
             pais: ['', Validators.required],
             discapacidad: ['', Validators.required],
             cv_url: ['']

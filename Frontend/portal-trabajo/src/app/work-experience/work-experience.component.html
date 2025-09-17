@@ -42,7 +42,7 @@
             <div class="container-experience">
                 <!-- Campo: Nombre empresa -->
                 <mat-form-field appearance="outline" class="full-width separate-inputs">
-                    <mat-label>Empresa</mat-label>
+                    <mat-label>Lugar de Trabajo</mat-label>
                     <input matInput formControlName="nombre_empresa" />
                     <mat-error *ngIf="workExperience.get('nombre_empresa')?.hasError('required')">
                         Este campo es obligatorio
@@ -69,7 +69,7 @@
                 }@else{
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Hasta</mat-label>
-                    <input matInput [matDatepicker]="pickerHasta" formControlName="hasta" disabled/>
+                    <input matInput [matDatepicker]="pickerHasta" formControlName="hasta"/>
                     <mat-datepicker-toggle matSuffix [for]="pickerHasta"></mat-datepicker-toggle>
                     <mat-datepicker #pickerHasta></mat-datepicker>
                 </mat-form-field>

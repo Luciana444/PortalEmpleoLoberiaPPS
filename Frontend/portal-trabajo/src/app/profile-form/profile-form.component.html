@@ -100,11 +100,17 @@
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Localidad</mat-label>
         <input matInput formControlName="localidad" />
+        <mat-error *ngIf="profile.get('localidad')?.hasError('required')">
+          Este campo es obligatorio
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Provincia</mat-label>
         <input matInput formControlName="provincia" />
+        <mat-error *ngIf="profile.get('provincia')?.hasError('required')">
+          Este campo es obligatorio
+        </mat-error>
       </mat-form-field>
     </div>
     <div class="size-form">

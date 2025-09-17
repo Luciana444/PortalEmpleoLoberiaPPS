@@ -60,7 +60,7 @@
                 <button class="experience-btn" type="button"
                     (click)="this.educationForm.get('nombre_capacitacion')?.reset(''); addNewCardEducation = !addNewCardEducation">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M460-460H240v-40h220v-220h40v220h220v40H500v220h-40v-220Z"/></svg>
-                    Agregar nueva capacitación
+                    Agregar formacion
                 </button>
 
             </div>
@@ -68,8 +68,8 @@
         <div *ngIf="addNewCardEducation" class="profile">
             <div>
                 <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>Nombre de curso o capacitación</mat-label>
-                    <input matInput formControlName="nombre_capacitacion" />
+                    <mat-label>Nombre de carrera o capacitacion</mat-label>
+                    <input placeholder="Ejemplo: Contador Publico (Unicen, 2010 - 2016)" matInput formControlName="nombre_capacitacion" />
                     <mat-error *ngIf="educationForm.get('nombre_capacitacion')?.hasError('required')">
                         Este campo es obligatorio
                     </mat-error>
