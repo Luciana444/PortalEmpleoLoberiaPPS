@@ -26,6 +26,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouteTranslationService } from '../services/route-translation.service';
 import {MAT_CHECKBOX_DEFAULT_OPTIONS, MatCheckboxModule} from '@angular/material/checkbox';
 import {MatCheckboxDefaultOptions} from '@angular/material/checkbox'
+import {provideNativeDateAdapter} from '@angular/material/core';
 
 @Component({
     selector: 'app-work-experience',
@@ -49,7 +50,8 @@ import {MatCheckboxDefaultOptions} from '@angular/material/checkbox'
         MatTooltipModule
     ],
     providers: [
-    {provide: MAT_CHECKBOX_DEFAULT_OPTIONS, useValue: { clickAction: 'noop' } as MatCheckboxDefaultOptions}
+    {provide: MAT_CHECKBOX_DEFAULT_OPTIONS, useValue: { clickAction: 'noop' } as MatCheckboxDefaultOptions},
+    provideNativeDateAdapter()
         ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
