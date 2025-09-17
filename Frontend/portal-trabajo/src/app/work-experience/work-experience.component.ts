@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormGroupDirective } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../services/user.service';
@@ -49,9 +49,9 @@ import {MatCheckboxDefaultOptions} from '@angular/material/checkbox'
         MatTooltipModule
     ],
     providers: [
-  {provide: MAT_CHECKBOX_DEFAULT_OPTIONS, useValue: { clickAction: 'noop' } as MatCheckboxDefaultOptions}
-]
-
+    {provide: MAT_CHECKBOX_DEFAULT_OPTIONS, useValue: { clickAction: 'noop' } as MatCheckboxDefaultOptions}
+        ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WorkExperienceComponent implements OnInit {
     addNewCardExperience = false;
