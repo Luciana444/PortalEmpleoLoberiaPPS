@@ -6,6 +6,7 @@ import { provideHttpClient, withFetch, withInterceptors, withInterceptorsFromDi 
 import { provideAnimations } from '@angular/platform-browser/animations'; // For animations
 import { provideToastr } from 'ngx-toastr'; // For toastr
 import { authInterceptor } from '../interceptors/http-auth-func-interceptor';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,5 +19,6 @@ export const appConfig: ApplicationConfig = {
       withInterceptors([authInterceptor])
     ),
     provideAnimations(),
+    {provide:MAT_DATE_LOCALE, useValue:'es-AR'},
     provideToastr()]
 };

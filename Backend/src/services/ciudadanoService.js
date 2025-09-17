@@ -149,12 +149,6 @@ export const generarPdfUsuario = async (id,res) =>{
 
         doc.moveTo(50, doc.y).lineTo(570, doc.y).stroke();
 
-
-        doc.moveDown(1);
-        doc.font('Bold').fontSize(16).fillColor('#000').text('Perfil', { underline: true });
-        doc.moveDown(0.5);
-        doc.font('Regular').fontSize(12).text('Soy un ciudadano registrado en el portal de empleo de la municipalidad, con interés en oportunidades laborales acordes a mi perfil.');
-
       
 
         doc.moveDown(1.5);
