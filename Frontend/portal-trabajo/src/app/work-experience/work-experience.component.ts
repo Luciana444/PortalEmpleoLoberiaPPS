@@ -125,6 +125,9 @@ export class WorkExperienceComponent implements OnInit {
             hasta: this.workExperience.value.hasta,
             comentario: this.workExperience.value.comentario
         };
+        if(this.trabajaActualmente == true){
+            experiencia.hasta = null;
+        }
         this.employeeservice.addWorkExperience(JSON.stringify(experiencia)).subscribe({
             next: (response) => {
                 if (response.status === 200) {
@@ -175,6 +178,9 @@ export class WorkExperienceComponent implements OnInit {
             "comentario": this.workExperience.get('comentario')?.value,
         };
         if (this.workExperience.invalid) return;
+        if(this.trabajaActualmente == true){
+            workExperience.hasta = null;
+        }
         this.employeeservice.editWorkExperience(this.workExperienceId, JSON.stringify(workExperience)).subscribe({
             next: (response) => {
                 if (response.status === 200) {
