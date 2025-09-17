@@ -27,6 +27,7 @@ import { RouteTranslationService } from '../services/route-translation.service';
 import {MAT_CHECKBOX_DEFAULT_OPTIONS, MatCheckboxModule} from '@angular/material/checkbox';
 import {MatCheckboxDefaultOptions} from '@angular/material/checkbox'
 import {provideNativeDateAdapter} from '@angular/material/core';
+import { AppUtils } from '../../utils/app.utils';
 
 @Component({
     selector: 'app-work-experience',
@@ -300,5 +301,10 @@ export class WorkExperienceComponent implements OnInit {
     navigateToProfile() {
         this.routeTranslation.navigateToTranslated(['profile']);
     }
+
+
+    convertToLocalDate(date: string) {
+        return AppUtils.convertToLocalString(date);
+      }
 
 }

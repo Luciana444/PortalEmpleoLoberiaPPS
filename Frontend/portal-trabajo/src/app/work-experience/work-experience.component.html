@@ -111,9 +111,9 @@
                         <p><strong> Empresa: </strong> {{ exp.nombre_empresa }}</p>
                         <p><strong> Desde: </strong> {{ exp.desde | date }}</p>
                         @if(exp.hasta){
-                        <p><strong> Hasta: </strong> {{ exp.hasta}}</p>
+                        <p><strong> A:</strong> {{convertToLocalDate(exp.hasta)}}</p>
                         }@else{
-                         <p><strong> Hasta: </strong>Actualidad</p>
+                        <p>Trabajando Actualmente</p>    
                         }
                         <p><strong> Comentario: </strong> {{ exp.comentario }}</p>
                     </div>
