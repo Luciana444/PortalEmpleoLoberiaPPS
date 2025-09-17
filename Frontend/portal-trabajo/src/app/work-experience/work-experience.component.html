@@ -69,7 +69,7 @@
                 }@else{
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Hasta</mat-label>
-                    <input matInput [matDatepicker]="pickerHasta" disabled formControlName="hasta" />
+                    <input matInput [matDatepicker]="pickerHasta" formControlName="hasta" disabled/>
                     <mat-datepicker-toggle matSuffix [for]="pickerHasta"></mat-datepicker-toggle>
                     <mat-datepicker #pickerHasta></mat-datepicker>
                 </mat-form-field>
