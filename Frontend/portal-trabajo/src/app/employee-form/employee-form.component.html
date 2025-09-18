@@ -43,12 +43,26 @@
                 </mat-error>
             </mat-form-field>
         </div>
+        <div>
+            <!-- Email -->
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Confirmar Email</mat-label>
+                <input matInput formControlName="confirmEmail" placeholder="Ex. nombre@ejemplo.com" />
+                <mat-error *ngIf="registerForm.get('confirmEmail')?.hasError('required')">
+                    Este campo es obligatorio
+                </mat-error>
+                <mat-error *ngIf="registerForm.hasError('emailMismatch') && registerForm.get('confirmEmail')">
+                     Los emails no coinciden
+                </mat-error>
+            </mat-form-field>
+        </div>
 
         <div>
             <!-- Contraseña -->
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Contraseña</mat-label>
-                <input matInput type="password" formControlName="contrasena" placeholder="Ingresá tu contraseña" />
+                <input matInput type="password" formControlName="contrasena" placeholder="Ingresá tu contraseña" [type]="hide ? 'password' : 'text'"/>
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 <mat-error *ngIf="registerForm.get('contrasena')?.hasError('required')">
                     Este campo es obligatorio
                 </mat-error>

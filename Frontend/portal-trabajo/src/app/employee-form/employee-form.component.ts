@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BigLogoComponent } from '../big-logo/big-logo.component';
 import { RouteTranslationService } from '../services/route-translation.service';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 
+import { AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
 @Component({
   selector: 'app-employee-form',
   imports: [
@@ -20,12 +22,15 @@ import { RouteTranslationService } from '../services/route-translation.service';
     MatInputModule,
     CommonModule,
     MatSelectModule,
-    MatButtonModule],
+    MatButtonModule,
+  MatIconModule],
   templateUrl: './employee-form.component.html',
   styleUrl: './employee-form.component.scss'
 })
 export class EmployeeFormComponent implements OnInit {
   registerForm: FormGroup
+  hide = true
+  
 
   constructor(private router: Router,
     private fb: FormBuilder,
@@ -37,11 +42,25 @@ export class EmployeeFormComponent implements OnInit {
       nombre: [null, Validators.required],
       tipo_usuario: [null, Validators.required],
       email: [null, Validators.compose([Validators.required, Validators.email])],
-      contrasena: [null, Validators.compose([Validators.required, Validators.minLength(8)])]
-    });
+      contrasena: [null, Validators.compose([Validators.required, Validators.minLength(8)])],
+      confirmEmail: ['', [Validators.required, Validators.email]],
+    },{ validators: this.emailMatchValidator });
   }
+
+
   ngOnInit() {
   }
+
+     emailMatchValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+      const email = control.get('email'); // Get the 'email' FormControl
+      const confirmEmail = control.get('confirmEmail'); // Get the 'confirmEmail' FormControl
+
+      if (email && confirmEmail && email.value !== confirmEmail.value) {
+        return { emailMismatch: true }; // Return an error if values don't match
+      }
+      return null; // Return null if values match
+    };
+
 
   registerUser() {
     if (this.registerForm.invalid) {

@@ -1,6 +1,10 @@
 @use '../../styles.scss' as *;
 @use 'sass:color';
 
+mat-icon{
+  color:#49454F;
+}
+
 .form-container {
   display: flex;
   justify-content: center;

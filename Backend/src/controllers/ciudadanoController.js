@@ -309,13 +309,13 @@ export const obtenerPerfilCompleto = async (req, res) => {
 
     const perfil = await getPerfilCompleto(id_ciudadano);
 
-    const fecha = perfil.fecha_nacimiento.toISOString().split("T")[0];
-
 
     if (!perfil) {
       return res.status(404).json({ error: 'Perfil no encontrado' });
     }
-   const perfilPlano = {
+
+  if(perfil.fecha_nacimiento!= null){
+    const perfilPlano = {
         ...perfil,
         fecha_nacimiento: perfil.fecha_nacimiento.toLocaleDateString("es-AR", {
           year: "numeric",
@@ -323,7 +323,12 @@ export const obtenerPerfilCompleto = async (req, res) => {
           day: "2-digit",
         })
     };
-    res.json(perfilPlano);
+    return res.json(perfilPlano);
+  }else{
+    return res.json(perfil);
+  }
+
+
   } catch (error) {
     console.error('Error al obtener perfil completo:', error);
     res.status(500).json({ error: 'Error al obtener perfil' });
