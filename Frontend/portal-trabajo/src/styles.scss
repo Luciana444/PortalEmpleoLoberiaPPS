@@ -66,8 +66,13 @@ $font: 'Linotte Regular', 'Linotte Light', 'Linotte Semi Bold', 'Linotte Bold', 
     text-color:#49454F,
         ));
     @include mat.checkbox-overrides((
-                label-text-color: #49454F,
-                selected-checkmark-color: #57AF31,
+            selected-icon-color: #57AF31,
+            selected-checkmark-color: white,
+            selected-hover-icon-color:#57AF31,
+            selected-focus-icon-color:#57AF31,
+            selected-focus-state-layer-color:#57AF31,
+            unselected-focus-state-layer-color:#57AF31,
+            selected-pressed-state-layer-color:#57AF31
     ));
 }
 
