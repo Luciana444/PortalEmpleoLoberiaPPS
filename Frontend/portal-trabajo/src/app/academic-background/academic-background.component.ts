@@ -65,6 +65,10 @@ export class AcademicBackgroundComponent implements OnInit {
     return this.authService.getCurrentUserType();
   }
 
+  formatIsoDateString(date: string) {
+        return AppUtils.formatIsoDateString(date);
+  }
+
 }
 
 
