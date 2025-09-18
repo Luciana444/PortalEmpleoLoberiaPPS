@@ -64,9 +64,9 @@
                 <li>
                     <div class="dates">
                         <p><strong> Lugar de Trabajo:</strong> {{experiencia.nombre_empresa}}</p>
-                        <p><strong> De: </strong>{{convertToLocalDate(experiencia.desde)}}</p>
+                        <p><strong> De: </strong>{{formatIsoDateString(experiencia.desde)}}</p>
                         @if(experiencia.hasta){
-                        <p><strong> A:</strong> {{convertToLocalDate(experiencia.hasta)}}</p>
+                        <p><strong> A:</strong> {{formatIsoDateString(experiencia.hasta)}}</p>
                         }@else{
                         <p>Trabajando Actualmente</p>    
                         }

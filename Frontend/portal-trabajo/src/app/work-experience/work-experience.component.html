@@ -109,7 +109,7 @@
                 <div class="align-elements">
                     <div class="align-elements">
                         <p><strong> Empresa: </strong> {{ exp.nombre_empresa }}</p>
-                        <p><strong> Desde: </strong> {{ exp.desde | date }}</p>
+                        <p><strong> Desde: </strong> {{formatIsoDateString(exp.hasta)}}</p>
                         @if(exp.hasta){
                         <p><strong> A:</strong> {{formatIsoDateString(exp.hasta)}}</p>
                         }@else{
