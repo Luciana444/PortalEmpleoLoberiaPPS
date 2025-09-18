@@ -303,8 +303,8 @@ export class WorkExperienceComponent implements OnInit {
     }
 
 
-    convertToLocalDate(date: string) {
-        return AppUtils.convertToLocalString(date);
-      }
+    formatIsoDateString(date: string) {
+        return AppUtils.formatIsoDateString(date);
+    }
 
 }

@@ -6,5 +6,10 @@ export class AppUtils {
             day: 'numeric'
         });
     }
+    
+    static formatIsoDateString(date: string): string {
+        const [year, month, day] = date.substring(0, 10).split('-');
+        return `${day}/${month}/${year}`;
+    }
 
 }
