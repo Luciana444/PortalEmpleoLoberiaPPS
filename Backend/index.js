@@ -17,8 +17,13 @@ import swaggerUi from 'swagger-ui-express';
 const app = express();
 // Middleware que permite peticiones cross-origin desde otros orígenes (CORS)
 /* El origen debería estar parametrizado */
+
+const allowedOrigins = [
+  'https://empleo.loberia.gob.ar',
+  'http://localhost:4200',
+];
 app.use(cors({
-  origin: 'https://empleo.loberia.gob.ar',
+  origin: allowedOrigins,
   credentials:true
 }));
 
