@@ -149,23 +149,7 @@ export const generarPdfUsuario = async (id,res) =>{
 
         doc.moveTo(50, doc.y).lineTo(570, doc.y).stroke();
 
-      
-
         doc.moveDown(1.5);
-        doc.font('Bold').fontSize(16).fillColor('#000').text('Formacion',{underline:true})
-        doc.moveDown(0.5);
-        doc.fontSize(12).fillColor('black').text(`Nivel de estudios alcanzado: `);
-        doc.moveDown(0.5)
-        doc.font('Regular').fontSize(12).fillColor('#000').text(`• ${usuario.nivel_educativo}\n`)
-        if(usuario.esta_cursando_carrera == true){
-           doc.moveDown(0.5);
-           doc.font('Bold').fontSize(12).fillColor('#000').text(`Estudios actuales: `)
-           doc.moveDown(0.5)
-           doc.font('Regular').fontSize(12).fillColor('#000').text(`• ${usuario.carrera_en_curso}\n`);
-           doc.moveDown(1.5);
-        }else{
-          doc.moveDown(1.5);
-        }
         if(experiencia.length > 0){
           doc.font('Bold').fontSize(16).fillColor('#000').text('Experiencia', { underline: true });
           doc.moveDown(0.5);
@@ -179,6 +163,18 @@ export const generarPdfUsuario = async (id,res) =>{
         doc.moveDown(0.5);
         if(capacitacion.length > 0){
           doc.font('Bold').fontSize(16).fillColor('black').text('Educacion', {underline:true});
+          doc.moveDown(0.5)
+          doc.fontSize(12).fillColor('black').text(`Nivel de estudios alcanzado: `);
+          doc.moveDown(0.5)
+          doc.font('Regular').fontSize(12).fillColor('#000').text(`• ${usuario.nivel_educativo}\n`)
+          if(usuario.esta_cursando_carrera == true){
+            doc.moveDown(0.5);
+            doc.font('Bold').fontSize(12).fillColor('#000').text(`Estudios actuales: `)
+            doc.moveDown(0.5)
+            doc.font('Regular').fontSize(12).fillColor('#000').text(`• ${usuario.carrera_en_curso}\n`);
+          }
+            doc.moveDown(0.5);
+            doc.font('Bold').fontSize(12).fillColor('#000').text(`Estudios finalizados: `)
             doc.moveDown(0.5);
             for(let c of capacitacion){
               doc.font('Regular').fontSize(12).fillColor('black').text(`• ${c.nombre_capacitacion}`);
