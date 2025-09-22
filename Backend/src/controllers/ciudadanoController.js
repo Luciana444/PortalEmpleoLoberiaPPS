@@ -314,19 +314,19 @@ export const obtenerPerfilCompleto = async (req, res) => {
       return res.status(404).json({ error: 'Perfil no encontrado' });
     }
 
-  if(perfil.fecha_nacimiento!= null){
-    const perfilPlano = {
-        ...perfil,
-        fecha_nacimiento: perfil.fecha_nacimiento.toLocaleDateString("es-AR", {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit",
-        })
-    };
-    return res.json(perfilPlano);
-  }else{
-    return res.json(perfil);
-  }
+      if(perfil.fecha_nacimiento!= null){
+        const perfilPlano = {
+            ...perfil,
+            fecha_nacimiento: perfil.fecha_nacimiento.toLocaleDateString("es-AR", {
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+            })
+        };
+        return res.json(perfilPlano);
+      }else{
+        return res.json(perfil);
+      }
 
 
   } catch (error) {

@@ -21,7 +21,8 @@
         <!-- Campo: Contraseña -->
         <mat-form-field appearance="outline" class="full-width">
             <mat-label>Contraseña</mat-label>
-            <input matInput formControlName="contrasena" type="password" required />
+            <input matInput formControlName="contrasena" type="password" required  [type]="hide ? 'password' : 'text'"/>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             <mat-error *ngIf="loginForm.get('contrasena')?.hasError('required')">
                 La contraseña es obligatoria
             </mat-error>

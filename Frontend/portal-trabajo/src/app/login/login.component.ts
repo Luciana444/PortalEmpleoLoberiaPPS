@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 import { BigLogoComponent } from '../big-logo/big-logo.component';
 import { MatButtonModule } from '@angular/material/button';
 import { RouteTranslationService } from '../services/route-translation.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-login',
@@ -19,12 +20,14 @@ import { RouteTranslationService } from '../services/route-translation.service';
     MatFormFieldModule,
     MatInputModule,
     CommonModule,
-    MatButtonModule],
+    MatButtonModule,
+  MatIconModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup
+  hide = true
   constructor(
     private routeTranslation: RouteTranslationService,
     private fb: FormBuilder,

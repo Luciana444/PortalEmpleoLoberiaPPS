@@ -178,7 +178,7 @@ export const generarPdfUsuario = async (id,res) =>{
         }
         doc.moveDown(0.5);
         if(capacitacion.length > 0){
-          doc.font('Bold').fontSize(16).fillColor('black').text('Capacitaciones', {underline:true});
+          doc.font('Bold').fontSize(16).fillColor('black').text('Educacion', {underline:true});
             doc.moveDown(0.5);
             for(let c of capacitacion){
               doc.font('Regular').fontSize(12).fillColor('black').text(`• ${c.nombre_capacitacion}`);
