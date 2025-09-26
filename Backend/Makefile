@@ -31,11 +31,12 @@ install :
 		$(DIRECTORIO_VAR)/fotos
 	sudo install -d -o $(USUARIO_DESPLIEGUE) -g $(GRUPO_WWW) -m 2750 \
 		$(DIRECTORIO_VAR)/cv
-	ln -nsf $(DIRECTORIO_VAR)/fotos $(DIRECTORIO_BASE)/perfiles/fotos
-	ln -nsf $(DIRECTORIO_VAR)/cv $(DIRECTORIO_BASE)/src/uploads/cv
+	sudo ln -nsf $(DIRECTORIO_VAR)/fotos $(DIRECTORIO_BASE)/perfiles/fotos
+	sudo ln -nsf $(DIRECTORIO_VAR)/cv $(DIRECTORIO_BASE)/src/uploads/cv
 	sudo chown -Rh $(USUARIO_DESPLIEGUE):$(GRUPO_DESPLIEGUE) \
 		$(DIRECTORIO_BASE)
-	cd $(DIRECTORIO_BASE) && npm install && npm audit fix
+	sudo su $(USUARIO_DESPLIEGUE) -c \
+		"cd $(DIRECTORIO_BASE) && npm install && npm audit fix"
 	sudo install -m 644 $(SERVICIOS_SYSTEMD) $(BASE_SYSTEMD)
 	sudo systemctl daemon-reload
 	sudo systemctl enable empleo_backend
